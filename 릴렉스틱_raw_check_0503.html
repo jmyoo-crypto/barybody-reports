@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>릴렉스틱 RAW 데이터 체크 2026-05-04</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+       font-size: 13px; background: #f5f6f8; color: #1a1a2e; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.hero { background: linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%);
+        color: #fff; padding: 32px 28px; border-radius: 14px; margin-bottom: 24px; }
+.hero h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.hero p  { font-size: 13px; color: #94a3b8; margin-bottom: 10px; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: rgba(255,255,255,.12); border-radius: 20px;
+        padding: 4px 12px; font-size: 12px; color: #e2e8f0; }
+.section { margin-bottom: 24px; }
+.section-title { font-size: 14px; font-weight: 700; color: #1a1a2e;
+                 margin-bottom: 10px; padding-left: 4px;
+                 border-left: 3px solid #3b82f6; padding-left: 10px; }
+.card { background: #fff; border-radius: 12px; padding: 18px;
+        box-shadow: 0 1px 4px rgba(0,0,0,.07); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th { background: #f1f5f9; color: #475569; font-weight: 600;
+     padding: 8px 10px; text-align: right; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+th.lh { text-align: left; }
+td { padding: 7px 10px; text-align: right; border-bottom: 1px solid #f1f5f9;
+     white-space: nowrap; }
+td.lc { text-align: left; color: #334155; font-weight: 500; }
+td.dim { color: #94a3b8; font-size: 11.5px; }
+tr:hover td { background: #f8fafc; }
+tr.total-row td { font-weight: 700; background: #f8fafc; border-top: 2px solid #e2e8f0; }
+.up  { color: #16a34a; font-weight: 600; }
+.dn  { color: #dc2626; font-weight: 600; }
+.na  { color: #94a3b8; }
+.warn{ color: #d97706; font-weight: 600; }
+.tag-period { display: inline-block; padding: 2px 8px; border-radius: 10px;
+              font-size: 11px; font-weight: 600; margin-right: 4px; }
+.p-last { background:#dbeafe; color:#1d4ed8; }
+.p-prev { background:#dcfce7; color:#15803d; }
+.p-w3   { background:#fef9c3; color:#854d0e; }
+.p-cm   { background:#ffedd5; color:#9a3412; }
+.p-pm   { background:#f3e8ff; color:#7e22ce; }
+.daily-table td.day-ko { text-align:center; color:#64748b; }
+.note { font-size: 11px; color: #94a3b8; margin-top: 8px; }
+tr.has-sub { cursor: pointer; }
+tr.has-sub:hover td { background: #eef2ff !important; }
+.toggle-icon { font-size: 10px; color: #94a3b8; margin-left: 6px; }
+</style>
+
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <div style="font-size:12px;color:#94a3b8;margin-bottom:6px;">릴렉스틱 · RAW 데이터 체크</div>
+    <h1>데이터 검증 — 리포트 생성 전 확인용</h1>
+    <p>생성일시: 2026-05-04 &nbsp;|&nbsp; 판매 11,687행 &nbsp;|&nbsp; 메타 소재 20,477행</p>
+    <div class="hero-chips"><span class="chip"><span class="tag-period p-last">지난주</span> 04-27 ~ 05-03</span><span class="chip"><span class="tag-period p-prev">지지난주</span> 04-20 ~ 04-26</span><span class="chip"><span class="tag-period p-w3">3주전</span> 04-13 ~ 04-19</span><span class="chip"><span class="tag-period p-cm">이번달 누계</span> 05-01 ~ 05-03</span><span class="chip"><span class="tag-period p-pm">전월</span> 04-01 ~ 04-03</span></div>
+  </div>
+  
+<div class="section">
+  <div class="section-title">📊 핵심 KPI — 4기간 비교</div>
+  <div class="card">
+    <table>
+      <thead><tr><th class="lh">지표</th><th><span class="tag-period p-last">지난주</span><br><small>04-27 ~ 05-03</small></th><th></th><th><span class="tag-period p-prev">지지난주</span><br><small>04-20 ~ 04-26</small></th><th class="dim">변화</th><th><span class="tag-period p-w3">3주전</span><br><small>04-13 ~ 04-19</small></th><th class="dim">변화</th><th><span class="tag-period p-cm">이번달 누계</span><br><small>05-01 ~ 05-03</small></th><th class="dim">변화</th><th><span class="tag-period p-pm">전월</span><br><small>04-01 ~ 04-03</small></th><th></th></tr></thead>
+      <tbody><tr class="has-sub" data-group="kpi-ad" onclick="toggleGroup('kpi-ad')"><td class="lc">총 광고비 <span class="toggle-icon">▶</span></td><td><strong>1,335만3,680원</strong></td><td></td><td>1,313만7,148원</td><td><span class="dn">▲1.6%</span></td><td>1,351만6,558원</td><td><span class="up">▼1.2%</span></td><td>595만3,090원</td><td><span class="dn">▲25.4%</span></td><td>474만8,980원</td><td></td></tr><tr class="sub-row" data-group="kpi-ad" style="display:none"><td class="lc">  └ 멀티제품 소재 차감</td><td><strong><span style="color:#e55;">- 176만1,696원</span></strong></td><td></td><td><span style="color:#e55;">- 120만4,936원</span></td><td><span class="up">▲46.2%</span></td><td><span style="color:#e55;">- 27만3,712원</span></td><td><span class="up">▲543.6%</span></td><td><span style="color:#e55;">- 76만6,350원</span></td><td><span class="up">▲882.0%</span></td><td><span style="color:#e55;">- 7만8,038원</span></td><td></td></tr><tr class="has-sub" data-group="kpi-rev" onclick="toggleGroup('kpi-rev')"><td class="lc">페이드 채널 매출 <span class="toggle-icon">▶</span></td><td><strong>4,365만5,183원</strong></td><td></td><td>4,211만4,455원</td><td><span class="up">▲3.7%</span></td><td>4,160만8,818원</td><td><span class="up">▲4.9%</span></td><td>1,895만6,729원</td><td><span class="up">▲9.4%</span></td><td>1,733만1,459원</td><td></td></tr><tr class="sub-row" data-group="kpi-rev" style="display:none"><td class="lc">  └ 멀티제품 소재 차감</td><td><strong><span style="color:#e55;">- 313만6,200원</span></strong></td><td></td><td><span style="color:#e55;">- 142만8,350원</span></td><td><span class="up">▲119.6%</span></td><td><span style="color:#e55;">- 42만1,325원</span></td><td><span class="up">▲644.4%</span></td><td><span style="color:#e55;">- 174만6,550원</span></td><td><span class="up">▲2113.6%</span></td><td><span style="color:#e55;">- 7만8,900원</span></td><td></td></tr><tr class="sub-row" data-group="kpi-rev" style="display:none"><td class="lc">  └ 인플루언서 차감</td><td><strong><span style="color:#e55;">- 0원</span></strong></td><td></td><td><span style="color:#e55;">- 21만4,700원</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 732만9,900원</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 0원</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 0원</span></td><td></td></tr><tr class="has-sub" data-group="kpi-roas" onclick="toggleGroup('kpi-roas')"><td class="lc">ROAS <span class="toggle-icon">▶</span></td><td><strong>326.9%</strong></td><td></td><td>320.6%</td><td><span class="up">▲2.0%</span></td><td>307.8%</td><td><span class="up">▲6.2%</span></td><td>318.4%</td><td><span class="dn">▼12.7%</span></td><td>365.0%</td><td></td></tr><tr class="sub-row" data-group="kpi-roas" style="display:none"><td class="lc">  └ 멀티 포함 ROAS</td><td><strong>309.6%</strong></td><td></td><td>303.6%</td><td><span class="up">▲2.0%</span></td><td>304.8%</td><td><span class="up">▲1.6%</span></td><td>308.1%</td><td><span class="dn">▼14.6%</span></td><td>360.7%</td><td></td></tr><tr class="has-sub" data-group="kpi-mgn" onclick="toggleGroup('kpi-mgn')"><td class="lc">채널 마진 <span class="toggle-icon">▶</span></td><td><strong>3,042만2,428원</strong></td><td></td><td>2,931만9,736원</td><td><span class="up">▲3.8%</span></td><td>2,840만8,926원</td><td><span class="up">▲7.1%</span></td><td>1,320만4,603원</td><td><span class="up">▲8.1%</span></td><td>1,221만7,728원</td><td></td></tr><tr class="sub-row" data-group="kpi-mgn" style="display:none"><td class="lc">  └ 멀티제품 소재 차감</td><td><strong><span style="color:#e55;">- 212만3,245원</span></strong></td><td></td><td><span style="color:#e55;">- 95만1,457원</span></td><td><span class="up">▲123.2%</span></td><td><span style="color:#e55;">- 27만2,615원</span></td><td><span class="up">▲678.8%</span></td><td><span style="color:#e55;">- 117만3,681원</span></td><td><span class="up">▲2021.2%</span></td><td><span style="color:#e55;">- 5만5,331원</span></td><td></td></tr><tr class="sub-row" data-group="kpi-mgn" style="display:none"><td class="lc">  └ 인플루언서 차감</td><td><strong><span style="color:#e55;">- 0원</span></strong></td><td></td><td><span style="color:#e55;">- 15만184원</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 539만3,049원</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 0원</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 0원</span></td><td></td></tr><tr class="has-sub" data-group="kpi-nm" onclick="toggleGroup('kpi-nm')"><td class="lc">순마진(공헌이익) <span class="toggle-icon">▶</span></td><td><strong>1,706만8,748원</strong></td><td></td><td>1,618만2,588원</td><td><span class="up">▲5.5%</span></td><td>1,489만2,367원</td><td><span class="up">▲14.6%</span></td><td>725만1,513원</td><td><span class="dn">▼2.9%</span></td><td>746만8,748원</td><td></td></tr><tr class="sub-row" data-group="kpi-nm" style="display:none"><td class="lc">  └ 멀티 포함 순마진</td><td><strong>1,743만297원</strong></td><td></td><td>1,592만9,109원</td><td><span class="up">▲9.4%</span></td><td>1,489만1,269원</td><td><span class="up">▲17.1%</span></td><td>765만8,844원</td><td><span class="up">▲2.9%</span></td><td>744만6,041원</td><td></td></tr><tr class="has-sub" data-group="kpi-ord" onclick="toggleGroup('kpi-ord')"><td class="lc">주문수 <span class="toggle-icon">▶</span></td><td><strong>844건</strong></td><td></td><td>827건</td><td><span class="up">▲2.1%</span></td><td>816건</td><td><span class="up">▲3.5%</span></td><td>375건</td><td><span class="up">▲17.0%</span></td><td>321건</td><td></td></tr><tr class="sub-row" data-group="kpi-ord" style="display:none"><td class="lc">  └ 멀티제품 소재 차감</td><td><strong><span style="color:#e55;">- 47건</span></strong></td><td></td><td><span style="color:#e55;">- 21건</span></td><td><span class="up">▲120.9%</span></td><td><span style="color:#e55;">- 4건</span></td><td><span class="up">▲900.0%</span></td><td><span style="color:#e55;">- 27건</span></td><td><span class="up">▲2650.0%</span></td><td><span style="color:#e55;">- 1건</span></td><td></td></tr><tr class="sub-row" data-group="kpi-ord" style="display:none"><td class="lc">  └ 인플루언서 차감</td><td><strong><span style="color:#e55;">- 0건</span></strong></td><td></td><td><span style="color:#e55;">- 5건</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 141건</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 0건</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 0건</span></td><td></td></tr></tbody>
+    </table>
+    <p class="note">※ ROAS·순마진(공헌이익)은 멀티제품 소재 차감 후 순광고비 기준 &nbsp;|&nbsp; 멀티제품 소재: 2개 이상 제품 동시 집행 메타 광고 (N빵 귀속) &nbsp;|&nbsp; 광고비에는 인플루언서 섭외 비용이 포함되지 않습니다</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">📦 판매채널별 상세 (페이드 채널)</div>
+  <div class="card">
+    <table>
+      <thead><tr><th class="lh">채널 / 지표</th><th><span class="tag-period p-last">지난주</span><br><small>04-27 ~ 05-03</small></th><th></th><th><span class="tag-period p-prev">지지난주</span><br><small>04-20 ~ 04-26</small></th><th class="dim">변화</th><th><span class="tag-period p-w3">3주전</span><br><small>04-13 ~ 04-19</small></th><th class="dim">변화</th><th><span class="tag-period p-cm">이번달 누계</span><br><small>05-01 ~ 05-03</small></th><th class="dim">변화</th><th><span class="tag-period p-pm">전월</span><br><small>04-01 ~ 04-03</small></th><th></th></tr></thead>
+      <tbody><tr><td class="lc" colspan="11" style="background:#f0f2f5;font-weight:600;padding:6px 10px;">cafe24 <span style="font-weight:400;font-size:11px;color:#64748b;">광고: meta + kakao + google</span></td></tr><tr class="has-sub" data-group="cafe24-ad" onclick="toggleGroup('cafe24-ad')"><td class="lc">　총 광고비 <span class="toggle-icon">▶</span></td><td><strong>298만2,140원</strong></td><td></td><td>257만454원</td><td><span class="dn">▲16.0%</span></td><td>340만4,700원</td><td><span class="up">▼12.4%</span></td><td>152만813원</td><td><span class="dn">▲209.6%</span></td><td>49만1,174원</td><td></td></tr><tr class="sub-row" data-group="cafe24-ad" style="display:none"><td class="lc">　　└ 멀티제품 소재 차감</td><td><span style="color:#e55;">- 176만1,696원</span></td><td></td><td><span style="color:#e55;">- 120만4,936원</span></td><td></td><td><span style="color:#e55;">- 27만3,712원</span></td><td></td><td><span style="color:#e55;">- 76만6,350원</span></td><td></td><td><span style="color:#e55;">- 7만8,038원</span></td><td></td></tr><tr class="sub-row" data-group="cafe24-ad" style="display:none"><td class="lc">　　└ 메타</td><td><strong>406만4,007원</strong></td><td></td><td>288만3,404원</td><td><span class="dn">▲40.9%</span></td><td>234만2,598원</td><td><span class="dn">▲73.5%</span></td><td>198만1,689원</td><td><span class="dn">▲248.1%</span></td><td>56만9,213원</td><td></td></tr><tr class="sub-row" data-group="cafe24-ad" style="display:none"><td class="lc">　　└ 카카오</td><td><strong>0원</strong></td><td></td><td>17만6,460원</td><td><span class="up">▼100.0%</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td></td></tr><tr class="sub-row" data-group="cafe24-ad" style="display:none"><td class="lc">　　└ 구글</td><td><strong>67만9,829원</strong></td><td></td><td>71만5,526원</td><td><span class="up">▼5.0%</span></td><td>133만5,815원</td><td><span class="up">▼49.1%</span></td><td>30만5,474원</td><td><span class="na">—</span></td><td>0원</td><td></td></tr><tr class="has-sub" data-group="cafe24-rev" onclick="toggleGroup('cafe24-rev')"><td class="lc">　채널 매출 <span class="toggle-icon">▶</span></td><td><strong>631만9,596원</strong></td><td></td><td>438만2,125원</td><td><span class="up">▲44.2%</span></td><td>271만5,518원</td><td><span class="up">▲132.7%</span></td><td>282만9,329원</td><td><span class="up">▲375.5%</span></td><td>59만5,081원</td><td></td></tr><tr class="sub-row" data-group="cafe24-rev" style="display:none"><td class="lc">　　└ 멀티제품 소재 차감</td><td><span style="color:#e55;">- 313만6,200원</span></td><td></td><td><span style="color:#e55;">- 142만8,350원</span></td><td></td><td><span style="color:#e55;">- 42만1,325원</span></td><td></td><td><span style="color:#e55;">- 174만6,550원</span></td><td></td><td><span style="color:#e55;">- 7만8,900원</span></td><td></td></tr><tr class="sub-row" data-group="cafe24-rev" style="display:none"><td class="lc">　　└ 인플루언서 차감</td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 21만4,700원</span></td><td></td><td><span style="color:#e55;">- 732만9,900원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td></tr><tr class="has-sub" data-group="cafe24-roas" onclick="toggleGroup('cafe24-roas')"><td class="lc">　ROAS <span class="toggle-icon">▶</span></td><td><strong>211.9%</strong></td><td></td><td>170.5%</td><td><span class="up">▲24.3%</span></td><td>79.8%</td><td><span class="up">▲165.7%</span></td><td>186.0%</td><td><span class="up">▲53.6%</span></td><td>121.2%</td><td></td></tr><tr class="sub-row" data-group="cafe24-roas" style="display:none"><td class="lc">　　└ 멀티 포함 ROAS</td><td><strong>199.3%</strong></td><td></td><td>153.9%</td><td><span class="up">▲29.5%</span></td><td>85.3%</td><td><span class="up">▲133.7%</span></td><td>200.1%</td><td><span class="up">▲69.0%</span></td><td>118.4%</td><td></td></tr><tr class="has-sub" data-group="cafe24-mgn" onclick="toggleGroup('cafe24-mgn')"><td class="lc">　채널 마진 <span class="toggle-icon">▶</span></td><td><strong>427만8,442원</strong></td><td></td><td>291만1,867원</td><td><span class="up">▲46.9%</span></td><td>110만6,751원</td><td><span class="up">▲286.6%</span></td><td>190만1,307원</td><td><span class="up">▲355.6%</span></td><td>41만7,322원</td><td></td></tr><tr class="sub-row" data-group="cafe24-mgn" style="display:none"><td class="lc">　　└ 멀티제품 소재 차감 (추정)</td><td><span style="color:#e55;">- 212만3,245원</span></td><td></td><td><span style="color:#e55;">- 95만1,457원</span></td><td></td><td><span style="color:#e55;">- 27만2,615원</span></td><td></td><td><span style="color:#e55;">- 117만3,681원</span></td><td></td><td><span style="color:#e55;">- 5만5,331원</span></td><td></td></tr><tr class="sub-row" data-group="cafe24-mgn" style="display:none"><td class="lc">　　└ 인플루언서 차감</td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 15만184원</span></td><td></td><td><span style="color:#e55;">- 539만3,049원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td></tr><tr class="has-sub" data-group="cafe24-nm" onclick="toggleGroup('cafe24-nm')"><td class="lc">　순마진(공헌이익) <span class="toggle-icon">▶</span></td><td><strong>129만6,302원</strong></td><td></td><td>34만1,413원</td><td><span class="up">▲279.7%</span></td><td>-230만2,050원</td><td><span class="dn">▼156.4%</span></td><td>38만494원</td><td><span class="dn">▼615.2%</span></td><td>-8만6,147원</td><td></td></tr><tr class="sub-row" data-group="cafe24-nm" style="display:none"><td class="lc">　　└ 멀티 포함 순마진</td><td><strong>165만7,851원</strong></td><td></td><td>8만7,934원</td><td><span class="up">▲1785.3%</span></td><td>-230만952원</td><td><span class="dn">▼172.1%</span></td><td>78만7,825원</td><td><span class="dn">▼915.9%</span></td><td>-10만3,440원</td><td></td></tr><tr class="has-sub" data-group="cafe24-ord" onclick="toggleGroup('cafe24-ord')"><td class="lc">　주문수 <span class="toggle-icon">▶</span></td><td><strong>144건</strong></td><td></td><td>103건</td><td><span class="up">▲39.6%</span></td><td>96건</td><td><span class="up">▲50.1%</span></td><td>71건</td><td><span class="up">▲615.0%</span></td><td>10건</td><td></td></tr><tr class="sub-row" data-group="cafe24-ord" style="display:none"><td class="lc">　　└ 멀티제품 소재 차감</td><td><span style="color:#e55;">- 47건</span></td><td></td><td><span style="color:#e55;">- 21건</span></td><td></td><td><span style="color:#e55;">- 4건</span></td><td></td><td><span style="color:#e55;">- 27건</span></td><td></td><td><span style="color:#e55;">- 1건</span></td><td></td></tr><tr class="sub-row" data-group="cafe24-ord" style="display:none"><td class="lc">　　└ 인플루언서 차감</td><td><span style="color:#e55;">- 0건</span></td><td></td><td><span style="color:#e55;">- 5건</span></td><td></td><td><span style="color:#e55;">- 141건</span></td><td></td><td><span style="color:#e55;">- 0건</span></td><td></td><td><span style="color:#e55;">- 0건</span></td><td></td></tr><tr><td class="lc" colspan="11" style="background:#f0f2f5;font-weight:600;padding:6px 10px;">스마트스토어 <span style="font-weight:400;font-size:11px;color:#64748b;">광고: searchad + gfa + advoost</span></td></tr><tr class="has-sub" data-group="smartstore-ad" onclick="toggleGroup('smartstore-ad')"><td class="lc">　총 광고비 <span class="toggle-icon">▶</span></td><td><strong>1,037만1,540원</strong></td><td></td><td>1,056만6,694원</td><td><span class="up">▼1.8%</span></td><td>1,011만1,858원</td><td><span class="dn">▲2.6%</span></td><td>443만2,277원</td><td><span class="dn">▲4.1%</span></td><td>425만7,805원</td><td></td></tr><tr class="sub-row" data-group="smartstore-ad" style="display:none"><td class="lc">　　└ 검색광고</td><td><strong>603만3,193원</strong></td><td></td><td>416만4,715원</td><td><span class="dn">▲44.9%</span></td><td>353만5,110원</td><td><span class="dn">▲70.7%</span></td><td>253만4,540원</td><td><span class="dn">▲75.2%</span></td><td>144만6,823원</td><td></td></tr><tr class="sub-row" data-group="smartstore-ad" style="display:none"><td class="lc">　　└ GFA</td><td><strong>208만8,390원</strong></td><td></td><td>317만4,948원</td><td><span class="up">▼34.2%</span></td><td>333만4,758원</td><td><span class="up">▼37.4%</span></td><td>99만7,797원</td><td><span class="up">▼19.7%</span></td><td>124만3,085원</td><td></td></tr><tr class="sub-row" data-group="smartstore-ad" style="display:none"><td class="lc">　　└ 애드부스트</td><td><strong>224만9,957원</strong></td><td></td><td>322만7,031원</td><td><span class="up">▼30.3%</span></td><td>324만1,990원</td><td><span class="up">▼30.6%</span></td><td>89만9,940원</td><td><span class="up">▼42.6%</span></td><td>156만7,897원</td><td></td></tr><tr class="has-sub" data-group="smartstore-rev" onclick="toggleGroup('smartstore-rev')"><td class="lc">　채널 매출 <span class="toggle-icon">▶</span></td><td><strong>2,890만4,787원</strong></td><td></td><td>3,162만330원</td><td><span class="dn">▼8.6%</span></td><td>3,320만9,500원</td><td><span class="dn">▼13.0%</span></td><td>1,177만6,400원</td><td><span class="dn">▼6.3%</span></td><td>1,256만3,726원</td><td></td></tr><tr class="has-sub" data-group="smartstore-roas" onclick="toggleGroup('smartstore-roas')"><td class="lc">　ROAS <span class="toggle-icon">▶</span></td><td><strong>278.7%</strong></td><td></td><td>299.2%</td><td><span class="dn">▼6.9%</span></td><td>328.4%</td><td><span class="dn">▼15.1%</span></td><td>265.7%</td><td><span class="dn">▼10.0%</span></td><td>295.1%</td><td></td></tr><tr class="has-sub" data-group="smartstore-mgn" onclick="toggleGroup('smartstore-mgn')"><td class="lc">　채널 마진 <span class="toggle-icon">▶</span></td><td><strong>2,038만2,740원</strong></td><td></td><td>2,226만673원</td><td><span class="dn">▼8.4%</span></td><td>2,322만8,923원</td><td><span class="dn">▼12.3%</span></td><td>833만4,357원</td><td><span class="dn">▼7.1%</span></td><td>897만25원</td><td></td></tr><tr class="has-sub" data-group="smartstore-nm" onclick="toggleGroup('smartstore-nm')"><td class="lc">　순마진(공헌이익) <span class="toggle-icon">▶</span></td><td><strong>1,001만1,200원</strong></td><td></td><td>1,169만3,979원</td><td><span class="dn">▼14.4%</span></td><td>1,311만7,065원</td><td><span class="dn">▼23.7%</span></td><td>390만2,080원</td><td><span class="dn">▼17.2%</span></td><td>471만2,220원</td><td></td></tr><tr class="has-sub" data-group="smartstore-ord" onclick="toggleGroup('smartstore-ord')"><td class="lc">　주문수 <span class="toggle-icon">▶</span></td><td><strong>528건</strong></td><td></td><td>594건</td><td><span class="dn">▼11.1%</span></td><td>621건</td><td><span class="dn">▼15.0%</span></td><td>212건</td><td><span class="dn">▼5.4%</span></td><td>224건</td><td></td></tr><tr><td class="lc" colspan="11" style="background:#f0f2f5;font-weight:600;padding:6px 10px;">쿠팡 <span style="font-weight:400;font-size:11px;color:#64748b;">광고: —</span></td></tr><tr class="has-sub" data-group="coupang-ad" onclick="toggleGroup('coupang-ad')"><td class="lc">　총 광고비 <span class="toggle-icon">▶</span></td><td><strong>0원</strong></td><td></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td></td></tr><tr class="has-sub" data-group="coupang-rev" onclick="toggleGroup('coupang-rev')"><td class="lc">　채널 매출 <span class="toggle-icon">▶</span></td><td><strong>843만800원</strong></td><td></td><td>611만2,000원</td><td><span class="up">▲37.9%</span></td><td>568만3,800원</td><td><span class="up">▲48.3%</span></td><td>435만1,000원</td><td><span class="up">▲4.3%</span></td><td>417만2,652원</td><td></td></tr><tr class="has-sub" data-group="coupang-roas" onclick="toggleGroup('coupang-roas')"><td class="lc">　ROAS <span class="toggle-icon">▶</span></td><td><strong>0.0%</strong></td><td></td><td>0.0%</td><td><span class="na">—</span></td><td>0.0%</td><td><span class="na">—</span></td><td>0.0%</td><td><span class="na">—</span></td><td>0.0%</td><td></td></tr><tr class="has-sub" data-group="coupang-mgn" onclick="toggleGroup('coupang-mgn')"><td class="lc">　채널 마진 <span class="toggle-icon">▶</span></td><td><strong>576만1,246원</strong></td><td></td><td>414만7,196원</td><td><span class="up">▲38.9%</span></td><td>407만3,252원</td><td><span class="up">▲41.4%</span></td><td>296만8,939원</td><td><span class="up">▲4.9%</span></td><td>283만381원</td><td></td></tr><tr class="has-sub" data-group="coupang-nm" onclick="toggleGroup('coupang-nm')"><td class="lc">　순마진(공헌이익) <span class="toggle-icon">▶</span></td><td><strong>576만1,246원</strong></td><td></td><td>414만7,196원</td><td><span class="up">▲38.9%</span></td><td>407만3,252원</td><td><span class="up">▲41.4%</span></td><td>296만8,939원</td><td><span class="up">▲4.9%</span></td><td>283만381원</td><td></td></tr><tr class="has-sub" data-group="coupang-ord" onclick="toggleGroup('coupang-ord')"><td class="lc">　주문수 <span class="toggle-icon">▶</span></td><td><strong>172건</strong></td><td></td><td>130건</td><td><span class="up">▲32.3%</span></td><td>99건</td><td><span class="up">▲73.7%</span></td><td>92건</td><td><span class="up">▲5.7%</span></td><td>87건</td><td></td></tr></tbody>
+    </table>
+    <p class="note">※ cafe24 광고: meta·kakao·google &nbsp;|&nbsp; 스마트스토어 광고: searchad·GFA·advoost &nbsp;|&nbsp; ROAS·순마진은 해당 채널 귀속 광고비 기준</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">📢 인플루언서 링크 매출 (cafe24 별도 분리)</div>
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th class="lh">인플루언서</th>
+        <th>매출(지난)</th><th class="dim">매출(전전)</th><th>변화</th>
+        <th>주문(지난)</th><th class="dim">주문(전전)</th>
+      </tr></thead>
+      <tbody><tr>
+  <td class="lc">비밀링크(강예찬/강현이어라)</td>
+  <td><strong>0원</strong></td>
+  <td class="dim">21만4,700원</td>
+  <td><span class="dn">▼100.0%</span></td>
+  <td>0건</td>
+  <td class="dim">5건</td>
+</tr><tr class="total-row">
+  <td class="lc">합계</td>
+  <td><strong>0원</strong></td>
+  <td class="dim">21만4,700원</td>
+  <td><span class="dn">▼100.0%</span></td>
+  <td>0건</td>
+  <td class="dim">5건</td>
+</tr></tbody>
+    </table>
+    <p class="note">※ cafe24 채널 내 인플루언서 링크 주문(x바리바디)을 별도 집계 — 위 금액은 페이드 채널 매출(cafe24)에서 차감됩니다 &nbsp;|&nbsp; 번들 주문은 구성품1 기준으로 제품 필터링</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🔀 멀티제품 메타 소재 (N빵 귀속, cafe24 별도 분리)</div>
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th class="lh">소재명</th>
+        <th>제품수(N)</th>
+        <th>비용(지난)</th><th class="dim">비용(전전)</th><th>변화</th>
+        <th>매출(지난)</th><th>주문(지난)</th>
+      </tr></thead>
+      <tbody><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼/올인원마사지기/EMS손목마사지기/EMS허리마사지기/이벤트…</td>
+  <td style="text-align:center;">4개</td>
+  <td><strong>3만4,976원</strong></td>
+  <td class="dim">2만3,541원</td>
+  <td><span class="dn">▲48.6%</span></td>
+  <td>—</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼/올인원마사지기/슬림벨트v2/허리마사지기/손목마사지기/이벤…</td>
+  <td style="text-align:center;">4개</td>
+  <td><strong>0원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>—</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_공홈특가_일반</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>69만2,474원</strong></td>
+  <td class="dim">61만1,800원</td>
+  <td><span class="dn">▲13.2%</span></td>
+  <td>118만9,350원</td>
+  <td>17건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_노출시작영상_건강웰빙타겟_일반_2</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>18만5,116원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>44만1,550원</td>
+  <td>8건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_전체영상_건강웰빙타겟_일반_1</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>3만140원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>—</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_전환수극대화_비밀링크_파트너십</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>3만5,218원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>10만8,400원</td>
+  <td>1건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_전환수극대화_파트너십</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>9만1,498원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>10만8,400원</td>
+  <td>1건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_판매 1위_일반</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>69만2,274원</strong></td>
+  <td class="dim">56만9,596원</td>
+  <td><span class="dn">▲21.5%</span></td>
+  <td>128만8,500원</td>
+  <td>19건</td>
+</tr><tr class="total-row">
+  <td class="lc">합계</td>
+  <td></td>
+  <td><strong>176만1,696원</strong></td>
+  <td class="dim">120만4,936원</td>
+  <td><span class="dn">▲46.2%</span></td>
+  <td><strong>313만6,200원</strong></td>
+  <td>47건</td>
+</tr></tbody>
+    </table>
+    <p class="note">※ 2개 이상 제품 동시 집행 메타 소재만 표시 &nbsp;|&nbsp; 비용·매출·주문 = raw ÷ N (우리 제품 귀속분) &nbsp;|&nbsp; 위 금액은 KPI·채널별 집계에서 차감됩니다</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">📅 일별 원시 데이터 (지난주 vs 지지난주)</div>
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th class="lh">날짜</th><th>요일</th>
+        <th>매출(지난)</th><th class="dim">매출(전전)</th><th>매출변화</th>
+        <th>광고비(지난)</th><th class="dim">광고비(전전)</th><th>광고비변화</th>
+        <th>ROAS(지난)</th><th class="dim">ROAS(전전)</th>
+        <th>주문(지난)</th><th class="dim">주문(전전)</th>
+      </tr></thead>
+      <tbody><tr>
+  <td class="lc">04-27</td>
+  <td class="day-ko">월</td>
+  <td><strong>669만7,240원</strong></td>
+  <td class="dim">672만7,969원</td>
+  <td><span class="dn">▼0.5%</span></td>
+  <td>226만4,879원</td>
+  <td class="dim">160만1,890원</td>
+  <td><span class="dn">▲41.4%</span></td>
+  <td>296%</td>
+  <td class="dim">420%</td>
+  <td>123건</td>
+  <td class="dim">129건</td>
+</tr><tr>
+  <td class="lc">04-28</td>
+  <td class="day-ko">화</td>
+  <td><strong>570만5,048원</strong></td>
+  <td class="dim">624만1,861원</td>
+  <td><span class="dn">▼8.6%</span></td>
+  <td>202만7,607원</td>
+  <td class="dim">230만6,742원</td>
+  <td><span class="up">▼12.1%</span></td>
+  <td>281%</td>
+  <td class="dim">271%</td>
+  <td>102건</td>
+  <td class="dim">120건</td>
+</tr><tr>
+  <td class="lc">04-29</td>
+  <td class="day-ko">수</td>
+  <td><strong>635만121원</strong></td>
+  <td class="dim">581만8,558원</td>
+  <td><span class="up">▲9.1%</span></td>
+  <td>190만5,604원</td>
+  <td class="dim">204만4,803원</td>
+  <td><span class="up">▼6.8%</span></td>
+  <td>333%</td>
+  <td class="dim">285%</td>
+  <td>122건</td>
+  <td class="dim">116건</td>
+</tr><tr>
+  <td class="lc">04-30</td>
+  <td class="day-ko">목</td>
+  <td><strong>733만5,695원</strong></td>
+  <td class="dim">591만6,514원</td>
+  <td><span class="up">▲24.0%</span></td>
+  <td>219만7,846원</td>
+  <td class="dim">180만4,063원</td>
+  <td><span class="dn">▲21.8%</span></td>
+  <td>334%</td>
+  <td class="dim">328%</td>
+  <td>142건</td>
+  <td class="dim">112건</td>
+</tr><tr>
+  <td class="lc">05-01</td>
+  <td class="day-ko">금</td>
+  <td><strong>580만6,367원</strong></td>
+  <td class="dim">628만5,792원</td>
+  <td><span class="dn">▼7.6%</span></td>
+  <td>206만6,827원</td>
+  <td class="dim">195만1,645원</td>
+  <td><span class="dn">▲5.9%</span></td>
+  <td>281%</td>
+  <td class="dim">322%</td>
+  <td>117건</td>
+  <td class="dim">116건</td>
+</tr><tr>
+  <td class="lc">05-02</td>
+  <td class="day-ko">토</td>
+  <td><strong>608만2,899원</strong></td>
+  <td class="dim">533만23원</td>
+  <td><span class="up">▲14.1%</span></td>
+  <td>220만8,564원</td>
+  <td class="dim">217만582원</td>
+  <td><span class="dn">▲1.7%</span></td>
+  <td>275%</td>
+  <td class="dim">246%</td>
+  <td>122건</td>
+  <td class="dim">112건</td>
+</tr><tr>
+  <td class="lc">05-03</td>
+  <td class="day-ko">일</td>
+  <td><strong>881만4,013원</strong></td>
+  <td class="dim">743만6,788원</td>
+  <td><span class="up">▲18.5%</span></td>
+  <td>244만4,049원</td>
+  <td class="dim">246만2,359원</td>
+  <td><span class="up">▼0.7%</span></td>
+  <td>361%</td>
+  <td class="dim">302%</td>
+  <td>164건</td>
+  <td class="dim">149건</td>
+</tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🎬 메타 소재별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:200px">소재명</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">도달</th><th colspan="3">빈도</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_1초극락_단일영상_가로_일반</td>
+  <td><strong>2,720원</strong></td><td class="dim">1만9,101원</td><td class="dim">0원</td>
+  <td><span class="up">▼85.8%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>171</strong></td><td class="dim">1,201</td><td class="dim">0</td>
+  <td><strong>1만5,906원</strong></td><td class="dim">1만5,904원</td><td class="dim">—</td>
+  <td><strong>164</strong></td><td class="dim">1,134</td><td class="dim">0</td>
+  <td><strong>1.04</strong></td><td class="dim">1.06</td><td class="dim">—</td>
+  <td><strong>3</strong></td><td class="dim">21</td><td class="dim">0</td>
+  <td><strong>907원</strong></td><td class="dim">910원</td><td class="dim">—</td>
+  <td><strong>1.75%</strong></td><td class="dim">1.75%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_1초극락_단일영상_세로_일반</td>
+  <td><strong>4만5,439원</strong></td><td class="dim">1만5,927원</td><td class="dim">0원</td>
+  <td><span class="dn">▲185.3%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>2,273</strong></td><td class="dim">838</td><td class="dim">0</td>
+  <td><strong>1만9,991원</strong></td><td class="dim">1만9,006원</td><td class="dim">—</td>
+  <td><strong>2,075</strong></td><td class="dim">765</td><td class="dim">0</td>
+  <td><strong>1.1</strong></td><td class="dim">1.1</td><td class="dim">—</td>
+  <td><strong>45</strong></td><td class="dim">21</td><td class="dim">0</td>
+  <td><strong>1,010원</strong></td><td class="dim">758원</td><td class="dim">—</td>
+  <td><strong>1.98%</strong></td><td class="dim">2.51%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_4주년 생일파티_일반</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">10만343원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">4,873</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2만592원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">4,392</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.11</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">99</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1,014원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2.03%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_77% 할인_일반_1</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">27만173원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">28만8,500원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">18,742</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만4,415원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">16,822</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.11</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">549</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">492원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2.93%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">6</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">107%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">4만5,029원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_경남FC_전환수극대화_일반_1</td>
+  <td><strong>5만1,135원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>9만4,000원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>3,809</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1만3,425원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>3,457</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1.1</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>72</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>710원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1.89%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>2</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>184%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>2만5,568원</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_고조선_일반_1</td>
+  <td><strong>5만8,079원</strong></td><td class="dim">35만5,920원</td><td class="dim">0원</td>
+  <td><span class="up">▼83.7%</span></td>
+  <td><strong>0원</strong></td><td class="dim">19만8,000원</td><td class="dim">0원</td>
+  <td><strong>1,757</strong></td><td class="dim">11,443</td><td class="dim">0</td>
+  <td><strong>3만3,056원</strong></td><td class="dim">3만1,104원</td><td class="dim">—</td>
+  <td><strong>1,600</strong></td><td class="dim">9,855</td><td class="dim">0</td>
+  <td><strong>1.1</strong></td><td class="dim">1.16</td><td class="dim">—</td>
+  <td><strong>58</strong></td><td class="dim">303</td><td class="dim">0</td>
+  <td><strong>1,001원</strong></td><td class="dim">1,175원</td><td class="dim">—</td>
+  <td><strong>3.30%</strong></td><td class="dim">2.65%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">4</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">56%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">8만8,980원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_고조선_일반_2</td>
+  <td><strong>6만8,611원</strong></td><td class="dim">19만3,552원</td><td class="dim">0원</td>
+  <td><span class="up">▼64.6%</span></td>
+  <td><strong>0원</strong></td><td class="dim">21만8,000원</td><td class="dim">0원</td>
+  <td><strong>2,647</strong></td><td class="dim">7,343</td><td class="dim">0</td>
+  <td><strong>2만5,920원</strong></td><td class="dim">2만6,359원</td><td class="dim">—</td>
+  <td><strong>2,373</strong></td><td class="dim">6,568</td><td class="dim">0</td>
+  <td><strong>1.12</strong></td><td class="dim">1.12</td><td class="dim">—</td>
+  <td><strong>66</strong></td><td class="dim">187</td><td class="dim">0</td>
+  <td><strong>1,040원</strong></td><td class="dim">1,035원</td><td class="dim">—</td>
+  <td><strong>2.49%</strong></td><td class="dim">2.55%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">4</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">113%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">4만8,388원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_국대,전문가_일반_2</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">3,510원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">235</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만4,936원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">221</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.06</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">7</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">501원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2.98%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_동계스포츠_전환수극대화_일반_2</td>
+  <td><strong>15만2,428원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>15만9,900원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>10,678</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1만4,275원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>9,334</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1.14</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>181</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>842원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1.70%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>3</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>105%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>5만809원</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_러닝10km_일반</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">23만8,671원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">4만9,000원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">16,744</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만4,254원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">13,810</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.21</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">208</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1,147원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.24%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">21%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">23만8,671원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_러닝루틴_일반</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">24만233원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">4만9,000원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">13,685</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만7,554원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">11,979</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.14</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">176</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1,365원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.29%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">20%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">24만233원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_런닝10km_랜딩페이지조회수_일반</td>
+  <td><strong>16만6,859원</strong></td><td class="dim">17만5,999원</td><td class="dim">0원</td>
+  <td><span class="up">▼5.2%</span></td>
+  <td><strong>4만7,000원</strong></td><td class="dim">29만2,000원</td><td class="dim">0원</td>
+  <td><strong>27,686</strong></td><td class="dim">26,994</td><td class="dim">0</td>
+  <td><strong>6,027원</strong></td><td class="dim">6,520원</td><td class="dim">—</td>
+  <td><strong>26,523</strong></td><td class="dim">25,612</td><td class="dim">0</td>
+  <td><strong>1.04</strong></td><td class="dim">1.05</td><td class="dim">—</td>
+  <td><strong>1,604</strong></td><td class="dim">1,824</td><td class="dim">0</td>
+  <td><strong>104원</strong></td><td class="dim">96원</td><td class="dim">—</td>
+  <td><strong>5.79%</strong></td><td class="dim">6.76%</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">5</td><td class="dim">0</td>
+  <td><strong>28%</strong></td><td class="dim">166%</td><td class="dim">—</td>
+  <td><strong>16만6,859원</strong></td><td class="dim">3만5,200원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_런닝10km_전환수극대화_일반_1</td>
+  <td><strong>76만3,578원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>61만4,000원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>64,488</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1만1,841원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>58,917</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1.09</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1,010</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>756원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1.57%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>13</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>80%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>5만8,737원</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_릴렉스틱 77%_일반_2</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">10만6,041원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">8,817</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만2,027원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">8,333</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.06</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">583</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">182원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">6.61%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_릴렉스틱 77%_일반_2 - 사본</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">12만180원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">15,448</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">7,780원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">14,794</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.04</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">755</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">159원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">4.89%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_마감임박_일반</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_마감특가_여성승모_일반_2</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">3만3,180원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">14만900원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1,920</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만7,281원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1,789</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.07</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">45</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">737원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2.34%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">2</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">425%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만6,590원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_마감특가_종아리_일반_1</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">17만1,641원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">20만500원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">8,729</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만9,663원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">7,723</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.13</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">194</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">885원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2.22%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">4</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">117%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">4만2,910원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_쇼호스트_일반</td>
+  <td><strong>0원</strong></td><td class="dim">8만5,065원</td><td class="dim">5만1,302원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">4,087</td><td class="dim">2,417</td>
+  <td><strong>—</strong></td><td class="dim">2만814원</td><td class="dim">2만1,225원</td>
+  <td><strong>0</strong></td><td class="dim">3,730</td><td class="dim">2,191</td>
+  <td><strong>—</strong></td><td class="dim">1.1</td><td class="dim">1.1</td>
+  <td><strong>0</strong></td><td class="dim">100</td><td class="dim">79</td>
+  <td><strong>—</strong></td><td class="dim">851원</td><td class="dim">649원</td>
+  <td><strong>—</strong></td><td class="dim">2.45%</td><td class="dim">3.27%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0%</td><td class="dim">0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_압도적_시원함_가로_일반</td>
+  <td><strong>14만8,524원</strong></td><td class="dim">9만6,250원</td><td class="dim">0원</td>
+  <td><span class="dn">▲54.3%</span></td>
+  <td><strong>4만7,000원</strong></td><td class="dim">4만7,000원</td><td class="dim">0원</td>
+  <td><strong>8,349</strong></td><td class="dim">7,076</td><td class="dim">0</td>
+  <td><strong>1만7,789원</strong></td><td class="dim">1만3,602원</td><td class="dim">—</td>
+  <td><strong>7,777</strong></td><td class="dim">6,556</td><td class="dim">0</td>
+  <td><strong>1.07</strong></td><td class="dim">1.08</td><td class="dim">—</td>
+  <td><strong>120</strong></td><td class="dim">91</td><td class="dim">0</td>
+  <td><strong>1,238원</strong></td><td class="dim">1,058원</td><td class="dim">—</td>
+  <td><strong>1.44%</strong></td><td class="dim">1.29%</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>32%</strong></td><td class="dim">49%</td><td class="dim">—</td>
+  <td><strong>14만8,524원</strong></td><td class="dim">9만6,250원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_압도적_시원함_세로_일반</td>
+  <td><strong>5,326원</strong></td><td class="dim">2,002원</td><td class="dim">0원</td>
+  <td><span class="dn">▲166.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>232</strong></td><td class="dim">95</td><td class="dim">0</td>
+  <td><strong>2만2,957원</strong></td><td class="dim">2만1,074원</td><td class="dim">—</td>
+  <td><strong>217</strong></td><td class="dim">90</td><td class="dim">0</td>
+  <td><strong>1.07</strong></td><td class="dim">1.06</td><td class="dim">—</td>
+  <td><strong>7</strong></td><td class="dim">3</td><td class="dim">0</td>
+  <td><strong>761원</strong></td><td class="dim">667원</td><td class="dim">—</td>
+  <td><strong>3.02%</strong></td><td class="dim">3.16%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_온몸이_일반_2</td>
+  <td><strong>0원</strong></td><td class="dim">2만4,781원</td><td class="dim">5만9,819원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">15만3,700원</td>
+  <td><strong>0</strong></td><td class="dim">1,314</td><td class="dim">5,629</td>
+  <td><strong>—</strong></td><td class="dim">1만8,859원</td><td class="dim">1만627원</td>
+  <td><strong>0</strong></td><td class="dim">1,182</td><td class="dim">5,365</td>
+  <td><strong>—</strong></td><td class="dim">1.11</td><td class="dim">1.05</td>
+  <td><strong>0</strong></td><td class="dim">49</td><td class="dim">67</td>
+  <td><strong>—</strong></td><td class="dim">506원</td><td class="dim">893원</td>
+  <td><strong>—</strong></td><td class="dim">3.73%</td><td class="dim">1.19%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">3</td>
+  <td><strong>—</strong></td><td class="dim">0%</td><td class="dim">257%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만9,940원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_온몸이뭉친사람_일반</td>
+  <td><strong>0원</strong></td><td class="dim">10만2,381원</td><td class="dim">23만592원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">41만4,600원</td>
+  <td><strong>0</strong></td><td class="dim">5,529</td><td class="dim">16,837</td>
+  <td><strong>—</strong></td><td class="dim">1만8,517원</td><td class="dim">1만3,696원</td>
+  <td><strong>0</strong></td><td class="dim">4,894</td><td class="dim">15,319</td>
+  <td><strong>—</strong></td><td class="dim">1.13</td><td class="dim">1.1</td>
+  <td><strong>0</strong></td><td class="dim">117</td><td class="dim">203</td>
+  <td><strong>—</strong></td><td class="dim">875원</td><td class="dim">1,136원</td>
+  <td><strong>—</strong></td><td class="dim">2.12%</td><td class="dim">1.21%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">7</td>
+  <td><strong>—</strong></td><td class="dim">0%</td><td class="dim">180%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">3만2,942원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_유머_일반</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">5,355원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">305</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만7,557원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">268</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.14</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">5</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1,071원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.64%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_전상품 77%_일반_1</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">2,397원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">605</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">3,962원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">596</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.02</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">17</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">141원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2.81%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_타이밍_일반_1</td>
+  <td><strong>0원</strong></td><td class="dim">17만9,315원</td><td class="dim">20만7,963원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">4만7,000원</td><td class="dim">20만2,600원</td>
+  <td><strong>0</strong></td><td class="dim">10,301</td><td class="dim">13,383</td>
+  <td><strong>—</strong></td><td class="dim">1만7,408원</td><td class="dim">1만5,539원</td>
+  <td><strong>0</strong></td><td class="dim">9,318</td><td class="dim">11,940</td>
+  <td><strong>—</strong></td><td class="dim">1.11</td><td class="dim">1.12</td>
+  <td><strong>0</strong></td><td class="dim">284</td><td class="dim">281</td>
+  <td><strong>—</strong></td><td class="dim">631원</td><td class="dim">740원</td>
+  <td><strong>—</strong></td><td class="dim">2.76%</td><td class="dim">2.10%</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">5</td>
+  <td><strong>—</strong></td><td class="dim">26%</td><td class="dim">97%</td>
+  <td><strong>—</strong></td><td class="dim">17만9,315원</td><td class="dim">4만1,593원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_타이밍은지금_일반</td>
+  <td><strong>34만6,967원</strong></td><td class="dim">30만6,074원</td><td class="dim">22만7,485원</td>
+  <td><span class="dn">▲13.4%</span></td>
+  <td><strong>52만4,600원</strong></td><td class="dim">30만4,000원</td><td class="dim">77만1,600원</td>
+  <td><strong>27,472</strong></td><td class="dim">23,983</td><td class="dim">16,614</td>
+  <td><strong>1만2,630원</strong></td><td class="dim">1만2,762원</td><td class="dim">1만3,692원</td>
+  <td><strong>23,332</strong></td><td class="dim">21,529</td><td class="dim">15,063</td>
+  <td><strong>1.18</strong></td><td class="dim">1.11</td><td class="dim">1.1</td>
+  <td><strong>575</strong></td><td class="dim">473</td><td class="dim">339</td>
+  <td><strong>603원</strong></td><td class="dim">647원</td><td class="dim">671원</td>
+  <td><strong>2.09%</strong></td><td class="dim">1.97%</td><td class="dim">2.04%</td>
+  <td><strong>9</strong></td><td class="dim">6</td><td class="dim">14</td>
+  <td><strong>151%</strong></td><td class="dim">99%</td><td class="dim">339%</td>
+  <td><strong>3만8,552원</strong></td><td class="dim">5만1,012원</td><td class="dim">1만6,249원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_포맷_1번_일반</td>
+  <td><strong>1,664원</strong></td><td class="dim">1만1,141원</td><td class="dim">0원</td>
+  <td><span class="up">▼85.1%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>98</strong></td><td class="dim">796</td><td class="dim">0</td>
+  <td><strong>1만6,980원</strong></td><td class="dim">1만3,996원</td><td class="dim">—</td>
+  <td><strong>97</strong></td><td class="dim">757</td><td class="dim">0</td>
+  <td><strong>1.01</strong></td><td class="dim">1.05</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">18</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">619원</td><td class="dim">—</td>
+  <td><strong>0.00%</strong></td><td class="dim">2.26%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_포맷_2번_분할_일반</td>
+  <td><strong>5,458원</strong></td><td class="dim">2,557원</td><td class="dim">0원</td>
+  <td><span class="dn">▲113.5%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>103</strong></td><td class="dim">139</td><td class="dim">0</td>
+  <td><strong>5만2,990원</strong></td><td class="dim">1만8,396원</td><td class="dim">—</td>
+  <td><strong>99</strong></td><td class="dim">134</td><td class="dim">0</td>
+  <td><strong>1.04</strong></td><td class="dim">1.04</td><td class="dim">—</td>
+  <td><strong>5</strong></td><td class="dim">3</td><td class="dim">0</td>
+  <td><strong>1,092원</strong></td><td class="dim">852원</td><td class="dim">—</td>
+  <td><strong>4.85%</strong></td><td class="dim">2.16%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_프로버전_전환수극대화_일반_2</td>
+  <td><strong>31만2,662원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>59만4,000원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>34,075</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>9,176원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>31,439</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1.08</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>541</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>578원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1.59%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>12</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>190%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>2만6,055원</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_힐링템_가로_일반</td>
+  <td><strong>13만8,364원</strong></td><td class="dim">1만5,416원</td><td class="dim">0원</td>
+  <td><span class="dn">▲797.5%</span></td>
+  <td><strong>16만2,000원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>6,941</strong></td><td class="dim">1,047</td><td class="dim">0</td>
+  <td><strong>1만9,934원</strong></td><td class="dim">1만4,724원</td><td class="dim">—</td>
+  <td><strong>6,411</strong></td><td class="dim">984</td><td class="dim">0</td>
+  <td><strong>1.08</strong></td><td class="dim">1.06</td><td class="dim">—</td>
+  <td><strong>114</strong></td><td class="dim">21</td><td class="dim">0</td>
+  <td><strong>1,214원</strong></td><td class="dim">734원</td><td class="dim">—</td>
+  <td><strong>1.64%</strong></td><td class="dim">2.01%</td><td class="dim">—</td>
+  <td><strong>4</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>117%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>3만4,591원</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱_영상_힐링템_세로_일반</td>
+  <td><strong>748원</strong></td><td class="dim">3,850원</td><td class="dim">0원</td>
+  <td><span class="up">▼80.6%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>36</strong></td><td class="dim">173</td><td class="dim">0</td>
+  <td><strong>2만778원</strong></td><td class="dim">2만2,254원</td><td class="dim">—</td>
+  <td><strong>35</strong></td><td class="dim">166</td><td class="dim">0</td>
+  <td><strong>1.03</strong></td><td class="dim">1.04</td><td class="dim">—</td>
+  <td><strong>2</strong></td><td class="dim">3</td><td class="dim">0</td>
+  <td><strong>374원</strong></td><td class="dim">1,283원</td><td class="dim">—</td>
+  <td><strong>5.56%</strong></td><td class="dim">1.73%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱오리지널-루피/릴렉스틱볼-루피_영상_김채린_파트너십</td>
+  <td><strong>27원</strong></td><td class="dim">2만2,710원</td><td class="dim">0원</td>
+  <td><span class="up">▼99.9%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>1</strong></td><td class="dim">1,487</td><td class="dim">0</td>
+  <td><strong>2만7,000원</strong></td><td class="dim">1만5,272원</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">1,409</td><td class="dim">0</td>
+  <td><strong>1.0</strong></td><td class="dim">1.06</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">44</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">516원</td><td class="dim">—</td>
+  <td><strong>0.00%</strong></td><td class="dim">2.96%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱오리지널-루피/릴렉스틱볼-루피_영상_윤쓰_파트너십</td>
+  <td><strong>3만3,722원</strong></td><td class="dim">6만6,428원</td><td class="dim">0원</td>
+  <td><span class="up">▼49.2%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>1,068</strong></td><td class="dim">2,601</td><td class="dim">0</td>
+  <td><strong>3만1,575원</strong></td><td class="dim">2만5,539원</td><td class="dim">—</td>
+  <td><strong>308</strong></td><td class="dim">1,486</td><td class="dim">0</td>
+  <td><strong>3.47</strong></td><td class="dim">1.75</td><td class="dim">—</td>
+  <td><strong>77</strong></td><td class="dim">156</td><td class="dim">0</td>
+  <td><strong>438원</strong></td><td class="dim">426원</td><td class="dim">—</td>
+  <td><strong>7.21%</strong></td><td class="dim">6.00%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0%</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr></tbody></table>
+    <p class="note">※ 매출·구매는 카페24 연동 기준 (cafe24_revenue / cafe24_purchases) &nbsp;|&nbsp; 전전·3주 컬럼은 참고용(회색)</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🟡 카카오 메시지별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:200px">소재명</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">도달</th><th colspan="3">빈도</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">[~77%] 가정의달 선물 페스타🎁</td>
+  <td><strong>0원</strong></td><td class="dim">17만6,460원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>10만4,000원</strong></td><td class="dim">58만1,899원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">4,520</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">3만9,040원</td><td class="dim">—</td>
+  <td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">348</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">507원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">7.70%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">329.8%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr class="total-row">
+  <td class="lc">합계 (raw 구매전환수 기준)</td>
+  <td><strong>0원</strong></td><td class="dim">17만6,460원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>10만4,000원</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  <td><strong>2건</strong> <span class="dn">▼84.6%</span></td><td class="dim">13건</td><td class="dim">0건</td>
+  <td>—</td><td></td><td></td>
+  <td><strong>—</strong></td><td></td><td></td>
+</tr></tbody></table>
+    <p class="note">※ 도달·빈도 미제공 &nbsp;|&nbsp; 합계 행 구매전환수·CPA = kakao_business_raw quantity 기준</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">📡 GFA 소재별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:200px">소재명</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">도달</th><th colspan="3">빈도</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260203_릴렉스틱_장바구니 180일</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">6만8,900원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260205_스채_01</td>
+  <td><strong>2만3,658원</strong></td><td class="dim">4만692원</td><td class="dim">5만5,214원</td>
+  <td><span class="up">▼41.9%</span></td>
+  <td><strong>9만6,000원</strong></td><td class="dim">0원</td><td class="dim">28만300원</td>
+  <td><strong>7,033</strong></td><td class="dim">12,084</td><td class="dim">14,658</td>
+  <td><strong>3,364원</strong></td><td class="dim">3,367원</td><td class="dim">3,767원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>21</strong></td><td class="dim">36</td><td class="dim">51</td>
+  <td><strong>1,127원</strong></td><td class="dim">1,130원</td><td class="dim">1,083원</td>
+  <td><strong>0.30%</strong></td><td class="dim">0.30%</td><td class="dim">0.35%</td>
+  <td><strong>1</strong></td><td class="dim">0</td><td class="dim">5</td>
+  <td><strong>405.8%</strong></td><td class="dim">0.0%</td><td class="dim">507.7%</td>
+  <td><strong>2만3,658원</strong></td><td class="dim">—</td><td class="dim">1만1,043원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260224_릴렉스틱_02</td>
+  <td><strong>6만8,259원</strong></td><td class="dim">5만6,360원</td><td class="dim">7만4,879원</td>
+  <td><span class="dn">▲21.1%</span></td>
+  <td><strong>53만3,000원</strong></td><td class="dim">11만5,900원</td><td class="dim">19만500원</td>
+  <td><strong>3,979</strong></td><td class="dim">1,788</td><td class="dim">3,731</td>
+  <td><strong>1만7,155원</strong></td><td class="dim">3만1,521원</td><td class="dim">2만69원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>109</strong></td><td class="dim">55</td><td class="dim">82</td>
+  <td><strong>626원</strong></td><td class="dim">1,025원</td><td class="dim">913원</td>
+  <td><strong>2.74%</strong></td><td class="dim">3.08%</td><td class="dim">2.20%</td>
+  <td><strong>9</strong></td><td class="dim">2</td><td class="dim">5</td>
+  <td><strong>780.8%</strong></td><td class="dim">205.6%</td><td class="dim">254.4%</td>
+  <td><strong>7,584원</strong></td><td class="dim">2만8,180원</td><td class="dim">1만4,976원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260316_스채_03</td>
+  <td><strong>1만4,763원</strong></td><td class="dim">5만3,137원</td><td class="dim">4만4,366원</td>
+  <td><span class="up">▼72.2%</span></td>
+  <td><strong>5만2,000원</strong></td><td class="dim">5만4,000원</td><td class="dim">9만8,800원</td>
+  <td><strong>2,774</strong></td><td class="dim">10,833</td><td class="dim">10,876</td>
+  <td><strong>5,322원</strong></td><td class="dim">4,905원</td><td class="dim">4,079원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>12</strong></td><td class="dim">46</td><td class="dim">40</td>
+  <td><strong>1,230원</strong></td><td class="dim">1,155원</td><td class="dim">1,109원</td>
+  <td><strong>0.43%</strong></td><td class="dim">0.42%</td><td class="dim">0.37%</td>
+  <td><strong>1</strong></td><td class="dim">1</td><td class="dim">2</td>
+  <td><strong>352.2%</strong></td><td class="dim">101.6%</td><td class="dim">222.7%</td>
+  <td><strong>1만4,763원</strong></td><td class="dim">5만3,137원</td><td class="dim">2만2,183원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260319_릴렉스틱_01</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260319_마사지스틱_01</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">5만64원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">4만5,900원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">2,603</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만9,233원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">48</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1,043원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.84%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">91.7%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">5만64원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260323_릴렉스틱_03</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">5만4,000원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260326_릴렉스틱</td>
+  <td><strong>0원</strong></td><td class="dim">730원</td><td class="dim">3,278원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">6</td><td class="dim">56</td>
+  <td><strong>—</strong></td><td class="dim">12만1,667원</td><td class="dim">5만8,536원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">3,278원</td>
+  <td><strong>—</strong></td><td class="dim">0.00%</td><td class="dim">1.79%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">0.0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260326_릴렉스틱_01</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">11만5,532원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">14만7,800원</td><td class="dim">6만7,800원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">2,524</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">4만5,773원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">62</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1,863원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2.46%</td>
+  <td><strong>0</strong></td><td class="dim">2</td><td class="dim">1</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">58.7%</td>
+  <td><strong>—</strong></td><td class="dim">0원</td><td class="dim">11만5,532원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260326_릴렉스틱_02</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">14만2,759원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">15만2,600원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">28,596</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">4,992원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">202</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">707원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0.71%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">3</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">106.9%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">4만7,586원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260402_릴렉스틱_01</td>
+  <td><strong>0원</strong></td><td class="dim">7,821원</td><td class="dim">3만3,705원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">9만8,800원</td>
+  <td><strong>0</strong></td><td class="dim">85</td><td class="dim">446</td>
+  <td><strong>—</strong></td><td class="dim">9만2,012원</td><td class="dim">7만5,572원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">9</td>
+  <td><strong>—</strong></td><td class="dim">7,821원</td><td class="dim">3,745원</td>
+  <td><strong>—</strong></td><td class="dim">1.18%</td><td class="dim">2.02%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">2</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">293.1%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만6,852원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260406_릴렉스틱_03</td>
+  <td><strong>0원</strong></td><td class="dim">4만9,330원</td><td class="dim">45만9,966원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>24만2,800원</strong></td><td class="dim">32만5,600원</td><td class="dim">66만5,600원</td>
+  <td><strong>0</strong></td><td class="dim">2,922</td><td class="dim">22,043</td>
+  <td><strong>—</strong></td><td class="dim">1만6,882원</td><td class="dim">2만867원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">67</td><td class="dim">463</td>
+  <td><strong>—</strong></td><td class="dim">736원</td><td class="dim">993원</td>
+  <td><strong>—</strong></td><td class="dim">2.29%</td><td class="dim">2.10%</td>
+  <td><strong>2</strong></td><td class="dim">5</td><td class="dim">10</td>
+  <td><strong>—</strong></td><td class="dim">660.0%</td><td class="dim">144.7%</td>
+  <td><strong>0원</strong></td><td class="dim">9,866원</td><td class="dim">4만5,997원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260409_릴렉스틱 1</td>
+  <td><strong>2만435원</strong></td><td class="dim">6만7,999원</td><td class="dim">11만2,680원</td>
+  <td><span class="up">▼69.9%</span></td>
+  <td><strong>0원</strong></td><td class="dim">12만3,900원</td><td class="dim">27만9,300원</td>
+  <td><strong>10,265</strong></td><td class="dim">38,854</td><td class="dim">68,547</td>
+  <td><strong>1,991원</strong></td><td class="dim">1,750원</td><td class="dim">1,644원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>20</strong></td><td class="dim">70</td><td class="dim">107</td>
+  <td><strong>1,022원</strong></td><td class="dim">971원</td><td class="dim">1,053원</td>
+  <td><strong>0.19%</strong></td><td class="dim">0.18%</td><td class="dim">0.16%</td>
+  <td><strong>0</strong></td><td class="dim">3</td><td class="dim">5</td>
+  <td><strong>0.0%</strong></td><td class="dim">182.2%</td><td class="dim">247.9%</td>
+  <td><strong>—</strong></td><td class="dim">2만2,666원</td><td class="dim">2만2,536원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260409_릴렉스틱 2</td>
+  <td><strong>0원</strong></td><td class="dim">1,343원</td><td class="dim">1만4,570원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">5만2,000원</td><td class="dim">4만5,900원</td>
+  <td><strong>170</strong></td><td class="dim">674</td><td class="dim">3,081</td>
+  <td><strong>0원</strong></td><td class="dim">1,993원</td><td class="dim">4,729원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">14</td>
+  <td><strong>—</strong></td><td class="dim">1,343원</td><td class="dim">1,041원</td>
+  <td><strong>0.00%</strong></td><td class="dim">0.15%</td><td class="dim">0.45%</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">1</td>
+  <td><strong>—</strong></td><td class="dim">3871.9%</td><td class="dim">315.0%</td>
+  <td><strong>—</strong></td><td class="dim">1,343원</td><td class="dim">1만4,570원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260409_릴렉스틱 3</td>
+  <td><strong>28만3,492원</strong></td><td class="dim">28만1,421원</td><td class="dim">34만7,967원</td>
+  <td><span class="dn">▲0.7%</span></td>
+  <td><strong>144만4,800원</strong></td><td class="dim">110만4,830원</td><td class="dim">61만610원</td>
+  <td><strong>46,085</strong></td><td class="dim">49,509</td><td class="dim">63,543</td>
+  <td><strong>6,152원</strong></td><td class="dim">5,684원</td><td class="dim">5,476원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>294</strong></td><td class="dim">269</td><td class="dim">326</td>
+  <td><strong>964원</strong></td><td class="dim">1,046원</td><td class="dim">1,067원</td>
+  <td><strong>0.64%</strong></td><td class="dim">0.54%</td><td class="dim">0.51%</td>
+  <td><strong>22</strong></td><td class="dim">20</td><td class="dim">10</td>
+  <td><strong>509.6%</strong></td><td class="dim">392.6%</td><td class="dim">175.5%</td>
+  <td><strong>1만2,886원</strong></td><td class="dim">1만4,071원</td><td class="dim">3만4,797원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260409_릴렉스틱_01</td>
+  <td><strong>5만6,974원</strong></td><td class="dim">16만7,019원</td><td class="dim">51만6,341원</td>
+  <td><span class="up">▼65.9%</span></td>
+  <td><strong>19만8,800원</strong></td><td class="dim">28만2,000원</td><td class="dim">61만2,600원</td>
+  <td><strong>2,127</strong></td><td class="dim">3,606</td><td class="dim">21,504</td>
+  <td><strong>2만6,786원</strong></td><td class="dim">4만6,317원</td><td class="dim">2만4,011원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>56</strong></td><td class="dim">83</td><td class="dim">408</td>
+  <td><strong>1,017원</strong></td><td class="dim">2,012원</td><td class="dim">1,266원</td>
+  <td><strong>2.63%</strong></td><td class="dim">2.30%</td><td class="dim">1.90%</td>
+  <td><strong>4</strong></td><td class="dim">6</td><td class="dim">13</td>
+  <td><strong>348.9%</strong></td><td class="dim">168.8%</td><td class="dim">118.6%</td>
+  <td><strong>1만4,244원</strong></td><td class="dim">2만7,836원</td><td class="dim">3만9,719원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260409_릴렉스틱_02</td>
+  <td><strong>0원</strong></td><td class="dim">2만1,570원</td><td class="dim">28만5,065원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>15만6,000원</strong></td><td class="dim">0원</td><td class="dim">44만6,900원</td>
+  <td><strong>0</strong></td><td class="dim">9,780</td><td class="dim">117,878</td>
+  <td><strong>—</strong></td><td class="dim">2,206원</td><td class="dim">2,418원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">34</td><td class="dim">253</td>
+  <td><strong>—</strong></td><td class="dim">634원</td><td class="dim">1,127원</td>
+  <td><strong>—</strong></td><td class="dim">0.35%</td><td class="dim">0.21%</td>
+  <td><strong>2</strong></td><td class="dim">0</td><td class="dim">8</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">156.8%</td>
+  <td><strong>0원</strong></td><td class="dim">—</td><td class="dim">3만5,633원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260409_릴렉스틱_03</td>
+  <td><strong>0원</strong></td><td class="dim">3,231원</td><td class="dim">17만9,611원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">34만3,200원</td>
+  <td><strong>0</strong></td><td class="dim">411</td><td class="dim">17,490</td>
+  <td><strong>—</strong></td><td class="dim">7,861원</td><td class="dim">1만269원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">5</td><td class="dim">243</td>
+  <td><strong>—</strong></td><td class="dim">646원</td><td class="dim">739원</td>
+  <td><strong>—</strong></td><td class="dim">1.22%</td><td class="dim">1.39%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">7</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">191.1%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">2만5,659원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260409_릴렉스틱_04</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">3,435원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">881</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">3,899원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">5</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">687원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0.57%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0.0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260410_릴렉스틱_01</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">6만7,800원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">52</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0.00%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260410_릴렉스틱_02</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">1,199원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">48</td>
+  <td><strong>—</strong></td><td class="dim">0원</td><td class="dim">2만4,979원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1,199원</td>
+  <td><strong>—</strong></td><td class="dim">0.00%</td><td class="dim">2.08%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0.0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260410_쇼프_02</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">13만9,648원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">6만8,900원</td><td class="dim">12만9,800원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">19,370</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">7,209원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">200</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">698원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.03%</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">3</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">92.9%</td>
+  <td><strong>—</strong></td><td class="dim">0원</td><td class="dim">4만6,549원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260413_릴렉스틱_01</td>
+  <td><strong>10만7,382원</strong></td><td class="dim">14만176원</td><td class="dim">17만3,650원</td>
+  <td><span class="up">▼23.4%</span></td>
+  <td><strong>58만6,600원</strong></td><td class="dim">26만1,900원</td><td class="dim">16만5,700원</td>
+  <td><strong>7,040</strong></td><td class="dim">10,445</td><td class="dim">11,810</td>
+  <td><strong>1만5,253원</strong></td><td class="dim">1만3,420원</td><td class="dim">1만4,704원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>182</strong></td><td class="dim">235</td><td class="dim">281</td>
+  <td><strong>590원</strong></td><td class="dim">596원</td><td class="dim">618원</td>
+  <td><strong>2.59%</strong></td><td class="dim">2.25%</td><td class="dim">2.38%</td>
+  <td><strong>8</strong></td><td class="dim">6</td><td class="dim">3</td>
+  <td><strong>546.3%</strong></td><td class="dim">186.8%</td><td class="dim">95.4%</td>
+  <td><strong>1만3,423원</strong></td><td class="dim">2만3,363원</td><td class="dim">5만7,883원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260413_릴렉스틱_02</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">8,963원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">6</td><td class="dim">1,286</td>
+  <td><strong>—</strong></td><td class="dim">0원</td><td class="dim">6,970원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">13</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">689원</td>
+  <td><strong>—</strong></td><td class="dim">0.00%</td><td class="dim">1.01%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0.0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260413_릴렉스틱_03</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">4,349원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">690</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">6,303원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">6</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">725원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0.87%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">0.0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260415_릴렉스틱_01</td>
+  <td><strong>736원</strong></td><td class="dim">0원</td><td class="dim">3만3,768원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>10</strong></td><td class="dim">158</td><td class="dim">4,312</td>
+  <td><strong>7만3,600원</strong></td><td class="dim">0원</td><td class="dim">7,831원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">0</td><td class="dim">53</td>
+  <td><strong>736원</strong></td><td class="dim">—</td><td class="dim">637원</td>
+  <td><strong>10.00%</strong></td><td class="dim">0.00%</td><td class="dim">1.23%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">0.0%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260415_릴렉스틱_02</td>
+  <td><strong>5,557원</strong></td><td class="dim">23만1,207원</td><td class="dim">9만8,668원</td>
+  <td><span class="up">▼97.6%</span></td>
+  <td><strong>27만1,700원</strong></td><td class="dim">11만5,900원</td><td class="dim">14만7,700원</td>
+  <td><strong>814</strong></td><td class="dim">15,996</td><td class="dim">5,878</td>
+  <td><strong>6,827원</strong></td><td class="dim">1만4,454원</td><td class="dim">1만6,786원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>8</strong></td><td class="dim">347</td><td class="dim">142</td>
+  <td><strong>695원</strong></td><td class="dim">666원</td><td class="dim">695원</td>
+  <td><strong>0.98%</strong></td><td class="dim">2.17%</td><td class="dim">2.42%</td>
+  <td><strong>3</strong></td><td class="dim">2</td><td class="dim">3</td>
+  <td><strong>4889.3%</strong></td><td class="dim">50.1%</td><td class="dim">149.7%</td>
+  <td><strong>1,852원</strong></td><td class="dim">11만5,604원</td><td class="dim">3만2,889원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260415_릴렉스틱_03</td>
+  <td><strong>0원</strong></td><td class="dim">8,307원</td><td class="dim">6만5,952원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">4만7,000원</td><td class="dim">0원</td>
+  <td><strong>1</strong></td><td class="dim">525</td><td class="dim">5,270</td>
+  <td><strong>0원</strong></td><td class="dim">1만5,823원</td><td class="dim">1만2,515원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">11</td><td class="dim">91</td>
+  <td><strong>—</strong></td><td class="dim">755원</td><td class="dim">725원</td>
+  <td><strong>0.00%</strong></td><td class="dim">2.10%</td><td class="dim">1.73%</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">565.8%</td><td class="dim">0.0%</td>
+  <td><strong>—</strong></td><td class="dim">8,307원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260415_릴렉스틱_04</td>
+  <td><strong>8만5,860원</strong></td><td class="dim">9,244원</td><td class="dim">12만3,710원</td>
+  <td><span class="dn">▲828.8%</span></td>
+  <td><strong>9만4,000원</strong></td><td class="dim">5만7,000원</td><td class="dim">8만1,800원</td>
+  <td><strong>10,715</strong></td><td class="dim">754</td><td class="dim">14,241</td>
+  <td><strong>8,013원</strong></td><td class="dim">1만2,260원</td><td class="dim">8,687원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>145</strong></td><td class="dim">14</td><td class="dim">197</td>
+  <td><strong>592원</strong></td><td class="dim">660원</td><td class="dim">628원</td>
+  <td><strong>1.35%</strong></td><td class="dim">1.86%</td><td class="dim">1.38%</td>
+  <td><strong>2</strong></td><td class="dim">1</td><td class="dim">2</td>
+  <td><strong>109.5%</strong></td><td class="dim">616.6%</td><td class="dim">66.1%</td>
+  <td><strong>4만2,930원</strong></td><td class="dim">9,244원</td><td class="dim">6만1,855원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260417_릴렉스틱_01</td>
+  <td><strong>2,297원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>63</strong></td><td class="dim">2</td><td class="dim">0</td>
+  <td><strong>3만6,460원</strong></td><td class="dim">0원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>2,297원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1.59%</strong></td><td class="dim">0.00%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260420_가정의달_릴렉스틱_01</td>
+  <td><strong>0원</strong></td><td class="dim">915원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">161</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">5,683원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">915원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0.62%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260420_가정의달_릴렉스틱_03</td>
+  <td><strong>0원</strong></td><td class="dim">1,165원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">423</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">2,754원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1,165원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0.24%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260420_가정의달_릴렉스틱_05</td>
+  <td><strong>22만8,859원</strong></td><td class="dim">30만5,344원</td><td class="dim">0원</td>
+  <td><span class="up">▼25.0%</span></td>
+  <td><strong>20만2,800원</strong></td><td class="dim">52만9,400원</td><td class="dim">0원</td>
+  <td><strong>19,844</strong></td><td class="dim">18,802</td><td class="dim">0</td>
+  <td><strong>1만1,533원</strong></td><td class="dim">1만6,240원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>230</strong></td><td class="dim">285</td><td class="dim">0</td>
+  <td><strong>995원</strong></td><td class="dim">1,071원</td><td class="dim">—</td>
+  <td><strong>1.16%</strong></td><td class="dim">1.52%</td><td class="dim">—</td>
+  <td><strong>4</strong></td><td class="dim">6</td><td class="dim">0</td>
+  <td><strong>88.6%</strong></td><td class="dim">173.4%</td><td class="dim">—</td>
+  <td><strong>5만7,215원</strong></td><td class="dim">5만891원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260420_릴렉스틱_01</td>
+  <td><strong>59만2,491원</strong></td><td class="dim">123만9,729원</td><td class="dim">0원</td>
+  <td><span class="up">▼52.2%</span></td>
+  <td><strong>76만9,400원</strong></td><td class="dim">228만3,500원</td><td class="dim">0원</td>
+  <td><strong>73,151</strong></td><td class="dim">133,722</td><td class="dim">0</td>
+  <td><strong>8,100원</strong></td><td class="dim">9,271원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>987</strong></td><td class="dim">1,979</td><td class="dim">0</td>
+  <td><strong>600원</strong></td><td class="dim">626원</td><td class="dim">—</td>
+  <td><strong>1.35%</strong></td><td class="dim">1.48%</td><td class="dim">—</td>
+  <td><strong>12</strong></td><td class="dim">37</td><td class="dim">0</td>
+  <td><strong>129.9%</strong></td><td class="dim">184.2%</td><td class="dim">—</td>
+  <td><strong>4만9,374원</strong></td><td class="dim">3만3,506원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260420_릴렉스틱_02</td>
+  <td><strong>1,683원</strong></td><td class="dim">21만9,706원</td><td class="dim">0원</td>
+  <td><span class="up">▼99.2%</span></td>
+  <td><strong>0원</strong></td><td class="dim">4만6,000원</td><td class="dim">0원</td>
+  <td><strong>308</strong></td><td class="dim">25,807</td><td class="dim">0</td>
+  <td><strong>5,464원</strong></td><td class="dim">8,513원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>3</strong></td><td class="dim">316</td><td class="dim">0</td>
+  <td><strong>561원</strong></td><td class="dim">695원</td><td class="dim">—</td>
+  <td><strong>0.97%</strong></td><td class="dim">1.22%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">20.9%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">21만9,706원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_가정의달 1</td>
+  <td><strong>1,047원</strong></td><td class="dim">1만1,747원</td><td class="dim">0원</td>
+  <td><span class="up">▼91.1%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>542</strong></td><td class="dim">11,128</td><td class="dim">0</td>
+  <td><strong>1,932원</strong></td><td class="dim">1,056원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">12</td><td class="dim">0</td>
+  <td><strong>1,047원</strong></td><td class="dim">979원</td><td class="dim">—</td>
+  <td><strong>0.18%</strong></td><td class="dim">0.11%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_가정의달 2</td>
+  <td><strong>0원</strong></td><td class="dim">8,641원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>228</strong></td><td class="dim">4,098</td><td class="dim">0</td>
+  <td><strong>0원</strong></td><td class="dim">2,109원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">7</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1,234원</td><td class="dim">—</td>
+  <td><strong>0.00%</strong></td><td class="dim">0.17%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_가정의달 3</td>
+  <td><strong>1,208원</strong></td><td class="dim">8,352원</td><td class="dim">0원</td>
+  <td><span class="up">▼85.5%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>410</strong></td><td class="dim">5,518</td><td class="dim">0</td>
+  <td><strong>2,946원</strong></td><td class="dim">1,514원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">9</td><td class="dim">0</td>
+  <td><strong>1,208원</strong></td><td class="dim">928원</td><td class="dim">—</td>
+  <td><strong>0.24%</strong></td><td class="dim">0.16%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_가정의달_릴렉스틱_01</td>
+  <td><strong>0원</strong></td><td class="dim">1,403원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>4</strong></td><td class="dim">183</td><td class="dim">0</td>
+  <td><strong>0원</strong></td><td class="dim">7,667원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1,403원</td><td class="dim">—</td>
+  <td><strong>0.00%</strong></td><td class="dim">0.55%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_가정의달_릴렉스틱_02</td>
+  <td><strong>1,238원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>6</strong></td><td class="dim">111</td><td class="dim">0</td>
+  <td><strong>20만6,333원</strong></td><td class="dim">0원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1,238원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>16.67%</strong></td><td class="dim">0.00%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_릴렉스틱_01</td>
+  <td><strong>2만5,086원</strong></td><td class="dim">4만245원</td><td class="dim">0원</td>
+  <td><span class="up">▼37.7%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>803</strong></td><td class="dim">1,407</td><td class="dim">0</td>
+  <td><strong>3만1,240원</strong></td><td class="dim">2만8,603원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>9</strong></td><td class="dim">10</td><td class="dim">0</td>
+  <td><strong>2,787원</strong></td><td class="dim">4,024원</td><td class="dim">—</td>
+  <td><strong>1.12%</strong></td><td class="dim">0.71%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_릴렉스틱_02</td>
+  <td><strong>0원</strong></td><td class="dim">1,232원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>53</strong></td><td class="dim">645</td><td class="dim">0</td>
+  <td><strong>0원</strong></td><td class="dim">1,910원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">2</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">616원</td><td class="dim">—</td>
+  <td><strong>0.00%</strong></td><td class="dim">0.31%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_릴렉스틱_03</td>
+  <td><strong>645원</strong></td><td class="dim">3,965원</td><td class="dim">0원</td>
+  <td><span class="up">▼83.7%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>135</strong></td><td class="dim">714</td><td class="dim">0</td>
+  <td><strong>4,778원</strong></td><td class="dim">5,553원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">7</td><td class="dim">0</td>
+  <td><strong>645원</strong></td><td class="dim">566원</td><td class="dim">—</td>
+  <td><strong>0.74%</strong></td><td class="dim">0.98%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_릴렉스틱_04</td>
+  <td><strong>715원</strong></td><td class="dim">7,102원</td><td class="dim">0원</td>
+  <td><span class="up">▼89.9%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>347</strong></td><td class="dim">902</td><td class="dim">0</td>
+  <td><strong>2,061원</strong></td><td class="dim">7,874원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">10</td><td class="dim">0</td>
+  <td><strong>715원</strong></td><td class="dim">710원</td><td class="dim">—</td>
+  <td><strong>0.29%</strong></td><td class="dim">1.11%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_스마트채널 1</td>
+  <td><strong>707원</strong></td><td class="dim">1만1,393원</td><td class="dim">0원</td>
+  <td><span class="up">▼93.8%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>246</strong></td><td class="dim">9,484</td><td class="dim">0</td>
+  <td><strong>2,874원</strong></td><td class="dim">1,201원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">12</td><td class="dim">0</td>
+  <td><strong>707원</strong></td><td class="dim">949원</td><td class="dim">—</td>
+  <td><strong>0.41%</strong></td><td class="dim">0.13%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_스마트채널 2</td>
+  <td><strong>1,593원</strong></td><td class="dim">3,967원</td><td class="dim">0원</td>
+  <td><span class="up">▼59.8%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>112</strong></td><td class="dim">1,710</td><td class="dim">0</td>
+  <td><strong>1만4,223원</strong></td><td class="dim">2,320원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">3</td><td class="dim">0</td>
+  <td><strong>1,593원</strong></td><td class="dim">1,322원</td><td class="dim">—</td>
+  <td><strong>0.89%</strong></td><td class="dim">0.18%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260422_스마트채널 3</td>
+  <td><strong>7,421원</strong></td><td class="dim">2만2,225원</td><td class="dim">0원</td>
+  <td><span class="up">▼66.6%</span></td>
+  <td><strong>10만8,900원</strong></td><td class="dim">4만7,000원</td><td class="dim">0원</td>
+  <td><strong>3,283</strong></td><td class="dim">5,393</td><td class="dim">0</td>
+  <td><strong>2,260원</strong></td><td class="dim">4,121원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>6</strong></td><td class="dim">18</td><td class="dim">0</td>
+  <td><strong>1,237원</strong></td><td class="dim">1,235원</td><td class="dim">—</td>
+  <td><strong>0.18%</strong></td><td class="dim">0.33%</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>1467.5%</strong></td><td class="dim">211.5%</td><td class="dim">—</td>
+  <td><strong>7,421원</strong></td><td class="dim">2만2,225원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260425_최강특가_01</td>
+  <td><strong>0원</strong></td><td class="dim">4만5,459원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">7,435</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">6,114원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">52</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">874원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0.70%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260425_최강특가_02</td>
+  <td><strong>0원</strong></td><td class="dim">4만8,438원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">7만3,800원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">4,654</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1만408원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">49</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">989원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">1.05%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">152.4%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">4만8,438원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260425_최강특가_03</td>
+  <td><strong>0원</strong></td><td class="dim">1,741원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">505</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">3,448원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">2</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">870원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0.40%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0.0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260429_가정의달_릴렉스틱_01</td>
+  <td><strong>15만6,247원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>16만2,900원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>13,569</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1만1,515원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>160</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>977원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1.18%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>3</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>104.3%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>5만2,082원</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260429_가정의달_릴렉스틱_02</td>
+  <td><strong>1만7,346원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>2,667</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>6,504원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>18</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>964원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0.67%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260430_가정의달_릴렉스틱_04</td>
+  <td><strong>1,384원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>979</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1,414원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>2</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>692원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0.20%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260430_가정의달_릴렉스틱_05</td>
+  <td><strong>2,767원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>1,052</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>2,630원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>3</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>922원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0.29%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260430_가정의달_릴렉스틱_06</td>
+  <td><strong>6,453원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>1,554</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>4,153원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>6</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1,076원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0.39%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260430_가정의달_릴렉스틱_07</td>
+  <td><strong>7,023원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>1,936</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>3,628원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>9</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>780원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0.46%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260430_릴렉스틱_01</td>
+  <td><strong>5,119원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>1,262</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>4,056원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>8</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>640원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0.63%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260430_릴렉스틱_02</td>
+  <td><strong>2,334원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>917</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>2,545원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>4</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>584원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0.44%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>0.0%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260430_릴렉스틱_03</td>
+  <td><strong>20만1,486원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>21만900원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>19,774</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>1만189원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>359</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>561원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1.82%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>3</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>104.7%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>6만7,162원</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260430_릴렉스틱_04</td>
+  <td><strong>11만5,904원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>4만7,000원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>13,159</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>8,808원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>178</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>651원</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1.35%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>1</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>40.6%</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>11만5,904원</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">CF_1020_릴렉스틱_4</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">17만8,680원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>3만5,900원</strong></td><td class="dim">5만7,000원</td><td class="dim">29만8,500원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">18,594</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">9,610원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">253</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">706원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.36%</td>
+  <td><strong>1</strong></td><td class="dim">1</td><td class="dim">5</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">167.1%</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">3만5,736원</td>
+</tr></tbody></table>
+    <p class="note">※ naver_gfa + naver_gfa_2 합산 &nbsp;|&nbsp; 매출·ROAS·CPA = 네이버 전환 기준</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🛍️ 애드부스트 상품별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:200px">소재명</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">도달</th><th colspan="3">빈도</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">바리바디 릴렉스틱 1+1 마시지스틱 종아리 허벅지 마사지 롤러</td>
+  <td><strong>104만7,587원</strong></td><td class="dim">154만5,424원</td><td class="dim">153만8,719원</td>
+  <td><span class="up">▼32.2%</span></td>
+  <td><strong>383만500원</strong></td><td class="dim">282만1,000원</td><td class="dim">1,154만5,790원</td>
+  <td><strong>155,138</strong></td><td class="dim">210,943</td><td class="dim">225,152</td>
+  <td><strong>6,753원</strong></td><td class="dim">7,326원</td><td class="dim">6,834원</td>
+  <td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>525</strong></td><td class="dim">823</td><td class="dim">2,316</td>
+  <td><strong>1,995원</strong></td><td class="dim">1,878원</td><td class="dim">664원</td>
+  <td><strong>0.34%</strong></td><td class="dim">0.39%</td><td class="dim">1.03%</td>
+  <td><strong>55</strong></td><td class="dim">41</td><td class="dim">159</td>
+  <td><strong>365.6%</strong></td><td class="dim">182.5%</td><td class="dim">750.4%</td>
+  <td><strong>1만9,047원</strong></td><td class="dim">3만7,693원</td><td class="dim">9,677원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">바리바디 릴렉스틱 마사지스틱 종아리 허벅지 마사지 롤러 오리지널</td>
+  <td><strong>120만2,370원</strong></td><td class="dim">168만1,607원</td><td class="dim">170만3,271원</td>
+  <td><span class="up">▼28.5%</span></td>
+  <td><strong>532만330원</strong></td><td class="dim">663만7,520원</td><td class="dim">864만3,330원</td>
+  <td><strong>128,113</strong></td><td class="dim">192,871</td><td class="dim">215,232</td>
+  <td><strong>9,385원</strong></td><td class="dim">8,719원</td><td class="dim">7,914원</td>
+  <td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>654</strong></td><td class="dim">1,015</td><td class="dim">1,894</td>
+  <td><strong>1,838원</strong></td><td class="dim">1,657원</td><td class="dim">899원</td>
+  <td><strong>0.51%</strong></td><td class="dim">0.53%</td><td class="dim">0.88%</td>
+  <td><strong>89</strong></td><td class="dim">127</td><td class="dim">153</td>
+  <td><strong>442.5%</strong></td><td class="dim">394.7%</td><td class="dim">507.5%</td>
+  <td><strong>1만3,510원</strong></td><td class="dim">1만3,241원</td><td class="dim">1만1,132원</td>
+</tr></tbody></table>
+    <p class="note">※ 도달·빈도 미제공 &nbsp;|&nbsp; naver_gfa_advoost + naver_gfa_advoost_2 합산</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🔍 네이버 검색광고 광고그룹별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:160px">캠페인</th>
+  <th class="lh" rowspan="2" style="min-width:160px">광고그룹</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+  <th colspan="3">평균노출순위</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#P1_파워링크_브랜드_MO</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">02. 릴렉스틱</td>
+  <td><strong>2만4,518원</strong></td><td class="dim">3만2,113원</td><td class="dim">1만9,614원</td>
+  <td><span class="up">▼23.7%</span></td>
+  <td><strong>336만5,400원</strong></td><td class="dim">495만원</td><td class="dim">181만8,500원</td>
+  <td><strong>2,127</strong></td><td class="dim">2,448</td><td class="dim">2,767</td>
+  <td><strong>1만1,527원</strong></td><td class="dim">1만3,118원</td><td class="dim">7,089원</td>
+  <td><strong>82</strong></td><td class="dim">100</td><td class="dim">61</td>
+  <td><strong>299원</strong></td><td class="dim">321원</td><td class="dim">322원</td>
+  <td><strong>3.86%</strong></td><td class="dim">4.08%</td><td class="dim">2.20%</td>
+  <td><strong>38</strong></td><td class="dim">48</td><td class="dim">21</td>
+  <td><strong>13726%</strong></td><td class="dim">15414%</td><td class="dim">9271%</td>
+  <td><strong>645원</strong></td><td class="dim">669원</td><td class="dim">934원</td>
+  <td><strong>2.0</strong></td><td class="dim">2.1</td><td class="dim">2.6</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#P2_파워링크_브랜드_PC</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">02. 릴렉스틱</td>
+  <td><strong>55원</strong></td><td class="dim">157원</td><td class="dim">154원</td>
+  <td><span class="up">▼65.0%</span></td>
+  <td><strong>9만9,000원</strong></td><td class="dim">0원</td><td class="dim">33만8,000원</td>
+  <td><strong>156</strong></td><td class="dim">148</td><td class="dim">161</td>
+  <td><strong>353원</strong></td><td class="dim">1,061원</td><td class="dim">957원</td>
+  <td><strong>1</strong></td><td class="dim">2</td><td class="dim">2</td>
+  <td><strong>55원</strong></td><td class="dim">78원</td><td class="dim">77원</td>
+  <td><strong>0.64%</strong></td><td class="dim">1.35%</td><td class="dim">1.24%</td>
+  <td><strong>1</strong></td><td class="dim">0</td><td class="dim">3</td>
+  <td><strong>180000%</strong></td><td class="dim">0%</td><td class="dim">219481%</td>
+  <td><strong>55원</strong></td><td class="dim">—</td><td class="dim">51원</td>
+  <td><strong>5.7</strong></td><td class="dim">5.7</td><td class="dim">5.8</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#P3_파워링크_일반_MO</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">01. 릴렉스틱_메인</td>
+  <td><strong>107만6,899원</strong></td><td class="dim">92만6,651원</td><td class="dim">77만2,961원</td>
+  <td><span class="dn">▲16.2%</span></td>
+  <td><strong>1,592만1,500원</strong></td><td class="dim">1,996만9,800원</td><td class="dim">1,562만4,500원</td>
+  <td><strong>7,464</strong></td><td class="dim">8,345</td><td class="dim">8,300</td>
+  <td><strong>14만4,279원</strong></td><td class="dim">11만1,043원</td><td class="dim">9만3,128원</td>
+  <td><strong>617</strong></td><td class="dim">687</td><td class="dim">672</td>
+  <td><strong>1,745원</strong></td><td class="dim">1,349원</td><td class="dim">1,150원</td>
+  <td><strong>8.27%</strong></td><td class="dim">8.23%</td><td class="dim">8.10%</td>
+  <td><strong>166</strong></td><td class="dim">192</td><td class="dim">169</td>
+  <td><strong>1478%</strong></td><td class="dim">2155%</td><td class="dim">2021%</td>
+  <td><strong>6,487원</strong></td><td class="dim">4,826원</td><td class="dim">4,574원</td>
+  <td><strong>1.2</strong></td><td class="dim">1.1</td><td class="dim">1.1</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#P4_파워링크_일반_PC</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">01. 릴렉스틱_메인</td>
+  <td><strong>5만5,178원</strong></td><td class="dim">8만3,767원</td><td class="dim">9만8,410원</td>
+  <td><span class="up">▼34.1%</span></td>
+  <td><strong>111만9,800원</strong></td><td class="dim">62만7,800원</td><td class="dim">255만7,000원</td>
+  <td><strong>1,410</strong></td><td class="dim">1,679</td><td class="dim">1,775</td>
+  <td><strong>3만9,133원</strong></td><td class="dim">4만9,891원</td><td class="dim">5만5,442원</td>
+  <td><strong>78</strong></td><td class="dim">100</td><td class="dim">121</td>
+  <td><strong>707원</strong></td><td class="dim">838원</td><td class="dim">813원</td>
+  <td><strong>5.53%</strong></td><td class="dim">5.96%</td><td class="dim">6.82%</td>
+  <td><strong>13</strong></td><td class="dim">8</td><td class="dim">18</td>
+  <td><strong>2029%</strong></td><td class="dim">749%</td><td class="dim">2598%</td>
+  <td><strong>4,244원</strong></td><td class="dim">1만471원</td><td class="dim">5,467원</td>
+  <td><strong>1.4</strong></td><td class="dim">1.1</td><td class="dim">1.2</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#S4_릴렉스틱_MO</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">01. 릴렉스틱(브랜드명)</td>
+  <td><strong>392만7,624원</strong></td><td class="dim">132만7,619원</td><td class="dim">156만2,418원</td>
+  <td><span class="dn">▲195.8%</span></td>
+  <td><strong>4,364만5,220원</strong></td><td class="dim">1,199만200원</td><td class="dim">1,700만2,500원</td>
+  <td><strong>159,027</strong></td><td class="dim">29,974</td><td class="dim">29,771</td>
+  <td><strong>2만4,698원</strong></td><td class="dim">4만4,292원</td><td class="dim">5만2,481원</td>
+  <td><strong>1,238</strong></td><td class="dim">437</td><td class="dim">513</td>
+  <td><strong>3,173원</strong></td><td class="dim">3,038원</td><td class="dim">3,046원</td>
+  <td><strong>0.78%</strong></td><td class="dim">1.46%</td><td class="dim">1.72%</td>
+  <td><strong>414</strong></td><td class="dim">135</td><td class="dim">168</td>
+  <td><strong>1111%</strong></td><td class="dim">903%</td><td class="dim">1088%</td>
+  <td><strong>9,487원</strong></td><td class="dim">9,834원</td><td class="dim">9,300원</td>
+  <td><strong>1.5</strong></td><td class="dim">1.6</td><td class="dim">1.7</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#S4_릴렉스틱_MO</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">02. 릴렉스틱(조권마사지스틱)</td>
+  <td><strong>60만7,929원</strong></td><td class="dim">124만6,465원</td><td class="dim">55만9,234원</td>
+  <td><span class="up">▼51.2%</span></td>
+  <td><strong>848만1,510원</strong></td><td class="dim">1,416만400원</td><td class="dim">489만9,900원</td>
+  <td><strong>9,610</strong></td><td class="dim">37,074</td><td class="dim">23,034</td>
+  <td><strong>6만3,260원</strong></td><td class="dim">3만3,621원</td><td class="dim">2만4,279원</td>
+  <td><strong>186</strong></td><td class="dim">363</td><td class="dim">173</td>
+  <td><strong>3,268원</strong></td><td class="dim">3,434원</td><td class="dim">3,233원</td>
+  <td><strong>1.94%</strong></td><td class="dim">0.98%</td><td class="dim">0.75%</td>
+  <td><strong>75</strong></td><td class="dim">127</td><td class="dim">47</td>
+  <td><strong>1395%</strong></td><td class="dim">1136%</td><td class="dim">876%</td>
+  <td><strong>8,106원</strong></td><td class="dim">9,815원</td><td class="dim">1만1,899원</td>
+  <td><strong>1.6</strong></td><td class="dim">1.4</td><td class="dim">1.3</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#S4_릴렉스틱_MO</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">03. 릴렉스틱(마사지스틱)</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#S4_릴렉스틱_PC</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">01. 릴렉스틱(브랜드명)</td>
+  <td><strong>22만6,592원</strong></td><td class="dim">23만8,280원</td><td class="dim">35만9,208원</td>
+  <td><span class="up">▼4.9%</span></td>
+  <td><strong>126만9,500원</strong></td><td class="dim">380만2,700원</td><td class="dim">328만4,600원</td>
+  <td><strong>49,363</strong></td><td class="dim">24,445</td><td class="dim">65,315</td>
+  <td><strong>4,590원</strong></td><td class="dim">9,748원</td><td class="dim">5,500원</td>
+  <td><strong>89</strong></td><td class="dim">91</td><td class="dim">143</td>
+  <td><strong>2,546원</strong></td><td class="dim">2,618원</td><td class="dim">2,512원</td>
+  <td><strong>0.18%</strong></td><td class="dim">0.37%</td><td class="dim">0.22%</td>
+  <td><strong>14</strong></td><td class="dim">38</td><td class="dim">32</td>
+  <td><strong>560%</strong></td><td class="dim">1596%</td><td class="dim">914%</td>
+  <td><strong>1만6,185원</strong></td><td class="dim">6,271원</td><td class="dim">1만1,225원</td>
+  <td><strong>1.2</strong></td><td class="dim">1.3</td><td class="dim">1.2</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#S4_릴렉스틱_PC</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">02. 릴렉스틱(조권마사지스틱)</td>
+  <td><strong>11만4,398원</strong></td><td class="dim">30만9,663원</td><td class="dim">6만5,724원</td>
+  <td><span class="up">▼63.1%</span></td>
+  <td><strong>101만8,800원</strong></td><td class="dim">249만8,500원</td><td class="dim">128만7,000원</td>
+  <td><strong>12,220</strong></td><td class="dim">36,527</td><td class="dim">20,830</td>
+  <td><strong>9,362원</strong></td><td class="dim">8,478원</td><td class="dim">3,155원</td>
+  <td><strong>33</strong></td><td class="dim">87</td><td class="dim">28</td>
+  <td><strong>3,467원</strong></td><td class="dim">3,559원</td><td class="dim">2,347원</td>
+  <td><strong>0.27%</strong></td><td class="dim">0.24%</td><td class="dim">0.13%</td>
+  <td><strong>9</strong></td><td class="dim">22</td><td class="dim">6</td>
+  <td><strong>891%</strong></td><td class="dim">807%</td><td class="dim">1958%</td>
+  <td><strong>1만2,711원</strong></td><td class="dim">1만4,076원</td><td class="dim">1만954원</td>
+  <td><strong>1.7</strong></td><td class="dim">1.4</td><td class="dim">1.1</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">#S4_릴렉스틱_PC</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">03. 릴렉스틱(마사지스틱)</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">--01_쇼핑검색(메인/통검)</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">01. 릴렉스틱</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">--02_쇼핑검색(추천 및 컨텐츠)</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">01. 릴렉스틱</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">--03_쇼핑검색(플러스스토어)</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">01. 릴렉스틱</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">9만7,387원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>9만9,000원</strong></td><td class="dim">14만1,300원</td><td class="dim">142만1,300원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">1,680</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">5만7,968원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">28</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">3,478원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.67%</td>
+  <td><strong>1</strong></td><td class="dim">2</td><td class="dim">15</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1459%</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">6,492원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.8</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">--04_브랜드키워드</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">01. 릴렉스틱</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr></tbody></table>
+    <p class="note">※ 비용 = VAT 포함 &nbsp;|&nbsp; CPM 미제공 &nbsp;|&nbsp; naver_searchad 탭 기준</p>
+  </div>
+</div>
+</div>
+<script>
+function toggleGroup(id) {
+  var rows = document.querySelectorAll('.sub-row[data-group="' + id + '"]');
+  if (!rows.length) return;
+  var hidden = rows[0].style.display === 'none';
+  rows.forEach(function(r) { r.style.display = hidden ? '' : 'none'; });
+  var icon = document.querySelector('tr[data-group="' + id + '"] .toggle-icon');
+  if (icon) icon.textContent = hidden ? '▼' : '▶';
+}
+</script>
+</body>
+</html>
