@@ -419,12 +419,19 @@
   .tag-gray   { background: #f4f6fa; color: #555; }
 
   .section-note {
-    font-size: 12px;
-    color: #555;
-    margin-top: 14px;
-    padding-top: 10px;
-    border-top: 1px dashed #d0d4e0;
-    line-height: 1.6;
+    font-size: 12.5px;
+    color: #1a3a5c;
+    background: linear-gradient(135deg, #eef4ff, #f0f7ff);
+    border-left: 4px solid #1565c0;
+    border-radius: 0 8px 8px 0;
+    margin-top: 16px;
+    padding: 10px 14px;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .section-note::before {
+    content: "💡 ";
+    font-style: normal;
   }
 
   .chip {
