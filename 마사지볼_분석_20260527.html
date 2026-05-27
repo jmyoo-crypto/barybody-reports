@@ -38,14 +38,17 @@
   .bar-track{height:24px;border-radius:6px;background:var(--bg);overflow:hidden;display:flex}
   .bar-f{height:100%;background:var(--pink)}
   .bar-m{height:100%;background:var(--blue)}
+  .age-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .age-subtitle{font-size:12px;color:var(--text2);margin-bottom:10px;font-weight:600}
   .age-row{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}
   .age-label{width:52px;text-align:right;color:var(--text2);flex-shrink:0}
-  .age-track{flex:1;height:26px;border-radius:5px;background:var(--bg);overflow:hidden}
-  .age-fill{height:100%;background:var(--purple);border-radius:5px;opacity:.75;transition:width .3s}
-  .age-stat{width:130px;font-size:12px;color:var(--text2);flex-shrink:0}
+  .age-track{flex:1;height:22px;border-radius:5px;background:var(--bg);overflow:hidden}
+  .age-fill{height:100%;border-radius:5px;opacity:.75;transition:width .3s}
+  .age-stat{width:120px;font-size:12px;color:var(--text2);flex-shrink:0}
   .top-age .age-label{color:var(--text);font-weight:700}
   .top-age .age-fill{opacity:1}
-  .top-age .age-stat{color:var(--purple);font-weight:700}
+  .top-age .age-stat{font-weight:700}
+  @media(max-width:650px){.age-grid{grid-template-columns:1fr}}
   .chart-wrap{position:relative;width:100%;height:260px;margin-top:12px}
   .source{font-size:11px;color:var(--text3);margin-top:20px;text-align:right}
   @media(max-width:600px){.grid-3,.grid-4{grid-template-columns:1fr 1fr}}
@@ -149,51 +152,100 @@
     <div class="card mini blue"><div class="label">PC 남성</div><div class="value" style="color:var(--blue)">1,172</div><div class="sub">전체의 10.6%</div></div>
   </div>
 
-  <div class="section-title">여성 연령별 검색량 (모바일 여성 6,075건 기준)</div>
-  <div class="age-section">
-    
+  <div class="section-title">연령별 검색량</div>
+  <div class="age-grid">
+    <div class="age-section">
+      <div class="age-subtitle"><span class="legend-dot" style="background:var(--pink);border-radius:3px;width:10px;height:10px;display:inline-block;margin-right:5px;vertical-align:middle"></span>여성 연령별 검색량 (모바일 여성 6,075건 기준)</div>
+      
         <div class="age-row">
           <span class="age-label">13~19</span>
           <div class="age-track">
-            <div class="age-fill" style="width:5.2%"></div>
+            <div class="age-fill" style="width:5.2%;background:var(--pink)"></div>
           </div>
           <span class="age-stat">100건 (1.6%)</span>
         </div>
         <div class="age-row">
           <span class="age-label">20~24</span>
           <div class="age-track">
-            <div class="age-fill" style="width:14.9%"></div>
+            <div class="age-fill" style="width:14.9%;background:var(--pink)"></div>
           </div>
           <span class="age-stat">290건 (4.8%)</span>
         </div>
         <div class="age-row">
           <span class="age-label">25~29</span>
           <div class="age-track">
-            <div class="age-fill" style="width:37.1%"></div>
+            <div class="age-fill" style="width:37.1%;background:var(--pink)"></div>
           </div>
           <span class="age-stat">720건 (11.9%)</span>
         </div>
         <div class="age-row top-age">
           <span class="age-label">30~39</span>
           <div class="age-track">
-            <div class="age-fill" style="width:100.0%"></div>
+            <div class="age-fill" style="width:100.0%;background:var(--pink)"></div>
           </div>
           <span class="age-stat">1,940건 (31.9%) ★</span>
         </div>
         <div class="age-row">
           <span class="age-label">40~49</span>
           <div class="age-track">
-            <div class="age-fill" style="width:87.6%"></div>
+            <div class="age-fill" style="width:87.6%;background:var(--pink)"></div>
           </div>
           <span class="age-stat">1,700건 (28.0%)</span>
         </div>
         <div class="age-row">
           <span class="age-label">50~</span>
           <div class="age-track">
-            <div class="age-fill" style="width:68.0%"></div>
+            <div class="age-fill" style="width:68.0%;background:var(--pink)"></div>
           </div>
           <span class="age-stat">1,320건 (21.7%)</span>
         </div>
+    </div>
+    <div class="age-section">
+      <div class="age-subtitle"><span class="legend-dot" style="background:var(--blue);border-radius:3px;width:10px;height:10px;display:inline-block;margin-right:5px;vertical-align:middle"></span>남성 연령별 검색량 (모바일 남성 3,275건 기준)</div>
+      
+        <div class="age-row">
+          <span class="age-label">13~19</span>
+          <div class="age-track">
+            <div class="age-fill" style="width:7.5%;background:var(--blue)"></div>
+          </div>
+          <span class="age-stat">80건 (2.4%)</span>
+        </div>
+        <div class="age-row">
+          <span class="age-label">20~24</span>
+          <div class="age-track">
+            <div class="age-fill" style="width:15.1%;background:var(--blue)"></div>
+          </div>
+          <span class="age-stat">160건 (4.9%)</span>
+        </div>
+        <div class="age-row">
+          <span class="age-label">25~29</span>
+          <div class="age-track">
+            <div class="age-fill" style="width:25.5%;background:var(--blue)"></div>
+          </div>
+          <span class="age-stat">270건 (8.2%)</span>
+        </div>
+        <div class="age-row top-age">
+          <span class="age-label">30~39</span>
+          <div class="age-track">
+            <div class="age-fill" style="width:100.0%;background:var(--blue)"></div>
+          </div>
+          <span class="age-stat">1,060건 (32.4%) ★</span>
+        </div>
+        <div class="age-row">
+          <span class="age-label">40~49</span>
+          <div class="age-track">
+            <div class="age-fill" style="width:95.3%;background:var(--blue)"></div>
+          </div>
+          <span class="age-stat">1,010건 (30.8%)</span>
+        </div>
+        <div class="age-row">
+          <span class="age-label">50~</span>
+          <div class="age-track">
+            <div class="age-fill" style="width:65.1%;background:var(--blue)"></div>
+          </div>
+          <span class="age-stat">690건 (21.1%)</span>
+        </div>
+    </div>
   </div>
 
 
