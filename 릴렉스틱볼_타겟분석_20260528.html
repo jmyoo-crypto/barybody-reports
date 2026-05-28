@@ -33,7 +33,9 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
 .step-nav { display: flex; gap: 0; background: #fff; border-radius: 16px; padding: 8px;
   margin-bottom: 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); overflow-x: auto; }
 .step-nav-item { flex: 1; min-width: 110px; text-align: center; padding: 10px;
-  border-radius: 10px; font-size: 13px; font-weight: 600; color: #999; }
+  border-radius: 10px; font-size: 13px; font-weight: 600; color: #999;
+  text-decoration: none; cursor: pointer; transition: background .15s, color .15s; }
+.step-nav-item:hover { background: #f0f4ff; color: #0958d9; }
 .step-nav-item .sn { font-size: 10px; font-weight: 700; display: block; margin-bottom: 2px; opacity: .6; }
 
 /* ─── SECTION ────────────────────────────────── */
@@ -56,7 +58,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
 .card h3 .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
 /* ─── METRIC GRID ────────────────────────────── */
-.metric-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 12px; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
 @media(max-width:700px){ .metric-grid { grid-template-columns: repeat(2,1fr); } }
 .metric-box { background: #f7f8fa; border-radius: 10px; padding: 14px 12px; }
 .metric-box .m-icon  { font-size: 20px; margin-bottom: 6px; }
@@ -257,14 +259,16 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
 
   <!-- STEP NAV -->
   <div class="step-nav">
-    <div class="step-nav-item"><span class="sn">STEP 1</span>KPI 요약</div>
-    <div class="step-nav-item"><span class="sn">STEP 2</span>구매자 분석</div>
-    <div class="step-nav-item"><span class="sn">STEP 3</span>채널·트렌드</div>
-    <div class="step-nav-item"><span class="sn">STEP 4</span>인사이트&amp;액션</div>
+    <a class="step-nav-item" href="#section-1"><span class="sn">STEP 1</span>KPI 요약</a>
+    <a class="step-nav-item" href="#section-2"><span class="sn">STEP 2</span>구매자 분석</a>
+    <a class="step-nav-item" href="#review-insight"><span class="sn">★ 리뷰</span>리뷰 인사이트</a>
+    <a class="step-nav-item" href="#section-3"><span class="sn">STEP 3</span>채널·트렌드</a>
+    <a class="step-nav-item" href="#section-4"><span class="sn">STEP 4</span>인사이트&amp;액션</a>
+    <a class="step-nav-item" href="#section-product"><span class="sn">STEP 5</span>제품별 비교</a>
   </div>
 
   <!-- ════ STEP 1. KPI 요약 ════ -->
-  <div class="section">
+  <div class="section" id="section-1">
     <div class="section-header">
       <div class="section-num num-1">1</div>
       <div>
@@ -313,7 +317,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
   </div>
 
   <!-- ════ STEP 2. 구매자 분석 ════ -->
-  <div class="section">
+  <div class="section" id="section-2">
     <div class="section-header">
       <div class="section-num num-2">2</div>
       <div>
@@ -461,6 +465,241 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
       </div>
     </div>
 
+    <!-- 카드 리뷰 인사이트 -->
+    <div class="card" id="review-insight">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+        <div class="section-num num-3" style="width:40px;height:40px;font-size:18px;border-radius:12px;">★</div>
+        <div>
+          <div style="font-size:16px;font-weight:800;color:#1a1a2e;">리뷰 인사이트</div>
+          <div style="font-size:12px;color:#888;margin-top:2px;">네이버 스마트스토어 구매 리뷰 분석 · 2026-05-26 수집 기준</div>
+        </div>
+      </div>
+
+      <!-- 제품별 리뷰 요약 -->
+      <div class="tbl-wrap">
+        <table class="channel-table">
+          <thead>
+            <tr>
+              <th class="lc">제품명</th>
+              <th class="r">리뷰수</th>
+              <th class="r">평균 별점</th>
+              <th class="r">긍정 (4~5점)</th>
+              <th class="r">부정 (1~2점)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lc"><strong>릴렉스틱볼</strong></td>
+              <td class="r">1,138건</td>
+              <td class="r" style="color:#d46b08;font-weight:700;">4.84점 ★</td>
+              <td class="r amount">1,118건 (98.2%)</td>
+              <td class="r" style="color:#cf1322;font-weight:700;">2건 (0.2%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 별점 분포 -->
+      <div style="margin-top:16px;margin-bottom:4px;">
+        <div style="font-size:12px;font-weight:700;color:#555;margin-bottom:10px;">별점 분포</div>
+        <div class="bar-row"><div class="bar-label">5★</div><div class="bar-track"><div class="bar-fill g" style="width:100%"></div></div><div class="bar-count">980건 (86.1%)</div></div>
+        <div class="bar-row"><div class="bar-label">4★</div><div class="bar-track"><div class="bar-fill g" style="width:14.1%;opacity:.7"></div></div><div class="bar-count">138건 (12.1%)</div></div>
+        <div class="bar-row"><div class="bar-label">3★</div><div class="bar-track"><div class="bar-fill o" style="width:1.8%;opacity:.8"></div></div><div class="bar-count">18건 (1.6%)</div></div>
+        <div class="bar-row"><div class="bar-label">2★</div><div class="bar-track"><div class="bar-fill r" style="width:0.3%;opacity:.8"></div></div><div class="bar-count">2건 (0.2%)</div></div>
+        <div class="bar-row"><div class="bar-label">1★</div><div class="bar-track"><div class="bar-fill r" style="width:0%"></div></div><div class="bar-count">0건 (0%)</div></div>
+      </div>
+
+      <!-- 월별 리뷰 증가 추이 -->
+      <div style="margin-top:20px;">
+        <div style="font-size:12px;font-weight:700;color:#555;margin-bottom:8px;">월별 리뷰 건수 추이 <span style="font-weight:400;color:#aaa;">(2025.10~2026.05 · 막대=리뷰수 / 선=평균 별점)</span></div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="reviewTrendChart"></canvas></div>
+        <div class="note" style="margin-top:6px;">2026.04 광고 집중 집행으로 리뷰 120건→332건 급증 — 대규모 신규 유입에도 평점 4.81점 유지. 2026.05 평점 4.93점으로 역대 최고.</div>
+      </div>
+
+      <!-- ① 구매 계기 패턴 -->
+      <div style="margin-top:22px;">
+        <div style="font-size:12px;font-weight:800;color:#555;margin-bottom:10px;"><span style="background:#fff7e6;color:#d46b08;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:700;">① 구매 계기 패턴</span></div>
+        <div class="issue-grid">
+          <div class="issue-card stable">
+            <div class="i-icon">🦶</div>
+            <div>
+              <div class="i-label">족저근막염 · 발바닥 통증</div>
+              <div class="i-desc">"족저근막염도 있고 발자체가 넘 아파서 인스타 보고 샀어요"<br>"족저근막염이있어 발바닥 마사지용도로 구매했습니다"</div>
+            </div>
+          </div>
+          <div class="issue-card stable">
+            <div class="i-icon">🔗</div>
+            <div>
+              <div class="i-label">기존 릴렉스틱 스틱 사용자 추가 구매</div>
+              <div class="i-desc">"기존에 막대기만 있었는데 볼 추가해서 더 마사지 효과를 누릴 수 있네요"<br>"릴렉스틱 쓰다 부족한 느낌, 강한 지압 원할 때 딱"</div>
+            </div>
+          </div>
+          <div class="issue-card stable">
+            <div class="i-icon">🏪</div>
+            <div>
+              <div class="i-label">오프라인 체험 · 지인 추천</div>
+              <div class="i-desc">"매장에서 어깨 한번 마사지 해보고 바로 샀습니다. 너무 시원하더라고요."<br>"언니꺼 써보고 구매했는데 진짜 좋아요"</div>
+            </div>
+          </div>
+          <div class="issue-card stable">
+            <div class="i-icon">🎁</div>
+            <div>
+              <div class="i-label">선물 · 재구매 · 추가 구비</div>
+              <div class="i-desc">"너무 좋아서 선물로 재구매했습니다 만족해요"<br>"사무실에서 쓰는 중인데 집에도 하나 더 구매했습니다"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ② 사용 부위 & 상황 -->
+      <div style="margin-top:22px;">
+        <div style="font-size:12px;font-weight:800;color:#555;margin-bottom:10px;"><span style="background:#e6f4ff;color:#0958d9;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:700;">② 사용 부위 &amp; 상황</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#888;margin-bottom:8px;">사용 부위 순위 (리뷰 언급 빈도)</div>
+            <div class="bar-row"><div class="bar-label">발바닥</div><div class="bar-track"><div class="bar-fill r" style="width:100%"></div></div><div class="bar-count">1위 🔥</div></div>
+            <div class="bar-row"><div class="bar-label">어깨·승모</div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><div class="bar-count">2위</div></div>
+            <div class="bar-row"><div class="bar-label">종아리</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><div class="bar-count">3위</div></div>
+            <div class="bar-row"><div class="bar-label">목·등</div><div class="bar-track"><div class="bar-fill p" style="width:38%"></div></div><div class="bar-count">4위</div></div>
+            <div class="bar-row"><div class="bar-label">견갑골·손목</div><div class="bar-track"><div class="bar-fill g" style="width:22%"></div></div><div class="bar-count">5위</div></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#888;margin-bottom:8px;">주요 사용 타이밍</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+              <div class="issue-card stable" style="margin-bottom:0;">
+                <div class="i-icon">🛋️</div>
+                <div><div class="i-desc">소파·TV 보면서<br><em>"소파에 두고 티비보면서 밟아줍니다"</em></div></div>
+              </div>
+              <div class="issue-card stable" style="margin-bottom:0;">
+                <div class="i-icon">🏢</div>
+                <div><div class="i-desc">사무실 책상 아래<br><em>"출근준비하면서 양치하면서 틈틈히"</em></div></div>
+              </div>
+              <div class="issue-card stable" style="margin-bottom:0;">
+                <div class="i-icon">🌅</div>
+                <div><div class="i-desc">아침 루틴 · 양치하면서<br><em>"아침마다 양치질하면서 발바닥 지압"</em></div></div>
+              </div>
+              <div class="issue-card stable" style="margin-bottom:0;">
+                <div class="i-icon">🏃</div>
+                <div><div class="i-desc">운동 후 스트레칭과 함께<br><em>"운동하고 나서 쿨다운으로 꼭 씁니다"</em></div></div>
+              </div>
+              <div class="issue-card stable" style="margin-bottom:0;">
+                <div class="i-icon">🌙</div>
+                <div><div class="i-desc">취침 전 · 꿀잠 루틴<br><em>"저녁마다 밟고 나면 가벼워져서 꿀잠"</em></div></div>
+              </div>
+              <div class="issue-card stable" style="margin-bottom:0;">
+                <div class="i-icon">✈️</div>
+                <div><div class="i-desc">여행·출장 필수 챙김<br><em>"출장이 잦아서 구매, 여행갈 때도 챙겨가요"</em></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ③ 만족 포인트 반복 키워드 -->
+      <div style="margin-top:22px;">
+        <div style="font-size:12px;font-weight:800;color:#555;margin-bottom:10px;"><span style="background:#f6ffed;color:#389e0d;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:700;">③ 만족 포인트 반복 키워드</span></div>
+        <div class="cp-tags" style="margin-bottom:12px;">
+          <span class="cp-tag brand">시원</span>
+          <span class="cp-tag brand">극락</span>
+          <span class="cp-tag brand">혈액순환</span>
+          <span class="cp-tag brand">붓기 완화</span>
+          <span class="cp-tag cat">분리·결합</span>
+          <span class="cp-tag cat">견고</span>
+          <span class="cp-tag cat">구성 알차</span>
+          <span class="cp-tag cat">휴대</span>
+          <span class="cp-tag">효과</span>
+          <span class="cp-tag">실용적</span>
+          <span class="cp-tag">요물</span>
+          <span class="cp-tag">꿀잠</span>
+          <span class="cp-tag">재구매</span>
+          <span class="cp-tag dark">강력 추천</span>
+        </div>
+        <div class="issue-grid">
+          <div class="issue-card good">
+            <div class="i-icon">✅</div>
+            <div>
+              <div class="i-label">분리·결합 활용도 극찬</div>
+              <div class="i-desc">"반으로 갈라지니 그 위에 서서 마사지 해도 되고 스틱하고 합체해서 더 강하게 자극 줄 수도 있어요"<br>"볼 끼어놓으면 진짜 극락!!!"</div>
+            </div>
+          </div>
+          <div class="issue-card good">
+            <div class="i-icon">✅</div>
+            <div>
+              <div class="i-label">소볼(내부 볼) 별도 효과</div>
+              <div class="i-desc">"안에 작은 볼은 얼굴·쇄골·발바닥 스팟 정리해주면 시원하고 좋아요"<br>"안에 작은 마사지볼이 아주 요물이에요"</div>
+            </div>
+          </div>
+          <div class="issue-card good">
+            <div class="i-icon">🩸</div>
+            <div>
+              <div class="i-label">혈액순환 · 붓기 완화 효과</div>
+              <div class="i-desc">"발이 피곤한 날 확실히 덜 부어요"<br>"혈액순환짱짱", "발마사지 후에 혈액순환이 되는 경험"<br>→ 저녁 붓기 고민 고객 니즈와 직결</div>
+            </div>
+          </div>
+          <div class="issue-card good">
+            <div class="i-icon">🎒</div>
+            <div>
+              <div class="i-label">컴팩트 · 족저근막염 실질 개선</div>
+              <div class="i-desc">"작아서 휴대하기도 좋아요 어딜가나 들고다녀요"<br>"이 제품 구매 후 족저근막염 치료 위해 병원을 방문하지 않게 되었습니다"<br>→ 휴대성 + 치료 대체 효과 두 마리 토끼</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ④ 불만 & 아쉬운 점 -->
+      <div style="margin-top:22px;">
+        <div style="font-size:12px;font-weight:800;color:#555;margin-bottom:10px;"><span style="background:#fff1f0;color:#cf1322;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:700;">④ 불만 &amp; 아쉬운 점</span></div>
+        <div class="issue-grid">
+          <div class="issue-card bad">
+            <div class="i-icon">🔩</div>
+            <div>
+              <div class="i-label">볼 고정·결합 불편</div>
+              <div class="i-desc">"스틱이랑 결합하려고 한 번 분리한 뒤로는 잘 빠지네요"<br>"느린배송, 볼이 고정이 안되서 불편" (1~2점 2건)<br>→ 결합 방법 상세 안내 강화 필요</div>
+            </div>
+          </div>
+          <div class="issue-card bad">
+            <div class="i-icon">💰</div>
+            <div>
+              <div class="i-label">가격 망설임 (구매 전 허들)</div>
+              <div class="i-desc">"나쁘진않은데 비싸요. 생각보다 사이즈 크네요"<br>"쫌 비싸다 망설망설 했는데 구입하고 미련 없어요"<br>→ 구매 후 만족도 높음 — 가치 정당화 콘텐츠 필요</div>
+            </div>
+          </div>
+        </div>
+        <div class="issue-card unstable" style="margin-top:8px;">
+          <div class="i-icon">⚡</div>
+          <div>
+            <div class="i-label">처음 자극이 따가움 — 적응 후 만족 전환</div>
+            <div class="i-desc">"생각보다 좀 따가워서 놀랐는데 하다보니 괜찮더라고요. 항상 발바닥이 아픈데 저녁마다 마사지해주고 있습니다"<br>→ 상세페이지 "처음엔 강하게 느껴질 수 있어요" 안내로 초기 이탈 방지 가능</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑤ 실제 고객 언어 — 광고 카피 -->
+      <div style="margin-top:22px;">
+        <div style="font-size:12px;font-weight:800;color:#555;margin-bottom:10px;"><span style="background:#f9f0ff;color:#531dab;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:700;">⑤ 실제 고객 언어 — 광고 카피에 쓸 수 있는 표현</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:#f9f0ff;border-left:3px solid #b37feb;border-radius:8px;padding:12px 14px;">
+            <div style="font-size:11px;font-weight:800;color:#531dab;margin-bottom:6px;">효과 표현</div>
+            <div style="font-size:12px;color:#444;line-height:1.8;">"볼 끼어놓으면 진짜 극락!!!"<br>"쪼꼬만게 효과 짱"<br>"안에 작은 볼이 아주 요물이에요"</div>
+          </div>
+          <div style="background:#e6f4ff;border-left:3px solid #91caff;border-radius:8px;padding:12px 14px;">
+            <div style="font-size:11px;font-weight:800;color:#0958d9;margin-bottom:6px;">스틱 비교·보완 표현</div>
+            <div style="font-size:12px;color:#444;line-height:1.8;">"릴렉스틱으로 해소 안 되는 부분을 잘 보완해줍니다"<br>"처음부터 세트로 살 것을..."<br>"스틱 살 때 같이 사세요"</div>
+          </div>
+          <div style="background:#f6ffed;border-left:3px solid #95de64;border-radius:8px;padding:12px 14px;">
+            <div style="font-size:11px;font-weight:800;color:#389e0d;margin-bottom:6px;">일상 연결 표현</div>
+            <div style="font-size:12px;color:#444;line-height:1.8;">"출근준비하면서 양치하면서 TV보면서 틈틈히"<br>"소파에 두고 티비보면서 밟아줍니다"<br>"저녁마다 발바닥 마사지 — 꽤 시원해요"</div>
+          </div>
+          <div style="background:#fff1f0;border-left:3px solid #ffa39e;border-radius:8px;padding:12px 14px;">
+            <div style="font-size:11px;font-weight:800;color:#cf1322;margin-bottom:6px;">선물·재구매 표현</div>
+            <div style="font-size:12px;color:#444;line-height:1.8;">"너무 좋아서 선물로 재구매했습니다"<br>"사무실 하나, 집 하나 두 개 구매"<br>"처음부터 샀다면 더 좋았을텐데, 이제라도 사서 다행"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:14px;">출처: 네이버 스마트스토어 리뷰 (BigQuery research_user_voice · 2026-05-26 수집) / 릴렉스틱볼 누적 전체 리뷰 1,138건 기준</div>
+    </div>
+
     <!-- 카드 4: 구매 시간대·요일 -->
     <div class="card">
       <h3><span class="dot" style="background:#389e0d"></span>구매 시간대 · 요일 패턴</h3>
@@ -547,7 +786,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
   </div>
 
   <!-- ════ STEP 3. 채널·키워드·트렌드 ════ -->
-  <div class="section">
+  <div class="section" id="section-3">
     <div class="section-header">
       <div class="section-num num-3">3</div>
       <div>
@@ -586,32 +825,36 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
     <!-- 카드 2: 검색 키워드 -->
     <div class="card">
       <h3><span class="dot" style="background:#531dab"></span>유입 검색어 TOP 12 (릴렉스틱볼 전용 · 14일 어트리뷰션)</h3>
-      <div class="cp-tags">
-        <span class="cp-tag brand">브랜드검색 389</span>
-        <span class="cp-tag dark">바리바디 89</span>
-        <span class="cp-tag cat">마사지스틱 79</span>
-        <span class="cp-tag dark">바리바디마사지볼 54</span>
-        <span class="cp-tag brand">릴렉스틱볼 51</span>
-        <span class="cp-tag dark">바리바디릴렉스틱 45</span>
-        <span class="cp-tag dark">릴렉스틱 41</span>
-        <span class="cp-tag cat">마사지볼 29</span>
-        <span class="cp-tag dark">바리바디릴렉스틱볼 27</span>
-        <span class="cp-tag cat">마사지봉 27</span>
-        <span class="cp-tag cat">발바닥지압볼 19</span>
-        <span class="cp-tag dark">barybody 8</span>
-      </div>
-      <div class="ratio-display" style="margin-top:14px;">
-        <div class="ratio-item">
-          <div class="r-pct red">71.1%</div>
-          <div class="r-label">브랜드 키워드</div>
+      <table class="channel-table">
+        <thead>
+          <tr><th>#</th><th class="lc">유형</th><th class="lc">검색어</th><th class="r">건수</th><th class="r">비율</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rank">1</td><td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td><td class="lc">브랜드검색</td><td class="r amount">389건</td><td class="r">45.3%</td></tr>
+          <tr><td class="rank">2</td><td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td><td class="lc">바리바디</td><td class="r">89건</td><td class="r">10.4%</td></tr>
+          <tr><td class="rank">3</td><td><span class="channel-badge ch-meta">카테고리</span></td><td class="lc">마사지스틱</td><td class="r">79건</td><td class="r">9.2%</td></tr>
+          <tr><td class="rank">4</td><td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td><td class="lc">바리바디마사지볼</td><td class="r">54건</td><td class="r">6.3%</td></tr>
+          <tr><td class="rank">5</td><td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td><td class="lc">릴렉스틱볼</td><td class="r">51건</td><td class="r">5.9%</td></tr>
+          <tr><td class="rank">6</td><td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td><td class="lc">바리바디릴렉스틱</td><td class="r">45건</td><td class="r">5.2%</td></tr>
+          <tr><td class="rank">7</td><td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td><td class="lc">릴렉스틱</td><td class="r">41건</td><td class="r">4.8%</td></tr>
+          <tr><td class="rank">8</td><td><span class="channel-badge ch-meta">카테고리</span></td><td class="lc">마사지볼</td><td class="r">29건</td><td class="r">3.4%</td></tr>
+          <tr><td class="rank">9</td><td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td><td class="lc">바리바디릴렉스틱볼</td><td class="r">27건</td><td class="r">3.1%</td></tr>
+          <tr><td class="rank">10</td><td><span class="channel-badge ch-meta">카테고리</span></td><td class="lc">마사지봉</td><td class="r">27건</td><td class="r">3.1%</td></tr>
+          <tr><td class="rank">11</td><td><span class="channel-badge ch-meta">카테고리</span></td><td class="lc">발바닥지압볼</td><td class="r">19건</td><td class="r">2.2%</td></tr>
+          <tr><td class="rank">12</td><td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td><td class="lc">barybody</td><td class="r">8건</td><td class="r">0.9%</td></tr>
+        </tbody>
+      </table>
+      <div class="issue-card good" style="margin-top:14px;">
+        <div class="i-icon">💡</div>
+        <div>
+          <div class="i-label">브랜드검색 1위(389건·45%) — 브랜드 키워드 합계 71.1%</div>
+          <div class="i-desc">'발바닥지압볼'·'마사지볼'·'마사지스틱' 카테고리 유입 15.9% — 볼 미인지 신규 고객 진입 통로. 카테고리 키워드 검색광고 확대 시 신규 유입 여지 존재.</div>
         </div>
-        <div class="ratio-item">
-          <div class="r-pct blue">15.9%</div>
-          <div class="r-label">카테고리 키워드</div>
-        </div>
       </div>
-      <div class="note" style="margin-top:10px;">
-        브랜드검색(389건·38%)이 단일 키워드 1위. '발바닥지압볼'·'마사지볼'·'마사지스틱' 카테고리 유입 15.9% — 볼 미인지 신규 고객 진입 통로.
+      <div style="margin-top:22px;">
+        <div style="font-size:12px;font-weight:700;color:#555;margin-bottom:8px;">키워드별 월별 유입 추이 — 전체 12개 (단위: 건)</div>
+        <div class="chart-wrap" style="height:240px;"><canvas id="kwInflowChart"></canvas></div>
+        <div class="note" style="margin-top:8px;">2026.04 브랜드검색 121건 급등 — 4월 광고 집중 집행 효과. 릴렉스틱볼 키워드 직접 검색 29.5건으로 동반 급등(브랜드 인지 누적 확인). 2026.05는 진행 중 수치.</div>
       </div>
     </div>
 
@@ -678,33 +921,375 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
     <!-- 카드 5: 키워드 검색량 트렌드 -->
     <div class="card">
       <h3><span class="dot" style="background:#22c55e"></span>키워드 검색량 트렌드</h3>
-      <div style="font-size:11px;color:#888;margin-bottom:4px;">네이버 PC+모바일 실검색수 / 2025.05~2026.04</div>
+      <div style="font-size:11px;color:#888;margin-bottom:12px;">네이버 PC+모바일 실검색수 / 2025.05~2026.04 · 출처: 네이버 검색광고 API + Playwright 히스토리 스크래핑 · <span style="color:#d48806;font-weight:600;">점선 = 추천 확장 키워드</span> · 족저근막염(88,600)·폼롤러(47,070)는 스케일 차이로 테이블만</div>
+
+      <!-- 릴렉스틱볼 키워드 핵심 KPI -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+        <div style="background:#f6ffed;border:1px solid #b7eb8f;border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#52c41a;font-weight:600;letter-spacing:-.2px;">4월 총 검색량</div>
+          <div style="font-size:22px;font-weight:700;color:#22c55e;line-height:1.2;">410<span style="font-size:11px;">건</span></div>
+          <div style="font-size:10px;color:#888;margin-top:2px;">7개월 전 56건 → 7.3배</div>
+        </div>
+        <div style="background:#f0f5ff;border:1px solid #adc6ff;border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#2f54eb;font-weight:600;letter-spacing:-.2px;">모바일 검색</div>
+          <div style="font-size:22px;font-weight:700;color:#2f54eb;line-height:1.2;">380<span style="font-size:11px;">건</span></div>
+          <div style="font-size:10px;color:#888;margin-top:2px;">전체의 92.7%</div>
+        </div>
+        <div style="background:#fff7e6;border:1px solid #ffd591;border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#fa8c16;font-weight:600;letter-spacing:-.2px;">PC 검색</div>
+          <div style="font-size:22px;font-weight:700;color:#fa8c16;line-height:1.2;">30<span style="font-size:11px;">건</span></div>
+          <div style="font-size:10px;color:#888;margin-top:2px;">전체의 7.3%</div>
+        </div>
+        <div style="background:#fff0f6;border:1px solid #ffadd2;border-radius:8px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#c41d7f;font-weight:600;letter-spacing:-.2px;">경쟁도</div>
+          <div style="font-size:20px;font-weight:700;color:#c41d7f;line-height:1.3;">낮음</div>
+          <div style="font-size:10px;color:#888;margin-top:2px;">7개월 월평균 227건</div>
+        </div>
+      </div>
+
+      <!-- 멀티 키워드 트렌드 차트 -->
       <div class="chart-wrap" style="height:240px;"><canvas id="kwChart"></canvas></div>
-      <div class="tbl-wrap" style="margin-top:14px;">
+
+      <!-- 키워드별 상세 비교 테이블 (유입 TOP 12 기반) -->
+      <div style="font-size:11px;font-weight:700;color:#555;margin:14px 0 6px;">유입 TOP 12 키워드 × 네이버 검색량 분석 <span style="font-weight:400;color:#aaa;">(14일 어트리뷰션 유입건수 + 네이버 검색광고 키워드 도구 2026.04)</span></div>
+      <div class="tbl-wrap">
         <table class="data-table">
-          <thead><tr><th>키워드</th><th>2025.05</th><th>2025.08 (피크)</th><th>2026.04</th><th>추세</th></tr></thead>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>키워드</th>
+              <th>유형</th>
+              <th>14일 유입</th>
+              <th>유입비중</th>
+              <th>네이버 검색량(4월)</th>
+              <th>7개월 평균</th>
+              <th>추세</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td><strong>족저근막염</strong></td><td>126,500</td><td>136,400</td><td>88,600</td><td>↗↘ 여름 피크형</td></tr>
-            <tr><td>마사지볼</td><td>18,220</td><td>20,720</td><td>12,630</td><td>↗↘ 여름 피크형</td></tr>
-            <tr><td>마사지스틱</td><td>9,050</td><td>19,330</td><td>17,380</td><td><span class="up">↗ 강성장</span></td></tr>
-            <tr><td>바리바디</td><td>5,300</td><td>7,940</td><td>7,700</td><td><span class="up">↗ 꾸준 성장</span></td></tr>
-            <tr><td>릴렉스틱</td><td>10,660</td><td>13,700</td><td>6,790</td><td>↗↘ 여름 피크형</td></tr>
-            <tr><td style="color:#cf1322;font-weight:700;">릴렉스틱볼</td><td style="color:#aaa;">56 (25.10월)</td><td style="color:#aaa;">260 (25.11월)</td><td style="color:#389e0d;font-weight:700;">380</td><td><span class="up">📈 7배 성장 중</span></td></tr>
+            <tr style="background:#f0f5ff;">
+              <td colspan="8" style="font-size:11px;font-weight:700;color:#0958d9;padding:5px 8px;">카테고리 키워드 — 비브랜드 신규 유입 경로 (검색광고 확대 여지)</td>
+            </tr>
+            <tr>
+              <td class="rank">3</td>
+              <td><strong>마사지스틱</strong></td>
+              <td><span class="channel-badge ch-meta">카테고리</span></td>
+              <td>79건</td><td>9.2%</td>
+              <td>17,380</td><td>14,428</td>
+              <td><span class="up">↗ 강성장</span></td>
+            </tr>
+            <tr>
+              <td class="rank">8</td>
+              <td>마사지볼</td>
+              <td><span class="channel-badge ch-meta">카테고리</span></td>
+              <td>29건</td><td>3.4%</td>
+              <td>12,630</td><td>16,486</td>
+              <td>↗↘ 여름 피크형</td>
+            </tr>
+            <tr>
+              <td class="rank">10</td>
+              <td>마사지봉</td>
+              <td><span class="channel-badge ch-meta">카테고리</span></td>
+              <td>27건</td><td>3.1%</td>
+              <td>6,090</td>
+              <td>3,835</td>
+              <td>→ 계절 연동형</td>
+            </tr>
+            <tr>
+              <td class="rank">11</td>
+              <td>발바닥지압볼</td>
+              <td><span class="channel-badge ch-meta">카테고리</span></td>
+              <td>19건</td><td>2.2%</td>
+              <td>1,000</td>
+              <td>568</td>
+              <td>→ 소규모 안정형</td>
+            </tr>
+            <tr style="background:#fff1f0;">
+              <td colspan="8" style="font-size:11px;font-weight:700;color:#cf1322;padding:5px 8px;">브랜드 키워드 — 브랜드 인지 유입 (재방문·전환 핵심)</td>
+            </tr>
+            <tr>
+              <td class="rank">2</td>
+              <td>바리바디</td>
+              <td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td>
+              <td>89건</td><td>10.4%</td>
+              <td>7,700</td><td>6,847</td>
+              <td><span class="up">↗ 꾸준 성장</span></td>
+            </tr>
+            <tr>
+              <td class="rank">4</td>
+              <td>바리바디마사지볼</td>
+              <td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td>
+              <td>54건</td><td>6.3%</td>
+              <td>400</td><td>—</td>
+              <td>→ 복합 브랜드</td>
+            </tr>
+            <tr style="background:#f6ffed;">
+              <td class="rank">5</td>
+              <td style="color:#cf1322;font-weight:700;">릴렉스틱볼 ★</td>
+              <td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td>
+              <td style="font-weight:700;">51건</td><td>5.9%</td>
+              <td style="color:#389e0d;font-weight:700;">380</td>
+              <td style="color:#22c55e;font-weight:600;">227</td>
+              <td><span class="up">📈 7.3배 성장</span></td>
+            </tr>
+            <tr>
+              <td class="rank">6</td>
+              <td>바리바디릴렉스틱</td>
+              <td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td>
+              <td>45건</td><td>5.2%</td>
+              <td>6,320</td><td>—</td>
+              <td><span class="up">↗ 꾸준 성장</span></td>
+            </tr>
+            <tr>
+              <td class="rank">7</td>
+              <td>릴렉스틱</td>
+              <td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td>
+              <td>41건</td><td>4.8%</td>
+              <td>6,790</td><td>10,108</td>
+              <td>↗↘ 여름 피크형</td>
+            </tr>
+            <tr>
+              <td class="rank">9</td>
+              <td>바리바디릴렉스틱볼</td>
+              <td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td>
+              <td>27건</td><td>3.1%</td>
+              <td>350</td><td>—</td>
+              <td>→ 복합 브랜드</td>
+            </tr>
+            <tr>
+              <td class="rank">12</td>
+              <td>barybody</td>
+              <td><span class="channel-badge" style="background:#fff1f0;color:#cf1322;">브랜드</span></td>
+              <td>8건</td><td>0.9%</td>
+              <td style="color:#aaa;">0 (검색 없음)</td><td>—</td>
+              <td>→ 영문 브랜드</td>
+            </tr>
+            <tr style="background:#fffbe6;">
+              <td colspan="8" style="font-size:11px;font-weight:700;color:#d48806;padding:5px 8px;">추천 확장 키워드 — TOP 12 미포함 / 검색량 상위 + 유사 수요층 (광고 확장 우선순위)</td>
+            </tr>
+            <tr style="background:#fffbe6;">
+              <td style="color:#d48806;font-weight:700;">①</td>
+              <td style="font-weight:700;">족저근막염</td>
+              <td><span class="channel-badge ch-meta" style="background:#fffbe6;color:#d48806;border:1px solid #ffe58f;">질환 연관</span></td>
+              <td style="color:#aaa;">—</td><td style="color:#aaa;">—</td>
+              <td style="font-weight:700;color:#d48806;">88,600</td>
+              <td>~103,089</td>
+              <td>↗↘ 여름 피크형</td>
+            </tr>
+            <tr style="background:#fffbe6;">
+              <td style="color:#d48806;font-weight:700;">②</td>
+              <td>폼롤러</td>
+              <td><span class="channel-badge ch-meta" style="background:#fffbe6;color:#d48806;border:1px solid #ffe58f;">경쟁 카테고리</span></td>
+              <td style="color:#aaa;">—</td><td style="color:#aaa;">—</td>
+              <td style="font-weight:700;color:#d48806;">47,070</td>
+              <td>56,961</td>
+              <td>↗ 여름 피크형</td>
+            </tr>
+            <tr style="background:#fffbe6;">
+              <td style="color:#d48806;font-weight:700;">③</td>
+              <td>지압볼</td>
+              <td><span class="channel-badge ch-meta" style="background:#fffbe6;color:#d48806;border:1px solid #ffe58f;">상위 키워드</span></td>
+              <td style="color:#aaa;">—</td><td style="color:#aaa;">—</td>
+              <td>1,250</td>
+              <td>1,507</td>
+              <td>→ 안정형</td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <div class="issue-card good" style="margin-top:12px;">
+      <div style="font-size:10px;color:#bbb;margin-top:4px;">출처: 네이버 검색광고 API + Playwright 히스토리 스크래핑 (2026-05-28) / ② 폼롤러(47,070/월)는 차트 스케일 초과로 테이블만 표기 / ① 족저근막염은 스케일 차이로 차트 미포함</div>
+
+      <!-- 릴렉스틱볼 키워드 성별·기기 분포 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+        <div style="background:#fafafa;border:1px solid #f0f0f0;border-radius:8px;padding:12px;">
+          <div style="font-size:12px;font-weight:700;color:#1a1a2e;margin-bottom:10px;">검색자 성별 분포 <span style="font-weight:400;color:#aaa;">(모바일 기준, 2026.04)</span></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <div style="font-size:11px;width:36px;color:#c41d7f;font-weight:600;">여성</div>
+            <div style="flex:1;background:#f0f0f0;border-radius:4px;height:18px;overflow:hidden;">
+              <div style="width:81.5%;background:linear-gradient(90deg,#eb2f96,#c41d7f);height:100%;border-radius:4px;"></div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#c41d7f;width:44px;text-align:right;">81.5%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:11px;width:36px;color:#2f54eb;font-weight:600;">남성</div>
+            <div style="flex:1;background:#f0f0f0;border-radius:4px;height:18px;overflow:hidden;">
+              <div style="width:18.5%;background:linear-gradient(90deg,#4096ff,#2f54eb);height:100%;border-radius:4px;"></div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#2f54eb;width:44px;text-align:right;">18.5%</div>
+          </div>
+          <div style="font-size:10px;color:#bbb;margin-top:8px;">모바일 여성 298건 / 남성 약 78건 · 경쟁 키워드 대비 여성 편중 강함</div>
+        </div>
+        <div style="background:#fafafa;border:1px solid #f0f0f0;border-radius:8px;padding:12px;">
+          <div style="font-size:12px;font-weight:700;color:#1a1a2e;margin-bottom:10px;">기기별 검색 분포 <span style="font-weight:400;color:#aaa;">(2026.04)</span></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <div style="font-size:11px;width:46px;color:#22c55e;font-weight:600;">모바일</div>
+            <div style="flex:1;background:#f0f0f0;border-radius:4px;height:18px;overflow:hidden;">
+              <div style="width:92.7%;background:linear-gradient(90deg,#4ade80,#16a34a);height:100%;border-radius:4px;"></div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#22c55e;width:44px;text-align:right;">92.7%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:11px;width:46px;color:#fa8c16;font-weight:600;">PC</div>
+            <div style="flex:1;background:#f0f0f0;border-radius:4px;height:18px;overflow:hidden;">
+              <div style="width:7.3%;background:linear-gradient(90deg,#fbbf24,#d97706);height:100%;border-radius:4px;"></div>
+            </div>
+            <div style="font-size:12px;font-weight:700;color:#fa8c16;width:44px;text-align:right;">7.3%</div>
+          </div>
+          <div style="font-size:10px;color:#bbb;margin-top:8px;">모바일 380건 / PC 30건 · 모바일 광고 우선 집행 근거</div>
+        </div>
+      </div>
+
+      <!-- 연령×성별 교차표 -->
+      <div style="margin-top:14px;">
+        <div style="font-size:12px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">릴렉스틱볼 키워드 검색자 연령×성별 분포 <span style="font-weight:400;color:#aaa;">(모바일 기준)</span></div>
+        <div class="tbl-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>연령대</th>
+                <th style="color:#c41d7f;">여성</th>
+                <th style="color:#c41d7f;">여성 비중</th>
+                <th style="color:#2f54eb;">남성</th>
+                <th style="color:#2f54eb;">남성 비중</th>
+                <th>합계</th>
+                <th>전체 비중</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>20~29세</td>
+                <td style="color:#c41d7f;">42건</td><td>14.1%</td>
+                <td style="color:#2f54eb;">10건</td><td>12.8%</td>
+                <td>52건</td><td>13.8%</td>
+              </tr>
+              <tr>
+                <td>30~39세</td>
+                <td style="color:#c41d7f;">68건</td><td>22.8%</td>
+                <td style="color:#2f54eb;font-weight:700;">34건 ▲</td><td style="font-weight:700;color:#2f54eb;">43.6%</td>
+                <td>102건</td><td>27.1%</td>
+              </tr>
+              <tr style="background:#fff0f6;">
+                <td><strong>40~49세</strong></td>
+                <td style="color:#c41d7f;font-weight:700;">126건 ▲</td><td style="font-weight:700;color:#c41d7f;">42.3%</td>
+                <td style="color:#2f54eb;">18건</td><td>23.1%</td>
+                <td><strong>144건</strong></td><td style="font-weight:700;">38.3%</td>
+              </tr>
+              <tr>
+                <td>50~59세</td>
+                <td style="color:#c41d7f;">46건</td><td>15.4%</td>
+                <td style="color:#2f54eb;">12건</td><td>15.4%</td>
+                <td>58건</td><td>15.4%</td>
+              </tr>
+              <tr>
+                <td>60세 이상</td>
+                <td style="color:#c41d7f;">16건</td><td>5.4%</td>
+                <td style="color:#2f54eb;">4건</td><td>5.1%</td>
+                <td>20건</td><td>5.3%</td>
+              </tr>
+              <tr style="font-weight:700;background:#f6ffed;">
+                <td>합계</td>
+                <td style="color:#c41d7f;">298건</td><td style="color:#888;">—</td>
+                <td style="color:#2f54eb;">78건</td><td style="color:#888;">—</td>
+                <td style="color:#22c55e;">376건</td><td style="color:#888;">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:10px;color:#bbb;margin-top:4px;">▲ = 각 성별 최다 연령대 (네이버 키워드 도구 확인값) · 나머지 연령대 배분은 비율 추정 · 출처: 네이버 검색광고 키워드 도구 2026.04</div>
+      </div>
+
+      <!-- 구매자 지역 분포 (BigQuery ss_buyer_region) -->
+      <div style="margin-top:16px;">
+        <div style="font-size:12px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">실구매자 지역 분포 <span style="font-weight:400;color:#aaa;">(스마트스토어 · BigQuery ss_buyer_region)</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:#fafafa;border:1px solid #f0f0f0;border-radius:8px;padding:12px;">
+            <div style="font-size:11px;color:#888;margin-bottom:8px;">TOP 5 지역 구매 비중</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+              <div style="font-size:11px;width:56px;font-weight:600;">서울</div>
+              <div style="flex:1;background:#f0f0f0;border-radius:4px;height:16px;overflow:hidden;">
+                <div style="width:45.2%;background:#cf1322;height:100%;border-radius:4px;"></div>
+              </div>
+              <div style="font-size:11px;font-weight:700;color:#cf1322;width:44px;text-align:right;">45.2%</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+              <div style="font-size:11px;width:56px;">경기도</div>
+              <div style="flex:1;background:#f0f0f0;border-radius:4px;height:16px;overflow:hidden;">
+                <div style="width:21.5%;background:#fa541c;height:100%;border-radius:4px;"></div>
+              </div>
+              <div style="font-size:11px;font-weight:700;color:#fa541c;width:44px;text-align:right;">21.5%</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+              <div style="font-size:11px;width:56px;">인천</div>
+              <div style="flex:1;background:#f0f0f0;border-radius:4px;height:16px;overflow:hidden;">
+                <div style="width:4.6%;background:#fa8c16;height:100%;border-radius:4px;"></div>
+              </div>
+              <div style="font-size:11px;font-weight:600;color:#fa8c16;width:44px;text-align:right;">4.6%</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+              <div style="font-size:11px;width:56px;">부산</div>
+              <div style="flex:1;background:#f0f0f0;border-radius:4px;height:16px;overflow:hidden;">
+                <div style="width:3.6%;background:#faad14;height:100%;border-radius:4px;"></div>
+              </div>
+              <div style="font-size:11px;font-weight:600;color:#faad14;width:44px;text-align:right;">3.6%</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="font-size:11px;width:56px;">경상남도</div>
+              <div style="flex:1;background:#f0f0f0;border-radius:4px;height:16px;overflow:hidden;">
+                <div style="width:3%;background:#d4b106;height:100%;border-radius:4px;"></div>
+              </div>
+              <div style="font-size:11px;font-weight:600;color:#d4b106;width:44px;text-align:right;">3.0%</div>
+            </div>
+            <div style="font-size:10px;color:#bbb;margin-top:8px;">수도권(서울+경기+인천) 합산 71.3%</div>
+          </div>
+          <div>
+            <table class="data-table" style="font-size:11px;">
+              <thead>
+                <tr><th>지역</th><th>구매건수</th><th>구매금액(원)</th><th>비중</th></tr>
+              </thead>
+              <tbody>
+                <tr><td style="font-weight:700;color:#cf1322;">서울</td><td>1,276</td><td>47,347,420</td><td style="color:#cf1322;font-weight:700;">45.2%</td></tr>
+                <tr><td>경기도</td><td>606</td><td>22,048,140</td><td>21.5%</td></tr>
+                <tr><td>인천</td><td>131</td><td>4,465,920</td><td>4.6%</td></tr>
+                <tr><td>부산</td><td>101</td><td>3,428,900</td><td>3.6%</td></tr>
+                <tr><td>경상남도</td><td>84</td><td>2,861,600</td><td>3.0%</td></tr>
+                <tr><td>충청남도</td><td>71</td><td>2,821,900</td><td>2.5%</td></tr>
+                <tr><td>대전</td><td>68</td><td>2,665,300</td><td>2.4%</td></tr>
+                <tr><td>대구</td><td>60</td><td>2,227,800</td><td>2.1%</td></tr>
+                <tr><td>충청북도</td><td>60</td><td>2,064,800</td><td>2.1%</td></tr>
+                <tr><td>강원</td><td>59</td><td>2,280,700</td><td>2.1%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 인사이트 카드 -->
+      <div class="issue-card good" style="margin-top:14px;">
         <div class="i-icon">✅</div>
         <div>
-          <div class="i-label">족저근막염(88,600~136,400/월) — 핵심 진입 키워드</div>
-          <div class="i-desc">릴렉스틱볼 카테고리 핵심 수요 진입 키워드. 이 키워드 기반 콘텐츠/광고 집중 유효.</div>
+          <div class="i-label">카테고리 키워드(마사지스틱·마사지볼·마사지봉·발바닥지압볼) 유입 17.9% — 신규 고객 진입 통로</div>
+          <div class="i-desc">4개 카테고리 키워드가 전체 유입의 17.9%(135건). 네이버 검색량은 마사지스틱 17,380 · 마사지볼 12,630 등 대형 수요. 브랜드 미인지 신규 유입 확대를 위한 카테고리 키워드 검색광고 집중이 가장 즉각적인 성장 레버.</div>
+        </div>
+      </div>
+      <div class="issue-card warn" style="margin-top:8px;">
+        <div class="i-icon">⚡</div>
+        <div>
+          <div class="i-label">브랜드 복합 키워드(바리바디마사지볼·바리바디릴렉스틱볼 등) 14.5% — 오가닉 브랜드 인지 증거</div>
+          <div class="i-desc">네이버 검색량은 각 400~600건(소량)이지만 실제 유입 비중 14.5%(124건). 검색량 대비 유입 전환율이 매우 높음 — 브랜드 충성고객이 직접 복합 키워드 입력 후 구매. 리마케팅 광고 타겟으로 우선 활용 가능.</div>
+        </div>
+      </div>
+      <div class="issue-card good" style="margin-top:8px;">
+        <div class="i-icon">📍</div>
+        <div>
+          <div class="i-label">수도권 구매 집중 71.3% × 모바일 검색 92.7% — 서울·경기 40대 여성 모바일 집중 전략</div>
+          <div class="i-desc">실구매자 서울 45.2% + 경기 21.5% = 71.3% 수도권. 릴렉스틱볼 키워드 검색자 92.7%가 모바일, 여성 81.5% · 40~49세 42.3% 피크 → 서울·경기 40대 여성 모바일 카테고리 검색광고가 최고 효율 타겟.</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ════ STEP 4. 인사이트 & 액션 ════ -->
-  <div class="section">
+  <div class="section" id="section-4">
     <div class="section-header">
       <div class="section-num num-4">4</div>
       <div>
@@ -715,7 +1300,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
 
     <!-- 핵심 인사이트 -->
     <div class="summary-box">
-      <h3>핵심 인사이트 5가지</h3>
+      <h3>핵심 인사이트 6가지</h3>
       <div class="s-line highlight">
         <span>🎯</span>
         <div><strong>INSIGHT 01 — 핵심 타겟: '41~45세 기혼 직장 여성 강남권'</strong><br>
@@ -740,6 +1325,11 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         <span>📡</span>
         <div><strong>INSIGHT 05 — 브랜드검색 1위(35%) + 검색광고 3채널 58% — 선순환 구조 확인</strong><br>
         메타 광고가 상단 인지를 만들고 네이버에서 최종 전환되는 구조. 브랜드 인지 → 검색 전환 루프 강화가 핵심 전략.</div>
+      </div>
+      <div class="s-line">
+        <span>⭐</span>
+        <div><strong>INSIGHT 06 — 리뷰 4.84점·98.2% 긍정, 사용 부위 1위 '발바닥' — 광고 크리에이티브 핵심 소재</strong><br>
+        1,138건 리뷰 중 98.2% 긍정. 2026.04 광고 집중 집행 시 리뷰 332건 급증하면서도 4.81점 유지 — 신규 유입 품질 양호. 사용 부위 1위 발바닥(족저근막염 연동)이 크리에이티브 전면에 와야 하며, "볼 끼어놓으면 진짜 극락" 고객 원문이 최강 광고 카피.</div>
       </div>
     </div>
 
@@ -867,6 +1457,22 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
           <p>출시 후 평균단가 44,457원 → 33,310원으로 하락. 2개 세트·선물세트 기획으로 객단가 방어. 6~8월 피크 시즌 전 4~6주 브랜드 인지 선집행.</p>
         </div>
       </div>
+
+      <div class="action-card priority-high">
+        <div class="ac-priority ac-high">즉시</div>
+        <div class="ac-body">
+          <strong>상세페이지 UX 개선 2종 — 자극 안내 + 볼 결합 가이드</strong>
+          <p>① 리뷰에서 "생각보다 따가워서 놀랐는데 하다보니 괜찮더라고요" 패턴 반복 확인 → "처음엔 강하게 느껴질 수 있어요, 며칠 사용하면 적응됩니다" 안내 추가로 초기 환불 방지 가능. ② "한 번 분리한 뒤로는 잘 빠진다" 불만 → 볼 결합 방법 GIF/영상 상세페이지 삽입.</p>
+        </div>
+      </div>
+
+      <div class="action-card priority-mid">
+        <div class="ac-priority ac-mid">2~4주</div>
+        <div class="ac-body">
+          <strong>실제 고객 언어 기반 리뷰 카피 광고 — UGC 톤 크리에이티브</strong>
+          <p>98.2% 긍정 리뷰 원문 직접 활용. "볼 끼어놓으면 진짜 극락!!!" / "쪼꼬만게 효과 짱" / "처음부터 세트로 살 것을..." — 고객 언어 그대로 카루셀·릴스 카피로 전환. 브랜드 카피 대비 신뢰도 높고 광고 피로도 낮음. 발바닥·족저근막염 사용 장면 1위 부위 전면 활용 권장.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -955,19 +1561,46 @@ new Chart(document.getElementById('salesChart'), {
   }
 });
 
-// 키워드 트렌드 차트
+// 키워드 월별 유입 추이 차트
+new Chart(document.getElementById('kwInflowChart'), {
+  type: 'line',
+  data: {
+    labels: ['25.10','25.11','25.12','26.01','26.02','26.03','26.04','26.05'],
+    datasets: [
+      { label: '브랜드검색',        data: [3.2,23.8,25.9,42.3,40.7,45.8,121.2,86.0], borderColor: '#cf1322', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2.5 },
+      { label: '바리바디',          data: [0.8,3.4,5.1,8.0,8.8,13.1,32.0,17.5],      borderColor: '#0958d9', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '마사지스틱',        data: [0,2.9,8.0,8.5,12.5,14.9,20.8,11.6],       borderColor: '#389e0d', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '바리바디마사지볼',   data: [1.0,8.1,3.1,5.4,10.6,4.3,15.0,6.7],      borderColor: '#531dab', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '릴렉스틱볼',        data: [0,3.8,0.5,4.2,3.0,1.0,29.5,9.2],          borderColor: '#d46b08', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '바리바디릴렉스틱',   data: [1.1,0.3,2.9,5.5,2.7,7.8,13.6,11.0],      borderColor: '#6366f1', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '릴렉스틱',          data: [0.5,3.3,7.0,5.2,2.3,4.9,11.4,6.5],        borderColor: '#22c55e', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '마사지볼',          data: [0,1.1,7.3,0.6,1.0,1.0,9.3,9.2],           borderColor: '#f97316', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '바리바디릴렉스틱볼', data: [0,1.6,0.8,1.5,0.6,1.7,11.1,9.8],         borderColor: '#14b8a6', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '마사지봉',          data: [0,1.0,0,5.6,1.7,3.5,9.7,5.0],             borderColor: '#ec4899', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: '발바닥지압볼',      data: [1.0,1.0,2.0,1.1,3.3,0,3.0,7.5],           borderColor: '#84cc16', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2 },
+      { label: 'barybody',         data: [0,1.0,2.4,3.0,0,0.8,0,1.0],               borderColor: '#94a3b8', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2, borderDash: [4,3] }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 10 }, boxWidth: 10 } },
+      tooltip: { mode: 'index' }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: { grid: { color: 'rgba(0,0,0,.05)' }, ticks: { font: { size: 10 }, callback: v => v.toLocaleString() } }
+    }
+  }
+});
+
+// 키워드 트렌드 차트 (유입 TOP 12 기반 — 족저근막염 제외, 실 유입 키워드만)
 new Chart(document.getElementById('kwChart'), {
   type: 'line',
   data: {
     labels: ['25.05','25.06','25.07','25.08','25.09','25.10','25.11','25.12','26.01','26.02','26.03','26.04'],
     datasets: [
-      {
-        label: '족저근막염',
-        data: [126500,136400,136100,132600,128700,114000,87400,72410,73450,69360,83800,88600],
-        borderColor: '#f97316',
-        tension: 0.3,
-        pointRadius: 2
-      },
       {
         label: '마사지볼',
         data: [18220,16620,20610,20720,19130,15420,14120,14810,14780,14030,16040,12630],
@@ -981,6 +1614,43 @@ new Chart(document.getElementById('kwChart'), {
         borderColor: '#1a1a2e',
         tension: 0.3,
         pointRadius: 2
+      },
+      {
+        label: '마사지봉',
+        data: [4060,3450,3750,4220,3810,3050,3360,3170,3470,3510,5030,5140],
+        borderColor: '#ec4899',
+        tension: 0.3,
+        pointRadius: 2
+      },
+      {
+        label: '발바닥지압볼',
+        data: [490,490,550,740,840,280,260,380,400,520,930,930],
+        borderColor: '#84cc16',
+        tension: 0.3,
+        pointRadius: 2
+      },
+      {
+        label: '바리바디',
+        data: [5300,5600,6100,6900,6500,6200,6500,6800,7100,6900,7500,7700],
+        borderColor: '#0958d9',
+        tension: 0.3,
+        pointRadius: 2
+      },
+      {
+        label: '릴렉스틱',
+        data: [10660,11200,12800,13700,12500,11200,10100,8900,8500,7800,7200,6790],
+        borderColor: '#f97316',
+        tension: 0.3,
+        pointRadius: 2
+      },
+      {
+        label: '지압볼 ★추천',
+        data: [1830,1790,1960,1850,1910,1360,990,980,1700,1230,1240,1250],
+        borderColor: '#fa8c16',
+        tension: 0.3,
+        pointRadius: 2,
+        borderWidth: 1.5,
+        borderDash: [6,3]
       },
       {
         label: '릴렉스틱볼',
@@ -1004,6 +1674,48 @@ new Chart(document.getElementById('kwChart'), {
         grid: { color: 'rgba(0,0,0,.05)' },
         ticks: { font: { size: 10 }, callback: v => v >= 1000 ? Math.round(v / 1000) + 'k' : v }
       }
+    }
+  }
+});
+
+// 월별 리뷰 증가 추이
+new Chart(document.getElementById('reviewTrendChart'), {
+  type: 'bar',
+  data: {
+    labels: ['25.10','25.11','25.12','26.01','26.02','26.03','26.04','26.05'],
+    datasets: [
+      {
+        label: '월별 리뷰수',
+        data: [2,36,76,128,124,120,332,320],
+        backgroundColor: ['#e6f4ff','#91caff','#69b1ff','#4096ff','#4096ff','#1677ff','#0958d9','#003eb3'],
+        borderRadius: 4,
+        yAxisID: 'y'
+      },
+      {
+        label: '평균 별점',
+        data: [5.00,4.56,4.89,4.80,4.85,4.80,4.81,4.93],
+        type: 'line',
+        borderColor: '#d46b08',
+        backgroundColor: 'transparent',
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: '#d46b08',
+        borderWidth: 2,
+        yAxisID: 'y1'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 11 }, boxWidth: 12 } },
+      tooltip: { mode: 'index' }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: 'rgba(0,0,0,.05)' }, ticks: { font: { size: 10 } }, title: { display: true, text: '리뷰수', font: { size: 10 } } },
+      y1: { position: 'right', min: 4.0, max: 5.2, grid: { display: false }, ticks: { font: { size: 10 } }, title: { display: true, text: '평균 별점', font: { size: 10 } } }
     }
   }
 });
