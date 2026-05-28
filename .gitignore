@@ -1,0 +1,22 @@
+# 인증/보안
+*.json
+*.key
+*.pem
+adc_credentials.json
+
+# 파이썬
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# 시스템
+.DS_Store
+__MACOSX/
+Thumbs.db
+
+# 임시 파일
+*.png
+*.log
+debug_*.py
+crawl_*.py

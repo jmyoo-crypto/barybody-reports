@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>릴렉스틱볼 타겟 분석 리포트 — 2026.05.28</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    background: #f8f9fa;
+    color: #1a1a2e;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    color: #fff;
+    padding: 48px 40px 40px;
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; }
+  .header-badge {
+    display: inline-block;
+    background: #e53935;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .header h1 span { color: #e53935; }
+  .header-sub {
+    font-size: 15px;
+    opacity: 0.75;
+    margin-bottom: 28px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    opacity: 0.65;
+  }
+  .header-meta span::before { content: '· '; }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 64px; }
+  .section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e53935;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    background: #e53935;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .note-small {
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px;
+    margin-bottom: 14px;
+  }
+
+  /* CARDS */
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 24px;
+  }
+  .card-grid {
+    display: grid;
+    gap: 16px;
+  }
+  .card-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  /* KPI */
+  .kpi-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 22px 24px;
+    border-left: 4px solid #e53935;
+  }
+  .kpi-label { font-size: 12px; color: #888; font-weight: 500; margin-bottom: 6px; }
+  .kpi-value { font-size: 28px; font-weight: 900; color: #1a1a2e; letter-spacing: -1px; }
+  .kpi-value span { font-size: 14px; font-weight: 500; color: #555; margin-left: 4px; }
+  .kpi-sub { font-size: 12px; color: #aaa; margin-top: 4px; }
+
+  /* BAR CHART */
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .bar-label { font-size: 13px; color: #444; width: 130px; flex-shrink: 0; text-align: right; }
+  .bar-label-left { text-align: left; width: 140px; }
+  .bar-wrap { flex: 1; background: #f0f2f5; border-radius: 6px; height: 22px; overflow: hidden; }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1a1a2e, #0f3460);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 11px;
+    color: #fff;
+    font-weight: 700;
+    min-width: 30px;
+  }
+  .bar-fill.red { background: linear-gradient(90deg, #e53935, #c62828); }
+  .bar-cnt { font-size: 12px; color: #888; width: 60px; flex-shrink: 0; }
+
+  /* PIE */
+  .pie-container { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  .pie-legend { display: flex; flex-direction: column; gap: 10px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+  /* HEATMAP */
+  .heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    gap: 3px;
+  }
+  .hm-cell {
+    height: 36px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .hm-label {
+    font-size: 10px;
+    color: #888;
+    text-align: center;
+    margin-top: 4px;
+  }
+  .hm-hour-wrap { text-align: center; }
+
+  .weekday-row {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .wd-cell {
+    flex: 1;
+    border-radius: 10px;
+    padding: 14px 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .wd-label { font-size: 11px; margin-bottom: 4px; opacity: 0.85; }
+  .wd-val { font-size: 16px; font-weight: 900; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid #f0f2f5; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: #fafafa; }
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    background: #f0f2f5;
+    color: #555;
+  }
+  .rank-badge.top3 { background: #e53935; color: #fff; }
+
+  /* TREND BAR */
+  .trend-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; min-width: 40px; }
+  .trend-bar {
+    width: 100%;
+    background: linear-gradient(180deg, #0f3460, #1a1a2e);
+    border-radius: 4px 4px 0 0;
+  }
+  .trend-bar.highlight { background: linear-gradient(180deg, #e53935, #c62828); }
+  .trend-bar-val { font-size: 10px; color: #666; text-align: center; }
+  .trend-bar-label { font-size: 10px; color: #999; text-align: center; white-space: nowrap; }
+
+  /* INSIGHTS */
+  .insight-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    border-radius: 14px;
+    padding: 32px;
+    color: #fff;
+  }
+  .insight-section h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .insight-list { display: flex; flex-direction: column; gap: 14px; }
+  .insight-item { display: flex; gap: 14px; align-items: flex-start; }
+  .insight-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: #e53935;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+  }
+  .insight-text { font-size: 14px; line-height: 1.7; opacity: 0.92; }
+  .insight-text strong { color: #ffcdd2; }
+
+  /* PERSONA */
+  .persona-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .persona-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 22px;
+    border-top: 4px solid #e53935;
+  }
+  .persona-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .persona-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .persona-name { font-size: 16px; font-weight: 700; }
+  .persona-age { font-size: 12px; color: #e53935; font-weight: 600; }
+  .persona-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .persona-tag {
+    background: #f0f2f5;
+    color: #444;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .persona-desc { font-size: 13px; color: #555; line-height: 1.7; }
+
+  /* VOICE */
+  .voice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .voice-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    padding: 16px 18px;
+  }
+  .voice-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .stars { color: #e53935; font-size: 13px; }
+  .voice-text { font-size: 13px; color: #444; line-height: 1.65; }
+  .voice-neg { border-left: 3px solid #e53935; }
+  .voice-pos { border-left: 3px solid #0f3460; }
+
+  /* META AD */
+  .meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .meta-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 20px 22px;
+  }
+  .meta-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e53935;
+  }
+  .meta-card ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .meta-card li {
+    font-size: 13px;
+    color: #444;
+    padding-left: 14px;
+    position: relative;
+  }
+  .meta-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #e53935;
+    font-weight: 700;
+  }
+
+  /* CHIP */
+  .chip {
+    display: inline-block;
+    background: #f0f2f5;
+    border: 1px solid #e0e3ea;
+    color: #444;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin: 3px;
+    font-weight: 500;
+  }
+  .chip.red { background: #ffebee; border-color: #ffcdd2; color: #c62828; }
+  .chip.navy { background: #e8eaf6; border-color: #c5cae9; color: #1a1a2e; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .header { padding: 32px 20px 28px; }
+    .header h1 { font-size: 22px; }
+    .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .card-grid-3 { grid-template-columns: 1fr; }
+    .card-grid-2 { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: 1fr; }
+    .meta-grid { grid-template-columns: 1fr; }
+    .voice-grid { grid-template-columns: 1fr; }
+    .heatmap-grid { grid-template-columns: repeat(12, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-badge">릴렉스틱볼 전용 데이터</div>
+    <h1>바리바디 <span>릴렉스틱볼</span> 타겟 분석 리포트</h1>
+    <p class="header-sub">스마트스토어 구매자 데이터 기반 · 릴렉스틱볼 상품 필터 적용 · 2026.05.28 기준</p>
+    <div class="header-meta">
+      <span>분석 대상: product LIKE '%릴렉스틱볼%' 필터 적용</span>
+      <span>데이터 소스: barybody_analytics BigQuery</span>
+      <span>생성일: 2026-05-28</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 1. KPI -->
+  <section class="section">
+    <div class="section-title"><span class="num">1</span> KPI 요약 — 릴렉스틱볼 기준</div>
+    <div class="card-grid card-grid-4">
+      <div class="kpi-card">
+        <div class="kpi-label">총 구매 건수</div>
+        <div class="kpi-value">2,825<span>건</span></div>
+        <div class="kpi-sub">2025.10 ~ 2026.05</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">총 매출액</div>
+        <div class="kpi-value">1억 296만<span>원</span></div>
+        <div class="kpi-sub">₩102,968,580</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">평균 환불률</div>
+        <div class="kpi-value">7.9<span>%</span></div>
+        <div class="kpi-sub">업종 평균 대비 양호</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">모바일 구매 비율</div>
+        <div class="kpi-value">89.0<span>%</span></div>
+        <div class="kpi-sub">모바일 최우선 환경</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 성별·연령대 -->
+  <section class="section">
+    <div class="section-title"><span class="num">2</span> 성별·연령대 분포 — 릴렉스틱볼 전용</div>
+    <div class="card-grid card-grid-2">
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:18px;">성별 비율</h3>
+        <div class="pie-container">
+          <div>
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#f0f2f5" stroke-width="20"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#1a1a2e" stroke-width="20"
+                stroke-dasharray="257.1 314.2" stroke-dashoffset="0"
+                transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#e53935" stroke-width="20"
+                stroke-dasharray="57.1 314.2" stroke-dashoffset="-257.1"
+                transform="rotate(-90 60 60)"/>
+              <text x="60" y="55" text-anchor="middle" font-size="14" font-weight="900" fill="#1a1a2e">81.8%</text>
+              <text x="60" y="72" text-anchor="middle" font-size="10" fill="#888">여성</text>
+            </svg>
+          </div>
+          <div class="pie-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#1a1a2e;"></div>
+              <div>
+                <div style="font-size:14px;font-weight:700;">여성 81.8%</div>
+                <div style="font-size:12px;color:#888;">2,312건</div>
+              </div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#e53935;"></div>
+              <div>
+                <div style="font-size:14px;font-weight:700;">남성 18.2%</div>
+                <div style="font-size:12px;color:#888;">513건</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">연령대×성별 TOP 10</h3>
+        <div class="bar-row"><div class="bar-label">41~45세 여성</div><div class="bar-wrap"><div class="bar-fill" style="width:100%;">18.4%</div></div><div class="bar-cnt">520건</div></div>
+        <div class="bar-row"><div class="bar-label">31~35세 여성</div><div class="bar-wrap"><div class="bar-fill" style="width:90.8%;">16.7%</div></div><div class="bar-cnt">472건</div></div>
+        <div class="bar-row"><div class="bar-label">36~40세 여성</div><div class="bar-wrap"><div class="bar-fill" style="width:87.5%;">16.1%</div></div><div class="bar-cnt">456건</div></div>
+        <div class="bar-row"><div class="bar-label">46~50세 여성</div><div class="bar-wrap"><div class="bar-fill" style="width:58.7%;">10.8%</div></div><div class="bar-cnt">306건</div></div>
+        <div class="bar-row"><div class="bar-label">51~55세 여성</div><div class="bar-wrap"><div class="bar-fill" style="width:39.7%;">7.3%</div></div><div class="bar-cnt">206건</div></div>
+        <div class="bar-row"><div class="bar-label">26~30세 여성</div><div class="bar-wrap"><div class="bar-fill" style="width:37.5%;">6.9%</div></div><div class="bar-cnt">194건</div></div>
+        <div class="bar-row"><div class="bar-label">36~40세 남성</div><div class="bar-wrap"><div class="bar-fill red" style="width:24.1%;">4.4%</div></div><div class="bar-cnt">125건</div></div>
+        <div class="bar-row"><div class="bar-label">41~45세 남성</div><div class="bar-wrap"><div class="bar-fill red" style="width:22.3%;">4.1%</div></div><div class="bar-cnt">115건</div></div>
+        <div class="bar-row"><div class="bar-label">31~35세 남성</div><div class="bar-wrap"><div class="bar-fill red" style="width:18%;">3.3%</div></div><div class="bar-cnt">93건</div></div>
+        <div class="bar-row"><div class="bar-label">56~60세 여성</div><div class="bar-wrap"><div class="bar-fill" style="width:15.8%;">2.9%</div></div><div class="bar-cnt">82건</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 결혼상태·직업·가구원수 -->
+  <section class="section">
+    <div class="section-title"><span class="num">3</span> 결혼상태·직업·가구원수 — 릴렉스틱볼 전용</div>
+    <div class="card-grid card-grid-3">
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">결혼상태</h3>
+        <div class="bar-row"><div class="bar-label bar-label-left">기혼</div><div class="bar-wrap"><div class="bar-fill" style="width:100%;">61.8%</div></div><div class="bar-cnt">1,118건</div></div>
+        <div class="bar-row"><div class="bar-label bar-label-left">미혼</div><div class="bar-wrap"><div class="bar-fill" style="width:61.8%;">38.2%</div></div><div class="bar-cnt">691건</div></div>
+        <div style="margin-top:14px;padding:12px;background:#fff8f8;border-radius:8px;border-left:3px solid #e53935;">
+          <div style="font-size:12px;color:#c62828;font-weight:600;">기혼 비율 61.8%</div>
+          <div style="font-size:12px;color:#666;margin-top:4px;">가족 건강관리 수요 반영</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">직업 분포</h3>
+        <div class="bar-row"><div class="bar-label bar-label-left">직장인</div><div class="bar-wrap"><div class="bar-fill" style="width:100%;">84.1%</div></div><div class="bar-cnt">1,522건</div></div>
+        <div class="bar-row"><div class="bar-label bar-label-left">주부</div><div class="bar-wrap"><div class="bar-fill" style="width:13.6%;">11.4%</div></div><div class="bar-cnt">207건</div></div>
+        <div class="bar-row"><div class="bar-label bar-label-left">학생/취준생</div><div class="bar-wrap"><div class="bar-fill" style="width:2.9%;">2.4%</div></div><div class="bar-cnt">43건</div></div>
+        <div class="bar-row"><div class="bar-label bar-label-left">기타</div><div class="bar-wrap"><div class="bar-fill" style="width:2.4%;">2.0%</div></div><div class="bar-cnt">37건</div></div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">가구당 인원</h3>
+        <div class="bar-row"><div class="bar-label bar-label-left">2인 이상</div><div class="bar-wrap"><div class="bar-fill" style="width:100%;">92.2%</div></div><div class="bar-cnt">1,667건</div></div>
+        <div class="bar-row"><div class="bar-label bar-label-left">1인</div><div class="bar-wrap"><div class="bar-fill" style="width:8.5%;">7.8%</div></div><div class="bar-cnt">142건</div></div>
+        <div style="margin-top:14px;padding:12px;background:#e8eaf6;border-radius:8px;border-left:3px solid #1a1a2e;">
+          <div style="font-size:12px;color:#1a1a2e;font-weight:600;">다인 가구 92.2%</div>
+          <div style="font-size:12px;color:#666;margin-top:4px;">가족 공동 사용 소구 유효</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 지역 분포 -->
+  <section class="section">
+    <div class="section-title"><span class="num">4</span> 지역 분포 — 릴렉스틱볼 전용</div>
+    <div class="card-grid card-grid-2">
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">시도별 TOP 10</h3>
+        <div class="bar-row"><div class="bar-label">서울특별시</div><div class="bar-wrap"><div class="bar-fill" style="width:100%;">45.2%</div></div><div class="bar-cnt">1,276건</div></div>
+        <div class="bar-row"><div class="bar-label">경기도</div><div class="bar-wrap"><div class="bar-fill" style="width:47.6%;">21.5%</div></div><div class="bar-cnt">606건</div></div>
+        <div class="bar-row"><div class="bar-label">인천광역시</div><div class="bar-wrap"><div class="bar-fill" style="width:10.2%;">4.6%</div></div><div class="bar-cnt">131건</div></div>
+        <div class="bar-row"><div class="bar-label">부산광역시</div><div class="bar-wrap"><div class="bar-fill" style="width:8.0%;">3.6%</div></div><div class="bar-cnt">101건</div></div>
+        <div class="bar-row"><div class="bar-label">경상남도</div><div class="bar-wrap"><div class="bar-fill" style="width:6.6%;">3.0%</div></div><div class="bar-cnt">84건</div></div>
+        <div class="bar-row"><div class="bar-label">충청남도</div><div class="bar-wrap"><div class="bar-fill" style="width:5.5%;">2.5%</div></div><div class="bar-cnt">71건</div></div>
+        <div class="bar-row"><div class="bar-label">대전광역시</div><div class="bar-wrap"><div class="bar-fill" style="width:5.3%;">2.4%</div></div><div class="bar-cnt">68건</div></div>
+        <div class="bar-row"><div class="bar-label">충청북도</div><div class="bar-wrap"><div class="bar-fill" style="width:4.7%;">2.1%</div></div><div class="bar-cnt">60건</div></div>
+        <div class="bar-row"><div class="bar-label">대구광역시</div><div class="bar-wrap"><div class="bar-fill" style="width:4.7%;">2.1%</div></div><div class="bar-cnt">60건</div></div>
+        <div class="bar-row"><div class="bar-label">강원도</div><div class="bar-wrap"><div class="bar-fill" style="width:4.7%;">2.1%</div></div><div class="bar-cnt">59건</div></div>
+        <div style="margin-top:12px;font-size:12px;color:#888;">※ 수도권(서울+경기+인천) 합산 71.3% — 광역권 집중 마케팅 유효</div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">서울 구별 TOP 10 (매출액 기준)</h3>
+        <table class="data-table">
+          <thead><tr><th>순위</th><th>구</th><th>구매건수</th><th>매출액</th></tr></thead>
+          <tbody>
+            <tr><td><span class="rank-badge top3">1</span></td><td>강남구</td><td>267건</td><td>₩9,509,520</td></tr>
+            <tr><td><span class="rank-badge top3">2</span></td><td>중구</td><td>246건</td><td>₩9,036,200</td></tr>
+            <tr><td><span class="rank-badge top3">3</span></td><td>송파구</td><td>161건</td><td>₩5,856,320</td></tr>
+            <tr><td><span class="rank-badge">4</span></td><td>서초구</td><td>109건</td><td>₩3,934,000</td></tr>
+            <tr><td><span class="rank-badge">5</span></td><td>종로구</td><td>32건</td><td>₩1,956,820</td></tr>
+            <tr><td><span class="rank-badge">6</span></td><td>동작구</td><td>39건</td><td>₩1,483,100</td></tr>
+            <tr><td><span class="rank-badge">7</span></td><td>마포구</td><td>37건</td><td>₩1,410,920</td></tr>
+            <tr><td><span class="rank-badge">8</span></td><td>강서구</td><td>39건</td><td>₩1,397,100</td></tr>
+            <tr><td><span class="rank-badge">9</span></td><td>관악구</td><td>30건</td><td>₩1,379,200</td></tr>
+            <tr><td><span class="rank-badge">10</span></td><td>강동구</td><td>28건</td><td>₩1,352,900</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px;font-size:12px;color:#888;">※ 강남·송파·서초 강남3구 집중 — 프리미엄 건강제품 소비층</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 구매 시간대·요일 -->
+  <section class="section">
+    <div class="section-title"><span class="num">5</span> 구매 시간대·요일 패턴</div>
+    <p class="note-small">※ ss_purchase_timing — product 컬럼 NULL 값만 존재하여 스토어 전체 기준 적용</p>
+    <div class="card-grid card-grid-2">
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">시간대별 구매 분포 (24h)</h3>
+        <div style="overflow-x:auto;">
+          <div style="min-width:400px;">
+            <div class="heatmap-grid">
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.52);">0</div><div class="hm-label">0시</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.28);">1</div><div class="hm-label">1</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.15);">2</div><div class="hm-label">2</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.09);">3</div><div class="hm-label">3</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.09);">4</div><div class="hm-label">4</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.11);">5</div><div class="hm-label">5</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.19);">6</div><div class="hm-label">6</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.34);">7</div><div class="hm-label">7</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.51);">8</div><div class="hm-label">8</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.63);">9</div><div class="hm-label">9</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:#e53935;">10</div><div class="hm-label" style="color:#e53935;font-weight:700;">10</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(229,57,53,0.80);">11</div><div class="hm-label">11</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.70);">12</div><div class="hm-label">12</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.69);">13</div><div class="hm-label">13</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.66);">14</div><div class="hm-label">14</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.64);">15</div><div class="hm-label">15</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.60);">16</div><div class="hm-label">16</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.57);">17</div><div class="hm-label">17</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.53);">18</div><div class="hm-label">18</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.54);">19</div><div class="hm-label">19</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(15,52,96,0.66);">20</div><div class="hm-label">20</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(229,57,53,0.80);">21</div><div class="hm-label">21</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(229,57,53,0.82);">22</div><div class="hm-label">22</div></div>
+              <div class="hm-hour-wrap"><div class="hm-cell" style="background:rgba(229,57,53,0.73);">23</div><div class="hm-label">23</div></div>
+            </div>
+            <div style="margin-top:10px;font-size:11px;color:#888;">빨강 = 고활동 | 네이비 = 중·저활동 | 피크: 오전 10시, 오후 10~11시</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">요일별 구매 분포</h3>
+        <div class="weekday-row">
+          <div class="wd-cell" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);">
+            <div class="wd-label">월</div><div class="wd-val">8,519</div>
+          </div>
+          <div class="wd-cell" style="background:linear-gradient(135deg,#1e2248,#113870);">
+            <div class="wd-label">화</div><div class="wd-val">8,190</div>
+          </div>
+          <div class="wd-cell" style="background:linear-gradient(135deg,#1e2248,#113870);">
+            <div class="wd-label">수</div><div class="wd-val">7,987</div>
+          </div>
+          <div class="wd-cell" style="background:linear-gradient(135deg,#1e2248,#113870);">
+            <div class="wd-label">목</div><div class="wd-val">8,211</div>
+          </div>
+          <div class="wd-cell" style="background:linear-gradient(135deg,#2a3060,#1e4080);">
+            <div class="wd-label">금</div><div class="wd-val">7,402</div>
+          </div>
+          <div class="wd-cell" style="background:linear-gradient(135deg,#555,#888);">
+            <div class="wd-label">토</div><div class="wd-val">6,260</div>
+          </div>
+          <div class="wd-cell" style="background:linear-gradient(135deg,#555,#888);">
+            <div class="wd-label">일</div><div class="wd-val">7,434</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px;background:#fff8f8;border-radius:8px;font-size:12px;color:#666;">
+          <strong style="color:#e53935;">평일 집중 패턴:</strong> 월~목이 피크, 토요일 최저. 주중 직장인 탐색 구매 패턴.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 유입 채널·검색 키워드 -->
+  <section class="section">
+    <div class="section-title"><span class="num">6</span> 유입 채널 & 검색 키워드 — 릴렉스틱볼 전용</div>
+    <div class="card-grid card-grid-2">
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">유입 채널 TOP 8</h3>
+        <div class="bar-row"><div class="bar-label" style="width:170px;font-size:12px;">네이버 브랜드검색</div><div class="bar-wrap"><div class="bar-fill" style="width:100%;">587</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:170px;font-size:12px;">가격비교-통합검색</div><div class="bar-wrap"><div class="bar-fill" style="width:40.5%;">238</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:170px;font-size:12px;">사이트검색광고</div><div class="bar-wrap"><div class="bar-fill" style="width:34.6%;">203</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:170px;font-size:12px;">플러스스토어-검색</div><div class="bar-wrap"><div class="bar-fill" style="width:29.6%;">174</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:170px;font-size:12px;">쇼핑검색광고</div><div class="bar-wrap"><div class="bar-fill" style="width:24.4%;">143</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:170px;font-size:12px;">플러스스토어-통합검색</div><div class="bar-wrap"><div class="bar-fill" style="width:15.2%;">89</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:170px;font-size:12px;">가격비교-카탈로그</div><div class="bar-wrap"><div class="bar-fill" style="width:11.6%;">68</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:170px;font-size:12px;">네이버검색(자연)</div><div class="bar-wrap"><div class="bar-fill" style="width:7.3%;">43</div></div></div>
+        <div style="margin-top:10px;font-size:12px;color:#888;">브랜드검색 단독 1위(40%+) — 브랜드 인지 광고 ROI 최강</div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;">구매 연결 검색어 TOP 12</h3>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">브랜드검색</div><div class="bar-wrap"><div class="bar-fill" style="width:100%;">389</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">바리바디</div><div class="bar-wrap"><div class="bar-fill" style="width:22.8%;">89</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">마사지스틱</div><div class="bar-wrap"><div class="bar-fill" style="width:20.3%;">79</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">바리바디마사지볼</div><div class="bar-wrap"><div class="bar-fill" style="width:13.9%;">54</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">릴렉스틱볼</div><div class="bar-wrap"><div class="bar-fill" style="width:13.2%;">51</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">바리바디릴렉스틱</div><div class="bar-wrap"><div class="bar-fill" style="width:11.5%;">45</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">릴렉스틱</div><div class="bar-wrap"><div class="bar-fill" style="width:10.6%;">41</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">마사지볼</div><div class="bar-wrap"><div class="bar-fill" style="width:7.6%;">30</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">바리바디릴렉스틱볼</div><div class="bar-wrap"><div class="bar-fill" style="width:7.0%;">27</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">마사지봉</div><div class="bar-wrap"><div class="bar-fill" style="width:6.8%;">27</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">발바닥지압볼</div><div class="bar-wrap"><div class="bar-fill" style="width:4.8%;">19</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:140px;font-size:12px;">barybody</div><div class="bar-wrap"><div class="bar-fill" style="width:2.1%;">8</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 신규 vs 재구매 추이 -->
+  <section class="section">
+    <div class="section-title"><span class="num">7</span> 신규 vs 재구매 추이</div>
+    <p class="note-small">※ 스마트스토어 전체 상품 기준 (상품별 분리 불가)</p>
+    <div class="card">
+      <div style="overflow-x:auto;">
+        <div style="display:flex;gap:6px;align-items:flex-end;height:160px;padding:0 4px;min-width:680px;">
+          <div class="trend-bar-wrap"><div class="trend-bar-val">636</div><div class="trend-bar" style="height:26px;width:40px;"></div><div class="trend-bar-label">25.01</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">533</div><div class="trend-bar" style="height:22px;width:40px;"></div><div class="trend-bar-label">25.02</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">785</div><div class="trend-bar" style="height:33px;width:40px;"></div><div class="trend-bar-label">25.03</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">966</div><div class="trend-bar" style="height:40px;width:40px;"></div><div class="trend-bar-label">25.04</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">1,136</div><div class="trend-bar" style="height:47px;width:40px;"></div><div class="trend-bar-label">25.05</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">1,610</div><div class="trend-bar" style="height:67px;width:40px;"></div><div class="trend-bar-label">25.06</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">3,159</div><div class="trend-bar highlight" style="height:131px;width:40px;"></div><div class="trend-bar-label" style="font-weight:700;">25.07</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">3,856</div><div class="trend-bar highlight" style="height:160px;width:40px;"></div><div class="trend-bar-label" style="font-weight:700;">25.08</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">3,450</div><div class="trend-bar highlight" style="height:143px;width:40px;"></div><div class="trend-bar-label">25.09</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">2,746</div><div class="trend-bar" style="height:114px;width:40px;"></div><div class="trend-bar-label">25.10</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">2,915</div><div class="trend-bar" style="height:121px;width:40px;"></div><div class="trend-bar-label">25.11</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">2,447</div><div class="trend-bar" style="height:101px;width:40px;"></div><div class="trend-bar-label">25.12</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">3,422</div><div class="trend-bar highlight" style="height:142px;width:40px;"></div><div class="trend-bar-label" style="font-weight:700;">26.01</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">2,681</div><div class="trend-bar" style="height:111px;width:40px;"></div><div class="trend-bar-label">26.02</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">2,784</div><div class="trend-bar" style="height:115px;width:40px;"></div><div class="trend-bar-label">26.03</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val">3,798</div><div class="trend-bar highlight" style="height:157px;width:40px;"></div><div class="trend-bar-label" style="font-weight:700;">26.04</div></div>
+        </div>
+      </div>
+      <div style="margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <div style="background:#f8f9fa;border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">2026.04 재구매율</div>
+          <div style="font-size:20px;font-weight:900;">5.2%</div>
+        </div>
+        <div style="background:#fff8f8;border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">2026.01 재구매율 최고</div>
+          <div style="font-size:20px;font-weight:900;color:#e53935;">10.1%</div>
+        </div>
+        <div style="background:#f8f9fa;border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">최근 4개월 평균 재구매</div>
+          <div style="font-size:20px;font-weight:900;">7.7%</div>
+        </div>
+        <div style="background:#f8f9fa;border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">26.04 MoM 성장</div>
+          <div style="font-size:20px;font-weight:900;">+36.4%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 상품별 성과 -->
+  <section class="section">
+    <div class="section-title"><span class="num">8</span> 상품별 성과 — 볼 필터</div>
+    <div class="card">
+      <table class="data-table">
+        <thead>
+          <tr><th>상품명</th><th>구매건수</th><th>총매출</th><th>평균객단가</th><th>환불률</th><th>모바일비율</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-size:12px;">바리바디 릴렉스틱볼 목 어깨 족저근막염 통증 발바닥 지압 마사지볼</td>
+            <td>2,825건</td><td>₩102,968,580</td><td>₩36,449</td><td>7.9%</td><td>89.0%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 9. 키워드 검색량 트렌드 -->
+  <section class="section">
+    <div class="section-title"><span class="num">9</span> 키워드 검색량 트렌드</div>
+    <div class="card-grid card-grid-2">
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:14px;">릴렉스틱볼 직접 키워드</h3>
+        <table class="data-table">
+          <thead><tr><th>월</th><th>PC</th><th>모바일</th><th>합계</th></tr></thead>
+          <tbody>
+            <tr><td>2025.10</td><td>6</td><td>50</td><td>56</td></tr>
+            <tr><td>2025.11</td><td>20</td><td>240</td><td>260</td></tr>
+            <tr><td>2025.12</td><td>10</td><td>120</td><td>130</td></tr>
+            <tr><td>2026.01</td><td>30</td><td>340</td><td>370</td></tr>
+            <tr><td>2026.02</td><td>10</td><td>130</td><td>140</td></tr>
+            <tr><td>2026.03</td><td>10</td><td>240</td><td>250</td></tr>
+            <tr style="background:#fff8f8;"><td><strong>2026.04</strong></td><td><strong>20</strong></td><td><strong>360</strong></td><td><strong style="color:#e53935;">380</strong></td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:8px;font-size:12px;color:#888;">신생 키워드 — 브랜드 검색 육성 필요</div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:14px;">마사지볼 (상위 연관 키워드)</h3>
+        <table class="data-table">
+          <thead><tr><th>월</th><th>PC</th><th>모바일</th><th>합계</th></tr></thead>
+          <tbody>
+            <tr><td>2025.05</td><td>3,020</td><td>15,200</td><td>18,220</td></tr>
+            <tr><td>2025.08</td><td>3,320</td><td>17,400</td><td>20,720</td></tr>
+            <tr><td>2025.10</td><td>2,320</td><td>13,100</td><td>15,420</td></tr>
+            <tr><td>2026.01</td><td>2,180</td><td>12,600</td><td>14,780</td></tr>
+            <tr><td>2026.03</td><td>2,640</td><td>13,400</td><td>16,040</td></tr>
+            <tr style="background:#fff8f8;"><td><strong>2026.04</strong></td><td><strong>2,630</strong></td><td><strong>10,000</strong></td><td><strong style="color:#e53935;">12,630</strong></td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:8px;font-size:12px;color:#888;">시장 규모 충분 — 노출 점유율 확대 여지</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;">족저근막염 키워드 월별 검색량 추이 (최대 유입 잠재군)</h3>
+      <div style="overflow-x:auto;">
+        <div style="display:flex;gap:6px;align-items:flex-end;height:100px;min-width:400px;padding:0 4px;">
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">126.5K</div><div class="trend-bar" style="height:93px;width:36px;"></div><div class="trend-bar-label">25.05</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">136.4K</div><div class="trend-bar highlight" style="height:100px;width:36px;"></div><div class="trend-bar-label" style="font-weight:700;">25.06</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">136.1K</div><div class="trend-bar highlight" style="height:100px;width:36px;"></div><div class="trend-bar-label">25.07</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">132.6K</div><div class="trend-bar" style="height:97px;width:36px;"></div><div class="trend-bar-label">25.08</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">128.7K</div><div class="trend-bar" style="height:94px;width:36px;"></div><div class="trend-bar-label">25.09</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">114K</div><div class="trend-bar" style="height:84px;width:36px;"></div><div class="trend-bar-label">25.10</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">87.4K</div><div class="trend-bar" style="height:64px;width:36px;"></div><div class="trend-bar-label">25.11</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">72.4K</div><div class="trend-bar" style="height:53px;width:36px;"></div><div class="trend-bar-label">25.12</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">73.5K</div><div class="trend-bar" style="height:54px;width:36px;"></div><div class="trend-bar-label">26.01</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">69.4K</div><div class="trend-bar" style="height:51px;width:36px;"></div><div class="trend-bar-label">26.02</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">83.8K</div><div class="trend-bar" style="height:61px;width:36px;"></div><div class="trend-bar-label">26.03</div></div>
+          <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">88.6K</div><div class="trend-bar" style="height:65px;width:36px;"></div><div class="trend-bar-label">26.04</div></div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:#888;">족저근막염 키워드 월 7~13만 검색 — 릴렉스틱볼 포지셔닝 강화 시 대규모 신규 유입 가능</div>
+    </div>
+  </section>
+
+  <!-- 10. 월별 매출 계절성 -->
+  <section class="section">
+    <div class="section-title"><span class="num">10</span> 월별 매출 계절성 — 릴렉스틱볼 전용</div>
+    <div class="card-grid card-grid-2">
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:14px;">월별 매출 MoM 추이</h3>
+        <table class="data-table">
+          <thead><tr><th>월</th><th>건수</th><th>매출액</th><th>객단가</th><th>MoM</th></tr></thead>
+          <tbody>
+            <tr><td>2025.10</td><td>21</td><td>₩934K</td><td>₩44,457</td><td>—</td></tr>
+            <tr><td>2025.11</td><td>118</td><td>₩4,478K</td><td>₩37,951</td><td style="color:#1a1a2e;">+461.9%</td></tr>
+            <tr><td>2025.12</td><td>155</td><td>₩6,043K</td><td>₩38,986</td><td style="color:#1a1a2e;">+31.4%</td></tr>
+            <tr><td>2026.01</td><td>292</td><td>₩10,604K</td><td>₩36,314</td><td style="color:#1a1a2e;">+88.4%</td></tr>
+            <tr><td>2026.02</td><td>207</td><td>₩7,427K</td><td>₩35,880</td><td style="color:#e53935;">-29.1%</td></tr>
+            <tr><td>2026.03</td><td>418</td><td>₩18,394K</td><td>₩44,004</td><td style="color:#1a1a2e;">+101.9%</td></tr>
+            <tr style="background:#fff8f8;"><td><strong>2026.04</strong></td><td><strong>952</strong></td><td><strong>₩31,711K</strong></td><td>₩33,310</td><td style="color:#e53935;font-weight:700;">+127.8%</td></tr>
+            <tr><td>2026.05 (일부)</td><td>662</td><td>₩23,378K</td><td>₩35,315</td><td style="color:#e53935;">-30.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:14px;">매출 성장 시각화</h3>
+        <div style="overflow-x:auto;">
+          <div style="display:flex;gap:6px;align-items:flex-end;height:140px;padding:0 4px;min-width:340px;">
+            <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">93만</div><div class="trend-bar" style="height:4px;width:44px;"></div><div class="trend-bar-label">25.10</div></div>
+            <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">448만</div><div class="trend-bar" style="height:20px;width:44px;"></div><div class="trend-bar-label">25.11</div></div>
+            <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">604만</div><div class="trend-bar" style="height:27px;width:44px;"></div><div class="trend-bar-label">25.12</div></div>
+            <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">1,060만</div><div class="trend-bar" style="height:47px;width:44px;"></div><div class="trend-bar-label">26.01</div></div>
+            <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">743만</div><div class="trend-bar" style="height:33px;width:44px;"></div><div class="trend-bar-label">26.02</div></div>
+            <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">1,839만</div><div class="trend-bar" style="height:81px;width:44px;"></div><div class="trend-bar-label">26.03</div></div>
+            <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">3,171만</div><div class="trend-bar highlight" style="height:140px;width:44px;"></div><div class="trend-bar-label" style="font-weight:700;color:#e53935;">26.04</div></div>
+            <div class="trend-bar-wrap"><div class="trend-bar-val" style="font-size:9px;">2,338만</div><div class="trend-bar" style="height:104px;width:44px;"></div><div class="trend-bar-label">26.05*</div></div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px;background:#fff8f8;border-radius:8px;font-size:12px;">
+          <strong style="color:#e53935;">2026.04 역대 최대 3,171만원</strong> — 출시 6개월 만에 월 3천만 돌파<br>
+          <span style="color:#888;margin-top:4px;display:block;">2025.10 런칭 → 2026.04 약 33.9배 성장</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. 리뷰 인사이트 -->
+  <section class="section">
+    <div class="section-title"><span class="num">11</span> 리뷰 인사이트 — 릴렉스틱볼 전용</div>
+    <div class="card-grid card-grid-4" style="margin-bottom:16px;">
+      <div class="kpi-card">
+        <div class="kpi-label">총 리뷰 수</div>
+        <div class="kpi-value">1,138<span>건</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">평균 평점</div>
+        <div class="kpi-value">4.84<span>/ 5</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">긍정 리뷰 (4점↑)</div>
+        <div class="kpi-value">1,118<span>건</span></div>
+        <div class="kpi-sub">98.2%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">부정 리뷰 (2점↓)</div>
+        <div class="kpi-value">2<span>건</span></div>
+        <div class="kpi-sub">0.2%</div>
+      </div>
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice-card voice-pos">
+        <div class="voice-header"><span class="stars">★★★★★</span><span style="font-size:11px;color:#888;">5점 · 2026-04-05</span></div>
+        <div class="voice-text">"발바닥 불편할 때마다 사용했는데 불편함이 덜하네요^^"</div>
+      </div>
+      <div class="voice-card voice-pos">
+        <div class="voice-header"><span class="stars">★★★★★</span><span style="font-size:11px;color:#888;">5점 · 2026-05-25</span></div>
+        <div class="voice-text">"견고하고 좋은구성이에요"</div>
+      </div>
+      <div class="voice-card voice-pos">
+        <div class="voice-header"><span class="stars">★★★★★</span><span style="font-size:11px;color:#888;">5점 · 2026-03-31</span></div>
+        <div class="voice-text">"스틱 구입하고 추가 구입했어요. 잘 사용하겠습니다."</div>
+      </div>
+      <div class="voice-card voice-pos">
+        <div class="voice-header"><span class="stars">★★★★★</span><span style="font-size:11px;color:#888;">5점 · 2026-03-08</span></div>
+        <div class="voice-text">"발바닥이 가끔 아파서 사용하는데 시원하니 좋아요^^"</div>
+      </div>
+      <div class="voice-card voice-pos">
+        <div class="voice-header"><span class="stars">★★★★★</span><span style="font-size:11px;color:#888;">5점 · 2025-12-28</span></div>
+        <div class="voice-text">"공이 있는게 훨씬시원하내요"</div>
+      </div>
+      <div class="voice-card voice-neg">
+        <div class="voice-header"><span style="color:#e53935;font-size:13px;">★★☆☆☆</span><span style="font-size:11px;color:#888;">2점 · 2025-11-12</span></div>
+        <div class="voice-text">"느린배송 볼이 고정이 안되서 불편" — 볼 고정 메커니즘 및 배송 속도 개선 필요</div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;padding:16px;background:#e8eaf6;border-radius:10px;font-size:13px;">
+      <strong>긍정 키워드:</strong>
+      <span class="chip navy">발바닥 통증 완화</span><span class="chip navy">족저근막염</span><span class="chip navy">시원함</span><span class="chip navy">편안함</span><span class="chip navy">견고한 구성</span><span class="chip navy">릴렉스틱 추가구매</span>
+      <strong style="margin-left:8px;">개선 요구:</strong>
+      <span class="chip red">볼 고정 불편</span><span class="chip red">배송 속도</span>
+    </div>
+  </section>
+
+  <!-- 12. 핵심 인사이트 -->
+  <section class="section">
+    <div class="insight-section">
+      <h2>핵심 인사이트 5</h2>
+      <div class="insight-list">
+        <div class="insight-item">
+          <div class="insight-num">1</div>
+          <div class="insight-text">
+            <strong>핵심 구매층: 30~45세 기혼 직장 여성 (51.2%)</strong> — 기혼 61.8%, 직장인 84.1%, 다인 가구 92.2%. 피로한 몸을 케어하는 "워킹맘·직장인" 페르소나가 핵심. 가족 건강 공동 소비 수요가 구매 결정에 영향.
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">2</div>
+          <div class="insight-text">
+            <strong>수도권 71.3%, 강남3구 집중</strong> — 서울 45.2% + 경기 21.5% + 인천 4.6%. 서울 내 강남·중구·송파 매출 TOP3. 고소득 직장인 밀집 지역에서 프리미엄 건강용품 수요 명확.
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">3</div>
+          <div class="insight-text">
+            <strong>모바일 89% + 오전 10시 / 야간 10~11시 피크</strong> — 출퇴근·점심 시간대와 취침 전 통증 케어 니즈가 맞물린 구매 패턴. 모바일 소재 최우선, 오전 9~11시 / 오후 10~12시 집중 노출 전략 권장.
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">4</div>
+          <div class="insight-text">
+            <strong>족저근막염 키워드 월 7~13만 검색 — 미포착 기회</strong> — 현재 구매 연결 검색어에서 "발바닥지압볼" 19건에 불과. 족저근막염 → 마사지볼 → 릴렉스틱볼 전환 퍼널 구축 시 수만 건 신규 유입 가능.
+          </div>
+        </div>
+        <div class="insight-item">
+          <div class="insight-num">5</div>
+          <div class="insight-text">
+            <strong>2026.04 월매출 3,171만원 — 6개월 만에 33배 성장</strong> — 2026.01 재구매율 10.1% 최고치 기록, 재구매 상승세 지속. "스틱 구입 후 볼 추가 구매" 크로스셀 패턴이 성장 주요 동력.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. 타겟 페르소나 -->
+  <section class="section">
+    <div class="section-title"><span class="num">13</span> 타겟 페르소나</div>
+    <div class="persona-grid">
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar">👩‍💼</div>
+          <div>
+            <div class="persona-name">김민정 — 강남 직장맘</div>
+            <div class="persona-age">41~45세 / 여성 / 기혼 / 직장인</div>
+          </div>
+        </div>
+        <div class="persona-tags">
+          <span class="persona-tag">강남구 거주</span><span class="persona-tag">2인 이상 가구</span>
+          <span class="persona-tag">야간 구매</span><span class="persona-tag">족저근막염</span><span class="persona-tag">스틱 기존 사용</span>
+        </div>
+        <div class="persona-desc">
+          하루 종일 하이힐·서서 일하는 피로로 퇴근 후 발바닥·어깨 통증 호소. 릴렉스틱 스틱 이미 사용 중, 볼 추가 구매. 오후 10~11시 모바일로 탐색, 상세페이지 '족저근막염' 효과 소구에 즉각 반응. 가족과 함께 사용한다는 점도 구매 결정 요인.
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar">👩</div>
+          <div>
+            <div class="persona-name">이수진 — 사무직 싱글</div>
+            <div class="persona-age">31~35세 / 여성 / 미혼 / 직장인</div>
+          </div>
+        </div>
+        <div class="persona-tags">
+          <span class="persona-tag">경기도 거주</span><span class="persona-tag">1~2인 가구</span>
+          <span class="persona-tag">점심시간 구매</span><span class="persona-tag">마사지볼 검색</span><span class="persona-tag">가성비 중시</span>
+        </div>
+        <div class="persona-desc">
+          장시간 앉아서 일하는 사무직, 만성 어깨·목 통증. '마사지볼' 검색 후 가격비교 통합검색을 거쳐 유입. 평점·리뷰 꼼꼼히 확인 후 구매. 오전 10시 쉬는 시간 모바일로 즉구매. 이벤트·쿠폰에 반응 빠름.
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar">👨‍💼</div>
+          <div>
+            <div class="persona-name">박재원 — 중간 관리직 남성</div>
+            <div class="persona-age">36~40세 / 남성 / 기혼 / 직장인</div>
+          </div>
+        </div>
+        <div class="persona-tags">
+          <span class="persona-tag">서울/경기</span><span class="persona-tag">운동 후 회복</span>
+          <span class="persona-tag">평일 구매</span><span class="persona-tag">브랜드검색 유입</span><span class="persona-tag">선물 목적</span>
+        </div>
+        <div class="persona-desc">
+          헬스·러닝 후 발바닥·종아리 회복 목적. 배우자가 사용하는 것을 보고 자신도 구매하거나, 부모님 선물용으로 탐색. '바리바디' 브랜드 검색으로 직접 유입. 품질·내구성 소구에 반응, 세트 구성 구매 가능성 높음.
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar">👩‍🍳</div>
+          <div>
+            <div class="persona-name">최영숙 — 주부 건강 관리자</div>
+            <div class="persona-age">46~50세 / 여성 / 기혼 / 주부</div>
+          </div>
+        </div>
+        <div class="persona-tags">
+          <span class="persona-tag">수도권</span><span class="persona-tag">2인 이상 가구</span>
+          <span class="persona-tag">만성 통증</span><span class="persona-tag">네이버 쇼핑 탐색</span><span class="persona-tag">가족 건강관리</span>
+        </div>
+        <div class="persona-desc">
+          가사·육아 누적 허리·발바닥 피로. 네이버플러스스토어 탐색 중 발견, 가족 모두 쓸 수 있는 제품 선호. 리뷰·상세 설명 꼼꼼히 확인 후 신중 구매. 재구매율·지인 추천 전파력 강함.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. 커뮤니티 보이스 분석 -->
+  <section class="section">
+    <div class="section-title"><span class="num">14</span> 커뮤니티 보이스 분석</div>
+    <div class="card-grid card-grid-2">
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:14px;">긍정 언급 패턴</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:4px;min-height:40px;background:#1a1a2e;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1a1a2e;">즉각적인 통증 완화</div>
+              <div style="font-size:12px;color:#666;">"시원하다" "불편함이 덜하다" — 사용 즉시 효과 체감</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:4px;min-height:40px;background:#1a1a2e;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1a1a2e;">견고한 구성·내구성</div>
+              <div style="font-size:12px;color:#666;">"견고하고 좋은구성" — 품질 신뢰도 높음</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:4px;min-height:40px;background:#1a1a2e;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1a1a2e;">릴렉스틱 시리즈 충성도</div>
+              <div style="font-size:12px;color:#666;">"스틱 구입 후 추가 구입" — 시리즈 크로스셀 효과</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:4px;min-height:40px;background:#1a1a2e;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1a1a2e;">족저근막염 / 발바닥 케어</div>
+              <div style="font-size:12px;color:#666;">일상 통증 관리 도구로 포지셔닝 성공</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:14px;">개선 요구 & 기회</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:4px;min-height:40px;background:#e53935;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#e53935;">볼 고정 메커니즘</div>
+              <div style="font-size:12px;color:#666;">"볼이 고정이 안되서 불편" — 사용 편의성 개선 우선순위 1</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:4px;min-height:40px;background:#e53935;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#e53935;">배송 속도</div>
+              <div style="font-size:12px;color:#666;">"느린 배송" — 당일/익일 배송 옵션 검토</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:4px;min-height:40px;background:#0f3460;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#0f3460;">기회: 부위별 사용 가이드</div>
+              <div style="font-size:12px;color:#666;">목·어깨·발바닥별 사용법 영상 제작 → 검색 유입·전환율 동시 제고</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:4px;min-height:40px;background:#0f3460;border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#0f3460;">기회: 스틱+볼 세트 상품화</div>
+              <div style="font-size:12px;color:#666;">크로스셀 패턴 공식화 → 세트 구성으로 객단가 상승</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. 메타 광고 소재 기획 방향 -->
+  <section class="section">
+    <div class="section-title"><span class="num">15</span> 메타 광고 소재 기획 방향</div>
+    <div class="meta-grid">
+
+      <div class="meta-card">
+        <h4>세그먼트 1 — 30~45세 직장 여성</h4>
+        <ul>
+          <li>후크: "퇴근 후 발바닥이 터질 것 같다면" / "하루 10분, 족저근막염 예방"</li>
+          <li>비주얼: 직장 여성이 소파에서 볼로 발바닥 지압하는 리얼 영상</li>
+          <li>소구: 즉각적 통증 완화 체험 + 바리바디 브랜드 신뢰</li>
+          <li>CTA: "지금 통증 해방" + 할인쿠폰 코드</li>
+          <li>타이밍: 오전 9~11시 / 오후 10~12시 집중 노출</li>
+        </ul>
+      </div>
+
+      <div class="meta-card">
+        <h4>세그먼트 2 — 기혼 주부·중년 여성</h4>
+        <ul>
+          <li>후크: "가족 모두 함께 쓰는 마사지볼" / "1개로 온 가족 케어"</li>
+          <li>비주얼: 가족이 번갈아 사용하는 일상 영상, Before/After</li>
+          <li>소구: 가성비(온 가족 사용) + 선물용 패키지 강조</li>
+          <li>CTA: "가족 선물세트 보기" / "묶음 구매 할인"</li>
+          <li>타이밍: 평일 오전 10시~낮 12시</li>
+        </ul>
+      </div>
+
+      <div class="meta-card">
+        <h4>세그먼트 3 — 족저근막염 검색 관심군</h4>
+        <ul>
+          <li>후크: "족저근막염 검색하셨나요? 1,138명이 선택했습니다"</li>
+          <li>비주얼: 발바닥 지압 포인트 시각화 + 리뷰 텍스트 영상</li>
+          <li>소구: 실제 사용자 리뷰 평점 4.84점 강조</li>
+          <li>CTA: "족저근막염 관리 시작하기" + 무료반품 보장</li>
+          <li>타이밍: 저녁 7~11시 리마케팅 전용 세그먼트</li>
+        </ul>
+      </div>
+
+      <div class="meta-card">
+        <h4>세그먼트 4 — 릴렉스틱 스틱 기존 구매자</h4>
+        <ul>
+          <li>후크: "릴렉스틱 스틱 쓰세요? 볼로 완성하세요"</li>
+          <li>비주얼: 스틱+볼 세트 시너지 사용법, 전후 비교</li>
+          <li>소구: 시리즈 시너지 + 기존 고객 할인(리텐션 쿠폰)</li>
+          <li>CTA: "세트 구성 확인하기" / "추가 구매 10% 할인"</li>
+          <li>타이밍: 스틱 구매 7~14일 후 리마케팅</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div style="text-align:center;padding:20px 0;font-size:12px;color:#bbb;">
+    릴렉스틱볼 타겟 분석 리포트 · 바리바디 · 2026.05.28 · barybody_analytics BigQuery
+  </div>
+
+</div>
+</body>
+</html>
