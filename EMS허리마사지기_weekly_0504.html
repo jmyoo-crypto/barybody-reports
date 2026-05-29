@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EMS허리마사지기 주간보고서 2026-04-27~2026-05-03</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+       background: #f5f6f8; color: #1a1a2e; line-height: 1.7; font-size: 13px; }
+.hero { background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 60%, #2d1b69 100%);
+        color: #fff; padding: 52px 40px 44px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; left: -80px; bottom: -80px;
+  width: 280px; height: 280px; border-radius: 50%; background: rgba(100,60,255,0.10); }
+.hero::after  { content: ''; position: absolute; right: 40px; top: 30px;
+  width: 180px; height: 180px; border-radius: 50%; background: rgba(0,200,150,0.07); }
+.hero .tag { display: inline-block; background: rgba(150,100,255,0.25); color: #b39dff;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 18px; }
+.hero h1 { font-size: 28px; font-weight: 800; line-height: 1.35; margin-bottom: 10px; }
+.hero p   { font-size: 13px; color: rgba(255,255,255,0.6); }
+.hero .meta { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.3); }
+.raw-link { position: absolute; top: 20px; right: 24px; z-index: 10;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; font-size: 12px; font-weight: 600; padding: 7px 14px;
+  border-radius: 20px; text-decoration: none; transition: background .2s; }
+.raw-link:hover { background: rgba(255,255,255,0.22); }
+.container { max-width: 980px; margin: 0 auto; padding: 36px 20px 80px; }
+.step-nav { display: flex; gap: 0; background: #fff; border-radius: 16px; padding: 8px;
+  margin-bottom: 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); overflow-x: auto; }
+.step-nav-item { flex: 1; min-width: 110px; text-align: center; padding: 10px 10px;
+  border-radius: 10px; font-size: 13px; font-weight: 600; color: #999; }
+.step-nav-item .sn { font-size: 10px; font-weight: 700; display: block; margin-bottom: 2px; opacity: .6; }
+.section { margin-bottom: 32px; }
+.section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.section-num { width: 48px; height: 48px; border-radius: 14px; display: flex;
+  align-items: center; justify-content: center; font-size: 20px; font-weight: 800; flex-shrink: 0; }
+.num-1 { background: #e6f4ff; color: #0958d9; }
+.num-2 { background: #f6ffed; color: #389e0d; }
+.num-3 { background: #fff7e6; color: #d46b08; }
+.num-4 { background: #f9f0ff; color: #531dab; }
+.section-title    { font-size: 20px; font-weight: 800; color: #1a1a2e; }
+.section-subtitle { font-size: 13px; color: #888; margin-top: 2px; }
+.card { background: #fff; border-radius: 16px; padding: 26px 28px; margin-bottom: 14px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.055); }
+.card h3 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px;
+           display: flex; align-items: center; gap: 8px; }
+.card h3 .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.metric-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; }
+@media(max-width:700px){ .metric-grid { grid-template-columns: repeat(2,1fr); } }
+.metric-box { background: #f7f8fa; border-radius: 10px; padding: 14px 12px; }
+.metric-box .m-icon  { font-size: 20px; margin-bottom: 6px; }
+.metric-box .m-label { font-size: 10px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: .5px; }
+.metric-box .m-prev  { font-size: 11px; color: #bbb; margin-top: 4px; }
+.metric-box .m-curr  { font-size: 17px; font-weight: 800; color: #1a1a2e; margin: 4px 0 6px; }
+.period-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.period-box { flex: 1; min-width: 140px; border-radius: 12px; padding: 14px 16px; text-align: center; }
+.period-box { cursor: pointer; transition: opacity 0.15s, box-shadow 0.15s; }
+.period-box.selected { box-shadow: 0 0 0 3px #6366f1 !important; opacity: 1 !important; }
+.period-box:not(.selected) { opacity: 0.55; }
+.period-box.short { background: #fff0f6; border: 1.5px solid #ffadd2; }
+.period-box.mid   { background: #fff7e6; border: 1.5px solid #ffd591; }
+.period-box.long  { background: #f0f5ff; border: 1.5px solid #adc6ff; }
+.metric-tabs { display: flex; gap: 8px; margin: 14px 0 6px; }
+.metric-tab { background: #f7f8fa; border: 1.5px solid #e2e8f0; border-radius: 10px;
+  padding: 10px 14px; flex: 1; min-width: 90px; transition: all 0.15s; }
+.metric-tab.active { background: #6366f1; border-color: #6366f1; }
+.metric-tab .mt-header { font-size: 13px; font-weight: 700; color: #555;
+  cursor: pointer; user-select: none; white-space: nowrap; }
+.metric-tab.active .mt-header { color: #fff; }
+.metric-tab .mt-subs { display: none; margin-top: 8px; flex-wrap: wrap; gap: 4px; }
+.metric-tab.active .mt-subs { display: flex; }
+.ps-btn { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.8); border-radius: 5px; padding: 3px 9px; font-size: 11px;
+  font-weight: 600; cursor: pointer; user-select: none; white-space: nowrap; transition: all 0.12s; }
+.ps-btn.selected { background: #fff; color: #6366f1; border-color: #fff; font-weight: 700; }
+.ds-toggle-row { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.25); width: 100%; }
+.ds-btn { cursor: pointer; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; border: 1.5px solid; opacity: 0.35; user-select: none; transition: opacity 0.15s; white-space: nowrap; }
+.ds-btn.active { opacity: 1; }
+.ds-rev-cur  { color: #6366f1; border-color: #6366f1; background: rgba(99,102,241,0.15); }
+.ds-rev-cmp  { color: #94a3b8; border-color: #94a3b8; background: rgba(148,163,184,0.15); }
+.ds-ads-cur  { color: #f97316; border-color: #f97316; background: rgba(249,115,22,0.15); }
+.ds-ads-cmp  { color: #fb923c; border-color: #fb923c; background: rgba(251,146,60,0.15); }
+.ds-roas-cur { color: #22c55e; border-color: #22c55e; background: rgba(34,197,94,0.15); }
+.ds-roas-cmp { color: #4ade80; border-color: #4ade80; background: rgba(74,222,128,0.15); }
+.period-box .p-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+.period-box .p-name  { font-size: 14px; font-weight: 800; color: #1a1a2e; }
+.period-box .p-range { font-size: 11px; color: #999; margin-top: 4px; }
+.issue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+@media(max-width:500px){ .issue-grid { grid-template-columns: 1fr; } }
+.issue-card { border-radius: 10px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 10px; }
+.issue-card.good     { background: #f6ffed; border-left: 3px solid #52c41a; }
+.issue-card.bad      { background: #fff1f0; border-left: 3px solid #ff4d4f; }
+.issue-card.stable   { background: #f0f5ff; border-left: 3px solid #4096ff; }
+.issue-card.unstable { background: #fff7e6; border-left: 3px solid #fa8c16; }
+.i-icon  { font-size: 18px; flex-shrink: 0; }
+.i-label { font-size: 13px; font-weight: 700; color: #1a1a2e; }
+.i-desc  { font-size: 12px; color: #666; margin-top: 3px; line-height: 1.5; }
+.ve-split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+@media(max-width:600px){ .ve-split { grid-template-columns: 1fr; } }
+.ve-box { border-radius: 12px; padding: 18px 20px; }
+.ve-box.volume     { background: #e6f4ff; border: 1.5px solid #91caff; }
+.ve-box.efficiency { background: #f6ffed; border: 1.5px solid #95de64; }
+.ve-box .ve-label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+.ve-box.volume .ve-label     { color: #0958d9; }
+.ve-box.efficiency .ve-label { color: #389e0d; }
+.ve-box .ve-items { display: flex; flex-wrap: wrap; gap: 8px; }
+.ve-item { background: rgba(255,255,255,0.75); border-radius: 8px; padding: 6px 12px;
+           font-size: 13px; font-weight: 600; color: #1a1a2e; }
+.channel-badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+.ch-meta   { background: #e6f4ff; color: #0958d9; }
+.ch-naver  { background: #f6ffed; color: #389e0d; }
+.ch-kakao  { background: #fff7e6; color: #d46b08; }
+.ch-gfa    { background: #f9f0ff; color: #531dab; }
+.ch-google { background: #fff1f0; color: #cf1322; }
+.ch-inf    { background: #e6fffb; color: #006d75; }
+.channel-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12.5px; }
+.channel-table th { background: #f7f8fa; padding: 9px 12px; font-weight: 700; color: #555;
+  font-size: 11.5px; border-bottom: 2px solid #e8e8e8; white-space: nowrap; }
+.channel-table td { padding: 11px 12px; border-bottom: 1px solid #f0f0f0; color: #333;
+  vertical-align: middle; white-space: nowrap; }
+.channel-table td.lc { text-align: left; font-weight: 500; }
+.channel-table td.r, .channel-table th.r { text-align: right; }
+.channel-table tr:last-child td { border-bottom: none; }
+.channel-table tr:hover td { background: #fafbfc; }
+.channel-table tr.total-row td { font-weight: 700; background: #f8fafc !important; border-top: 2px solid #e2e8f0; }
+.cp-tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 4px; }
+.cp-tag  { background: #fff; border: 1.5px solid #d9d9d9; border-radius: 6px;
+           padding: 3px 10px; font-size: 11px; color: #666; font-weight: 600; cursor: pointer; user-select: none; }
+.cp-tag.active { background: #6366f1; color: #fff; border-color: #6366f1; }
+.summary-box { background: linear-gradient(135deg, #1a1a2e, #2d1b69); color: #fff;
+  border-radius: 16px; padding: 28px 32px; margin-bottom: 14px; }
+.summary-box h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #b39dff; }
+.s-line { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px;
+  font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+.s-line span { font-size: 15px; flex-shrink: 0; }
+.s-line.highlight { background: rgba(179,157,255,0.18); border: 1.5px solid rgba(179,157,255,0.45);
+  border-radius: 10px; padding: 12px 14px; font-size: 14px; color: #fff; font-weight: 600; }
+.action-card { border-radius: 12px; padding: 16px 18px; margin-bottom: 10px;
+  display: flex; gap: 14px; align-items: flex-start; }
+.action-card.priority-high { background: #fff1f0; border: 1.5px solid #ffa39e; }
+.action-card.priority-mid  { background: #fff7e6; border: 1.5px solid #ffd591; }
+.action-card.priority-low  { background: #f0f5ff; border: 1.5px solid #adc6ff; }
+.ac-priority { flex-shrink: 0; width: 52px; height: 22px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; margin-top: 2px; }
+.ac-high { background: #ff4d4f; color: #fff; }
+.ac-mid  { background: #fa8c16; color: #fff; }
+.ac-low  { background: #4096ff; color: #fff; }
+.ac-body strong { font-size: 13px; font-weight: 700; display: block; margin-bottom: 4px; }
+.ac-body p { font-size: 12px; color: #666; line-height: 1.6; }
+.multi-summary { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;
+  background: #fffbf0; border: 1.5px solid #fde68a; border-radius: 10px; padding: 14px 18px; }
+.ms-item { text-align: center; flex: 1; min-width: 100px; }
+.ms-label { font-size: 11px; color: #92400e; font-weight: 700; }
+.ms-val   { font-size: 15px; font-weight: 800; color: #1a1a2e; margin-top: 4px; }
+.ms-add   { font-size: 11px; color: #059669; font-weight: 600; margin-top: 2px; }
+.deduct-box { background: #fff8f8; border: 1px solid #fecaca; border-radius: 10px; padding: 16px 20px; margin-top: 14px; }
+.d-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; }
+.d-row.total { border-top: 1.5px solid #fecaca; margin-top: 6px; padding-top: 8px; font-weight: 700; }
+.d-label { color: #444; }
+.d-val { color: #dc2626; font-weight: 600; }
+.d-val.pos { color: #15803d; }
+.up  { display: inline-block; padding: 2px 8px; border-radius: 5px; font-size: 11px; font-weight: 700; background: #f0fdf4; color: #16a34a; white-space: nowrap; }
+.dn  { display: inline-block; padding: 2px 8px; border-radius: 5px; font-size: 11px; font-weight: 700; background: #fff1f0; color: #dc2626; white-space: nowrap; }
+.na  { display: inline-block; padding: 2px 8px; border-radius: 5px; font-size: 11px; font-weight: 700; background: #f5f5f5; color: #aaa; white-space: nowrap; }
+.red { color: #dc2626; }
+.dim { color: #94a3b8; font-size: 11.5px; }
+.tbl-wrap { overflow-x: auto; }
+.note { font-size: 11px; color: #94a3b8; margin-top: 10px; line-height: 1.7; }
+.dtbl-wrap { margin: 14px 0 4px; }
+.dtbl-hdr { font-size: 11.5px; color: #666; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.dtbl-badge { display: inline-block; padding: 2px 8px; border-radius: 5px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+.badge-s { background: #fff0f6; color: #c41d7f; border: 1px solid #ffadd2; }
+.badge-m { background: #fff7e6; color: #d46b08; border: 1px solid #ffd591; }
+.badge-l { background: #f0f5ff; color: #1d39c4; border: 1px solid #adc6ff; }
+.tbl-tog-btn { margin-left: auto; cursor: pointer; font-size: 11px; color: #1d39c4; padding: 2px 10px; border: 1px solid #adc6ff; border-radius: 4px; background: #f0f5ff; user-select: none; white-space: nowrap; }
+.tbl-tog-btn:hover { background: #dbeafe; }
+.mm-tog-tbl-btn { cursor: pointer; font-size: 11px; color: #7c3aed; padding: 2px 10px; border: 1px solid #d3adf7; border-radius: 4px; background: #f5f3ff; user-select: none; white-space: nowrap; }
+.mm-tog-tbl-btn:hover { background: #ede9fe; }
+.mm-toggle-btn { background: none; border: 1px solid #d9d9d9; border-radius: 5px; padding: 3px 12px; font-size: 11px; color: #666; cursor: pointer; transition: background 0.15s; }
+.mm-toggle-btn:hover { background: #f5f5f5; }
+.mm-kpi-label { font-size: 11px; color: #7c3aed; font-weight: 700; margin-bottom: 10px; padding: 4px 10px; background: #f5f3ff; border-radius: 5px; display: inline-block; }
+.mm-mbox { background: #faf5ff !important; }
+.daily-data-tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+.daily-data-tbl th { background: #f7f8fa; padding: 7px 10px; font-weight: 700; color: #555; font-size: 11px; border-bottom: 2px solid #e8e8e8; white-space: nowrap; }
+.daily-data-tbl th.r { text-align: right; }
+.daily-data-tbl th.dim { color: #aaa; font-weight: 600; }
+.daily-data-tbl td { padding: 6px 10px; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+.daily-data-tbl td.dc { text-align: left; color: #555; font-size: 11.5px; }
+.daily-data-tbl td.dim { color: #bbb; }
+.daily-data-tbl td.r { text-align: right; color: #333; }
+.daily-data-tbl td.fw { text-align: right; font-weight: 700; color: #1a1a2e; }
+.daily-data-tbl tr.total-row td { font-weight: 700; background: #f8fafc !important; border-top: 2px solid #e2e8f0; }
+.daily-data-tbl tr:hover td { background: #fafbfc; }
+.daily-data-tbl tr.future-row td { opacity: 0.35; }</style>
+<script>
+function _applyMetricPeriod(chartId, metric, period) {
+  var chart = Chart.getChart(chartId);
+  var wmState = window['wm_state_' + chartId] || {};
+  var isWM = wmState[period];
+  var pd = isWM ? (window['wm_pd_' + chartId] || window['pd_' + chartId]) : window['pd_' + chartId];
+  if (!chart || !pd || !pd[period]) return;
+  var p = pd[period];
+  var pairs = {rev:[0,1], ads:[2,3], roas:[4,5], all:[0,1,2,3,4,5]};
+  var active = pairs[metric] || [0,1];
+  var state = window['ms_' + chartId] || {};
+  var dsActive = (metric === 'all' && state.dsActive) ? state.dsActive : [true,true,true,true,true,true];
+  chart.data.labels = p.labels;
+  p.ds.forEach(function(data, i) {
+    chart.data.datasets[i].data = data;
+    chart.data.datasets[i].label = p.lbls[i];
+  });
+  [0,1,2,3,4,5].forEach(function(i) {
+    var meta = chart.getDatasetMeta(i);
+    if (active.indexOf(i) === -1) { meta.hidden = true; }
+    else if (i % 2 === 0 && p.ds[i].length === 0) { meta.hidden = true; }
+    else if (!dsActive[i]) { meta.hidden = true; }
+    else { meta.hidden = false; }
+  });
+  chart.update();
+}
+function _syncPeriodBoxes(chartId, period) {
+  document.querySelectorAll('.pb-' + chartId).forEach(function(b) {
+    b.classList.remove('selected');
+    if (b.dataset && b.dataset.period === period) b.classList.add('selected');
+  });
+}
+function _showPeriodSubBtns(chartId, period) {
+  document.querySelectorAll('.ps-' + chartId).forEach(function(b) {
+    var match = b.dataset && b.dataset.period === period;
+    b.style.display = match ? '' : 'none';
+    if (match) b.classList.add('selected');
+    else b.classList.remove('selected');
+  });
+}
+function switchMetric(chartId, metric, tabEl) {
+  var state = window['ms_' + chartId] || {metric:'rev', period:'s'};
+  document.querySelectorAll('.mt-' + chartId).forEach(function(t) { t.classList.remove('active'); });
+  tabEl.classList.add('active');
+  _applyMetricPeriod(chartId, metric, state.period);
+  window['ms_' + chartId] = {metric: metric, period: state.period, dsActive: state.dsActive};
+  return false;
+}
+function toggleTbl(id, btn) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (el.style.display === 'none') {
+    el.style.display = '';
+    btn.textContent = '접기 ▴';
+  } else {
+    el.style.display = 'none';
+    btn.textContent = '펼치기 ▾';
+  }
+}
+function toggleMM(id, btn) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    btn.textContent = '멀티제품 포함 접기 ▴';
+  } else {
+    el.style.display = 'none';
+    btn.textContent = '멀티제품 포함 보기 ▾';
+  }
+}
+function toggleMMChart(id, chartId, period, btn) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var toWM;
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    btn.textContent = '멀티제품 포함 접기 ▴';
+    toWM = true;
+  } else {
+    el.style.display = 'none';
+    btn.textContent = '멀티제품 포함 보기 ▾';
+    toWM = false;
+  }
+  var wmState = window['wm_state_' + chartId] || {};
+  wmState[period] = toWM;
+  window['wm_state_' + chartId] = wmState;
+  var ms = window['ms_' + chartId] || {metric: 'rev', period: 's'};
+  if (ms.period === period) {
+    _applyMetricPeriod(chartId, ms.metric, period);
+  }
+}
+function toggleChartDs(chartId, dsIdx, btn) {
+  var chart = Chart.getChart(chartId);
+  if (!chart) return;
+  var state = window['ms_' + chartId] || {metric:'all', period:'s'};
+  var dsActive = state.dsActive ? state.dsActive.slice() : [true,true,true,true,true,true];
+  dsActive[dsIdx] = !dsActive[dsIdx];
+  state.dsActive = dsActive;
+  window['ms_' + chartId] = state;
+  var pd = window['pd_' + chartId];
+  var p = pd && pd[state.period];
+  var hasData = p && p.ds[dsIdx] && p.ds[dsIdx].length > 0;
+  var meta = chart.getDatasetMeta(dsIdx);
+  if (dsActive[dsIdx] && hasData) {
+    meta.hidden = false;
+    btn.classList.add('active');
+  } else {
+    meta.hidden = true;
+    btn.classList.remove('active');
+  }
+  chart.update();
+}
+function switchPeriodBox(chartId, period, btn) {
+  var state = window['ms_' + chartId] || {metric:'rev', period:'s'};
+  _applyMetricPeriod(chartId, state.metric, period);
+  _syncPeriodBoxes(chartId, period);
+  _showPeriodSubBtns(chartId, period);
+  ['s','m','l'].forEach(function(p) {
+    var el = document.getElementById('dtbl-' + chartId + '-' + p);
+    if (el) el.style.display = (p === period) ? '' : 'none';
+  });
+  var dsLblMap = {
+    s: {0:'💰 전전주',1:'💰 지난주',2:'💸 전전주',3:'💸 지난주',4:'📈 전전주',5:'📈 지난주'},
+    m: {0:'💰 지난달',1:'💰 이번달',2:'💸 지난달',3:'💸 이번달',4:'📈 지난달',5:'📈 이번달'},
+    l: {0:'',1:'💰 월별',2:'',3:'💸 월별',4:'',5:'📈 월별'}
+  };
+  var pmap = dsLblMap[period] || dsLblMap.s;
+  document.querySelectorAll('.dstgl-' + chartId).forEach(function(b) {
+    var idx = parseInt(b.dataset.ds);
+    if (!isNaN(idx) && pmap[idx]) b.textContent = pmap[idx];
+  });
+  window['ms_' + chartId] = {metric: state.metric, period: period, dsActive: state.dsActive};
+}
+</script>
+</head>
+<body>
+
+<div class="hero">
+  <a class="raw-link" href="EMS허리마사지기_raw_check_0503.html">📋 RAW 데이터 보기</a>
+  <div class="tag">EMS허리마사지기 · 유료광고 주간보고서</div>
+  <h1>광고 성과 주간 리포트</h1>
+  <p>지난주 2026-04-27 ~ 2026-05-03 &nbsp;|&nbsp; 전전주 2026-04-20 ~ 2026-04-26</p>
+  <div class="meta">EMS허리마사지기 · 바리바디 · 생성 2026-05-04</div>
+</div>
+
+<div class="container">
+  <div class="step-nav">
+    <div class="step-nav-item"><span class="sn">STEP 1</span>전체 상황</div>
+    <div class="step-nav-item"><span class="sn">STEP 2</span>광고 전체</div>
+    <div class="step-nav-item"><span class="sn">STEP 3</span>세부 채널</div>
+    <div class="step-nav-item"><span class="sn">STEP 4</span>향후 액션</div>
+  </div>
+  <div class="section">
+  <div class="section-header">
+    <div class="section-num num-1">1</div>
+    <div>
+      <div class="section-title">전체 상황 — 비즈니스 지표</div>
+      <div class="section-subtitle">광고를 보기 전에 사업 전체 흐름 파악</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#0958d9"></span>핵심 KPI 5가지</h3>
+    <div class="metric-grid"><div class="metric-box">
+  <div class="m-icon">📢</div>
+  <div class="m-label">총 광고비</div>
+  <div class="m-prev">전전주 396,579원</div>
+  <div class="m-curr">529,786원</div>
+  <span class="dn">▲ 33.6%</span>
+</div><div class="metric-box">
+  <div class="m-icon">📈</div>
+  <div class="m-label">ROAS</div>
+  <div class="m-prev">전전주 240.4%</div>
+  <div class="m-curr">366.9%</div>
+  <span class="up">▲ 52.6%</span>
+</div><div class="metric-box">
+  <div class="m-icon">💰</div>
+  <div class="m-label">페이드채널 매출</div>
+  <div class="m-prev">전전주 953,200원</div>
+  <div class="m-curr">1,943,700원</div>
+  <span class="up">▲ 103.9%</span>
+</div><div class="metric-box">
+  <div class="m-icon">🏦</div>
+  <div class="m-label">순마진(공헌이익)</div>
+  <div class="m-prev">전전주 129,314원</div>
+  <div class="m-curr">559,964원</div>
+  <span class="up">▲ 333.0%</span>
+</div><div class="metric-box">
+  <div class="m-icon">🛒</div>
+  <div class="m-label">주문수</div>
+  <div class="m-prev">전전주 8건</div>
+  <div class="m-curr">15건</div>
+  <span class="up">▲ 87.5%</span>
+</div></div>
+    <p class="note">※ 매출·마진: 인플루언서 링크 매출 및 멀티제품 귀속 매출 차감 (STEP 3 별도 표시) | 광고비: 그룹바이(인플루언서 섭외비) 미포함</p>
+    <div style="text-align:right;margin-top:8px">
+      <button class="mm-toggle-btn" onclick="toggleMM('kpi-mm-s1',this)">멀티제품 포함 보기 ▾</button>
+    </div>
+    <div id="kpi-mm-s1" style="display:none;margin-top:10px">
+      <div class="mm-kpi-label">멀티제품 귀속 포함 — 인플루언서 링크만 차감</div>
+      <div class="metric-grid"><div class="metric-box mm-mbox">
+  <div class="m-icon">📢</div>
+  <div class="m-label">총 광고비</div>
+  <div class="m-prev">전전주 415,412원</div>
+  <div class="m-curr">557,768원</div>
+  <span class="dn">▲ 34.3%</span>
+</div><div class="metric-box mm-mbox">
+  <div class="m-icon">📈</div>
+  <div class="m-label">ROAS</div>
+  <div class="m-prev">전전주 229.5%</div>
+  <div class="m-curr">348.5%</div>
+  <span class="up">▲ 51.9%</span>
+</div><div class="metric-box mm-mbox">
+  <div class="m-icon">💰</div>
+  <div class="m-label">페이드채널 매출</div>
+  <div class="m-prev">전전주 953,200원</div>
+  <div class="m-curr">1,943,700원</div>
+  <span class="up">▲ 103.9%</span>
+</div><div class="metric-box mm-mbox">
+  <div class="m-icon">🏦</div>
+  <div class="m-label">순마진(공헌이익)</div>
+  <div class="m-prev">전전주 110,482원</div>
+  <div class="m-curr">531,983원</div>
+  <span class="up">▲ 381.5%</span>
+</div><div class="metric-box mm-mbox">
+  <div class="m-icon">🛒</div>
+  <div class="m-label">주문수</div>
+  <div class="m-prev">전전주 8건</div>
+  <div class="m-curr">15건</div>
+  <span class="up">▲ 87.5%</span>
+</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#389e0d"></span>기간별 비교</h3>
+    <div class="period-row">
+  <div class="period-box short selected pb-c1" data-period="s" onclick="switchPeriodBox('c1','s',this)">
+    <div class="p-label">단기</div>
+    <div class="p-name">전전주 → 지난주</div>
+    <div class="p-range">2026-04-20 ~ 2026-04-26<br>→ 2026-04-27 ~ 2026-05-03</div>
+  </div>
+  <div class="period-box mid pb-c1" data-period="m" onclick="switchPeriodBox('c1','m',this)">
+    <div class="p-label">중기 (이번달 vs 지난달)</div>
+    <div class="p-name">2026.05</div>
+    <div class="p-range">2026-05-01 ~ 2026-05-03</div>
+  </div>
+  <div class="period-box long pb-c1" data-period="l" onclick="switchPeriodBox('c1','l',this)">
+    <div class="p-label">장기 (월별 추이)</div>
+    <div class="p-name">2026 연간</div>
+    <div class="p-range">1월 ~ 5월 월별 누계</div>
+  </div>
+</div>
+    <div class="dtbl-wrap" id="dtbl-c1-s"><div class="dtbl-hdr"><span class="dtbl-badge badge-s">단기</span>전전주 2026-04-20~2026-04-26 → 지난주 2026-04-27~2026-05-03<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c1-s-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c1-s-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>지난주</th><th class="dim">전전주</th><th class="r dim">매출(전전)</th><th class="r">매출(지난)</th><th class="r">변화</th><th class="r dim">광고비(전전)</th><th class="r">광고비(지난)</th><th class="r">변화</th><th class="r dim">ROAS(전전)</th><th class="r">ROAS(지난)</th><th class="r">변화</th></tr></thead><tbody><tr class="total-row"><td class="dc" colspan="2"><strong>합계</strong></td><td class="r dim">953,200</td><td class="r fw">1,943,700</td><td class="r"><span class="up">▲ 103.9%</span></td><td class="r dim">396,581</td><td class="r">529,789</td><td class="r"><span class="dn">▲ 33.6%</span></td><td class="r dim">240%</td><td class="r">367%</td><td class="r"><span class="up">▲ 52.6%</span></td></tr><tr><td class="dc">04-27</td><td class="dc dim">04-20</td><td class="r dim">119,900</td><td class="r fw">242,800</td><td class="r"><span class="up">▲ 102.5%</span></td><td class="r dim">45,814</td><td class="r">68,051</td><td class="r"><span class="dn">▲ 48.5%</span></td><td class="r dim">262%</td><td class="r">357%</td><td class="r"><span class="up">▲ 36.3%</span></td></tr><tr><td class="dc">04-28</td><td class="dc dim">04-21</td><td class="r dim">119,900</td><td class="r fw">236,800</td><td class="r"><span class="up">▲ 97.5%</span></td><td class="r dim">39,961</td><td class="r">80,321</td><td class="r"><span class="dn">▲ 101.0%</span></td><td class="r dim">300%</td><td class="r">295%</td><td class="r"><span class="dn">▼ 1.7%</span></td></tr><tr><td class="dc">04-29</td><td class="dc dim">04-22</td><td class="r dim">119,900</td><td class="r fw">239,800</td><td class="r"><span class="up">▲ 100.0%</span></td><td class="r dim">41,999</td><td class="r">72,970</td><td class="r"><span class="dn">▲ 73.7%</span></td><td class="r dim">285%</td><td class="r">329%</td><td class="r"><span class="up">▲ 15.1%</span></td></tr><tr><td class="dc">04-30</td><td class="dc dim">04-23</td><td class="r dim">119,900</td><td class="r fw">484,800</td><td class="r"><span class="up">▲ 304.3%</span></td><td class="r dim">40,981</td><td class="r">64,089</td><td class="r"><span class="dn">▲ 56.4%</span></td><td class="r dim">293%</td><td class="r">756%</td><td class="r"><span class="up">▲ 158.5%</span></td></tr><tr><td class="dc">05-01</td><td class="dc dim">04-24</td><td class="r dim">116,900</td><td class="r fw">119,900</td><td class="r"><span class="up">▲ 2.6%</span></td><td class="r dim">45,838</td><td class="r">87,319</td><td class="r"><span class="dn">▲ 90.5%</span></td><td class="r dim">255%</td><td class="r">137%</td><td class="r"><span class="dn">▼ 46.2%</span></td></tr><tr><td class="dc">05-02</td><td class="dc dim">04-25</td><td class="r dim">119,900</td><td class="r fw">116,900</td><td class="r"><span class="dn">▼ 2.5%</span></td><td class="r dim">48,305</td><td class="r">75,173</td><td class="r"><span class="dn">▲ 55.6%</span></td><td class="r dim">248%</td><td class="r">156%</td><td class="r"><span class="dn">▼ 37.3%</span></td></tr><tr><td class="dc">05-03</td><td class="dc dim">04-26</td><td class="r dim">236,800</td><td class="r fw">502,700</td><td class="r"><span class="up">▲ 112.3%</span></td><td class="r dim">133,683</td><td class="r">81,866</td><td class="r"><span class="up">▼ 38.8%</span></td><td class="r dim">177%</td><td class="r">614%</td><td class="r"><span class="up">▲ 246.7%</span></td></tr></tbody></table></div><div style="text-align:right;margin-top:6px"><span class="mm-tog-tbl-btn" onclick="toggleMMChart('dtbl-c1-s-wm','c1','s',this)">멀티제품 포함 보기 ▾</span></div><div id="dtbl-c1-s-wm" style="display:none"><div class="mm-kpi-label" style="margin:6px 0 8px">멀티제품 귀속 포함 — 인플루언서 링크만 차감</div><div class="tbl-wrap"><table class="daily-data-tbl"><thead><tr><th>지난주</th><th class="dim">전전주</th><th class="r dim">매출(전전)</th><th class="r">매출(지난)</th><th class="r">변화</th><th class="r dim">광고비(전전)</th><th class="r">광고비(지난)</th><th class="r">변화</th><th class="r dim">ROAS(전전)</th><th class="r">ROAS(지난)</th><th class="r">변화</th></tr></thead><tbody><tr class="total-row"><td class="dc" colspan="2"><strong>합계</strong></td><td class="r dim">953,200</td><td class="r fw">1,943,700</td><td class="r"><span class="up">▲ 103.9%</span></td><td class="r dim">415,412</td><td class="r">557,768</td><td class="r"><span class="dn">▲ 34.3%</span></td><td class="r dim">229%</td><td class="r">348%</td><td class="r"><span class="up">▲ 51.9%</span></td></tr><tr><td class="dc">04-27</td><td class="dc dim">04-20</td><td class="r dim">119,900</td><td class="r fw">242,800</td><td class="r"><span class="up">▲ 102.5%</span></td><td class="r dim">45,814</td><td class="r">71,760</td><td class="r"><span class="dn">▲ 56.6%</span></td><td class="r dim">262%</td><td class="r">338%</td><td class="r"><span class="up">▲ 29.3%</span></td></tr><tr><td class="dc">04-28</td><td class="dc dim">04-21</td><td class="r dim">119,900</td><td class="r fw">236,800</td><td class="r"><span class="up">▲ 97.5%</span></td><td class="r dim">39,961</td><td class="r">84,608</td><td class="r"><span class="dn">▲ 111.7%</span></td><td class="r dim">300%</td><td class="r">280%</td><td class="r"><span class="dn">▼ 6.7%</span></td></tr><tr><td class="dc">04-29</td><td class="dc dim">04-22</td><td class="r dim">119,900</td><td class="r fw">239,800</td><td class="r"><span class="up">▲ 100.0%</span></td><td class="r dim">45,329</td><td class="r">76,887</td><td class="r"><span class="dn">▲ 69.6%</span></td><td class="r dim">265%</td><td class="r">312%</td><td class="r"><span class="up">▲ 17.9%</span></td></tr><tr><td class="dc">04-30</td><td class="dc dim">04-23</td><td class="r dim">119,900</td><td class="r fw">484,800</td><td class="r"><span class="up">▲ 304.3%</span></td><td class="r dim">44,281</td><td class="r">67,525</td><td class="r"><span class="dn">▲ 52.5%</span></td><td class="r dim">271%</td><td class="r">718%</td><td class="r"><span class="up">▲ 165.2%</span></td></tr><tr><td class="dc">05-01</td><td class="dc dim">04-24</td><td class="r dim">116,900</td><td class="r fw">119,900</td><td class="r"><span class="up">▲ 2.6%</span></td><td class="r dim">49,419</td><td class="r">91,653</td><td class="r"><span class="dn">▲ 85.5%</span></td><td class="r dim">237%</td><td class="r">131%</td><td class="r"><span class="dn">▼ 44.7%</span></td></tr><tr><td class="dc">05-02</td><td class="dc dim">04-25</td><td class="r dim">119,900</td><td class="r fw">116,900</td><td class="r"><span class="dn">▼ 2.5%</span></td><td class="r dim">52,477</td><td class="r">78,991</td><td class="r"><span class="dn">▲ 50.5%</span></td><td class="r dim">228%</td><td class="r">148%</td><td class="r"><span class="dn">▼ 35.2%</span></td></tr><tr><td class="dc">05-03</td><td class="dc dim">04-26</td><td class="r dim">236,800</td><td class="r fw">502,700</td><td class="r"><span class="up">▲ 112.3%</span></td><td class="r dim">138,131</td><td class="r">86,344</td><td class="r"><span class="up">▼ 37.5%</span></td><td class="r dim">171%</td><td class="r">582%</td><td class="r"><span class="up">▲ 239.6%</span></td></tr></tbody></table></div></div></div><div class="dtbl-wrap" id="dtbl-c1-m" style="display:none"><div class="dtbl-hdr"><span class="dtbl-badge badge-m">중기</span>지난달 2026.04 vs 이번달 2026.05 (1일~3일)<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c1-m-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c1-m-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>일</th><th class="r dim">매출(지난달)</th><th class="r">매출(이번달)</th><th class="r">변화</th><th class="r dim">광고비(지난달)</th><th class="r">광고비(이번달)</th><th class="r">변화</th><th class="r dim">ROAS(지난달)</th><th class="r">ROAS(이번달)</th><th class="r">변화</th></tr></thead><tbody><tr class="total-row"><td class="dc"><strong>합계</strong></td><td class="r dim">1,808,009</td><td class="r fw">739,500</td><td class="r"><span class="dn">▼ 59.1%</span></td><td class="r dim">1,017,765</td><td class="r">244,358</td><td class="r"><span class="up">▼ 76.0%</span></td><td class="r dim">178%</td><td class="r">303%</td><td class="r"><span class="up">▲ 70.4%</span></td></tr><tr><td class="dc">1일</td><td class="r dim">1,424,009</td><td class="r fw">119,900</td><td class="r"><span class="dn">▼ 91.6%</span></td><td class="r dim">312,886</td><td class="r">87,319</td><td class="r"><span class="up">▼ 72.1%</span></td><td class="r dim">455%</td><td class="r">137%</td><td class="r"><span class="dn">▼ 69.8%</span></td></tr><tr><td class="dc">2일</td><td class="r dim">255,000</td><td class="r fw">116,900</td><td class="r"><span class="dn">▼ 54.2%</span></td><td class="r dim">330,014</td><td class="r">75,173</td><td class="r"><span class="up">▼ 77.2%</span></td><td class="r dim">77%</td><td class="r">156%</td><td class="r"><span class="up">▲ 101.3%</span></td></tr><tr><td class="dc">3일</td><td class="r dim">129,000</td><td class="r fw">502,700</td><td class="r"><span class="up">▲ 289.7%</span></td><td class="r dim">374,865</td><td class="r">81,866</td><td class="r"><span class="up">▼ 78.2%</span></td><td class="r dim">34%</td><td class="r">614%</td><td class="r"><span class="up">▲ 1684.4%</span></td></tr></tbody></table></div><div style="text-align:right;margin-top:6px"><span class="mm-tog-tbl-btn" onclick="toggleMMChart('dtbl-c1-m-wm','c1','m',this)">멀티제품 포함 보기 ▾</span></div><div id="dtbl-c1-m-wm" style="display:none"><div class="mm-kpi-label" style="margin:6px 0 8px">멀티제품 귀속 포함 — 인플루언서 링크만 차감</div><div class="tbl-wrap"><table class="daily-data-tbl"><thead><tr><th>일</th><th class="r dim">매출(지난달)</th><th class="r">매출(이번달)</th><th class="r">변화</th><th class="r dim">광고비(지난달)</th><th class="r">광고비(이번달)</th><th class="r">변화</th><th class="r dim">ROAS(지난달)</th><th class="r">ROAS(이번달)</th><th class="r">변화</th></tr></thead><tbody><tr class="total-row"><td class="dc"><strong>합계</strong></td><td class="r dim">1,808,009</td><td class="r fw">739,500</td><td class="r"><span class="dn">▼ 59.1%</span></td><td class="r dim">1,017,765</td><td class="r">256,988</td><td class="r"><span class="up">▼ 74.7%</span></td><td class="r dim">178%</td><td class="r">288%</td><td class="r"><span class="up">▲ 62.0%</span></td></tr><tr><td class="dc">1일</td><td class="r dim">1,424,009</td><td class="r fw">119,900</td><td class="r"><span class="dn">▼ 91.6%</span></td><td class="r dim">312,886</td><td class="r">91,653</td><td class="r"><span class="up">▼ 70.7%</span></td><td class="r dim">455%</td><td class="r">131%</td><td class="r"><span class="dn">▼ 71.3%</span></td></tr><tr><td class="dc">2일</td><td class="r dim">255,000</td><td class="r fw">116,900</td><td class="r"><span class="dn">▼ 54.2%</span></td><td class="r dim">330,014</td><td class="r">78,991</td><td class="r"><span class="up">▼ 76.1%</span></td><td class="r dim">77%</td><td class="r">148%</td><td class="r"><span class="up">▲ 91.5%</span></td></tr><tr><td class="dc">3일</td><td class="r dim">129,000</td><td class="r fw">502,700</td><td class="r"><span class="up">▲ 289.7%</span></td><td class="r dim">374,865</td><td class="r">86,344</td><td class="r"><span class="up">▼ 77.0%</span></td><td class="r dim">34%</td><td class="r">582%</td><td class="r"><span class="up">▲ 1591.9%</span></td></tr></tbody></table></div></div></div><div class="dtbl-wrap" id="dtbl-c1-l" style="display:none"><div class="dtbl-hdr"><span class="dtbl-badge badge-l">장기</span>월별 누계 추이<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c1-l-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c1-l-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>월</th><th class="r">매출</th><th class="r">변화</th><th class="r">광고비</th><th class="r">변화</th><th class="r">ROAS</th><th class="r">변화</th></tr></thead><tbody><tr><td class="dc">1월</td><td class="r fw">0</td><td class="r"><span class="na">—</span></td><td class="r">521,277</td><td class="r"><span class="na">—</span></td><td class="r">0%</td><td class="r"><span class="na">—</span></td></tr><tr><td class="dc">2월</td><td class="r fw">6,351,000</td><td class="r"><span class="na">—</span></td><td class="r">2,275,046</td><td class="r"><span class="dn">▲ 336.4%</span></td><td class="r">279%</td><td class="r"><span class="na">—</span></td></tr><tr><td class="dc">3월</td><td class="r fw">5,039,787</td><td class="r"><span class="dn">▼ 20.6%</span></td><td class="r">3,257,767</td><td class="r"><span class="dn">▲ 43.2%</span></td><td class="r">154%</td><td class="r"><span class="dn">▼ 44.8%</span></td></tr><tr><td class="dc">4월</td><td class="r fw">9,148,909</td><td class="r"><span class="up">▲ 81.5%</span></td><td class="r">5,455,669</td><td class="r"><span class="dn">▲ 67.5%</span></td><td class="r">167%</td><td class="r"><span class="up">▲ 8.4%</span></td></tr><tr><td class="dc">5월</td><td class="r fw">739,500</td><td class="r"><span class="dn">▼ 91.9%</span></td><td class="r">244,357</td><td class="r"><span class="up">▼ 95.5%</span></td><td class="r">302%</td><td class="r"><span class="up">▲ 80.8%</span></td></tr></tbody></table></div><div style="text-align:right;margin-top:6px"><span class="mm-tog-tbl-btn" onclick="toggleMMChart('dtbl-c1-l-wm','c1','l',this)">멀티제품 포함 보기 ▾</span></div><div id="dtbl-c1-l-wm" style="display:none"><div class="mm-kpi-label" style="margin:6px 0 8px">멀티제품 귀속 포함 — 인플루언서 링크만 차감</div><div class="tbl-wrap"><table class="daily-data-tbl"><thead><tr><th>월</th><th class="r">매출</th><th class="r">변화</th><th class="r">광고비</th><th class="r">변화</th><th class="r">ROAS</th><th class="r">변화</th></tr></thead><tbody><tr><td class="dc">1월</td><td class="r fw">0</td><td class="r"><span class="na">—</span></td><td class="r">521,277</td><td class="r"><span class="na">—</span></td><td class="r">0%</td><td class="r"><span class="na">—</span></td></tr><tr><td class="dc">2월</td><td class="r fw">6,351,000</td><td class="r"><span class="na">—</span></td><td class="r">2,275,046</td><td class="r"><span class="dn">▲ 336.4%</span></td><td class="r">279%</td><td class="r"><span class="na">—</span></td></tr><tr><td class="dc">3월</td><td class="r fw">5,039,787</td><td class="r"><span class="dn">▼ 20.6%</span></td><td class="r">3,257,767</td><td class="r"><span class="dn">▲ 43.2%</span></td><td class="r">154%</td><td class="r"><span class="dn">▼ 44.8%</span></td></tr><tr><td class="dc">4월</td><td class="r fw">9,148,909</td><td class="r"><span class="up">▲ 81.5%</span></td><td class="r">5,489,852</td><td class="r"><span class="dn">▲ 68.5%</span></td><td class="r">166%</td><td class="r"><span class="up">▲ 7.8%</span></td></tr><tr><td class="dc">5월</td><td class="r fw">739,500</td><td class="r"><span class="dn">▼ 91.9%</span></td><td class="r">256,988</td><td class="r"><span class="up">▼ 95.3%</span></td><td class="r">287%</td><td class="r"><span class="up">▲ 72.9%</span></td></tr></tbody></table></div></div></div>
+    <div style="margin-top:20px">
+      <div style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:4px">일별 추이</div>
+      <div class="metric-tabs"><div class="metric-tab active mt-c1" onclick="switchMetric('c1','rev',this)"><div class="mt-header">💰 매출</div><div class="mt-subs" onclick="event.stopPropagation()"><span class="ps-btn selected ps-c1" data-metric="rev" data-period="s">전전주 vs 지난주</span><span class="ps-btn ps-c1" data-metric="rev" data-period="m" style="display:none">이번달 vs 지난달</span><span class="ps-btn ps-c1" data-metric="rev" data-period="l" style="display:none">1월~5월 월별</span></div></div><div class="metric-tab mt-c1" onclick="switchMetric('c1','ads',this)"><div class="mt-header">💸 광고비</div><div class="mt-subs" onclick="event.stopPropagation()"><span class="ps-btn selected ps-c1" data-metric="ads" data-period="s">전전주 vs 지난주</span><span class="ps-btn ps-c1" data-metric="ads" data-period="m" style="display:none">이번달 vs 지난달</span><span class="ps-btn ps-c1" data-metric="ads" data-period="l" style="display:none">1월~5월 월별</span></div></div><div class="metric-tab mt-c1" onclick="switchMetric('c1','roas',this)"><div class="mt-header">📈 ROAS</div><div class="mt-subs" onclick="event.stopPropagation()"><span class="ps-btn selected ps-c1" data-metric="roas" data-period="s">전전주 vs 지난주</span><span class="ps-btn ps-c1" data-metric="roas" data-period="m" style="display:none">이번달 vs 지난달</span><span class="ps-btn ps-c1" data-metric="roas" data-period="l" style="display:none">1월~5월 월별</span></div></div><div class="metric-tab mt-c1" onclick="switchMetric('c1','all',this)"><div class="mt-header">📊 통합</div><div class="mt-subs" onclick="event.stopPropagation()"><span class="ps-btn selected ps-c1" data-metric="all" data-period="s">전전주 vs 지난주</span><span class="ps-btn ps-c1" data-metric="all" data-period="m" style="display:none">이번달 vs 지난달</span><span class="ps-btn ps-c1" data-metric="all" data-period="l" style="display:none">1월~5월 월별</span><div class="ds-toggle-row"><span class="ds-btn ds-rev-cur active dstgl-c1" data-ds="1" onclick="toggleChartDs('c1',1,this)">💰 지난주</span><span class="ds-btn ds-rev-cmp active dstgl-c1" data-ds="0" onclick="toggleChartDs('c1',0,this)">💰 전전주</span><span class="ds-btn ds-ads-cur active dstgl-c1" data-ds="3" onclick="toggleChartDs('c1',3,this)">💸 지난주</span><span class="ds-btn ds-ads-cmp active dstgl-c1" data-ds="2" onclick="toggleChartDs('c1',2,this)">💸 전전주</span><span class="ds-btn ds-roas-cur active dstgl-c1" data-ds="5" onclick="toggleChartDs('c1',5,this)">📈 지난주</span><span class="ds-btn ds-roas-cmp active dstgl-c1" data-ds="4" onclick="toggleChartDs('c1',4,this)">📈 전전주</span></div></div></div></div><div style="position:relative;height:220px;margin-top:8px;">
+<canvas id="c1"></canvas></div>
+<script>(function(){
+  window['pd_c1'] = {
+    s: {labels:["04-27", "04-28", "04-29", "04-30", "05-01", "05-02", "05-03"], ds:[[119900, 119900, 119900, 119900, 116900, 119900, 236800],[242800, 236800, 239800, 484800, 119900, 116900, 502700],[45814, 39961, 45329, 44281, 49419, 52477, 138131],[71760, 84608, 76887, 67525, 91653, 78991, 86344],[261, 300, 264, 270, 236, 228, 171],[338, 279, 311, 717, 130, 147, 582]],
+        lbls:['전전주(04-20~) 매출','지난주(04-27~) 매출','전전주(04-20~) 광고비','지난주(04-27~) 광고비','전전주(04-20~) ROAS','지난주(04-27~) ROAS']},
+    m: {labels:["1\uc77c", "2\uc77c", "3\uc77c"], ds:[[1424009, 255000, 129000],[119900, 116900, 502700],[312886, 330014, 374865],[91653, 78991, 86344],[455, 77, 34],[130, 147, 582]],
+        lbls:['지난달 매출','이번달 매출','지난달 광고비','이번달 광고비','지난달 ROAS','이번달 ROAS']},
+    l: {labels:["1\uc6d4", "2\uc6d4", "3\uc6d4", "4\uc6d4", "5\uc6d4"], ds:[[],[0, 6351000, 5039787, 9148909, 739500],[],[521277, 2275046, 3257767, 5455669, 244357],[],[0, 279, 154, 167, 302]],
+        lbls:['','월별 매출','','월별 광고비','','월별 ROAS']}
+  };
+  window['wm_pd_c1'] = {
+    s: {labels:["04-27", "04-28", "04-29", "04-30", "05-01", "05-02", "05-03"], ds:[[119900, 119900, 119900, 119900, 116900, 119900, 236800],[242800, 236800, 239800, 484800, 119900, 116900, 502700],[45814, 39961, 45329, 44281, 49419, 52477, 138131],[71760, 84608, 76887, 67525, 91653, 78991, 86344],[261, 300, 264, 270, 236, 228, 171],[338, 279, 311, 717, 130, 147, 582]],
+        lbls:['전전주(04-20~) 매출','지난주(04-27~) 매출','전전주(04-20~) 광고비','지난주(04-27~) 광고비','전전주(04-20~) ROAS','지난주(04-27~) ROAS']},
+    m: {labels:["1\uc77c", "2\uc77c", "3\uc77c"], ds:[[1424009, 255000, 129000],[119900, 116900, 502700],[312886, 330014, 374865],[91653, 78991, 86344],[455, 77, 34],[130, 147, 582]],
+        lbls:['지난달 매출','이번달 매출','지난달 광고비','이번달 광고비','지난달 ROAS','이번달 ROAS']},
+    l: {labels:["1\uc6d4", "2\uc6d4", "3\uc6d4", "4\uc6d4", "5\uc6d4"], ds:[[],[0, 6351000, 5039787, 9148909, 739500],[],[521277, 2275046, 3257767, 5489852, 256988],[],[0, 279, 154, 166, 287]],
+        lbls:['','월별 매출','','월별 광고비','','월별 ROAS']}
+  };
+  var ctx=document.getElementById('c1'); if(!ctx)return;
+  new Chart(ctx,{type:'line',data:{labels:["04-27", "04-28", "04-29", "04-30", "05-01", "05-02", "05-03"],datasets:[
+    {label:'전전주(04-20~) 매출',data:[119900, 119900, 119900, 119900, 116900, 119900, 236800],borderColor:'rgba(148,163,184,0.8)',backgroundColor:'transparent',borderDash:[5,4],pointRadius:2,tension:0.35,yAxisID:'y',hidden:false},
+    {label:'지난주(04-27~) 매출',data:[242800, 236800, 239800, 484800, 119900, 116900, 502700],borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,0.07)',fill:true,pointRadius:2,tension:0.35,yAxisID:'y',hidden:false},
+    {label:'전전주(04-20~) 광고비',data:[45814, 39961, 45329, 44281, 49419, 52477, 138131],borderColor:'rgba(251,146,60,0.6)',backgroundColor:'transparent',borderDash:[5,4],pointRadius:2,tension:0.35,yAxisID:'y',hidden:true},
+    {label:'지난주(04-27~) 광고비',data:[71760, 84608, 76887, 67525, 91653, 78991, 86344],borderColor:'#f97316',backgroundColor:'rgba(249,115,22,0.07)',fill:true,pointRadius:2,tension:0.35,yAxisID:'y',hidden:true},
+    {label:'전전주(04-20~) ROAS',data:[261, 300, 264, 270, 236, 228, 171],borderColor:'rgba(74,222,128,0.6)',backgroundColor:'transparent',borderDash:[5,4],pointRadius:2,tension:0.35,yAxisID:'y1',hidden:true},
+    {label:'지난주(04-27~) ROAS',data:[338, 279, 311, 717, 130, 147, 582],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,0.07)',fill:true,pointRadius:2,tension:0.35,yAxisID:'y1',hidden:true}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:function(c){
+        var v=c.raw, lb=c.dataset.label, id=c.dataset.yAxisID;
+        if(id==='y1') return lb+': '+v.toFixed(1)+'%';
+        return lb+': '+Math.round(v).toLocaleString()+'원';
+      }}}
+    },
+    scales:{
+      x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:10}}},
+      y:{position:'left',grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:10},callback:function(v){
+        if(v>=1000000)return(v/1000000).toFixed(1)+'M';
+        if(v>=1000)return(v/1000).toFixed(0)+'K';
+        return v;
+      }}},
+      y1:{position:'right',grid:{drawOnChartArea:false},ticks:{font:{size:10},callback:function(v){return v+'%';}}}
+    }
+  }});
+})();</script>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#d46b08"></span>이슈 판단</h3>
+    <div class="issue-grid">
+  <div class="issue-card good">
+    <div class="i-icon">📈</div>
+    <div><div class="i-label">ROAS / 순마진</div><div class="i-desc">전전주 대비 52.6% 개선</div></div>
+  </div>
+  <div class="issue-card good">
+    <div class="i-icon">📈</div>
+    <div><div class="i-label">주문수</div><div class="i-desc">지난주 15건 ▲ 87.5% vs 전전주</div></div>
+  </div>
+</div>
+  </div>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num num-2">2</div>
+    <div>
+      <div class="section-title">광고 전체 상황</div>
+      <div class="section-subtitle">채널별 매출 · 볼륨 vs 효율</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#0958d9"></span>볼륨 vs 효율</h3>
+    <div class="ve-split">
+  <div class="ve-box volume">
+    <div class="ve-label">📦 볼륨 — 얼마나 했나</div>
+    <div class="ve-items">
+      <div class="ve-item">💸 비용 529,786원</div>
+      <div class="ve-item">🛒 주문수 15건</div>
+      <div class="ve-item">💰 매출 1,943,700원</div>
+    </div>
+  </div>
+  <div class="ve-box efficiency">
+    <div class="ve-label">⚡ 효율 — 얼마나 잘 했나</div>
+    <div class="ve-items">
+      <div class="ve-item">📈 ROAS 366.9%</div>
+      <div class="ve-item">🏦 순마진 559,964원</div>
+      <div class="ve-item">📊 마진율 56.1%</div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="card">
+<h3><span class="dot" style="background:#0958d9"></span>🛒 Cafe24</h3>
+<div class="metric-grid"><div class="metric-box"><div class="m-icon">📢</div><div class="m-label">총 광고비(메타,카카오,구글)</div><div class="m-prev">전전주 343,987원</div><div class="m-curr">489,565원</div><span class="dn">▲ 42.3%</span></div><div class="metric-box"><div class="m-icon">📈</div><div class="m-label">ROAS</div><div class="m-prev">전전주 139.4%</div><div class="m-curr">158.8%</div><span class="up">▲ 13.9%</span></div><div class="metric-box"><div class="m-icon">💰</div><div class="m-label">매출</div><div class="m-prev">전전주 479,600원</div><div class="m-curr">777,600원</div><span class="up">▲ 62.1%</span></div><div class="metric-box"><div class="m-icon">🏦</div><div class="m-label">순마진(공헌이익)</div><div class="m-prev">전전주 -77,579원</div><div class="m-curr">-33,995원</div><span class="dn">▼ 56.2%</span></div><div class="metric-box"><div class="m-icon">🛒</div><div class="m-label">주문수</div><div class="m-prev">전전주 4건</div><div class="m-curr">6건</div><span class="up">▲ 50.0%</span></div></div>
+<p class="note">※ 매출·마진: 인플루언서 링크 매출 및 멀티제품 귀속 매출 차감 (STEP 3 별도 표시) | 광고비: 그룹바이 미포함</p>
+<div style="text-align:right;margin-top:8px"><button class="mm-toggle-btn" onclick="toggleMM('kpi-mm-c4',this)">멀티제품 포함 보기 ▾</button></div><div id="kpi-mm-c4" style="display:none;margin-top:10px"><div class="mm-kpi-label">멀티제품 귀속 포함 — 인플루언서 링크만 차감</div><div class="metric-grid"><div class="metric-box mm-mbox"><div class="m-icon">📢</div><div class="m-label">총 광고비(메타,카카오,구글)(멀티포함)</div><div class="m-prev">전전주 362,820원</div><div class="m-curr">517,547원</div><span class="dn">▲ 42.6%</span></div><div class="metric-box mm-mbox"><div class="m-icon">📈</div><div class="m-label">ROAS</div><div class="m-prev">전전주 132.2%</div><div class="m-curr">150.2%</div><span class="up">▲ 13.7%</span></div><div class="metric-box mm-mbox"><div class="m-icon">💰</div><div class="m-label">매출</div><div class="m-prev">전전주 479,600원</div><div class="m-curr">777,600원</div><span class="up">▲ 62.1%</span></div><div class="metric-box mm-mbox"><div class="m-icon">🏦</div><div class="m-label">순마진(공헌이익)</div><div class="m-prev">전전주 -96,412원</div><div class="m-curr">-61,977원</div><span class="dn">▼ 35.7%</span></div><div class="metric-box mm-mbox"><div class="m-icon">🛒</div><div class="m-label">주문수</div><div class="m-prev">전전주 4건</div><div class="m-curr">6건</div><span class="up">▲ 50.0%</span></div></div></div>
+<div class="dtbl-wrap" id="dtbl-c4-s"><div class="dtbl-hdr"><span class="dtbl-badge badge-s">단기</span>전전주 2026-04-20~2026-04-26 → 지난주 2026-04-27~2026-05-03<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c4-s-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c4-s-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>지난주</th><th class="dim">전전주</th><th class="r dim">매출(전전)</th><th class="r">매출(지난)</th><th class="r">변화</th><th class="r">주문수</th><th class="r">마진</th><th class="r">마진율</th></tr></thead><tbody><tr class="total-row"><td class="dc" colspan="2"><strong>합계</strong></td><td class="r dim">479,600</td><td class="r fw">777,600</td><td class="r"><span class="up">▲ 62.1%</span></td><td class="r">6건</td><td class="r">455,570</td><td class="r">58.6%</td></tr><tr><td class="dc">04-27</td><td class="dc dim">04-20</td><td class="r dim">119,900</td><td class="r fw">119,900</td><td class="r"><span class="dn">▼ 0.0%</span></td><td class="r">1건</td><td class="r">66,602</td><td class="r">55.5%</td></tr><tr><td class="dc">04-28</td><td class="dc dim">04-21</td><td class="r dim">119,900</td><td class="r fw">0</td><td class="r"><span class="dn">▼ 100.0%</span></td><td class="r">0건</td><td class="r">0</td><td class="r">0.0%</td></tr><tr><td class="dc">04-29</td><td class="dc dim">04-22</td><td class="r dim">119,900</td><td class="r fw">119,900</td><td class="r"><span class="dn">▼ 0.0%</span></td><td class="r">1건</td><td class="r">66,602</td><td class="r">55.5%</td></tr><tr><td class="dc">04-30</td><td class="dc dim">04-23</td><td class="r dim">0</td><td class="r fw">268,900</td><td class="r"><span class="na">—</span></td><td class="r">2건</td><td class="r">161,183</td><td class="r">59.9%</td></tr><tr><td class="dc">05-01</td><td class="dc dim">04-24</td><td class="r dim">0</td><td class="r fw">0</td><td class="r"><span class="na">—</span></td><td class="r">0건</td><td class="r">0</td><td class="r">0.0%</td></tr><tr><td class="dc">05-02</td><td class="dc dim">04-25</td><td class="r dim">0</td><td class="r fw">0</td><td class="r"><span class="na">—</span></td><td class="r">0건</td><td class="r">0</td><td class="r">0.0%</td></tr><tr><td class="dc">05-03</td><td class="dc dim">04-26</td><td class="r dim">119,900</td><td class="r fw">268,900</td><td class="r"><span class="up">▲ 124.3%</span></td><td class="r">2건</td><td class="r">161,183</td><td class="r">59.9%</td></tr></tbody></table></div></div><div class="dtbl-wrap" id="dtbl-c4-m"><div class="dtbl-hdr"><span class="dtbl-badge badge-m">중기</span>전월 2026-04-01~2026-04-03 vs 이번달 2026-05-01~2026-05-03<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c4-m-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c4-m-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>일</th><th class="r dim">매출(전월)</th><th class="r">매출(이번달)</th><th class="r">변화</th><th class="r">주문수</th><th class="r">마진</th><th class="r">마진율</th></tr></thead><tbody><tr class="total-row"><td class="dc"><strong>합계</strong></td><td class="r dim">917,009</td><td class="r fw">268,900</td><td class="r"><span class="dn">▼ 70.7%</span></td><td class="r">2건</td><td class="r">161,183</td><td class="r">59.9%</td></tr><tr><td class="dc">1일</td><td class="r dim">917,009</td><td class="r fw">0</td><td class="r"><span class="dn">▼ 100.0%</span></td><td class="r">0건</td><td class="r">0</td><td class="r">0.0%</td></tr><tr><td class="dc">2일</td><td class="r dim">0</td><td class="r fw">0</td><td class="r"><span class="na">—</span></td><td class="r">0건</td><td class="r">0</td><td class="r">0.0%</td></tr><tr><td class="dc">3일</td><td class="r dim">0</td><td class="r fw">268,900</td><td class="r"><span class="na">—</span></td><td class="r">2건</td><td class="r">161,183</td><td class="r">59.9%</td></tr></tbody></table></div></div><div class="dtbl-wrap" id="dtbl-c4-l"><div class="dtbl-hdr"><span class="dtbl-badge badge-l">장기</span>월별 누계<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c4-l-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c4-l-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>월</th><th class="r">매출</th><th class="r">주문수</th><th class="r">마진</th><th class="r">마진율</th></tr></thead><tbody><tr class="total-row"><td class="dc"><strong>합계</strong></td><td class="r fw">6,591,996</td><td class="r">32건</td><td class="r">4,735,883</td><td class="r">71.8%</td></tr><tr><td class="dc">1월</td><td class="r fw">0</td><td class="r">0건</td><td class="r">0</td><td class="r">0.0%</td></tr><tr><td class="dc">2월</td><td class="r fw">548,000</td><td class="r">3건</td><td class="r">336,355</td><td class="r">61.4%</td></tr><tr><td class="dc">3월</td><td class="r fw">970,787</td><td class="r">5건</td><td class="r">690,003</td><td class="r">71.1%</td></tr><tr><td class="dc">4월</td><td class="r fw">4,804,309</td><td class="r">22건</td><td class="r">3,548,342</td><td class="r">73.9%</td></tr><tr><td class="dc">5월</td><td class="r fw">268,900</td><td class="r">2건</td><td class="r">161,183</td><td class="r">59.9%</td></tr></tbody></table></div></div>
+<div style="margin-top:20px">
+  <div style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:4px">일별 추이 (매출)</div>
+  <div style="position:relative;height:180px;margin-top:16px;">
+<canvas id="c4"></canvas></div>
+<script>(function(){
+  var ctx=document.getElementById('c4');
+  if(!ctx)return;
+  new Chart(ctx,{type:'line',data:{labels:["04-27", "04-28", "04-29", "04-30", "05-01", "05-02", "05-03"],datasets:[
+    {label:'전전주',data:[119900, 119900, 119900, 0, 0, 0, 119900],borderColor:'rgba(148,163,184,0.8)',backgroundColor:'transparent',borderDash:[5,4],pointRadius:3,tension:0.35},
+    {label:'지난주',data:[119900, 0, 119900, 268900, 0, 0, 268900],borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,0.07)',fill:true,pointRadius:3,tension:0.35}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',labels:{font:{size:11},padding:10}},
+      tooltip:{callbacks:{label:function(c){
+        var v=c.raw;
+        var s='';
+        if(v>=1000000)return c.dataset.label+': '+(v/1000000).toFixed(1)+'M'+s;
+        if(v>=1000)return c.dataset.label+': '+(v/1000).toFixed(0)+'K'+s;
+        return c.dataset.label+': '+v.toLocaleString()+s;
+      }}}},
+    scales:{
+      x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:10}}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:10},callback:function(v){
+        if(v>=1000000)return(v/1000000).toFixed(1)+'M';
+        if(v>=1000)return(v/1000).toFixed(0)+'K';
+        return v+'';
+      }}}
+    }
+  }});
+})();</script>
+</div>
+</div>
+  <div class="card">
+<h3><span class="dot" style="background:#389e0d"></span>🟢 스마트스토어</h3>
+<div class="metric-grid"><div class="metric-box"><div class="m-icon">📢</div><div class="m-label">총 광고비(검색광고,GFA,애드부스트)</div><div class="m-prev">전전주 52,592원</div><div class="m-curr">40,221원</div><span class="up">▼ 23.5%</span></div><div class="metric-box"><div class="m-icon">📈</div><div class="m-label">ROAS</div><div class="m-prev">전전주 900.5%</div><div class="m-curr">2899.2%</div><span class="up">▲ 222.0%</span></div><div class="metric-box"><div class="m-icon">💰</div><div class="m-label">매출</div><div class="m-prev">전전주 473,600원</div><div class="m-curr">1,166,100원</div><span class="up">▲ 146.2%</span></div><div class="metric-box"><div class="m-icon">🏦</div><div class="m-label">순마진(공헌이익)</div><div class="m-prev">전전주 206,894원</div><div class="m-curr">593,960원</div><span class="up">▲ 187.1%</span></div><div class="metric-box"><div class="m-icon">🛒</div><div class="m-label">주문수</div><div class="m-prev">전전주 4건</div><div class="m-curr">9건</div><span class="up">▲ 125.0%</span></div></div>
+<p class="note">※ 매출·마진: 인플루언서 링크 매출 및 멀티제품 귀속 매출 차감 (STEP 3 별도 표시) | 광고비: 그룹바이 미포함</p>
+<div style="text-align:right;margin-top:8px"><button class="mm-toggle-btn" onclick="toggleMM('kpi-mm-c5',this)">멀티제품 포함 보기 ▾</button></div><div id="kpi-mm-c5" style="display:none;margin-top:10px"><div class="mm-kpi-label">멀티제품 귀속 포함 — 인플루언서 링크만 차감</div><div class="metric-grid"><div class="metric-box mm-mbox"><div class="m-icon">📢</div><div class="m-label">총 광고비(검색광고,GFA,애드부스트)(멀티포함)</div><div class="m-prev">전전주 52,592원</div><div class="m-curr">40,221원</div><span class="up">▼ 23.5%</span></div><div class="metric-box mm-mbox"><div class="m-icon">📈</div><div class="m-label">ROAS</div><div class="m-prev">전전주 900.5%</div><div class="m-curr">2899.2%</div><span class="up">▲ 222.0%</span></div><div class="metric-box mm-mbox"><div class="m-icon">💰</div><div class="m-label">매출</div><div class="m-prev">전전주 473,600원</div><div class="m-curr">1,166,100원</div><span class="up">▲ 146.2%</span></div><div class="metric-box mm-mbox"><div class="m-icon">🏦</div><div class="m-label">순마진(공헌이익)</div><div class="m-prev">전전주 206,894원</div><div class="m-curr">593,960원</div><span class="up">▲ 187.1%</span></div><div class="metric-box mm-mbox"><div class="m-icon">🛒</div><div class="m-label">주문수</div><div class="m-prev">전전주 4건</div><div class="m-curr">9건</div><span class="up">▲ 125.0%</span></div></div></div>
+<div class="dtbl-wrap" id="dtbl-c5-s"><div class="dtbl-hdr"><span class="dtbl-badge badge-s">단기</span>전전주 2026-04-20~2026-04-26 → 지난주 2026-04-27~2026-05-03<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c5-s-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c5-s-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>지난주</th><th class="dim">전전주</th><th class="r dim">매출(전전)</th><th class="r">매출(지난)</th><th class="r">변화</th><th class="r">주문수</th><th class="r">마진</th><th class="r">마진율</th></tr></thead><tbody><tr class="total-row"><td class="dc" colspan="2"><strong>합계</strong></td><td class="r dim">473,600</td><td class="r fw">1,166,100</td><td class="r"><span class="up">▲ 146.2%</span></td><td class="r">9건</td><td class="r">634,181</td><td class="r">54.4%</td></tr><tr><td class="dc">04-27</td><td class="dc dim">04-20</td><td class="r dim">0</td><td class="r fw">122,900</td><td class="r"><span class="na">—</span></td><td class="r">0건</td><td class="r">71,479</td><td class="r">58.2%</td></tr><tr><td class="dc">04-28</td><td class="dc dim">04-21</td><td class="r dim">0</td><td class="r fw">236,800</td><td class="r"><span class="na">—</span></td><td class="r">2건</td><td class="r">129,742</td><td class="r">54.8%</td></tr><tr><td class="dc">04-29</td><td class="dc dim">04-22</td><td class="r dim">0</td><td class="r fw">119,900</td><td class="r"><span class="na">—</span></td><td class="r">1건</td><td class="r">66,287</td><td class="r">55.3%</td></tr><tr><td class="dc">04-30</td><td class="dc dim">04-23</td><td class="r dim">119,900</td><td class="r fw">215,900</td><td class="r"><span class="up">▲ 80.1%</span></td><td class="r">2건</td><td class="r">110,019</td><td class="r">51.0%</td></tr><tr><td class="dc">05-01</td><td class="dc dim">04-24</td><td class="r dim">116,900</td><td class="r fw">119,900</td><td class="r"><span class="up">▲ 2.6%</span></td><td class="r">1건</td><td class="r">66,287</td><td class="r">55.3%</td></tr><tr><td class="dc">05-02</td><td class="dc dim">04-25</td><td class="r dim">119,900</td><td class="r fw">116,900</td><td class="r"><span class="dn">▼ 2.5%</span></td><td class="r">1건</td><td class="r">63,456</td><td class="r">54.3%</td></tr><tr><td class="dc">05-03</td><td class="dc dim">04-26</td><td class="r dim">116,900</td><td class="r fw">233,800</td><td class="r"><span class="up">▲ 100.0%</span></td><td class="r">2건</td><td class="r">126,911</td><td class="r">54.3%</td></tr></tbody></table></div></div><div class="dtbl-wrap" id="dtbl-c5-m"><div class="dtbl-hdr"><span class="dtbl-badge badge-m">중기</span>전월 2026-04-01~2026-04-03 vs 이번달 2026-05-01~2026-05-03<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c5-m-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c5-m-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>일</th><th class="r dim">매출(전월)</th><th class="r">매출(이번달)</th><th class="r">변화</th><th class="r">주문수</th><th class="r">마진</th><th class="r">마진율</th></tr></thead><tbody><tr class="total-row"><td class="dc"><strong>합계</strong></td><td class="r dim">891,000</td><td class="r fw">470,600</td><td class="r"><span class="dn">▼ 47.2%</span></td><td class="r">4건</td><td class="r">256,654</td><td class="r">54.5%</td></tr><tr><td class="dc">1일</td><td class="r dim">507,000</td><td class="r fw">119,900</td><td class="r"><span class="dn">▼ 76.4%</span></td><td class="r">1건</td><td class="r">66,287</td><td class="r">55.3%</td></tr><tr><td class="dc">2일</td><td class="r dim">255,000</td><td class="r fw">116,900</td><td class="r"><span class="dn">▼ 54.2%</span></td><td class="r">1건</td><td class="r">63,456</td><td class="r">54.3%</td></tr><tr><td class="dc">3일</td><td class="r dim">129,000</td><td class="r fw">233,800</td><td class="r"><span class="up">▲ 81.2%</span></td><td class="r">2건</td><td class="r">126,911</td><td class="r">54.3%</td></tr></tbody></table></div></div><div class="dtbl-wrap" id="dtbl-c5-l"><div class="dtbl-hdr"><span class="dtbl-badge badge-l">장기</span>월별 누계<span class="tbl-tog-btn" onclick="toggleTbl('dtbl-c5-l-cnt',this)">펼치기 ▾</span></div><div class="tbl-wrap" id="dtbl-c5-l-cnt" style="display:none"><table class="daily-data-tbl"><thead><tr><th>월</th><th class="r">매출</th><th class="r">주문수</th><th class="r">마진</th><th class="r">마진율</th></tr></thead><tbody><tr class="total-row"><td class="dc"><strong>합계</strong></td><td class="r fw">14,687,200</td><td class="r">109건</td><td class="r">8,663,242</td><td class="r">59.0%</td></tr><tr><td class="dc">1월</td><td class="r fw">0</td><td class="r">0건</td><td class="r">0</td><td class="r">0.0%</td></tr><tr><td class="dc">2월</td><td class="r fw">5,803,000</td><td class="r">42건</td><td class="r">3,508,044</td><td class="r">60.5%</td></tr><tr><td class="dc">3월</td><td class="r fw">4,069,000</td><td class="r">28건</td><td class="r">2,483,248</td><td class="r">61.0%</td></tr><tr><td class="dc">4월</td><td class="r fw">4,344,600</td><td class="r">35건</td><td class="r">2,415,296</td><td class="r">55.6%</td></tr><tr><td class="dc">5월</td><td class="r fw">470,600</td><td class="r">4건</td><td class="r">256,654</td><td class="r">54.5%</td></tr></tbody></table></div></div>
+<div style="margin-top:20px">
+  <div style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:4px">일별 추이 (매출)</div>
+  <div style="position:relative;height:180px;margin-top:16px;">
+<canvas id="c5"></canvas></div>
+<script>(function(){
+  var ctx=document.getElementById('c5');
+  if(!ctx)return;
+  new Chart(ctx,{type:'line',data:{labels:["04-27", "04-28", "04-29", "04-30", "05-01", "05-02", "05-03"],datasets:[
+    {label:'전전주',data:[0, 0, 0, 119900, 116900, 119900, 116900],borderColor:'rgba(148,163,184,0.8)',backgroundColor:'transparent',borderDash:[5,4],pointRadius:3,tension:0.35},
+    {label:'지난주',data:[122900, 236800, 119900, 215900, 119900, 116900, 233800],borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,0.07)',fill:true,pointRadius:3,tension:0.35}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',labels:{font:{size:11},padding:10}},
+      tooltip:{callbacks:{label:function(c){
+        var v=c.raw;
+        var s='';
+        if(v>=1000000)return c.dataset.label+': '+(v/1000000).toFixed(1)+'M'+s;
+        if(v>=1000)return c.dataset.label+': '+(v/1000).toFixed(0)+'K'+s;
+        return c.dataset.label+': '+v.toLocaleString()+s;
+      }}}},
+    scales:{
+      x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:10}}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:10},callback:function(v){
+        if(v>=1000000)return(v/1000000).toFixed(1)+'M';
+        if(v>=1000)return(v/1000).toFixed(0)+'K';
+        return v+'';
+      }}}
+    }
+  }});
+})();</script>
+</div>
+</div>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num num-3">3</div>
+    <div>
+      <div class="section-title">세부 채널 — 소재·메시지·그룹별</div>
+      <div class="section-subtitle">이슈 원인 파악 · 액션과 결과 매핑</div>
+    </div>
+  </div>
+  <div class="card">
+  <h3><span class="dot" style="background:#0958d9"></span>🎯 메타 소재별 성과</h3>
+  <div class="cp-tags"><span class="cp-tag">💸 비용</span><span class="cp-tag">👁 노출</span><span class="cp-tag">📡 CPM</span><span class="cp-tag">🔵 도달</span><span class="cp-tag">📊 빈도</span><span class="cp-tag">🖱 CTR</span><span class="cp-tag">🛒 구매</span><span class="cp-tag">📈 ROAS</span></div>
+  <div class="tbl-wrap"><table class="channel-table">
+    <thead><tr>
+      <th>소재명</th>
+      <th class="r">비용(지난)</th><th class="r dim">비용(전전)</th><th class="r">변화</th>
+      <th class="r">노출</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">CPM</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">도달</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">빈도</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">클릭</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">CPC</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">CTR</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">구매</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">ROAS</th><th class="r dim">전전</th><th class="r">변화</th>
+      <th class="r">CPA</th><th class="r dim">전전</th><th class="r">변화</th>
+    </tr></thead>
+    <tbody><tr>
+  <td class="lc">EMS허리마사지기_영상_물리치료 1/10_일반_4 <span style="font-size:10px;padding:1px 5px;border-radius:3px;background:#d9f7be;color:#135200;font-weight:600">ON</span></td>
+  <td class="r fw">286,742원</td><td class="r dim">31,317원</td><td class="r"><span class="dn">▲ 815.6%</span></td>
+  <td class="r fw">17,164</td><td class="r dim">2,088</td><td class="r"><span class="up">▲ 722.0%</span></td>
+  <td class="r fw">16,706원</td><td class="r dim">14,998원</td><td class="r"><span class="dn">▲ 11.4%</span></td>
+  <td class="r fw">14,673</td><td class="r dim">1,833</td><td class="r"><span class="up">▲ 700.5%</span></td>
+  <td class="r fw">1.17</td><td class="r dim">1.14</td><td class="r">—</td>
+  <td class="r fw">223</td><td class="r dim">25</td><td class="r"><span class="up">▲ 792.0%</span></td>
+  <td class="r fw">1,285원</td><td class="r dim">1,252원</td><td class="r"><span class="dn">▲ 2.6%</span></td>
+  <td class="r fw">1.30%</td><td class="r dim">1.20%</td><td class="r"><span class="up">▲ 8.5%</span></td>
+  <td class="r fw">1</td><td class="r dim">1</td><td class="r"><span class="dn">▼ 0.0%</span></td>
+  <td class="r fw">42%</td><td class="r dim">383%</td><td class="r"><span class="dn">▼ 89.1%</span></td>
+  <td class="r fw">286,742원</td><td class="r dim">31,317원</td><td class="r"><span class="dn">▲ 815.6%</span></td>
+</tr><tr>
+  <td class="lc">EMS허리마사지기_영상_허리 속부터_일반_2 <span style="font-size:10px;padding:1px 5px;border-radius:3px;background:#d9f7be;color:#135200;font-weight:600">ON</span></td>
+  <td class="r fw">128,421원</td><td class="r dim">14,711원</td><td class="r"><span class="dn">▲ 773.0%</span></td>
+  <td class="r fw">7,262</td><td class="r dim">1,091</td><td class="r"><span class="up">▲ 565.6%</span></td>
+  <td class="r fw">17,683원</td><td class="r dim">13,483원</td><td class="r"><span class="dn">▲ 31.1%</span></td>
+  <td class="r fw">6,335</td><td class="r dim">960</td><td class="r"><span class="up">▲ 559.9%</span></td>
+  <td class="r fw">1.15</td><td class="r dim">1.14</td><td class="r">—</td>
+  <td class="r fw">106</td><td class="r dim">12</td><td class="r"><span class="up">▲ 783.3%</span></td>
+  <td class="r fw">1,211원</td><td class="r dim">1,225원</td><td class="r"><span class="up">▼ 1.2%</span></td>
+  <td class="r fw">1.46%</td><td class="r dim">1.10%</td><td class="r"><span class="up">▲ 32.7%</span></td>
+  <td class="r fw">1</td><td class="r dim">0</td><td class="r"><span class="na">—</span></td>
+  <td class="r fw">93%</td><td class="r dim">—</td><td class="r">—</td>
+  <td class="r fw">128,421원</td><td class="r dim">—</td><td class="r">—</td>
+</tr><tr>
+  <td class="lc">EMS허리마사지기_영상_신규출시_일반_3 <span style="font-size:10px;padding:1px 5px;border-radius:3px;background:#d9f7be;color:#135200;font-weight:600">ON</span></td>
+  <td class="r fw">82,532원</td><td class="r dim">3,442원</td><td class="r"><span class="dn">▲ 2297.8%</span></td>
+  <td class="r fw">4,086</td><td class="r dim">311</td><td class="r"><span class="up">▲ 1213.8%</span></td>
+  <td class="r fw">20,198원</td><td class="r dim">11,067원</td><td class="r"><span class="dn">▲ 82.5%</span></td>
+  <td class="r fw">3,649</td><td class="r dim">305</td><td class="r"><span class="up">▲ 1096.4%</span></td>
+  <td class="r fw">1.12</td><td class="r dim">1.02</td><td class="r">—</td>
+  <td class="r fw">42</td><td class="r dim">3</td><td class="r"><span class="up">▲ 1300.0%</span></td>
+  <td class="r fw">1,965원</td><td class="r dim">1,147원</td><td class="r"><span class="dn">▲ 71.3%</span></td>
+  <td class="r fw">1.03%</td><td class="r dim">0.96%</td><td class="r"><span class="up">▲ 6.6%</span></td>
+  <td class="r fw">0</td><td class="r dim">0</td><td class="r"><span class="na">—</span></td>
+  <td class="r fw">—</td><td class="r dim">—</td><td class="r">—</td>
+  <td class="r fw">—</td><td class="r dim">—</td><td class="r">—</td>
+</tr><tr>
+  <td class="lc">EMS허리마사지기_영상_집에서 바로 풀립니다._일반_1 <span style="font-size:10px;padding:1px 5px;border-radius:3px;background:#fff1f0;color:#cf1322;font-weight:600">OFF</span></td>
+  <td class="r fw">19,852원</td><td class="r dim">225,120원</td><td class="r"><span class="up">▼ 91.2%</span></td>
+  <td class="r fw">1,403</td><td class="r dim">14,691</td><td class="r"><span class="dn">▼ 90.4%</span></td>
+  <td class="r fw">14,149원</td><td class="r dim">15,323원</td><td class="r"><span class="up">▼ 7.7%</span></td>
+  <td class="r fw">1,271</td><td class="r dim">12,702</td><td class="r"><span class="dn">▼ 90.0%</span></td>
+  <td class="r fw">1.1</td><td class="r dim">1.16</td><td class="r">—</td>
+  <td class="r fw">6</td><td class="r dim">180</td><td class="r"><span class="dn">▼ 96.7%</span></td>
+  <td class="r fw">3,308원</td><td class="r dim">1,250원</td><td class="r"><span class="dn">▲ 164.6%</span></td>
+  <td class="r fw">0.43%</td><td class="r dim">1.23%</td><td class="r"><span class="dn">▼ 65.1%</span></td>
+  <td class="r fw">0</td><td class="r dim">1</td><td class="r"><span class="dn">▼ 100.0%</span></td>
+  <td class="r fw">—</td><td class="r dim">53%</td><td class="r">—</td>
+  <td class="r fw">—</td><td class="r dim">225,120원</td><td class="r">—</td>
+</tr><tr>
+  <td class="lc">EMS허리마사지기_영상_아버지 단독_일반 <span style="font-size:10px;padding:1px 5px;border-radius:3px;background:#fff1f0;color:#cf1322;font-weight:600">OFF</span></td>
+  <td class="r fw">0원</td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td>
+  <td class="r fw">0</td><td class="r dim">0</td><td class="r"><span class="na">—</span></td>
+  <td class="r fw">—</td><td class="r dim">—</td><td class="r">—</td>
+  <td class="r fw">0</td><td class="r dim">0</td><td class="r"><span class="na">—</span></td>
+  <td class="r fw">—</td><td class="r dim">—</td><td class="r">—</td>
+  <td class="r fw">0</td><td class="r dim">0</td><td class="r"><span class="na">—</span></td>
+  <td class="r fw">—</td><td class="r dim">—</td><td class="r">—</td>
+  <td class="r fw">—</td><td class="r dim">—</td><td class="r">—</td>
+  <td class="r fw">0</td><td class="r dim">0</td><td class="r"><span class="na">—</span></td>
+  <td class="r fw">—</td><td class="r dim">—</td><td class="r">—</td>
+  <td class="r fw">—</td><td class="r dim">—</td><td class="r">—</td>
+</tr></tbody>
+  </table></div>
+  <p class="note">※ ROAS·구매 = Cafe24 연동 기준 (단독 소재만)</p>
+  <h3 style="margin-top:20px"><span class="dot" style="background:#fa8c16"></span>🔀 멀티제품 소재 (N빵 귀속)</h3>
+<div class="cp-tags"><span class="cp-tag">1/N 귀속</span><span class="cp-tag">비용</span><span class="cp-tag">매출</span><span class="cp-tag">주문</span></div>
+<div class="tbl-wrap"><table class="channel-table">
+  <thead><tr><th>소재명</th><th class="r">귀속 N</th><th class="r">귀속비용(지난)</th><th class="r dim">귀속비용(전전)</th><th class="r">귀속매출</th><th class="r">귀속주문</th></tr></thead>
+  <tbody><tr>
+  <td class="lc">릴렉스틱/릴렉스틱볼/올인원마사지기/EMS손목마사지기/EMS허리마사지기/이…</td>
+  <td class="r">1/5</td>
+  <td class="r"><strong>27,981원</strong></td>
+  <td class="r dim">18,832원</td>
+  <td class="r">—</td>
+  <td class="r">0건</td>
+</tr></tbody>
+</table></div>
+  <div class="multi-summary">
+  <div class="ms-item">
+    <div class="ms-label">단독 소재 비용</div>
+    <div class="ms-val">517,547원</div>
+  </div>
+  <div class="ms-item">
+    <div class="ms-label">멀티제품 귀속 비용</div>
+    <div class="ms-val">27,981원</div>
+    <div class="ms-add">+ 27,981원</div>
+  </div>
+  <div class="ms-item">
+    <div class="ms-label">전체 합계 비용</div>
+    <div class="ms-val">545,528원</div>
+  </div>
+  <div class="ms-item">
+    <div class="ms-label">전체 ROAS (멀티 포함)</div>
+    <div class="ms-val">44.0%</div>
+  </div>
+</div>
+  <div class="cp-tags"><span class="cp-tag">📡 메타 CPM 일별</span><span class="cp-tag">전전주 04-20~</span><span class="cp-tag">지난주 04-27~</span></div>
+  <div style="position:relative;height:180px;margin-top:16px;">
+<canvas id="c6"></canvas></div>
+<script>(function(){
+  var ctx=document.getElementById('c6');
+  if(!ctx)return;
+  new Chart(ctx,{type:'line',data:{labels:["04-27", "04-28", "04-29", "04-30", "05-01", "05-02", "05-03"],datasets:[
+    {label:'전전주 CPM',data:[11293, 20813, 19259, 12498, 16230, 16975, 13299],borderColor:'rgba(148,163,184,0.8)',backgroundColor:'transparent',borderDash:[5,4],pointRadius:3,tension:0.35},
+    {label:'지난주 CPM',data:[14085, 16369, 20067, 19348, 19732, 17315, 15842],borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,0.07)',fill:true,pointRadius:3,tension:0.35}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',labels:{font:{size:11},padding:10}},
+      tooltip:{callbacks:{label:function(c){
+        var v=c.raw;
+        var s='원';
+        if(v>=1000000)return c.dataset.label+': '+(v/1000000).toFixed(1)+'M'+s;
+        if(v>=1000)return c.dataset.label+': '+(v/1000).toFixed(0)+'K'+s;
+        return c.dataset.label+': '+v.toLocaleString()+s;
+      }}}},
+    scales:{
+      x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:10}}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:10},callback:function(v){
+        if(v>=1000000)return(v/1000000).toFixed(1)+'M';
+        if(v>=1000)return(v/1000).toFixed(0)+'K';
+        return v+'원';
+      }}}
+    }
+  }});
+})();</script>
+</div><div class="card">
+  <h3><span class="dot" style="background:#d46b08"></span>🟡 카카오 메시지별</h3>
+  <div class="cp-tags"><span class="cp-tag">💸 비용</span><span class="cp-tag">💰 매출</span><span class="cp-tag">👁 노출</span><span class="cp-tag">📡 CPM</span><span class="cp-tag">🖱 클릭</span><span class="cp-tag">📊 CTR</span><span class="cp-tag">🛒 구매</span><span class="cp-tag">📈 ROAS</span><span class="cp-tag">🎯 CPA</span></div>
+  <div class="tbl-wrap"><table class="channel-table">
+    <thead><tr><th>메시지</th><th class="r">비용(지난)</th><th class="r dim">비용(전전)</th><th class="r">변화</th><th class="r">매출</th><th class="r">노출</th><th class="r">CPM</th><th class="r">클릭</th><th class="r">CPC</th><th class="r">CTR</th><th class="r">구매전환</th><th class="r">ROAS</th><th class="r">CPA</th></tr></thead>
+    <tbody><tr><td class="lc">[~77%] 가정의달 선물 페스타🎁</td><td class="r"><strong>0원</strong></td><td class="r dim">88,230원</td><td class="r"><span class="up">▼ 100.0%</span></td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr class="total-row"><td><strong>합계</strong></td><td class="r"><strong>0원</strong></td><td class="r dim"></td><td></td><td class="r">0원</td><td></td><td></td><td></td><td></td><td></td><td class="r"><strong>0건</strong></td><td class="r">—</td><td class="r">—</td></tr></tbody>
+  </table></div>
+  <p class="note">※ 합계 구매전환·CPA = kakao_business_raw quantity 기준</p>
+</div><div class="card">
+  <h3><span class="dot" style="background:#389e0d"></span>🛍️ 애드부스트 상품별</h3>
+  <div class="cp-tags"><span class="cp-tag">💸 비용</span><span class="cp-tag">💰 매출</span><span class="cp-tag">👁 노출</span><span class="cp-tag">📡 CPM</span><span class="cp-tag">🖱 CTR</span><span class="cp-tag">🛒 구매</span><span class="cp-tag">📈 ROAS</span><span class="cp-tag">🎯 CPA</span></div>
+  <div class="tbl-wrap"><table class="channel-table">
+    <thead><tr><th>상품명</th><th class="r">비용(지난)</th><th class="r dim">비용(전전)</th><th class="r">변화</th><th class="r">매출</th><th class="r">노출</th><th class="r">CPM</th><th class="r">클릭</th><th class="r">CTR</th><th class="r">구매</th><th class="r">ROAS</th><th class="r">CPA</th></tr></thead>
+    <tbody><tr><td class="lc">바리바디 허리 마사지기 EMS 온열 저주파 복대 마사지</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">116,900원</td><td class="r">0</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">1</td><td class="r">—</td><td class="r">—</td></tr></tbody>
+  </table></div>
+</div><div class="card">
+  <h3><span class="dot" style="background:#389e0d"></span>🔍 검색광고 광고그룹별</h3>
+  <div class="cp-tags"><span class="cp-tag">💸 비용</span><span class="cp-tag">💰 매출</span><span class="cp-tag">📊 평균순위</span><span class="cp-tag">👁 노출</span><span class="cp-tag">🖱 CTR</span><span class="cp-tag">🔄 전환</span><span class="cp-tag">📈 ROAS</span><span class="cp-tag">🎯 CPA</span></div>
+  <div class="tbl-wrap"><table class="channel-table">
+    <thead><tr><th>캠페인</th><th>광고그룹</th><th class="r">비용(지난)</th><th class="r dim">비용(전전)</th><th class="r">변화</th><th class="r">평균순위</th><th class="r">매출</th><th class="r">노출</th><th class="r">클릭</th><th class="r">CPC</th><th class="r">CTR</th><th class="r">전환</th><th class="r">ROAS</th><th class="r">CPA</th></tr></thead>
+    <tbody><tr><td class="lc">#P1_파워링크_브랜드_MO</td><td class="lc">04. 허리마사지기</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr><td class="lc">#S6_허리마사지기_PC</td><td class="lc">01. 허리마사지기(브랜드명)</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr><td class="lc">#P3_파워링크_일반_MO</td><td class="lc">03. 허리마사지기_메인</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr><td class="lc">#P2_파워링크_브랜드_PC</td><td class="lc">04. 허리마사지기</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr><td class="lc">--03_쇼핑검색(플러스스토어)</td><td class="lc">07. 허리마사지기</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr><td class="lc">#S6_허리마사지기_MO</td><td class="lc">01. 허리마사지기(브랜드명)</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr><td class="lc">#P4_파워링크_일반_PC</td><td class="lc">03. 허리마사지기_메인</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr><td class="lc">#S6_허리마사지기_PC</td><td class="lc">02. 허리마사지기(허리통증)</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr><tr><td class="lc">#S6_허리마사지기_MO</td><td class="lc">02. 허리마사지기(허리통증)</td><td class="r"><strong>0원</strong></td><td class="r dim">0원</td><td class="r"><span class="na">—</span></td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">0</td><td class="r">—</td><td class="r">—</td></tr></tbody>
+  </table></div>
+  <p class="note">※ 비용 = VAT 포함</p>
+</div>
+</div><div class="section">
+  <div class="section-header">
+    <div class="section-num num-4">4</div>
+    <div>
+      <div class="section-title">향후 액션</div>
+      <div class="section-subtitle">데이터 기반 · 성과 개선 목표 · 우선순위 명확히</div>
+    </div>
+  </div>
+  <div class="summary-box">
+    <h3>📝 종합 요약</h3>
+    <div class="s-line highlight"><span>📌</span><div>이번 주 <strong>[액션/활동]</strong>을 해서 <strong>[결과]</strong>가 나왔습니다.</div></div>
+    <div class="s-line highlight"><span>💡</span><div><strong>[이슈]</strong>가 발생, 원인은 <strong>[원인]</strong>으로 파악됨.</div></div>
+    <div class="s-line"><span>⚠️</span><div>→ 향후 <strong>[대응 방향]</strong>으로 접근 예정.</div></div>
+  </div>
+  <div class="card">
+    <h3><span class="dot" style="background:#531dab"></span>액션 우선순위</h3>
+    <div class="action-card priority-high">
+      <div class="ac-priority ac-high">HIGH</div>
+      <div class="ac-body"><strong>직접 성과에 영향 — 이번 주 실행</strong><p>ROAS 하락 채널 예산 조정, 효율 낮은 소재 교체, 전환율 급락 소재 off</p></div>
+    </div>
+    <div class="action-card priority-mid">
+      <div class="ac-priority ac-mid">MID</div>
+      <div class="ac-body"><strong>간접 영향 — 다음 1~2주</strong><p>타겟 확장 테스트, 새 소재 A/B 테스트, 랜딩 개선 검토</p></div>
+    </div>
+    <div class="action-card priority-low">
+      <div class="ac-priority ac-low">LOW</div>
+      <div class="ac-body"><strong>중장기 방향</strong><p>신규 채널 검토, 브랜딩 소재 기획, 추적 구조 개선</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

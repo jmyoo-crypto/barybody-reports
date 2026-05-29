@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>릴렉스틱볼 RAW 데이터 체크 2026-05-11</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+       font-size: 13px; background: #f5f6f8; color: #1a1a2e; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.hero { background: linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%);
+        color: #fff; padding: 32px 28px; border-radius: 14px; margin-bottom: 24px; }
+.hero h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.hero p  { font-size: 13px; color: #94a3b8; margin-bottom: 10px; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: rgba(255,255,255,.12); border-radius: 20px;
+        padding: 4px 12px; font-size: 12px; color: #e2e8f0; }
+.section { margin-bottom: 24px; }
+.section-title { font-size: 14px; font-weight: 700; color: #1a1a2e;
+                 margin-bottom: 10px; padding-left: 4px;
+                 border-left: 3px solid #3b82f6; padding-left: 10px; }
+.card { background: #fff; border-radius: 12px; padding: 18px;
+        box-shadow: 0 1px 4px rgba(0,0,0,.07); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th { background: #f1f5f9; color: #475569; font-weight: 600;
+     padding: 8px 10px; text-align: right; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+th.lh { text-align: left; }
+td { padding: 7px 10px; text-align: right; border-bottom: 1px solid #f1f5f9;
+     white-space: nowrap; }
+td.lc { text-align: left; color: #334155; font-weight: 500; }
+td.dim { color: #94a3b8; font-size: 11.5px; }
+tr:hover td { background: #f8fafc; }
+tr.total-row td { font-weight: 700; background: #f8fafc; border-top: 2px solid #e2e8f0; }
+.up  { color: #16a34a; font-weight: 600; }
+.dn  { color: #dc2626; font-weight: 600; }
+.na  { color: #94a3b8; }
+.warn{ color: #d97706; font-weight: 600; }
+.tag-period { display: inline-block; padding: 2px 8px; border-radius: 10px;
+              font-size: 11px; font-weight: 600; margin-right: 4px; }
+.p-last { background:#dbeafe; color:#1d4ed8; }
+.p-prev { background:#dcfce7; color:#15803d; }
+.p-w3   { background:#fef9c3; color:#854d0e; }
+.p-cm   { background:#ffedd5; color:#9a3412; }
+.p-pm   { background:#f3e8ff; color:#7e22ce; }
+.daily-table td.day-ko { text-align:center; color:#64748b; }
+.note { font-size: 11px; color: #94a3b8; margin-top: 8px; }
+tr.has-sub { cursor: pointer; }
+tr.has-sub:hover td { background: #eef2ff !important; }
+.toggle-icon { font-size: 10px; color: #94a3b8; margin-left: 6px; }
+</style>
+
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <div style="font-size:12px;color:#94a3b8;margin-bottom:6px;">릴렉스틱볼 · RAW 데이터 체크</div>
+    <h1>데이터 검증 — 리포트 생성 전 확인용</h1>
+    <p>생성일시: 2026-05-11 &nbsp;|&nbsp; 판매 12,445행 &nbsp;|&nbsp; 메타 소재 20,477행</p>
+    <div class="hero-chips"><span class="chip"><span class="tag-period p-last">지난주</span> 05-04 ~ 05-10</span><span class="chip"><span class="tag-period p-prev">지지난주</span> 04-27 ~ 05-03</span><span class="chip"><span class="tag-period p-w3">3주전</span> 04-20 ~ 04-26</span><span class="chip"><span class="tag-period p-cm">이번달 누계</span> 05-01 ~ 05-10</span><span class="chip"><span class="tag-period p-pm">전월</span> 04-01 ~ 04-10</span></div>
+  </div>
+  
+<div class="section">
+  <div class="section-title">📊 핵심 KPI — 4기간 비교</div>
+  <div class="card">
+    <table>
+      <thead><tr><th class="lh">지표</th><th><span class="tag-period p-last">지난주</span><br><small>05-04 ~ 05-10</small></th><th></th><th><span class="tag-period p-prev">지지난주</span><br><small>04-27 ~ 05-03</small></th><th class="dim">변화</th><th><span class="tag-period p-w3">3주전</span><br><small>04-20 ~ 04-26</small></th><th class="dim">변화</th><th><span class="tag-period p-cm">이번달 누계</span><br><small>05-01 ~ 05-10</small></th><th class="dim">변화</th><th><span class="tag-period p-pm">전월</span><br><small>04-01 ~ 04-10</small></th><th></th></tr></thead>
+      <tbody><tr class="has-sub" data-group="kpi-ad" onclick="toggleGroup('kpi-ad')"><td class="lc">총 광고비 <span class="toggle-icon">▶</span></td><td><strong>277만2,698원</strong></td><td></td><td>196만2,287원</td><td><span class="dn">▲41.3%</span></td><td>368만3,923원</td><td><span class="up">▼24.7%</span></td><td>383만7,153원</td><td><span class="up">▼44.4%</span></td><td>689만6,162원</td><td></td></tr><tr class="sub-row" data-group="kpi-ad" style="display:none"><td class="lc">  └ 멀티제품 소재 차감</td><td><strong><span style="color:#e55;">- 248만5,390원</span></strong></td><td></td><td><span style="color:#e55;">- 176만1,696원</span></td><td><span class="up">▲41.1%</span></td><td><span style="color:#e55;">- 120만4,936원</span></td><td><span class="up">▲106.3%</span></td><td><span style="color:#e55;">- 325만1,740원</span></td><td><span class="up">▲792.6%</span></td><td><span style="color:#e55;">- 36만4,320원</span></td><td></td></tr><tr class="has-sub" data-group="kpi-rev" onclick="toggleGroup('kpi-rev')"><td class="lc">페이드 채널 매출 <span class="toggle-icon">▶</span></td><td><strong>1,049만4,506원</strong></td><td></td><td>588만2,825원</td><td><span class="up">▲78.4%</span></td><td>1,045만9,733원</td><td><span class="up">▲0.3%</span></td><td>1,342만602원</td><td><span class="dn">▼9.1%</span></td><td>1,476만242원</td><td></td></tr><tr class="sub-row" data-group="kpi-rev" style="display:none"><td class="lc">  └ 멀티제품 소재 차감</td><td><strong><span style="color:#e55;">- 283만1,800원</span></strong></td><td></td><td><span style="color:#e55;">- 322만5,900원</span></td><td><span class="dn">▼12.2%</span></td><td><span style="color:#e55;">- 142만8,350원</span></td><td><span class="up">▲98.3%</span></td><td><span style="color:#e55;">- 460만8,250원</span></td><td><span class="up">▲497.0%</span></td><td><span style="color:#e55;">- 77만1,950원</span></td><td></td></tr><tr class="sub-row" data-group="kpi-rev" style="display:none"><td class="lc">  └ 인플루언서 차감</td><td><strong><span style="color:#e55;">- 0원</span></strong></td><td></td><td><span style="color:#e55;">- 0원</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 5만1,800원</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 0원</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 0원</span></td><td></td></tr><tr class="has-sub" data-group="kpi-roas" onclick="toggleGroup('kpi-roas')"><td class="lc">ROAS <span class="toggle-icon">▶</span></td><td><strong>378.5%</strong></td><td></td><td>299.8%</td><td><span class="up">▲26.3%</span></td><td>283.9%</td><td><span class="up">▲33.3%</span></td><td>349.8%</td><td><span class="up">▲63.4%</span></td><td>214.0%</td><td></td></tr><tr class="sub-row" data-group="kpi-roas" style="display:none"><td class="lc">  └ 멀티 포함 ROAS</td><td><strong>253.4%</strong></td><td></td><td>244.6%</td><td><span class="up">▲3.6%</span></td><td>243.2%</td><td><span class="up">▲4.2%</span></td><td>254.3%</td><td><span class="up">▲18.9%</span></td><td>213.9%</td><td></td></tr><tr class="has-sub" data-group="kpi-mgn" onclick="toggleGroup('kpi-mgn')"><td class="lc">채널 마진 <span class="toggle-icon">▶</span></td><td><strong>618만5,914원</strong></td><td></td><td>344만2,920원</td><td><span class="up">▲79.7%</span></td><td>606만377원</td><td><span class="up">▲2.1%</span></td><td>789만3,075원</td><td><span class="dn">▼7.3%</span></td><td>851만1,480원</td><td></td></tr><tr class="sub-row" data-group="kpi-mgn" style="display:none"><td class="lc">  └ 멀티제품 소재 차감</td><td><strong><span style="color:#e55;">- 164만2,739원</span></strong></td><td></td><td><span style="color:#e55;">- 185만5,901원</span></td><td><span class="dn">▼11.5%</span></td><td><span style="color:#e55;">- 80만9,890원</span></td><td><span class="up">▲102.8%</span></td><td><span style="color:#e55;">- 266만2,956원</span></td><td><span class="up">▲507.6%</span></td><td><span style="color:#e55;">- 43만8,277원</span></td><td></td></tr><tr class="sub-row" data-group="kpi-mgn" style="display:none"><td class="lc">  └ 인플루언서 차감</td><td><strong><span style="color:#e55;">- 0원</span></strong></td><td></td><td><span style="color:#e55;">- 0원</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 2만8,342원</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 0원</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 0원</span></td><td></td></tr><tr class="has-sub" data-group="kpi-nm" onclick="toggleGroup('kpi-nm')"><td class="lc">순마진(공헌이익) <span class="toggle-icon">▶</span></td><td><strong>341만3,216원</strong></td><td></td><td>148만633원</td><td><span class="up">▲130.5%</span></td><td>237만6,454원</td><td><span class="up">▲43.6%</span></td><td>405만5,922원</td><td><span class="up">▲151.1%</span></td><td>161만5,318원</td><td></td></tr><tr class="sub-row" data-group="kpi-nm" style="display:none"><td class="lc">  └ 멀티 포함 순마진</td><td><strong>257만565원</strong></td><td></td><td>157만4,838원</td><td><span class="up">▲63.2%</span></td><td>198만1,408원</td><td><span class="up">▲29.7%</span></td><td>346만7,138원</td><td><span class="up">▲105.2%</span></td><td>168만9,275원</td><td></td></tr><tr class="has-sub" data-group="kpi-ord" onclick="toggleGroup('kpi-ord')"><td class="lc">주문수 <span class="toggle-icon">▶</span></td><td><strong>333건</strong></td><td></td><td>220건</td><td><span class="up">▲51.2%</span></td><td>329건</td><td><span class="up">▲1.2%</span></td><td>445건</td><td><span class="up">▲3.2%</span></td><td>431건</td><td></td></tr><tr class="sub-row" data-group="kpi-ord" style="display:none"><td class="lc">  └ 멀티제품 소재 차감</td><td><strong><span style="color:#e55;">- 41건</span></strong></td><td></td><td><span style="color:#e55;">- 50건</span></td><td><span class="dn">▼17.8%</span></td><td><span style="color:#e55;">- 21건</span></td><td><span class="up">▲93.0%</span></td><td><span style="color:#e55;">- 70건</span></td><td><span class="up">▲536.4%</span></td><td><span style="color:#e55;">- 11건</span></td><td></td></tr><tr class="sub-row" data-group="kpi-ord" style="display:none"><td class="lc">  └ 인플루언서 차감</td><td><strong><span style="color:#e55;">- 0건</span></strong></td><td></td><td><span style="color:#e55;">- 0건</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 2건</span></td><td><span class="dn">▼100.0%</span></td><td><span style="color:#e55;">- 0건</span></td><td><span class="na">—</span></td><td><span style="color:#e55;">- 0건</span></td><td></td></tr></tbody>
+    </table>
+    <p class="note">※ ROAS·순마진(공헌이익)은 멀티제품 소재 차감 후 순광고비 기준 &nbsp;|&nbsp; 멀티제품 소재: 2개 이상 제품 동시 집행 메타 광고 (N빵 귀속) &nbsp;|&nbsp; 광고비에는 인플루언서 섭외 비용이 포함되지 않습니다</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">📦 판매채널별 상세 (페이드 채널)</div>
+  <div class="card">
+    <table>
+      <thead><tr><th class="lh">채널 / 지표</th><th><span class="tag-period p-last">지난주</span><br><small>05-04 ~ 05-10</small></th><th></th><th><span class="tag-period p-prev">지지난주</span><br><small>04-27 ~ 05-03</small></th><th class="dim">변화</th><th><span class="tag-period p-w3">3주전</span><br><small>04-20 ~ 04-26</small></th><th class="dim">변화</th><th><span class="tag-period p-cm">이번달 누계</span><br><small>05-01 ~ 05-10</small></th><th class="dim">변화</th><th><span class="tag-period p-pm">전월</span><br><small>04-01 ~ 04-10</small></th><th></th></tr></thead>
+      <tbody><tr><td class="lc" colspan="11" style="background:#f0f2f5;font-weight:600;padding:6px 10px;">cafe24 <span style="font-weight:400;font-size:11px;color:#64748b;">광고: meta + kakao + google</span></td></tr><tr class="has-sub" data-group="cafe24-ad" onclick="toggleGroup('cafe24-ad')"><td class="lc">　총 광고비 <span class="toggle-icon">▶</span></td><td><strong>272만3,865원</strong></td><td></td><td>192만2,066원</td><td><span class="dn">▲41.7%</span></td><td>363만1,331원</td><td><span class="up">▼25.0%</span></td><td>376만9,839원</td><td><span class="up">▼35.9%</span></td><td>588만3,556원</td><td></td></tr><tr class="sub-row" data-group="cafe24-ad" style="display:none"><td class="lc">　　└ 멀티제품 소재 차감</td><td><span style="color:#e55;">- 248만5,390원</span></td><td></td><td><span style="color:#e55;">- 176만1,696원</span></td><td></td><td><span style="color:#e55;">- 120만4,936원</span></td><td></td><td><span style="color:#e55;">- 325만1,740원</span></td><td></td><td><span style="color:#e55;">- 36만4,320원</span></td><td></td></tr><tr class="sub-row" data-group="cafe24-ad" style="display:none"><td class="lc">　　└ 메타</td><td><strong>520만9,255원</strong></td><td></td><td>368만3,762원</td><td><span class="dn">▲41.4%</span></td><td>474만8,037원</td><td><span class="dn">▲9.7%</span></td><td>702만1,579원</td><td><span class="dn">▲12.4%</span></td><td>624만7,876원</td><td></td></tr><tr class="sub-row" data-group="cafe24-ad" style="display:none"><td class="lc">　　└ 카카오</td><td><strong>0원</strong></td><td></td><td>0원</td><td><span class="na">—</span></td><td>8만8,230원</td><td><span class="up">▼100.0%</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td></td></tr><tr class="sub-row" data-group="cafe24-ad" style="display:none"><td class="lc">　　└ 구글</td><td><strong>0원</strong></td><td></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td></td></tr><tr class="has-sub" data-group="cafe24-rev" onclick="toggleGroup('cafe24-rev')"><td class="lc">　채널 매출 <span class="toggle-icon">▶</span></td><td><strong>519만876원</strong></td><td></td><td>260만8,505원</td><td><span class="up">▲99.0%</span></td><td>731만823원</td><td><span class="dn">▼29.0%</span></td><td>669만6,172원</td><td><span class="dn">▼39.1%</span></td><td>1,100만3,032원</td><td></td></tr><tr class="sub-row" data-group="cafe24-rev" style="display:none"><td class="lc">　　└ 멀티제품 소재 차감</td><td><span style="color:#e55;">- 283만1,800원</span></td><td></td><td><span style="color:#e55;">- 322만5,900원</span></td><td></td><td><span style="color:#e55;">- 142만8,350원</span></td><td></td><td><span style="color:#e55;">- 460만8,250원</span></td><td></td><td><span style="color:#e55;">- 77만1,950원</span></td><td></td></tr><tr class="sub-row" data-group="cafe24-rev" style="display:none"><td class="lc">　　└ 인플루언서 차감</td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 5만1,800원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td></tr><tr class="has-sub" data-group="cafe24-roas" onclick="toggleGroup('cafe24-roas')"><td class="lc">　ROAS <span class="toggle-icon">▶</span></td><td><strong>190.6%</strong></td><td></td><td>135.7%</td><td><span class="up">▲40.4%</span></td><td>201.3%</td><td><span class="dn">▼5.3%</span></td><td>177.6%</td><td><span class="dn">▼5.0%</span></td><td>187.0%</td><td></td></tr><tr class="sub-row" data-group="cafe24-roas" style="display:none"><td class="lc">　　└ 멀티 포함 ROAS</td><td><strong>154.0%</strong></td><td></td><td>158.4%</td><td><span class="dn">▼2.8%</span></td><td>180.7%</td><td><span class="dn">▼14.8%</span></td><td>161.0%</td><td><span class="dn">▼14.6%</span></td><td>188.5%</td><td></td></tr><tr class="has-sub" data-group="cafe24-mgn" onclick="toggleGroup('cafe24-mgn')"><td class="lc">　채널 마진 <span class="toggle-icon">▶</span></td><td><strong>301만1,248원</strong></td><td></td><td>150만706원</td><td><span class="up">▲100.7%</span></td><td>414만6,347원</td><td><span class="dn">▼27.4%</span></td><td>386만9,498원</td><td><span class="dn">▼38.1%</span></td><td>624만6,998원</td><td></td></tr><tr class="sub-row" data-group="cafe24-mgn" style="display:none"><td class="lc">　　└ 멀티제품 소재 차감 (추정)</td><td><span style="color:#e55;">- 164만2,739원</span></td><td></td><td><span style="color:#e55;">- 185만5,901원</span></td><td></td><td><span style="color:#e55;">- 80만9,890원</span></td><td></td><td><span style="color:#e55;">- 266만2,956원</span></td><td></td><td><span style="color:#e55;">- 43만8,277원</span></td><td></td></tr><tr class="sub-row" data-group="cafe24-mgn" style="display:none"><td class="lc">　　└ 인플루언서 차감</td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 2만8,342원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td><td><span style="color:#e55;">- 0원</span></td><td></td></tr><tr class="has-sub" data-group="cafe24-nm" onclick="toggleGroup('cafe24-nm')"><td class="lc">　순마진(공헌이익) <span class="toggle-icon">▶</span></td><td><strong>28만7,383원</strong></td><td></td><td>-43만8,640원</td><td><span class="dn">▼168.2%</span></td><td>51만5,016원</td><td><span class="dn">▼44.2%</span></td><td>9만9,659원</td><td><span class="dn">▼72.6%</span></td><td>36만3,442원</td><td></td></tr><tr class="sub-row" data-group="cafe24-nm" style="display:none"><td class="lc">　　└ 멀티 포함 순마진</td><td><strong>-56만4,732원</strong></td><td></td><td>-33만2,845원</td><td><span class="up">▲69.7%</span></td><td>11만9,970원</td><td><span class="dn">▼562.8%</span></td><td>-49만875원</td><td><span class="dn">▼211.8%</span></td><td>43만7,399원</td><td></td></tr><tr class="has-sub" data-group="cafe24-ord" onclick="toggleGroup('cafe24-ord')"><td class="lc">　주문수 <span class="toggle-icon">▶</span></td><td><strong>185건</strong></td><td></td><td>122건</td><td><span class="up">▲51.4%</span></td><td>238건</td><td><span class="dn">▼22.2%</span></td><td>255건</td><td><span class="dn">▼21.5%</span></td><td>325건</td><td></td></tr><tr class="sub-row" data-group="cafe24-ord" style="display:none"><td class="lc">　　└ 멀티제품 소재 차감</td><td><span style="color:#e55;">- 41건</span></td><td></td><td><span style="color:#e55;">- 50건</span></td><td></td><td><span style="color:#e55;">- 21건</span></td><td></td><td><span style="color:#e55;">- 70건</span></td><td></td><td><span style="color:#e55;">- 11건</span></td><td></td></tr><tr class="sub-row" data-group="cafe24-ord" style="display:none"><td class="lc">　　└ 인플루언서 차감</td><td><span style="color:#e55;">- 0건</span></td><td></td><td><span style="color:#e55;">- 0건</span></td><td></td><td><span style="color:#e55;">- 2건</span></td><td></td><td><span style="color:#e55;">- 0건</span></td><td></td><td><span style="color:#e55;">- 0건</span></td><td></td></tr><tr><td class="lc" colspan="11" style="background:#f0f2f5;font-weight:600;padding:6px 10px;">스마트스토어 <span style="font-weight:400;font-size:11px;color:#64748b;">광고: searchad + gfa + advoost</span></td></tr><tr class="has-sub" data-group="smartstore-ad" onclick="toggleGroup('smartstore-ad')"><td class="lc">　총 광고비 <span class="toggle-icon">▶</span></td><td><strong>4만8,833원</strong></td><td></td><td>4만221원</td><td><span class="dn">▲21.4%</span></td><td>5만2,592원</td><td><span class="up">▼7.1%</span></td><td>6만7,314원</td><td><span class="up">▼93.4%</span></td><td>101만2,606원</td><td></td></tr><tr class="sub-row" data-group="smartstore-ad" style="display:none"><td class="lc">　　└ 검색광고</td><td><strong>0원</strong></td><td></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td></td></tr><tr class="sub-row" data-group="smartstore-ad" style="display:none"><td class="lc">　　└ GFA</td><td><strong>4만8,833원</strong></td><td></td><td>4만221원</td><td><span class="dn">▲21.4%</span></td><td>5만2,592원</td><td><span class="up">▼7.1%</span></td><td>6만7,314원</td><td><span class="up">▼79.3%</span></td><td>32만5,201원</td><td></td></tr><tr class="sub-row" data-group="smartstore-ad" style="display:none"><td class="lc">　　└ 애드부스트</td><td><strong>0원</strong></td><td></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="na">—</span></td><td>0원</td><td><span class="up">▼100.0%</span></td><td>68만7,405원</td><td></td></tr><tr class="has-sub" data-group="smartstore-rev" onclick="toggleGroup('smartstore-rev')"><td class="lc">　채널 매출 <span class="toggle-icon">▶</span></td><td><strong>530만3,630원</strong></td><td></td><td>327만4,320원</td><td><span class="up">▲62.0%</span></td><td>314만8,910원</td><td><span class="up">▲68.4%</span></td><td>672만4,430원</td><td><span class="up">▲79.0%</span></td><td>375만7,210원</td><td></td></tr><tr class="has-sub" data-group="smartstore-roas" onclick="toggleGroup('smartstore-roas')"><td class="lc">　ROAS <span class="toggle-icon">▶</span></td><td><strong>10860.7%</strong></td><td></td><td>8140.8%</td><td><span class="up">▲33.4%</span></td><td>5987.4%</td><td><span class="up">▲81.4%</span></td><td>9989.6%</td><td><span class="up">▲2592.3%</span></td><td>371.0%</td><td></td></tr><tr class="has-sub" data-group="smartstore-mgn" onclick="toggleGroup('smartstore-mgn')"><td class="lc">　채널 마진 <span class="toggle-icon">▶</span></td><td><strong>317만4,666원</strong></td><td></td><td>194만2,214원</td><td><span class="up">▲63.5%</span></td><td>191만4,030원</td><td><span class="up">▲65.9%</span></td><td>402만3,577원</td><td><span class="up">▲77.7%</span></td><td>226만4,482원</td><td></td></tr><tr class="has-sub" data-group="smartstore-nm" onclick="toggleGroup('smartstore-nm')"><td class="lc">　순마진(공헌이익) <span class="toggle-icon">▶</span></td><td><strong>312만5,833원</strong></td><td></td><td>190만1,993원</td><td><span class="up">▲64.3%</span></td><td>186만1,438원</td><td><span class="up">▲67.9%</span></td><td>395만6,263원</td><td><span class="up">▲216.0%</span></td><td>125만1,876원</td><td></td></tr><tr class="has-sub" data-group="smartstore-ord" onclick="toggleGroup('smartstore-ord')"><td class="lc">　주문수 <span class="toggle-icon">▶</span></td><td><strong>148건</strong></td><td></td><td>98건</td><td><span class="up">▲51.0%</span></td><td>91건</td><td><span class="up">▲62.6%</span></td><td>190건</td><td><span class="up">▲79.2%</span></td><td>106건</td><td></td></tr></tbody>
+    </table>
+    <p class="note">※ cafe24 광고: meta·kakao·google &nbsp;|&nbsp; 스마트스토어 광고: searchad·GFA·advoost &nbsp;|&nbsp; ROAS·순마진은 해당 채널 귀속 광고비 기준</p>
+  </div>
+</div><div class="section"><div class="section-title">📢 인플루언서 링크 매출</div><div class="card"><p class="note">해당 기간 인플루언서 링크 주문 없음</p></div></div>
+<div class="section">
+  <div class="section-title">🔀 멀티제품 메타 소재 (N빵 귀속, cafe24 별도 분리)</div>
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th class="lh">소재명</th>
+        <th>제품수(N)</th>
+        <th>비용(지난)</th><th class="dim">비용(전전)</th><th>변화</th>
+        <th>매출(지난)</th><th>주문(지난)</th>
+      </tr></thead>
+      <tbody><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">깐돌네 링크(메타 재분류)</td>
+  <td style="text-align:center;">1개</td>
+  <td><strong>0원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>—</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼/올인원마사지기/EMS손목마사지기/EMS허리마사지기/이벤트…</td>
+  <td style="text-align:center;">4개</td>
+  <td><strong>3만4,922원</strong></td>
+  <td class="dim">3만4,976원</td>
+  <td><span class="up">▼0.2%</span></td>
+  <td>—</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_1초극락소생템_건강웰빙타깃_재세팅_일반_2</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>2만1,913원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>1만5,400원</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_공홈특가_일반</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>70만2,648원</strong></td>
+  <td class="dim">69만2,474원</td>
+  <td><span class="dn">▲1.5%</span></td>
+  <td>89만750원</td>
+  <td>13건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_노출시작영상_건강웰빙타겟_일반_2</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>58만5,786원</strong></td>
+  <td class="dim">18만5,116원</td>
+  <td><span class="dn">▲216.4%</span></td>
+  <td>49만5,500원</td>
+  <td>8건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_노출시작영상_건강웰빙타깃_재세팅_일반_1</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>23만2,085원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>7만7,900원</td>
+  <td>1건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_전체영상_건강웰빙타겟_일반_1</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>393원</strong></td>
+  <td class="dim">3만140원</td>
+  <td><span class="up">▼98.7%</span></td>
+  <td>—</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_전환수극대화_비밀링크_파트너십</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>0원</strong></td>
+  <td class="dim">3만5,218원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td>—</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_깐돌네_전환수극대화_파트너십</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>0원</strong></td>
+  <td class="dim">9만1,498원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td>—</td>
+  <td>0건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_붓기2번_일반_일반</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>15만8,400원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>17만9,450원</td>
+  <td>3건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_쇠질후뻗은_건강웰빙타깃_재세팅_일반_3</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>4만6,546원</strong></td>
+  <td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td>16만750원</td>
+  <td>1건</td>
+</tr><tr>
+  <td class="lc" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱/릴렉스틱볼_영상_판매 1위_일반</td>
+  <td style="text-align:center;">2개</td>
+  <td><strong>70만2,696원</strong></td>
+  <td class="dim">69만2,274원</td>
+  <td><span class="dn">▲1.5%</span></td>
+  <td>101만2,050원</td>
+  <td>15건</td>
+</tr><tr class="total-row">
+  <td class="lc">합계</td>
+  <td></td>
+  <td><strong>248만5,390원</strong></td>
+  <td class="dim">176만1,696원</td>
+  <td><span class="dn">▲41.1%</span></td>
+  <td><strong>283만1,800원</strong></td>
+  <td>41건</td>
+</tr></tbody>
+    </table>
+    <p class="note">※ 2개 이상 제품 동시 집행 메타 소재만 표시 &nbsp;|&nbsp; 비용·매출·주문 = raw ÷ N (우리 제품 귀속분) &nbsp;|&nbsp; 위 금액은 KPI·채널별 집계에서 차감됩니다</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">📅 일별 원시 데이터 (지난주 vs 지지난주)</div>
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th class="lh">날짜</th><th>요일</th>
+        <th>매출(지난)</th><th class="dim">매출(전전)</th><th>매출변화</th>
+        <th>광고비(지난)</th><th class="dim">광고비(전전)</th><th>광고비변화</th>
+        <th>ROAS(지난)</th><th class="dim">ROAS(전전)</th>
+        <th>주문(지난)</th><th class="dim">주문(전전)</th>
+      </tr></thead>
+      <tbody><tr>
+  <td class="lc">05-04</td>
+  <td class="day-ko">월</td>
+  <td><strong>181만3,776원</strong></td>
+  <td class="dim">87만3,292원</td>
+  <td><span class="up">▲107.7%</span></td>
+  <td>71만5,398원</td>
+  <td class="dim">31만7,756원</td>
+  <td><span class="dn">▲125.1%</span></td>
+  <td>254%</td>
+  <td class="dim">275%</td>
+  <td>40건</td>
+  <td class="dim">26건</td>
+</tr><tr>
+  <td class="lc">05-05</td>
+  <td class="day-ko">화</td>
+  <td><strong>167만7,057원</strong></td>
+  <td class="dim">73만5,004원</td>
+  <td><span class="up">▲128.2%</span></td>
+  <td>82만8,439원</td>
+  <td class="dim">30만3,114원</td>
+  <td><span class="dn">▲173.3%</span></td>
+  <td>202%</td>
+  <td class="dim">242%</td>
+  <td>49건</td>
+  <td class="dim">21건</td>
+</tr><tr>
+  <td class="lc">05-06</td>
+  <td class="day-ko">수</td>
+  <td><strong>186만3,497원</strong></td>
+  <td class="dim">107만7,867원</td>
+  <td><span class="up">▲72.9%</span></td>
+  <td>72만4,969원</td>
+  <td class="dim">59만8,108원</td>
+  <td><span class="dn">▲21.2%</span></td>
+  <td>257%</td>
+  <td class="dim">180%</td>
+  <td>56건</td>
+  <td class="dim">29건</td>
+</tr><tr>
+  <td class="lc">05-07</td>
+  <td class="day-ko">목</td>
+  <td><strong>201만8,653원</strong></td>
+  <td class="dim">172만16원</td>
+  <td><span class="up">▲17.4%</span></td>
+  <td>66만2,687원</td>
+  <td class="dim">67만4,200원</td>
+  <td><span class="up">▼1.7%</span></td>
+  <td>305%</td>
+  <td class="dim">255%</td>
+  <td>58건</td>
+  <td class="dim">55건</td>
+</tr><tr>
+  <td class="lc">05-08</td>
+  <td class="day-ko">금</td>
+  <td><strong>200만5,715원</strong></td>
+  <td class="dim">158만8,452원</td>
+  <td><span class="up">▲26.3%</span></td>
+  <td>78만2,153원</td>
+  <td class="dim">61만1,468원</td>
+  <td><span class="dn">▲27.9%</span></td>
+  <td>256%</td>
+  <td class="dim">260%</td>
+  <td>57건</td>
+  <td class="dim">46건</td>
+</tr><tr>
+  <td class="lc">05-09</td>
+  <td class="day-ko">토</td>
+  <td><strong>183만5,821원</strong></td>
+  <td class="dim">129만566원</td>
+  <td><span class="up">▲42.2%</span></td>
+  <td>68만5,435원</td>
+  <td class="dim">56만9,301원</td>
+  <td><span class="dn">▲20.4%</span></td>
+  <td>268%</td>
+  <td class="dim">227%</td>
+  <td>55건</td>
+  <td class="dim">40건</td>
+</tr><tr>
+  <td class="lc">05-10</td>
+  <td class="day-ko">일</td>
+  <td><strong>211만1,787원</strong></td>
+  <td class="dim">182만3,528원</td>
+  <td><span class="up">▲15.8%</span></td>
+  <td>85만9,007원</td>
+  <td class="dim">65만36원</td>
+  <td><span class="dn">▲32.1%</span></td>
+  <td>246%</td>
+  <td class="dim">281%</td>
+  <td>60건</td>
+  <td class="dim">54건</td>
+</tr></tbody>
+    </table>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🎬 메타 소재별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:200px">소재명</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">도달</th><th colspan="3">빈도</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_기존_집에오면_전환수극대화_일반_1</td>
+  <td><strong>0원</strong></td><td class="dim">1,924원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">110</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1만7,491원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">110</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1.0</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">3</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">641원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">2.73%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_마감임박_전환수극대화_일반</td>
+  <td><strong>0원</strong></td><td class="dim">5만4,417원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">2만9,900원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">3,759</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1만4,476원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">3,759</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1.0</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">26</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">2,093원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0.69%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">55%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">5만4,417원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_집에오면_영상버전_3초변경_일반_2</td>
+  <td><strong>12만6,019원</strong></td><td class="dim">18만5,973원</td><td class="dim">1만542원</td>
+  <td><span class="up">▼32.2%</span></td>
+  <td><strong>14만5,600원</strong></td><td class="dim">20만5,400원</td><td class="dim">2만9,900원</td>
+  <td><strong>6,409</strong></td><td class="dim">4,746</td><td class="dim">288</td>
+  <td><strong>1만9,663원</strong></td><td class="dim">3만9,185원</td><td class="dim">3만6,604원</td>
+  <td><strong>5,883</strong></td><td class="dim">4,026</td><td class="dim">268</td>
+  <td><strong>1.09</strong></td><td class="dim">1.18</td><td class="dim">1.07</td>
+  <td><strong>83</strong></td><td class="dim">112</td><td class="dim">6</td>
+  <td><strong>1,518원</strong></td><td class="dim">1,660원</td><td class="dim">1,757원</td>
+  <td><strong>1.30%</strong></td><td class="dim">2.36%</td><td class="dim">2.08%</td>
+  <td><strong>4</strong></td><td class="dim">6</td><td class="dim">1</td>
+  <td><strong>116%</strong></td><td class="dim">110%</td><td class="dim">284%</td>
+  <td><strong>3만1,505원</strong></td><td class="dim">3만996원</td><td class="dim">1만542원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_집에오면_영상버전_기본_일반_1</td>
+  <td><strong>0원</strong></td><td class="dim">15만5,088원</td><td class="dim">32만5,394원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">8만9,700원</td><td class="dim">44만700원</td>
+  <td><strong>0</strong></td><td class="dim">5,617</td><td class="dim">11,198</td>
+  <td><strong>—</strong></td><td class="dim">2만7,610원</td><td class="dim">2만9,058원</td>
+  <td><strong>0</strong></td><td class="dim">5,093</td><td class="dim">9,935</td>
+  <td><strong>—</strong></td><td class="dim">1.1</td><td class="dim">1.13</td>
+  <td><strong>0</strong></td><td class="dim">115</td><td class="dim">229</td>
+  <td><strong>—</strong></td><td class="dim">1,349원</td><td class="dim">1,421원</td>
+  <td><strong>—</strong></td><td class="dim">2.05%</td><td class="dim">2.05%</td>
+  <td><strong>0</strong></td><td class="dim">3</td><td class="dim">13</td>
+  <td><strong>—</strong></td><td class="dim">58%</td><td class="dim">135%</td>
+  <td><strong>—</strong></td><td class="dim">5만1,696원</td><td class="dim">2만5,030원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_집에오면_일반</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">320만7,166원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">8만9,700원</td><td class="dim">521만5,800원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">243,242</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1만3,185원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">220,163</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.1</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">4,444</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">722원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">1.83%</td>
+  <td><strong>0</strong></td><td class="dim">3</td><td class="dim">154</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">163%</td>
+  <td><strong>—</strong></td><td class="dim">0원</td><td class="dim">2만826원</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_집에오면_전환수극대화_복사_재세팅_증액_일반</td>
+  <td><strong>259만7,847원</strong></td><td class="dim">133만6,023원</td><td class="dim">0원</td>
+  <td><span class="dn">▲94.4%</span></td>
+  <td><strong>423만2,300원</strong></td><td class="dim">217만6,500원</td><td class="dim">0원</td>
+  <td><strong>213,100</strong></td><td class="dim">97,637</td><td class="dim">0</td>
+  <td><strong>1만2,191원</strong></td><td class="dim">1만3,684원</td><td class="dim">—</td>
+  <td><strong>190,018</strong></td><td class="dim">84,474</td><td class="dim">0</td>
+  <td><strong>1.12</strong></td><td class="dim">1.16</td><td class="dim">—</td>
+  <td><strong>4,102</strong></td><td class="dim">2,486</td><td class="dim">0</td>
+  <td><strong>633원</strong></td><td class="dim">537원</td><td class="dim">—</td>
+  <td><strong>1.92%</strong></td><td class="dim">2.55%</td><td class="dim">—</td>
+  <td><strong>117</strong></td><td class="dim">65</td><td class="dim">0</td>
+  <td><strong>163%</strong></td><td class="dim">163%</td><td class="dim">—</td>
+  <td><strong>2만2,204원</strong></td><td class="dim">2만554원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_집에오면_전환수극대화_일반</td>
+  <td><strong>0원</strong></td><td class="dim">21원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">4</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">5,250원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">4</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1.0</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0.00%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">0%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_집에오면_전환수극대화_재세팅_일반</td>
+  <td><strong>0원</strong></td><td class="dim">12만4,662원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">8만9,700원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">9,181</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1만3,578원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">8,670</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1.06</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">184</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">678원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">2.00%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">3</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">72%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">4만1,554원</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">릴렉스틱볼_영상_집에오면_테스트</td>
+  <td><strong>0원</strong></td><td class="dim">6만3,958원</td><td class="dim">0원</td>
+  <td><span class="up">▼100.0%</span></td>
+  <td><strong>0원</strong></td><td class="dim">8만9,700원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">4,928</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1만2,978원</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">4,614</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">1.07</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">96</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">666원</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">1.95%</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">3</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">140%</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">2만1,319원</td><td class="dim">—</td>
+</tr></tbody></table>
+    <p class="note">※ 매출·구매는 카페24 연동 기준 (cafe24_revenue / cafe24_purchases) &nbsp;|&nbsp; 전전·3주 컬럼은 참고용(회색)</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🟡 카카오 메시지별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:200px">소재명</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">도달</th><th colspan="3">빈도</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">[~77%] 가정의달 선물 페스타🎁</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">8만8,230원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">2만9,900원</td><td class="dim">68만1,247원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">2,260</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">3만9,040원</td>
+  <td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">174</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">507원</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">7.70%</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">772.1%</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr class="total-row">
+  <td class="lc">합계 (raw 구매전환수 기준)</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">8만8,230원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  <td><strong>0건</strong> <span class="dn">▼100.0%</span></td><td class="dim">1건</td><td class="dim">22건</td>
+  <td>—</td><td></td><td></td>
+  <td><strong>—</strong></td><td></td><td></td>
+</tr></tbody></table>
+    <p class="note">※ 도달·빈도 미제공 &nbsp;|&nbsp; 합계 행 구매전환수·CPA = kakao_business_raw quantity 기준</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">📡 GFA 소재별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:200px">소재명</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">도달</th><th colspan="3">빈도</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">260205_마사지볼_02</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr></tbody></table>
+    <p class="note">※ naver_gfa + naver_gfa_2 합산 &nbsp;|&nbsp; 매출·ROAS·CPA = 네이버 전환 기준</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🛍️ 애드부스트 상품별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:200px">소재명</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">도달</th><th colspan="3">빈도</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;">바리바디 릴렉스틱볼 목 어깨 족저근막염 통증 발바닥 지압 마사지볼</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">7만6,900원</td><td class="dim">6만5,800원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">1</td><td class="dim">2</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+</tr></tbody></table>
+    <p class="note">※ 도달·빈도 미제공 &nbsp;|&nbsp; naver_gfa_advoost + naver_gfa_advoost_2 합산</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">🔍 네이버 검색광고 광고그룹별 원시 데이터 (3기간 비교: 지난주 / 지지난주 / 3주전)</div>
+  <div class="card" style="overflow-x:auto">
+    <table><thead>
+<tr>
+  <th class="lh" rowspan="2" style="min-width:160px">캠페인</th>
+  <th class="lh" rowspan="2" style="min-width:160px">광고그룹</th>
+  <th colspan="4">비용</th><th colspan="3">매출</th>
+  <th colspan="3">노출</th><th colspan="3">CPM</th>
+  <th colspan="3">클릭</th><th colspan="3">CPC</th><th colspan="3">CTR</th>
+  <th colspan="3">구매전환수</th><th colspan="3">ROAS</th><th colspan="3">CPA</th>
+  <th colspan="3">평균노출순위</th>
+</tr>
+<tr>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th><th>변화</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+  <th>지난</th><th class="dim">전전</th><th class="dim">3주</th>
+</tr></thead><tbody><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">--01_쇼핑검색(메인/통검)</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">03. 릴렉스틱볼</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">--02_쇼핑검색(추천 및 컨텐츠)</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">03. 릴렉스틱볼</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">--03_쇼핑검색(플러스스토어)</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">03. 릴렉스틱볼</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr><tr>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">--04_브랜드키워드</td>
+  <td class="lc" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">03. 릴렉스틱볼</td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><span class="na">—</span></td>
+  <td><strong>0원</strong></td><td class="dim">0원</td><td class="dim">0원</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>0</strong></td><td class="dim">0</td><td class="dim">0</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+  <td><strong>—</strong></td><td class="dim">—</td><td class="dim">—</td>
+</tr></tbody></table>
+    <p class="note">※ 비용 = VAT 포함 &nbsp;|&nbsp; CPM 미제공 &nbsp;|&nbsp; naver_searchad 탭 기준</p>
+  </div>
+</div>
+</div>
+<script>
+function toggleGroup(id) {
+  var rows = document.querySelectorAll('.sub-row[data-group="' + id + '"]');
+  if (!rows.length) return;
+  var hidden = rows[0].style.display === 'none';
+  rows.forEach(function(r) { r.style.display = hidden ? '' : 'none'; });
+  var icon = document.querySelector('tr[data-group="' + id + '"] .toggle-icon');
+  if (icon) icon.textContent = hidden ? '▼' : '▶';
+}
+</script>
+</body>
+</html>

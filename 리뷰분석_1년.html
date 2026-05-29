@@ -1,0 +1,2505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>바리바디 스마트스토어 리뷰 분석 | 2026.04~05</title>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif; background:#f4f6fa; color:#1a1a2e; font-size:14px; line-height:1.6; }
+.wrap { max-width:1060px; margin:0 auto; padding:32px 20px 60px; }
+
+.report-header { background:linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%); color:#fff; border-radius:16px; padding:40px 48px; margin-bottom:32px; }
+.report-header .badge { display:inline-block; background:rgba(229,57,53,.85); color:#fff; font-size:11px; font-weight:700; letter-spacing:1.5px; padding:4px 12px; border-radius:20px; margin-bottom:14px; text-transform:uppercase; }
+.report-header h1 { font-size:28px; font-weight:800; margin-bottom:8px; }
+.report-header .sub { font-size:14px; color:rgba(255,255,255,.65); }
+.report-header .meta { margin-top:20px; display:flex; gap:24px; flex-wrap:wrap; }
+.report-header .meta-item { font-size:13px; color:rgba(255,255,255,.75); }
+.report-header .meta-item strong { color:#e8c56a; }
+
+.rv-summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+.rv-summary-card { background:#fff; border-radius:12px; padding:20px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,.06); border-top:3px solid #e53935; }
+.rv-summary-card .rv-num { font-size:32px; font-weight:800; color:#e53935; }
+.rv-summary-card .rv-label { font-size:12px; color:#718096; margin-top:4px; }
+
+.product-nav { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px; }
+.prod-nav-btn { padding:9px 20px; border-radius:24px; border:2px solid #0f3460; background:#fff; color:#0f3460; font-size:13px; font-weight:700; cursor:pointer; transition:all .2s; }
+.prod-nav-btn:hover,.prod-nav-btn.active { background:#0f3460; color:#fff; }
+
+.product-section { margin-bottom:48px; }
+.product-header { background:linear-gradient(135deg,#0f3460,#1a237e); border-radius:14px; padding:28px 36px; margin-bottom:20px; color:#fff; }
+.product-header .product-badge { display:inline-block; background:rgba(229,57,53,.9); color:#fff; font-size:11px; font-weight:700; letter-spacing:1.5px; padding:3px 10px; border-radius:20px; margin-bottom:10px; }
+.product-header h2 { font-size:22px; font-weight:800; margin-bottom:10px; }
+.product-header .product-meta { display:flex; gap:20px; flex-wrap:wrap; font-size:13px; color:rgba(255,255,255,.8); }
+.product-header .product-meta strong { color:#e8c56a; }
+
+.rv-section { background:#fff; border-radius:16px; padding:32px; margin-bottom:16px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+.rv-section-title { font-size:17px; font-weight:800; color:#0f3460; margin-bottom:6px; display:flex; align-items:center; gap:10px; }
+.rv-tag { font-size:11px; font-weight:600; background:#e53935; color:#fff; padding:2px 8px; border-radius:20px; letter-spacing:.3px; }
+.rv-tag.blue { background:#3182ce; }
+.rv-tag.green { background:#38a169; }
+.rv-tag.purple { background:#553c9a; }
+.rv-section-desc { font-size:13px; color:#718096; margin-bottom:24px; }
+
+.rv-pattern-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.rv-pattern-card { background:#f7f8fc; border-radius:10px; padding:18px 20px; border-left:4px solid #e53935; }
+.rv-pattern-card.blue { border-left-color:#3182ce; }
+.rv-pattern-card.green { border-left-color:#38a169; }
+.rv-pattern-card.orange { border-left-color:#dd6b20; }
+.rv-pattern-card.purple { border-left-color:#553c9a; }
+.rv-pattern-card.gray { border-left-color:#718096; }
+.rv-pattern-card.negative { border-left-color:#c53030; }
+.rv-pattern-card h4 { font-size:14px; font-weight:700; margin-bottom:8px; color:#2d3748; }
+.rv-pattern-card ul { list-style:none; padding:0; }
+.rv-pattern-card ul li { font-size:13px; color:#4a5568; padding:3px 0; display:flex; align-items:flex-start; gap:6px; }
+.rv-pattern-card ul li::before { content:"·"; color:#e53935; font-weight:700; flex-shrink:0; margin-top:1px; }
+.rv-pattern-card.blue ul li::before { color:#3182ce; }
+.rv-pattern-card.green ul li::before { color:#38a169; }
+.rv-pattern-card.orange ul li::before { color:#dd6b20; }
+.rv-pattern-card.negative ul li::before { color:#c53030; }
+
+.rv-quote-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px; }
+.rv-quote { background:#fffaf0; border:1px solid #fbd38d; border-radius:10px; padding:14px 16px; font-size:13px; color:#4a5568; line-height:1.7; position:relative; }
+.rv-quote::before { content:'"'; font-size:36px; color:#f6ad55; font-family:Georgia,serif; line-height:1; display:block; margin-bottom:4px; }
+.rv-quote.negative { background:#fff5f5; border-color:#feb2b2; }
+.rv-quote.negative::before { color:#fc8181; }
+.rv-quote .rv-quote-meta { font-size:11px; color:#a0aec0; margin-top:8px; font-style:italic; }
+
+.rv-bar-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.rv-bar-label { font-size:13px; color:#4a5568; min-width:80px; flex-shrink:0; }
+.rv-bar-wrap { flex:1; background:#edf2f7; border-radius:4px; height:20px; }
+.rv-bar-fill { height:100%; border-radius:4px; background:linear-gradient(90deg,#e53935,#f6687a); }
+.rv-bar-fill.blue { background:linear-gradient(90deg,#3182ce,#63b3ed); }
+.rv-bar-fill.green { background:linear-gradient(90deg,#38a169,#68d391); }
+.rv-bar-fill.orange { background:linear-gradient(90deg,#dd6b20,#f6a623); }
+.rv-bar-count { font-size:12px; color:#718096; min-width:70px; text-align:right; }
+
+.rv-keyword-cloud { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; margin-bottom:8px; }
+.rv-keyword-tag { background:#ebf4ff; color:#2b6cb0; border:1px solid #bee3f8; padding:4px 12px; border-radius:20px; font-size:13px; font-weight:600; }
+.rv-keyword-tag.size-lg { font-size:16px; padding:6px 16px; background:#3182ce; color:#fff; border-color:transparent; }
+.rv-keyword-tag.size-md { font-size:14px; background:#bee3f8; color:#2c5282; }
+.rv-keyword-tag.neg { background:#fff5f5; color:#c53030; border-color:#feb2b2; }
+.rv-keyword-tag.neg.size-lg { background:#c53030; color:#fff; border-color:transparent; }
+.rv-keyword-tag.neg.size-md { background:#fed7d7; color:#9b2c2c; }
+.rv-divider { height:1px; background:#edf2f7; margin:24px 0; }
+
+.rv-insight-section { background:linear-gradient(135deg,#0f3460 0%,#16213e 100%); border-radius:16px; padding:36px 32px; margin-bottom:24px; box-shadow:0 4px 20px rgba(26,26,46,.3); }
+.rv-insight-section h2 { color:#e8c56a; font-size:18px; font-weight:800; margin-bottom:6px; }
+.rv-insight-section .rv-subtitle { color:#a0aec0; font-size:13px; margin-bottom:28px; }
+.rv-insight-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:20px 22px; margin-bottom:14px; display:flex; gap:16px; }
+.rv-insight-num { font-size:28px; font-weight:900; color:#e53935; min-width:36px; line-height:1; margin-top:2px; }
+.rv-insight-body h4 { color:#fff; font-size:15px; font-weight:700; margin-bottom:6px; }
+.rv-insight-body p { color:#cbd5e0; font-size:13px; line-height:1.7; }
+.rv-copy-example { margin-top:10px; background:rgba(233,69,96,.2); border:1px solid rgba(233,69,96,.4); border-radius:8px; padding:8px 12px; font-size:13px; color:#fbb6c2; font-style:italic; }
+.rv-copy-example::before { content:"소재 예시: "; color:#fc8181; font-style:normal; font-weight:600; }
+.report-footer { text-align:center; font-size:12px; color:#a0aec0; padding:24px 0; border-top:1px solid #e2e8f0; margin-top:32px; }
+@media(max-width:768px){ .rv-summary-grid{grid-template-columns:repeat(2,1fr);} .rv-pattern-grid{grid-template-columns:1fr;} .rv-quote-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="report-header">
+  <div class="badge">Review Qualitative Analysis</div>
+  <h1>바리바디 스마트스토어 리뷰 분석</h1>
+  <div class="sub">스마트스토어 리뷰 12,182건 기반 — 제품별 구매 계기·만족·불만 패턴 + 메타 광고 소재 기획용</div>
+  <div class="meta">
+    <div class="meta-item">데이터 기간 <strong>2025.05.26 ~ 2026.05.25 (1년)</strong></div>
+    <div class="meta-item">데이터 소스 <strong>네이버 스마트스토어</strong></div>
+    <div class="meta-item">리뷰 수 <strong>12,182건</strong></div>
+    <div class="meta-item">평균 평점 <strong>4.87점</strong></div>
+    <div class="meta-item">작성일 <strong>2026.05.26</strong></div>
+  </div>
+</div>
+
+<div class="rv-summary-grid">
+  <div class="rv-summary-card">
+    <div class="rv-num">12,182</div>
+    <div class="rv-label">전체 리뷰 수 (04~05월)</div>
+  </div>
+  <div class="rv-summary-card">
+    <div class="rv-num">97.9%</div>
+    <div class="rv-label">4~5점 긍정 리뷰 비율</div>
+  </div>
+  <div class="rv-summary-card">
+    <div class="rv-num">64.4%</div>
+    <div class="rv-label">포토/영상 리뷰 비율</div>
+  </div>
+  <div class="rv-summary-card">
+    <div class="rv-num">2.1%</div>
+    <div class="rv-label">1~3점 불만 리뷰 비율</div>
+  </div>
+</div>
+<div class="product-nav">
+  <button class="prod-nav-btn" id="nav-1" onclick="showProduct(1)">릴렉스틱 마사지스틱 (10053건)</button>
+  <button class="prod-nav-btn" id="nav-2" onclick="showProduct(2)">릴렉스틱 잔망루피 에디션 (223건)</button>
+  <button class="prod-nav-btn" id="nav-3" onclick="showProduct(3)">릴렉스틱볼 (406건)</button>
+  <button class="prod-nav-btn" id="nav-4" onclick="showProduct(4)">EMS 손목마사지기 (390건)</button>
+  <button class="prod-nav-btn" id="nav-5" onclick="showProduct(5)">EMS 허리마사지기 (41건)</button>
+  <button class="prod-nav-btn" id="nav-6" onclick="showProduct(6)">올인원마사지기 (240건)</button>
+  <button class="prod-nav-btn" id="nav-7" onclick="showProduct(7)">EMS 슬림벨트 (522건)</button>
+</div>
+
+<!-- ═══ 릴렉스틱 마사지스틱 ═══ -->
+<div class="product-section" id="prod-1">
+  <div class="product-header">
+    <div class="product-badge">제품 01</div>
+    <h2>릴렉스틱 마사지스틱</h2>
+    <div class="product-meta">
+      <span>리뷰 <strong>10053건</strong></span>
+      <span>평균 평점 <strong>4.89점</strong></span>
+      <span>5점 비율 <strong>91.3%</strong></span>
+      <span>포토리뷰 <strong>64.9%</strong></span>
+      <span style="color:#ffd700;">긍정(4~5점) <strong>98.4%</strong></span>
+    </div>
+  </div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>구매 계기 패턴</span>
+    <span class="rv-tag">리뷰 분석 01</span>
+  </div>
+  <div class="rv-section-desc">고평점(4~5점) 리뷰에서 추출한 구매 이유. "어떤 상황이 나를 사게 했는가"</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>① 지인·추천 후 구매</h4>
+    <ul>
+      <li>&quot;매장에서 체험해보니 천국이더라고요.&quot;</li>
+      <li>&quot;지인이 사용하는거 한번써보고.. 가격이 ㅎㄷㄷ해서 구매못했었는데.. 선물용으로 너무 좋은거 같아요!&quot;</li>
+      <li>&quot;주변에 추천 중이요 ㅎㅎ&quot;</li>
+      <li>&quot;다리불편해서 친구집에서 써보고 샀어요 정강이 쪽이 부어서 불편했는데 하고나면 편해져요&quot;</li>
+      <li>→ 긍정 리뷰 중 13.7%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>② 만성 통증·직업병</h4>
+    <ul>
+      <li>&quot;뻐근한곳에 아주 딱이에요&quot;</li>
+      <li>&quot;른쪽 허벅지 장력이 너무 당겨져서 매일 풀었더니 무릎 통증이 많이 줄었었요&quot;</li>
+      <li>&quot;사무직이라 어깨가 너무 찌릿했는데&quot;</li>
+      <li>&quot;목에 디스크가 와서 고생중인데 한결 편해졌네요. 감사합니다.&quot;</li>
+      <li>→ 긍정 리뷰 중 7.6%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>③ 운동 후 회복</h4>
+    <ul>
+      <li>&quot;운동하고 나서 종아리 뭉쳤을 때 해주면, 풀리는 속도가 확실히 다르더라고요.&quot;</li>
+      <li>&quot;운동센터에서 써보고 넘 좋아서 구매했어요~ 그동안 마사지기 많이 사서 써봤는데 단순한 봉 같지만 지금까지 써본 마사지 제품중에 최고예요~^^!!&quot;</li>
+      <li>&quot;운동하는 아이 근육 풀어주기에&quot;</li>
+      <li>&quot;롱이랑 숏 둘다 구매했는데 요걸로 열심히 운동해봐야겠어요!&quot;</li>
+      <li>→ 긍정 리뷰 중 12.0%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>④ 선물 목적</h4>
+    <ul>
+      <li>&quot;제 거 샀는데 좋아서 부모님 사 드렸는데 만족하셨어요 중간이 돌아가서 더 하기 편하다고 하세요 굿 소비입니다!&quot;</li>
+      <li>&quot;시원하다고 해서 하나는 부모님 드리려고 1+1으로 구매했어요.&quot;</li>
+      <li>&quot;선물용으로 계속 구매하게되네요!&quot;</li>
+      <li>&quot;선물용으로 너무 좋은거 같아요!&quot;</li>
+      <li>→ 긍정 리뷰 중 9.5%에서 언급</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      강하게 힘을 안줘도 자극이 되요 다리, 허벅지, 목, 어깨, 엉덩이 등 원하는 부위는 다 마사지 가능합니다 등도 유연히시면 충분히 마사지 가능해서 활용도가 좋아요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      요즘 어깨랑 목이 자주 뭉쳐서 마사지스틱을 구입했는데, 생각보다 훨씬 만족스럽네요. 
+힘 조절이 자유로워서 세게 누르지 않아도 시원하게 풀리는 느낌이에요. 특히 목 뒤나 승모근처럼 손이 잘 닿지 않는 부분도 혼자서 쉽게 사용할 수 있어서 편합니다. 
+운동 후나 자기 전, TV 보면서도 가볍게 풀어주니까 근육이 한결 부드러워지고 피로가 덜 쌓이는 것 같아요. 디자인도 손에 잘 잡히고 무게감이 적당해서 오래 써도 손목에 부담이 없어요. 
+요즘엔 가족들도 번갈아가며 쓰는데, 다들 마사지샵 안 가도 된다고 할 정도예요. 
+집에 하나쯤 두면 온 가족이 쓸 수 있는 효자템이에요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      방송에서 보고 괜찮아 보여서 구입했는데, 생각보다 훨씬 유용하게 잘 쓰고 있어요.
+
+처음에는 바디라인 관리용으로 가볍게 써보려고 구매했는데, 사용해보니 집에서 간편하게 마사지하기 좋아서 손이 자주 가더라고요. 특히 종아리나 허벅지처럼 뭉치기 쉬운 부위에 굴려주면 시원한 느낌이 있고, TV 보면서도 부담 없이 사용할 수 있어서 만족스러워요.
+
+크기도 너무 부담스럽지 않고 사용법도 어렵지 않아서 꾸준히 쓰기 좋은 제품인 것 같아요. 운동 후나 하루 종일 앉아 있었던 날에 사용하면 몸이 한결 가벼워지는 느낌이라 잘 샀다는 생각이 듭니다. 방송 보고 충동구매한 편이었는데, 지금은 꽤 만족하면서 사용 중이에요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      뷰티유튭보다가 여행갈때도 이렇게 생긴거 들고가서 종아리 푸는거보고 바로 구입ㅋㅋㅋ 진짜 시원해보이더라구요!! 목이랑 종아리 풀때 사용하는데 고른 압으로 고르게 마사지되니 천국이에요ㅠ ㅠ 쇼파에두고 티비볼때마다 여기저기 마사지하니 좋아요~
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>사용 부위 &amp; 상황</span>
+    <span class="rv-tag blue">리뷰 분석 02</span>
+  </div>
+  <div class="rv-section-desc">고객들이 실제로 어디에, 어떤 상황에서 사용하는지</div>
+  <div style="margin-bottom:24px;">
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">종아리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:100%"></div></div>
+    <span class="rv-bar-count">1위 (1778건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:93%"></div></div>
+    <span class="rv-bar-count">2위 (1652건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">어깨</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:77%"></div></div>
+    <span class="rv-bar-count">3위 (1361건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허벅지</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:56%"></div></div>
+    <span class="rv-bar-count">4위 (1000건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">등</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:44%"></div></div>
+    <span class="rv-bar-count">5위 (791건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">승모</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:28%"></div></div>
+    <span class="rv-bar-count">6위 (502건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:12%"></div></div>
+    <span class="rv-bar-count">7위 (216건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">손목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill orange" style="width:8%"></div></div>
+    <span class="rv-bar-count">8위 (151건)</span>
+  </div>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>주요 사용 타이밍</h4>
+    <ul>
+      <li>&quot;그리고 슬림하고 길쭉해서 사무실에 두고 쓰기에도 부담이 없습니다&quot;</li>
+      <li>&quot;퇴근후 바로해봤는데 넘 시원하네요 꿀잠잤어요!&quot;</li>
+      <li>&quot;사무실하고 집에 하나씩 두고 씁니다.&quot;</li>
+      <li>&quot;이 바리바디 릴렉스틱으로 집에서, 사무실에서 목 마사지하려고 구입했어요.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>사용 장소</h4>
+    <ul>
+      <li>&quot;아침에 침대에서 스트레칭 하는 딸을 위해 샀어요.&quot;</li>
+      <li>&quot;그리고 슬림하고 길쭉해서 사무실에 두고 쓰기에도 부담이 없습니다&quot;</li>
+      <li>&quot;다리불편해서 친구집에서 써보고 샀어요 정강이 쪽이 부어서 불편했는데 하고나면 편해져요&quot;</li>
+      <li>&quot;렴이구매했다가 후회하고 다시구매)좋아요 참고로 친구네 집에서 써보고 저렴이로 쌌다가 완전 틀려서 정품으로 다시 구매했습니다!&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      간편하게 사용할 수 있는 도구를 찾다가 알게 된 마사지스틱인데 특히 종아리 허벅지 전체를 다 마사지스틱 하나로 손쉽게 풀어줄 수 있어서 너무 좋아요. 
+
+손잡이는 미끄럽지 않게, 마사지하는 중간부분은 폭신하면서도 밀도감 있는 느낌이라 옷 위에서나 맨살에도 잘 마사지가 되는 편이에요. 막 가볍지 않아서 안정감있게 사용할 수 있었어요. 
+
+오래 앉아있고 그래서인지 다리도 자주 붓는 편인데 퇴근하고 와서 다리풀어주고 목부분도 풀어주니 너무 개운해요!!
+손 자주가는 곳에 두고 시간 날때마다 해주려고 합니다^^
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      집에 있었는데 어디갔는지 잃어버려서 재구매합니다.
+제 종아리를 만족시켜줄 수 있는 유일한 마사지기입니다! 
+쉽고 누워서 편하게 마사지할 수 있어 강추합니다! 
+또 잃어버리면 또 살거에요..! 사라지지마..!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>만족 포인트 — 반복 키워드</span>
+    <span class="rv-tag green">리뷰 분석 03</span>
+  </div>
+  <div class="rv-section-desc">긍정 리뷰에서 반복 등장하는 핵심 단어 및 표현 패턴</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag size-lg">시원</span>
+    <span class="rv-keyword-tag size-lg">만족</span>
+    <span class="rv-keyword-tag size-lg">편하</span>
+    <span class="rv-keyword-tag size-md">추천</span>
+    <span class="rv-keyword-tag size-md">선물</span>
+    <span class="rv-keyword-tag size-md">가벼</span>
+    <span class="rv-keyword-tag size-md">최고</span>
+    <span class="rv-keyword-tag size-md">붓기</span>
+    <span class="rv-keyword-tag">뭉침</span>
+    <span class="rv-keyword-tag">재구매</span>
+    <span class="rv-keyword-tag">통증</span>
+    <span class="rv-keyword-tag">대박</span>
+    <span class="rv-keyword-tag">풀린</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card green">
+    <h4>신체 효능 표현</h4>
+    <ul>
+      <li>&quot;진짜 엄청 시원해요 강추&quot;</li>
+      <li>&quot;어깨 다리 등짝 모두 시원하네요.&quot;</li>
+      <li>&quot;시원하고 좋아요 좋은 상품&quot;</li>
+      <li>&quot;시원하니까. 생각보다는 무게감이 있어서 좀더 탄탄하게 마사지 받는 느낌이에요.&quot;</li>
+      <li>&quot;무게감이있고 롤링이 부드러워서 뭉친 근육 풀기에 알맞음&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>사용 편의 표현</h4>
+    <ul>
+      <li>&quot;님 사 드렸는데 만족하셨어요 중간이 돌아가서 더 하기 편하다고 하세요 굿 소비입니다!&quot;</li>
+      <li>&quot;연히 저게 시원할까 생각했는덕 예상 밖으로 시원하네요 혼자 어깨 마사지를 할 수 있어서 더 만족해요&quot;</li>
+      <li>&quot;등 뒤편까지 편하게할수있어서 너무좋아요&quot;</li>
+      <li>&quot;폼롤러는 자주 안 하게 되던데 마사지스틱은 꾸준히 사용할 수 있을 것 같아요😆👍👍&quot;</li>
+      <li>&quot;폼롤러도 하고 마사지건도 하는데  안되는 곳들은 스틱으로 할수있는 부분이 있는거같아요~&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      등? 견갑골?이 아파 긴걸로 주문했어요
+그런데 거기는 마사지가 안되네요ㅎㅎ
+사용법이 잘못된건가?
+아무튼 양쪽 손잡이가 있어서 굴리면 잘 굴러가요
+목덜미는 참 시원해요
+그리고 묵직하네요
+      <div class="rv-quote-meta">4점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      무게감은 있지만 얇아서 그립감이 좋아요. 그리고 굉장히 부드럽게 움직입니다. 무게감으로 맛사지효과가 배가 됩니다. 
+사용법은 함께 들어있는 마사지 가이드를 보고 따라할 수 있어요. TV 보면서 간단하게 롤링했는데 근육 뭉침이 풀어지고 혈액순환이 잘 되는 것 같아요.  처음엔 얇아서 효과가 있을까 의심했는데 얇으니까 더욱 쉽고 아프지 않게 세밀하게 마사지 할  수 있네요. 아이디어 상품이네요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      최근에 몸이 뻐근하고 여기저기 근육통이 잘 생겨서 구매했어요 폼롤러도 있긴한데 작은 부위를 하기도 어렵고 폼롤러 매트 꺼내고 하기 번거로운데 이건 쉽게 슥슥 밀 수 있어서 너무 좋아요 특히 승모같은 곳에 최고입니다 생각보다 가볍고 그립감 좋아서 편하게 쓰고 있어요
+간편하게 근육 풀고 싶거나 폼롤러가 번거로워서 귀찮거나 승모나 뒷목처럼 닿기 어려운 부분 마사지 필요하신 분께 추천해요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      허벅지 근육이 자주 뭉쳐서 폼롤러로 풀어줘야 하는데 상황이 여의치 않을때, 귀찮을때 임시 방편으로 쓰기 좋아요! 폼롤러가 더 효과 좋긴함.. 하지만 부피가 너무 크고 귀찮으니깐 ㅎ 여행갈때도 유용하게 쓸듯합니다
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>불만 &amp; 아쉬운 점</span>
+    <span class="rv-tag">리뷰 분석 04</span>
+  </div>
+  <div class="rv-section-desc">저평점(1~3점) 리뷰 + 고평점 리뷰 내 불만 표현 종합. 광고 소재에서 선제적으로 대응해야 할 항목들</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag neg size-lg">가격</span>
+    <span class="rv-keyword-tag neg size-lg">비싸</span>
+    <span class="rv-keyword-tag neg size-lg">불편</span>
+    <span class="rv-keyword-tag neg size-md">기대</span>
+    <span class="rv-keyword-tag neg size-md">별로</span>
+    <span class="rv-keyword-tag neg size-md">아쉽</span>
+    <span class="rv-keyword-tag neg size-md">짧다</span>
+    <span class="rv-keyword-tag neg size-md">실망</span>
+    <span class="rv-keyword-tag neg">환불</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card negative">
+    <h4>가격 저항 (가장 빈번)</h4>
+    <ul>
+      <li>&quot;가격이 있어서 진짜 고민하다 질렀는데.. 사이즈 미스인 것 같아요.&quot;</li>
+      <li>&quot;시원합니다만 가격이 내려서 늦게살수록 좋겠어요&quot;</li>
+      <li>&quot;사자마자 만원이 할인되 아쉽네요&quot;</li>
+      <li>&quot;가격만 다운되면좋겠네요.&quot;</li>
+      <li>→ 가격 가치를 정당화하는 소재 필요</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card gray">
+    <h4>기대치 vs 실제 괴리</h4>
+    <ul>
+      <li>&quot;사자마자 만원이 할인되 아쉽네요&quot;</li>
+      <li>&quot;어깨는 별로고, 다리는 시원합니다.&quot;</li>
+      <li>&quot;제품 좋고 나쁘고를 떠나 많이 아쉽습니다&quot;</li>
+      <li>&quot;생각보다 별로 목은 혼자하기 힘들어요&quot;</li>
+      <li>→ 상세페이지 사전 안내 강화 필요</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote negative">
+      아직 사용전이라 잘 모르겠구요 견고하게 만들어진거 같아요
+가운데 봉이 돌아가게 만들어져서 마사지하기도 용이하겠어요
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+    <div class="rv-quote negative">
+      목을 제외한 다른 부위 사용에는 많이 불편합니다. 
+나이드신 분이 사용하기에는 많이 불편합니다.
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>실제 고객 언어 — 광고 카피에 쓸 수 있는 표현들</span>
+    <span class="rv-tag blue">리뷰 분석 05</span>
+  </div>
+  <div class="rv-section-desc">고객이 자연스럽게 쓴 말투와 표현. 이걸 그대로 소재에 활용하면 공감도 높아짐</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card blue">
+    <h4>효과 표현</h4>
+    <ul>
+      <li>&quot;진짜 엄청 시원해요 강추&quot;</li>
+      <li>&quot;어깨 다리 등짝 모두 시원하네요.&quot;</li>
+      <li>&quot;시원하고 좋아요 좋은 상품&quot;</li>
+      <li>&quot;시원하니까. 생각보다는 무게감이 있어서 좀더 탄탄하게 마사지 받는 느낌이에요.&quot;</li>
+      <li>&quot;무게감이있고 롤링이 부드러워서 뭉친 근육 풀기에 알맞음&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>대체·비교 표현</h4>
+    <ul>
+      <li>&quot;폼롤러보다 훨씬좋고 간단하고&quot;</li>
+      <li>&quot;폼롤러는 자주 안 하게 되던데 마사지스틱은 꾸준히 사용할 수 있을 것 같아요😆👍👍&quot;</li>
+      <li>&quot;폼롤러도 하고 마사지건도 하는데  안되는 곳들은 스틱으로 할수있는 부분이 있는거같아요~&quot;</li>
+      <li>&quot;폼롤러는 제가 너무 어렵더라고요&quot;</li>
+      <li>&quot;폼롤러보다 쉽게 마사지할 수 있어서 좋아요&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>일상 연결 표현</h4>
+    <ul>
+      <li>&quot;아침에 침대에서 스트레칭 하는 딸을 위해 샀어요.&quot;</li>
+      <li>&quot;그리고 슬림하고 길쭉해서 사무실에 두고 쓰기에도 부담이 없습니다&quot;</li>
+      <li>&quot;사무실하고 집에 하나씩 두고 씁니다.&quot;</li>
+      <li>&quot;침대서 문지르면 극락..&quot;</li>
+      <li>&quot;이 바리바디 릴렉스틱으로 집에서, 사무실에서 목 마사지하려고 구입했어요.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>선물 관련 표현</h4>
+    <ul>
+      <li>&quot;제 거 샀는데 좋아서 부모님 사 드렸는데 만족하셨어요 중간이 돌아가서 더 하기 편하다고 하세요 굿 소비입니다!&quot;</li>
+      <li>&quot;시원하다고 해서 하나는 부모님 드리려고 1+1으로 구매했어요.&quot;</li>
+      <li>&quot;선물용으로 계속 구매하게되네요!&quot;</li>
+      <li>&quot;선물용으로 너무 좋은거 같아요!&quot;</li>
+      <li>&quot;너무 마음에 들어서 양가 부모님댁에도 모두 사 드렸어요&quot;</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+</div><!-- /product-section -->
+
+<!-- ═══ 릴렉스틱 잔망루피 에디션 ═══ -->
+<div class="product-section" id="prod-2">
+  <div class="product-header">
+    <div class="product-badge">제품 02</div>
+    <h2>릴렉스틱 잔망루피 에디션</h2>
+    <div class="product-meta">
+      <span>리뷰 <strong>223건</strong></span>
+      <span>평균 평점 <strong>4.85점</strong></span>
+      <span>5점 비율 <strong>87.0%</strong></span>
+      <span>포토리뷰 <strong>77.1%</strong></span>
+      <span style="color:#ffd700;">긍정(4~5점) <strong>97.8%</strong></span>
+    </div>
+  </div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>구매 계기 패턴</span>
+    <span class="rv-tag">리뷰 분석 01</span>
+  </div>
+  <div class="rv-section-desc">고평점(4~5점) 리뷰에서 추출한 구매 이유. "어떤 상황이 나를 사게 했는가"</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>① 지인·추천 후 구매</h4>
+    <ul>
+      <li>&quot;친구거 써보고 샀는데 이쁘고 좋아요.&quot;</li>
+      <li>&quot;친구가 추천해줘서 써봤는데 좋아요.&quot;</li>
+      <li>&quot;주변 지인들에게도 강추하고 있습니다&quot;</li>
+      <li>&quot;친구 선물해줬는데 너무 조아하네요&quot;</li>
+      <li>→ 긍정 리뷰 중 7.8%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>② 만성 통증·직업병</h4>
+    <ul>
+      <li>&quot;니볼 하나 더 들어 있든거 발목이나 발에 써보세요 저 족저근막염 있는데 너무 시원해서 만족합니다!&quot;</li>
+      <li>&quot;너무너무 시원해요 요즘 근육이 뻐근햇는데 혼자서 충분히 맛사지 가능하네요.&quot;</li>
+      <li>&quot;과를 느끼고 있지는 않지만 그래도 하루종일 앉아있어서 뻐근해진 목주변 근육 푸는데 큰 도움이 되네요.&quot;</li>
+      <li>&quot;꽤 무거워요 더사용해봐야알겠지만  붓기랑 뻐근함에 도움됐으면좋겠어요 분홍색이라서 더 마음에들어요 잘 쓰겠습니다&quot;</li>
+      <li>→ 긍정 리뷰 중 2.8%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>③ 운동 후 회복</h4>
+    <ul>
+      <li>&quot;운동하고 종아리 풀어주고 승모근 마사지 하는데 시원해요.&quot;</li>
+      <li>&quot;하나 더 들어 있든거 발목이나 발에 써보세요 저 족저근막염 있는데 너무 시원해서 만족합니다!&quot;</li>
+      <li>&quot;좋아요 잘산템이네요 잘 사용하고 있어요~운동하고 종아리 살살 문질러도 좋고요 머리 어깨 등 문질문질하면 좋아요 시원해요 자기전 릴렉스틱으로 문지르니 잠도 솔솔 잘 오는거 같아요&quot;</li>
+      <li>&quot;제 요가매트가 핑크색인데, 잔망루피도 핑크색이라 너무 마음에 들어요! 릴렉스틱은 처음 사용해보는데, 시원하네요ㅎㅎ. 귀여워야 좀 더 오래 쓸 것 같아서 잔망루피 에디션으로 구입한건데 만족합니다.&quot;</li>
+      <li>→ 긍정 리뷰 중 3.2%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>④ 선물 목적</h4>
+    <ul>
+      <li>&quot;이미 사용중이고, 칭구 선물용으로 두번째 구매입니다  ㅎㅎ&quot;</li>
+      <li>&quot;그리고 아내 마사지 해주면 용돈도 얻고 좋네요&quot;</li>
+      <li>&quot;선물하려고 2번째 구매해요&quot;</li>
+      <li>&quot;친구 선물해줬는데 너무 조아하네요&quot;</li>
+      <li>→ 긍정 리뷰 중 7.8%에서 언급</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      이거 넘 좋아요!!
+제가 목 뒤가 잘 뭉치는데 열심히 문질문질하면
+최고예요!!!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      조권님이 비보티비에서 설명하는거 보고 찾아보다가 구입했어요 종류도 많고 가격도 여러종류인데 바리바디가 제일 비싸서 망설였이다가 그래도 조권님 믿고 구매했어요
+혼자서 하기 쉬워서 좋고 아직 사용한자 얼마 안되서 잘 모르겠지만 사용감은 만족스러워요
+다른 저렴 제품들과 뭐가 다른지는 알 수 없어서 좀 광고가 아쉽지요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      오래걷거나 일하고 왔을때 어깨 등 다리아픈곳에 하면 시원하고 잘 풀리는 느낌이예요
+너무 좋아요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      이마트에서 봤는데 너무 비싸서 고민했었어요
+여기서 더 저렴하게 잔망루피 세트로 샀네요~
+어버이날 선물로 짱이에여
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>사용 부위 &amp; 상황</span>
+    <span class="rv-tag blue">리뷰 분석 02</span>
+  </div>
+  <div class="rv-section-desc">고객들이 실제로 어디에, 어떤 상황에서 사용하는지</div>
+  <div style="margin-bottom:24px;">
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:100%"></div></div>
+    <span class="rv-bar-count">1위 (24건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">종아리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:75%"></div></div>
+    <span class="rv-bar-count">2위 (18건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">어깨</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:58%"></div></div>
+    <span class="rv-bar-count">3위 (14건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">등</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:50%"></div></div>
+    <span class="rv-bar-count">4위 (12건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허벅지</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:38%"></div></div>
+    <span class="rv-bar-count">5위 (9건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">승모</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:29%"></div></div>
+    <span class="rv-bar-count">6위 (7건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">발바닥</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:17%"></div></div>
+    <span class="rv-bar-count">7위 (4건)</span>
+  </div>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>주요 사용 타이밍</h4>
+    <ul>
+      <li>&quot;사무실용으로 하나 더 샀어요~&quot;</li>
+      <li>&quot;이제 매일 퇴근하고 퉁퉁 붓는 다리 루피 볼로 발바닥 풀고 스틱으로 종아리 붓기 전부 빼버릴게용💖&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>사용 장소</h4>
+    <ul>
+      <li>&quot;사무실용으로 하나 더 샀어요~&quot;</li>
+      <li>&quot;저는 오리지널 썼는데 루피 버전이라 더 특별하게 느껴집니다 ㅎㅎ&quot;</li>
+      <li>&quot;적을 관리할 수 있고, 릴렉스틱볼로 발바닥과 맛사지가 집중적으로 필요한 부분을 다 할 수 있어서 좋아요&quot;</li>
+      <li>&quot;조동집에 놀러갔다가 이거 써보고 신세계를 경험하여 바로 주문했슘니다!&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      무게가 있어서 두드리는용으로 써도좋고
+잘밀어져서 시원해요
+핑크색인게 넘나좋은것
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      원래 쓰던 릴렉스틱을 들고 시댁에 놀러갔다가 아버님이 꽤 만족해하시는 것 같아서 드리고 제거 다시 샀어용ㅋㅋㅋ 붓기 빼고 목 마사지 할 때 좋아요!!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>만족 포인트 — 반복 키워드</span>
+    <span class="rv-tag green">리뷰 분석 03</span>
+  </div>
+  <div class="rv-section-desc">긍정 리뷰에서 반복 등장하는 핵심 단어 및 표현 패턴</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag size-lg">시원</span>
+    <span class="rv-keyword-tag size-lg">만족</span>
+    <span class="rv-keyword-tag size-lg">선물</span>
+    <span class="rv-keyword-tag size-md">추천</span>
+    <span class="rv-keyword-tag size-md">최고</span>
+    <span class="rv-keyword-tag size-md">편하</span>
+    <span class="rv-keyword-tag size-md">붓기</span>
+    <span class="rv-keyword-tag size-md">뭉침</span>
+    <span class="rv-keyword-tag">대박</span>
+    <span class="rv-keyword-tag">가벼</span>
+    <span class="rv-keyword-tag">재구매</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card green">
+    <h4>신체 효능 표현</h4>
+    <ul>
+      <li>&quot;종아리 뭉침 허벅지, 어깨나 목 전부 잘 사용하고 있어요 저 사용하는거 보더니 신랑이 뺏어가서 저보다 더 자주 하는듯 합니다&quot;</li>
+      <li>&quot;틈날때마다 사용하는데 개운해요&quot;</li>
+      <li>&quot;너무 시원한데요~~친언니도 하나 사서 보냈네요 혈액순환 너무 잘될거 같아요^^&quot;</li>
+      <li>&quot;귀엽고 맘에들어요 시원해요&quot;</li>
+      <li>&quot;택배받자마자  뜯어서 목뒤 조져주니까 진짜시원하네요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>사용 편의 표현</h4>
+    <ul>
+      <li>&quot;정말 짧네요;; 견정, 견갑마사지 하려고 구매했는데 혼자하기 힘듭니다ㅋㅋ 다리쪽에 하긴 쉬우나 팔이 아프네요~&quot;</li>
+      <li>&quot;폼롤러 대신 쓰기 좋아요!&quot;</li>
+      <li>&quot;주로 다리 마사지 하는데 사용하기 간편하고 시원하고 좋아요!&quot;</li>
+      <li>&quot;어깨가 불편해서 혼자서 할려니 불편해서 한번 의견을 적어봤어요 감사합니다&quot;</li>
+      <li>&quot;릴렉스틱 사용하니까 혼자서도 쉽게 마사지 할 수 있고, 뒷목 땡길 때 이걸로 풀면 진짜 시원하고 좋아요 ㅜㅜb&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      우와~ 바리바디 왜 유명한지 알꺼같아요~ 종아리나 등이나 허벅지 등등 문지르는거보다 훨씬 빨리 풀리네요. 세트로 시켜서 볼도 있는데 너무 깜찍해요 ㅎㅎ 겨드랑이는 작은볼 굴려주고 큰볼은 발바닥 지압하거나 끼워서 등했어요~ 너무 시원합니다 최고!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      가격이 좀 비싸서 고민했는데 
+일단 볼이 발마사지하기에 넘 좋네요 ㅎㅎ 
+막대도 사용하기 편리해요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      아픈곳을  정확하게 마사지 할 수 있어 넘 좋네요 스틱에 볼을 끼우니까 더 시원하고 좋아요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      빠른 배송 좋음. 튼튼하고 짱짱해서 휠 걱정 없이 마구 문지를 수 있네요. 루피는 볼은... 귀여워 샀어요 ㅎㅎ 봉에 껴서 쓸 일은 별로 없을 것 같고 동봉 된 설명서 활용 예정입니다.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>불만 &amp; 아쉬운 점</span>
+    <span class="rv-tag">리뷰 분석 04</span>
+  </div>
+  <div class="rv-section-desc">저평점(1~3점) 리뷰 + 고평점 리뷰 내 불만 표현 종합. 광고 소재에서 선제적으로 대응해야 할 항목들</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag neg size-lg">가격</span>
+    <span class="rv-keyword-tag neg size-lg">비싸</span>
+    <span class="rv-keyword-tag neg size-lg">기대</span>
+    <span class="rv-keyword-tag neg size-md">별로</span>
+    <span class="rv-keyword-tag neg size-md">불편</span>
+    <span class="rv-keyword-tag neg size-md">짧다</span>
+    <span class="rv-keyword-tag neg size-md">아쉽</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card negative">
+    <h4>가격 저항 (가장 빈번)</h4>
+    <ul>
+      <li>&quot;전반적으로 처음엔 가격대비 별로 안 쓸 것 같다 느꼈는데, 일주일째 써보니 그래도 제값을 하겠구나라고 생각이 바뀌었습니다.&quot;</li>
+      <li>&quot;가격이 좀 비싸서 고민했는데&quot;</li>
+      <li>&quot;예전부터 사고싶었던 건데 전엔 가격이 비싸서 고민하던 차에 가격도 내리고 핑크에디션 너무 예뻐서 2세트사서 딸하나, 나하나 샀어요.&quot;</li>
+      <li>&quot;이마트에서 봤는데 너무 비싸서 고민했었어요&quot;</li>
+      <li>→ 가격 가치를 정당화하는 소재 필요</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card gray">
+    <h4>기대치 vs 실제 괴리</h4>
+    <ul>
+      <li>&quot;광고만큼 시원 허진 않은듯 해오! 그리고 막대 부분이 생각 보다 스크레치나 외부 충격에 찍힘이 있어요.&quot;</li>
+      <li>&quot;귀여워 샀어요 ㅎㅎ 봉에 껴서 쓸 일은 별로 없을 것 같고 동봉 된 설명서 활용 예정입니다.&quot;</li>
+      <li>&quot;오리지날은 색깔이 별로였는데 이건 너무 귀여운 딸기우유 색깔이에요 맘에 들어요&quot;</li>
+      <li>&quot;효과가 좋기를 기대합니다~&quot;</li>
+      <li>→ 상세페이지 사전 안내 강화 필요</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote negative">
+      작은볼을 스틱에 끼어서 사용할수 있다고 착각하고 구입한것 같네요 아니면 굳이 세트까지 살필요 없었는데...
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+    <div class="rv-quote negative">
+      광고만큼 시원 허진 않은듯 해오! 그리고 막대 부분이 생각 보다 스크레치나 외부 충격에 찍힘이 있어요.
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>실제 고객 언어 — 광고 카피에 쓸 수 있는 표현들</span>
+    <span class="rv-tag blue">리뷰 분석 05</span>
+  </div>
+  <div class="rv-section-desc">고객이 자연스럽게 쓴 말투와 표현. 이걸 그대로 소재에 활용하면 공감도 높아짐</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card blue">
+    <h4>효과 표현</h4>
+    <ul>
+      <li>&quot;틈날때마다 사용하는데 개운해요&quot;</li>
+      <li>&quot;너무 시원한데요~~친언니도 하나 사서 보냈네요 혈액순환 너무 잘될거 같아요^^&quot;</li>
+      <li>&quot;귀엽고 맘에들어요 시원해요&quot;</li>
+      <li>&quot;택배받자마자  뜯어서 목뒤 조져주니까 진짜시원하네요!&quot;</li>
+      <li>&quot;주로 다리 마사지 하는데 사용하기 간편하고 시원하고 좋아요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>대체·비교 표현</h4>
+    <ul>
+      <li>&quot;폼롤러 대신 쓰기 좋아요!&quot;</li>
+      <li>&quot;종아리,목뒤쪽 마사지하고싶은데 손으로하면 손이아프고 가지고있는괄사도 한계가있어서 길쭉한 타입은 마사지기구알아보고있는데 루피 콜라보마사지봉이있어서 구매했습니다 택배받자마자  뜯어서 목뒤 조져주니까 진짜시원하네요!&quot;</li>
+      <li>&quot;폼롤러로 해소되지 못하는 부분을 다 할 수 있고&quot;</li>
+      <li>&quot;폼롤러는 잘 안하게 되는데 이건 편해서 자주 사용해요!&quot;</li>
+      <li>&quot;귀찮아서 허벅지 폼롤러 안 했는데 tv 보면서 다리 풀기도 좋고 목, 등도 풀기 좋아요.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>일상 연결 표현</h4>
+    <ul>
+      <li>&quot;사무실용으로 하나 더 샀어요~&quot;</li>
+      <li>&quot;볼도 좋습니다 ㅠ 가격 때문에 망설이는 분들 추천해요 침대에서도 쓸 수 있어서 너어무 만족해요&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>선물 관련 표현</h4>
+    <ul>
+      <li>&quot;이미 사용중이고, 칭구 선물용으로 두번째 구매입니다  ㅎㅎ&quot;</li>
+      <li>&quot;그리고 아내 마사지 해주면 용돈도 얻고 좋네요&quot;</li>
+      <li>&quot;선물하려고 2번째 구매해요&quot;</li>
+      <li>&quot;친구 선물해줬는데 너무 조아하네요&quot;</li>
+      <li>&quot;부모님 선물로 보내드렸어요 좋아요&quot;</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+</div><!-- /product-section -->
+
+<!-- ═══ 릴렉스틱볼 ═══ -->
+<div class="product-section" id="prod-3">
+  <div class="product-header">
+    <div class="product-badge">제품 03</div>
+    <h2>릴렉스틱볼</h2>
+    <div class="product-meta">
+      <span>리뷰 <strong>406건</strong></span>
+      <span>평균 평점 <strong>4.83점</strong></span>
+      <span>5점 비율 <strong>85.7%</strong></span>
+      <span>포토리뷰 <strong>64.8%</strong></span>
+      <span style="color:#ffd700;">긍정(4~5점) <strong>97.8%</strong></span>
+    </div>
+  </div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>구매 계기 패턴</span>
+    <span class="rv-tag">리뷰 분석 01</span>
+  </div>
+  <div class="rv-section-desc">고평점(4~5점) 리뷰에서 추출한 구매 이유. "어떤 상황이 나를 사게 했는가"</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>① 지인·추천 후 구매</h4>
+    <ul>
+      <li>&quot;오프라인에서 체험해보고 좋아서 구매했어요.&quot;</li>
+      <li>&quot;좋아요~아주 만족합니다~ 추천드립니다.&quot;</li>
+      <li>&quot;이건 그냥 세트로사는거 매우 추천합니다!&quot;</li>
+      <li>&quot;의하면서 구매했는데 진짜 시원해요 족저근막염이면 완전 추천입니다&quot;</li>
+      <li>→ 긍정 리뷰 중 5.5%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>② 만성 통증·직업병</h4>
+    <ul>
+      <li>&quot;족저근막염도 있고 발자체가 넘 아파서 인스타 보고 샀어요 문질문질 하니 시원하네요~&quot;</li>
+      <li>&quot;족저근막염이있어 발바닥 마사지용도로 구매했습니다&quot;</li>
+      <li>&quot;너무 아파서 좋아요 ㅎㅎㅎ&quot;</li>
+      <li>&quot;운동후 발이 많이 아파서 구매한상품입니다.&quot;</li>
+      <li>→ 긍정 리뷰 중 7.1%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>③ 운동 후 회복</h4>
+    <ul>
+      <li>&quot;족저근막염도 있고 발자체가 넘 아파서 인스타 보고 샀어요 문질문질 하니 시원하네요~&quot;</li>
+      <li>&quot;족저근막염이있어 발바닥 마사지용도로 구매했습니다&quot;</li>
+      <li>&quot;발바닥으로 밟아서 마사지볼굴려서 운동하면 엄청시원해요!&quot;</li>
+      <li>&quot;롤링 너무 잘되고 편해요 운동후 스트레칭과 함께 돌려주면 최고에요!&quot;</li>
+      <li>→ 긍정 리뷰 중 7.1%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>④ 선물 목적</h4>
+    <ul>
+      <li>&quot;너무 좋아서 선물로 재구매했습니다 만족해요&quot;</li>
+      <li>&quot;매일사용중이에요 너무 시원하고 좋아서 선물용으로 재구매&quot;</li>
+      <li>&quot;주변 사람들에게도 선물하고 싶네요&quot;</li>
+      <li>&quot;기존에 스틱응 선물받아서 볼 추가구매함.&quot;</li>
+      <li>→ 긍정 리뷰 중 3.8%에서 언급</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      시원해요. 반으로 갈라지니 그 위에 서서 누르면서 마사지 해도 되고 마사지스틱하고 합체해서 더 강하게 자극 줄 수 도 있어요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      의외로 마사지 스틱에 끼워서는 잘 사용안하고 작은 볼을 더 많이 사용하고 있습니다.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      마사지스틱에 끼워서 쓸 수 있다고 해서 샀는데 너무 시원해요! 반 갈라서 양발로 꾹꾹 누르는데 아픈데 시원해요ㅋㅋ 안에 작은 마사지볼로 얼굴이나 손바닥에 굴리면서 마사지 하니까 너무너무 시원해요!!! 강추해요!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      발바닥 마사지도 좋고 작은 볼은 얼굴 마사지하기에고 좋네요~ 잘 사용하고 있어요!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>사용 부위 &amp; 상황</span>
+    <span class="rv-tag blue">리뷰 분석 02</span>
+  </div>
+  <div class="rv-section-desc">고객들이 실제로 어디에, 어떤 상황에서 사용하는지</div>
+  <div style="margin-bottom:24px;">
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">발바닥</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:100%"></div></div>
+    <span class="rv-bar-count">1위 (64건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:20%"></div></div>
+    <span class="rv-bar-count">2위 (13건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">어깨</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:17%"></div></div>
+    <span class="rv-bar-count">3위 (11건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">등</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:17%"></div></div>
+    <span class="rv-bar-count">4위 (11건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">승모</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:5%"></div></div>
+    <span class="rv-bar-count">5위 (3건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">종아리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:3%"></div></div>
+    <span class="rv-bar-count">6위 (2건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허벅지</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:2%"></div></div>
+    <span class="rv-bar-count">7위 (1건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">손목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill orange" style="width:2%"></div></div>
+    <span class="rv-bar-count">8위 (1건)</span>
+  </div>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>주요 사용 타이밍</h4>
+    <ul>
+      <li>&quot;사무실에서 사용하는 중인데 집에서도 사용하려고 하나더 구매했습니다!! 다들 꼭꼭 밟아 주세요!&quot;</li>
+      <li>&quot;요즘에 너무 부어서 구매했는데 사무실에서 바닥에 두면 더러워 져서 사진처럼 신발 위에 올려서 사용하는에 정말 시원합니다,,, 진짜 다들 구매해주세여!!!&quot;</li>
+      <li>&quot;퇴근 후 집에 와서 밟아서 피로 회복해도 좋네요.&quot;</li>
+      <li>&quot;TV 보면서 발바닥 마사지하면 어느새 몸이 가뿐해져요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>사용 장소</h4>
+    <ul>
+      <li>&quot;사무실에서 사용하는 중인데 집에서도 사용하려고 하나더 구매했습니다!! 다들 꼭꼭 밟아 주세요!&quot;</li>
+      <li>&quot;여행가서 많이 걷고 사용하기 좋을듯합니다.&quot;</li>
+      <li>&quot;요즘에 너무 부어서 구매했는데 사무실에서 바닥에 두면 더러워 져서 사진처럼 신발 위에 올려서 사용하는에 정말 시원합니다,,, 진짜 다들 구매해주세여!!!&quot;</li>
+      <li>&quot;밟고 있으면 시원하고 좋아요 소파에 두고 티비보면서 밟아줍니다 ㅎ&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      요즘에 너무 부어서 구매했는데 사무실에서 바닥에 두면 더러워 져서 사진처럼 신발 위에 올려서 사용하는에 정말 시원합니다,,, 진짜 다들 구매해주세여!!!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      발바닥 정말 시원해여 
+특히 그 안에 볼 목도시원 쇄골라인도 시원 넘넘 개운해요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>만족 포인트 — 반복 키워드</span>
+    <span class="rv-tag green">리뷰 분석 03</span>
+  </div>
+  <div class="rv-section-desc">긍정 리뷰에서 반복 등장하는 핵심 단어 및 표현 패턴</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag size-lg">시원</span>
+    <span class="rv-keyword-tag size-lg">만족</span>
+    <span class="rv-keyword-tag size-lg">추천</span>
+    <span class="rv-keyword-tag size-md">선물</span>
+    <span class="rv-keyword-tag size-md">재구매</span>
+    <span class="rv-keyword-tag size-md">최고</span>
+    <span class="rv-keyword-tag size-md">통증</span>
+    <span class="rv-keyword-tag size-md">편하</span>
+    <span class="rv-keyword-tag">가벼</span>
+    <span class="rv-keyword-tag">풀린</span>
+    <span class="rv-keyword-tag">붓기</span>
+    <span class="rv-keyword-tag">대박</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card green">
+    <h4>신체 효능 표현</h4>
+    <ul>
+      <li>&quot;너무 시원하더라고요. 봉하고 결합해서 어깨 마사지 해보세요! 정말 시원합니다.&quot;</li>
+      <li>&quot;발이 너무 시원합니다~&quot;</li>
+      <li>&quot;발자체가 넘 아파서 인스타 보고 샀어요 문질문질 하니 시원하네요~&quot;</li>
+      <li>&quot;그리고 릴렉스틱에 끼워서 승모근 마사지 하니까 훨앀 시원합니다.&quot;</li>
+      <li>&quot;발바닥으로 밟아서 마사지볼굴려서 운동하면 엄청시원해요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>사용 편의 표현</h4>
+    <ul>
+      <li>&quot;씩 따로 해야 하고, 굴려서 계속 위치가 바뀌는데, 제자리에 있고, 양발 번갈아가며 동시에 마사지 할 수 있어서 너무 좋아요.&quot;</li>
+      <li>&quot;시원하고 간편해서 자주 손이 갑니다.&quot;</li>
+      <li>&quot;간편하게 사용하기좋습니다&quot;</li>
+      <li>&quot;혼자쓸데는 마사지볼 두개해서 같이 사도 좋네요👍&quot;</li>
+      <li>&quot;사용하기 편하고 좋아요&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      오우 이거 물건이네요
+진짜 시원합니다 ㅋㅋ
+지압은 그저 슬리퍼나 발매트로 써봤는데 이것도 좋레요!! 마사지 스틱만 쓰다가 마사지 볼은 우연히 봤는데 보자마자 갖고싶더라고요!!
+
+바아로 주문하고 오늘 받아서 바아로 써봤는데 마사지 효과 좋네요~
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      조그마한데 아주 실용적입니다. 자극도 너무 세지도 약하지도 않고 분리해서 사용할 수도 있고 좋아요. 잘 사용하고 있습니다.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      요즘에 너무 부어서 구매했는데 사무실에서 바닥에 두면 더러워 져서 사진처럼 신발 위에 올려서 사용하는에 정말 시원합니다,,, 진짜 다들 구매해주세여!!!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      스틱과 볼을 같이 구매하였고 근육 이완하는데 좋은 것 같습니다. 발바닥도 지압하면 시원해요^^
+      <div class="rv-quote-meta">4점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>불만 &amp; 아쉬운 점</span>
+    <span class="rv-tag">리뷰 분석 04</span>
+  </div>
+  <div class="rv-section-desc">저평점(1~3점) 리뷰 + 고평점 리뷰 내 불만 표현 종합. 광고 소재에서 선제적으로 대응해야 할 항목들</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag neg size-lg">가격</span>
+    <span class="rv-keyword-tag neg size-lg">비싸</span>
+    <span class="rv-keyword-tag neg size-lg">기대</span>
+    <span class="rv-keyword-tag neg size-md">불편</span>
+    <span class="rv-keyword-tag neg size-md">아쉽</span>
+    <span class="rv-keyword-tag neg size-md">별로</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card negative">
+    <h4>가격 저항 (가장 빈번)</h4>
+    <ul>
+      <li>&quot;쫌 비싸다 망설망설 했는데 미련. 후회없이&quot;</li>
+      <li>&quot;자주 부어서 마사지 용도로 구매했는데 사실 가격은 좀 비싸요 ㅠ 마사지는 하면 시원해지는 것 같아서 좋지만 붓기 빠지는건 아직 잘 모르겠어요.&quot;</li>
+      <li>&quot;가격이 비싸 아쉽네요&quot;</li>
+      <li>&quot;리뷰 잘 안쓰는 편인데 가격으로 고민 엄청하다가 결국 구매해서 사용했는데 정말 만족스러운 소비여서 리뷰 남깁니다ㅠㅠ 너무 시원하고 발이 가벼워요.&quot;</li>
+      <li>→ 가격 가치를 정당화하는 소재 필요</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card gray">
+    <h4>기대치 vs 실제 괴리</h4>
+    <ul>
+      <li>&quot;제품은 좋은데, 가성비가 별로네요.&quot;</li>
+      <li>&quot;하는게 훨씬 좋아요 스틱에 끼워서 쓰니깐 저는 그닥 별로인것같아요 1+1으로 두개가 왔는데 ㅠㅠ&quot;</li>
+      <li>&quot;효과가 좋기를 기대하겠습니다&quot;</li>
+      <li>&quot;별 기대하지 않고 구매했는데 기대이상이에요 좋아요&quot;</li>
+      <li>→ 상세페이지 사전 안내 강화 필요</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote negative">
+      발바닥도 하고 등도하고 좋아요 근데 두개 아다리가(?) 안맞아서 엄청 쌔게 눌러야해요ㅜㅜ 이건 불량이 아닐거 같아서 그냥 씁니디
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+    <div class="rv-quote negative">
+      생각보다 잘 사용하지 않고 있어요~~생각보다 점 작아요
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>실제 고객 언어 — 광고 카피에 쓸 수 있는 표현들</span>
+    <span class="rv-tag blue">리뷰 분석 05</span>
+  </div>
+  <div class="rv-section-desc">고객이 자연스럽게 쓴 말투와 표현. 이걸 그대로 소재에 활용하면 공감도 높아짐</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card blue">
+    <h4>효과 표현</h4>
+    <ul>
+      <li>&quot;너무 시원하더라고요. 봉하고 결합해서 어깨 마사지 해보세요! 정말 시원합니다.&quot;</li>
+      <li>&quot;발이 너무 시원합니다~&quot;</li>
+      <li>&quot;발자체가 넘 아파서 인스타 보고 샀어요 문질문질 하니 시원하네요~&quot;</li>
+      <li>&quot;그리고 릴렉스틱에 끼워서 승모근 마사지 하니까 훨앀 시원합니다.&quot;</li>
+      <li>&quot;발바닥으로 밟아서 마사지볼굴려서 운동하면 엄청시원해요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>대체·비교 표현</h4>
+    <ul>
+      <li>&quot;기존에 막대기만 가지고 있었는데&quot;</li>
+      <li>&quot;막대기만 샀다가 공이 있는 걸 뒤늦게 알아서 추가 구매했어요.  발바닥 마사지에 안성맞춤입니다.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>일상 연결 표현</h4>
+    <ul>
+      <li>&quot;사무실에서 사용하는 중인데 집에서도 사용하려고 하나더 구매했습니다!! 다들 꼭꼭 밟아 주세요!&quot;</li>
+      <li>&quot;요즘에 너무 부어서 구매했는데 사무실에서 바닥에 두면 더러워 져서 사진처럼 신발 위에 올려서 사용하는에 정말 시원합니다,,, 진짜 다들 구매해주세여!!!&quot;</li>
+      <li>&quot;밟고 있으면 시원하고 좋아요 소파에 두고 티비보면서 밟아줍니다 ㅎ&quot;</li>
+      <li>&quot;TV 보면서 발바닥 마사지하면 어느새 몸이 가뿐해져요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>선물 관련 표현</h4>
+    <ul>
+      <li>&quot;너무 좋아서 선물로 재구매했습니다 만족해요&quot;</li>
+      <li>&quot;매일사용중이에요 너무 시원하고 좋아서 선물용으로 재구매&quot;</li>
+      <li>&quot;주변 사람들에게도 선물하고 싶네요&quot;</li>
+      <li>&quot;기존에 스틱응 선물받아서 볼 추가구매함.&quot;</li>
+      <li>&quot;사실 많이 걷는 엄마한테 선물할까말까&quot;</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+</div><!-- /product-section -->
+
+<!-- ═══ EMS 손목마사지기 ═══ -->
+<div class="product-section" id="prod-4">
+  <div class="product-header">
+    <div class="product-badge">제품 04</div>
+    <h2>EMS 손목마사지기</h2>
+    <div class="product-meta">
+      <span>리뷰 <strong>390건</strong></span>
+      <span>평균 평점 <strong>4.82점</strong></span>
+      <span>5점 비율 <strong>86.7%</strong></span>
+      <span>포토리뷰 <strong>64.9%</strong></span>
+      <span style="color:#ffd700;">긍정(4~5점) <strong>96.2%</strong></span>
+    </div>
+  </div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>구매 계기 패턴</span>
+    <span class="rv-tag">리뷰 분석 01</span>
+  </div>
+  <div class="rv-section-desc">고평점(4~5점) 리뷰에서 추출한 구매 이유. "어떤 상황이 나를 사게 했는가"</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>① 지인·추천 후 구매</h4>
+    <ul>
+      <li>&quot;지인에게 선물해 주었어요.&quot;</li>
+      <li>&quot;아가 낳은 친구 선물로 사줬어용! 사용하기도 편하고 마사지 잘 되는 느낌이라구 좋다구 하네용!&quot;</li>
+      <li>&quot;너무 고생했는데 이거 먄날 하니 너무 살것 같아요 대추천합니다 쿠팡에서 비슷한거 샀다가 별로라서 반품하고 여기거로 다시 샀어요ㅠ 시간 낭비 하지마세욤&quot;</li>
+      <li>&quot;손목 피로 자주 느끼시는 분들께 추천하고 싶은 제품이에요.&quot;</li>
+      <li>→ 긍정 리뷰 중 5.9%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>② 만성 통증·직업병</h4>
+    <ul>
+      <li>&quot;용하는데 아주 만족합니다^^ 마사지기 사용시작하고 손목통증이 줄었어요!&quot;</li>
+      <li>&quot;주고 받던 에너지테라피 급으로 시원해요,,,, 손목 아파서 너무 고생했는데 이거 먄날 하니 너무 살것 같아요 대추천합니다 쿠팡에서 비슷한거 샀다가 별로라서 반품하고 여기거로 다시 샀어요ㅠ 시간 낭비 하지마세욤&quot;</li>
+      <li>&quot;특히 손목 많이 쓰는 직장인이나 육아 중인 분들께 잘 맞을 것 같습니다.&quot;</li>
+      <li>&quot;육아로 손목이 너무 아팠는데 쓰고 난후에 통증이 덜 해요!&quot;</li>
+      <li>→ 긍정 리뷰 중 15.2%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>③ 운동 후 회복</h4>
+    <ul>
+      <li>&quot;충전식이라 건전지를 계속 교체할 필요가 없는 점도 편리합니다.&quot;</li>
+      <li>&quot;역시 운동용품은 바리바디 좋네요!&quot;</li>
+      <li>&quot;사지기는 회사에서 키보드와 마우스를 장시간 사용하고, 운동까지 병행하다 보니 손목이 자주 저리고 뻐근해져서 사용하게 된 제품이에요. 손목에 부담이 쌓여도 따로 관리할 시간이 없었는데, 집에서 간편하게 케어할 수 있어 만족도가 높았습니다.&quot;</li>
+      <li>&quot;운동 후나 컴퓨터 작업 많이 한 날마다 꾸준히 쓰니까 뻣뻣함과 통증이 확실히 줄어드는 느낌이라 데일리 케어용으로 만족스럽습니다.&quot;</li>
+      <li>→ 긍정 리뷰 중 1.6%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>④ 선물 목적</h4>
+    <ul>
+      <li>&quot;아버지께서 손목에 부상을 입으셔서 마사지용으로 구매했어요&quot;</li>
+      <li>&quot;선물용으로 구매했어요&quot;</li>
+      <li>&quot;선물용으로 구매했습니다.&quot;</li>
+      <li>&quot;지인에게 선물해 주었어요.&quot;</li>
+      <li>→ 긍정 리뷰 중 13.3%에서 언급</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      손목이 뻐근해서 구매했는데 
+전보다 욱신거리는거 덜하고 좋아요 
+엄마 손 마사지 용으로도 같이 쓰고 있어요~
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      오자마자 바로 사용중이에요
+온열기능도 있고 저릿했던 손목에 자극가니 시원하고 좋아요~
+산후에 사용하기 딱이에요
+다만 자석으로 고정되는거라 사용중에 손을 움직이면 떨어질수 있어서 아이 재우고 편하게 해야겠어요 ㅎ
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      요즘 손목이 남아나질 않아 고민하다가
+물리치료사가 자문해서 설계했다는 
+손목 마사지기를 구매해 봤어요.
+
+일단 무선이라 사용하면서 움직일 수 있는 게 
+정말 큰 장점이더라고요~
+
+​이 제품은 단순진동이 아닌 4세대 3중 케어 방식
+이라 그런지 근육 깊숙한 곳까지 시원하게 풀어주는 
+느낌이 확실히 다르더라고요. 
+여기에 뜨끈한 온열 기능까지 켜고 있으면 
+뻣뻣했던 손목이 노곤하게 풀리면서 통증이 
+훨씬 가라앉아요. 
+
+디자인도 세련되고 착용감이 가벼워서 일하면서도 부담 없이 쓸 수 있어 대만족입니다~
+​
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      하루 종일 손을 많이 쓰는 분들께 특히 만족도가 높은 제품이에요. 키보드&amp;middot;마우스 사용이 잦거나 스마트폰을 오래 들고 있다 보면 손목이 뻐근해지는데, 이 마사지기를 사용하면 지압과 공기압이 번갈아 작동하면서 손목 전체를 감싸주듯 풀어줘요. 착용 방식도 간편해서 집에서 TV 보면서나 자기 전 휴식 시간에 사용하기 좋았고, 강도 조절이 가능해 처음엔 약하게, 익숙해지면 조금 더 시원하게 쓸 수 있는 점이 마음에 들었어요. 온열 기능까지 더해져서 차가운 손목을 따뜻하게 해주니 혈액순환에도 도움이 되는 느낌이에요. 디자인도 깔끔해서 부담 없이 두고 쓰기 좋고, 소음이 크지 않아 밤에도 사용하기 괜찮았어요. 손목 피로 관리용으로 꾸준히 사용하기 좋은 마사지기라 만족스럽습니다.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>사용 부위 &amp; 상황</span>
+    <span class="rv-tag blue">리뷰 분석 02</span>
+  </div>
+  <div class="rv-section-desc">고객들이 실제로 어디에, 어떤 상황에서 사용하는지</div>
+  <div style="margin-bottom:24px;">
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:100%"></div></div>
+    <span class="rv-bar-count">1위 (158건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">손목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:95%"></div></div>
+    <span class="rv-bar-count">2위 (150건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">등</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:2%"></div></div>
+    <span class="rv-bar-count">3위 (3건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">발바닥</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:1%"></div></div>
+    <span class="rv-bar-count">4위 (2건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:1%"></div></div>
+    <span class="rv-bar-count">5위 (1건)</span>
+  </div>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>주요 사용 타이밍</h4>
+    <ul>
+      <li>&quot;사무실에 오래 있어서 그런지 손목이 좀 아팠는데 마사지 기계 쓰고 나서 많이 좋아진거 같아요~&quot;</li>
+      <li>&quot;소음도 크지 않아 TV 보면서 사용하기에도 부담 없었고요.  한 달 사용해보니 꾸준히 쓰게 되는 제품이고, 손목 피로 관리용으로 실용성이 높아서 만족도가 높습니다.&quot;</li>
+      <li>&quot;퇴근하고 누워서 하면 극락이에여...!&quot;</li>
+      <li>&quot;요즘은 저녁마다 TV 보면서 마사지하는 게 일상이 됐네요 ㅎㅎ  며칠 꾸준히 사용해 보니 느끼던 통증이 확실히 줄어든 느낌히 확실히 들어요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>사용 장소</h4>
+    <ul>
+      <li>&quot;저도화상이라하나 물집이 생겼다 하시네요&quot;</li>
+      <li>&quot;디자인도 생각보다 깔끔하고 무겁지 않아서 거실이나 침대 옆에 두고 수시로 사용하기 편했어요.&quot;</li>
+      <li>&quot;손목 아플 때 이거하면 확실히 나아집니다&quot;</li>
+      <li>&quot;사무실에 오래 있어서 그런지 손목이 좀 아팠는데 마사지 기계 쓰고 나서 많이 좋아진거 같아요~&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      일 특성 상 일을 하면서 도구를 손에 쥔 상태로 힘을 주고 있는 경우가 많은데 일을 10년 넘게하다보니 손목이 시큰시큰하고 가끔가다가는 저리기도 하더라고요 게다가 요즘은 스마트폰도 많이 하니 더욱 심해졌나 생각이 들기도 합니다. 매번 병원가기도 쉽지 않아 파스와 찜질팩으로만 여차저차 버티고 있었는데 집에서도 물리치료와 비슷한 효과를 낼 수 있을 것 같아 구매!! 착용도 간편하고 휴대도 간편해 집과 직장에도 가지고 다니기 쉽더라고요!!
+실제로 충분한 자극이 느껴지고 찜질도 되니 손목이 시원하고 꾸준히 하면 충분한 효과가 있을것 같더라고요~
+사무업무 중에도 걸리적거림없이 사용할 수 있어 너무 만족합니다!!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      손목이 자주 뻐근하고 컴퓨터 작업이나 스마트폰 사용 후에 피로가 쌓여서 사용해봤는데요 너무 만족스러웠어요. TENS와 EMS 자극이 단계별로 조절돼서 취향에 맞게 사용할 수 있고
+ 근육이 부드럽게 풀리는 느낌이 들어요. 온열 기능이 더해져서 따뜻하게 마사지받는 기분이라 특히 저녁에 쓰기 좋더라고요. 무선이라 이동하면서도 쓸 수 있고 착용도 간편해서 일상 속에서 자주 손이 가는 제품이에요
+너무 만족스러운 제품이라 지인들에게 선물용으로도 너무 좋을 것같아요 
+이번 설 선물로 시댁에 하나 친정에 하나씩 드리려고요 
+다들 너무 좋아하실 것 같아요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>만족 포인트 — 반복 키워드</span>
+    <span class="rv-tag green">리뷰 분석 03</span>
+  </div>
+  <div class="rv-section-desc">긍정 리뷰에서 반복 등장하는 핵심 단어 및 표현 패턴</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag size-lg">만족</span>
+    <span class="rv-keyword-tag size-lg">편하</span>
+    <span class="rv-keyword-tag size-lg">시원</span>
+    <span class="rv-keyword-tag size-md">선물</span>
+    <span class="rv-keyword-tag size-md">통증</span>
+    <span class="rv-keyword-tag size-md">추천</span>
+    <span class="rv-keyword-tag size-md">가벼</span>
+    <span class="rv-keyword-tag size-md">최고</span>
+    <span class="rv-keyword-tag">재구매</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card green">
+    <h4>신체 효능 표현</h4>
+    <ul>
+      <li>&quot;손목 마사지기네요 온열기가 있어서 그런가 더 손목이 시원한 기분이 듭니다&quot;</li>
+      <li>&quot;손목이 시큰거려 사용하기 시작했습니다 사용하고 나서 시원하고 좋아요!&quot;</li>
+      <li>&quot;진짜 시원하고 좋습니다 !!&quot;</li>
+      <li>&quot;마사지샵에서 비싼 돈 주고 받던 에너지테라피 급으로 시원해요,,,, 손목 아파서 너무 고생했는데 이거 먄날 하니 너무 살것 같아요 대추천합니다 쿠팡에서 비슷한거 샀다가 별로라서 반품하고 여기거로 다시 샀어요ㅠ 시간 낭비 하지마세욤&quot;</li>
+      <li>&quot;EMS 기능이 있어서 단순 진동만 있는 제품보다 훨씬 시원하게 풀리는 느낌이 들었고, 온열 기능도 같이 들어가 있어서 찜질하는 것처럼 따뜻하게 관리되는 점이 좋았어요.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>사용 편의 표현</h4>
+    <ul>
+      <li>&quot;사용하게 편하다고 했습니다.&quot;</li>
+      <li>&quot;간편하게 케어받는거라 좋네요&quot;</li>
+      <li>&quot;부모님이 쓰기 편하고, 좋습니다~&quot;</li>
+      <li>&quot;사용하기 편하고 배송도 빨라요&quot;</li>
+      <li>&quot;사용이 간편하게 좋네요ㅎㅎㅎ&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      최근에 아기를 돌보느라 와이프 손목 상태가 안 좋아 보여서 선물했어요. TENS랑 EMS 기능이 같이 있어서 시원하다고 정말 좋아하네요. 디자인도 깔끔하고 사용법도 간편해서 매일매일 잘 쓰고 있습니다. 육아 필수템으로 강추합니다!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      선물용으로 알아보다가 2개 주문했는데 선물받으신 분들이 매우 만족하셨습니다! 모드도 여러가지라 좋은것 같습니다
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      염좌로 인해 아픈 손목을 우해 구입.
+손에 살이 없어 기기가 손목 옆구리에 부착되어 아쉬운감이 없지 않으나
+온열이랑 마사지기능 다되어 좋애요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      직업상 문제도 있지만 피겨 스케이트 타다 손목 짚은 이후로 손목이 시큰거려 열심히 알아보고 주문합니다
+양손에 동시에 하려고 셋트..💚
+뭐 묻히고 마사지 하는거 별로 안좋아해서 맨살에 그냥 했는데 전 1단계도 잘 느껴지네요
+온열 기능만 써도 너무 좋아요ㅠㅠ치료 되는 느낌
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>불만 &amp; 아쉬운 점</span>
+    <span class="rv-tag">리뷰 분석 04</span>
+  </div>
+  <div class="rv-section-desc">저평점(1~3점) 리뷰 + 고평점 리뷰 내 불만 표현 종합. 광고 소재에서 선제적으로 대응해야 할 항목들</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag neg size-lg">불편</span>
+    <span class="rv-keyword-tag neg size-lg">가격</span>
+    <span class="rv-keyword-tag neg size-lg">기대</span>
+    <span class="rv-keyword-tag neg size-md">아쉽</span>
+    <span class="rv-keyword-tag neg size-md">별로</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card negative">
+    <h4>가격 저항 (가장 빈번)</h4>
+    <ul>
+      <li>&quot;별점 1개는 가격에 비해서 효과는 미미해서..&quot;</li>
+      <li>&quot;가격대가 조금 고민됐는데 직접 써보니 왜 만족도가 높은지 알겠더라고요.&quot;</li>
+      <li>&quot;좋아요 가격대비 좋은거 같아요 너무너무좋아요&quot;</li>
+      <li>&quot;가격 저렴하고 배송 빨라요~^^&quot;</li>
+      <li>→ 가격 가치를 정당화하는 소재 필요</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card gray">
+    <h4>기대치 vs 실제 괴리</h4>
+    <ul>
+      <li>&quot;광고와 책자까지 보면서 착용해보았는데&quot;</li>
+      <li>&quot;밀착이 더 좋았으면 너무 완벽한 제품이었을텐데 아쉽네요!&quot;</li>
+      <li>&quot;물론 효과도 기대됩니다&quot;</li>
+      <li>&quot;너무 잘쓰고 있고 손목한정이라는게 좀 아쉽긴히네요&quot;</li>
+      <li>→ 상세페이지 사전 안내 강화 필요</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote negative">
+      자석이 뼈에 닿아서 아파요. 사이즈가 여자가 쓰기에 큰 것 같아요.
+      <div class="rv-quote-meta">1점 리뷰</div>
+    </div>
+    <div class="rv-quote negative">
+      선물용으로 구매했어요. 효과보고 꾸준히 사용하길 바라면서 전해줬어요.
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>실제 고객 언어 — 광고 카피에 쓸 수 있는 표현들</span>
+    <span class="rv-tag blue">리뷰 분석 05</span>
+  </div>
+  <div class="rv-section-desc">고객이 자연스럽게 쓴 말투와 표현. 이걸 그대로 소재에 활용하면 공감도 높아짐</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card blue">
+    <h4>효과 표현</h4>
+    <ul>
+      <li>&quot;손목 마사지기네요 온열기가 있어서 그런가 더 손목이 시원한 기분이 듭니다&quot;</li>
+      <li>&quot;손목이 시큰거려 사용하기 시작했습니다 사용하고 나서 시원하고 좋아요!&quot;</li>
+      <li>&quot;진짜 시원하고 좋습니다 !!&quot;</li>
+      <li>&quot;마사지샵에서 비싼 돈 주고 받던 에너지테라피 급으로 시원해요,,,, 손목 아파서 너무 고생했는데 이거 먄날 하니 너무 살것 같아요 대추천합니다 쿠팡에서 비슷한거 샀다가 별로라서 반품하고 여기거로 다시 샀어요ㅠ 시간 낭비 하지마세욤&quot;</li>
+      <li>&quot;EMS 기능이 있어서 단순 진동만 있는 제품보다 훨씬 시원하게 풀리는 느낌이 들었고, 온열 기능도 같이 들어가 있어서 찜질하는 것처럼 따뜻하게 관리되는 점이 좋았어요.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>대체·비교 표현</h4>
+    <ul>
+      <li>대체·비교 표현 관련 표현이 적습니다.</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>일상 연결 표현</h4>
+    <ul>
+      <li>&quot;디자인도 생각보다 깔끔하고 무겁지 않아서 거실이나 침대 옆에 두고 수시로 사용하기 편했어요.&quot;</li>
+      <li>&quot;사무실에 오래 있어서 그런지 손목이 좀 아팠는데 마사지 기계 쓰고 나서 많이 좋아진거 같아요~&quot;</li>
+      <li>&quot;소음도 크지 않아 TV 보면서 사용하기에도 부담 없었고요.  한 달 사용해보니 꾸준히 쓰게 되는 제품이고, 손목 피로 관리용으로 실용성이 높아서 만족도가 높습니다.&quot;</li>
+      <li>&quot;요즘은 저녁마다 TV 보면서 마사지하는 게 일상이 됐네요 ㅎㅎ  며칠 꾸준히 사용해 보니 느끼던 통증이 확실히 줄어든 느낌히 확실히 들어요!&quot;</li>
+      <li>&quot;휴대가 편하다 보니 책상 앞과 침대 옆, 자동차 안에서도 틈날 때마다 켜서 쓰게 되었습니다.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>선물 관련 표현</h4>
+    <ul>
+      <li>&quot;아버지께서 손목에 부상을 입으셔서 마사지용으로 구매했어요&quot;</li>
+      <li>&quot;선물용으로 구매했어요&quot;</li>
+      <li>&quot;선물용으로 구매했습니다.&quot;</li>
+      <li>&quot;지인에게 선물해 주었어요.&quot;</li>
+      <li>&quot;선물 했어요~ 사실 이게 큰 도움이 되는지 잘 모르겠어서 사용 후 어떤지 실 후기가 저도 궁금합니다!&quot;</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+</div><!-- /product-section -->
+
+<!-- ═══ EMS 허리마사지기 ═══ -->
+<div class="product-section" id="prod-5">
+  <div class="product-header">
+    <div class="product-badge">제품 05</div>
+    <h2>EMS 허리마사지기</h2>
+    <div class="product-meta">
+      <span>리뷰 <strong>41건</strong></span>
+      <span>평균 평점 <strong>4.93점</strong></span>
+      <span>5점 비율 <strong>92.7%</strong></span>
+      <span>포토리뷰 <strong>82.9%</strong></span>
+      <span style="color:#ffd700;">긍정(4~5점) <strong>100.0%</strong></span>
+    </div>
+  </div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>구매 계기 패턴</span>
+    <span class="rv-tag">리뷰 분석 01</span>
+  </div>
+  <div class="rv-section-desc">고평점(4~5점) 리뷰에서 추출한 구매 이유. "어떤 상황이 나를 사게 했는가"</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>① 지인·추천 후 구매</h4>
+    <ul>
+      <li>&quot;까 고민 중일 정도로 허리 건강 챙기시는 분들께 강력 추천드리는 꿀템이에요&quot;</li>
+      <li>&quot;남자친구가 오토바이 일을 해서 허리가 많이 아픈데 집에오면 죽을라하드라구여ㅠ&quot;</li>
+      <li>&quot;계신다면, 꾸준히 사용해보기 좋은 홈케어 아이템으로 추천!!&quot;</li>
+      <li>&quot;고 집에서 간단하게 허리 관리하고 싶은 분들에게 강력 추천합니다! 디자인도 슬림해서 부담 없이 쓰기 좋아요!&quot;</li>
+      <li>→ 긍정 리뷰 중 9.8%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>② 만성 통증·직업병</h4>
+    <ul>
+      <li>&quot;테니스랑 러닝을 자주 하다 보니까 허리가 은근히 많이 뻐근하더라구요.  특히 테니스 치고 나면 서브나 회전 동작 때문에 허리 아래쪽이 계속 뭉치는 느낌이 있어서 집에서 관리용으로 한번 써봤습니다.&quot;</li>
+      <li>&quot;이번엔 허리아파서 집에서도 관리하려고 허리마사지기도 구매했어요&quot;</li>
+      <li>&quot;퇴행성 허리디스크가 있는 신랑이 사용하고 있는데, 물리치료 받는것처럼 좋다고 하더라고요.&quot;</li>
+      <li>&quot;요즘 허리가 자꾸 뻐근해서 큰맘 먹고 장만했는데 진짜 신세계네요!&quot;</li>
+      <li>→ 긍정 리뷰 중 41.5%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>③ 운동 후 회복</h4>
+    <ul>
+      <li>&quot;운동 끝나고 풀어줄 때 괜찮더라구요.  온열 기능도 있어서 러닝이나 헬스하고 나서 허리 뻐근할 때 따뜻하게 찜질되는 느낌이 꽤 좋았습니다.&quot;</li>
+      <li>&quot;허리가 자주 아픈데 간단한 운동만으로&quot;</li>
+      <li>&quot;요즘 운동하다 허리 삐끗해서 한번씩 아프기도하고 물리치료 받으로 매일 다니기도 힘들어서 구매해요.  남편도 배가 나오면서 자꾸 허리 아프다해서 샀는데 둘이서 번갈아가며 너무 잘 쓰고 있습니다.&quot;</li>
+      <li>&quot;운동후 회복용으로도 좋고 집에서 간단하게 허리 관리하고 싶은 분들에게 강력 추천합니다! 디자인도 슬림해서 부담 없이 쓰기 좋아요!&quot;</li>
+      <li>→ 긍정 리뷰 중 12.2%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>④ 선물 목적</h4>
+    <ul>
+      <li>&quot;친정엄마  선물로 사드려는데 엄청 좋아하세요 감사합니다&quot;</li>
+      <li>&quot;직일 수 있어서 활용도가 정말 좋네요 부모님께도 하나 선물해 드리고 싶을 정도로 만족스러워요!&quot;</li>
+      <li>&quot;부모님 선물용으로도 너무 좋을 것 같아 하나 더 구매할까 고민 중일 정도로 허리 건강 챙기시는 분들께 강력 추천드리는 꿀템이에요&quot;</li>
+      <li>&quot;남편도 배가 나오면서 자꾸 허리 아프다해서 샀는데 둘이서 번갈아가며 너무 잘 쓰고 있습니다.&quot;</li>
+      <li>→ 긍정 리뷰 중 24.4%에서 언급</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      사용감이 정말 편안한 허리마사지기예요. 강약 조절이 다양해서 피로한 날에도 맞춤으로 마사지할 수 있고, 모드도 다양합니다
+집에서 간편하게 사용할 수 있고 온열모드도 있어서 허리 통증 완화에 도움도 되고 디자인도 컴팩트해 보관도 쉬워요.
+꾸준히 쓰니 허리가 한결 가벼워진 느낌이라 만족스럽습니다!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      바리바디 허리 마사지기 EMS 온열 저주파 복대 마사지기 사용해봤는데 생각보다 만족도가 높아요. 허리에 착 감기는 복대형이라 착용감이 안정적이고, EMS 자극도 단계 조절이 가능해서 그날 컨디션에 맞게 사용할 수 있어 좋아요. 온열 기능이 함께 들어가 있어서 마사지하면서 따뜻하게 풀어주는 느낌이 특히 마음에 들었어요.
+
+장시간 앉아 있다 보면 허리가 뻐근했는데, 사용하고 나면 근육이 한결 부드러워진 느낌이에요. 집에서 간편하게 관리할 수 있어서 꾸준히 사용해보려고 해요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      EMS 저주파랑 온열 기능이 같이 있어서 그런지 허리 뻐근할 때 쓰기 정말 딱인 것 같아 샀어요
+복대 형태라 착용 하기도 편하고 사이즈 조절도 자유로워서 배나 허리에 밀착이 짱짱하게 잘 되더라구요 받자마자 따뜻하게 온열 켜고 마사지 받았더니 근육이 사르르 풀리면서 안 당겨서 신기했어요!! 저주파 강도도 조절 가능 하니까 내 몸에 맞게 쓸 수 있고 꾸준히 쓰면 허리 건강에 도움될 것 같아 벌써부터 기대가 돼요 가벼워서 집안일 할 때도 아주 만족스러워요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      복대처럼 허리에 두르기만하면 되니까 사용법이 간단해서 좋아요.
+여러 모드의 마사지 기능이 있어서 마사지 내내 흥미롭게 사용했어요.
+또 근육이 자극되는 느낌이 들어서 마치 물리치료실에서 관리 받는 느낌이 들어 만족스러워요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>사용 부위 &amp; 상황</span>
+    <span class="rv-tag blue">리뷰 분석 02</span>
+  </div>
+  <div class="rv-section-desc">고객들이 실제로 어디에, 어떤 상황에서 사용하는지</div>
+  <div style="margin-bottom:24px;">
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:100%"></div></div>
+    <span class="rv-bar-count">1위 (30건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">등</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:3%"></div></div>
+    <span class="rv-bar-count">2위 (1건)</span>
+  </div>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>주요 사용 타이밍</h4>
+    <ul>
+      <li>&quot;테니스 치고 집 와서 샤워하고 20분 정도 차고 있는데 다음날 허리 뻐근한 느낌이 덜한 편입니다.&quot;</li>
+      <li>&quot;안에 차고 있어도 티가 별로 안 나고 집안일 하거나 TV 볼 때 자유롭게 움직일 수 있어서 활용도가 정말 좋네요 부모님께도 하나 선물해 드리고 싶을 정도로 만족스러워요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>사용 장소</h4>
+    <ul>
+      <li>&quot;집에서 관리용으로 한번 써봤습니다.&quot;</li>
+      <li>&quot;복대형이라 밀착도 잘되고 슬림하고 가벼워서 집안일 하면서 착용하기에도 부담 없네요.&quot;</li>
+      <li>&quot;이번엔 허리아파서 집에서도 관리하려고 허리마사지기도 구매했어요&quot;</li>
+      <li>&quot;병원까지 가서 물리치료 등을 받기보다는 집에서 편하게 관리받고 싶어서 바리바디 EMS 온열 허리마사지기를 구입하게 되었는데요!&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      저는 하루 종일 앉아있는데 허리가 뻐근할때 진짜 구세주예요. 처음에는 효과 있을까 싶었는데 착용하고 EMS 모드 켜자마자 허리 근육이 톡톡 자극되는 느낌이 확~와요. 온열 기능까지 더해지니까 뭉친 근육이 풀리는 게 몸으로 바로 느껴져서 저녁에 피로 풀기 딱! 좋습니다. 착용감도 꽤 편안해서 오래 해도 부담 없고 조절 버튼으로 강약 조절 가능해서 자기 몸 상태에 맞게 사용할 수 있어요. 운동후 회복용으로도 좋고 집에서 간단하게 허리 관리하고 싶은 분들에게 강력 추천합니다!
+디자인도 슬림해서 부담 없이 쓰기 좋아요!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      안쪽까지 찌릿하면서 온열 기능까지 있어서 뭉친부분이 시원해지더라구요.
+복대형이라 밀착도 잘되고 슬림하고 가벼워서 집안일 하면서 착용하기에도 부담 없네요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>만족 포인트 — 반복 키워드</span>
+    <span class="rv-tag green">리뷰 분석 03</span>
+  </div>
+  <div class="rv-section-desc">긍정 리뷰에서 반복 등장하는 핵심 단어 및 표현 패턴</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag size-lg">편하</span>
+    <span class="rv-keyword-tag size-lg">만족</span>
+    <span class="rv-keyword-tag size-lg">시원</span>
+    <span class="rv-keyword-tag size-md">가벼</span>
+    <span class="rv-keyword-tag size-md">선물</span>
+    <span class="rv-keyword-tag size-md">추천</span>
+    <span class="rv-keyword-tag size-md">통증</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card green">
+    <h4>신체 효능 표현</h4>
+    <ul>
+      <li>&quot;쓰기 편하고 시원하네요&quot;</li>
+      <li>&quot;운동 끝나고 풀어줄 때 괜찮더라구요.  온열 기능도 있어서 러닝이나 헬스하고 나서 허리 뻐근할 때 따뜻하게 찜질되는 느낌이 꽤 좋았습니다.&quot;</li>
+      <li>&quot;안쪽까지 찌릿하면서 온열 기능까지 있어서 뭉친부분이 시원해지더라구요.&quot;</li>
+      <li>&quot;근육을 풀어주면서 온열 기능까지 더해지니 좋네요.&quot;</li>
+      <li>&quot;따뜻해지면서 근육이 풀리는거 같아요&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>사용 편의 표현</h4>
+    <ul>
+      <li>&quot;쓰기 편하고 시원하네요&quot;</li>
+      <li>&quot;폼롤러로 허리 풀기는 사실 좀 애매한데 이건 그냥 차고 있으면 되니까 편한 게 장점이네요.  운동 많이 하는 분들 특히 테니스, 골프, 러닝 하는 분들은 허리 관리용으로 하나쯤 괜찮은 느낌입니다.&quot;</li>
+      <li>&quot;복대 형식으로 되어있어서 착용도 쉽고 매우 간편하더라구요&quot;</li>
+      <li>&quot;착용도 간편하고 벨트처럼 감아주면 안정적으로&quot;</li>
+      <li>&quot;서 구매한 허리마사지기에요 원터치로 조작가능하니 쉽게 혼자서도 허리마사지 할수있어서 너무 힘들고 피곤한날 한번씩 톡톡 마사지하기 좋아요 하고나면 확실히 온열감과 마사지덕에 개운해서 좋네요&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      허리가 자주 아픈데 간단한 운동만으로
+해결이 안되서 허리마사지기 구매했어요
+착용도 간편하고 벨트처럼 감아주면 안정적으로
+밀착돼서 사용감이 편하네요
+EMS 자극이 은근하게 들어와서 마사지 받는 
+느낌이 들고 온열 기능도 있어서 허리가 
+따뜻해지면서 근육이 풀리는거 같아요
+강도 조절이 가능해서 컨디션에 맞게 
+허리 관리할 수 있어서 맘에 들어요~
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      10년간 직장생활 하면서 의자에 오래 앉아있다보니 허리가 맛이 갔어요
+바른자세가 너무 힘들어서 이거 착용하고 있으려고 주문했습니다
+온열감도 느껴지고 마사지기능이 다양해서 너무 시원합니다
+밥먹고 항상 소화도 안됐는데 이걸로 마사지하니까 소화도 잘 됐어요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      사용감이 정말 편안한 허리마사지기예요. 강약 조절이 다양해서 피로한 날에도 맞춤으로 마사지할 수 있고, 모드도 다양합니다
+집에서 간편하게 사용할 수 있고 온열모드도 있어서 허리 통증 완화에 도움도 되고 디자인도 컴팩트해 보관도 쉬워요.
+꾸준히 쓰니 허리가 한결 가벼워진 느낌이라 만족스럽습니다!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      엄마가 항상 허리때문에 물리치료 받으러 간다는 말을 듣고 구입해드렸어요!!
+제가 일단 사용해보니까 허리 쪽 근육이 뭉쳤을 때 효과적으로 풀어주는 느낌이 들더라구요!?
+저주파가 적당한 강도로 자극을 주어 근육 이완에 도움이 되었고
+저온 온열 기능 덕분에 따뜻함이 더해져 더욱 편안하게 마사지 받을 수 있는게 물리치료가 필요없는 효과였어요!!
+복대 형태라 착용감도 편안하고, 움직임에 크게 방해되지 않아 일상 생활 중에도 부담 없이 사용할 수 있는게
+저희 엄마처럼 허리때문에 불편하신분들이 구매하면 좋을것같네요 ~~
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>불만 &amp; 아쉬운 점</span>
+    <span class="rv-tag">리뷰 분석 04</span>
+  </div>
+  <div class="rv-section-desc">저평점(1~3점) 리뷰 + 고평점 리뷰 내 불만 표현 종합. 광고 소재에서 선제적으로 대응해야 할 항목들</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag neg size-lg">불편</span>
+    <span class="rv-keyword-tag neg size-lg">기대</span>
+    <span class="rv-keyword-tag neg size-lg">별로</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card negative">
+    <h4>가격 저항 (가장 빈번)</h4>
+    <ul>
+      <li>가격 저항 관련 불만 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card gray">
+    <h4>기대치 vs 실제 괴리</h4>
+    <ul>
+      <li>&quot;큰 기대를 하지 않았으나, 온열과 ems가 좋네요&quot;</li>
+      <li>&quot;서 6가지 마사지 모드를 선택할 수 있고, 강도도 단계별로 설정할 수 있어 편해요.&quot;</li>
+      <li>&quot;가시는 것 같아요 얇아서 옷 안에 차고 있어도 티가 별로 안 나고 집안일 하거나 TV 볼 때 자유롭게 움직일 수 있어서 활용도가 정말 좋네요 부모님께도 하나 선물해 드리고 싶을 정도로 만족스러워요!&quot;</li>
+      <li>&quot;고 꾸준히 쓰면 허리 건강에 도움될 것 같아 벌써부터 기대가 돼요 가벼워서 집안일 할 때도 아주 만족스러워요&quot;</li>
+      <li>→ 상세페이지 사전 안내 강화 필요</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>실제 고객 언어 — 광고 카피에 쓸 수 있는 표현들</span>
+    <span class="rv-tag blue">리뷰 분석 05</span>
+  </div>
+  <div class="rv-section-desc">고객이 자연스럽게 쓴 말투와 표현. 이걸 그대로 소재에 활용하면 공감도 높아짐</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card blue">
+    <h4>효과 표현</h4>
+    <ul>
+      <li>&quot;쓰기 편하고 시원하네요&quot;</li>
+      <li>&quot;안쪽까지 찌릿하면서 온열 기능까지 있어서 뭉친부분이 시원해지더라구요.&quot;</li>
+      <li>&quot;라 허리에 착 감기는 느낌이 좋고 무엇보다 속근육까지 시원하게 풀어주는 기분이에요&quot;</li>
+      <li>&quot;기능이 동시에 작동하니까 뭉친 근육이 깊숙한 곳까지 시원하게 풀리는 느낌이 들더라고요&quot;</li>
+      <li>&quot;온열감도 느껴지고 마사지기능이 다양해서 너무 시원합니다&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>대체·비교 표현</h4>
+    <ul>
+      <li>&quot;폼롤러로 허리 풀기는 사실 좀 애매한데 이건 그냥 차고 있으면 되니까 편한 게 장점이네요.  운동 많이 하는 분들 특히 테니스, 골프, 러닝 하는 분들은 허리 관리용으로 하나쯤 괜찮은 느낌입니다.&quot;</li>
+      <li>&quot;주무름모드는 손으로 직접 마사지 받는 것처럼 깊게 밀어줘서 특히 좋았습니다.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>일상 연결 표현</h4>
+    <ul>
+      <li>&quot;안에 차고 있어도 티가 별로 안 나고 집안일 하거나 TV 볼 때 자유롭게 움직일 수 있어서 활용도가 정말 좋네요 부모님께도 하나 선물해 드리고 싶을 정도로 만족스러워요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>선물 관련 표현</h4>
+    <ul>
+      <li>&quot;친정엄마  선물로 사드려는데 엄청 좋아하세요 감사합니다&quot;</li>
+      <li>&quot;직일 수 있어서 활용도가 정말 좋네요 부모님께도 하나 선물해 드리고 싶을 정도로 만족스러워요!&quot;</li>
+      <li>&quot;부모님 선물용으로도 너무 좋을 것 같아 하나 더 구매할까 고민 중일 정도로 허리 건강 챙기시는 분들께 강력 추천드리는 꿀템이에요&quot;</li>
+      <li>&quot;남편도 배가 나오면서 자꾸 허리 아프다해서 샀는데 둘이서 번갈아가며 너무 잘 쓰고 있습니다.&quot;</li>
+      <li>&quot;방식이라 착용이 정말 편하고, 연장 밴드 덕분에 우리남편 배둘레 걱정도 없음! 그리고 온열 기능과 EMS 자극 덕분에 이때껏 써본 제품 중 역대급으로 맘에 드네요 참고로 충전기는 5V 1A 짜리로 충전해야 정상작동되요!&quot;</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+</div><!-- /product-section -->
+
+<!-- ═══ 올인원마사지기 ═══ -->
+<div class="product-section" id="prod-6">
+  <div class="product-header">
+    <div class="product-badge">제품 06</div>
+    <h2>올인원마사지기</h2>
+    <div class="product-meta">
+      <span>리뷰 <strong>240건</strong></span>
+      <span>평균 평점 <strong>4.78점</strong></span>
+      <span>5점 비율 <strong>85.0%</strong></span>
+      <span>포토리뷰 <strong>62.9%</strong></span>
+      <span style="color:#ffd700;">긍정(4~5점) <strong>94.2%</strong></span>
+    </div>
+  </div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>구매 계기 패턴</span>
+    <span class="rv-tag">리뷰 분석 01</span>
+  </div>
+  <div class="rv-section-desc">고평점(4~5점) 리뷰에서 추출한 구매 이유. "어떤 상황이 나를 사게 했는가"</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>① 지인·추천 후 구매</h4>
+    <ul>
+      <li>&quot;친구한테 선물했는데 좋아하네요!&quot;</li>
+      <li>&quot;지인이 검색해서 주문요청해서 구매했습니다.&quot;</li>
+      <li>&quot;친구꺼 한번 썼다가 너무 시원해서 구입했어오&quot;</li>
+      <li>&quot;친구가사용해보라고  춪전해줘서   샀어요  좋네요&quot;</li>
+      <li>→ 긍정 리뷰 중 5.3%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>② 만성 통증·직업병</h4>
+    <ul>
+      <li>&quot;일자목이라 두통 뒷목 아파서 주문했어요.&quot;</li>
+      <li>&quot;목이 가끔 통증이 있어 구매했는데 사용해보니 시원해요&quot;</li>
+      <li>&quot;목통증에 꾸준히사용해볼려구요!&quot;</li>
+      <li>&quot;거북목 일자목보다 더 심각한 역C자 목과 버섯목, 목디스크 급의 고통을 다 같이 가지고 있어요😢 도수치료랑 한의원 전전하다 돈이 너무 깨져서 병원은 포기하고 그냥 집에서 스트레칭 자주 해주고 있습니다.&quot;</li>
+      <li>→ 긍정 리뷰 중 7.5%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>③ 운동 후 회복</h4>
+    <ul>
+      <li>&quot;완전 신세계네요 발아치도 있어 고생인데 앉아서도 발 운동이 돼니 넘나 좋음!!!&quot;</li>
+      <li>&quot;운동 후 목 풀기 조아요&quot;</li>
+      <li>&quot;요가로 온 몸을 이완한것처럼 편안해져요&quot;</li>
+      <li>&quot;기대를 하지 않았는데 그동안 운동기구 중 아주 드물게 부족함이 없는 물건이네요!&quot;</li>
+      <li>→ 긍정 리뷰 중 1.8%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>④ 선물 목적</h4>
+    <ul>
+      <li>&quot;선물했는데 너무 시원하고 좋다고 극찬했어요 ㅎㅎ&quot;</li>
+      <li>&quot;남편이 여기저기 아파해서 사줬더니 엄청 잘 쓰네요!&quot;</li>
+      <li>&quot;친구한테 선물했는데 좋아하네요!&quot;</li>
+      <li>&quot;선물로 줬는데 마음이 들어하네요&quot;</li>
+      <li>→ 긍정 리뷰 중 3.5%에서 언급</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      가격이 좀 과한 느낌이네요. 적당히 단단한 느낌이라 지압하기 편하긴 합니다.
+      <div class="rv-quote-meta">4점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      누워서 경추마사지 하려고 구입했어요. 마사지할 수 있는 모양이 3가지라 경추뿐만 아니라 다양하게 활용할 수 있어 좋은거 같아요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      무게감있어서 누어서 사용하기엔좋은데 들고사용하는 괄사로는 개인적으로 불편한것같아요 하지만 이리저리 풀어주는게 너무 좋아서 후회없어요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      이 제품이 물건인 이유는
+
+침습적치료, 손마사지가 범접할 수 없는 부위까지 자극해주기 때문이다.
+
+내측 근육을 사용자 스스로 조절해서 압을 가할 수 있기에 30년 넘게 풀지 못했던 근육을 처음으로 풀어보았다.
+
+결론: 감사합니다.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>사용 부위 &amp; 상황</span>
+    <span class="rv-tag blue">리뷰 분석 02</span>
+  </div>
+  <div class="rv-section-desc">고객들이 실제로 어디에, 어떤 상황에서 사용하는지</div>
+  <div style="margin-bottom:24px;">
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:100%"></div></div>
+    <span class="rv-bar-count">1위 (63건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">어깨</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:25%"></div></div>
+    <span class="rv-bar-count">2위 (16건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">등</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:17%"></div></div>
+    <span class="rv-bar-count">3위 (11건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:14%"></div></div>
+    <span class="rv-bar-count">4위 (9건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">발바닥</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:5%"></div></div>
+    <span class="rv-bar-count">5위 (3건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">종아리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:3%"></div></div>
+    <span class="rv-bar-count">6위 (2건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">승모</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:2%"></div></div>
+    <span class="rv-bar-count">7위 (1건)</span>
+  </div>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>주요 사용 타이밍</h4>
+    <ul>
+      <li>&quot;사무실에 놓으려고 재구매했어요.&quot;</li>
+      <li>&quot;맨날 사무실에 앉아있어서 허리가 너무 뻐근해서 샀어요 일끝나고 밤에 허리 마사지 해주니까 뻐근했던게 좀 해소 됐어요ㅠㅠㅠ 좋아요&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>사용 장소</h4>
+    <ul>
+      <li>&quot;사무실에 놓으려고 재구매했어요.&quot;</li>
+      <li>&quot;집에 다양한 소도구들 많아서 이용하다가 삿는데 에르고바디에서 산것중에 가장 만족스러워요&quot;</li>
+      <li>&quot;여행갈 때 가져가게 가벼운 버젼도 나오면 좋겠어요&quot;</li>
+      <li>&quot;딱딱하고 무게가 제법있어요 침대에서 하기는 좀 불편하고 바닥에서 해야 제대로 지압되네요&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      머리에서 목으로 내려오는 부분과 목에서 어깨로 이어지는 부분이 항상 불편했었는데 목마사지기를 쓰고 뭉친곳이 많이 풀렸어요. 누워서 아픈곳에 힘만 살짝줘도 아프면서 시원한 그 느낌이 너무 좋았습니다! 꾸준히 해서 뭉친곳을 더 풀어줘야겠어요!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      세가지 타입으로 마사지 하기에  용이합니다. 
+국소부위 마사지가  시원하고 B타입으로 척추 마사지 하니  너무 개운했어요. 제품보증카드도 함께  보내주셔서 믿음이갔답니다. 잘  사용할게요!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>만족 포인트 — 반복 키워드</span>
+    <span class="rv-tag green">리뷰 분석 03</span>
+  </div>
+  <div class="rv-section-desc">긍정 리뷰에서 반복 등장하는 핵심 단어 및 표현 패턴</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag size-lg">시원</span>
+    <span class="rv-keyword-tag size-lg">편하</span>
+    <span class="rv-keyword-tag size-lg">만족</span>
+    <span class="rv-keyword-tag size-md">추천</span>
+    <span class="rv-keyword-tag size-md">선물</span>
+    <span class="rv-keyword-tag size-md">통증</span>
+    <span class="rv-keyword-tag size-md">최고</span>
+    <span class="rv-keyword-tag size-md">재구매</span>
+    <span class="rv-keyword-tag">가벼</span>
+    <span class="rv-keyword-tag">뭉침</span>
+    <span class="rv-keyword-tag">대박</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card green">
+    <h4>신체 효능 표현</h4>
+    <ul>
+      <li>&quot;선물했는데 너무 시원하고 좋다고 극찬했어요 ㅎㅎ&quot;</li>
+      <li>&quot;누워만 있어도 시원 합니다.&quot;</li>
+      <li>&quot;발바닥을 돌기 위에 올라가면 정말 시원해요.&quot;</li>
+      <li>&quot;목 뒤에가 시원해요.&quot;</li>
+      <li>&quot;사용하고 나니 완전 시원하네요&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>사용 편의 표현</h4>
+    <ul>
+      <li>&quot;딱딱하고 무게가 제법있어요 침대에서 하기는 좀 불편하고 바닥에서 해야 제대로 지압되네요&quot;</li>
+      <li>&quot;쓰기가 좀 불편하네요,,&quot;</li>
+      <li>&quot;혈점을 꾹꾹 눌러주는 느낌이고 목이 좀 편하더라구요.&quot;</li>
+      <li>&quot;사용이 편하고 만족합니다~  수고하세요~&quot;</li>
+      <li>&quot;어깨가편하게  잘풀리네요&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      배송은 좀 느렸지만 제품은 좋아요. 혈점을 꾹꾹 눌러주는 느낌이고 목이 좀 편하더라구요. 셀프로 자기 몸을 잘 아니까 여기저기 활용도가 엄청 높아요. 만족입니다
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      무게감이 있어서 안정적으로 사용하기 편리 하네요!  여러방향으로  다양하게 사용 하고 있어요!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      무게감이 있어 고정이 쉽고 여러 면을 바꿔가며 사용할 수 있음. 사무실에 놓으려고 재구매했어요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      고무라서 안시원 할줄 알았는데 대박이네용&amp;hellip;
+딱 아픈 부위만 시원하게 마사지 할수 있어서 넘 좋아요!!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>불만 &amp; 아쉬운 점</span>
+    <span class="rv-tag">리뷰 분석 04</span>
+  </div>
+  <div class="rv-section-desc">저평점(1~3점) 리뷰 + 고평점 리뷰 내 불만 표현 종합. 광고 소재에서 선제적으로 대응해야 할 항목들</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag neg size-lg">불편</span>
+    <span class="rv-keyword-tag neg size-lg">가격</span>
+    <span class="rv-keyword-tag neg size-lg">비싸</span>
+    <span class="rv-keyword-tag neg size-md">기대</span>
+    <span class="rv-keyword-tag neg size-md">아쉽</span>
+    <span class="rv-keyword-tag neg size-md">별로</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card negative">
+    <h4>가격 저항 (가장 빈번)</h4>
+    <ul>
+      <li>&quot;전시 상품 시연해보고 너무 시원~ 가격은 높음... 결국 할인해서 구입했는데 사용 만족도 높아요~&quot;</li>
+      <li>&quot;가격이 좀 아쉽지만 사용후 기분이 좋아집니다&quot;</li>
+      <li>&quot;가격이좀비싸긴했지만 평소 뒷목통증 편두통 달고사는사람으로써 그 고통을 생각하면 투자하기 아깝지 않은 돈이라고 생각했어여&quot;</li>
+      <li>&quot;가격값을 하는거 같네요&quot;</li>
+      <li>→ 가격 가치를 정당화하는 소재 필요</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card gray">
+    <h4>기대치 vs 실제 괴리</h4>
+    <ul>
+      <li>&quot;가격이 좀 아쉽지만 사용후 기분이 좋아집니다&quot;</li>
+      <li>&quot;부위별로 여러 방향을 이용할 수 있다는게 참 좋은것 같아요!&quot;</li>
+      <li>&quot;기대를 하지 않았는데 그동안 운동기구 중 아주 드물게 부족함이 없는 물건이네요!&quot;</li>
+      <li>→ 상세페이지 사전 안내 강화 필요</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote negative">
+      등부위는 찾아서 눌러주면 시원하지만 목 부분은 그다지 잘 모르겠어요
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+    <div class="rv-quote negative">
+      배송빠르고 포장상태좋습니다
+제가 생각했던 누워서 편한상태로하는 마사지기는 아니었습니다
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>실제 고객 언어 — 광고 카피에 쓸 수 있는 표현들</span>
+    <span class="rv-tag blue">리뷰 분석 05</span>
+  </div>
+  <div class="rv-section-desc">고객이 자연스럽게 쓴 말투와 표현. 이걸 그대로 소재에 활용하면 공감도 높아짐</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card blue">
+    <h4>효과 표현</h4>
+    <ul>
+      <li>&quot;선물했는데 너무 시원하고 좋다고 극찬했어요 ㅎㅎ&quot;</li>
+      <li>&quot;누워만 있어도 시원 합니다.&quot;</li>
+      <li>&quot;발바닥을 돌기 위에 올라가면 정말 시원해요.&quot;</li>
+      <li>&quot;목 뒤에가 시원해요.&quot;</li>
+      <li>&quot;사용하고 나니 완전 시원하네요&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>대체·비교 표현</h4>
+    <ul>
+      <li>&quot;진짜 시원하고 손으로 누르기 힘든 부분도 딱 맞게 눌러줘서 매일 사용하고 있어요!&quot;</li>
+      <li>&quot;지압효과 좋고 만듦새도 깔끔하긴한데 무게가 꽤 있어서 손으로 들고 괄사방식으로 쓰라는 설명은 좀 오버같긴 합니다;; 한손으로 들고 마사지하기엔 들고 있는 손에 더 무리가 갈 것 같은 느낌; 그래도 회사에서 의자 목받침 뒤에 놓고 눌러봤는데 뒷목이 시원해서 만족해요~&quot;</li>
+      <li>&quot;이것과 함께 릴레스틱 쓰는데 손으로 푸는 것보다 더 시원해요!&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>일상 연결 표현</h4>
+    <ul>
+      <li>&quot;사무실에 놓으려고 재구매했어요.&quot;</li>
+      <li>&quot;딱딱하고 무게가 제법있어요 침대에서 하기는 좀 불편하고 바닥에서 해야 제대로 지압되네요&quot;</li>
+      <li>&quot;맨날 사무실에 앉아있어서 허리가 너무 뻐근해서 샀어요 일끝나고 밤에 허리 마사지 해주니까 뻐근했던게 좀 해소 됐어요ㅠㅠㅠ 좋아요&quot;</li>
+      <li>&quot;소파에서 쓰기도 좋고 아프게 딱딱한게 아니라 시원하고, 딴딴 아니고 묵직하게 무게감도 있고 단단해요!&quot;</li>
+      <li>&quot;침대 위 매트리스위에서도 밀리지 않고 잘 고정되어 있어서 압 전달이 정확합니다.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>선물 관련 표현</h4>
+    <ul>
+      <li>&quot;선물했는데 너무 시원하고 좋다고 극찬했어요 ㅎㅎ&quot;</li>
+      <li>&quot;남편이 여기저기 아파해서 사줬더니 엄청 잘 쓰네요!&quot;</li>
+      <li>&quot;친구한테 선물했는데 좋아하네요!&quot;</li>
+      <li>&quot;선물로 줬는데 마음이 들어하네요&quot;</li>
+      <li>&quot;지난번 구매후 선물로 구매햇어요&quot;</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+</div><!-- /product-section -->
+
+<!-- ═══ EMS 슬림벨트 ═══ -->
+<div class="product-section" id="prod-7">
+  <div class="product-header">
+    <div class="product-badge">제품 07</div>
+    <h2>EMS 슬림벨트</h2>
+    <div class="product-meta">
+      <span>리뷰 <strong>522건</strong></span>
+      <span>평균 평점 <strong>4.71점</strong></span>
+      <span>5점 비율 <strong>79.7%</strong></span>
+      <span>포토리뷰 <strong>47.7%</strong></span>
+      <span style="color:#ffd700;">긍정(4~5점) <strong>93.9%</strong></span>
+    </div>
+  </div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>구매 계기 패턴</span>
+    <span class="rv-tag">리뷰 분석 01</span>
+  </div>
+  <div class="rv-section-desc">고평점(4~5점) 리뷰에서 추출한 구매 이유. "어떤 상황이 나를 사게 했는가"</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>① 지인·추천 후 구매</h4>
+    <ul>
+      <li>&quot;긋입니다! 다른 사람에게도 추천했어요~&quot;</li>
+      <li>&quot;친구선물로 구매했는데 만족한대요!&quot;</li>
+      <li>&quot;친구 선물해줬는데 좋대요&quot;</li>
+      <li>&quot;친구가 사용하고 너무좋아서&quot;</li>
+      <li>→ 긍정 리뷰 중 5.7%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>② 만성 통증·직업병</h4>
+    <ul>
+      <li>&quot;허리 통증때문에 구매했는데 뱃살에도 좋은것 같아요&quot;</li>
+      <li>&quot;배에 근육통 대박 잘생겨요 허리에 돌려서 하니까 허리통증에도 효과 좋네요 짱&quot;</li>
+      <li>&quot;뱃살 뿐만 아니라 허리통증에도 좋은것 같아요&quot;</li>
+      <li>&quot;이거 쓰고 어깨 통증 허리 통증 다 잡았어요 완전 우리집 최애네요&quot;</li>
+      <li>→ 긍정 리뷰 중 3.3%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>③ 운동 후 회복</h4>
+    <ul>
+      <li>&quot;벨트를 차고만 있어도 운동효과가 있다고해서 컴퓨터 할때 주로 이용합니다.&quot;</li>
+      <li>&quot;너무 잘쓰고있어요 이걸차고  운동하면 근육 관리하고 코어 잘잡혀서 잘 이용하고있어요&quot;</li>
+      <li>&quot;운동하고 샤워후에 한번씩 사용해요&quot;</li>
+      <li>&quot;완존 대만족 집에서편하게 복근운동해요.&quot;</li>
+      <li>→ 긍정 리뷰 중 13.9%에서 언급</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>④ 선물 목적</h4>
+    <ul>
+      <li>&quot;너무 잘사용해서 선물용으로 재주뭄했어요 하리 찍찍이가 딱 제대로 붙지 않아서 자꾸 플리는감이&quot;</li>
+      <li>&quot;출산한 아내줄려고산건데 잘쓸게요&quot;</li>
+      <li>&quot;친구선물로 구매했는데 만족한대요!&quot;</li>
+      <li>&quot;어머님 선물로 보내드렸어요.&quot;</li>
+      <li>→ 긍정 리뷰 중 5.9%에서 언급</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      운동하면서 꾸준히 사용해보니까 라인 만들어주는것 같아서 매일 사용해보고 있어요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      오늘 받았어요!!
+방금 뜯어서 충전시키고 있는데
+한달 뒤 후기 적으러 올게요.
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      러닝하면서 허릿살 빨리 빼려고 샀는데 일주일 동안 진짜 엉윗살 ~ 빠졌어요... 뛰기도 해ㅛ지만 정말 안 빠지던 부위였는데 너무 신기합니다
+온열 기능 있어서 허리와 배 따뜻하게 하면 순환에도 너무 좋을 꺼 같아요..
+
+휴대가 편해서 운전할때도 수시로 ㅋ
+마사지 했답니다 ~ 
+가방속에 쏙들어가고 가볍습니다 ~ 대만족
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      넘 좋아서 엄마께 선물을 했습니다.
+ 엄마도 허리가 안 좋아서~ 수술을 하셨었는데  몇일 안 써봐서 얼마나 좋은지 여쭤보진 못 했지만 좋다고 하시네요~~^^
+      <div class="rv-quote-meta">4점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>사용 부위 &amp; 상황</span>
+    <span class="rv-tag blue">리뷰 분석 02</span>
+  </div>
+  <div class="rv-section-desc">고객들이 실제로 어디에, 어떤 상황에서 사용하는지</div>
+  <div style="margin-bottom:24px;">
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">뱃살</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:100%"></div></div>
+    <span class="rv-bar-count">1위 (65건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill" style="width:78%"></div></div>
+    <span class="rv-bar-count">2위 (51건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">허벅지</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:8%"></div></div>
+    <span class="rv-bar-count">3위 (5건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">등</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:6%"></div></div>
+    <span class="rv-bar-count">4위 (4건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">팔뚝</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill blue" style="width:6%"></div></div>
+    <span class="rv-bar-count">5위 (4건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">종아리</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:3%"></div></div>
+    <span class="rv-bar-count">6위 (2건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">어깨</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill green" style="width:3%"></div></div>
+    <span class="rv-bar-count">7위 (2건)</span>
+  </div>
+  <div class="rv-bar-row">
+    <span class="rv-bar-label">목</span>
+    <div class="rv-bar-wrap"><div class="rv-bar-fill orange" style="width:2%"></div></div>
+    <span class="rv-bar-count">8위 (1건)</span>
+  </div>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card">
+    <h4>주요 사용 타이밍</h4>
+    <ul>
+      <li>&quot;운동하고 샤워후에 한번씩 사용해요&quot;</li>
+      <li>&quot;특히 운동할 시간이 없거나, TV 보거나 설거지하면서도 사용 가능한 점이 정말 너무 좋아요!  무엇보다 눈에 띄는 변화는 복부 탄력이에요.&quot;</li>
+      <li>&quot;강도 조절도 가능해서 하루에 25분 정도 틀어놓고 TV 보면서 집안일 하면서 사용중입니당!  지속적으로 사용하면 복부 근육이 단단해지는 느낌과 지방이 연소되는 느낌이 엤어요!&quot;</li>
+      <li>&quot;익숙해지고 오히려 시원하게 느껴져요 저는 주로 집에서 TV 보거나 책 읽을 때 착용하는데 따로 운동 시간 안 내도 되니까 너무 편해요 바쁜 직장인이나 운동 싫어하는 사람한테 딱인 것 같아요 뱃살이랑 옆구리살 때문에 고민이 많았는데 이거 쓰고 나서는 뭔가 코어에 힘이 들&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card blue">
+    <h4>사용 장소</h4>
+    <ul>
+      <li>&quot;한데 서서 벨트하고 침대에 누우면 알림 소리가 나면서 꺼지는데 왜그런지 ^^;;&quot;</li>
+      <li>&quot;완존 대만족 집에서편하게 복근운동해요.&quot;</li>
+      <li>&quot;이거 쓰고 어깨 통증 허리 통증 다 잡았어요 완전 우리집 최애네요&quot;</li>
+      <li>&quot;집사람이 사달라해서 구매했습니다&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      3일째 아침 저녁 하고 있는데 배가 따뜻하고 하고 나면 배가 가벼운 느낌이 나네요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      온열 기능이 있어 복부 마사지로도 좋아요
+단점은 가끔 전기가 느껴지는 찌릿한 느낌이 느껴져 불쾌감이 느껴지네요
+안전한지 잘 모르겠으나 전기 찌릿할땐 사용 중지하고 있어요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>만족 포인트 — 반복 키워드</span>
+    <span class="rv-tag green">리뷰 분석 03</span>
+  </div>
+  <div class="rv-section-desc">긍정 리뷰에서 반복 등장하는 핵심 단어 및 표현 패턴</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag size-lg">만족</span>
+    <span class="rv-keyword-tag size-lg">편하</span>
+    <span class="rv-keyword-tag size-lg">추천</span>
+    <span class="rv-keyword-tag size-md">선물</span>
+    <span class="rv-keyword-tag size-md">시원</span>
+    <span class="rv-keyword-tag size-md">최고</span>
+    <span class="rv-keyword-tag size-md">통증</span>
+    <span class="rv-keyword-tag size-md">가벼</span>
+    <span class="rv-keyword-tag">대박</span>
+    <span class="rv-keyword-tag">재구매</span>
+    <span class="rv-keyword-tag">붓기</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card green">
+    <h4>신체 효능 표현</h4>
+    <ul>
+      <li>&quot;너무너무 시원하고 따듯합니다&quot;</li>
+      <li>&quot;살보다 허리마사지용으로 사용중인데 하고나믄 뭉친허리가 시원해져요&quot;</li>
+      <li>&quot;하고 나면 개운하고 피로도 풀려여.&quot;</li>
+      <li>&quot;배가 가벼워 져요~~&quot;</li>
+      <li>&quot;너무좋아서 밤마다 하고 잠들어요 허리가 시원해요&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>사용 편의 표현</h4>
+    <ul>
+      <li>&quot;쓰기  편하고 좋아요.&quot;</li>
+      <li>&quot;생각보다 사용하기 편하고 착용감 좋아요.&quot;</li>
+      <li>&quot;작동방법이 쉽고 기능이 단순해서  편하게 사용하고 있어요&quot;</li>
+      <li>&quot;슬림해서 일상복에도 편하게 착용할수있어서 만족~~^^&quot;</li>
+      <li>&quot;완존 대만족 집에서편하게 복근운동해요.&quot;</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote">
+      뱃살을 빼고 싶어 삿지만 나이가 들고 살이 찌다보니 걸을때 허리가 아픈데 이걸 차고 걸으니 허리가 좀 펴지면서 덜 아픈거 같아요~^^ 좋아서 무리해서 찻더니 피부가 좀 두드러기가 낫지만(제가 전자파 알레르기가 쪼금 있어서 ㅋ) 이거 나으면 다시 착용하며 사용하려구요.
+좋아서 넘 과하게 쓰다보니 저에겐 역효과가 낫지만 좋네요~~감사합니다.
+      <div class="rv-quote-meta">4점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      중국사이트에 반값으로 판매하는 광고가 많은데 싸게 사려다 정보털릴수있어서 안전하게 구매했어요 일단 정상적으로 작동잘되고 자극쎄고요 배 양쪽옆구리 순으로 했는데 옆구리는 대박이네요 고장만 안났으면 좋겠네요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      운동을 자주 하지 못하는 직장인이라 고민이 많았는데, 바리바디 EMS 슬림벨트 v2를 사용한 이후로 정말 만족하고 있어요. 착용감이 부드럽고 허리에 잘 밀착되어 활동 중에도 벨트가 밀리지 않아서 편합니다. 특히 집에서 간편하게 복부 관리를 할 수 있어서 시간 절약에도 큰 도움이 돼요. EMS 강도 조절이 가능해서 초보자도 부담 없이 사용할 수 있고, 복근 자극도 확실히 느껴집니다. 사용한 지 일주일 정도 되었는데, 복부 근육이 조금 단단해진 느낌이 들어서 꾸준히 사용하면 효과를 기대할 수 있을 것 같아요. 디자인도 세련되고 색상도 고급스러워서 기분 좋게 사용할 수 있습니다. 가격 대비 성능이 매우 만족스럽고, 바쁜 일상 속에서 건강 관리하기에 좋은 제품이라 추천드립니다!
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+    <div class="rv-quote">
+      자극이 짱짱~ 상품받고 온가족이 아침 저녁으로 사용하고 있어요~
+처음에 4단계도 깜짝 노랄정도로 자극있어요~
+사용하기 쉽게 되어있고 구성품도 간단합니다
+물을 묻혀사용하라고 되어있더라구요
+저는 바디로션으로 해보았는데 작동 잘되더라구요 지금은 남편도착용하여 맛사지 받는중이예요. 생각보다 자극있어서 오~~오~ 놀래는 감탄사 계속 나오네요
+잘사용할께요
+      <div class="rv-quote-meta">5점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>불만 &amp; 아쉬운 점</span>
+    <span class="rv-tag">리뷰 분석 04</span>
+  </div>
+  <div class="rv-section-desc">저평점(1~3점) 리뷰 + 고평점 리뷰 내 불만 표현 종합. 광고 소재에서 선제적으로 대응해야 할 항목들</div>
+  <div class="rv-keyword-cloud">
+    <span class="rv-keyword-tag neg size-lg">기대</span>
+    <span class="rv-keyword-tag neg size-lg">가격</span>
+    <span class="rv-keyword-tag neg size-lg">불편</span>
+    <span class="rv-keyword-tag neg size-md">별로</span>
+    <span class="rv-keyword-tag neg size-md">비싸</span>
+    <span class="rv-keyword-tag neg size-md">환불</span>
+  </div>
+  <div class="rv-divider"></div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card negative">
+    <h4>가격 저항 (가장 빈번)</h4>
+    <ul>
+      <li>&quot;상담도 저나는 에이에스처리안함 십만원대가 무상1년 머 그정도믄 되지 하고 삿는데 먼 개떡같은소리 해대는데 채팅에서 이게 먼소린가 싶음&quot;</li>
+      <li>&quot;근데  가격이 저렴해서 그런가 뭔가&quot;</li>
+      <li>&quot;기대에비해돈만더비싸게주고산듯..과대광고..반품귀찮아서그냥써요.&quot;</li>
+      <li>&quot;품은 젤이나 다른제품도 같이 구매해야하는데 필요없어서 가격대비 성능이나 가성비가 우수하네요&quot;</li>
+      <li>→ 가격 가치를 정당화하는 소재 필요</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card gray">
+    <h4>기대치 vs 실제 괴리</h4>
+    <ul>
+      <li>&quot;광고내용보다 성능이 별로예요&quot;</li>
+      <li>&quot;유상이래놓고 동일사유 에이에스 안받아준다고 과대 거짓 광고 신고할꺼임&quot;</li>
+      <li>&quot;운동 효과 기대하면서 구매&quot;</li>
+      <li>&quot;다가 기억나서 다시 착용합니다 조금이라도 효과가 있긴 기대하며...&quot;</li>
+      <li>→ 상세페이지 사전 안내 강화 필요</li>
+    </ul>
+  </div>
+  </div>
+  <div class="rv-quote-grid">
+    <div class="rv-quote negative">
+      잘쓰고있는데 고장나서 에이에스한번받았어요 내구성이조금 의심됩니다
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+    <div class="rv-quote negative">
+      작동은 되는거 같은데 팔뚜기든 뱃살이든 슬림해진다는 느낌은 없네요
+      <div class="rv-quote-meta">3점 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="rv-section">
+  <div class="rv-section-title">
+    <span>실제 고객 언어 — 광고 카피에 쓸 수 있는 표현들</span>
+    <span class="rv-tag blue">리뷰 분석 05</span>
+  </div>
+  <div class="rv-section-desc">고객이 자연스럽게 쓴 말투와 표현. 이걸 그대로 소재에 활용하면 공감도 높아짐</div>
+  <div class="rv-pattern-grid">
+  <div class="rv-pattern-card blue">
+    <h4>효과 표현</h4>
+    <ul>
+      <li>&quot;너무너무 시원하고 따듯합니다&quot;</li>
+      <li>&quot;살보다 허리마사지용으로 사용중인데 하고나믄 뭉친허리가 시원해져요&quot;</li>
+      <li>&quot;하고 나면 개운하고 피로도 풀려여.&quot;</li>
+      <li>&quot;배가 가벼워 져요~~&quot;</li>
+      <li>&quot;너무좋아서 밤마다 하고 잠들어요 허리가 시원해요&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card green">
+    <h4>대체·비교 표현</h4>
+    <ul>
+      <li>&quot;그때 받는 치료기보다 더 시원하고...통증이 사라지는 진짜 너무 좋아서 거짓말 같아요~이렇게 편편하게 생겼는데...강도가 진짜 쎄요.&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card orange">
+    <h4>일상 연결 표현</h4>
+    <ul>
+      <li>&quot;한데 서서 벨트하고 침대에 누우면 알림 소리가 나면서 꺼지는데 왜그런지 ^^;;&quot;</li>
+      <li>&quot;ㅎㅎ 소파 옆에 뒀는데&quot;</li>
+      <li>&quot;특히 운동할 시간이 없거나, TV 보거나 설거지하면서도 사용 가능한 점이 정말 너무 좋아요!  무엇보다 눈에 띄는 변화는 복부 탄력이에요.&quot;</li>
+      <li>&quot;강도 조절도 가능해서 하루에 25분 정도 틀어놓고 TV 보면서 집안일 하면서 사용중입니당!  지속적으로 사용하면 복부 근육이 단단해지는 느낌과 지방이 연소되는 느낌이 엤어요!&quot;</li>
+      <li>&quot;익숙해지고 오히려 시원하게 느껴져요 저는 주로 집에서 TV 보거나 책 읽을 때 착용하는데 따로 운동 시간 안 내도 되니까 너무 편해요 바쁜 직장인이나 운동 싫어하는 사람한테 딱인 것 같아요 뱃살이랑 옆구리살 때문에 고민이 많았는데 이거 쓰고 나서는 뭔가 코어에 힘이 들&quot;</li>
+    </ul>
+  </div>
+  <div class="rv-pattern-card">
+    <h4>선물 관련 표현</h4>
+    <ul>
+      <li>&quot;너무 잘사용해서 선물용으로 재주뭄했어요 하리 찍찍이가 딱 제대로 붙지 않아서 자꾸 플리는감이&quot;</li>
+      <li>&quot;출산한 아내줄려고산건데 잘쓸게요&quot;</li>
+      <li>&quot;친구선물로 구매했는데 만족한대요!&quot;</li>
+      <li>&quot;어머님 선물로 보내드렸어요.&quot;</li>
+      <li>&quot;언니 생일 선물로 구입하였습니다 . 허리라인 생겼다고 좋다고 합니다.&quot;</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+</div><!-- /product-section -->
+
+<div class="rv-insight-section">
+  <h2>💡 전체 핵심 인사이트 — 광고 소재 기획 방향</h2>
+  <div class="rv-subtitle">2,265건 리뷰 데이터 기반 / 제품 전반에 걸친 패턴 종합</div>
+
+  <div class="rv-insight-card">
+    <div class="rv-insight-num">01</div>
+    <div class="rv-insight-body">
+      <h4>지인 추천·체험이 가장 강력한 구매 트리거</h4>
+      <p>전 제품군에 걸쳐 "친구 집에서 써봤다", "지인이 알려줘서", "유튜브 보고" 패턴이 반복. 소셜 증명(Social Proof)을 전면에 내세운 광고 소재가 가장 효과적.</p>
+      <div class="rv-copy-example">"친구가 쓰는 거 보고 바로 샀어요 — 이제 제가 또 추천하고 있어요"</div>
+    </div>
+  </div>
+
+  <div class="rv-insight-card">
+    <div class="rv-insight-num">02</div>
+    <div class="rv-insight-body">
+      <h4>만성 통증·직업병 타겟이 핵심 구매층</h4>
+      <p>직장인·사무직·주부의 만성 통증(목·허리·손목·종아리)이 구매 계기 1~2위. "병원 가기 전 집에서 먼저 해결하고 싶다"는 니즈 자극 광고 필요.</p>
+      <div class="rv-copy-example">"하루 8시간 앉아있는 직장인이라면 — 퇴근 후 5분이면 달라져요"</div>
+    </div>
+  </div>
+
+  <div class="rv-insight-card">
+    <div class="rv-insight-num">03</div>
+    <div class="rv-insight-body">
+      <h4>선물 구매 비중 높음 — 시즌 타겟 기회</h4>
+      <p>"부모님 선물로", "생일 선물로", "지인에게 줬더니 너무 좋아해서 재구매" 패턴. 어버이날·추석·크리스마스 시즌 선물 소재로 활용 가치 높음.</p>
+      <div class="rv-copy-example">"드렸더니 매일 쓰신대요 — 어버이날 최고의 선물"</div>
+    </div>
+  </div>
+
+  <div class="rv-insight-card">
+    <div class="rv-insight-num">04</div>
+    <div class="rv-insight-body">
+      <h4>가격 저항 선제 대응 필요 — 환불율 관리</h4>
+      <p>"비싸다"는 언급이 불만 리뷰의 공통 요소. 고품질·효과 증명 소재로 가격 가치를 선제 정당화해야 구매 전환율 상승. 상세페이지에서 기대치 조절 필수.</p>
+      <div class="rv-copy-example">"한 달째 매일 써요 — 이 가격에 이 효과면 오히려 싸지 않나요?"</div>
+    </div>
+  </div>
+</div>
+
+<div class="report-footer">
+  데이터 기간: 2025.05.26~2026.05.25 (1년) / 바리바디 스마트스토어 리뷰 {total_all:,}건 기준<br>
+  본 보고서는 네이버 스마트스토어 리뷰 데이터 기반 정성 분석입니다. 내부 기획 목적 전용.
+</div>
+
+</div><!-- /wrap -->
+<script>
+function showProduct(num) {
+  document.querySelectorAll('.product-section').forEach(function(s){ s.style.display='none'; });
+  document.querySelectorAll('.prod-nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  var el = document.getElementById('prod-'+num);
+  if(el) el.style.display='block';
+  var btn = document.getElementById('nav-'+num);
+  if(btn) btn.classList.add('active');
+}
+window.onload = function(){ showProduct(1); };
+</script>
+</body>
+</html>
