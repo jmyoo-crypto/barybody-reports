@@ -162,6 +162,53 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
   border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 8px 0;
   font-size: 12px; color: #333; font-style: italic; }
 .quote-src { font-size: 10px; color: #aaa; font-style: normal; margin-top: 4px; }
+
+/* ─── PERSONA TOGGLE ────────────────────────────── */
+.persona-toggle-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.persona-btn { padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
+  cursor: pointer; border: 2px solid #e0e0e0; background: #fff; color: #666;
+  transition: all .15s; }
+.persona-btn:hover { border-color: #cf1322; color: #cf1322; }
+.persona-btn.p-active { background: #1a1a2e; border-color: #1a1a2e; color: #fff; }
+.persona-panel { display: none; background: #f8f9ff; border-radius: 12px; padding: 18px 20px;
+  margin-bottom: 4px; border-top: 3px solid #cf1322; }
+.persona-panel.p-active { display: block; }
+.persona-panel-title { font-size: 13px; font-weight: 800; color: #1a1a2e; margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1px solid #e8e8e8; }
+.kw-group { margin-bottom: 10px; }
+.kw-label-sm { font-size: 10px; font-weight: 800; color: #aaa; letter-spacing: 1px; margin-bottom: 6px; }
+.kw-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.kw-tag { background: #f0f4ff; color: #0958d9; border-radius: 20px;
+  padding: 3px 10px; font-size: 11px; font-weight: 600; }
+.kw-tag.pain { background: #fff1f0; color: #cf1322; }
+.kw-tag.trigger { background: #f6ffed; color: #389e0d; }
+.kw-tag.time { background: #fff7e6; color: #d46b08; }
+
+/* ─── IBOSS CITATION ────────────────────────────── */
+.iboss-cite { font-size: 10px; color: #888; font-style: italic;
+  background: #f3f0ff; color: #531dab; border-radius: 4px;
+  padding: 1px 6px; margin-left: 4px; white-space: nowrap; display: inline-block; }
+
+/* ─── PERSONA COPY FILTER ───────────────────────── */
+.psy-card.persona-active .psy-head { border-bottom: 2px solid #531dab; }
+.psy-card.persona-active .psy-num::after { content: ' ✦'; color: #531dab; }
+
+/* ─── COMMUNITY THEME (Tab1) ─────────────────────── */
+.comm-theme { margin-bottom: 22px; }
+.comm-theme-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.comm-num { width: 22px; height: 22px; border-radius: 50%; background: #cf1322;
+  color: #fff; font-size: 10px; font-weight: 800; flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center; }
+.comm-theme-title { font-size: 13px; font-weight: 800; color: #1a1a2e; }
+.comm-theme-target { font-size: 10px; color: #888; font-weight: 600; margin-top: 2px; }
+.copy-ad-item { padding: 8px 0; border-bottom: 1px solid #f5f5f5;
+  display: flex; align-items: flex-start; gap: 6px; font-size: 12px; }
+.copy-ad-item:last-child { border-bottom: none; }
+.copy-ad-n { flex-shrink: 0; width: 18px; height: 18px; border-radius: 4px;
+  background: #f0f0f0; color: #555; font-size: 9px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.copy-ad-text { flex: 1; font-weight: 600; color: #1a1a2e; }
+.copy-ad-cnt { font-size: 10px; color: #aaa; white-space: nowrap; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -171,7 +218,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
   <a href="릴렉스틱볼_타겟분석_20260528.html" class="back-btn">← 타겟 분석 리포트로 돌아가기</a>
   <div class="tag">COPY LIST · META ADS</div>
   <h1>릴렉스틱볼<br>메타 광고 카피 리스트</h1>
-  <p>커뮤니티 보이스 9개 소스 반영 · iboss 프레임워크 적용 · 12개 심리 카테고리</p>
+  <p>커뮤니티 보이스 9개 소스 반영 · iboss 프레임워크 적용 · 13개 심리 카테고리</p>
   <div class="meta">
     <span><strong>채널</strong> 메타 광고</span>
     <span><strong>목적</strong> 신규 유입 + 재구매 유도</span>
@@ -263,25 +310,138 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
       </div>
 
       <div class="card">
-        <h3 style="font-size:14px;font-weight:800;margin-bottom:12px;">커뮤니티 보이스 직접 인용 — 광고 소재 활용 원문</h3>
-        <div class="source-note">📌 status: confirmed · community: true — 9개 소스 수집 완료. 출처 명시 필수.</div>
+        <h3 style="font-size:14px;font-weight:800;margin-bottom:6px;">커뮤니티 보이스 직접 인용 — 5개 대주제 × 광고 소재 카피</h3>
+        <div class="source-note">📌 status: confirmed · community: true — 9개 소스 수집 완료. 원문 인용 시 출처 명시 필수. 헤드라인 27~40자 기준.</div>
 
-        <div style="font-size:11px;font-weight:800;color:#aaa;letter-spacing:1px;margin-bottom:6px;">족저근막염 타겟</div>
-        <div class="quote-box">"아침이면 오른발을 디디지도 못했거든요"<div class="quote-src">82cook, 족저근막염 경험담</div></div>
-        <div class="quote-box">"완전 바로 통증 없애는 법 알아냈다구!!! 바로 즉효임"<div class="quote-src">다음카페, 족저근막염 마사지 스레드</div></div>
-        <div class="quote-box">"한쪽씩 2분 정도만해도 바로 효과 나타나고, 하고 바로 걸어봐 통증이 엄청 줄어듦"<div class="quote-src">다음카페</div></div>
-        <div class="quote-box">"발바닥 근육이 찢어지는 듯한 심한 통증"<div class="quote-src">brunch, 물리치료사 글</div></div>
-        <div class="quote-box">"1년반 동안 전전하다가"<div class="quote-src">82cook, 해결책 못 찾은 기간</div></div>
+        <!-- ① 족저근막염 -->
+        <div class="comm-theme">
+          <div class="comm-theme-head">
+            <div class="comm-num">1</div>
+            <div>
+              <div class="comm-theme-title">족저근막염 — 아침 첫 발의 공포</div>
+              <div class="comm-theme-target">주요 타겟: C형(최동현) · D형(강미선) · F형(한순희)</div>
+            </div>
+          </div>
+          <div class="quote-box">"아침이면 오른발을 디디지도 못했거든요"<div class="quote-src">82cook, 족저근막염 경험담</div></div>
+          <div class="quote-box">"발바닥에 불난것 같이 아팠어요"<div class="quote-src">82cook, 족저근막염 경험담</div></div>
+          <div class="quote-box">"야간 시간에는 찌릿찌릿 찌르는 느낌"<div class="quote-src">brunch, 물리치료사 글</div></div>
+          <div class="quote-box">"1년반 동안 전전하다가"<div class="quote-src">82cook, 해결책 못 찾은 기간</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">아침에 오른발 디딜 때 찌릿한 분들 — 집에서 2분이면 달라집니다</div><div class="copy-ad-cnt">(33자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">"발바닥에 불난 것처럼 아프다"는 그 말, 공감되신다면 보세요</div><div class="copy-ad-cnt">(32자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">밤에 찌릿찌릿 — 자기 전 2분, 내일 아침을 바꿔줍니다</div><div class="copy-ad-cnt">(29자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">족저근막염 1년 반 동안 해결 못 했던 분들이 선택한 도구</div><div class="copy-ad-cnt">(30자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">소염제·물리치료 다 해봤는데 차도 없다면 — 이것 마지막으로 해보세요</div><div class="copy-ad-cnt">(37자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">아침 첫 발이 무서운 당신 — 집에서 2분으로 만성 막아보세요</div><div class="copy-ad-cnt">(32자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">발바닥 불나는 통증 — 2분이면 다음날 달라진다고요?</div><div class="copy-ad-cnt">(28자)</div></div>
+          </div>
+        </div>
 
-        <div style="font-size:11px;font-weight:800;color:#aaa;letter-spacing:1px;margin:14px 0 6px;">어깨 · 승모근 타겟</div>
-        <div class="quote-box">"뒤에서 주물러 줄 누군가가... 아무도 없네요"<div class="quote-src">82cook, 기혼 직장 여성</div></div>
-        <div class="quote-box">"마사지샵 간판만 뚫어져라 쳐다보고 다니던 시절"<div class="quote-src">82cook</div></div>
-        <div class="quote-box">"하루. 길어도 2~3일이면 다시 굳어버리는 경험. 지겹도록 반복하셨을 겁니다"<div class="quote-src">threads, 피지오 계정</div></div>
-        <div class="quote-box">"마사지건 한두번 쓰고 창고행 아닌가요" → "폼롤러 당근 팔았어요"<div class="quote-src">clien · theqoo</div></div>
+        <div class="divider"></div>
 
-        <div style="font-size:11px;font-weight:800;color:#aaa;letter-spacing:1px;margin:14px 0 6px;">비용 / 반복 피로 타겟</div>
-        <div class="quote-box">"보험이 개쩔어서 도수치료 받지만 회당 10~15만원씩"<div class="quote-src">dcinside 프갤</div></div>
-        <div class="quote-box">"헛돈을 쓰지 않게 됩니다"<div class="quote-src">threads, 반복 지출 피로감</div></div>
+        <!-- ② 어깨·승모근 -->
+        <div class="comm-theme">
+          <div class="comm-theme-head">
+            <div class="comm-num">2</div>
+            <div>
+              <div class="comm-theme-title">어깨·승모근 — 혼자서 어찌할 수 없는 뭉침</div>
+              <div class="comm-theme-target">주요 타겟: A형(박지현) · B형(이수진)</div>
+            </div>
+          </div>
+          <div class="quote-box">"뒤에서 주물러 줄 누군가가... 아무도 없네요"<div class="quote-src">82cook, 기혼 직장 여성</div></div>
+          <div class="quote-box">"마사지샵 간판만 뚫어져라 쳐다보고 다니던 시절"<div class="quote-src">82cook</div></div>
+          <div class="quote-box">"자다가 통증으로 울었던 사람", "눈물 빠지게 어깨가 자주 아픈 사람"<div class="quote-src">82cook</div></div>
+          <div class="quote-box">"하루. 길어도 2~3일이면 다시 굳어버리는 경험. 지겹도록 반복하셨을 겁니다"<div class="quote-src">threads, 피지오 계정</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">뒤에서 주물러 줄 사람 없을 때 — 이게 대신합니다</div><div class="copy-ad-cnt">(27자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">마사지샵 간판 쳐다보고 지나쳤던 날들 — 이제 집에서 하세요</div><div class="copy-ad-cnt">(33자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">자다가 통증으로 깼던 그날 밤 — 더 이상 반복 안 해도 됩니다</div><div class="copy-ad-cnt">(33자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">어깨가 돌처럼 굳어서 하루가 무거운 분들 보세요</div><div class="copy-ad-cnt">(27자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">주물러도 2~3일이면 다시 굳는 경험 — 지긋지긋하셨죠?</div><div class="copy-ad-cnt">(30자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">눈물 빠지게 어깨 아픈 분들 — 혼자서도 깊은 곳까지 닿는 방법</div><div class="copy-ad-cnt">(34자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">"벼라별짓 다 해봤는데 안됐던" 분들 — 릴렉스틱볼은 다릅니다</div><div class="copy-ad-cnt">(34자)</div></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ③ 도구 실패 -->
+        <div class="comm-theme">
+          <div class="comm-theme-head">
+            <div class="comm-num">3</div>
+            <div>
+              <div class="comm-theme-title">도구 실패 경험 — 창고행 된 마사지건</div>
+              <div class="comm-theme-target">주요 타겟: B형(이수진) · C형(최동현)</div>
+            </div>
+          </div>
+          <div class="quote-box">"마사지건 한두번 쓰고 창고행 아닌가요"<div class="quote-src">clien, 마사지건 셀프케어 스레드</div></div>
+          <div class="quote-box">"폼롤러 자리 차지해서 당근마켓에 팜"<div class="quote-src">theqoo</div></div>
+          <div class="quote-box">"뭐니머니해도... 사람손이 주무르는것만한게 없다"<div class="quote-src">clien</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">마사지건 창고 보낸 분들 — 릴렉스틱볼은 다릅니다</div><div class="copy-ad-cnt">(27자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">폼롤러 당근 팔고 나서 찾게 된 도구 — 릴렉스틱볼</div><div class="copy-ad-cnt">(28자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">"한두번 쓰고 창고행" — 이번엔 진짜 매일 쓰게 되는 이유</div><div class="copy-ad-cnt">(31자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">마사지건 혼자 등에 못 닿아서 포기한 분들 — 볼은 됩니다</div><div class="copy-ad-cnt">(31자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">돈만 쓰고 효과 못 본 도구들 — 이건 매일 쓰게 됩니다</div><div class="copy-ad-cnt">(29자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">창고에 쌓인 도구들이 있다면 — 이번엔 정말 달라요</div><div class="copy-ad-cnt">(28자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">사람 손만 한 게 없다고요? — 볼 하나면 혼자서도 됩니다</div><div class="copy-ad-cnt">(30자)</div></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ④ 비용·반복 피로 -->
+        <div class="comm-theme">
+          <div class="comm-theme-head">
+            <div class="comm-num">4</div>
+            <div>
+              <div class="comm-theme-title">비용·반복 피로 — 헛돈 쓰는 순환</div>
+              <div class="comm-theme-target">주요 타겟: 전 타겟 (앵커링 카피)</div>
+            </div>
+          </div>
+          <div class="quote-box">"보험이 개쩔어서 도수치료 받지만 회당 10~15만원씩"<div class="quote-src">dcinside 프갤</div></div>
+          <div class="quote-box">"헛돈을 쓰지 않게 됩니다"<div class="quote-src">threads, 반복 지출 피로감</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">도수치료 회당 10~15만원 vs 릴렉스틱볼 — 평생 쓸 수 있습니다</div><div class="copy-ad-cnt">(33자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">헛돈 쓰지 마세요 — 한 번 사면 오래 쓰는 셀프케어 도구</div><div class="copy-ad-cnt">(30자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">마사지 1회 가격으로, 집에서 365일 셀프케어 합니다</div><div class="copy-ad-cnt">(28자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">보험 있어도 도수치료 부담이라면 — 이게 더 실용적입니다</div><div class="copy-ad-cnt">(30자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">병원 한 번 가는 돈으로, 집에서 매일 케어하는 방법이 있습니다</div><div class="copy-ad-cnt">(34자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">효과도 없는 곳에 반복 지출 지겨우셨죠 — 한 번에 끝내세요</div><div class="copy-ad-cnt">(33자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">헛돈 반복하지 마세요 — 이 도구 하나면 충분합니다</div><div class="copy-ad-cnt">(28자)</div></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ⑤ 즉각 효과 -->
+        <div class="comm-theme">
+          <div class="comm-theme-head">
+            <div class="comm-num">5</div>
+            <div>
+              <div class="comm-theme-title">즉각 효과 경험 — "바로 달라지는" 시원함</div>
+              <div class="comm-theme-target">주요 타겟: A형(박지현) · E형(윤서연)</div>
+            </div>
+          </div>
+          <div class="quote-box">"완전 바로 통증 없애는 법 알아냈다구!!! 바로 즉효임"<div class="quote-src">다음카페, 족저근막염 마사지 스레드</div></div>
+          <div class="quote-box">"한쪽씩 2분 정도만해도 바로 효과 나타나고, 하고 바로 걸어봐 통증이 엄청 줄어듦"<div class="quote-src">다음카페</div></div>
+          <div class="quote-box">"볼 끼어놓으면 진짜 극락" — 실제 구매자 리뷰<div class="quote-src">릴렉스틱볼 구매 리뷰 (1,138건 · 4.84점)</div></div>
+          <div class="quote-box">"정말 훨씬 좋아졌어요", "시원해요", "강추"<div class="quote-src">82cook 긍정 반응</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">"볼 끼어놓으면 진짜 극락" — 실제 구매자 리뷰입니다</div><div class="copy-ad-cnt">(28자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">한쪽씩 2분 — 바로 걸어보면 차이가 느껴진다는 그 볼</div><div class="copy-ad-cnt">(29자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">"즉효임"이라고 쓴 실제 후기 — 이유가 있습니다</div><div class="copy-ad-cnt">(26자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">운동 후 발바닥 지압 2분 — 쿨다운이 달라집니다</div><div class="copy-ad-cnt">(26자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">"정말 시원해요" — 세지도 약하지도 않은 딱 맞는 자극</div><div class="copy-ad-cnt">(28자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">쓰자마자 달라지는 느낌 — 이래서 재구매율이 오릅니다</div><div class="copy-ad-cnt">(28자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">소파에서 TV 보면서 그냥 밟으면 됩니다 — 릴렉스틱볼</div><div class="copy-ad-cnt">(29자)</div></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -290,101 +450,275 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
   <!-- ══════════════════════════════════════════════ -->
   <!-- TAB 2: A/B/C 타겟 타입별 카피 -->
   <!-- ══════════════════════════════════════════════ -->
-  <div id="tab-abc" class="tab-section">
+  <div id="tab-abc" class="tab-section" data-tab-type="abc">
 
     <div class="section">
       <div class="section-head">
         <div class="section-num n2">2</div>
         <div>
           <div class="section-title">A/B/C 타겟 타입별 카피</div>
-          <div class="section-sub">출처: iboss_marketing_guide/persona/02_abc_types.md</div>
+          <div class="section-sub">iboss 02_abc_types.md · 02_frameworks.md · 04_psychology.md — 공식 출처 명시</div>
         </div>
       </div>
 
+      <!-- ── 페르소나 토글 ── -->
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나별 분석 키워드 — 버튼 클릭 시 상세 확인</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('pa',this)">A형 박지현 · 43세 (BOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('pb',this)">B형 이수진 · 33세 (MOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('pc',this)">C형 최동현 · 40세 (TOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('pd',this)">D형 강미선 · 48세 (TOFU+)</button>
+          <button class="persona-btn" onclick="togglePersona('pe',this)">E형 윤서연 · 28세 (MOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('pf',this)">F형 한순희 · 53세 (TOFU)</button>
+        </div>
+
+        <div id="panel-pa" class="persona-panel">
+          <div class="persona-panel-title">A형 박지현 · 43세 — BOFU (인지·비교 구매자 ~37%) · 핵심: "세지도 약하지도 않은 딱 맞는 자극"</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염</span><span class="kw-tag">릴렉스틱볼</span><span class="kw-tag">발바닥 통증</span><span class="kw-tag">바리바디릴렉스틱볼</span><span class="kw-tag">마사지볼</span><span class="kw-tag">발바닥지압볼</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">출퇴근 발바닥 통증</span><span class="kw-tag pain">어깨·승모 뭉침</span><span class="kw-tag pain">기존 스틱 한계</span><span class="kw-tag pain">병원 갈 시간 없음</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 트리거</div>
+            <div class="kw-tags"><span class="kw-tag trigger">족저근막염 검색→발견</span><span class="kw-tag trigger">기존 스틱 사용자 추가 구매</span><span class="kw-tag trigger">사회적 증거 (4.84점)</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">평일 오전 10시</span><span class="kw-tag time">야간 22시</span><span class="kw-tag time">모바일 89%</span><span class="kw-tag time">강남·송파·서초</span></div>
+          </div>
+        </div>
+
+        <div id="panel-pb" class="persona-panel">
+          <div class="persona-panel-title">B형 이수진 · 33세 — MOFU (문제 인식·해결책 탐색 ~33%) · 핵심: "작은데 실용적 — 분리해서 두 가지로"</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">마사지볼</span><span class="kw-tag">승모근 뭉침</span><span class="kw-tag">어깨 목 뭉침</span><span class="kw-tag">재택근무 어깨</span><span class="kw-tag">마사지건 대안</span><span class="kw-tag">분리형 마사지볼</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">재택 장시간 착석</span><span class="kw-tag pain">어깨·목 뭉침 만성화</span><span class="kw-tag pain">마사지 비용 부담</span><span class="kw-tag pain">브랜드 인지 없음</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 트리거</div>
+            <div class="kw-tags"><span class="kw-tag trigger">마사지볼 검색 카테고리 유입</span><span class="kw-tag trigger">인스타 릴스 노출</span><span class="kw-tag trigger">리뷰 탐색 후 결정</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 21~23시</span><span class="kw-tag time">퇴근 후 모바일</span><span class="kw-tag time">마포·관악·동작</span></div>
+          </div>
+        </div>
+
+        <div id="panel-pc" class="persona-panel">
+          <div class="persona-panel-title">C형 최동현 · 40세 — TOFU (콜드·추천 유입 ~8%) · 핵심: "견고하고 좋은 구성 — 실용적 셀프케어"</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염</span><span class="kw-tag">손목 통증</span><span class="kw-tag">마사지볼</span><span class="kw-tag">셀프케어 선물</span><span class="kw-tag">가성비 마사지기</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">족저근막염 참고 지내기</span><span class="kw-tag pain">셀프케어 도구 인지 낮음</span><span class="kw-tag pain">복잡한 사용법 기피</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 트리거</div>
+            <div class="kw-tags"><span class="kw-tag trigger">배우자·지인 추천</span><span class="kw-tag trigger">선물 목적 구매</span><span class="kw-tag trigger">"견고하고 좋은 구성" 리뷰</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">평일 오전 10시</span><span class="kw-tag time">야간 22시</span><span class="kw-tag time">경기도 21.5%</span></div>
+          </div>
+        </div>
+
+        <div id="panel-pd" class="persona-panel">
+          <div class="persona-panel-title">D형 강미선 · 48세 — TOFU 확장 (건강 관리형 중장년 ~10.8%) · 핵심: "저녁마다 발바닥 밟아주면 다음날 달라요"</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">혈액순환</span><span class="kw-tag">종아리 붓기</span><span class="kw-tag">저녁 발 붓기</span><span class="kw-tag">발바닥 마사지</span><span class="kw-tag">발바닥지압볼</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">종아리·발바닥 저녁 부기</span><span class="kw-tag pain">마사지숍 시간·비용</span><span class="kw-tag pain">갱년기 이전 체력 저하</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 트리거</div>
+            <div class="kw-tags"><span class="kw-tag trigger">혈액순환·붓기 검색</span><span class="kw-tag trigger">저녁 소파 릴스 노출</span><span class="kw-tag trigger">가족 선물 탐색</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 20~22시</span><span class="kw-tag time">주말 오전</span><span class="kw-tag time">경기·인천·부산</span></div>
+          </div>
+        </div>
+
+        <div id="panel-pe" class="persona-panel">
+          <div class="persona-panel-title">E형 윤서연 · 28세 — MOFU (운동·셀프케어 루틴형 ~6.9%) · 핵심: "운동 후 쿨다운, 이거 없이는 못 살아"</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">마사지볼</span><span class="kw-tag">폼롤러 대안</span><span class="kw-tag">발바닥 지압</span><span class="kw-tag">운동 후 회복</span><span class="kw-tag">헬스 마사지</span><span class="kw-tag">쿨다운</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">폼롤러 스팟 지압 한계</span><span class="kw-tag pain">헬스장 마사지기 위생</span><span class="kw-tag pain">운동 후 종아리 긴장</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 트리거</div>
+            <div class="kw-tags"><span class="kw-tag trigger">인스타·틱톡 발바닥 지압 릴스</span><span class="kw-tag trigger">마사지볼 검색 유입</span><span class="kw-tag trigger">운동 루틴 도구 탐색</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 22~24시</span><span class="kw-tag time">운동 후 모바일</span><span class="kw-tag time">서울·경기 1인 가구</span></div>
+          </div>
+        </div>
+
+        <div id="panel-pf" class="persona-panel">
+          <div class="persona-panel-title">F형 한순희 · 53세 — TOFU (지방 거주 건강 관심형 ~7.3%) · 핵심: "병원 안 가도 돼요 — 매일 밟으니까"</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염 후기</span><span class="kw-tag">발바닥 만성 통증</span><span class="kw-tag">셀프케어</span><span class="kw-tag">건강 선물</span><span class="kw-tag">마사지볼 추천</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">무릎·발바닥 만성 통증</span><span class="kw-tag pain">자주 못 가는 병원</span><span class="kw-tag pain">족저근막염 초기 증상</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 트리거</div>
+            <div class="kw-tags"><span class="kw-tag trigger">네이버 카페·블로그 후기 검색</span><span class="kw-tag trigger">자녀·친구 추천</span><span class="kw-tag trigger">가족 건강 선물 탐색</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">오전 10~12시</span><span class="kw-tag time">대전·대구·충청권</span><span class="kw-tag time">집에서 모바일</span></div>
+          </div>
+        </div>
+      </div><!-- /persona toggle card -->
+
+      <!-- ── 타입별 카피 카드 ── -->
       <div class="type-grid">
 
         <!-- C형 TOFU -->
-        <div class="type-card">
+        <div class="type-card" data-cid="c">
           <div class="type-head">
             <div><span class="type-badge badge-c">C형 — TOFU</span></div>
             <div class="type-title">문제 인식 전 · 시장의 70~80%</div>
-            <div class="type-sub">박지현(43세) · 강미선(48세) · 한순희(53세)</div>
-            <div class="type-formula">공식: [대상 지정] + [극적 베네핏] — 상품명 뒤로 또는 생략</div>
+            <div class="type-sub">최동현(40세) · 강미선(48세) · 한순희(53세)</div>
+            <div class="type-formula">
+              <strong>iboss 소구 공식</strong> (02_abc_types.md):<br>
+              [대상 지정] + [극적 베네핏] — 상품명 뒤로 또는 생략<br>
+              <strong>적용 심리</strong> (04_psychology.md TOFU):<br>
+              주의편향 · 밴드왜건 · 신기효과 · 문제-해결형
+            </div>
           </div>
           <div class="type-body">
-            <div class="psy-label">헤드라인</div>
-            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">아침에 발 디딜 때 찌릿한 분들, 집에서 2분이면 달라집니다</span> <span class="copy-count">(32자)</span></div>
-            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">주물러 줄 사람 없는 분들 — 어깨 뭉침 혼자 해결하는 방법</span> <span class="copy-count">(30자)</span></div>
-            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">재택근무 어깨 뭉침, 혼자서도 풀 수 있는 방법이 있습니다</span> <span class="copy-count">(30자)</span></div>
-            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">발바닥이 찢어지듯 아픈 아침 — 원인과 해결책이 있습니다</span> <span class="copy-count">(30자)</span></div>
-            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">2~3일이면 다시 굳어버리는 경험, 반복 안 해도 됩니다</span> <span class="copy-count">(29자)</span></div>
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">아침에 발 디딜 때 찌릿한 분들, 집에서 2분이면 달라집니다</span><span class="copy-count">(32자)</span><span class="iboss-cite">대상지정+베네핏 / 주의편향</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">주물러 줄 사람 없는 분들 — 어깨 뭉침 혼자 해결하는 방법</span><span class="copy-count">(30자)</span><span class="iboss-cite">대상지정+극적베네핏</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">발바닥이 찢어지듯 아픈 아침 — 원인과 해결책이 있습니다</span><span class="copy-count">(30자)</span><span class="iboss-cite">문제-해결형 (02_frameworks)</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">2~3일이면 다시 굳어버리는 경험, 반복 안 해도 됩니다</span><span class="copy-count">(29자)</span><span class="iboss-cite">문제-해결형 / 커뮤니티 원문</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">족저근막염 있는 분들 사이에서 조용히 난리난 셀프케어 볼</span><span class="copy-count">(31자)</span><span class="iboss-cite">밴드왜건 효과</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">발바닥 통증 참고 계세요? — 2분이면 달라진다고요?</span><span class="copy-count">(28자)</span><span class="iboss-cite">신기효과 / 질문형</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">재택근무하는 분들 — 어깨 뭉침이 만성 되기 전에 보세요</span><span class="copy-count">(30자)</span><span class="iboss-cite">주의편향 + 손실회피</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">저녁마다 발이 붓는 분들 — 소파에서 2분이면 내일 아침이 달라요</span><span class="copy-count">(35자)</span><span class="iboss-cite">대상지정+베네핏 / D형 타겟</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">발바닥 불난 것처럼 아파서 하루가 무서운 분들 보세요</span><span class="copy-count">(28자)</span><span class="iboss-cite">문제-해결형 / 커뮤니티 원문</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">병원 가기 전에 이것 먼저 — 집에서 매일 관리하는 방법</span><span class="copy-count">(29자)</span><span class="iboss-cite">대상지정+베네핏 / F형 타겟</span></div>
 
             <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
             <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">
               발바닥 통증, 참고만 계셨나요? 아침 첫 발이 찌릿하거나 저녁마다 발이 붓는 분들께 2분이면 차이를 느끼는 셀프케어 도구가 있습니다. 리뷰 1,138건 · 4.84점. <span style="color:#aaa;font-size:11px;">(66자)</span>
             </div>
 
-            <div class="psy-label" style="margin-top:12px;">CTA</div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
             <div class="cta-row">
-              <span class="cta-chip">지금 방법 확인하기 <span class="cta-count">(10자)</span></span>
-              <span class="cta-chip">2분 셀프케어 보기 <span class="cta-count">(9자)</span></span>
+              <span class="cta-chip">지금 방법 확인하기<span class="cta-count">(10자)</span></span>
+              <span class="cta-chip">2분 셀프케어 보기<span class="cta-count">(9자)</span></span>
+              <span class="cta-chip">발바닥 케어 시작하기<span class="cta-count">(10자)</span></span>
+              <span class="cta-chip">해결 방법 바로 보기<span class="cta-count">(10자)</span></span>
+              <span class="cta-chip">지금 확인하기<span class="cta-count">(7자)</span></span>
             </div>
           </div>
         </div>
 
         <!-- B형 MOFU -->
-        <div class="type-card">
+        <div class="type-card" data-cid="b">
           <div class="type-head">
             <div><span class="type-badge badge-b">B형 — MOFU</span></div>
             <div class="type-title">망설이는 중 · 시장의 15~20%</div>
             <div class="type-sub">이수진(33세) · 윤서연(28세)</div>
-            <div class="type-formula">공식: [대상 지정] + [베네핏] + [압도적 차이점] + [상품명]</div>
+            <div class="type-formula">
+              <strong>iboss 소구 공식</strong> (02_abc_types.md):<br>
+              [대상 지정] + [베네핏] + [압도적 차이점] + [상품명]<br>
+              <strong>적용 심리</strong> (04_psychology.md MOFU):<br>
+              확증편향 · 앵커링 · 자이가르닉 효과 · 역설형
+            </div>
           </div>
           <div class="type-body">
-            <div class="psy-label">헤드라인</div>
-            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">마사지볼 고민 중이라면 — 리뷰 1,138건 1위, 릴렉스틱볼</span> <span class="copy-count">(30자)</span></div>
-            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">폼롤러 당근 팔고, 마사지건 창고 보낸 분들 — 릴렉스틱볼은 다릅니다</span> <span class="copy-count">(36자)</span></div>
-            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">허리·발바닥 통증 있는 분들, 98.2%가 만족한 이유 — 릴렉스틱볼</span> <span class="copy-count">(35자)</span></div>
-            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">마사지건 혼자 쓰기 어려웠던 분들 — 볼 하나면 등도 됩니다 릴렉스틱볼</span> <span class="copy-count">(38자)</span></div>
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">마사지볼 고민 중이라면 — 리뷰 1,138건 1위, 릴렉스틱볼</span><span class="copy-count">(30자)</span><span class="iboss-cite">대상지정+차이점+상품명</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">폼롤러 당근 팔고, 마사지건 창고 보낸 분들 — 릴렉스틱볼은 다릅니다</span><span class="copy-count">(36자)</span><span class="iboss-cite">역설/반전형 + 확증편향</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">허리·발바닥 통증 있는 분들, 98.2%가 만족한 이유 — 릴렉스틱볼</span><span class="copy-count">(35자)</span><span class="iboss-cite">숫자 앵커형 + 사회적 증거형</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">마사지건 혼자 쓰기 어려웠던 분들 — 볼 하나면 등도 됩니다</span><span class="copy-count">(33자)</span><span class="iboss-cite">대상지정+베네핏+차이점</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">재구매율이 급등하는 이유 — 클릭하면 바로 알 수 있습니다</span><span class="copy-count">(31자)</span><span class="iboss-cite">자이가르닉 효과 (결론 숨기기)</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">마사지볼 뭐가 다른지 모르겠다면 — 릴렉스틱볼 분리형 구조 보세요</span><span class="copy-count">(36자)</span><span class="iboss-cite">호기심 갭 + 차별화</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">사지 마세요 — 한 번 써보면 다른 건 못 씁니다, 릴렉스틱볼</span><span class="copy-count">(33자)</span><span class="iboss-cite">역설/반전형 (02_frameworks)</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">재택근무 어깨 뭉침, 98.2%가 만족한 도구 — 왜일까요?</span><span class="copy-count">(29자)</span><span class="iboss-cite">확증편향 + 자이가르닉</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">비슷한 고민 있던 분들이 릴렉스틱볼 쓰고 나서 한 말</span><span class="copy-count">(29자)</span><span class="iboss-cite">확증편향 / 고객 사례형</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">운동 루틴 완성하는 마지막 도구 — 이게 폼롤러와 다른 이유</span><span class="copy-count">(33자)</span><span class="iboss-cite">대상지정+차이점 / E형 타겟</span></div>
 
             <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
             <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">
               마사지볼 어떤 거 살지 고민이라면 — 분리하면 두 가지, 결합하면 볼 하나로 발바닥·어깨·등을 모두 케어하는 릴렉스틱볼. 재구매율이 말해줍니다. <span style="color:#aaa;font-size:11px;">(73자)</span>
             </div>
 
-            <div class="psy-label" style="margin-top:12px;">CTA</div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
             <div class="cta-row">
-              <span class="cta-chip">차이점 확인하기 <span class="cta-count">(8자)</span></span>
-              <span class="cta-chip">리뷰 전체 보기 <span class="cta-count">(7자)</span></span>
-              <span class="cta-chip">지금 비교해보기 <span class="cta-count">(8자)</span></span>
+              <span class="cta-chip">차이점 확인하기<span class="cta-count">(8자)</span></span>
+              <span class="cta-chip">리뷰 전체 보기<span class="cta-count">(7자)</span></span>
+              <span class="cta-chip">지금 비교해보기<span class="cta-count">(8자)</span></span>
+              <span class="cta-chip">구조 궁금해서 보기<span class="cta-count">(9자)</span></span>
+              <span class="cta-chip">후기 먼저 보기<span class="cta-count">(7자)</span></span>
             </div>
           </div>
         </div>
 
         <!-- A형 BOFU -->
-        <div class="type-card">
+        <div class="type-card" data-cid="a">
           <div class="type-head">
             <div><span class="type-badge badge-a">A형 — BOFU</span></div>
             <div class="type-title">즉시 구매 준비 · 시장의 5~10%</div>
-            <div class="type-sub">재구매 타겟 (6~7개월 사이클 도래)</div>
-            <div class="type-formula">공식: [대상 지정] + [상품명] + [매력적 오퍼] + [베네핏]</div>
+            <div class="type-sub">박지현(43세) · 재구매 타겟 (6~7개월 사이클)</div>
+            <div class="type-formula">
+              <strong>iboss 소구 공식</strong> (02_abc_types.md):<br>
+              [대상 지정] + [상품명] + [매력적 오퍼] + [베네핏]<br>
+              <strong>적용 심리</strong> (04_psychology.md BOFU):<br>
+              긴급성 편향 · 가격민감도 완화 · 소유 효과 · 일관성 편향
+            </div>
           </div>
           <div class="type-body">
-            <div class="psy-label">헤드라인</div>
-            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">릴렉스틱볼 — 지금 구매하면 오늘 출고 · 무료배송</span> <span class="copy-count">(27자)</span></div>
-            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">족저근막염 통증 있으신 분 — 릴렉스틱볼 지금 바로 구매하세요</span> <span class="copy-count">(33자)</span></div>
-            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">1,138개 리뷰 확인 완료? 지금 장바구니에 담으세요</span> <span class="copy-count">(28자)</span></div>
-            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">릴렉스틱볼 재구매 시즌 — 6개월 지났으면 지금 다시 챙기세요</span> <span class="copy-count">(33자)</span></div>
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">릴렉스틱볼 — 지금 구매하면 오늘 출고 · 무료배송</span><span class="copy-count">(27자)</span><span class="iboss-cite">상품명+오퍼+베네핏 / 긴급성 편향</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">족저근막염 통증 있으신 분 — 릴렉스틱볼 지금 바로 구매하세요</span><span class="copy-count">(33자)</span><span class="iboss-cite">대상지정+상품명+오퍼</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">1,138개 리뷰 확인 완료? 지금 장바구니에 담으세요</span><span class="copy-count">(28자)</span><span class="iboss-cite">일관성 편향 (작은행동→큰행동)</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">릴렉스틱볼 재구매 시즌 — 6개월 지났으면 지금 다시 챙기세요</span><span class="copy-count">(33자)</span><span class="iboss-cite">대상지정+상품명+오퍼 / 재구매</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">오늘 주문하면 내일 받아볼 수 있어요 — 릴렉스틱볼 당일 출고</span><span class="copy-count">(34자)</span><span class="iboss-cite">외부 트리거 / 즉시 혜택</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">하루 커피값으로 집에서 365일 셀프케어 — 릴렉스틱볼</span><span class="copy-count">(29자)</span><span class="iboss-cite">가격민감도 완화 (단위 분할)</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">지금 담으면 내 것 — 릴렉스틱볼 오늘 장바구니에 넣어두세요</span><span class="copy-count">(33자)</span><span class="iboss-cite">소유 효과 (내 것 감각)</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">재구매 고객 10%가 6개월 만에 다시 찾는 이유 — 릴렉스틱볼</span><span class="copy-count">(33자)</span><span class="iboss-cite">사회적 증거형 + 상품명</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">릴렉스틱볼 — 이 가격 언제까지 유지될지 모릅니다</span><span class="copy-count">(27자)</span><span class="iboss-cite">긴급성/손실회피형 (02_frameworks)</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">발바닥 통증 있는 분들만 — 릴렉스틱볼 지금 특가로 담으세요</span><span class="copy-count">(33자)</span><span class="iboss-cite">대상지정+상품명+오퍼+베네핏</span></div>
 
             <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
             <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">
               릴렉스틱볼 · 리뷰 1,138건 · 4.84점 · 오늘 출고. 지금 구매하시면 내일 받아보실 수 있습니다. 재구매 고객 10%가 6~7개월 만에 다시 찾는 이유가 있습니다. <span style="color:#aaa;font-size:11px;">(78자)</span>
             </div>
 
-            <div class="psy-label" style="margin-top:12px;">CTA</div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
             <div class="cta-row">
-              <span class="cta-chip">지금 바로 구매하기 <span class="cta-count">(9자)</span></span>
-              <span class="cta-chip">오늘 장바구니 담기 <span class="cta-count">(9자)</span></span>
+              <span class="cta-chip">지금 바로 구매하기<span class="cta-count">(9자)</span></span>
+              <span class="cta-chip">오늘 장바구니 담기<span class="cta-count">(9자)</span></span>
+              <span class="cta-chip">당일 출고로 받기<span class="cta-count">(8자)</span></span>
+              <span class="cta-chip">지금 특가로 담기<span class="cta-count">(8자)</span></span>
+              <span class="cta-chip">재구매 지금 하기<span class="cta-count">(8자)</span></span>
             </div>
           </div>
         </div>
@@ -396,7 +730,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
   <!-- ══════════════════════════════════════════════ -->
   <!-- TAB 3: 심리 편향 카피 (1~8) -->
   <!-- ══════════════════════════════════════════════ -->
-  <div id="tab-psy" class="tab-section">
+  <div id="tab-psy" class="tab-section" data-tab-type="psy">
 
     <div class="section">
       <div class="section-head">
@@ -407,10 +741,143 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         </div>
       </div>
 
+      <!-- ── 페르소나 토글 ── -->
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나별 분석 키워드 — 버튼 클릭 시 상세 확인</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('psy-pa',this)">A형 박지현 · 43세 (BOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pb',this)">B형 이수진 · 33세 (MOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pc',this)">C형 최동현 · 40세 (TOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pd',this)">D형 강미선 · 48세 (TOFU+)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pe',this)">E형 윤서연 · 28세 (MOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pf',this)">F형 한순희 · 53세 (TOFU)</button>
+        </div>
+
+        <div id="panel-psy-pa" class="persona-panel">
+          <div class="persona-panel-title">A형 박지현 · 43세 — BOFU (~37%) · 핵심: "세지도 약하지도 않은 딱 맞는 자극" · 주효 편향: 사회적 증거 · 손실 회피 · 앵커링</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염</span><span class="kw-tag">릴렉스틱볼</span><span class="kw-tag">발바닥 통증</span><span class="kw-tag">바리바디릴렉스틱볼</span><span class="kw-tag">마사지볼</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">출퇴근 발바닥 통증</span><span class="kw-tag pain">어깨·승모 뭉침</span><span class="kw-tag pain">병원 갈 시간 없음</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 심리 편향 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">03 사회적 증거</span><span class="kw-tag trigger">04 앵커링</span><span class="kw-tag trigger">08 권위/신뢰</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">평일 오전 10시</span><span class="kw-tag time">야간 22시</span><span class="kw-tag time">강남·송파·서초</span></div>
+          </div>
+        </div>
+
+        <div id="panel-psy-pb" class="persona-panel">
+          <div class="persona-panel-title">B형 이수진 · 33세 — MOFU (~33%) · 핵심: "작은데 실용적 — 분리해서 두 가지로" · 주효 편향: 호기심 갭 · 공감/감정 · 사회적 증거</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">마사지볼</span><span class="kw-tag">승모근 뭉침</span><span class="kw-tag">재택근무 어깨</span><span class="kw-tag">분리형 마사지볼</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">재택 장시간 착석</span><span class="kw-tag pain">어깨·목 뭉침 만성화</span><span class="kw-tag pain">마사지 비용 부담</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 심리 편향 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">05 공감/감정</span><span class="kw-tag trigger">07 호기심 갭</span><span class="kw-tag trigger">03 사회적 증거</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 21~23시</span><span class="kw-tag time">퇴근 후 모바일</span><span class="kw-tag time">마포·관악·동작</span></div>
+          </div>
+        </div>
+
+        <div id="panel-psy-pc" class="persona-panel">
+          <div class="persona-panel-title">C형 최동현 · 40세 — TOFU (~8%) · 핵심: "견고하고 좋은 구성" · 주효 편향: PAS · 권위/신뢰 · 앵커링</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염</span><span class="kw-tag">손목 통증</span><span class="kw-tag">셀프케어 선물</span><span class="kw-tag">가성비 마사지기</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">족저근막염 참고 지내기</span><span class="kw-tag pain">셀프케어 인지 낮음</span><span class="kw-tag pain">복잡한 사용법 기피</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 심리 편향 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">06 PAS</span><span class="kw-tag trigger">08 권위/신뢰</span><span class="kw-tag trigger">04 앵커링</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">평일 오전 10시</span><span class="kw-tag time">야간 22시</span><span class="kw-tag time">경기도 21.5%</span></div>
+          </div>
+        </div>
+
+        <div id="panel-psy-pd" class="persona-panel">
+          <div class="persona-panel-title">D형 강미선 · 48세 — TOFU 확장 (~10.8%) · 핵심: "저녁마다 발바닥 밟아주면 다음날 달라요" · 주효 편향: 공감/감정 · FOMO · 손실 회피</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">혈액순환</span><span class="kw-tag">종아리 붓기</span><span class="kw-tag">저녁 발 붓기</span><span class="kw-tag">발바닥 마사지</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">저녁 부기 만성화</span><span class="kw-tag pain">마사지숍 시간·비용</span><span class="kw-tag pain">갱년기 이전 체력 저하</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 심리 편향 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">05 공감/감정</span><span class="kw-tag trigger">02 손실 회피</span><span class="kw-tag trigger">01 FOMO</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 20~22시</span><span class="kw-tag time">주말 오전</span><span class="kw-tag time">경기·인천·부산</span></div>
+          </div>
+        </div>
+
+        <div id="panel-psy-pe" class="persona-panel">
+          <div class="persona-panel-title">E형 윤서연 · 28세 — MOFU (~6.9%) · 핵심: "운동 후 쿨다운, 이거 없이는 못 살아" · 주효 편향: 호기심 갭 · FOMO · 사회적 증거</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">마사지볼</span><span class="kw-tag">폼롤러 대안</span><span class="kw-tag">발바닥 지압</span><span class="kw-tag">운동 후 회복</span><span class="kw-tag">쿨다운</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">폼롤러 스팟 지압 한계</span><span class="kw-tag pain">헬스장 위생 불안</span><span class="kw-tag pain">운동 후 종아리 긴장</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 심리 편향 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">07 호기심 갭</span><span class="kw-tag trigger">01 FOMO</span><span class="kw-tag trigger">03 사회적 증거</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 22~24시</span><span class="kw-tag time">운동 후 모바일</span><span class="kw-tag time">서울·경기 1인 가구</span></div>
+          </div>
+        </div>
+
+        <div id="panel-psy-pf" class="persona-panel">
+          <div class="persona-panel-title">F형 한순희 · 53세 — TOFU (~7.3%) · 핵심: "병원 안 가도 돼요 — 매일 밟으니까" · 주효 편향: 권위/신뢰 · PAS · 손실 회피</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염 후기</span><span class="kw-tag">발바닥 만성 통증</span><span class="kw-tag">셀프케어</span><span class="kw-tag">건강 선물</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">무릎·발바닥 만성 통증</span><span class="kw-tag pain">자주 못 가는 병원</span><span class="kw-tag pain">족저근막염 초기 증상</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 심리 편향 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">08 권위/신뢰</span><span class="kw-tag trigger">06 PAS</span><span class="kw-tag trigger">02 손실 회피</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">오전 10~12시</span><span class="kw-tag time">대전·대구·충청권</span><span class="kw-tag time">집에서 모바일</span></div>
+          </div>
+        </div>
+      </div><!-- /persona toggle card -->
+
       <div class="psy-grid">
 
         <!-- 1. FOMO -->
-        <div class="psy-card">
+        <div class="psy-card" data-cid="01">
           <div class="psy-head">
             <div class="psy-icon">🔴</div>
             <div>
@@ -435,7 +902,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         </div>
 
         <!-- 2. 손실 회피 -->
-        <div class="psy-card">
+        <div class="psy-card" data-cid="02">
           <div class="psy-head">
             <div class="psy-icon">💙</div>
             <div>
@@ -460,7 +927,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         </div>
 
         <!-- 3. 사회적 증거 -->
-        <div class="psy-card">
+        <div class="psy-card" data-cid="03">
           <div class="psy-head">
             <div class="psy-icon">✅</div>
             <div>
@@ -485,7 +952,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         </div>
 
         <!-- 4. 앵커링 -->
-        <div class="psy-card">
+        <div class="psy-card" data-cid="04">
           <div class="psy-head">
             <div class="psy-icon">⚓</div>
             <div>
@@ -510,7 +977,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         </div>
 
         <!-- 5. 공감/감정 -->
-        <div class="psy-card">
+        <div class="psy-card" data-cid="05">
           <div class="psy-head">
             <div class="psy-icon">❤️</div>
             <div>
@@ -535,7 +1002,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         </div>
 
         <!-- 6. PAS -->
-        <div class="psy-card">
+        <div class="psy-card" data-cid="06">
           <div class="psy-head">
             <div class="psy-icon">🔍</div>
             <div>
@@ -560,7 +1027,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         </div>
 
         <!-- 7. 호기심 갭 -->
-        <div class="psy-card">
+        <div class="psy-card" data-cid="07">
           <div class="psy-head">
             <div class="psy-icon">🎯</div>
             <div>
@@ -585,7 +1052,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
         </div>
 
         <!-- 8. 권위/신뢰 -->
-        <div class="psy-card">
+        <div class="psy-card" data-cid="08">
           <div class="psy-head">
             <div class="psy-icon">🏅</div>
             <div>
@@ -616,27 +1083,185 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
   <!-- ══════════════════════════════════════════════ -->
   <!-- TAB 4: 인간 본연의 욕구 카피 (9~12) -->
   <!-- ══════════════════════════════════════════════ -->
-  <div id="tab-need" class="tab-section">
+  <div id="tab-need" class="tab-section" data-tab-type="need">
 
     <div class="section">
       <div class="section-head">
         <div class="section-num n4">4</div>
         <div>
-          <div class="section-title">인간 본연의 욕구 카피 (9~12)</div>
-          <div class="section-sub">매슬로우 욕구 단계 기반 — 감성·정체성 소구</div>
+          <div class="section-title">인간 본연의 욕구 카피 (9~13)</div>
+          <div class="section-sub">매슬로우 5단계 기반 — 생리적(09) · 안전(10) · 사회적(11) · 존중(12) · 자아실현(13)</div>
         </div>
       </div>
 
+      <!-- ── 페르소나 토글 ── -->
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나별 분석 키워드 — 버튼 클릭 시 상세 확인</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('need-pa',this)">A형 박지현 · 43세 (BOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pb',this)">B형 이수진 · 33세 (MOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pc',this)">C형 최동현 · 40세 (TOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pd',this)">D형 강미선 · 48세 (TOFU+)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pe',this)">E형 윤서연 · 28세 (MOFU)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pf',this)">F형 한순희 · 53세 (TOFU)</button>
+        </div>
+
+        <div id="panel-need-pa" class="persona-panel">
+          <div class="persona-panel-title">A형 박지현 · 43세 — BOFU (~37%) · 핵심: "세지도 약하지도 않은 딱 맞는 자극" · 주효 욕구: 생리적(09) → 안전(10) → 존중(12)</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염</span><span class="kw-tag">릴렉스틱볼</span><span class="kw-tag">발바닥 통증</span><span class="kw-tag">마사지볼</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">출퇴근 발바닥 통증</span><span class="kw-tag pain">어깨·승모 뭉침</span><span class="kw-tag pain">병원 갈 시간 없음</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 욕구 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">09 생리적</span><span class="kw-tag trigger">10 안전</span><span class="kw-tag trigger">12 존중</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">평일 오전 10시</span><span class="kw-tag time">야간 22시</span><span class="kw-tag time">강남·송파·서초</span></div>
+          </div>
+        </div>
+
+        <div id="panel-need-pb" class="persona-panel">
+          <div class="persona-panel-title">B형 이수진 · 33세 — MOFU (~33%) · 핵심: "작은데 실용적 — 분리해서 두 가지로" · 주효 욕구: 사회적(11) → 자아실현(13) → 존중(12)</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">마사지볼</span><span class="kw-tag">승모근 뭉침</span><span class="kw-tag">재택근무 어깨</span><span class="kw-tag">분리형 마사지볼</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">재택 장시간 착석</span><span class="kw-tag pain">어깨·목 뭉침 만성화</span><span class="kw-tag pain">마사지 비용 부담</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 욕구 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">11 사회적</span><span class="kw-tag trigger">13 자아실현</span><span class="kw-tag trigger">12 존중</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 21~23시</span><span class="kw-tag time">퇴근 후 모바일</span><span class="kw-tag time">마포·관악·동작</span></div>
+          </div>
+        </div>
+
+        <div id="panel-need-pc" class="persona-panel">
+          <div class="persona-panel-title">C형 최동현 · 40세 — TOFU (~8%) · 핵심: "견고하고 좋은 구성" · 주효 욕구: 생리적(09) → 안전(10) → 사회적(11, 선물)</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염</span><span class="kw-tag">손목 통증</span><span class="kw-tag">셀프케어 선물</span><span class="kw-tag">가성비 마사지기</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">족저근막염 참고 지내기</span><span class="kw-tag pain">셀프케어 인지 낮음</span><span class="kw-tag pain">복잡한 사용법 기피</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 욕구 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">09 생리적</span><span class="kw-tag trigger">10 안전</span><span class="kw-tag trigger">11 사회적</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">평일 오전 10시</span><span class="kw-tag time">야간 22시</span><span class="kw-tag time">경기도 21.5%</span></div>
+          </div>
+        </div>
+
+        <div id="panel-need-pd" class="persona-panel">
+          <div class="persona-panel-title">D형 강미선 · 48세 — TOFU 확장 (~10.8%) · 핵심: "저녁마다 발바닥 밟아주면 다음날 달라요" · 주효 욕구: 생리적(09) → 안전(10) → 사회적(11, 가족)</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">혈액순환</span><span class="kw-tag">종아리 붓기</span><span class="kw-tag">저녁 발 붓기</span><span class="kw-tag">발바닥 마사지</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">저녁 부기 만성화</span><span class="kw-tag pain">마사지숍 시간·비용</span><span class="kw-tag pain">갱년기 이전 체력 저하</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 욕구 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">09 생리적</span><span class="kw-tag trigger">10 안전</span><span class="kw-tag trigger">11 사회적</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 20~22시</span><span class="kw-tag time">주말 오전</span><span class="kw-tag time">경기·인천·부산</span></div>
+          </div>
+        </div>
+
+        <div id="panel-need-pe" class="persona-panel">
+          <div class="persona-panel-title">E형 윤서연 · 28세 — MOFU (~6.9%) · 핵심: "운동 후 쿨다운, 이거 없이는 못 살아" · 주효 욕구: 자아실현(13) → 사회적(11) → 생리적(09)</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">마사지볼</span><span class="kw-tag">폼롤러 대안</span><span class="kw-tag">발바닥 지압</span><span class="kw-tag">운동 후 회복</span><span class="kw-tag">쿨다운</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">폼롤러 스팟 지압 한계</span><span class="kw-tag pain">헬스장 위생 불안</span><span class="kw-tag pain">운동 후 종아리 긴장</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 욕구 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">13 자아실현</span><span class="kw-tag trigger">11 사회적</span><span class="kw-tag trigger">09 생리적</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">야간 22~24시</span><span class="kw-tag time">운동 후 모바일</span><span class="kw-tag time">서울·경기 1인 가구</span></div>
+          </div>
+        </div>
+
+        <div id="panel-need-pf" class="persona-panel">
+          <div class="persona-panel-title">F형 한순희 · 53세 — TOFU (~7.3%) · 핵심: "병원 안 가도 돼요 — 매일 밟으니까" · 주효 욕구: 생리적(09) → 안전(10) → 존중(12, 건강 관리 자부심)</div>
+          <div class="kw-group">
+            <div class="kw-label-sm">검색 유입 키워드</div>
+            <div class="kw-tags"><span class="kw-tag">족저근막염 후기</span><span class="kw-tag">발바닥 만성 통증</span><span class="kw-tag">셀프케어</span><span class="kw-tag">건강 선물</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">페인포인트 키워드</div>
+            <div class="kw-tags"><span class="kw-tag pain">무릎·발바닥 만성 통증</span><span class="kw-tag pain">자주 못 가는 병원</span><span class="kw-tag pain">족저근막염 초기 증상</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">추천 욕구 카드</div>
+            <div class="kw-tags"><span class="kw-tag trigger">09 생리적</span><span class="kw-tag trigger">10 안전</span><span class="kw-tag trigger">12 존중</span></div>
+          </div>
+          <div class="kw-group">
+            <div class="kw-label-sm">구매 피크 / 채널</div>
+            <div class="kw-tags"><span class="kw-tag time">오전 10~12시</span><span class="kw-tag time">대전·대구·충청권</span><span class="kw-tag time">집에서 모바일</span></div>
+          </div>
+        </div>
+      </div><!-- /persona toggle card -->
+
       <div class="psy-grid">
 
-        <!-- 9. 생존/안전 -->
-        <div class="psy-card">
+        <!-- 9. 생리적 욕구 -->
+        <div class="psy-card" data-cid="09">
+          <div class="psy-head">
+            <div class="psy-icon">🍃</div>
+            <div>
+              <div class="psy-num">09</div>
+              <div class="psy-name">생리적 욕구</div>
+              <div class="psy-desc">수면·기본 보행·휴식 — 통증이 기본 생활을 무너뜨릴 때 가장 강하게 작동</div>
+            </div>
+          </div>
+          <div class="psy-body">
+            <div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">아침이면 오른발을 디디지도 못했던 분들 — 이게 해결책입니다</div><div class="hl-cnt">(32자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">자다가 통증으로 깼던 그날 밤 — 더 이상 반복 안 해도 됩니다</div><div class="hl-cnt">(33자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">야간에 찌릿찌릿 찌르는 느낌 — 자기 전 2분이면 아침이 달라요</div><div class="hl-cnt">(34자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">발바닥 불난 것처럼 아파서 아침이 두려운 분들 보세요</div><div class="hl-cnt">(28자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">통증이 수면을 방해한다면 — 자기 전 2분 루틴으로 시작하세요</div><div class="hl-cnt">(33자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div>
+            <div class="cta-row">
+              <span class="cta-chip">수면 루틴 만들기 <span class="cta-count">(8자)</span></span>
+              <span class="cta-chip">자기 전 2분 해보기 <span class="cta-count">(9자)</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. 안전 욕구 -->
+        <div class="psy-card" data-cid="10">
           <div class="psy-head">
             <div class="psy-icon">🛡️</div>
             <div>
-              <div class="psy-num">09</div>
-              <div class="psy-name">생존 / 안전 욕구</div>
-              <div class="psy-desc">건강·보호·안심에 대한 원초적 욕구</div>
+              <div class="psy-num">10</div>
+              <div class="psy-name">안전 욕구</div>
+              <div class="psy-desc">건강 보호·만성화 방지 — 지금 관리 안 하면 더 나빠진다는 위기감</div>
             </div>
           </div>
           <div class="psy-body">
@@ -645,7 +1270,7 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
             <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">발바닥 통증, 만성이 되기 전에 지금 관리하는 게 답입니다</div><div class="hl-cnt">(30자)</div></div>
             <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">아침마다 발이 찌릿한 분들 — 건강 루틴 지금 만들어야 합니다</div><div class="hl-cnt">(33자)</div></div>
             <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">셀프케어 지금 시작하면 — 병원비 절약이 시작됩니다</div><div class="hl-cnt">(28자)</div></div>
-            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">야간에 찌릿찌릿 — 자기 전에 2분이면 내일 아침이 달라집니다</div><div class="hl-cnt">(33자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">관리 안 하면 반대쪽까지 퍼집니다 — 지금이 골든타임</div><div class="hl-cnt">(29자)</div></div>
             <div class="psy-label" style="margin-top:10px;">CTA</div>
             <div class="cta-row">
               <span class="cta-chip">건강 루틴 시작하기 <span class="cta-count">(9자)</span></span>
@@ -654,13 +1279,13 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
           </div>
         </div>
 
-        <!-- 10. 소속/연결 -->
-        <div class="psy-card">
+        <!-- 11. 사회적/소속 -->
+        <div class="psy-card" data-cid="11">
           <div class="psy-head">
             <div class="psy-icon">🤝</div>
             <div>
-              <div class="psy-num">10</div>
-              <div class="psy-name">소속 / 연결 욕구</div>
+              <div class="psy-num">11</div>
+              <div class="psy-name">사회적 욕구 / 소속 · 연결</div>
               <div class="psy-desc">"같은 경험의 사람들" 동조·커뮤니티 감각</div>
             </div>
           </div>
@@ -679,13 +1304,13 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
           </div>
         </div>
 
-        <!-- 11. 인정/존중 -->
-        <div class="psy-card">
+        <!-- 12. 존중/인정 -->
+        <div class="psy-card" data-cid="12">
           <div class="psy-head">
             <div class="psy-icon">👑</div>
             <div>
-              <div class="psy-num">11</div>
-              <div class="psy-name">인정 / 존중 욕구</div>
+              <div class="psy-num">12</div>
+              <div class="psy-name">존중 욕구 / 인정 · 자기 보상</div>
               <div class="psy-desc">남들에게 인정받고 싶은 자존심·자기 보상 욕구</div>
             </div>
           </div>
@@ -704,13 +1329,13 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
           </div>
         </div>
 
-        <!-- 12. 자아실현/정체성 -->
-        <div class="psy-card">
+        <!-- 13. 자아실현/정체성 -->
+        <div class="psy-card" data-cid="13">
           <div class="psy-head">
             <div class="psy-icon">🌟</div>
             <div>
-              <div class="psy-num">12</div>
-              <div class="psy-name">자아실현 / 정체성 욕구</div>
+              <div class="psy-num">13</div>
+              <div class="psy-name">자아실현 욕구 / 정체성 · 성장</div>
               <div class="psy-desc">"나다운 삶", 건강 루틴 정체성 기반 선택</div>
             </div>
           </div>
@@ -796,6 +1421,324 @@ function switchTab(name) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   event.currentTarget.classList.add('active');
+}
+
+function togglePersona(id, btn) {
+  var card = btn.closest('.card');
+  var isActive = btn.classList.contains('p-active');
+  card.querySelectorAll('.persona-btn').forEach(function(b) { b.classList.remove('p-active'); });
+  card.querySelectorAll('.persona-panel').forEach(function(p) { p.classList.remove('p-active'); });
+  var tabSection = btn.closest('.tab-section');
+  if (!isActive) {
+    btn.classList.add('p-active');
+    document.getElementById('panel-' + id).classList.add('p-active');
+    if (tabSection && tabSection.dataset.tabType) {
+      applyPersonaCopy(tabSection, id.slice(-1).toUpperCase());
+    }
+  } else {
+    if (tabSection && tabSection.dataset.tabType) {
+      applyPersonaCopy(tabSection, null);
+    }
+  }
+}
+
+var PERSONA_COPY = {
+  abc: {
+    c: {
+      A: [
+        {t:'아침 첫 발 찌릿한 직장 여성 — 퇴근 후 2분이면 내일이 달라요',c:'(34자)',src:'대상지정+베네핏 / 주의편향'},
+        {t:'힐 신고 출퇴근하는 분들 — 발바닥 통증 집에서 해결하는 방법',c:'(33자)',src:'대상지정+극적베네핏'},
+        {t:'강남 출퇴근 여성분들 — 병원 갈 시간 없어도 괜찮습니다',c:'(30자)',src:'대상지정+베네핏'},
+        {t:'출퇴근 6시간 발바닥이 불난 것 같다면 — 오늘 밤 바로 하세요',c:'(34자)',src:'문제-해결형'},
+        {t:'족저근막염 직장맘들 사이에서 조용히 유명한 셀프케어 볼',c:'(29자)',src:'밴드왜건 효과'}
+      ],
+      B: [
+        {t:'재택근무하는 분들 — 어깨 뭉침 만성 되기 전에 이것 보세요',c:'(32자)',src:'대상지정+베네핏 / 주의편향'},
+        {t:'8시간 재택 후 어깨가 돌처럼 굳은 분들 — 2분이면 달라요',c:'(31자)',src:'대상지정+베네핏'},
+        {t:'어깨·목 만성 뭉침으로 고민이라면 — 집에서 바로 해결됩니다',c:'(33자)',src:'문제-해결형'},
+        {t:'재택러들 사이에서 조용히 입소문 난 어깨 셀프케어',c:'(25자)',src:'밴드왜건 효과'},
+        {t:'마사지 비용 아끼고 싶은 재택 직장인 — 이 방법 있었어요',c:'(31자)',src:'대상지정+베네핏'}
+      ],
+      C: [
+        {t:'족저근막염 참고 지내는 분들 — 집에서 2분이면 달라집니다',c:'(31자)',src:'대상지정+베네핏 / 주의편향'},
+        {t:'아침 발 찌릿한 40대 남성 — 셀프케어 이렇게 합니다',c:'(27자)',src:'대상지정+베네핏'},
+        {t:'발바닥 통증 있는 분들 사이에서 난리난 셀프케어 볼',c:'(27자)',src:'밴드왜건 효과'},
+        {t:'복잡한 도구 싫다면 — 그냥 밟기만 해도 됩니다',c:'(24자)',src:'대상지정+극적베네핏'},
+        {t:'가족 중 족저근막염 있다면 — 이 선물 하나로 해결됩니다',c:'(29자)',src:'대상지정+베네핏'}
+      ],
+      D: [
+        {t:'저녁마다 발이 붓는 분들 — 소파에서 2분이면 내일 아침이 달라요',c:'(35자)',src:'대상지정+베네핏 / 주의편향'},
+        {t:'혈액순환 걱정되는 분들 — 집에서 매일 관리하는 방법이 있어요',c:'(33자)',src:'대상지정+베네핏'},
+        {t:'종아리 빵빵하게 붓는 저녁 — 마사지숍 안 가도 됩니다',c:'(28자)',src:'문제-해결형'},
+        {t:'발 붓기·혈액순환 걱정하는 분들 사이 조용히 유명한 볼',c:'(28자)',src:'밴드왜건 효과'},
+        {t:'마사지숍 갈 시간 없는 분들 — 집에서 5분으로 됩니다',c:'(28자)',src:'대상지정+베네핏'}
+      ],
+      E: [
+        {t:'운동 후 쿨다운 못 하고 있다면 — 이 방법 있었어요',c:'(28자)',src:'대상지정+베네핏 / 주의편향'},
+        {t:'헬스 다니는 분들 — 폼롤러 대신 발바닥·종아리 케어하는 방법',c:'(33자)',src:'대상지정+베네핏'},
+        {t:'운동 후 종아리가 터질 것 같은 분들 — 2분이면 달라집니다',c:'(31자)',src:'대상지정+베네핏'},
+        {t:'운동 후 회복 방법 고민하는 분들 사이 입소문 난 셀프케어 볼',c:'(33자)',src:'밴드왜건 효과'},
+        {t:'폼롤러로 못 닿는 곳이 있었다면 — 이게 해결해 드립니다',c:'(30자)',src:'문제-해결형'}
+      ],
+      F: [
+        {t:'병원 가기 전에 이것 먼저 — 집에서 매일 관리하는 방법',c:'(29자)',src:'대상지정+베네핏 / 주의편향'},
+        {t:'만성 발바닥 통증 참고 지내는 분들 — 이제 이렇게 하세요',c:'(31자)',src:'대상지정+베네핏'},
+        {t:'무릎·발바닥 만성 통증 있는 분들 — 집에서 2분이면 달라요',c:'(32자)',src:'대상지정+베네핏'},
+        {t:'병원 자주 못 가는 분들이 선택한 집에서 하는 셀프케어',c:'(28자)',src:'밴드왜건 효과'},
+        {t:'허리·발 만성 통증 분들 사이에서 조용히 유명한 셀프케어 볼',c:'(32자)',src:'밴드왜건 효과'}
+      ]
+    },
+    b: {
+      A: [
+        {t:'족저근막염 직장맘들 — 98.2% 만족, 릴렉스틱볼이 다릅니다',c:'(31자)',src:'대상지정+차이점+상품명'},
+        {t:'힐 신고 발바닥 통증 있는 분들 — 도수치료 안 가도 되는 이유',c:'(34자)',src:'역설/반전형'},
+        {t:'발바닥 마사지볼 고민 중이라면 — 재구매율이 말해주는 릴렉스틱볼',c:'(35자)',src:'차이점+상품명 / 자이가르닉'},
+        {t:'강남 직장 여성들이 선택한 이유 — 리뷰 1,138건 4.84점',c:'(30자)',src:'확증편향 / 숫자앵커형'},
+        {t:'마사지볼 뭐가 다른지 모르겠다면 — 힐 착용 여성 리뷰 보세요',c:'(34자)',src:'호기심 갭'}
+      ],
+      B: [
+        {t:'재택 어깨 통증 있는 분들 — 98.2% 만족, 분리형이 달라요',c:'(30자)',src:'대상지정+차이점+상품명'},
+        {t:'어깨 뭉침 고민이라면 — 마사지건과 뭐가 다른지 알려드립니다',c:'(33자)',src:'호기심 갭 / 차별화'},
+        {t:'재택러들이 릴렉스틱볼 쓰고 나서 한 말 — 확인해보세요',c:'(28자)',src:'확증편향 / 고객사례형'},
+        {t:'분리하면 두 가지, 결합하면 하나 — 재택 어깨 케어 이게 답',c:'(33자)',src:'차이점+베네핏'},
+        {t:'마사지건 창고 보낸 분들이 재택 어깨 케어로 선택한 것',c:'(29자)',src:'역설/반전형'}
+      ],
+      C: [
+        {t:'족저근막염 있는 분들 — 1,138건 리뷰 1위, 릴렉스틱볼',c:'(28자)',src:'대상지정+차이점+상품명'},
+        {t:'마사지볼 고민하는 40대 남성 — 가성비·내구성 이유 있습니다',c:'(32자)',src:'대상지정+차이점'},
+        {t:'족저근막염 써본 분들이 재구매하는 이유 — 릴렉스틱볼',c:'(27자)',src:'확증편향'},
+        {t:'선물로 샀는데 본인이 더 많이 쓴다는 후기 — 릴렉스틱볼',c:'(30자)',src:'역설/반전형'},
+        {t:'사지 마세요 — 한 번 써보면 다른 건 못 씁니다, 릴렉스틱볼',c:'(33자)',src:'역설/반전형'}
+      ],
+      D: [
+        {t:'저녁마다 발 붓는 분들 — 98.2% 만족한 이유, 릴렉스틱볼',c:'(31자)',src:'대상지정+차이점+상품명'},
+        {t:'혈액순환 제품 고민이라면 — 재구매율이 말해주는 릴렉스틱볼',c:'(30자)',src:'자이가르닉 / 상품명'},
+        {t:'마사지숍 다니던 분들이 집에서 이걸 쓰기 시작한 이유',c:'(27자)',src:'확증편향 / 역설'},
+        {t:'발바닥 마사지기 뭐가 다른지 모르겠다면 — 저녁 후기 보세요',c:'(33자)',src:'호기심 갭'},
+        {t:'저녁 발관리로 마사지숍 대신 선택한 분들 — 릴렉스틱볼',c:'(28자)',src:'확증편향'}
+      ],
+      E: [
+        {t:'운동 후 회복 고민이라면 — 폼롤러와 뭐가 다른지 알려드릴게요',c:'(34자)',src:'호기심 갭 / 차별화'},
+        {t:'폼롤러 당근 팔고, 이걸로 넘어온 분들 — 릴렉스틱볼',c:'(27자)',src:'역설/반전형'},
+        {t:'헬스 쿨다운 루틴 찾는 분들 — 98.2% 만족, 이유 있어요',c:'(30자)',src:'대상지정+차이점'},
+        {t:'운동 후 회복 제품 뭐가 다른지 — 리뷰 1,138건이 말해줍니다',c:'(33자)',src:'숫자앵커형 / 차이점'},
+        {t:'운동 루틴 완성하는 마지막 도구 — 폼롤러와 다른 이유',c:'(28자)',src:'대상지정+차이점'}
+      ],
+      F: [
+        {t:'만성 발바닥 통증 있는 분들 — 98.2% 만족, 릴렉스틱볼',c:'(28자)',src:'대상지정+차이점+상품명'},
+        {t:'소염제·물리치료 다 해봤는데 차도 없다면 — 릴렉스틱볼',c:'(29자)',src:'역설/반전형'},
+        {t:'병원 다니던 분들이 집에서 이걸 쓰기 시작한 이유',c:'(25자)',src:'확증편향 / 역설'},
+        {t:'만성 통증 셀프케어 고민이라면 — 재구매율이 증명합니다',c:'(28자)',src:'자이가르닉 / 차이점'},
+        {t:'53세 이상 분들 사이에서 오래 쓰는 도구 — 릴렉스틱볼',c:'(28자)',src:'확증편향'}
+      ]
+    },
+    a: {
+      A: [
+        {t:'족저근막염 직장 여성 — 릴렉스틱볼, 오늘 출고 · 무료배송',c:'(30자)',src:'대상지정+상품명+오퍼 / 긴급성'},
+        {t:'힐 착용 출퇴근 여성분 — 릴렉스틱볼 지금 바로 구매하세요',c:'(31자)',src:'대상지정+상품명+오퍼'},
+        {t:'1,138건 리뷰 확인하셨나요? 지금 장바구니에 담으세요',c:'(27자)',src:'일관성 편향'},
+        {t:'릴렉스틱볼 — 지금 이 가격 언제까지 유지될지 모릅니다',c:'(28자)',src:'긴급성/손실회피형'},
+        {t:'오늘 주문하면 내일 퇴근 전 받아볼 수 있어요 — 릴렉스틱볼',c:'(32자)',src:'외부 트리거 / 즉시 혜택'}
+      ],
+      B: [
+        {t:'재택근무 어깨 통증 있는 분 — 릴렉스틱볼 지금 바로 담으세요',c:'(34자)',src:'대상지정+상품명+오퍼'},
+        {t:'책상 위에 릴렉스틱볼 — 지금 구매하면 오늘 바로 출고됩니다',c:'(33자)',src:'상품명+오퍼+베네핏'},
+        {t:'릴렉스틱볼 리뷰 보셨나요? 지금 장바구니에 담아두세요',c:'(27자)',src:'일관성 편향'},
+        {t:'어깨 통증 있는 재택러 — 릴렉스틱볼 이 가격 오래 못 갑니다',c:'(33자)',src:'긴급성/손실회피형'},
+        {t:'재택 어깨 케어 — 릴렉스틱볼, 하루 커피값으로 365일',c:'(27자)',src:'가격민감도 완화'}
+      ],
+      C: [
+        {t:'족저근막염 있는 분 — 릴렉스틱볼 지금 바로 구매하세요',c:'(28자)',src:'대상지정+상품명+오퍼'},
+        {t:'선물용 릴렉스틱볼 — 오늘 출고 · 선물포장 가능',c:'(24자)',src:'상품명+오퍼'},
+        {t:'릴렉스틱볼 1,138건 리뷰 확인했다면 지금 담으세요',c:'(27자)',src:'일관성 편향'},
+        {t:'발바닥 통증 있는 분들 — 릴렉스틱볼 이 가격 마지막일 수 있어요',c:'(35자)',src:'긴급성/손실회피형'},
+        {t:'한 번 사면 온 가족이 쓰는 셀프케어 — 릴렉스틱볼 오늘 출고',c:'(34자)',src:'소유 효과 / 오퍼'}
+      ],
+      D: [
+        {t:'저녁 발붓기 있는 분 — 릴렉스틱볼 지금 바로 담으세요',c:'(28자)',src:'대상지정+상품명+오퍼'},
+        {t:'릴렉스틱볼 — 저녁 루틴에 넣으면 내일 아침이 달라집니다',c:'(30자)',src:'상품명+오퍼+베네핏'},
+        {t:'혈액순환 걱정되는 분 — 릴렉스틱볼 지금 출고로 받으세요',c:'(28자)',src:'대상지정+상품명+오퍼'},
+        {t:'저녁 소파에서 릴렉스틱볼 — 이 가격 언제까지 유지될지 몰라요',c:'(34자)',src:'긴급성/손실회피형'},
+        {t:'마사지숍 한 달 비용으로 평생 — 릴렉스틱볼 지금 담기',c:'(28자)',src:'가격민감도 완화'}
+      ],
+      E: [
+        {t:'운동 후 쿨다운 원하는 분 — 릴렉스틱볼 지금 바로 담으세요',c:'(32자)',src:'대상지정+상품명+오퍼'},
+        {t:'오늘 헬스 끝나고 릴렉스틱볼 — 내일 받아볼 수 있습니다',c:'(29자)',src:'상품명+오퍼+베네핏'},
+        {t:'릴렉스틱볼 후기 보셨나요? 지금 장바구니에 담으세요',c:'(27자)',src:'일관성 편향'},
+        {t:'운동 루틴에 릴렉스틱볼 — 이 가격 오늘까지입니다',c:'(26자)',src:'긴급성/손실회피형'},
+        {t:'헬스장 1회 마사지 비용으로 평생 쿨다운 — 릴렉스틱볼',c:'(28자)',src:'가격민감도 완화'}
+      ],
+      F: [
+        {t:'만성 통증 있는 분 — 릴렉스틱볼 지금 바로 구매하세요',c:'(28자)',src:'대상지정+상품명+오퍼'},
+        {t:'오늘 주문하면 내일 집에서 받아볼 수 있어요 — 릴렉스틱볼',c:'(31자)',src:'상품명+오퍼+베네핏'},
+        {t:'후기 1,138건 보셨나요? — 지금 장바구니에 담아두세요',c:'(27자)',src:'일관성 편향'},
+        {t:'발바닥·무릎 통증 있는 분 — 릴렉스틱볼 이 가격 마지막일 수 있어요',c:'(36자)',src:'긴급성/손실회피형'},
+        {t:'병원비 아끼는 법 — 릴렉스틱볼 한 번 사면 집에서 365일',c:'(30자)',src:'가격민감도 완화'}
+      ]
+    }
+  },
+  psy: {
+    '01': {
+      A: [{t:'강남 직장 여성들 사이 품절 직전 — 지금 릴렉스틱볼 확인하세요',c:'(33자)'},{t:'출퇴근 발통증 있다면 — 오늘 마감 전 담아두세요',c:'(26자)'},{t:'지금 이 가격, 오늘 이후엔 없습니다 — 릴렉스틱볼',c:'(27자)'}],
+      B: [{t:'재택러들 사이에서 조용히 입소문 — 오늘 마감이에요',c:'(27자)'},{t:'분리형 2-in-1 — 이번 주 특가 오늘 마감입니다',c:'(26자)'},{t:'어깨·목 통증 있는 재택러들이 먼저 알고 있어요',c:'(26자)'}],
+      C: [{t:'선물용으로 찾는 분 많아요 — 오늘 안 담으면 품절',c:'(27자)'},{t:'족저근막염 있는 분들이 이미 선택한 제품 — 마감 임박',c:'(29자)'},{t:'셀프케어 처음이라도 — 이걸 모르면 손해입니다',c:'(25자)'}],
+      D: [{t:'저녁마다 발 붓는 분들 사이 입소문 — 지금 확인하세요',c:'(29자)'},{t:'마사지숍 못 가는 날을 위해 — 오늘 집에 들여놓으세요',c:'(29자)'},{t:'혈액순환 걱정되는 분들이 이미 알고 있어요 — 마감 임박',c:'(31자)'}],
+      E: [{t:'헬스 루틴에 이미 넣은 분들 많아요 — 오늘까지 할인',c:'(29자)'},{t:'폼롤러 대신 이걸 쓰기 시작했습니다 — 마감 임박',c:'(27자)'},{t:'운동 후 쿨다운 못 하면 — 내일이 달라집니다',c:'(25자)'}],
+      F: [{t:'매일 밟고 병원 덜 간다는 분들 — 이미 알고 있어요',c:'(28자)'},{t:'만성 통증 있는 분들만 아는 제품 — 지금 확인하세요',c:'(29자)'},{t:'오늘 이후엔 이 가격 없습니다 — 릴렉스틱볼 마감',c:'(27자)'}]
+    },
+    '02': {
+      A: [{t:'출퇴근 힐 착용이 반복될수록 족저근막염은 심해집니다',c:'(29자)'},{t:'관리 안 하면 반대쪽까지 퍼집니다 — 지금이 골든타임',c:'(29자)'},{t:'강남 직장 여성, 병원 갈 시간 없다면 — 지금 케어하세요',c:'(31자)'}],
+      B: [{t:'재택 장시간 착석이 계속되면 어깨는 굳어갑니다',c:'(25자)'},{t:'지금 안 잡으면 만성화됩니다 — 어깨 통증 방치 금지',c:'(28자)'},{t:'목까지 올라오기 전에 — 지금 어깨를 케어하세요',c:'(26자)'}],
+      C: [{t:'족저근막염을 방치하면 반대쪽 발, 무릎까지 이어집니다',c:'(29자)'},{t:'선물 안 챙기다 본인이 먼저 망가집니다 — 지금 케어',c:'(28자)'},{t:'소염제만으론 한계입니다 — 근본적 셀프케어가 필요해요',c:'(29자)'}],
+      D: [{t:'저녁 발 붓기 방치하면 혈액순환 문제로 이어집니다',c:'(27자)'},{t:'마사지숍 안 가는 동안 몸은 더 굳어갑니다 — 지금 케어',c:'(30자)'},{t:'40대 후반부터는 방치가 더 위험합니다 — 지금 시작',c:'(28자)'}],
+      E: [{t:'운동 후 쿨다운 안 하면 다음 날 부상 위험 높아집니다',c:'(29자)'},{t:'폼롤러 못 닿는 곳을 방치하면 만성이 됩니다',c:'(24자)'},{t:'헬스 지속하려면 회복 관리부터 — 오늘 시작하세요',c:'(27자)'}],
+      F: [{t:'매일 관리 안 하면 병원 다니는 횟수가 늘어납니다',c:'(27자)'},{t:'초기에 잡아야 합니다 — 만성 족저근막염이 되기 전에',c:'(28자)'},{t:'몸이 보내는 신호 무시하면 더 큰 문제가 됩니다',c:'(26자)'}]
+    },
+    '03': {
+      A: [{t:'강남 직장 여성들 사이에서 조용히 유명한 릴렉스틱볼',c:'(28자)'},{t:'족저근막염 40대 직장맘 — 1,138명이 이미 선택했습니다',c:'(31자)'},{t:'재구매율 2월 10% 급등 — 쓰던 분들이 또 삽니다',c:'(26자)'}],
+      B: [{t:'재택러 33세들의 어깨 관리 필수템 — 리뷰 1,138건',c:'(27자)'},{t:'어깨 통증 있는 재택 여성들 98.2%가 긍정 리뷰',c:'(25자)'},{t:'재택근무 시작하고 사게 된 이유 — 후기로 확인하세요',c:'(28자)'}],
+      C: [{t:'40대 남성들이 많이 찾는 발 관리 도구 — 리뷰 확인',c:'(27자)'},{t:'선물 받은 분들이 따로 구매하는 릴렉스틱볼 — 이유 있어요',c:'(32자)'},{t:'족저근막염 있는 남성들이 선택한 이유 — 리뷰 1,138건',c:'(31자)'}],
+      D: [{t:'저녁마다 발 밟는 루틴 만든 분들의 후기 — 1,138건',c:'(27자)'},{t:'48세 이후 혈액순환 걱정되는 분들의 선택 — 확인하세요',c:'(30자)'},{t:'마사지숍 대신 집에서 — 재구매율이 말해줍니다',c:'(25자)'}],
+      E: [{t:'헬스 다니는 분들 사이에서 쿨다운 필수템으로 입소문',c:'(28자)'},{t:'운동 후 회복 찾다 정착한 1,138명의 이유 — 확인',c:'(27자)'},{t:'폼롤러 쓰던 분들 중 이걸로 넘어온 후기 — 많습니다',c:'(29자)'}],
+      F: [{t:'53세 이상 만성 통증 분들이 꾸준히 재구매하는 이유',c:'(28자)'},{t:'병원 대신 집에서 — 실제 후기 1,138건 확인하세요',c:'(27자)'},{t:'오래 쓴 분들이 또 사는 이유가 있습니다 — 확인하세요',c:'(29자)'}]
+    },
+    '04': {
+      A: [{t:'도수치료 회당 15만원 vs 릴렉스틱볼 — 평생 씁니다',c:'(28자)'},{t:'강남 마사지숍 한 번 가는 돈으로 집에서 365일 케어',c:'(28자)'},{t:'병원 한 번 가는 돈으로 매일 셀프케어 — 계산해보세요',c:'(29자)'}],
+      B: [{t:'마사지 1회 비용으로 집에서 매일 어깨 케어합니다',c:'(26자)'},{t:'재택비 아끼고 더 좋은 셀프케어 도구에 투자하세요',c:'(27자)'},{t:'마사지건 창고 보내고 얼마나 낭비했을까요 — 이건 오래 써요',c:'(33자)'}],
+      C: [{t:'선물 예산 3만원대로 — 오래 쓸 셀프케어 도구입니다',c:'(28자)'},{t:'병원 한 번 가는 돈으로 집에서 365일 케어하세요',c:'(26자)'},{t:'헛돈 쓰지 마세요 — 한 번 사면 온 가족이 씁니다',c:'(27자)'}],
+      D: [{t:'마사지숍 주 2회 vs 릴렉스틱볼 — 비용 계산해보셨나요?',c:'(30자)'},{t:'혈액순환 제품 중 가장 가성비 — 한 번 사면 오래 씁니다',c:'(31자)'},{t:'마사지숍 한 달 비용으로 평생 셀프케어 — 이게 맞아요',c:'(29자)'}],
+      E: [{t:'헬스장 마사지 장비 1회 이용료 vs — 이게 더 낫습니다',c:'(29자)'},{t:'폼롤러 살 돈으로 훨씬 정밀한 스팟 케어가 가능합니다',c:'(29자)'},{t:'운동 후 마사지 받는 돈보다 현명한 선택 — 릴렉스틱볼',c:'(30자)'}],
+      F: [{t:'병원비 줄이는 가장 현명한 방법 — 집에서 매일 관리',c:'(28자)'},{t:'한 번 사면 오래 씁니다 — 53세 이후 필수 셀프케어',c:'(27자)'},{t:'통원 치료 비용 vs 릴렉스틱볼 — 직접 계산해보세요',c:'(28자)'}]
+    },
+    '05': {
+      A: [{t:'출퇴근 후 발 너무 아픈 날 — 이게 기다리고 있습니다',c:'(29자)'},{t:'뒤에서 주물러 줄 사람 없을 때 — 강남 직장맘의 선택',c:'(29자)'},{t:'힐 신고 하루 다 보낸 발, 이제 집에서 케어하세요',c:'(27자)'}],
+      B: [{t:'재택근무 8시간 후 어깨가 돌처럼 굳을 때 — 이거 꺼내요',c:'(32자)'},{t:'스트레칭도 귀찮은 날 — 그냥 등에 대고 눌러만 줘도 돼요',c:'(32자)'},{t:'어깨 주물러 줄 사람 없는 재택 생활 — 이게 대신해요',c:'(29자)'}],
+      C: [{t:'족저근막염 있는데 병원 갈 시간이 없다면 — 이렇게 하세요',c:'(33자)'},{t:'아내한테 선물했다가 본인이 뺏겼다는 후기 — 릴렉스틱볼',c:'(32자)'},{t:'벼라별짓 다 해봐도 안됐던 분들 — 이번엔 진짜 달라요',c:'(29자)'}],
+      D: [{t:'저녁마다 발 붓는 게 이제 당연해졌다면 — 다시 생각해보세요',c:'(34자)'},{t:'마사지숍 간판만 보고 지나쳤던 날들 — 이제 집에서 하세요',c:'(33자)'},{t:'몸이 힘들어도 내색 못 했던 날들 — 이제 괜찮습니다',c:'(28자)'}],
+      E: [{t:'운동 끝나고 종아리가 터질 것 같을 때 — 이거 하나면 돼요',c:'(33자)'},{t:'헬스 다음 날 아파서 못 일어난 경험 — 이제 없어요',c:'(28자)'},{t:'운동하고 싶은데 회복이 무서웠다면 — 이게 해결해줘요',c:'(29자)'}],
+      F: [{t:'허리·발바닥 만성통증으로 삶의 질이 떨어진다면',c:'(25자)'},{t:'자다가 통증으로 깼던 그날 밤 — 더 이상 반복 안 해도 돼요',c:'(34자)'},{t:'병원이 지겨워진 분들 — 집에서 매일 이렇게 합니다',c:'(27자)'}]
+    },
+    '06': {
+      A: [{t:'아침 첫 발 찌릿 → 출근하면 더 심해짐 → 릴렉스틱볼이 해결합니다',c:'(37자)'},{t:'힐 착용 하루 종일 → 저녁 발바닥 작열감 → 2분이면 달라집니다',c:'(35자)'},{t:'출퇴근 6시간 서 있다 → 족저근막염 악화 → 지금 케어하세요',c:'(33자)'}],
+      B: [{t:'재택 8시간 → 어깨 굳어서 목까지 → 분리형 볼 하나로 잡습니다',c:'(35자)'},{t:'위를 못 보는 어깨 → 물리치료도 하루뿐 → 집에서 매일 관리하세요',c:'(37자)'},{t:'어깨 돌처럼 굳었다 → 어디서부터 풀어야 할지 모른다 → 릴렉스틱볼',c:'(37자)'}],
+      C: [{t:'발뒤꿈치가 찌릿 → 족저근막염 시작 → 지금 잡아야 합니다',c:'(30자)'},{t:'방치한 발통증 → 무릎까지 이어짐 → 지금 해결하는 방법 있어요',c:'(35자)'},{t:'복잡한 도구는 싫다 → 안 쓰게 된다 → 그냥 밟기만 하면 됩니다',c:'(35자)'}],
+      D: [{t:'저녁마다 발이 붓는다 → 혈액순환 문제 시작 → 집에서 매일 잡으세요',c:'(37자)'},{t:'종아리 빵빵 → 마사지숍 가기도 귀찮다 → 이거 하나면 됩니다',c:'(33자)'},{t:'발이 저리다 → 만성화가 걱정된다 → 지금 셀프케어 시작하세요',c:'(33자)'}],
+      E: [{t:'운동 후 종아리 긴장 → 다음날 지연성 통증 → 쿨다운 루틴이 답입니다',c:'(38자)'},{t:'폼롤러로 못 닿는 발바닥 → 스팟 지압 한계 → 릴렉스틱볼이 해결해요',c:'(38자)'},{t:'헬스 후 회복 안 됨 → 다음 운동 망침 → 쿨다운 루틴 만드세요',c:'(34자)'}],
+      F: [{t:'만성 발바닥 통증 → 병원도 한계 → 집에서 매일 관리가 답입니다',c:'(34자)'},{t:'아침 발통증 → 하루가 무서워짐 → 이제 더 이상 반복 안 해도 돼요',c:'(37자)'},{t:'허리·발 만성통증 → 외출도 두렵다 → 집에서 매일 이렇게 하세요',c:'(35자)'}]
+    },
+    '07': {
+      A: [{t:'출퇴근 힐 착용 여성들이 2분 만에 발통증 줄이는 방법',c:'(29자)'},{t:'강남 직장맘들이 몰래 쓰는 셀프케어 도구가 있다고요?',c:'(29자)'},{t:'도수치료 없이 발바닥 통증 줄이는 의외의 방법 — 릴렉스틱볼',c:'(33자)'}],
+      B: [{t:'재택근무 어깨 통증을 책상 위 도구 하나로 잡는 방법',c:'(29자)'},{t:'분리하면 두 가지, 결합하면 하나 — 이게 뭔지 아시나요?',c:'(31자)'},{t:'재택 어깨 통증, 아무도 안 알려준 셀프케어 방법 — 공개',c:'(30자)'}],
+      C: [{t:'족저근막염 있는데 병원 안 가도 되는 방법이 있다고요?',c:'(29자)'},{t:'선물 한 번으로 집안 전체가 쓰게 되는 제품 — 공개합니다',c:'(31자)'},{t:'남성들이 잘 모르는 발 셀프케어 — 클릭하면 알 수 있어요',c:'(31자)'}],
+      D: [{t:'저녁 발 붓기를 집에서 5분에 잡는 의외의 방법',c:'(25자)'},{t:'마사지숍 안 가도 되는 이유 — 클릭하면 알 수 있습니다',c:'(29자)'},{t:'혈액순환 좋아지는 집에서 하는 방법 — 이게 뭔가요?',c:'(28자)'}],
+      E: [{t:'폼롤러보다 나은 이유 — 운동 후 쿨다운 루틴 공개',c:'(27자)'},{t:'헬스 다음 날 덜 아픈 사람들의 공통점이 있다고요?',c:'(27자)'},{t:'볼 하나로 발바닥 · 종아리 · 등 케어하는 방법 — 공개',c:'(29자)'}],
+      F: [{t:'만성 통증인데 병원보다 효과 있다는 분들의 비밀',c:'(25자)'},{t:'매일 밟아서 병원 덜 가게 됐다는 후기 — 진짜인가요?',c:'(28자)'},{t:'53세 이상 분들이 아무도 안 알려준 셀프케어 방법',c:'(26자)'}]
+    },
+    '08': {
+      A: [{t:'리뷰 1,138건 · 4.84점 — 강남 직장여성들이 인정한 수치',c:'(31자)'},{t:'재구매율 2월 10% 급등 — 쓰던 분들이 또 사는 릴렉스틱볼',c:'(33자)'},{t:'긍정 리뷰 98.2% — 족저근막염 직장맘들이 인정한 이유',c:'(29자)'}],
+      B: [{t:'재택러들의 선택 — 98.2% 긍정 리뷰가 증명합니다',c:'(27자)'},{t:'분리형 마사지볼 중 재구매율 최상위 — 이유가 있습니다',c:'(29자)'},{t:'재택 어깨 통증 카테고리 리뷰 별점 4.84 — 확인하세요',c:'(29자)'}],
+      C: [{t:'가성비·내구성 모두 잡은 셀프케어 도구 — 수치로 확인',c:'(29자)'},{t:'선물 받은 분들도 따로 구매하는 제품 — 리뷰 1,138건',c:'(29자)'},{t:'족저근막염 남성 구매자 긍정 리뷰 98.2% — 확인하세요',c:'(29자)'}],
+      D: [{t:'혈액순환 개선 후기 1,138건 — 저녁 발붓기에 효과 있는 이유',c:'(34자)'},{t:'48세 이상 구매자들의 재구매율이 오르고 있습니다',c:'(25자)'},{t:'별점 4.84 · 긍정 98.2% — 저녁 루틴 만드는 분들의 선택',c:'(32자)'}],
+      E: [{t:'운동 후 회복 제품 중 리뷰 별점 4.84 — 헬스 유저의 선택',c:'(32자)'},{t:'쿨다운 루틴에 넣은 1,138명이 남긴 후기 — 확인하세요',c:'(29자)'},{t:'재구매율이 오릅니다 — 쓰던 운동인들이 또 사는 릴렉스틱볼',c:'(32자)'}],
+      F: [{t:'만성 통증 어르신들도 인정한 수치 — 리뷰 1,138건',c:'(27자)'},{t:'53세 이상 구매자 재구매율이 꾸준히 오르는 이유',c:'(25자)'},{t:'평균 별점 4.84 — 오래 쓴 분들이 인정한 릴렉스틱볼',c:'(28자)'}]
+    }
+  },
+  need: {
+    '09': {
+      A: [{t:'야근 후 잠들기 전 발바닥이 찌릿하다면 — 자기 전 2분으로 바꾸세요',c:'(37자)'},{t:'아침 알람보다 통증이 먼저 깨운다면 — 수면의 질을 돌려드립니다',c:'(35자)'},{t:'힐 신고 하루 보내고 밤에 발이 쑤신다면 — 자기 전 2분이면 달라요',c:'(37자)'}],
+      B: [{t:'어깨 뭉침이 수면을 방해한다면 — 자기 전 2분으로 밤이 달라져요',c:'(35자)'},{t:'재택 후 자려고 누우면 어깨가 당긴다면 — 이거 먼저 해보세요',c:'(34자)'},{t:'밤에 어깨가 쑤셔서 뒤척인다면 — 자기 전 이 루틴 해보세요',c:'(32자)'}],
+      C: [{t:'아침에 발을 디딜 때 찌릿한 분들 — 기본적인 일상을 돌려드립니다',c:'(35자)'},{t:'오른발을 아침마다 디디지 못했던 분들 — 이게 해결책입니다',c:'(31자)'},{t:'족저근막염으로 아침 걷기가 두려운 분들 — 2분이면 달라져요',c:'(32자)'}],
+      D: [{t:'저녁마다 발이 부어 제대로 쉬지 못하는 분들 — 수면 전 2분',c:'(32자)'},{t:'밤에 종아리가 쥐가 나서 잠이 깬다면 — 이걸 먼저 해보세요',c:'(32자)'},{t:'TV 보면서 발 붓기 해결 — 저녁 일상이 달라집니다',c:'(27자)'}],
+      E: [{t:'운동 후 자려고 누우면 종아리가 뭉쳐서 잠을 못 잔다면',c:'(28자)'},{t:'취침 전 쿨다운 — 운동 다음 날 아침이 달라집니다',c:'(27자)'},{t:'헬스 후 발바닥·종아리 통증으로 수면이 방해된다면 — 2분',c:'(30자)'}],
+      F: [{t:'밤에 찌릿찌릿 찌르는 느낌 — 자기 전 2분이면 아침이 달라요',c:'(33자)'},{t:'아침에 첫 발 디딜 때가 제일 두렵다는 분들 — 이게 해결해줘요',c:'(34자)'},{t:'수면 중 발바닥 통증으로 깼던 분들 — 더 이상 반복 안 해도 됩니다',c:'(37자)'}]
+    },
+    '10': {
+      A: [{t:'출퇴근 발통증 퇴근하면 바로 케어 — 직장 생활 지키세요',c:'(29자)'},{t:'직장 생활 유지하려면 발 건강부터 — 릴렉스틱볼 시작',c:'(28자)'},{t:'힐 착용 여성의 족저근막염 — 지금 관리 안 하면 악화됩니다',c:'(31자)'}],
+      B: [{t:'재택근무 어깨 통증 방치하면 일 못합니다 — 지금 케어',c:'(28자)'},{t:'집에서 일하는 몸 — 집에서 케어합니다 — 릴렉스틱볼',c:'(28자)'},{t:'재택 장기화, 어깨 건강이 곧 커리어입니다 — 지금 관리',c:'(28자)'}],
+      C: [{t:'족저근막염 방치하면 무릎까지 옵니다 — 지금이 골든타임',c:'(29자)'},{t:'셀프케어 모르면 병원비 더 씁니다 — 이게 더 현명해요',c:'(28자)'},{t:'발바닥 통증 방치하면 오래 못 걷습니다 — 지금 시작하세요',c:'(30자)'}],
+      D: [{t:'저녁 발붓기 방치하면 혈관 건강까지 이어집니다 — 주의',c:'(28자)'},{t:'몸 관리 안 하면 나중에 더 큰 문제가 됩니다 — 지금 시작',c:'(31자)'},{t:'혈액순환 지금 잡지 않으면 — 나중이 더 어렵습니다',c:'(27자)'}],
+      E: [{t:'운동 후 제대로 회복 안 하면 부상 납니다 — 쿨다운 필수',c:'(29자)'},{t:'헬스 지속하려면 관절 관리부터 — 릴렉스틱볼 쿨다운 루틴',c:'(31자)'},{t:'운동을 오래 하고 싶다면 — 회복 관리가 먼저입니다',c:'(27자)'}],
+      F: [{t:'만성 통증 방치하면 활동 범위가 줄어듭니다 — 지금 관리',c:'(29자)'},{t:'병원 안 가고 집에서 매일 안전하게 — 릴렉스틱볼 루틴',c:'(29자)'},{t:'몸이 건강해야 삶이 있습니다 — 지금 셀프케어 시작하세요',c:'(30자)'}]
+    },
+    '11': {
+      A: [{t:'강남 직장 여성들 사이에서 이미 공유되고 있습니다',c:'(25자)'},{t:'같은 고민하는 직장 여성들이 선택한 셀프케어 — 릴렉스틱볼',c:'(31자)'},{t:'출퇴근 발통증 분들이 공유하는 — 조용한 필수템',c:'(25자)'}],
+      B: [{t:'재택러들 사이에서 공유되는 그 제품 — 릴렉스틱볼',c:'(27자)'},{t:'같이 재택하는 친구에게 추천하고 싶은 릴렉스틱볼',c:'(25자)'},{t:'재택 동료들이 공유하는 셀프케어 도구 — 이게 그거예요',c:'(29자)'}],
+      C: [{t:'가족 건강을 챙기는 분들이 선택한 — 온 가족이 쓸 수 있어요',c:'(32자)'},{t:'선물로 시작해서 온 집안이 쓰게 된 릴렉스틱볼',c:'(24자)'},{t:'아버지가 선물했다가 온 가족이 뺏어 쓰는 릴렉스틱볼',c:'(28자)'}],
+      D: [{t:'같은 나이대 분들이 추천하는 저녁 루틴 — 릴렉스틱볼',c:'(28자)'},{t:'마사지숍 단골들이 집에서도 쓰는 그 도구 — 릴렉스틱볼',c:'(29자)'},{t:'친구한테 소개하고 같이 주문한다는 후기 — 따뜻합니다',c:'(28자)'}],
+      E: [{t:'헬스 친구들이 공유하는 쿨다운 루틴 — 나만 모르고 있었나요?',c:'(32자)'},{t:'운동 커뮤니티에서 입소문 난 릴렉스틱볼 — 확인해보세요',c:'(28자)'},{t:'같이 운동하는 친구한테 추천받은 분들 — 후기 확인하세요',c:'(30자)'}],
+      F: [{t:'또래 분들 사이에서 조용히 유명한 셀프케어 도구',c:'(25자)'},{t:'친구한테 소개하고 같이 주문한다는 후기 — 릴렉스틱볼',c:'(28자)'},{t:'비슷한 나이대 분들이 이미 쓰고 있어요 — 확인하세요',c:'(28자)'}]
+    },
+    '12': {
+      A: [{t:'내 몸은 내가 관리한다 — 자기관리 잘하는 분들의 선택',c:'(28자)'},{t:'직장생활 10년, 이제 나를 챙길 시간입니다 — 릴렉스틱볼',c:'(30자)'},{t:'강남에서 일하는 여성의 자기관리 루틴 — 릴렉스틱볼',c:'(27자)'}],
+      B: [{t:'재택근무도 잘하면서 몸까지 챙기는 분들의 루틴',c:'(24자)'},{t:'셀프케어에 진심인 분들의 책상 위 필수템 — 릴렉스틱볼',c:'(29자)'},{t:'재택하면서도 건강 관리 잘하는 사람 — 이렇게 합니다',c:'(28자)'}],
+      C: [{t:'선물 하나로 센스 있다는 소리 들을 수 있습니다',c:'(25자)'},{t:'가족 건강 챙기는 아빠의 선택 — 릴렉스틱볼',c:'(24자)'},{t:'셀프케어에 진심인 분들이 선물할 때 고르는 것',c:'(24자)'}],
+      D: [{t:'나 자신을 챙길 자격이 있습니다 — 저녁 루틴 시작',c:'(27자)'},{t:'40대 후반, 이제 내 몸이 우선입니다 — 셀프케어 시작',c:'(28자)'},{t:'자기관리 잘하는 50대 초반의 루틴 — 릴렉스틱볼',c:'(25자)'}],
+      E: [{t:'운동 루틴에 회복까지 챙기는 분들 — 이미 달라요',c:'(26자)'},{t:'헬스에 진심인 분들의 쿨다운 — 릴렉스틱볼 루틴',c:'(25자)'},{t:'운동도 잘하면서 몸 관리도 하는 분들의 선택',c:'(23자)'}],
+      F: [{t:'60대를 건강하게 맞이하는 준비 — 지금부터 관리',c:'(25자)'},{t:'오래 건강하게 살고 싶다면 — 지금 시작하는 셀프케어',c:'(28자)'},{t:'스스로 관리하는 삶을 선택한 분들의 도구 — 릴렉스틱볼',c:'(29자)'}]
+    },
+    '13': {
+      A: [{t:'자기관리 하는 여성으로 살기 위한 작은 루틴 하나',c:'(26자)'},{t:'출퇴근 후에도 내 몸을 돌보는 사람 — 릴렉스틱볼',c:'(27자)'},{t:'오늘 하루도 최선을 다한 나에게 — 2분의 케어',c:'(25자)'}],
+      B: [{t:'재택근무 하면서도 몸 관리하는 사람의 루틴',c:'(22자)'},{t:'내 공간에서 내가 만드는 셀프케어 루틴 — 릴렉스틱볼',c:'(28자)'},{t:'일도 잘하면서 몸도 챙기는 재택러의 정체성 — 릴렉스틱볼',c:'(30자)'}],
+      C: [{t:'건강한 선물로 내 마음을 전하는 방법 — 릴렉스틱볼',c:'(27자)'},{t:'족저근막염도 스스로 관리하는 사람이 됩니다',c:'(23자)'},{t:'가족 건강 챙기는 아빠가 되고 싶다면 — 이걸로 시작',c:'(28자)'}],
+      D: [{t:'50대를 건강하게 사는 내 방식을 만들어 가고 있습니다',c:'(28자)'},{t:'저녁마다 나를 위한 시간 — 이제 루틴이 됐어요',c:'(25자)'},{t:'내 몸을 아끼는 삶 — 저녁 5분 릴렉스틱볼로 시작해요',c:'(29자)'}],
+      E: [{t:'운동하는 사람답게 회복도 제대로 — 릴렉스틱볼 루틴',c:'(27자)'},{t:'나만의 쿨다운 루틴을 만든 분들의 선택',c:'(20자)'},{t:'헬스에 진심인 사람의 루틴은 운동 후까지 이어집니다',c:'(28자)'}],
+      F: [{t:'나이 들어도 스스로 관리하는 삶 — 매일 밟는 루틴',c:'(27자)'},{t:'병원 의존 않고 내가 관리하는 사람이 됐습니다',c:'(24자)'},{t:'건강하게 나이 드는 것 — 매일 2분 셀프케어로 시작해요',c:'(30자)'}]
+    }
+  }
+};
+
+function applyPersonaCopy(tabSection, personaKey) {
+  var tabType = tabSection.dataset.tabType;
+  if (!PERSONA_COPY[tabType]) return;
+
+  var isAbc = (tabType === 'abc');
+  var cardSel = isAbc ? '.type-card' : '.psy-card';
+  var itemSel = isAbc ? '.copy-item' : '.hl-item';
+  var bodySel = isAbc ? '.type-body' : '.psy-body';
+
+  tabSection.querySelectorAll(cardSel).forEach(function(pc) {
+    var cid = pc.dataset.cid;
+    var body = pc.querySelector(bodySel);
+    if (!body || !cid) return;
+
+    if (!pc._origHl) {
+      pc._origHl = Array.from(body.querySelectorAll(itemSel)).map(function(el) { return el.outerHTML; });
+    }
+
+    var anchorLabel = null;
+    body.querySelectorAll('.psy-label').forEach(function(el) {
+      var txt = el.textContent.trim();
+      if (isAbc ? txt.indexOf('본문 예시') === 0 : txt === 'CTA') anchorLabel = el;
+    });
+
+    body.querySelectorAll(itemSel).forEach(function(el) { el.remove(); });
+
+    var htmlArr;
+    if (personaKey && PERSONA_COPY[tabType][cid] && PERSONA_COPY[tabType][cid][personaKey]) {
+      var items = PERSONA_COPY[tabType][cid][personaKey];
+      if (isAbc) {
+        htmlArr = items.map(function(item, i) {
+          return '<div class="copy-item"><span class="copy-num">' + (i + 1) + '</span><span class="copy-text">' + item.t + '</span><span class="copy-count">' + item.c + '</span><span class="iboss-cite">' + item.src + '</span></div>';
+        });
+      } else {
+        htmlArr = items.map(function(item, i) {
+          return '<div class="hl-item"><div class="hl-n">' + (i + 1) + '</div><div class="hl-txt">' + item.t + '</div><div class="hl-cnt">' + item.c + '</div></div>';
+        });
+      }
+      pc.classList.add('persona-active');
+    } else {
+      htmlArr = pc._origHl || [];
+      pc.classList.remove('persona-active');
+    }
+
+    var tmp = document.createElement('div');
+    htmlArr.forEach(function(html) {
+      tmp.innerHTML = html;
+      var el = tmp.firstChild;
+      if (anchorLabel) body.insertBefore(el, anchorLabel);
+      else body.appendChild(el);
+    });
+  });
 }
 </script>
 </body>
