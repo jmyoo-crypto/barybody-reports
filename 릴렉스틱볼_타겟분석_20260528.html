@@ -1334,7 +1334,26 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
     </div>
 
     <!-- 페르소나 3개 -->
+    <style>
+    .persona-type-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.5px;
+      padding: 3px 10px; border-radius: 5px; margin-bottom: 10px; }
+    .type-a { background: #fff1f0; color: #cf1322; border: 1.5px solid #ffa39e; }
+    .type-b { background: #e6f4ff; color: #0958d9; border: 1.5px solid #91caff; }
+    .type-c { background: #f6ffed; color: #389e0d; border: 1.5px solid #95de64; }
+    .persona-section-label { font-size: 10px; font-weight: 800; color: #aaa; letter-spacing: 1px;
+      text-transform: uppercase; margin: 12px 0 4px; }
+    .pain-list { margin: 0; padding: 0; list-style: none; }
+    .pain-list li { font-size: 12px; color: #555; padding: 3px 0; display: flex; gap: 6px; line-height: 1.5; }
+    .pain-list li::before { content: '·'; color: #cf1322; font-weight: 900; flex-shrink: 0; }
+    .trigger-box { background: #fffbf0; border: 1.5px solid #fde68a; border-radius: 8px;
+      padding: 8px 12px; font-size: 12px; color: #92400e; margin-top: 8px; line-height: 1.6; }
+    .appeal-box { background: #f0f5ff; border-radius: 8px; padding: 8px 12px;
+      font-size: 12px; color: #1d39c4; margin-top: 6px; line-height: 1.6; }
+    </style>
+
     <div class="persona-grid">
+
+      <!-- 페르소나 1: A형 — 브랜드/카테고리 검색 구매자 -->
       <div class="persona-card">
         <div class="persona-head" style="border-top:3px solid #cf1322;">
           <div class="persona-avatar" style="background:#fff1f0;">👩‍💼</div>
@@ -1344,23 +1363,43 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
           </div>
         </div>
         <div class="persona-body">
+          <div><span class="persona-type-badge type-a">A형 — 인지·비교 구매자</span></div>
           <div class="persona-tags">
             <span class="ptag red">기혼</span>
             <span class="ptag blue">직장인</span>
-            <span class="ptag purple">강남구</span>
+            <span class="ptag purple">강남3구</span>
             <span class="ptag orange">41~45세</span>
           </div>
+
+          <div class="persona-section-label">프로필</div>
           <div class="persona-kv">
-            <strong>프로필:</strong> 기혼 여성 / 강남·송파·서초 / 2인 이상 가구<br>
-            <strong>직업:</strong> 데스크 직군 (회계·HR·기획)<br>
-            <strong>구매계기:</strong> 족저근막염 검색 / 기존 릴렉스틱 스틱 사용자의 볼 추가 구매<br>
-            <strong>구매시간:</strong> 평일 오전 10시 / 야간 22시<br>
-            <strong>채널:</strong> 네이버 브랜드검색 → 스마트스토어 (모바일)
+            기혼 여성 / 강남·송파·서초 / 2인 이상 가구<br>
+            데스크 직군 (회계·HR·기획) / 모바일 구매 89%
+          </div>
+
+          <div class="persona-section-label">페인포인트 TOP 3</div>
+          <ul class="pain-list">
+            <li>출퇴근·장시간 착석으로 누적된 발바닥·족저근막 통증</li>
+            <li>어깨·승모 뭉침 — 병원·마사지숍 갈 시간 없음</li>
+            <li>기존 릴렉스틱 스틱으론 발바닥·둥근 부위 마사지 한계</li>
+          </ul>
+
+          <div class="persona-section-label">구매 트리거</div>
+          <div class="trigger-box">
+            💡 "족저근막염" 검색 → 릴렉스틱볼 발견<br>
+            또는 기존 스틱 사용자가 볼 추가 구매<br>
+            <strong>구매 시간:</strong> 평일 오전 10시 / 야간 22시
+          </div>
+
+          <div class="persona-section-label">소구점</div>
+          <div class="appeal-box">
+            사회적 증거(4.84점·1,138건) + 기능 설명(분리형·두 가지 용도) + 손실 회피(방치하면 더 악화)
           </div>
         </div>
         <div class="persona-foot">핵심 메시지: <strong>"세지도 약하지도 않은 딱 맞는 자극"</strong></div>
       </div>
 
+      <!-- 페르소나 2: B형 — 증상 검색 유입 -->
       <div class="persona-card">
         <div class="persona-head" style="border-top:3px solid #0958d9;">
           <div class="persona-avatar" style="background:#e6f4ff;">👩‍💻</div>
@@ -1370,23 +1409,43 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
           </div>
         </div>
         <div class="persona-body">
+          <div><span class="persona-type-badge type-b">B형 — 문제 인식·해결책 탐색</span></div>
           <div class="persona-tags">
             <span class="ptag blue">미혼</span>
             <span class="ptag blue">직장인</span>
             <span class="ptag green">서울</span>
             <span class="ptag gray">31~35세</span>
           </div>
+
+          <div class="persona-section-label">프로필</div>
           <div class="persona-kv">
-            <strong>프로필:</strong> 미혼~기혼 과도기 / 서울 마포·관악 거주<br>
-            <strong>직업:</strong> 재택·하이브리드 근무 (IT·마케팅·디자인)<br>
-            <strong>구매계기:</strong> 어깨·목 뭉침 → 마사지볼 검색 / 인스타 릴스 노출<br>
-            <strong>구매시간:</strong> 야간 21~23시 (퇴근 후 모바일)<br>
-            <strong>성장포인트:</strong> 인스타 → 브랜드검색 전환 강화로 확대 가능
+            미혼 여성 / 서울 마포·관악·동작 거주<br>
+            재택·하이브리드 근무 (IT·마케팅·디자인)
+          </div>
+
+          <div class="persona-section-label">페인포인트 TOP 3</div>
+          <ul class="pain-list">
+            <li>재택근무 장시간 착석으로 어깨·목 뭉침 만성화</li>
+            <li>마사지볼·폼롤러 검색 중 — 브랜드 인지 없음</li>
+            <li>병원·마사지 비용 부담 → 셀프케어 대안 탐색</li>
+          </ul>
+
+          <div class="persona-section-label">구매 트리거</div>
+          <div class="trigger-box">
+            💡 "마사지볼", "승모근 뭉침" 검색 → 카테고리 유입<br>
+            또는 인스타 릴스 노출 → 브랜드검색 전환<br>
+            <strong>구매 시간:</strong> 야간 21~23시 (퇴근 후 모바일)
+          </div>
+
+          <div class="persona-section-label">소구점</div>
+          <div class="appeal-box">
+            공감/감정(재택 어깨 뭉침 공감) + 호기심 갭(분리형 구조 궁금증) + 사회적 증거(리뷰 인용)
           </div>
         </div>
         <div class="persona-foot">핵심 메시지: <strong>"작은데 실용적 — 분리해서 두 가지로"</strong></div>
       </div>
 
+      <!-- 페르소나 3: C형 — 콜드 오디언스(배우자 추천·선물) -->
       <div class="persona-card">
         <div class="persona-head" style="border-top:3px solid #389e0d;">
           <div class="persona-avatar" style="background:#f6ffed;">👨‍💼</div>
@@ -1396,22 +1455,42 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
           </div>
         </div>
         <div class="persona-body">
+          <div><span class="persona-type-badge type-c">C형 — 콜드·추천 유입</span></div>
           <div class="persona-tags">
             <span class="ptag green">기혼</span>
             <span class="ptag green">직장인</span>
             <span class="ptag gray">경기도</span>
             <span class="ptag orange">36~45세</span>
           </div>
+
+          <div class="persona-section-label">프로필</div>
           <div class="persona-kv">
-            <strong>프로필:</strong> 기혼 남성 / 경기도·서울 거주<br>
-            <strong>직업:</strong> 사무직 / 현장직 (근골격계 통증 직접 경험)<br>
-            <strong>구매계기:</strong> 족저근막염·손목 통증 실용 목적 / 배우자 추천<br>
-            <strong>구매시간:</strong> 평일 오전 10시 / 야간 22시<br>
-            <strong>성장포인트:</strong> 남성 근골격계 수요 성장 → 남성 크리에이티브 테스트
+            기혼 남성 / 경기도·서울 거주<br>
+            사무직·현장직 / 근골격계 통증 직접 경험
+          </div>
+
+          <div class="persona-section-label">페인포인트 TOP 3</div>
+          <ul class="pain-list">
+            <li>족저근막염·손목 통증 — 참고 지내다 검색</li>
+            <li>셀프케어 도구 인지 낮음 — 배우자 추천으로 인지</li>
+            <li>실용성 우선 — 복잡한 사용법 기피</li>
+          </ul>
+
+          <div class="persona-section-label">구매 트리거</div>
+          <div class="trigger-box">
+            💡 배우자·지인 추천 또는 선물 목적 구매<br>
+            "견고하고 좋은 구성" 리뷰 보고 결제 결심<br>
+            <strong>구매 시간:</strong> 평일 오전 10시 / 야간 22시
+          </div>
+
+          <div class="persona-section-label">소구점</div>
+          <div class="appeal-box">
+            권위/신뢰(4.84점 고평점) + PAS(통증→방치→악화→해결) + 앵커링(병원비 대비 가성비)
           </div>
         </div>
-        <div class="persona-foot">핵심 메시지: <strong>"견고하고 좋은 구성"</strong></div>
+        <div class="persona-foot">핵심 메시지: <strong>"견고하고 좋은 구성 — 실용적 셀프케어"</strong></div>
       </div>
+
     </div>
 
     <!-- 액션 카드 5개 -->
