@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>릴렉스틱 커뮤니티 리서치 — 2026.06.02</title>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+       background:#f5f6f8; color:#1a1a2e; line-height:1.7; font-size:13px; }
+.hero { background:linear-gradient(135deg,#0a0a1a 0%,#1a1a2e 60%,#2d1b69 100%);
+        color:#fff; padding:52px 40px 44px; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; left:-80px; bottom:-80px;
+  width:280px; height:280px; border-radius:50%; background:rgba(100,60,255,0.10); }
+.hero .tag { display:inline-block; background:rgba(150,100,255,0.25); color:#b39dff;
+  font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  padding:4px 12px; border-radius:20px; margin-bottom:18px; }
+.hero h1 { font-size:26px; font-weight:800; line-height:1.35; margin-bottom:10px; }
+.hero p   { font-size:13px; color:rgba(255,255,255,0.6); }
+.hero .meta { margin-top:20px; font-size:12px; color:rgba(255,255,255,0.45); display:flex; gap:24px; flex-wrap:wrap; }
+.hero .meta strong { color:rgba(255,255,255,0.85); }
+.back-btn { display:inline-block; margin:20px 40px; padding:8px 18px;
+  background:#fff; border-radius:8px; font-size:12px; font-weight:700;
+  color:#0958d9; text-decoration:none; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+.back-btn:hover { background:#e6f4ff; }
+.container { max-width:980px; margin:0 auto; padding:0 20px 80px; }
+.section { margin-bottom:36px; }
+.section-header { display:flex; align-items:center; gap:16px; margin-bottom:16px; padding-top:8px; }
+.section-num { width:48px; height:48px; border-radius:14px; display:flex;
+  align-items:center; justify-content:center; font-size:20px; font-weight:800; flex-shrink:0; }
+.num-a { background:#fff1f0; color:#cf1322; }
+.num-b { background:#fff7e6; color:#d46b08; }
+.num-c { background:#e6f4ff; color:#0958d9; }
+.num-d { background:#f9f0ff; color:#531dab; }
+.num-e { background:#f6ffed; color:#389e0d; }
+.num-f { background:#fffbe6; color:#7cb305; }
+.num-s { background:#e6fffb; color:#08979c; }
+.section-title    { font-size:20px; font-weight:800; color:#1a1a2e; }
+.section-subtitle { font-size:13px; color:#888; margin-top:2px; }
+.card { background:#fff; border-radius:16px; padding:26px 28px; margin-bottom:14px;
+        box-shadow:0 2px 16px rgba(0,0,0,0.055); }
+.card h3 { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:14px;
+           display:flex; align-items:center; gap:8px; }
+.card h3 .dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.quote-block { background:#f7f8fa; border-radius:10px; padding:14px 16px; margin-bottom:10px; position:relative; }
+.quote-block.q-a { border-left:4px solid #cf1322; }
+.quote-block.q-b { border-left:4px solid #d46b08; }
+.quote-block.q-c { border-left:4px solid #0958d9; }
+.quote-block.q-d { border-left:4px solid #531dab; }
+.quote-block.q-e { border-left:4px solid #389e0d; }
+.quote-block.q-f { border-left:4px solid #7cb305; }
+.quote-text { font-size:13px; color:#1a1a2e; font-style:italic; line-height:1.7; margin-bottom:6px; }
+.quote-src  { font-size:11px; color:#aaa; }
+.quote-tag  { display:inline-block; font-size:10px; font-weight:700; padding:2px 8px;
+  border-radius:4px; margin-right:6px; }
+.qt-pain    { background:#fff1f0; color:#cf1322; }
+.qt-fail    { background:#fff7e6; color:#d46b08; }
+.qt-trigger { background:#f6ffed; color:#389e0d; }
+.qt-voice   { background:#f9f0ff; color:#531dab; }
+.pain-list  { list-style:none; padding:0; }
+.pain-list li { display:flex; gap:10px; align-items:flex-start; padding:10px 0;
+  border-bottom:1px solid #f0f0f0; font-size:12px; }
+.pain-list li:last-child { border-bottom:none; }
+.pain-num   { font-size:13px; font-weight:800; color:#cf1322; flex-shrink:0; width:24px; }
+.pain-text  { color:#333; line-height:1.6; }
+.pain-sub   { font-size:11px; color:#888; margin-top:2px; }
+.copy-candidate { background:linear-gradient(135deg,#1a1a2e,#2d1b69); color:#fff;
+  border-radius:12px; padding:16px 20px; margin-top:8px; }
+.copy-candidate .c-label { font-size:10px; font-weight:800; color:#b39dff;
+  letter-spacing:1px; margin-bottom:10px; }
+.copy-candidate .c-item  { font-size:13px; color:#fff; padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,0.1); line-height:1.6; }
+.copy-candidate .c-item:last-child { border-bottom:none; }
+.stat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:14px; }
+@media(max-width:600px){ .stat-grid{grid-template-columns:1fr;} }
+.stat-box  { border-radius:10px; padding:16px 18px; }
+.stat-box.s1 { background:#e6f4ff; border:1.5px solid #91caff; }
+.stat-box.s2 { background:#f6ffed; border:1.5px solid #95de64; }
+.stat-box.s3 { background:#fff7e6; border:1.5px solid #ffd591; }
+.stat-box.s4 { background:#f9f0ff; border:1.5px solid #d3adf7; }
+.stat-num   { font-size:22px; font-weight:900; color:#1a1a2e; margin-bottom:4px; }
+.stat-label { font-size:11px; font-weight:700; color:#555; margin-bottom:4px; }
+.stat-desc  { font-size:11px; color:#666; line-height:1.6; }
+.persona-badge { display:inline-block; font-size:11px; font-weight:800; padding:4px 12px;
+  border-radius:20px; margin-bottom:12px; }
+.pb-a { background:#fff1f0; color:#cf1322; }
+.pb-b { background:#fff7e6; color:#d46b08; }
+.pb-c { background:#e6f4ff; color:#0958d9; }
+.pb-d { background:#f9f0ff; color:#531dab; }
+.pb-e { background:#f6ffed; color:#389e0d; }
+.pb-f { background:#fffbe6; color:#7cb305; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:600px){ .two-col{grid-template-columns:1fr;} }
+.note { font-size:11px; color:#94a3b8; margin-top:10px; line-height:1.7; }
+.report-footer { text-align:center; padding:24px; color:#bbb; font-size:11px;
+  border-top:1px solid #e8eaf0; margin-top:16px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tag">COMMUNITY VOICE RESEARCH · 2026.06.02</div>
+  <h1>릴렉스틱 커뮤니티 보이스 리서치</h1>
+  <p>A형~F형 페르소나별 실제 언어·페인포인트·구매 트리거 수집</p>
+  <div class="meta">
+    <span>수집일 <strong>2026.06.02</strong></span>
+    <span>수집 소스 <strong>82cook · theqoo · clien · 네이버 블로그</strong></span>
+    <span>대상 제품 <strong>릴렉스틱 전제품군</strong></span>
+    <span>연계 파일 <strong>릴렉스틱_타겟분석_20260602.html</strong></span>
+  </div>
+</div>
+
+<a class="back-btn" href="릴렉스틱_타겟분석_20260602.html">← 타겟 분석 리포트로 돌아가기</a>
+
+<div class="container">
+
+  <!-- A·B형 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num num-a">A·B</div>
+      <div>
+        <div class="section-title">A·B형 — 기혼 직장 여성 31~45세</div>
+        <div class="section-subtitle">82cook.com 주요 소스 · 워킹맘·직장 여성 통증 커뮤니티</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="persona-badge pb-a">A형 강남 워킹맘 지영 (41~45세)</span>
+      <span class="persona-badge pb-b">B형 30대 워킹맘 소연 (31~40세)</span>
+
+      <h3><span class="dot" style="background:#cf1322"></span>실제 커뮤니티 원문 (82cook)</h3>
+      <div class="quote-block q-a">
+        <div class="quote-tag qt-pain">통증</div>
+        <div class="quote-text">"목을 돌리기 힘들만큼 갑자기 어깨가 너무 아프네요"</div>
+        <div class="quote-src">82cook 자유게시판 · 어깨 뭉침 해결법</div>
+      </div>
+      <div class="quote-block q-a">
+        <div class="quote-tag qt-pain">통증</div>
+        <div class="quote-text">"눈물 빠지게 어깨가 자주 아픈 사람" / "자다가 통증으로 울었던 사람"</div>
+        <div class="quote-src">82cook 자유게시판 · 어깨 뭉침 이야기</div>
+      </div>
+      <div class="quote-block q-a">
+        <div class="quote-tag qt-fail">실패 경험</div>
+        <div class="quote-text">"한달에 한두번 8만원내고 아로마마사지받고옵니다. 피로가 쪼ㅇ아아악~~~" (→ 비용 부담 표현)</div>
+        <div class="quote-src">82cook · 2년전부터 어깨때문에 병원도 다녀보고</div>
+      </div>
+      <div class="quote-block q-a">
+        <div class="quote-tag qt-fail">실패 경험</div>
+        <div class="quote-text">"폼롤러는 팔로 지탱해야 하고 해서 귀찮고 힘들고" / "집에 있는 폼롤러는 사용하지 않던 상태"</div>
+        <div class="quote-src">82cook · 다나손 마사지 도구 후기</div>
+      </div>
+      <div class="quote-block q-b">
+        <div class="quote-tag qt-trigger">구매 트리거</div>
+        <div class="quote-text">"무지 아픈데 하다보면 시원해져요" (테니스공·마사지볼 사용 경험)<br>"진짜 시원해요. 장난 아니에요" (폼롤러 사용 경험)</div>
+        <div class="quote-src">82cook · 어깨 뭉친거 효과 있게 푸는법</div>
+      </div>
+      <div class="quote-block q-b">
+        <div class="quote-tag qt-trigger">구매 트리거</div>
+        <div class="quote-text">"저주파치료기하나 사세요 오만원도 안합니다...무조건 사세요 강추"</div>
+        <div class="quote-src">82cook 댓글 · 셀프케어 도구 추천</div>
+      </div>
+
+      <h3 style="margin-top:20px;"><span class="dot" style="background:#d46b08"></span>페인포인트 TOP 5</h3>
+      <ul class="pain-list">
+        <li><div class="pain-num">01</div><div><div class="pain-text">마사지샵 비용 부담 (월 8~16만원) + 시간 없음</div><div class="pain-sub">육아·직장 병행으로 "갈 시간도, 돈도 아깝다"</div></div></li>
+        <li><div class="pain-num">02</div><div><div class="pain-text">병원·한의원 효과가 일시적 — 반복 재발</div><div class="pain-sub">"2년전부터 다녀봤는데 그때뿐"</div></div></li>
+        <li><div class="pain-num">03</div><div><div class="pain-text">폼롤러 구매 후 방치 — 사용 불편</div><div class="pain-sub">"팔로 버텨야 해서 귀찮고 힘들어서 안 씀"</div></div></li>
+        <li><div class="pain-num">04</div><div><div class="pain-text">통증이 수면 방해 — 삶의 질 저하</div><div class="pain-sub">"자다가 통증으로 울었던 경험"</div></div></li>
+        <li><div class="pain-num">05</div><div><div class="pain-text">혼자 손이 닿지 않는 부위(등·날개뼈)</div><div class="pain-sub">"뒷통수·날갯죽지 스스로 해결 불가"</div></div></li>
+      </ul>
+
+      <div class="copy-candidate">
+        <div class="c-label">A·B형 광고 카피 후보 3개</div>
+        <div class="c-item">① "자다가 통증으로 울던 내가, 이제 5분이면 충분해요"</div>
+        <div class="c-item">② "마사지샵 8만원 대신, 퇴근 후 5분 셀프케어"</div>
+        <div class="c-item">③ "폼롤러는 팔로 버텨야 해서 포기했던 분들께"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C형 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num num-c">C</div>
+      <div>
+        <div class="section-title">C형 — 미혼 직장 여성 26~30세</div>
+        <div class="section-subtitle">theqoo · 승모근·재택근무 통증 커뮤니티</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="persona-badge pb-c">C형 싱글 직장인 수현 (26~30세)</span>
+
+      <h3><span class="dot" style="background:#0958d9"></span>실제 커뮤니티 원문 (theqoo)</h3>
+      <div class="quote-block q-c">
+        <div class="quote-tag qt-pain">통증</div>
+        <div class="quote-text">"어깨, 정확히는 승모근 부분이 너무 아파서 미치겠어"</div>
+        <div class="quote-src">theqoo · 어깨(승모근)가 아파 미치겠는 중기</div>
+      </div>
+      <div class="quote-block q-c">
+        <div class="quote-tag qt-pain">통증</div>
+        <div class="quote-text">"어깨부터 날개뼈, 날갯죽지, 등짝까지 아파서 너무 괴롭다"</div>
+        <div class="quote-src">theqoo · 승모근 통증 게시글</div>
+      </div>
+      <div class="quote-block q-c">
+        <div class="quote-tag qt-fail">실패 경험</div>
+        <div class="quote-text">"병원 방문 → 약물 처방 → 한의원 침 → 그 때뿐이야... 약 먹으면 좀 낫다가 또 다시 아파"</div>
+        <div class="quote-src">theqoo · 어깨(승모근)가 아파 미치겠는 중기</div>
+      </div>
+      <div class="quote-block q-c">
+        <div class="quote-tag qt-fail">실패 경험</div>
+        <div class="quote-text">"폼롤러 살까 고민했는데 가격도 부담이고 효과 있을지도 모르겠어" / "스트레스 받아서 미치겠다"</div>
+        <div class="quote-src">theqoo · 폼롤러 어깨통증 게시글</div>
+      </div>
+      <div class="quote-block q-c">
+        <div class="quote-tag qt-voice">공감 표현</div>
+        <div class="quote-text">"잠들때도 다음날도 너무 신세계야" / "드디어 통증에서 해방된 기분" (폼롤러 성공 후기)</div>
+        <div class="quote-src">theqoo · 폼롤러로 어깨통증 좋아진 후기</div>
+      </div>
+
+      <h3 style="margin-top:20px;"><span class="dot" style="background:#0958d9"></span>페인포인트 TOP 5</h3>
+      <ul class="pain-list">
+        <li><div class="pain-num">01</div><div><div class="pain-text">승모근·날갯죽지 통증 — "아파서 미치겠어" 수준</div><div class="pain-sub">재택근무·장시간 PC 후 급격히 심해짐</div></div></li>
+        <li><div class="pain-num">02</div><div><div class="pain-text">병원·침·약 모두 일시적 효과만</div><div class="pain-sub">"낫다가 또 다시 아파" 패턴 반복</div></div></li>
+        <li><div class="pain-num">03</div><div><div class="pain-text">폼롤러 효과 불확실 + 가격 부담</div><div class="pain-sub">구매 전 망설임 → 대안 탐색</div></div></li>
+        <li><div class="pain-num">04</div><div><div class="pain-text">집중력·공부·업무 효율 저하</div><div class="pain-sub">통증으로 인한 생산성 문제</div></div></li>
+        <li><div class="pain-num">05</div><div><div class="pain-text">SNS에서 해결책 적극 탐색</div><div class="pain-sub">인스타·숏폼·커뮤니티 후기 의존</div></div></li>
+      </ul>
+
+      <div class="copy-candidate">
+        <div class="c-label">C형 광고 카피 후보 3개</div>
+        <div class="c-item">① "승모근이 아파서 미치겠는 분들, 이거 한 번만 써보세요"</div>
+        <div class="c-item">② "재택근무 후 뭉친 어깨, 드디어 해방된 기분"</div>
+        <div class="c-item">③ "폼롤러 효과 없었던 분들이 선택한 이유"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D형 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num num-d">D</div>
+      <div>
+        <div class="section-title">D형 — 중장년 직장 여성 46~55세</div>
+        <div class="section-subtitle">82cook · 마사지 도구 비교 후기</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="persona-badge pb-d">D형 중장년 직장 여성 미숙 (46~55세)</span>
+
+      <h3><span class="dot" style="background:#531dab"></span>실제 커뮤니티 원문</h3>
+      <div class="quote-block q-d">
+        <div class="quote-tag qt-pain">통증</div>
+        <div class="quote-text">"목부터 아래로 쫙 아픈데 어떤 도구가 좋을지 고민 중이에요"</div>
+        <div class="quote-src">82cook · 다나손 마사지 도구 후기 게시글</div>
+      </div>
+      <div class="quote-block q-d">
+        <div class="quote-tag qt-voice">만족 표현</div>
+        <div class="quote-text">"거의 뼈까지 마사지 되는 느낌" (도구 사용 후 긍정 표현)</div>
+        <div class="quote-src">82cook 댓글</div>
+      </div>
+      <div class="quote-block q-d">
+        <div class="quote-tag qt-voice">만족 표현</div>
+        <div class="quote-text">"딱 저부분 지압이 필요할 때가 있잖아요. 깊게 눌러주고 지압해줘서 시원해요"</div>
+        <div class="quote-src">82cook · 다나손 후기</div>
+      </div>
+      <div class="quote-block q-d">
+        <div class="quote-tag qt-fail">실패 경험</div>
+        <div class="quote-text">"다나손 돌기가 목을 제대로 못눌러서 밑에 받쳐야 하므로 귀찮음" / "좀 미끄러진다. 자극점에서 고정이 잘 안 됨"</div>
+        <div class="quote-src">82cook · 다나손 부정 후기</div>
+      </div>
+
+      <h3 style="margin-top:20px;"><span class="dot" style="background:#531dab"></span>페인포인트 TOP 3</h3>
+      <ul class="pain-list">
+        <li><div class="pain-num">01</div><div><div class="pain-text">깊은 지압 필요 — 표면 마사지론 부족</div><div class="pain-sub">"뼈까지 닿는 느낌" 원함</div></div></li>
+        <li><div class="pain-num">02</div><div><div class="pain-text">기존 도구(다나손 등) 고정 불안정</div><div class="pain-sub">미끄러지거나 원하는 위치 유지 불가</div></div></li>
+        <li><div class="pain-num">03</div><div><div class="pain-text">자녀·남편 선물 니즈 함께 존재</div><div class="pain-sub">"가족 모두 쓸 수 있는 도구" 선호</div></div></li>
+      </ul>
+
+      <div class="copy-candidate">
+        <div class="c-label">D형 광고 카피 후보 3개</div>
+        <div class="c-item">① "뼈까지 닿는 느낌, 딱 거기를 눌러주는 마사지"</div>
+        <div class="c-item">② "미끄러지지 않고 원하는 자리에 딱 고정"</div>
+        <div class="c-item">③ "온가족이 함께 쓰는 마사지 스틱, 선물로도 딱"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E형 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num num-e">E</div>
+      <div>
+        <div class="section-title">E형 — 직장 남성 36~45세</div>
+        <div class="section-subtitle">clien.net · 직장인 거북목·어깨 통증 커뮤니티</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="persona-badge pb-e">E형 직장인 러너 준혁 (36~45세)</span>
+
+      <h3><span class="dot" style="background:#389e0d"></span>실제 커뮤니티 원문 (clien)</h3>
+      <div class="quote-block q-e">
+        <div class="quote-tag qt-pain">통증</div>
+        <div class="quote-text">"컴퓨터 자판에서 안 쉬고 1시간 이상으로 하면 어깨가 슬슬 뭉치네요"</div>
+        <div class="quote-src">clien · 현직 어깨가 슬슬 뭉치고 있는 중입니다</div>
+      </div>
+      <div class="quote-block q-e">
+        <div class="quote-tag qt-fail">실패 경험</div>
+        <div class="quote-text">"마사지나 스트레칭은 15분 정도면 효력이 떨어지고"</div>
+        <div class="quote-src">clien · 거북목 통증 자가해결 방법들</div>
+      </div>
+      <div class="quote-block q-e">
+        <div class="quote-tag qt-fail">실패 경험</div>
+        <div class="quote-text">"라텍스베개, 몇십만원짜리 베개 등 수십개를 써본 결과 2만원짜리 목침이 가장 효과" (비용 낭비 경험)</div>
+        <div class="quote-src">clien · 거북목 통증 자가해결</div>
+      </div>
+      <div class="quote-block q-e">
+        <div class="quote-tag qt-trigger">구매 트리거</div>
+        <div class="quote-text">"우산 손잡이로 눌러봤는데 꽤 효과 있더라. 제대로 된 도구 사야겠다"</div>
+        <div class="quote-src">clien · 어깨 뭉침 자가해결 댓글</div>
+      </div>
+      <div class="quote-block q-e">
+        <div class="quote-tag qt-trigger">구매 트리거</div>
+        <div class="quote-text">"어깨 팔이 위로 안 올라가는 개발자... 결국 물리치료 받고 있는 중" (악화 후 후회)</div>
+        <div class="quote-src">clien · 어깨가 아파서 팔이 위로 안 올라가는 개발자</div>
+      </div>
+
+      <h3 style="margin-top:20px;"><span class="dot" style="background:#389e0d"></span>페인포인트 TOP 4</h3>
+      <ul class="pain-list">
+        <li><div class="pain-num">01</div><div><div class="pain-text">장시간 키보드·모니터 사용 후 어깨 반복 뭉침</div><div class="pain-sub">1시간 이상 집중하면 규칙적으로 발생</div></div></li>
+        <li><div class="pain-num">02</div><div><div class="pain-text">마사지 효과가 15분 → 임시방편 인식</div><div class="pain-sub">근본 해결이 아닌 즉각 통증 완화 도구 탐색</div></div></li>
+        <li><div class="pain-num">03</div><div><div class="pain-text">비싼 도구·베개 구매 후 효과 미흡 경험</div><div class="pain-sub">가성비 있는 셀프케어 도구 수요</div></div></li>
+        <li><div class="pain-num">04</div><div><div class="pain-text">방치 → 팔 움직임 제한으로 악화</div><div class="pain-sub">병원 물리치료까지 가기 전 예방 니즈</div></div></li>
+      </ul>
+
+      <div class="copy-candidate">
+        <div class="c-label">E형 광고 카피 후보 3개</div>
+        <div class="c-item">① "키보드 1시간 후 뭉치는 어깨, 책상 위에 놔두세요"</div>
+        <div class="c-item">② "15분짜리 마사지 말고, 언제든 바로 쓰는 도구"</div>
+        <div class="c-item">③ "런닝·헬스 후 종아리 회복, 이거 하나면 됩니다"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F형 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num num-f">F</div>
+      <div>
+        <div class="section-title">F형 — 전업주부 여성 30~50대</div>
+        <div class="section-subtitle">82cook · 주부 건강·셀프케어 커뮤니티</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="persona-badge pb-f">F형 전업주부 은정 (30~50대)</span>
+
+      <h3><span class="dot" style="background:#7cb305"></span>실제 커뮤니티 원문 (82cook)</h3>
+      <div class="quote-block q-f">
+        <div class="quote-tag qt-pain">통증</div>
+        <div class="quote-text">"목부터 아래로 쫙 아픈데" / "가사일 하다보니 손목이랑 어깨가 항상 뻐근해요"</div>
+        <div class="quote-src">82cook · 마사지 도구 고민 게시글</div>
+      </div>
+      <div class="quote-block q-f">
+        <div class="quote-tag qt-fail">실패 경험</div>
+        <div class="quote-text">"집에 있는 폼롤러는 팔로 지탱해야 하고 해서 귀찮고 힘들고" / "비싼 경락 받아도 다음날 또 아파"</div>
+        <div class="quote-src">82cook 댓글</div>
+      </div>
+      <div class="quote-block q-f">
+        <div class="quote-tag qt-trigger">구매 트리거</div>
+        <div class="quote-text">"집에서 혼자 할 수 있는 게 최고야. 애 재우고 나서 혼자 쓸 수 있잖아"</div>
+        <div class="quote-src">82cook · 셀프케어 도구 추천 댓글</div>
+      </div>
+      <div class="quote-block q-f">
+        <div class="quote-tag qt-voice">가족 공용</div>
+        <div class="quote-text">"남편이 어깨결림이 심해 괴로워해요" / "가족 모두 쓸 수 있으면 더 좋죠"</div>
+        <div class="quote-src">82cook · 남편 어깨결림 게시글</div>
+      </div>
+
+      <h3 style="margin-top:20px;"><span class="dot" style="background:#7cb305"></span>페인포인트 TOP 3</h3>
+      <ul class="pain-list">
+        <li><div class="pain-num">01</div><div><div class="pain-text">가사 반복 동작으로 인한 손목·어깨 만성 통증</div><div class="pain-sub">설거지·청소·요리 반복으로 축적</div></div></li>
+        <li><div class="pain-num">02</div><div><div class="pain-text">기존 도구 사용 번거로움 (팔로 버텨야 함)</div><div class="pain-sub">"귀찮아서 결국 안 쓰게 됨" 패턴</div></div></li>
+        <li><div class="pain-num">03</div><div><div class="pain-text">혼자 집에서 해결할 수 있는 도구 선호</div><div class="pain-sub">아이 재운 후 혼자 쓰는 야간 셀프케어 루틴</div></div></li>
+      </ul>
+
+      <div class="copy-candidate">
+        <div class="c-label">F형 광고 카피 후보 3개</div>
+        <div class="c-item">① "아이 재우고 나서 나만의 5분, 어깨 뭉침 해결"</div>
+        <div class="c-item">② "팔 안 써도 되는 마사지 — 집에서 혼자 편하게"</div>
+        <div class="c-item">③ "가사노동 후 손목·어깨, 가족 모두 함께 쓰세요"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 통계 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num num-s">📊</div>
+      <div>
+        <div class="section-title">통계 데이터 — 광고 신뢰도 강화용</div>
+        <div class="section-subtitle">건강보험심사평가원 · 고용노동부 · 한의신문 · 의학신문</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="stat-grid">
+        <div class="stat-box s1">
+          <div class="stat-num">1,761만명</div>
+          <div class="stat-label">연간 근골격계 질환 수진자</div>
+          <div class="stat-desc">국민 3명 중 1명. 여성 984만 > 남성 777만. 50대 23%로 최다. 진료비 연 7.4조원 (건강보험심사평가원)</div>
+        </div>
+        <div class="stat-box s2">
+          <div class="stat-num">50%</div>
+          <div class="stat-label">목 통증(경항통) 성인 유병률</div>
+          <div class="stat-desc">전 세계 성인 2명 중 1명. PC·스마트폰 사용 증가로 지속 증가 추세 (한의신문)</div>
+        </div>
+        <div class="stat-box s3">
+          <div class="stat-num">57.2%</div>
+          <div class="stat-label">업무상 질병 중 근골격계 비율</div>
+          <div class="stat-desc">2024년 고용노동부. 사무직·서비스업에서도 산재 신청 꾸준히 증가 (고용노동부)</div>
+        </div>
+        <div class="stat-box s4">
+          <div class="stat-num">2배</div>
+          <div class="stat-label">Z세대 거북목 환자 4년 증가율</div>
+          <div class="stat-desc">2017→2021 15만→31만명. 20~30대 타겟 광고에서 "거북목" 키워드 신뢰도 근거 (의학신문)</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;padding:14px 18px;background:#fff7e6;border-radius:10px;font-size:12px;color:#d46b08;line-height:1.8;">
+        <strong>📌 광고 카피 활용 예시:</strong><br>
+        • "국내 성인 3명 중 1명이 겪는 어깨·목 통증" → 공감 훅<br>
+        • "2명 중 1명은 목 통증 경험" → 타겟 공감 유도<br>
+        • "직장인 업무상 질병의 절반 이상이 근골격계" → 직장인 타겟 근거<br>
+        • "4년 새 2배 늘어난 20~30대 거북목" → C형 타겟 광고 신뢰도 강화
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="report-footer">
+  릴렉스틱 커뮤니티 리서치 · 2026.06.02 · A형~F형 6개 페르소나 기반<br>
+  소스: 82cook.com · theqoo.net · clien.net · 건강보험심사평가원 · 고용노동부 · 한의신문
+</div>
+
+</body>
+</html>
