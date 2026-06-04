@@ -871,20 +871,98 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   가이드: kwkim-wq.github.io/barybody-persona-guide/ &nbsp;·&nbsp; 페르소나 = 타겟 × 욕망 &nbsp;·&nbsp; 2026-06-04
 </div>
 
+<style>
+/* 카드 내 훅 키워드 + 소재 컨셉 */
+.card-hooks{margin-top:8px;margin-bottom:6px}
+.card-hooks .hook-label{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:5px}
+.card-hook-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.card-hook-tag{background:#f0f5ff;color:#0958d9;border:1.5px solid #adc6ff;
+  border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600}
+.card-concept{font-size:12px;background:#1a1a2e;color:rgba(255,255,255,.85);
+  border-radius:8px;padding:8px 12px;font-weight:600;line-height:1.6}
+</style>
 <script>
+/* ─── 욕망 카테고리별 훅 키워드 + 소재 컨셉 데이터 ─── */
+const DESIRE_HOOKS = {
+  db1:{
+    tags:['퇴근하면 종아리가 퉁퉁','저녁만 되면 돌처럼','퇴근 후 5분 루틴','런닝 후 쿨다운은 이걸로'],
+    concept:'퇴근하면 종아리가 퉁퉁 불죠? → 집에서 5분으로 바로 해소'
+  },
+  db2:{
+    tags:['승모근이 돌덩이','혼자서 집에서 5분','재택 5시간 돌처럼','자다가 통증으로 울었던'],
+    concept:'어깨가 돌덩이처럼 굳어 — 지금 당장 혼자서 풀고 싶다'
+  },
+  db3:{
+    tags:['아침에 목이 가벼워지는 5분','1시간마다 뭉치는 뒷목','뒷목이 항상 뻐근한 직장인','매일 밤 5분 아침이 달라진다'],
+    concept:'매일 밤 5분씩 목과 어깨에 — 아침에 목이 훨씬 가벼워졌어요'
+  },
+  db4:{
+    tags:['혼자서 등에 닿는 방법','날갯죽지까지 구석구석','1인가구 필수 — 혼자서도 닿아요'],
+    concept:'혼자 사는데 등에 닿는 도구가 없었어요 — 이게 정답'
+  },
+  db5:{
+    tags:['한달에 8만원 마사지샵 대신','예약도 이동도 필요 없어요','집에서 매일 마사지샵 없이','퇴근 후 5분으로 대신해요'],
+    concept:'갈 시간도, 예약할 틈도 없는 워킹맘 — 퇴근 후 5분으로 대신해요'
+  },
+  db6:{
+    tags:['폼롤러 있는데 안 쓰시죠?','서랍 속에 잠든 폼롤러','팔 안 써도 되는 마사지','폼롤러보다 편하다'],
+    concept:'폼롤러 사봤는데 방치 중이죠? — 이번엔 진짜 매일 쓸 수 있어요'
+  },
+  db7:{
+    tags:['런닝 후 루틴의 마지막 단계','헬스 후 5분 회복','마라톤 완주 후 회복 루틴','등산·골프 후 종아리 즉시 케어'],
+    concept:'운동은 꾸준히 하는데 쿨다운 없이 자버리면 — 다음날 컨디션이 달라요'
+  },
+  db8:{
+    tags:['갱년기 어깨 통증 집에서 매일','50 되기 전에 미리 관리','설마 했는데 달라요','이 나이에 처음으로 효과 봤어요'],
+    concept:'갱년기 시작되니 온몸이 쑤셔요 — 매일 5분으로 집에서 관리'
+  },
+  db9:{
+    tags:['팔 안 써도 됩니다','수유하면서 망가진 어깨','아이 낮잠 20분 루틴','남편 부탁 미안해서 혼자'],
+    concept:'아이 안아주다 손목·어깨가 망가졌어요 — 팔 힘 없이도 됩니다'
+  }
+};
+
+/* ─── 카드에 훅 자동 주입 ─── */
+function injectCardHooks(){
+  document.querySelectorAll('.pcard').forEach(card=>{
+    const badge=card.querySelector('.dbadge');
+    if(!badge) return;
+    // 욕망 클래스 추출 (db1~db9)
+    const dClass=Array.from(badge.classList).find(c=>/^db\d+$/.test(c));
+    if(!dClass || !DESIRE_HOOKS[dClass]) return;
+    const {tags,concept}=DESIRE_HOOKS[dClass];
+    // 이미 주입됐으면 스킵
+    if(card.querySelector('.card-hooks')) return;
+    const advEl=card.querySelector('.adv');
+    const hookHTML=`
+      <div class="card-hooks">
+        <div class="hook-label">🎯 광고 후크 키워드</div>
+        <div class="card-hook-tags">${tags.map(t=>`<span class="card-hook-tag">${t}</span>`).join('')}</div>
+        <div class="card-concept">📌 ${concept}</div>
+      </div>`;
+    if(advEl) advEl.insertAdjacentHTML('beforebegin', hookHTML);
+    else card.insertAdjacentHTML('beforeend', hookHTML);
+  });
+}
+
 function showTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-nav button').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   btn.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+  // 카드 탭 열릴 때 훅 주입
+  if(id==='cards') setTimeout(injectCardHooks,50);
 }
 function toggleAcc(hdr){
-  const isOpen=hdr.classList.contains('open');
   hdr.classList.toggle('open');
-  const body=hdr.nextElementSibling;
-  body.classList.toggle('open');
+  hdr.nextElementSibling.classList.toggle('open');
+  // 아코디언 열릴 때도 훅 주입
+  setTimeout(injectCardHooks,50);
 }
+// 초기 로드 시 주입
+document.addEventListener('DOMContentLoaded', injectCardHooks);
 </script>
 </body>
 </html>
