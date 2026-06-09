@@ -153,6 +153,7 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
     <button onclick="showTab('desire',this)">🎯 욕망 카테고리<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(카테고리별 정리)</small></button>
     <button onclick="showTab('subpersona',this)">👤 서브페르소나<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(페르소나카드)</small></button>
     <button onclick="showTab('cards',this)">🃏 페르소나 카드<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(타겟×욕망)</small></button>
+    <button onclick="showTab('region',this)">🗺️ 지역 분석<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(수도권·오피스상권)</small></button>
     <button onclick="showTab('timing',this)">⏰ 시간대×욕망<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(구매시각 발화)</small></button>
     <button onclick="showTab('hypo',this)">✅ 가설 검증</button>
   </div>
@@ -837,7 +838,94 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
 </div>
 <!-- END TAB 4 -->
 
-<!-- ===== TAB 5: 시간대 × 욕망 ===== -->
+<!-- ===== TAB 5: 지역 분석 ===== -->
+<div id="tab-region" class="tab-panel">
+<style>
+.rg-bar{height:9px;border-radius:6px;background:linear-gradient(90deg,#389e0d,#95de64)}
+.rg-bar.seoul{background:linear-gradient(90deg,#0958d9,#69b1ff)}
+.zone-tag{display:inline-block;border-radius:5px;padding:1px 7px;font-size:10px;font-weight:700;white-space:nowrap}
+.zt-office{background:#e6f4ff;color:#0958d9}
+.zt-resi{background:#f6ffed;color:#389e0d}
+.zt-mix{background:#f9f0ff;color:#531dab}
+.rg-tbl td .gu{font-weight:700;color:#1a1a2e}
+.rg-mapnote{font-size:11px;color:#999;margin-top:4px}
+</style>
+
+  <div class="sec-header"><div class="sec-num sn-green">5</div><div><div class="sec-title">지역 분석</div></div></div>
+  <div class="sec-sub">ss_buyer_region · 릴렉스틱 마사지스틱 4종 41,686건 · 구매자 행정구역 기반</div>
+
+  <div class="metric-grid">
+    <div class="metric-box"><div class="ml">수도권 집중</div><div class="mv">70.3%</div><div class="md">서울+경기+인천</div></div>
+    <div class="metric-box"><div class="ml">서울 단독</div><div class="mv">44.4%</div><div class="md">18,511건</div></div>
+    <div class="metric-box"><div class="ml">시군구 1위</div><div class="mv">서울 중구</div><div class="md">10.8% · 도심 오피스</div></div>
+    <div class="metric-box"><div class="ml">구매단가(AOV)</div><div class="mv">~63,000원</div><div class="md">지역 무관 평탄</div></div>
+  </div>
+
+  <!-- 시도 분포 -->
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">시·도별 구매 분포 TOP 8</div>
+  <table class="seg-tbl" style="margin-bottom:24px">
+    <thead><tr><th>#</th><th>시·도</th><th>건수</th><th>비중</th><th>그래프</th></tr></thead>
+    <tbody>
+      <tr><td><span class="rbadge t3">1</span></td><td><b>서울특별시</b></td><td>18,511</td><td><b>44.4%</b></td><td><div class="bar-w"><div class="rg-bar seoul" style="width:100%"></div></div></td></tr>
+      <tr><td><span class="rbadge t3">2</span></td><td><b>경기도</b></td><td>9,152</td><td><b>22.0%</b></td><td><div class="bar-w"><div class="rg-bar seoul" style="width:49%"></div></div></td></tr>
+      <tr><td><span class="rbadge t3">3</span></td><td>인천광역시</td><td>1,652</td><td>4.0%</td><td><div class="bar-w"><div class="rg-bar seoul" style="width:9%"></div></div></td></tr>
+      <tr><td><span class="rbadge">4</span></td><td>부산광역시</td><td>1,560</td><td>3.7%</td><td><div class="bar-w"><div class="rg-bar" style="width:8%"></div></div></td></tr>
+      <tr><td><span class="rbadge">5</span></td><td>경상남도</td><td>1,302</td><td>3.1%</td><td><div class="bar-w"><div class="rg-bar" style="width:7%"></div></div></td></tr>
+      <tr><td><span class="rbadge">6</span></td><td>대구광역시</td><td>1,046</td><td>2.5%</td><td><div class="bar-w"><div class="rg-bar" style="width:6%"></div></div></td></tr>
+      <tr><td><span class="rbadge">7</span></td><td>충청남도</td><td>1,032</td><td>2.5%</td><td><div class="bar-w"><div class="rg-bar" style="width:6%"></div></div></td></tr>
+      <tr><td><span class="rbadge">8</span></td><td>경상북도</td><td>932</td><td>2.2%</td><td><div class="bar-w"><div class="rg-bar" style="width:5%"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <!-- 시군구 TOP 15 -->
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">시·군·구 TOP 15 — 오피스 상권 집중</div>
+  <table class="seg-tbl rg-tbl" style="margin-bottom:24px">
+    <thead><tr><th>#</th><th>지역</th><th>건수</th><th>비중</th><th>상권 유형</th></tr></thead>
+    <tbody>
+      <tr><td><span class="rbadge t3">1</span></td><td><span class="gu">서울 중구</span></td><td>4,519</td><td><b>10.8%</b></td><td><span class="zone-tag zt-office">🏢 도심 오피스</span></td></tr>
+      <tr><td><span class="rbadge t3">2</span></td><td><span class="gu">서울 강남구</span></td><td>3,941</td><td><b>9.5%</b></td><td><span class="zone-tag zt-office">🏢 오피스</span> <span class="zone-tag zt-mix">고소득 주거</span></td></tr>
+      <tr><td><span class="rbadge t3">3</span></td><td><span class="gu">서울 송파구</span></td><td>2,328</td><td>5.6%</td><td><span class="zone-tag zt-mix">오피스+주거</span></td></tr>
+      <tr><td><span class="rbadge">4</span></td><td><span class="gu">경기 분당구</span></td><td>1,232</td><td>3.0%</td><td><span class="zone-tag zt-mix">판교+고소득 주거</span></td></tr>
+      <tr><td><span class="rbadge">5</span></td><td><span class="gu">서울 서초구</span></td><td>1,207</td><td>2.9%</td><td><span class="zone-tag zt-office">🏢 오피스</span> <span class="zone-tag zt-mix">고소득 주거</span></td></tr>
+      <tr><td><span class="rbadge">6</span></td><td>서울 영등포구</td><td>665</td><td>1.6%</td><td><span class="zone-tag zt-office">🏢 여의도 오피스</span></td></tr>
+      <tr><td><span class="rbadge">7</span></td><td>서울 강서구</td><td>489</td><td>1.2%</td><td><span class="zone-tag zt-mix">마곡+주거</span></td></tr>
+      <tr><td><span class="rbadge">8</span></td><td>서울 마포구</td><td>457</td><td>1.1%</td><td><span class="zone-tag zt-mix">상암·공덕+주거</span></td></tr>
+      <tr><td><span class="rbadge">9</span></td><td>경기 화성시</td><td>402</td><td>1.0%</td><td><span class="zone-tag zt-resi">🏠 신도시 주거</span></td></tr>
+      <tr><td><span class="rbadge">10</span></td><td>경기 부천 원미구</td><td>398</td><td>1.0%</td><td><span class="zone-tag zt-resi">🏠 주거</span></td></tr>
+      <tr><td><span class="rbadge">11</span></td><td>인천 연수구</td><td>391</td><td>0.9%</td><td><span class="zone-tag zt-resi">🏠 송도 주거</span></td></tr>
+      <tr><td><span class="rbadge">12</span></td><td>서울 노원구</td><td>385</td><td>0.9%</td><td><span class="zone-tag zt-resi">🏠 주거</span></td></tr>
+      <tr><td><span class="rbadge">13</span></td><td>경기 남양주시</td><td>357</td><td>0.9%</td><td><span class="zone-tag zt-resi">🏠 주거</span></td></tr>
+      <tr><td><span class="rbadge">14</span></td><td>경기 용인 기흥구</td><td>356</td><td>0.9%</td><td><span class="zone-tag zt-resi">🏠 주거</span></td></tr>
+      <tr><td><span class="rbadge">15</span></td><td>서울 강동구</td><td>351</td><td>0.8%</td><td><span class="zone-tag zt-resi">🏠 주거</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- 핵심 인사이트: 중구 1위 = 오피스 배송 -->
+  <div class="insight-box" style="margin-bottom:14px">
+    <strong>🔑 중구 1위 = 사무실 배송 → 오전 10시 피크와 연결</strong>
+    <div class="s-line" style="margin-top:14px">중구는 서울에서 <b>거주인구가 가장 적은 구</b>(약 12만 명) 중 하나인데도 구매 <b>1위(10.8%)</b> — 거주지가 아니라 <b style="color:#b39dff">직장으로 배송</b>받는 패턴이 강하게 의심됨.</div>
+    <div class="s-line" style="background:rgba(179,157,255,.18);border:1.5px solid rgba(179,157,255,.45);border-radius:10px;padding:12px 14px;color:#fff;font-weight:600">중구·강남·서초·영등포(도심 오피스 4구) 합산 <b>24.8%</b> — 전체 1/4이 업무지구.<br>→ <b>⏰ 시간대 탭</b>의 "오전 10시 사무실 결제" 피크와 정확히 맞물림 = <b>직장인이 회사에서 결제·수령</b></div>
+    <div class="s-line">광고 함의 — 도심 오피스 상권(중구·강남·여의도) 지역타겟 + 평일 오전 노출 강화 / "사무실에도 하나 더" 메시지(2-A·4-B 카드와 일치)</div>
+  </div>
+
+  <!-- 소득 가설 검증 -->
+  <div class="insight-light" style="margin-bottom:14px">
+    <strong>💰 소득 수준 가설 — 지역 데이터로 검증 승격</strong><br><br>
+    상위 구매 지역이 <b>강남·서초·송파·분당</b>(서울·수도권 대표 고소득 지구)에 집중 → 가설검증 탭의 "소득 수준 <i>(가설 유지)</i>"를 <b>중상위 소득층 중심</b>으로 <b style="color:#0958d9">실데이터 검증</b>.<br>
+    · 단, 구매단가(AOV)는 전 지역 ~63,000원으로 평탄 — 가격이 아니라 <b>구매 빈도·지역 분포</b>가 소득 시그널.
+  </div>
+
+  <div class="insight-light ora" style="margin-bottom:8px">
+    <strong>📌 데이터 노트 · 활용</strong><br>
+    · 수도권 70.3% 집중 → 메타/네이버 지역타겟 시 <b>서울·경기 우선 배분</b> 근거<br>
+    · 서브페르소나 38명의 "거주지"는 기존 <i>(가설)</i> → 본 탭이 <b>BQ 실증 기준</b>으로 대체<br>
+    · 상권 유형(오피스/주거)은 행정구역 특성 기반 분류 — 개별 구매자 직장/거주 구분은 배송지만으로 100% 단정 불가
+  </div>
+
+</div>
+<!-- END TAB 5 (region) -->
+
+<!-- ===== TAB 6: 시간대 × 욕망 ===== -->
 <div id="tab-timing" class="tab-panel">
 <style>
 .tw-chart-wrap{background:#fff;border-radius:16px;padding:22px 24px 14px;box-shadow:0 2px 16px rgba(0,0,0,.055);margin-bottom:14px}
@@ -871,7 +959,7 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
 .dtag{display:inline-block;background:#f9f0ff;color:#531dab;border-radius:5px;padding:1px 6px;font-size:10.5px;font-weight:700;margin:1px 2px 1px 0}
 </style>
 
-  <div class="sec-header"><div class="sec-num sn-orange">5</div><div><div class="sec-title">시간대 × 욕망 매핑</div></div></div>
+  <div class="sec-header"><div class="sec-num sn-orange">6</div><div><div class="sec-title">시간대 × 욕망 매핑</div></div></div>
   <div class="sec-sub">ss_purchase_timing · 2025.01~2026.05 · 총 54,003건 — "언제 사는가"로 본 욕망 발화 시점</div>
 
   <div class="metric-grid">
@@ -963,9 +1051,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   </div>
 
 </div>
-<!-- END TAB 5 (timing) -->
+<!-- END TAB 6 (timing) -->
 
-<!-- ===== TAB 6: 가설 검증 ===== -->
+<!-- ===== TAB 7: 가설 검증 ===== -->
 <div id="tab-hypo" class="tab-panel">
 <style>
 .hypo-sum{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.055);margin-bottom:24px;font-size:13px}
@@ -981,7 +1069,7 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
 .qitem .qs{color:#999;font-size:11px;margin-top:2px}
 </style>
 
-  <div class="sec-header"><div class="sec-num sn-red">6</div><div><div class="sec-title">가설 검증 현황</div></div></div>
+  <div class="sec-header"><div class="sec-num sn-red">7</div><div><div class="sec-title">가설 검증 현황</div></div></div>
   <div class="sec-sub">4차원 가설 프레임 × 38개 카드 · 최종 업데이트 2026-06-04</div>
 
   <div class="insight-box" style="margin-bottom:20px">
@@ -1003,8 +1091,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
       <tr><td><b>골프 피로 패턴</b></td><td>회전운동 → 한쪽 다리 하중 → 종아리·허벅지 피로</td><td><span style="color:var(--grn);font-weight:700">✅ 커뮤니티</span></td><td>"골프는 회전운동이라 한쪽 다리에 하중이 많이 실리고" (2026.03)</td></tr>
       <tr><td><b>직장맘 식습관</b></td><td>평일 저녁 배달 기본값화 / 주말 외식</td><td><span style="color:var(--grn);font-weight:700">✅ 커뮤니티</span></td><td>"시간 압박+피곤 = 배달음식 이게 공식처럼 됐어요" (인천아띠아모카페 2024.11)</td></tr>
       <tr><td><b>소비 습관·성향</b></td><td>워킹맘: 육아 아낌없이/본인 가성비 / 남성: 배우자 검증 의존</td><td><span style="color:var(--grn);font-weight:700">✅ 커뮤니티</span></td><td>맘카페·클리앙 등 커뮤니티 패턴 확인</td></tr>
+      <tr><td><b>지역 분포</b></td><td>수도권 70.3% / 서울 중구·강남·서초 오피스 상권 집중</td><td><span style="color:var(--grn);font-weight:700">✅ BQ 확인</span></td><td>ss_buyer_region 41,686건 · 🗺️ 지역 탭 / 오전10시 피크와 연결</td></tr>
+      <tr><td><b>소득 수준</b></td><td>중상위 소득층 중심(강남·서초·분당 상위)</td><td><span style="color:#0958d9;font-weight:700">🔷 지역으로 부분검증</span></td><td>고소득 지구 집중으로 검증 / AOV는 평탄 — 구체적 월소득은 설문 필요</td></tr>
       <tr><td><b>인간관계 세부</b></td><td>지인 모임 빈도, 네트워크 규모</td><td><span style="color:var(--g3);font-weight:700">(가설 유지)</span></td><td>커뮤니티 리서치로 검증 어려움 — 설문 필요</td></tr>
-      <tr><td><b>소득 수준</b></td><td>구체적 월소득</td><td><span style="color:var(--g3);font-weight:700">(가설 유지)</span></td><td>지역·직업 데이터로 간접 추정 유지</td></tr>
     </tbody>
   </table>
 
