@@ -155,6 +155,7 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
     <button onclick="showTab('cards',this)">🃏 페르소나 카드<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(타겟×욕망)</small></button>
     <button onclick="showTab('region',this)">🗺️ 지역 분석<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(수도권·오피스상권)</small></button>
     <button onclick="showTab('timing',this)">⏰ 시간대×욕망<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(구매시각 발화)</small></button>
+    <button onclick="showTab('action',this)">🎯 실행 브리프<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(미디어 액션)</small></button>
     <button onclick="showTab('hypo',this)">✅ 가설 검증</button>
   </div>
 </nav>
@@ -1129,7 +1130,165 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
 </div>
 <!-- END TAB 6 (timing) -->
 
-<!-- ===== TAB 7: 가설 검증 ===== -->
+<!-- ===== TAB 7: 실행 미디어 브리프 ===== -->
+<div id="tab-action" class="tab-panel">
+<style>
+.mx-tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.055);margin-bottom:24px;font-size:12px}
+.mx-tbl th{background:#1a1a2e;color:#fff;padding:10px 12px;text-align:left;font-size:11px;font-weight:700}
+.mx-tbl td{padding:11px 12px;border-bottom:1px solid #f0f0f0;vertical-align:top;line-height:1.55}
+.mx-tbl tr:last-child td{border-bottom:none}
+.mx-tbl tr:hover td{background:#fafbfc}
+.mx-time{font-weight:800;color:#1a1a2e;white-space:nowrap}
+.mx-time.night{color:#531dab}.mx-time.morn{color:#d46b08}
+.mx-copy{font-style:italic;color:#0958d9;font-weight:600}
+.mx-sku{display:inline-block;background:#f9f0ff;color:#531dab;border-radius:5px;padding:1px 7px;font-size:10.5px;font-weight:700}
+.prio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:24px}
+.prio-card{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 12px rgba(0,0,0,.055);border-top:4px solid #531dab}
+.prio-card.p1{border-top-color:#cf1322}.prio-card.p2{border-top-color:#d46b08}.prio-card.p3{border-top-color:#0958d9}.prio-card.p4{border-top-color:#08979c}
+.prio-rank{font-size:11px;font-weight:800;color:#999;text-transform:uppercase;letter-spacing:.5px}
+.prio-name{font-size:14px;font-weight:800;color:#1a1a2e;margin:2px 0 8px}
+.prio-card ul{list-style:none;font-size:11.5px;color:#555}
+.prio-card li{margin-bottom:5px;padding-left:14px;position:relative}
+.prio-card li::before{content:'·';position:absolute;left:4px;color:#999}
+.copy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+@media(max-width:640px){.copy-grid{grid-template-columns:1fr}}
+.copy-box{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 12px rgba(0,0,0,.055)}
+.copy-box h4{font-size:12px;font-weight:700;color:#1a1a2e;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+.copy-line{background:#f7f8fa;border-left:3px solid #0958d9;border-radius:0 8px 8px 0;padding:8px 11px;margin-bottom:7px;font-size:12px;color:#1a1a2e;font-weight:600}
+.copy-line small{display:block;color:#999;font-size:10.5px;font-weight:500;margin-top:2px}
+</style>
+
+  <div class="sec-header"><div class="sec-num sn-purple">7</div><div><div class="sec-title">실행 미디어 브리프</div></div></div>
+  <div class="sec-sub">분석 종합 → 우선순위 타겟 × 시간대 × 지역 × 욕망 × SKU × 카피 — "그래서 무엇을 돌리나"</div>
+
+  <div class="insight-box" style="margin-bottom:24px">
+    <strong>🎯 한 줄 전략</strong>
+    <div class="s-line" style="margin-top:12px"><b style="color:#b39dff">여성 31~45세 워킹맘·주부(42.5%)</b>를 중심축으로, <b>평일 오전(주부)·야간(통증) 쌍봉</b> 시간대에 <b>수도권(70.3%)</b>을 타겟. 핵심 카피어는 검증된 <b style="color:#b39dff">"시원하다"(리뷰 46%)</b>, 신규는 <b>오리지널</b>·가족공용은 <b>1+1</b>으로 객단가를 끌어올린다.</div>
+  </div>
+
+  <!-- 시간대 운영 매트릭스 -->
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">⏱️ 시간대별 운영 매트릭스</div>
+  <table class="mx-tbl">
+    <thead><tr><th style="width:13%">시간대</th><th style="width:17%">1순위 타겟</th><th style="width:16%">활성 욕망</th><th style="width:27%">핵심 카피</th><th style="width:13%">추천 SKU</th><th style="width:14%">지역 가중</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="mx-time morn">오전 10–11시</span></td>
+        <td>주부·워킹맘 <span style="color:#888">(평일전용)</span></td>
+        <td>D9 육아·가사<br>D1 붓기</td>
+        <td class="mx-copy">"애들 보내고 나서야 챙기는 내 몸 — 5분이면 시원하게"</td>
+        <td><span class="mx-sku">1+1</span> 가족공용</td>
+        <td>오피스(중구·강남)<br>+수도권 주거</td>
+      </tr>
+      <tr>
+        <td><span class="mx-time">낮 12–17시</span></td>
+        <td>직장인(사무·재택)</td>
+        <td>D2 어깨·승모<br>D3 목</td>
+        <td class="mx-copy">"12시간 앉아있는 목·어깨 — 자리에서 바로 시원하게"</td>
+        <td><span class="mx-sku">오리지널</span></td>
+        <td>도심 오피스 상권<br>(중구·여의도)</td>
+      </tr>
+      <tr>
+        <td><span class="mx-time">저녁 18–20시</span></td>
+        <td>운동족·퇴근 귀가</td>
+        <td>D7 운동후 회복<br>D1 종아리</td>
+        <td class="mx-copy">"퇴근·운동 후 종아리부터 — 쿨다운 루틴 완성"</td>
+        <td><span class="mx-sku">오리지널</span>/롱</td>
+        <td>수도권 전역</td>
+      </tr>
+      <tr>
+        <td><span class="mx-time night">야간 21–23시</span></td>
+        <td>통증 충동 <span style="color:#888">(전 타겟)</span></td>
+        <td>D1 종아리·D2 어깨<br>D5 샵 대체</td>
+        <td class="mx-copy">"오늘 하루치 뭉침, 지금 풀어야 — 마사지샵 대신 5분"</td>
+        <td><span class="mx-sku">오리지널</span>/<span class="mx-sku">1+1</span></td>
+        <td>수도권 전역<br>(요일무관)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 우선순위 타겟 -->
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">🥇 우선순위 타겟 (BQ 구매 비중 기준)</div>
+  <div class="prio-grid">
+    <div class="prio-card p1">
+      <div class="prio-rank">1순위 · 42.5%</div>
+      <div class="prio-name">여성 31~45 워킹맘·주부</div>
+      <ul>
+        <li>발견: 인스타그램 피드·릴스</li>
+        <li>시간: 야간 22시 + 평일 오전 10시</li>
+        <li>욕망: D9 육아가사 · D2 어깨 · D1 종아리</li>
+        <li>SKU: 1+1(가족공용) · 오리지널</li>
+        <li>훅: "팔 안 써도 / 애들 보내고 / 시원하게"</li>
+      </ul>
+    </div>
+    <div class="prio-card p2">
+      <div class="prio-rank">2순위 · 11.8%</div>
+      <div class="prio-name">여성 46~55 갱년기</div>
+      <ul>
+        <li>발견: 네이버 검색 · 지인 추천</li>
+        <li>시간: 평일 오전 10시</li>
+        <li>욕망: D8 갱년기 통증 · D2 어깨</li>
+        <li>SKU: 오리지널</li>
+        <li>훅: "50 되기 전에 / 손실회피 / 매일 관리"</li>
+      </ul>
+    </div>
+    <div class="prio-card p3">
+      <div class="prio-rank">3순위 · 17.0%</div>
+      <div class="prio-name">남성 31~45 운동·배우자권유</div>
+      <ul>
+        <li>발견: 유튜브 러닝·헬스 인플루언서</li>
+        <li>시간: 저녁·야간(운동 후) / 오전</li>
+        <li>욕망: D7 운동후 회복 · D2 어깨</li>
+        <li>SKU: 오리지널</li>
+        <li>훅: "런닝 후 종아리 / 아내 것 써봤다가"</li>
+      </ul>
+    </div>
+    <div class="prio-card p4">
+      <div class="prio-rank">4순위 · 7.8%</div>
+      <div class="prio-name">여성 26~30 SNS·운동</div>
+      <ul>
+        <li>발견: 인스타·틱톡 바이럴</li>
+        <li>시간: 야간 22~23시 충동</li>
+        <li>욕망: D6 도구불편 · D2 어깨 · D1 종아리</li>
+        <li>SKU: 오리지널(가성비)</li>
+        <li>훅: "재택 5시간 / 이게 진짜 되나? / 가성비"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 카피 메시지 뱅크 -->
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">✍️ 카피 메시지 뱅크 (리뷰·데이터 검증 기반)</div>
+  <div class="copy-grid">
+    <div class="copy-box">
+      <h4>✅ 효과·전환 (강점 소구)</h4>
+      <div class="copy-line">"돌처럼 뭉친 게 5분이면 시원하게"<small>리뷰 1위 효과어 "시원하다" 46.1%</small></div>
+      <div class="copy-line">"4.89점 · 23,320건이 증명한 시원함"<small>사회적 증거 — 회의형 타겟 전환</small></div>
+      <div class="copy-line">"퇴근하면 종아리 퉁퉁 → 누우면 극락"<small>하체 욕망 — 실사용 트리거</small></div>
+    </div>
+    <div class="copy-box">
+      <h4>⚠️ 약점 방어 (반론 차단)</h4>
+      <div class="copy-line">"등까지 닿는 롱 사이즈 있어요"<small>최대 불만 길이·크기 9.8% 방어</small></div>
+      <div class="copy-line">"1+1으로 온가족이 — 1인당 5만원대"<small>가격 불만 4.0% → 가구 2인이상 88.2%</small></div>
+      <div class="copy-line">"같은 품질, 더 가성비 묶음"<small>SKU 평점 균일(전부 4.89)</small></div>
+    </div>
+  </div>
+
+  <!-- 채널·예산 가이드 -->
+  <div class="insight-light">
+    <strong>📣 채널·예산 배분 가이드</strong><br><br>
+    <b>① 전환 = 네이버 99%+</b> — 가격비교(26.7%)·쇼핑검색광고(20.1%)·브랜드검색(19.5%). 발견이 어디서 일어나든 <b>최종 구매는 네이버 검색</b> → 브랜드검색·쇼핑검색 하단 방어가 필수.<br>
+    <b>② 발견 = 채널 분리</b> — 여성 인스타그램·틱톡 / 남성 유튜브(러닝·헬스). 발견 매체에서 욕망 자극 → 네이버로 전환 유도.<br>
+    <b>③ 지역 = 수도권 70.3% 우선 배분</b> — 평일 오전은 도심 오피스 상권(중구·강남·여의도) 가중, 야간은 수도권 전역.<br>
+    <b>④ 시간대 입찰</b> — 평일 오전 10–11시(주부)·야간 21–23시(통증) 쌍봉에 입찰 강화, 새벽·낮 비피크는 효율 방어.
+  </div>
+
+  <div class="insight-light ora" style="margin-top:8px">
+    <strong>📌 브리프 근거 출처</strong> — 타겟비중·시간대·지역·채널·SKU·리뷰효과어는 모두 본 리포트 <b>BQ 검증 데이터</b>(다운로드 원본 기준). 경쟁사 욕망 우선순위(외부)는 미반영 — 추후 🆚 경쟁사 수집 시 본 브리프 갱신 예정.
+  </div>
+
+</div>
+<!-- END TAB 7 (action) -->
+
+<!-- ===== TAB 8: 가설 검증 ===== -->
 <div id="tab-hypo" class="tab-panel">
 <style>
 .hypo-sum{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.055);margin-bottom:24px;font-size:13px}
@@ -1145,7 +1304,7 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
 .qitem .qs{color:#999;font-size:11px;margin-top:2px}
 </style>
 
-  <div class="sec-header"><div class="sec-num sn-red">7</div><div><div class="sec-title">가설 검증 현황</div></div></div>
+  <div class="sec-header"><div class="sec-num sn-red">8</div><div><div class="sec-title">가설 검증 현황</div></div></div>
   <div class="sec-sub">4차원 가설 프레임 × 38개 카드 · 최종 업데이트 2026-06-04</div>
 
   <div class="insight-box" style="margin-bottom:20px">
