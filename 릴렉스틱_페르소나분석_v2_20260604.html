@@ -803,8 +803,50 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   <div class="insight-light" style="margin-bottom:14px;font-size:12px">
     <b>🛒 추천 SKU 배지</b> (각 카드 욕망 뱃지 옆) — <span class="sku-rec sku-orig" style="margin-left:0">🛒 오리지널 · 개인</span> 개인 통증·신규 / <span class="sku-rec sku-bundle">🛒 1+1 · 가족공용</span> 가족·부부·선물(가구 2인이상 88.2%) / <span class="sku-rec sku-long">🛒 롱 · 옵션</span> 등·전신·혼자 닿기. <span style="color:#888">SKU 분석 탭 근거.</span>
   </div>
-  <div class="insight-light ora" style="margin-bottom:20px;font-size:12px">
+  <div class="insight-light ora" style="margin-bottom:18px;font-size:12px">
     <b>⏰ 시간대 발화 배지</b> (욕망 뱃지 옆) — <span class="time-rec time-morn" style="margin-left:0">☀️ 오전</span> 주부·사무실 / <span class="time-rec time-day">⏱️ 낮</span> 직장 / <span class="time-rec time-eve">🌆 저녁</span> 운동·퇴근 / <span class="time-rec time-night">🌙 야간</span> 통증 충동. <span style="color:#888">각 카드 '구매시기' 기반 · ⏰ 시간대 탭 근거.</span>
+  </div>
+
+  <!-- 카드 필터 -->
+  <style>
+  .card-filter{background:#fff;border-radius:12px;padding:12px 14px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:18px;position:sticky;top:62px;z-index:50}
+  .cf-row{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:7px}
+  .cf-row:last-child{margin-bottom:0}
+  .cf-label{font-size:10px;font-weight:800;color:#aaa;width:40px;flex-shrink:0;text-transform:uppercase;letter-spacing:.3px}
+  .cf-chip{font-size:11px;font-weight:600;color:#555;background:#f5f6f8;border:1.5px solid #e8e8e8;border-radius:16px;padding:3px 11px;cursor:pointer;font-family:inherit;transition:background .12s,color .12s,border-color .12s}
+  .cf-chip:hover{background:#eef0f3}
+  .cf-chip.active{background:#0958d9;border-color:#0958d9;color:#fff}
+  .cf-chip.active.cf-night{background:#531dab;border-color:#531dab}
+  .cf-reset{margin-left:auto;color:#cf1322;border-color:#ffccc7;background:#fff1f0;font-weight:700}
+  .cf-count{font-size:11px;color:#888;font-weight:600;margin-left:6px}
+  </style>
+  <div class="card-filter">
+    <div class="cf-row">
+      <span class="cf-label">욕망</span>
+      <button class="cf-chip" data-type="desire" data-val="db1" onclick="toggleCardFilter(this)">①종아리</button>
+      <button class="cf-chip" data-type="desire" data-val="db2" onclick="toggleCardFilter(this)">②어깨</button>
+      <button class="cf-chip" data-type="desire" data-val="db3" onclick="toggleCardFilter(this)">③목</button>
+      <button class="cf-chip" data-type="desire" data-val="db4" onclick="toggleCardFilter(this)">④등</button>
+      <button class="cf-chip" data-type="desire" data-val="db5" onclick="toggleCardFilter(this)">⑤샵대체</button>
+      <button class="cf-chip" data-type="desire" data-val="db6" onclick="toggleCardFilter(this)">⑥도구</button>
+      <button class="cf-chip" data-type="desire" data-val="db7" onclick="toggleCardFilter(this)">⑦운동</button>
+      <button class="cf-chip" data-type="desire" data-val="db8" onclick="toggleCardFilter(this)">⑧갱년기</button>
+      <button class="cf-chip" data-type="desire" data-val="db9" onclick="toggleCardFilter(this)">⑨육아</button>
+    </div>
+    <div class="cf-row">
+      <span class="cf-label">시간대</span>
+      <button class="cf-chip" data-type="time" data-val="time-morn" onclick="toggleCardFilter(this)">☀️ 오전</button>
+      <button class="cf-chip" data-type="time" data-val="time-day" onclick="toggleCardFilter(this)">⏱️ 낮</button>
+      <button class="cf-chip" data-type="time" data-val="time-eve" onclick="toggleCardFilter(this)">🌆 저녁</button>
+      <button class="cf-chip cf-night" data-type="time" data-val="time-night" onclick="toggleCardFilter(this)">🌙 야간</button>
+    </div>
+    <div class="cf-row">
+      <span class="cf-label">성별</span>
+      <button class="cf-chip" data-type="gender" data-val="female" onclick="toggleCardFilter(this)">여성</button>
+      <button class="cf-chip" data-type="gender" data-val="male" onclick="toggleCardFilter(this)">남성</button>
+      <span class="cf-count" id="cfCount"></span>
+      <button class="cf-chip cf-reset" onclick="resetCardFilter()">✕ 전체</button>
+    </div>
   </div>
 
   <!-- TOP1 -->
@@ -1532,6 +1574,54 @@ function injectCardHooks(){
     if(advEl) advEl.insertAdjacentHTML('beforebegin', hookHTML);
     else card.insertAdjacentHTML('beforeend', hookHTML);
   });
+}
+
+/* ─── 카드 필터 ─── */
+const cardFilter={desire:null,time:null,gender:null};
+function toggleCardFilter(btn){
+  const type=btn.dataset.type, val=btn.dataset.val;
+  cardFilter[type] = (cardFilter[type]===val) ? null : val;
+  document.querySelectorAll(`.cf-chip[data-type="${type}"]`).forEach(c=>c.classList.toggle('active', c.dataset.val===cardFilter[type]));
+  applyCardFilter();
+}
+function resetCardFilter(){
+  cardFilter.desire=cardFilter.time=cardFilter.gender=null;
+  document.querySelectorAll('.cf-chip[data-type]').forEach(c=>c.classList.remove('active'));
+  applyCardFilter();
+}
+function applyCardFilter(){
+  injectCardHooks(); // time-rec/sku-rec 배지 존재 보장
+  const {desire,time,gender}=cardFilter;
+  const anyActive=desire||time||gender;
+  let total=0;
+  document.querySelectorAll('#tab-cards .acc-wrap').forEach(acc=>{
+    let vis=0;
+    acc.querySelectorAll('.pcard').forEach(card=>{
+      let show=true;
+      if(anyActive){
+        const badge=card.querySelector('.dbadge');
+        const dCls=badge?Array.from(badge.classList).find(c=>/^db\d+$/.test(c)):null;
+        const timeEl=card.querySelector('.time-rec');
+        const tCls=timeEl?Array.from(timeEl.classList).find(c=>/^time-(morn|day|eve|night|etc)$/.test(c)):null;
+        const isMale=card.classList.contains('male');
+        if(desire&&dCls!==desire)show=false;
+        if(time&&tCls!==time)show=false;
+        if(gender&&((gender==='male')!==isMale))show=false;
+      }
+      card.style.display=show?'':'none';
+      if(show){vis++;total++;}
+    });
+    const hdr=acc.querySelector('.acc-hdr'), body=acc.querySelector('.acc-body');
+    if(anyActive){
+      acc.style.display=vis>0?'':'none';
+      if(vis>0){hdr.classList.add('open');body.classList.add('open');}
+    }else{
+      acc.style.display='';
+      hdr.classList.remove('open');body.classList.remove('open');
+    }
+  });
+  const cc=document.getElementById('cfCount');
+  if(cc) cc.textContent = anyActive ? `${total}장 표시` : '';
 }
 
 function showTab(id,btn){
