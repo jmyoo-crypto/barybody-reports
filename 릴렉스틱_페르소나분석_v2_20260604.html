@@ -800,8 +800,11 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   <div class="insight-box" style="margin-bottom:14px;font-size:12px">
     <b>검증 표기:</b> <span class="vtag vt-bq">✅BQ</span> BQ 데이터 정량 검증 &nbsp;|&nbsp; <span class="vtag vt-cm">✅커뮤니티</span> 실제 인용 정성 검증 &nbsp;|&nbsp; <span class="vtag vt-rv">✅리뷰</span> 스마트스토어 리뷰 &nbsp;|&nbsp; <span class="vtag vt-id">🔶간접</span> 간접 지표 추정 &nbsp;|&nbsp; <span class="vtag vt-hy">(가설)</span> 미검증
   </div>
-  <div class="insight-light" style="margin-bottom:20px;font-size:12px">
+  <div class="insight-light" style="margin-bottom:14px;font-size:12px">
     <b>🛒 추천 SKU 배지</b> (각 카드 욕망 뱃지 옆) — <span class="sku-rec sku-orig" style="margin-left:0">🛒 오리지널 · 개인</span> 개인 통증·신규 / <span class="sku-rec sku-bundle">🛒 1+1 · 가족공용</span> 가족·부부·선물(가구 2인이상 88.2%) / <span class="sku-rec sku-long">🛒 롱 · 옵션</span> 등·전신·혼자 닿기. <span style="color:#888">SKU 분석 탭 근거.</span>
+  </div>
+  <div class="insight-light ora" style="margin-bottom:20px;font-size:12px">
+    <b>⏰ 시간대 발화 배지</b> (욕망 뱃지 옆) — <span class="time-rec time-morn" style="margin-left:0">☀️ 오전</span> 주부·사무실 / <span class="time-rec time-day">⏱️ 낮</span> 직장 / <span class="time-rec time-eve">🌆 저녁</span> 운동·퇴근 / <span class="time-rec time-night">🌙 야간</span> 통증 충동. <span style="color:#888">각 카드 '구매시기' 기반 · ⏰ 시간대 탭 근거.</span>
   </div>
 
   <!-- TOP1 -->
@@ -1436,6 +1439,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
 .sku-orig{background:#e6f4ff;color:#0958d9}
 .sku-bundle{background:#f9f0ff;color:#531dab}
 .sku-long{background:#fff7e6;color:#d46b08}
+.time-rec{display:inline-block;border-radius:6px;padding:2px 9px;font-size:10.5px;font-weight:800;margin-bottom:8px;margin-left:5px;vertical-align:middle}
+.time-morn{background:#fff7e6;color:#ad6800}.time-day{background:#f0f5ff;color:#0958d9}
+.time-eve{background:#fff2e8;color:#d4380d}.time-night{background:#f9f0ff;color:#531dab}
+.time-etc{background:#f5f5f5;color:#666}
 </style>
 <script>
 /* ─── 욕망 카테고리별 훅 키워드 + 소재 컨셉 데이터 ─── */
@@ -1494,6 +1501,22 @@ function injectCardHooks(){
       else if(dClass==='db4'||/등에 닿|등까지|등짝|날갯죽지|1인가구|혼자.{0,4}닿|전신/.test(sc)){sku='롱 사이즈 · 옵션';cls='sku-long';}
       else{sku='오리지널 · 개인';cls='sku-orig';}
       badge.insertAdjacentHTML('afterend',`<span class="sku-rec ${cls}">🛒 ${sku}</span>`);
+    }
+    // ── 시간대 발화 배지 자동 주입 (가설표 '구매시기'에서 추출) ──
+    if(!card.querySelector('.time-rec')){
+      let timing='';
+      card.querySelectorAll('.hypo-tbl tr').forEach(tr=>{
+        const tds=tr.querySelectorAll('td');
+        if(tds.length>=2 && /구매\s*시기/.test(tds[0].textContent)) timing=tds[1].textContent.trim();
+      });
+      if(timing){
+        const short=timing.replace(/\(.*?\)/g,'').replace(/\s+/g,' ').trim();
+        const cand=[['오전|10시|11시','☀️','time-morn'],['낮|오후|12시|13시|14시|15시|16시|17시','⏱️','time-day'],['저녁|18시|19시|20시|퇴근','🌆','time-eve'],['야간|21시|22시|23시|취침','🌙','time-night'],['새벽|자정|0시','🌙','time-night']];
+        let best=null,bestIdx=Infinity;
+        cand.forEach(([pat,ic,cl])=>{const m=short.match(new RegExp(pat));if(m&&m.index<bestIdx){bestIdx=m.index;best=[ic,cl];}});
+        const [icon,tcls]=best||['🔔','time-etc'];
+        badge.insertAdjacentHTML('afterend',`<span class="time-rec ${tcls}">${icon} ${short}</span>`);
+      }
     }
     if(!dClass || !DESIRE_HOOKS[dClass]) return;
     const {tags,concept}=DESIRE_HOOKS[dClass];
