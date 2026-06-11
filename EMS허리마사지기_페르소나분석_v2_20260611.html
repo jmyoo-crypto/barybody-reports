@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMS 허리마사지기 페르소나 분석 v2 · 2026-06-11</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+/* ====== DESIGN SYSTEM (persona-template v2) ====== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+     color:#1a1a2e;background:#f5f6f8;font-size:13px;line-height:1.7}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a0a1a 0%,#1a1a2e 60%,#2d1b69 100%);
+      color:#fff;padding:52px 40px 44px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;left:-80px;bottom:-80px;width:280px;height:280px;
+  border-radius:50%;background:rgba(100,60,255,.10)}
+.hero::after{content:'';position:absolute;right:40px;top:30px;width:180px;height:180px;
+  border-radius:50%;background:rgba(0,200,150,.07)}
+.hero .badge{display:inline-block;background:rgba(150,100,255,.25);color:#b39dff;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;margin-bottom:18px}
+.hero h1{font-size:28px;font-weight:800;line-height:1.35;margin-bottom:10px}
+.hero p{font-size:13px;color:rgba(255,255,255,.6)}
+.hero-kpi{display:flex;justify-content:center;flex-wrap:wrap;gap:32px;margin-top:28px}
+.hero-kpi div{text-align:center}
+.hero-kpi .n{font-size:22px;font-weight:800}
+.hero-kpi .l{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
+
+/* TAB NAV */
+.tab-nav{display:flex;gap:0;background:#fff;border-radius:0;padding:8px 20px;
+  position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.06);overflow-x:auto}
+.tab-nav-inner{display:flex;gap:4px;background:#f5f6f8;border-radius:12px;padding:6px;max-width:1100px;margin:0 auto;width:100%}
+.tab-nav button{flex:1;min-width:110px;text-align:center;padding:9px 12px;border-radius:8px;
+  border:none;cursor:pointer;font-size:12px;font-weight:600;color:#999;
+  background:transparent;white-space:nowrap;transition:background .15s,color .15s;
+  font-family:inherit}
+.tab-nav button.active{background:#fff;color:#0958d9;box-shadow:0 1px 6px rgba(0,0,0,.10)}
+.tab-nav button:hover:not(.active){background:rgba(255,255,255,.6);color:#1a1a2e}
+
+/* PANELS */
+.tab-panel{display:none;max-width:980px;margin:0 auto;padding:32px 20px 80px}
+.tab-panel.active{display:block}
+
+/* SECTION HEADER */
+.sec-header{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.sec-num{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:18px;font-weight:800;flex-shrink:0}
+.sn-blue{background:#e6f4ff;color:#0958d9}
+.sn-green{background:#f6ffed;color:#389e0d}
+.sn-orange{background:#fff7e6;color:#d46b08}
+.sn-purple{background:#f9f0ff;color:#531dab}
+.sn-red{background:#fff1f0;color:#cf1322}
+.sec-title{font-size:18px;font-weight:800;color:#1a1a2e}
+.sec-sub{font-size:12px;color:#888;margin-bottom:22px;margin-top:2px;padding-left:58px}
+
+/* CARDS */
+.card{background:#fff;border-radius:16px;padding:24px 26px;margin-bottom:14px;
+      box-shadow:0 2px 16px rgba(0,0,0,.055)}
+
+/* METRIC GRID */
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:28px}
+.metric-box{background:#f7f8fa;border-radius:12px;padding:16px 14px}
+.metric-box .ml{font-size:10px;font-weight:700;color:#666;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:5px}
+.metric-box .mv{font-size:20px;font-weight:800;color:#1a1a2e}
+.metric-box .md{font-size:11px;color:#888;margin-top:3px}
+
+/* SEG TABLE */
+.seg-tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;
+  overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.055);margin-bottom:24px}
+.seg-tbl th{background:#f7f8fa;color:#555;padding:9px 12px;font-size:11.5px;
+  font-weight:700;border-bottom:2px solid #e8e8e8;text-align:left}
+.seg-tbl td{padding:10px 12px;border-bottom:1px solid #f0f0f0;font-size:13px;color:#333}
+.seg-tbl tr:last-child td{border-bottom:none}
+.seg-tbl tr:hover td{background:#fafbfc}
+.rbadge{display:inline-flex;align-items:center;justify-content:center;
+  background:#e6f4ff;color:#0958d9;border-radius:6px;
+  width:24px;height:24px;font-size:11px;font-weight:800}
+.rbadge.t3{background:#fff7e6;color:#d46b08}
+.bar-w{display:flex;align-items:center;gap:6px}
+.bar{height:8px;border-radius:6px;background:linear-gradient(90deg,#531dab,#b37feb)}
+.bar.m{background:linear-gradient(90deg,#0958d9,#69b1ff)}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
+.stat-card{background:#fff;border-radius:16px;padding:20px 22px;
+  box-shadow:0 2px 16px rgba(0,0,0,.055)}
+.stat-card h4{font-size:12px;color:#666;margin-bottom:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px}
+.sr{display:grid;grid-template-columns:62px 72px 1fr;align-items:center;gap:8px;margin-bottom:8px;font-size:12px}
+.sr .p{font-weight:700;color:#1a1a2e}
+.sr .b{height:8px;border-radius:6px;background:linear-gradient(90deg,#531dab,#b37feb)}
+.sr>span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#333}
+
+/* INSIGHT BOX (key) */
+.insight-box{background:linear-gradient(135deg,#1a1a2e,#2d1b69);color:#fff;
+  border-radius:16px;padding:24px 28px;margin-bottom:14px;font-size:13px}
+.insight-box strong{font-size:14px;color:#b39dff}
+.insight-box .s-line{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;
+  font-size:13px;color:rgba(255,255,255,.8);line-height:1.6}
+/* subtle insight (light) */
+.insight-light{background:#f0f5ff;border:1.5px solid #adc6ff;border-radius:12px;
+  padding:14px 16px;margin-bottom:14px;font-size:13px;color:#1a1a2e}
+.insight-light.ora{background:#fff7e6;border-color:#ffd591}
+.insight-light strong{color:#0958d9}
+.insight-light.ora strong{color:#d46b08}
+
+/* ACCORDION */
+.acc-wrap{margin-bottom:16px}
+.acc-hdr{background:#fff;border-radius:12px;padding:14px 18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);user-select:none;
+  border-left:4px solid #531dab;transition:box-shadow .2s}
+.acc-hdr:hover{box-shadow:0 4px 16px rgba(0,0,0,.10)}
+.acc-hdr.male{border-left-color:#0958d9}
+.acc-hdr .seg-info{display:flex;align-items:center;gap:14px}
+.acc-hdr .seg-rank{font-size:18px;font-weight:800;color:#1a1a2e}
+.acc-hdr .seg-name{font-size:13px;font-weight:700;color:#1a1a2e}
+.acc-hdr .seg-cnt{font-size:11px;color:#888;margin-top:2px}
+.acc-hdr .arr{transition:transform .3s;font-size:14px;color:#999}
+.acc-body{display:none;background:#fff;border-radius:0 0 12px 12px;
+  border:1.5px solid #f0f0f0;border-top:none;padding:20px}
+.acc-body.open{display:block}
+.acc-hdr.open .arr{transform:rotate(180deg)}
+.acc-hdr.open{border-radius:12px 12px 0 0;box-shadow:none;border-bottom:none}
+</style>
+<style>
+.d-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:28px}
+.d-card{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 2px 16px rgba(0,0,0,.055);border-left:4px solid #531dab}
+.d-card.d1{border-left-color:#cf1322}.d-card.d2{border-left-color:#d46b08}.d-card.d3{border-left-color:#d4b106}
+.d-card.d4{border-left-color:#389e0d}.d-card.d5{border-left-color:#0958d9}.d-card.d6{border-left-color:#531dab}
+.d-card.d7{border-left-color:#08979c}.d-card.d8{border-left-color:#c41d7f}.d-card.d9{border-left-color:#874d00}
+.d-num{font-size:10px;color:#999;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.d-title{font-size:15px;font-weight:800;margin-bottom:4px;color:#1a1a2e}
+.d-pct{font-size:22px;font-weight:900;color:#0958d9;margin-bottom:10px}
+.d-time{display:inline-flex;align-items:center;gap:5px;background:#fff7e6;border:1.5px solid #ffd591;color:#d46b08;border-radius:20px;padding:3px 11px;font-size:11px;font-weight:700;margin-bottom:12px;line-height:1.3}
+.d-time.night{background:#f9f0ff;border-color:#d3adf7;color:#531dab}
+.d-time .lbl{opacity:.65;font-weight:600}
+.d-stat{background:#f7f8fa;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:12px}
+.d-stat table{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed}
+.d-stat th{background:#ececf0;color:#555;font-weight:700;padding:5px 6px;text-align:center;font-size:10px;letter-spacing:.3px;white-space:nowrap}
+.d-stat th:first-child{text-align:left;width:50%}
+.d-stat td{padding:4px 6px;border-bottom:1px solid #e8e8e0;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d-stat td:first-child{text-align:left;font-weight:600;color:#333}
+.d-stat td:not(:first-child){text-align:center;color:#555}
+.d-stat tr:last-child td{border-bottom:none}
+.d-stat tr:hover td{background:rgba(0,0,0,.03)}
+.d-essence{font-size:13px;font-style:italic;color:#444;border-left:3px solid #d9d9d9;padding-left:10px;margin-bottom:10px}
+.d-quotes{margin-bottom:10px}
+.d-quote{background:#fffbe6;border-left:3px solid #faad14;border-radius:0 8px 8px 0;padding:8px 10px;margin-bottom:6px;font-size:12px;color:#333}
+.d-quote .src{color:#999;font-size:11px;margin-top:2px}
+.hook-wrap{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.hook{background:#f0f5ff;color:#0958d9;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;border:1.5px solid #adc6ff}
+</style>
+<style>
+.sp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:12px}
+.sp-card{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 12px rgba(0,0,0,.055);border-top:3px solid #531dab}
+.sp-card.male{border-top-color:#0958d9}
+.sp-name{font-size:15px;font-weight:800;margin-bottom:2px;color:#1a1a2e}
+.sp-age{font-size:11px;color:#531dab;font-weight:700;margin-bottom:8px}
+.sp-tbl{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:10px}
+.sp-tbl td{padding:4px 6px;border-bottom:1px solid #f0f0f0}
+.sp-tbl td:first-child{color:#999;width:70px}
+.sp-tbl tr:last-child td{border-bottom:none}
+.sp-pain{font-size:12px;color:#333;margin-bottom:8px}
+.sp-pain li{margin-bottom:3px;padding-left:4px}
+.sp-ctx{font-size:11px;color:#555;background:#f7f8fa;border-radius:8px;padding:7px 9px;margin-bottom:8px;border-left:3px solid #d9d9d9}
+.sp-hook{font-size:12px;font-weight:700;color:#0958d9;background:#e6f4ff;border-radius:8px;padding:7px 10px;margin-bottom:8px}
+.sp-btn-wrap{display:flex;flex-wrap:wrap;gap:3px}
+.sp-btn{font-size:10px;background:#f5f5f5;color:#666;border-radius:10px;padding:2px 8px;border:1px solid #e0e0e0}
+</style>
+<style>
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:12px}
+.pcard{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 12px rgba(0,0,0,.055);border-top:3px solid #531dab}
+.pcard.male{border-top-color:#0958d9}
+.pcard-id{display:inline-block;background:#f9f0ff;color:#531dab;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:800;margin-bottom:6px}
+.pcard-id.male{background:#e6f4ff;color:#0958d9}
+.dbadge{display:inline-block;border-radius:10px;padding:2px 9px;font-size:11px;font-weight:600;margin-bottom:8px;margin-left:4px}
+.db1{background:#fff1f0;color:#cf1322}.db2{background:#fff7e6;color:#d46b08}.db3{background:#feffe6;color:#7c4a03}
+.db4{background:#f6ffed;color:#389e0d}.db5{background:#e6f4ff;color:#0958d9}.db6{background:#f9f0ff;color:#531dab}
+.db7{background:#e6fffb;color:#08979c}.db8{background:#fff0f6;color:#c41d7f}.db9{background:#fff7e6;color:#874d00}
+.pcard h4{font-size:13px;font-weight:700;margin-bottom:6px;color:#1a1a2e}
+.pcard .cq{font-size:11px;color:#555;background:#fffbe6;border-left:3px solid #faad14;padding:7px 9px;border-radius:0 6px 6px 0;margin-bottom:8px;font-style:italic}
+.pcard .cq .cs{color:#999;font-size:10px}
+.hypo-tbl{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+.hypo-tbl th{background:#f7f8fa;color:#555;padding:5px 8px;text-align:left;font-size:10px;font-weight:700;border-bottom:1.5px solid #e8e8e8}
+.hypo-tbl.male th{background:#e6f4ff;color:#0958d9}
+.hypo-tbl td{padding:5px 8px;border-bottom:1px solid #f0f0f0;vertical-align:top}
+.hypo-tbl tr:last-child td{border-bottom:none}
+.hypo-tbl tr:hover td{background:#fafbfc}
+.vtag{font-size:10px;font-weight:600;white-space:nowrap}
+.vt-bq{color:#389e0d}.vt-cm{color:#0958d9}.vt-rv{color:#d46b08}.vt-id{color:#999}.vt-hy{color:#bbb}
+.adv{font-size:11px;font-weight:700;color:#531dab;background:#f9f0ff;border-radius:8px;padding:6px 10px;margin-top:8px;border:1.5px solid #d3adf7}
+.adv.male{color:#0958d9;background:#e6f4ff;border-color:#91caff}
+</style>
+<style>
+  .card-filter{background:#fff;border-radius:12px;padding:12px 14px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:18px;position:sticky;top:62px;z-index:50}
+  .cf-row{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:7px}
+  .cf-row:last-child{margin-bottom:0}
+  .cf-label{font-size:10px;font-weight:800;color:#aaa;width:40px;flex-shrink:0;text-transform:uppercase;letter-spacing:.3px}
+  .cf-chip{font-size:11px;font-weight:600;color:#555;background:#f5f6f8;border:1.5px solid #e8e8e8;border-radius:16px;padding:3px 11px;cursor:pointer;font-family:inherit;transition:background .12s,color .12s,border-color .12s}
+  .cf-chip:hover{background:#eef0f3}
+  .cf-chip.active{background:#0958d9;border-color:#0958d9;color:#fff}
+  .cf-chip.active.cf-night{background:#531dab;border-color:#531dab}
+  .cf-reset{margin-left:auto;color:#cf1322;border-color:#ffccc7;background:#fff1f0;font-weight:700}
+  .cf-count{font-size:11px;color:#888;font-weight:600;margin-left:6px}
+  </style>
+<style>
+.rg-bar{height:9px;border-radius:6px;background:linear-gradient(90deg,#389e0d,#95de64)}
+.rg-bar.seoul{background:linear-gradient(90deg,#0958d9,#69b1ff)}
+.zone-tag{display:inline-block;border-radius:5px;padding:1px 7px;font-size:10px;font-weight:700;white-space:nowrap}
+.zt-office{background:#e6f4ff;color:#0958d9}
+.zt-resi{background:#f6ffed;color:#389e0d}
+.zt-mix{background:#f9f0ff;color:#531dab}
+.rg-tbl td .gu{font-weight:700;color:#1a1a2e}
+.rg-mapnote{font-size:11px;color:#999;margin-top:4px}
+</style>
+<style>
+.tw-chart-wrap{background:#fff;border-radius:16px;padding:22px 24px 14px;box-shadow:0 2px 16px rgba(0,0,0,.055);margin-bottom:14px}
+.tw-chart-wrap h4{font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:4px}
+.tw-chart-wrap .cap{font-size:11px;color:#999;margin-bottom:14px}
+.tw-chart-box{position:relative;height:260px}
+.tw-legend{display:flex;gap:18px;margin-top:10px;font-size:11.5px;color:#666;flex-wrap:wrap}
+.tw-legend span{display:inline-flex;align-items:center;gap:6px}
+.tw-legend i{width:14px;height:4px;border-radius:3px;display:inline-block}
+.intz{display:inline-flex;align-items:center;justify-content:center;background:#fff7e6;color:#d46b08;border-radius:6px;padding:2px 7px;font-size:10.5px;font-weight:800}
+.intz.peak{background:#531dab;color:#fff}
+.tw-bar-w{display:flex;align-items:center;gap:8px}
+.tw-bar{height:9px;border-radius:6px;background:linear-gradient(90deg,#d46b08,#ffa940)}
+.tw-bar.hot{background:linear-gradient(90deg,#531dab,#b37feb)}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:640px){.cmp-grid{grid-template-columns:1fr}}
+.cmp-card{background:#fff;border-radius:16px;padding:22px 24px;box-shadow:0 2px 16px rgba(0,0,0,.055);border-top:4px solid #d46b08}
+.cmp-card.night{border-top-color:#531dab}
+.cmp-card .ct{font-size:13px;font-weight:800;color:#1a1a2e;margin-bottom:3px}
+.cmp-card .cs{font-size:11px;color:#999;margin-bottom:16px}
+.cmp-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px dashed #eee}
+.cmp-row:last-of-type{border-bottom:none}
+.cmp-row .lab{font-size:12px;color:#666}
+.cmp-row .num{font-size:17px;font-weight:800;color:#1a1a2e}
+.cmp-row .num small{font-size:11px;color:#999;font-weight:600}
+.cmp-verdict{margin-top:14px;background:#f7f8fa;border-radius:10px;padding:11px 13px;font-size:12px;line-height:1.6;color:#444}
+.cmp-verdict b{color:#d46b08}
+.cmp-card.night .cmp-verdict b{color:#531dab}
+.sig-tbl td .sig-state{font-size:12px;color:#666}
+.sig-tbl td .sig-hook{font-size:12px;color:#1a1a2e;font-weight:600;font-style:italic}
+.dtag{display:inline-block;background:#f9f0ff;color:#531dab;border-radius:5px;padding:1px 6px;font-size:10.5px;font-weight:700;margin:1px 2px 1px 0}
+</style>
+<style>
+.mx-tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.055);margin-bottom:24px;font-size:12px}
+.mx-tbl th{background:#1a1a2e;color:#fff;padding:10px 12px;text-align:left;font-size:11px;font-weight:700}
+.mx-tbl td{padding:11px 12px;border-bottom:1px solid #f0f0f0;vertical-align:top;line-height:1.55}
+.mx-tbl tr:last-child td{border-bottom:none}
+.mx-tbl tr:hover td{background:#fafbfc}
+.mx-time{font-weight:800;color:#1a1a2e;white-space:nowrap}
+.mx-time.night{color:#531dab}.mx-time.morn{color:#d46b08}
+.mx-copy{font-style:italic;color:#0958d9;font-weight:600}
+.mx-sku{display:inline-block;background:#f9f0ff;color:#531dab;border-radius:5px;padding:1px 7px;font-size:10.5px;font-weight:700}
+.prio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:24px}
+.prio-card{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 12px rgba(0,0,0,.055);border-top:4px solid #531dab}
+.prio-card.p1{border-top-color:#cf1322}.prio-card.p2{border-top-color:#d46b08}.prio-card.p3{border-top-color:#0958d9}.prio-card.p4{border-top-color:#08979c}
+.prio-rank{font-size:11px;font-weight:800;color:#999;text-transform:uppercase;letter-spacing:.5px}
+.prio-name{font-size:14px;font-weight:800;color:#1a1a2e;margin:2px 0 8px}
+.prio-card ul{list-style:none;font-size:11.5px;color:#555}
+.prio-card li{margin-bottom:5px;padding-left:14px;position:relative}
+.prio-card li::before{content:'·';position:absolute;left:4px;color:#999}
+.copy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+@media(max-width:640px){.copy-grid{grid-template-columns:1fr}}
+.copy-box{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 2px 12px rgba(0,0,0,.055)}
+.copy-box h4{font-size:12px;font-weight:700;color:#1a1a2e;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+.copy-line{background:#f7f8fa;border-left:3px solid #0958d9;border-radius:0 8px 8px 0;padding:8px 11px;margin-bottom:7px;font-size:12px;color:#1a1a2e;font-weight:600}
+.copy-line small{display:block;color:#999;font-size:10.5px;font-weight:500;margin-top:2px}
+</style>
+<style>
+.hypo-sum{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.055);margin-bottom:24px;font-size:13px}
+.hypo-sum th{background:#f7f8fa;color:#555;padding:10px 14px;text-align:left;font-size:11.5px;font-weight:700;border-bottom:2px solid #e8e8e8}
+.hypo-sum td{padding:10px 14px;border-bottom:1px solid #f0f0f0;vertical-align:top}
+.hypo-sum tr:last-child td{border-bottom:none}
+.hypo-sum tr:hover td{background:#fafbfc}
+.sns-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+@media(max-width:600px){.sns-grid{grid-template-columns:1fr}}
+.sns-box{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 2px 16px rgba(0,0,0,.055)}
+.sns-box h4{font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:10px}
+.qitem{background:#f7f8fa;border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:12px;color:#333;border-left:3px solid #d9d9d9}
+.qitem .qs{color:#999;font-size:11px;margin-top:2px}
+</style>
+<style>
+/* 카드 내 훅 키워드 + 소재 컨셉 */
+.card-hooks{margin-top:8px;margin-bottom:6px}
+.card-hooks .hook-label{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:5px}
+.card-hook-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.card-hook-tag{background:#f0f5ff;color:#0958d9;border:1.5px solid #adc6ff;
+  border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600}
+.card-concept{font-size:12px;background:#1a1a2e;color:rgba(255,255,255,.85);
+  border-radius:8px;padding:8px 12px;font-weight:600;line-height:1.6}
+.sku-rec{display:inline-block;border-radius:6px;padding:2px 9px;font-size:10.5px;font-weight:800;margin-bottom:8px;margin-left:5px;vertical-align:middle}
+.sku-orig{background:#e6f4ff;color:#0958d9}
+.sku-bundle{background:#f9f0ff;color:#531dab}
+.sku-long{background:#fff7e6;color:#d46b08}
+.time-rec{display:inline-block;border-radius:6px;padding:2px 9px;font-size:10.5px;font-weight:800;margin-bottom:8px;margin-left:5px;vertical-align:middle}
+.time-morn{background:#fff7e6;color:#ad6800}.time-day{background:#f0f5ff;color:#0958d9}
+.time-eve{background:#fff2e8;color:#d4380d}.time-night{background:#f9f0ff;color:#531dab}
+.time-etc{background:#f5f5f5;color:#666}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">BARYBODY · PERSONA ANALYSIS v2</div>
+  <h1>EMS 허리마사지기 페르소나 분석</h1>
+  <p>2026.02~05 BQ 구매자 데이터 기반 · 2026-06-11 · 고단가 EMS 온열·저주파 기기 (신제품 · 표본 245건)</p>
+  <div class="hero-kpi">
+    <div><div class="n">245건</div><div class="l">분석 구매 건수</div></div>
+    <div><div class="n">130,149원</div><div class="l">객단가(고단가)</div></div>
+    <div><div class="n">9개</div><div class="l">욕망 카테고리</div></div>
+    <div><div class="n">여성 67%</div><div class="l">구매자 성별</div></div>
+    <div><div class="n">모바일 85%</div><div class="l">구매 디바이스</div></div>
+    <div><div class="n">99%+</div><div class="l">네이버 채널</div></div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="active" onclick="showTab('data',this)">📊 핵심 데이터</button>
+    <button onclick="showTab('desire',this)">🎯 욕망 카테고리<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(카테고리별 정리)</small></button>
+    <button onclick="showTab('subpersona',this)">👤 서브페르소나<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(페르소나카드)</small></button>
+    <button onclick="showTab('cards',this)">🃏 페르소나 카드<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(타겟×욕망)</small></button>
+    <button onclick="showTab('region',this)">🗺️ 지역 분석<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(수도권 집중)</small></button>
+    <button onclick="showTab('action',this)">🎯 실행 브리프<small style="display:block;font-size:9px;opacity:.7;font-weight:500">(미디어 액션)</small></button>
+    <button onclick="showTab('hypo',this)">✅ 가설 검증</button>
+  </div>
+</nav>
+
+<!-- ===== TAB 1: 핵심 데이터 ===== -->
+<div id="tab-data" class="tab-panel active">
+  <div class="sec-header"><div class="sec-num sn-blue">1</div><div><div class="sec-title">핵심 데이터</div></div></div>
+  <div class="sec-sub">EMS 허리마사지기 단일 제품 · 245건 · 2026.02 출시 신제품 · 프로필 BQ ss_buyer_profile (표본 작음 — 경향 참고)</div>
+
+  <div class="metric-grid">
+    <div class="metric-box"><div class="ml">전체 구매자 성별</div><div class="mv">여성 67%</div><div class="md">남성 32% · 중장년 남성 비중 큼</div></div>
+    <div class="metric-box"><div class="ml">결혼 상태 · BQ</div><div class="mv">기혼 69.4%</div><div class="md">미혼 29.9%</div></div>
+    <div class="metric-box"><div class="ml">직업군 · BQ</div><div class="mv">직장인 81.9%</div><div class="md">주부 10.4% · 학생 3.5%</div></div>
+    <div class="metric-box"><div class="ml">가구당 인원 · BQ</div><div class="mv">2인이상 93.8%</div><div class="md">1인 5.6% · 가족·효도 근거</div></div>
+    <div class="metric-box"><div class="ml">자녀 분포 · BQ</div><div class="mv">자녀없음 33.3%</div><div class="md">성인자녀 20.5% · 초등 18.7%</div></div>
+    <div class="metric-box"><div class="ml">신규/재구매 · BQ전체</div><div class="mv">신규 94.9%</div><div class="md">재구매 5.1% · 스토어 전체 기준</div></div>
+    <div class="metric-box"><div class="ml">구매 디바이스</div><div class="mv">모바일 84.7%</div><div class="md">고단가라 PC 비교 병행</div></div>
+    <div class="metric-box"><div class="ml">객단가(AOV)</div><div class="mv">130,149원</div><div class="md">고단가·고관여 구매</div></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">구매자 TOP 10 세그먼트 (표본 245건)</div>
+  <table class="seg-tbl">
+    <thead><tr><th>#</th><th>세그먼트</th><th>건수</th><th>비중</th><th>그래프</th></tr></thead>
+    <tbody>
+      <tr><td><span class="rbadge t3">1</span></td><td>여성 41~45세</td><td>48건</td><td><b>19.6%</b></td><td><div class="bar-w"><div class="bar" style="width:196px"></div></div></td></tr>
+      <tr><td><span class="rbadge t3">2</span></td><td>여성 46~50세</td><td>27건</td><td><b>11.0%</b></td><td><div class="bar-w"><div class="bar" style="width:110px"></div></div></td></tr>
+      <tr><td><span class="rbadge t3">3</span></td><td>여성 36~40세</td><td>21건</td><td>8.6%</td><td><div class="bar-w"><div class="bar" style="width:86px"></div></div></td></tr>
+      <tr><td><span class="rbadge">4</span></td><td>여성 31~35세</td><td>21건</td><td>8.6%</td><td><div class="bar-w"><div class="bar" style="width:86px"></div></div></td></tr>
+      <tr><td><span class="rbadge">5</span></td><td>남성 51~55세</td><td>20건</td><td>8.2%</td><td><div class="bar-w"><div class="bar m" style="width:82px"></div></div></td></tr>
+      <tr><td><span class="rbadge">6</span></td><td>여성 51~55세</td><td>15건</td><td>6.1%</td><td><div class="bar-w"><div class="bar" style="width:61px"></div></div></td></tr>
+      <tr><td><span class="rbadge">7</span></td><td>남성 46~50세</td><td>15건</td><td>6.1%</td><td><div class="bar-w"><div class="bar m" style="width:61px"></div></div></td></tr>
+      <tr><td><span class="rbadge">8</span></td><td>여성 26~30세</td><td>13건</td><td>5.3%</td><td><div class="bar-w"><div class="bar" style="width:53px"></div></div></td></tr>
+      <tr><td><span class="rbadge">9</span></td><td>남성 36~40세</td><td>12건</td><td>4.9%</td><td><div class="bar-w"><div class="bar m" style="width:49px"></div></div></td></tr>
+      <tr><td><span class="rbadge">10</span></td><td>남성 41~45세</td><td>11건</td><td>4.5%</td><td><div class="bar-w"><div class="bar m" style="width:45px"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div class="stat-card">
+      <h4>🩹 리뷰 사용 맥락 TOP (research_user_voice 100건)</h4>
+      <div class="sr"><span class="p">60%</span><div class="b" style="width:100%"></div><span>허리 (핵심 부위)</span></div>
+      <div class="sr"><span class="p">16%</span><div class="b" style="width:27%"></div><span>통증·아픔 호소</span></div>
+      <div class="sr"><span class="p">16%</span><div class="b" style="width:27%"></div><span>복부·뱃살 겸용</span></div>
+      <div class="sr"><span class="p">16%</span><div class="b" style="width:27%"></div><span>장시간 앉는 직업</span></div>
+      <div class="sr"><span class="p">10%</span><div class="b" style="width:17%"></div><span>운동·노동 후</span></div>
+    </div>
+    <div class="stat-card">
+      <h4>📣 구매 유입 채널 TOP (BQ)</h4>
+      <div class="sr"><span class="p">26.7%</span><div class="b" style="width:100%"></div><span>네이버 가격비교</span></div>
+      <div class="sr"><span class="p">22.1%</span><div class="b" style="width:83%"></div><span>플러스스토어 검색</span></div>
+      <div class="sr"><span class="p">15.3%</span><div class="b" style="width:57%"></div><span>브랜드검색</span></div>
+      <div class="sr"><span class="p">14.5%</span><div class="b" style="width:54%"></div><span>가격비교 검색</span></div>
+      <div class="sr"><span class="p">9.9%</span><div class="b" style="width:37%"></div><span>쇼핑검색광고</span></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="stat-card">
+      <h4>✅ 리뷰 효과·만족 표현 TOP</h4>
+      <div class="sr"><span class="p">54%</span><div class="b" style="width:100%"></div><span>"온열·따뜻" ★ 1위</span></div>
+      <div class="sr"><span class="p">32%</span><div class="b" style="width:59%"></div><span>착용 간편(벨트형)</span></div>
+      <div class="sr"><span class="p">28%</span><div class="b" style="width:52%"></div><span>편하다</span></div>
+      <div class="sr"><span class="p">26%</span><div class="b" style="width:48%"></div><span>저주파·찌릿 자극</span></div>
+      <div class="sr"><span class="p">26%</span><div class="b" style="width:48%"></div><span>풀림·완화</span></div>
+    </div>
+    <div class="stat-card">
+      <h4>🛒 구매 유입 키워드 TOP (BQ)</h4>
+      <div class="sr"><span class="p" style="min-width:54px">21.3</span><div class="b" style="width:100%"></div><span>바리바디허리마사지기</span></div>
+      <div class="sr"><span class="p" style="min-width:54px">13.1</span><div class="b" style="width:62%"></div><span>브랜드검색</span></div>
+      <div class="sr"><span class="p" style="min-width:54px">12.7</span><div class="b" style="width:60%"></div><span>허리마사지기</span></div>
+      <div class="sr"><span class="p" style="min-width:54px">5.6</span><div class="b" style="width:26%"></div><span>바리바디</span></div>
+      <div class="sr"><span class="p" style="min-width:54px">3.3</span><div class="b" style="width:15%"></div><span>허리ems</span></div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <strong>🔑 핵심 인사이트 — 검색 진입 ≠ 실사용 베네핏</strong>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:16px 0 14px">
+      <div style="background:rgba(255,255,255,.08);border-radius:12px;padding:14px 16px">
+        <div style="font-size:11px;color:rgba(255,255,255,.55);font-weight:700;margin-bottom:6px">🔍 검색 진입</div>
+        <div style="font-size:15px;font-weight:800;color:#fff">허리마사지기 · EMS</div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.6);margin-top:3px">"통증 해결" 목적의 정직한 검색</div>
+      </div>
+      <div style="font-size:22px;font-weight:800;color:#b39dff;text-align:center">→</div>
+      <div style="background:rgba(179,157,255,.18);border:1.5px solid rgba(179,157,255,.45);border-radius:12px;padding:14px 16px">
+        <div style="font-size:11px;color:#b39dff;font-weight:700;margin-bottom:6px">💆 실사용 베네핏</div>
+        <div style="font-size:15px;font-weight:800;color:#fff">온열 + 저주파</div>
+        <div style="font-size:11.5px;color:rgba(255,255,255,.7);margin-top:3px">"따뜻함" <b style="color:#fff">54%</b> · "마사지 받는 느낌"</div>
+      </div>
+    </div>
+    <div class="s-line"><span>🔥</span><span>리뷰 1위 효과어가 <b>"온열·따뜻"(54%)</b> — "시원함"이 아니라 <b>따뜻함</b>이 이 제품의 핵심 베네핏. <b style="color:#b39dff">카피 1순위 = 따뜻하게 풀어주는</b></span></div>
+    <div class="s-line"><span>🎁</span><span>"<b>부모님이 더 좋아하세요</b>" 반복 — 성인자녀 20.5%·고단가 13만원 = <b style="color:#b39dff">효도 선물 시장</b>이 핵심 축</span></div>
+    <div class="s-line"><span>🏥</span><span>"마사지 따로 받으러 안 가도 될 정도" — <b>마사지샵·한의원 대체</b> 포지션이 고단가를 정당화</span></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:700;color:#555;margin:28px 0 10px;text-transform:uppercase;letter-spacing:.5px">💬 리뷰가 말하는 것 — 100건 마이닝</div>
+  <div class="metric-grid" style="margin-bottom:14px">
+    <div class="metric-box"><div class="ml">평균 평점</div><div class="mv">4.88점</div><div class="md">5점 88% · 4점 12%</div></div>
+    <div class="metric-box"><div class="ml">부정(1~3점)</div><div class="mv">0건</div><div class="md">표본 100건 기준</div></div>
+    <div class="metric-box"><div class="ml">최대 약점</div><div class="mv">강도 12%</div><div class="md">"세다/약하다" · 사용법 10%</div></div>
+    <div class="metric-box"><div class="ml">가격 불만</div><div class="mv">0%</div><div class="md">고단가지만 가치 납득</div></div>
+  </div>
+  <div class="insight-light" style="margin-bottom:14px">
+    <strong>🔑 리뷰 마이닝 인사이트</strong><br><br>
+    <b>① 핵심 효과어 = "온열·따뜻"(54%)</b> → "허리 한가운데가 따뜻해지면서 긴장 풀리는 느낌" — 카피·상세페이지 전면 배치.<br>
+    <b>② 저주파 EMS 자극(26%)</b> → "톡톡 자극, 마사지 받는 느낌" = 고단가 정당화 포인트.<br>
+    <b>③ 착용 간편 벨트형(32%)</b> → "벨트처럼 감으면 안정적으로 밀착" = 진입장벽 해소 소구.<br>
+    <b>④ 약점 = 강도(12%)·사용법(10%)</b> → 단계별 강도·사용 가이드 안내 강화.
+  </div>
+
+  <div style="font-size:13px;font-weight:700;color:#555;margin:28px 0 10px;text-transform:uppercase;letter-spacing:.5px">📦 제품 구성 — 단일 SKU (고단가 EMS 기기)</div>
+  <table class="seg-tbl" style="margin-bottom:14px">
+    <thead><tr><th>제품</th><th>구매 건수</th><th>매출</th><th>객단가</th><th>환불률</th></tr></thead>
+    <tbody>
+      <tr><td><b>허리 마사지기 EMS</b> <span style="color:#888;font-size:11px">온열·저주파·복대형</span></td><td>245건</td><td>3,189만</td><td><b style="color:#531dab">130,149원</b></td><td><span style="color:#d46b08;font-weight:700">11.0%</span></td></tr>
+    </tbody>
+  </table>
+  <div class="insight-light ora">
+    <strong>📌 SKU·데이터 노트</strong><br>
+    · 단일 고단가 SKU(13만원) — 묶음 전략보다 <b>가치·효도 선물 소구</b>가 객단가 방어.<br>
+    · 환불률 11.0%(다소 높은 편) — 고단가·기대치 높아 <b>강도·사용법 안내로 기대 정렬</b> 필요.<br>
+    · <b>표본 245건·리뷰 100건 (2026.02 출시 신제품)</b> — 데모그래픽은 경향으로 해석, 누적되면 재검증.
+  </div>
+</div>
+<!-- END TAB 1 -->
+
+<!-- ===== TAB 2: 욕망 카테고리 ===== -->
+<div id="tab-desire" class="tab-panel">
+  <div class="sec-header"><div class="sec-num sn-orange">2</div><div><div class="sec-title">욕망 카테고리 9개</div></div></div>
+  <div class="sec-sub">리뷰 효과·맥락 기반(①~④) × 구매 맥락 기반(⑤~⑨) · 단일 부위(허리) EMS 기기 특성 반영</div>
+  <div class="d-grid">
+    <div class="d-card d1"><div class="d-num">카테고리 ① · 리뷰 1위 효과</div><div class="d-title">온열 찜질 — 허리 따뜻하게 ★</div><div class="d-pct">54%</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">리뷰 효과어 "온열·따뜻" 54% 1위 — "허리 한가운데가 따뜻해지면서 긴장 풀림"</div></div><div class="d-essence">"뻐근한 허리, 온열로 한가운데부터 따뜻하게 풀고 싶다"</div><div class="d-quotes"><div class="d-quote">"온열모드가 특히 좋아요, 허리 한가운데가 따뜻해지면서 긴장 풀리는 느낌"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">허리 한가운데가 따뜻하게</span><span class="hook">자기 전 온열 5분</span></div></div>
+    <div class="d-card d2"><div class="d-num">카테고리 ② · 리뷰 효과</div><div class="d-title">저주파 EMS 자극</div><div class="d-pct">26%</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">"저주파·찌릿" 26% — "톡톡 자극이 은근하게 들어와 마사지 받는 느낌"</div></div><div class="d-essence">"집에서 마사지 받는 그 느낌 — 전문 자극을 매일"</div><div class="d-quotes"><div class="d-quote">"버튼 누르자마자 안쪽에서 톡톡 자극이 오고… 마사지 따로 받으러 안 가도 될 정도"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">톡톡 저주파 자극</span><span class="hook">집에서 마사지 받는 느낌</span></div></div>
+    <div class="d-card d3"><div class="d-num">카테고리 ③ · 리뷰 맥락</div><div class="d-title">만성 허리 통증·디스크 관리</div><div class="d-pct">16%</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">"통증·아픔" 16% + 디스크 — 만성 요통 매일 관리 니즈</div></div><div class="d-essence">"디스크·만성 요통 — 병원 가기 전 집에서 매일 관리"</div><div class="d-quotes"><div class="d-quote">"허리가 자주 아픈데 간단한 운동만으로 해결이 안 돼서 구매… 일어날 때 뻣뻣하던 게 덜해요"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">디스크로 굳은 허리</span><span class="hook">아침에 덜 뻣뻣하게</span></div></div>
+    <div class="d-card d4"><div class="d-num">카테고리 ④ · 리뷰 맥락</div><div class="d-title">장시간 좌식 직장인 허리</div><div class="d-pct">16%</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">"장시간 앉는 직업" 16% · 직장인 81.9% — 좌식 누적 허리</div></div><div class="d-essence">"하루 종일 앉아 굳은 허리 — 퇴근 후 따뜻하게"</div><div class="d-quotes"><div class="d-quote">"사무직이라 종일 앉아있어 허리가 묵직했는데 퇴근하고 차고 있으면 한결 편해요"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">종일 앉아 굳은 허리</span><span class="hook">퇴근 후 허리부터</span></div></div>
+    <div class="d-card d5"><div class="d-num">카테고리 ⑤ · 맥락 기반</div><div class="d-title">마사지샵·한의원 대체</div><div class="d-pct">—</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">고단가 13만원이지만 "매번 가기 부담" 대안 — 1회 한의원/마사지 비용 누적 대체</div></div><div class="d-essence">"마사지·한의원 매번 가기 부담 — 집에서 매일 대신"</div><div class="d-quotes"><div class="d-quote">"마사지 따로 받으러 안 가도 될 정도라 만족해요"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">한의원 대신 집에서</span><span class="hook">예약·이동 필요 없이</span></div></div>
+    <div class="d-card d6"><div class="d-num">카테고리 ⑥ · 맥락 기반</div><div class="d-title">부모님 선물·효도</div><div class="d-pct">—</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">성인자녀 20.5% · 가구 2인이상 93.8% · 리뷰 "부모님이 더 좋아" 반복 = 효도 선물 시장</div></div><div class="d-essence">"허리 아픈 부모님께 — 받자마자 더 좋아하시는 선물"</div><div class="d-quotes"><div class="d-quote">"허리 뻐근해서 주문했는데 부모님이 더 좋아하세요"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">부모님이 더 좋아하세요</span><span class="hook">효도 선물 1순위</span></div></div>
+    <div class="d-card d7"><div class="d-num">카테고리 ⑦ · 맥락 기반</div><div class="d-title">운동·노동 후 허리 회복</div><div class="d-pct">10%</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">"운동·노동 후" 10% — 무리한 날 저녁 묵직한 허리 회복</div></div><div class="d-essence">"운동·노동으로 묵직한 허리 — 그날 저녁 따뜻하게 회복"</div><div class="d-quotes"><div class="d-quote">"몸 쓰는 일을 해서 저녁마다 허리가 무거운데 온열로 풀어주니 좋네요"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">노동으로 묵직한 허리</span><span class="hook">무리한 날 저녁 케어</span></div></div>
+    <div class="d-card d8"><div class="d-num">카테고리 ⑧ · 맥락 기반</div><div class="d-title">중장년 퇴행성 허리</div><div class="d-pct">—</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">여40-50대 30.6% + 남50대 8.2% — 나이 들수록 굳는 퇴행성 허리</div></div><div class="d-essence">"나이 들수록 굳는 허리 — 중장년 매일 온열 관리"</div><div class="d-quotes"><div class="d-quote">"나이 드니 허리가 자주 결리는데 매일 찜질하듯 쓰니 한결 낫네요"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">나이 들수록 굳는 허리</span><span class="hook">50 넘으니 더 필요</span></div></div>
+    <div class="d-card d9"><div class="d-num">카테고리 ⑨ · 맥락 기반</div><div class="d-title">허리+복부 겸용</div><div class="d-pct">16%</div><div class="d-stat"><div style="font-size:11px;color:var(--g2)">"복부·뱃살 겸용" 16% — EMS 벨트라 복부에도 착용 가능, 부위 자유</div></div><div class="d-essence">"허리뿐 아니라 복부까지 — 벨트로 원하는 부위 온열"</div><div class="d-quotes"><div class="d-quote">"허리에도 차고 배에도 둘러봤는데 둘 다 따뜻하니 좋아요"<div class="src">스마트스토어 리뷰</div></div></div><div class="hook-wrap"><span class="hook">허리+복부 같이</span><span class="hook">벨트로 부위 자유롭게</span></div></div>
+  </div>
+</div>
+<!-- END TAB 2 -->
+
+<!-- ===== TAB 3: 서브페르소나 ===== -->
+<div id="tab-subpersona" class="tab-panel">
+  <div class="sec-header"><div class="sec-num sn-green">3</div><div><div class="sec-title">서브페르소나</div></div></div>
+  <div class="sec-sub">핵심 세그먼트 × 대표 유형 · 표본 245건 기준 경향 (대량 추정 지양, 핵심 8명)</div>
+  <div class="insight-light" style="margin-bottom:20px;display:flex;gap:12px;align-items:flex-start">
+    <span style="font-size:20px;line-height:1">📍</span>
+    <div><strong>구매 상위 권역 (BQ 실증 · 전 세그먼트 공통)</strong><br>
+      서울 <b>41.6%</b> · 경기 <b>25.7%</b> — 수도권 <b>71.8%</b> 집중 (ss_buyer_region 245건)<br>
+      <span style="color:#888;font-size:11.5px">※ 거주지는 라이프스타일 추정(가설), BQ 검증은 전체 권역 분포. 표본이 작아 시군구 단위는 생략.</span></div>
+  </div>
+
+  <div class="acc-wrap">
+    <div class="acc-hdr" onclick="toggleAcc(this)"><div class="seg-info"><span class="seg-rank">핵심 1</span><div><div class="seg-name">여성 40~50대 (핵심)</div><div class="seg-cnt">합산 36.7% · 3명</div></div></div><span class="arr">▼</span></div>
+    <div class="acc-body"><div class="sp-grid">
+      <div class="sp-card"><div class="sp-name">김선영</div><div class="sp-age">44세 · 사무직 워킹맘</div><table class="sp-tbl"><tr><td>직업/결혼</td><td>직장인 / 기혼</td></tr><tr><td>자녀</td><td>초등~중등</td></tr><tr><td>거주지</td><td>서울·경기</td></tr><tr><td>구매특성</td><td>고관여 비교후 결정</td></tr></table><ul class="sp-pain"><li>종일 앉아 일해 만성 허리 — 간단한 운동으론 해결 안 됨</li><li>마사지샵 매번 갈 시간 없음</li></ul><div class="sp-ctx">네이버 검색·비교 → "온열+저주파"에 끌려 고단가도 결제</div><div class="sp-hook">💬 "퇴근 후 허리부터 — 따뜻하게 풀어줘요"</div><div class="sp-btn-wrap"><span class="sp-btn">만성 허리</span><span class="sp-btn">온열</span><span class="sp-btn">샵 대체</span></div></div>
+      <div class="sp-card"><div class="sp-name">이정자</div><div class="sp-age">48세 · 갱년기 전후 주부</div><table class="sp-tbl"><tr><td>직업/결혼</td><td>주부 / 기혼</td></tr><tr><td>자녀</td><td>중고등~성인</td></tr><tr><td>거주지</td><td>경기·수도권</td></tr><tr><td>구매특성</td><td>지인 추천·후기 신뢰</td></tr></table><ul class="sp-pain"><li>나이 들수록 허리가 자주 결림 — 퇴행성 자각</li><li>매일 집에서 찜질처럼 관리하고 싶음</li></ul><div class="sp-ctx">후기·온열 기능 확인 → 자기 돌봄 투자</div><div class="sp-hook">💬 "나이 들수록 굳는 허리, 매일 온열 관리"</div><div class="sp-btn-wrap"><span class="sp-btn">퇴행성</span><span class="sp-btn">온열 찜질</span></div></div>
+      <div class="sp-card"><div class="sp-name">박미경</div><div class="sp-age">42세 · 효도 선물 구매자</div><table class="sp-tbl"><tr><td>직업/결혼</td><td>직장인 / 기혼</td></tr><tr><td>자녀</td><td>성인 자녀</td></tr><tr><td>거주지</td><td>서울·경기</td></tr><tr><td>구매특성</td><td>부모님 선물로 구매</td></tr></table><ul class="sp-pain"><li>허리 아픈 친정·시부모님께 효도 선물 고민</li><li>고단가라도 "제대로 된 것" 원함</li></ul><div class="sp-ctx">브랜드검색 직접 → 선물 포장·효능 확인 후 구매</div><div class="sp-hook">💬 "허리 아픈 부모님께 — 받자마자 더 좋아하세요"</div><div class="sp-btn-wrap"><span class="sp-btn">효도 선물</span><span class="sp-btn">고단가 가치</span></div></div>
+    </div></div>
+  </div>
+
+  <div class="acc-wrap">
+    <div class="acc-hdr male" onclick="toggleAcc(this)"><div class="seg-info"><span class="seg-rank">핵심 2</span><div><div class="seg-name">남성 40~50대</div><div class="seg-cnt">합산 18.8% · 3명</div></div></div><span class="arr">▼</span></div>
+    <div class="acc-body"><div class="sp-grid">
+      <div class="sp-card male"><div class="sp-name">정도현</div><div class="sp-age">53세 · 중년 직장인</div><table class="sp-tbl"><tr><td>직업/결혼</td><td>직장인 / 기혼</td></tr><tr><td>구매특성</td><td>스펙·기능 비교</td></tr></table><ul class="sp-pain"><li>오래된 만성 허리 통증 — 디스크 우려</li><li>병원·물리치료 대신 집에서 매일</li></ul><div class="sp-ctx">기능(저주파·온열) 비교 → 고관여 구매</div><div class="sp-hook">💬 "디스크로 굳은 허리, 집에서 매일 저주파+온열"</div><div class="sp-btn-wrap"><span class="sp-btn">만성·디스크</span><span class="sp-btn">저주파</span></div></div>
+      <div class="sp-card male"><div class="sp-name">한영수</div><div class="sp-age">49세 · 몸 쓰는 직업</div><table class="sp-tbl"><tr><td>직업/결혼</td><td>현장·기술직 / 기혼</td></tr><tr><td>구매특성</td><td>실용·내구 중시</td></tr></table><ul class="sp-pain"><li>노동으로 저녁마다 허리가 묵직</li><li>그날 풀지 않으면 다음날 더 뻐근</li></ul><div class="sp-ctx">아내 추천 or 직접 검색 → 저녁 회복 루틴</div><div class="sp-hook">💬 "노동으로 묵직한 허리, 그날 저녁 따뜻하게"</div><div class="sp-btn-wrap"><span class="sp-btn">노동 후 회복</span><span class="sp-btn">온열</span></div></div>
+      <div class="sp-card male"><div class="sp-name">오성근</div><div class="sp-age">52세 · 배우자 권유형</div><table class="sp-tbl"><tr><td>직업/결혼</td><td>직장인 / 기혼</td></tr><tr><td>구매특성</td><td>배우자 권유 후 결정</td></tr></table><ul class="sp-pain"><li>아내가 먼저 권해 사용 → 효과 보고 본인용</li><li>가족이 같이 쓰는 도구로 납득</li></ul><div class="sp-ctx">가족 공용(2인이상 93.8%)으로 정당화</div><div class="sp-hook">💬 "온 가족 허리 케어 — 하나면 다 같이"</div><div class="sp-btn-wrap"><span class="sp-btn">가족 공용</span><span class="sp-btn">배우자 권유</span></div></div>
+    </div></div>
+  </div>
+
+  <div class="acc-wrap">
+    <div class="acc-hdr" onclick="toggleAcc(this)"><div class="seg-info"><span class="seg-rank">핵심 3</span><div><div class="seg-name">여성 30대</div><div class="seg-cnt">합산 17.2% · 2명</div></div></div><span class="arr">▼</span></div>
+    <div class="acc-body"><div class="sp-grid">
+      <div class="sp-card"><div class="sp-name">최유진</div><div class="sp-age">34세 · 좌식 직장인</div><table class="sp-tbl"><tr><td>직업/결혼</td><td>직장인 / 기혼</td></tr><tr><td>구매특성</td><td>SNS·후기 탐색</td></tr></table><ul class="sp-pain"><li>재택·사무 장시간 착석 — 젊은데 허리 뻐근</li><li>스트레칭으로 부족, 매일 관리 원함</li></ul><div class="sp-ctx">인스타·후기 발견 → 온열·착용 간편에 끌림</div><div class="sp-hook">💬 "종일 앉아 굳은 허리 — 차고 있으면 편해요"</div><div class="sp-btn-wrap"><span class="sp-btn">좌식 허리</span><span class="sp-btn">착용 간편</span></div></div>
+      <div class="sp-card"><div class="sp-name">서다연</div><div class="sp-age">31세 · 산후·육아</div><table class="sp-tbl"><tr><td>직업/결혼</td><td>육아휴직 / 기혼</td></tr><tr><td>구매특성</td><td>맘카페·지인 추천</td></tr></table><ul class="sp-pain"><li>출산·육아 후 허리 약해짐, 아이 안다 무리</li><li>찜질하듯 따뜻하게 풀고 싶음</li></ul><div class="sp-ctx">맘카페 추천 → 온열 위주 사용</div><div class="sp-hook">💬 "육아로 약해진 허리, 따뜻하게 매일"</div><div class="sp-btn-wrap"><span class="sp-btn">산후 허리</span><span class="sp-btn">온열</span></div></div>
+    </div></div>
+  </div>
+</div>
+<!-- END TAB 3 -->
+
+<!-- ===== TAB 4: 페르소나 카드 ===== -->
+<div id="tab-cards" class="tab-panel">
+  <div class="sec-header"><div class="sec-num sn-purple">4</div><div><div class="sec-title">페르소나×욕망 카드 10개</div></div></div>
+  <div class="sec-sub">타겟(인구통계+맥락) × 욕망 = 별도 카드 · 4차원 가설+검증 · 표본 245건 경향</div>
+  <div class="insight-box" style="margin-bottom:14px;font-size:12px">
+    <b>검증 표기:</b> <span class="vtag vt-bq">✅BQ</span> 정량(표본 245) &nbsp;|&nbsp; <span class="vtag vt-rv">✅리뷰</span> 리뷰 100건 &nbsp;|&nbsp; <span class="vtag vt-id">🔶간접</span> 간접 추정 &nbsp;|&nbsp; <span class="vtag vt-hy">(가설)</span> 미검증
+  </div>
+
+  <style>
+  .card-filter{background:#fff;border-radius:12px;padding:12px 14px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:18px;position:sticky;top:62px;z-index:50}
+  .cf-row{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:7px}
+  .cf-row:last-child{margin-bottom:0}
+  .cf-label{font-size:10px;font-weight:800;color:#aaa;width:40px;flex-shrink:0;text-transform:uppercase}
+  .cf-chip{font-size:11px;font-weight:600;color:#555;background:#f5f6f8;border:1.5px solid #e8e8e8;border-radius:16px;padding:3px 11px;cursor:pointer;font-family:inherit}
+  .cf-chip:hover{background:#eef0f3}.cf-chip.active{background:#0958d9;border-color:#0958d9;color:#fff}
+  .cf-reset{margin-left:auto;color:#cf1322;border-color:#ffccc7;background:#fff1f0;font-weight:700}
+  .cf-count{font-size:11px;color:#888;font-weight:600;margin-left:6px}
+  </style>
+  <div class="card-filter">
+    <div class="cf-row"><span class="cf-label">욕망</span>
+      <button class="cf-chip" data-type="desire" data-val="db1" onclick="toggleCardFilter(this)">①온열</button>
+      <button class="cf-chip" data-type="desire" data-val="db2" onclick="toggleCardFilter(this)">②저주파</button>
+      <button class="cf-chip" data-type="desire" data-val="db3" onclick="toggleCardFilter(this)">③만성통증</button>
+      <button class="cf-chip" data-type="desire" data-val="db4" onclick="toggleCardFilter(this)">④좌식직장</button>
+      <button class="cf-chip" data-type="desire" data-val="db5" onclick="toggleCardFilter(this)">⑤샵대체</button>
+      <button class="cf-chip" data-type="desire" data-val="db6" onclick="toggleCardFilter(this)">⑥효도선물</button>
+      <button class="cf-chip" data-type="desire" data-val="db7" onclick="toggleCardFilter(this)">⑦운동노동</button>
+      <button class="cf-chip" data-type="desire" data-val="db8" onclick="toggleCardFilter(this)">⑧중장년</button>
+      <button class="cf-chip" data-type="desire" data-val="db9" onclick="toggleCardFilter(this)">⑨복부겸용</button>
+    </div>
+    <div class="cf-row"><span class="cf-label">성별</span>
+      <button class="cf-chip" data-type="gender" data-val="female" onclick="toggleCardFilter(this)">여성</button>
+      <button class="cf-chip" data-type="gender" data-val="male" onclick="toggleCardFilter(this)">남성</button>
+      <span class="cf-count" id="cfCount"></span>
+      <button class="cf-chip cf-reset" onclick="resetCardFilter()">✕ 전체</button>
+    </div>
+  </div>
+
+  <div class="acc-wrap">
+    <div class="acc-hdr" onclick="toggleAcc(this)"><div class="seg-info"><span class="seg-rank">여성</span><div><div class="seg-name">여성 페르소나 · 6개 카드</div><div class="seg-cnt">F1~F6</div></div></div><span class="arr">▼</span></div>
+    <div class="acc-body"><div class="card-grid">
+      <div class="pcard"><div class="pcard-id">F1</div><span class="dbadge db4">④좌식직장인</span><h4>사무직 워킹맘 — 만성 허리</h4><div class="cq">"종일 앉아 일하면 허리가 묵직, 퇴근하고 차면 한결 편해요"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>네이버 검색·비교 후 결정</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>구매특성</td><td>고관여 비교(고단가 13만)</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>구매동기</td><td>좌식 만성 허리 / 운동으론 부족</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr><tr><td>달성목표</td><td>퇴근 후 온열로 매일 케어</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv">💡 "퇴근 후 허리부터 — 따뜻하게 풀어줘요"</div></div>
+      <div class="pcard"><div class="pcard-id">F2</div><span class="dbadge db1">①온열찜질</span><h4>갱년기 전후 주부 — 퇴행성 허리</h4><div class="cq">"나이 드니 허리가 자주 결리는데 매일 찜질하듯 쓰니 낫네요"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>후기·온열 기능 확인</td><td><span class="vtag vt-cm">✅리뷰</span></td></tr><tr><td>구매동기</td><td>퇴행성 허리 자각 / 자기 돌봄</td><td><span class="vtag vt-id">🔶간접</span></td></tr><tr><td>달성목표</td><td>집에서 매일 온열 관리</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv">💡 "나이 들수록 굳는 허리, 매일 온열 관리"</div></div>
+      <div class="pcard"><div class="pcard-id">F3</div><span class="dbadge db6">⑥효도선물</span><h4>효도 선물 구매자 — 부모님 허리</h4><div class="cq">"허리 뻐근해서 주문했는데 부모님이 더 좋아하세요"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>브랜드검색 직접 유입</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>구매동기</td><td>허리 아픈 부모님 효도(성인자녀 20.5%)</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>달성목표</td><td>제대로 된 고단가 선물</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv">💡 "받자마자 더 좋아하시는 효도템"</div></div>
+      <div class="pcard"><div class="pcard-id">F4</div><span class="dbadge db5">⑤샵대체</span><h4>마사지샵 단골 → 홈케어 전환</h4><div class="cq">"마사지 따로 받으러 안 가도 될 정도"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>가격비교 후 결정</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>구매동기</td><td>샵·한의원 매번 부담 → 홈케어</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr><tr><td>달성목표</td><td>집에서 매일 샵처럼</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv">💡 "한의원 대신 집에서 매일"</div></div>
+      <div class="pcard"><div class="pcard-id">F5</div><span class="dbadge db9">⑨복부겸용</span><h4>허리+복부 겸용 — 다용도</h4><div class="cq">"허리에도 차고 배에도 둘러봤는데 둘 다 따뜻하니 좋아요"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>SNS·후기 발견</td><td><span class="vtag vt-cm">✅리뷰</span></td></tr><tr><td>구매동기</td><td>벨트형 → 허리+복부 다부위</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr><tr><td>달성목표</td><td>한 대로 여러 부위 온열</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv">💡 "허리+복부 같이 — 벨트로 부위 자유"</div></div>
+      <div class="pcard"><div class="pcard-id">F6</div><span class="dbadge db3">③산후 허리</span><h4>산후·육아맘 — 약해진 허리</h4><div class="cq">"육아로 허리가 약해졌는데 따뜻하게 풀어주니 좋아요"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>맘카페·지인 추천</td><td><span class="vtag vt-cm">✅리뷰</span></td></tr><tr><td>구매동기</td><td>출산·육아 후 허리 약화</td><td><span class="vtag vt-id">🔶간접</span></td></tr><tr><td>달성목표</td><td>온열 위주 매일 관리</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv">💡 "육아로 약해진 허리, 따뜻하게 매일"</div></div>
+    </div></div>
+  </div>
+
+  <div class="acc-wrap">
+    <div class="acc-hdr male" onclick="toggleAcc(this)"><div class="seg-info"><span class="seg-rank">남성</span><div><div class="seg-name">남성 페르소나 · 4개 카드</div><div class="seg-cnt">M1~M4</div></div></div><span class="arr">▼</span></div>
+    <div class="acc-body"><div class="card-grid">
+      <div class="pcard male"><div class="pcard-id male">M1</div><span class="dbadge db3">③만성·디스크</span><h4>중년 직장인 — 디스크 우려</h4><div class="cq">"오래된 허리 통증, 병원 대신 집에서 매일 관리하려고"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl male"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>기능(저주파·온열) 스펙 비교</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>구매동기</td><td>만성 허리·디스크 우려</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr><tr><td>달성목표</td><td>병원·물치 대신 매일 자극+온열</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv male">💡 "디스크로 굳은 허리, 집에서 저주파+온열"</div></div>
+      <div class="pcard male"><div class="pcard-id male">M2</div><span class="dbadge db7">⑦운동노동후</span><h4>몸 쓰는 직업 — 저녁 회복</h4><div class="cq">"몸 쓰는 일이라 저녁마다 허리가 무거운데 온열로 풀어주니 좋네요"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl male"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>아내 추천 or 직접 검색</td><td><span class="vtag vt-cm">✅리뷰</span></td></tr><tr><td>구매동기</td><td>노동으로 묵직한 허리 회복</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr><tr><td>달성목표</td><td>그날 저녁 따뜻하게 회복</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv male">💡 "노동으로 묵직한 허리, 그날 저녁 따뜻하게"</div></div>
+      <div class="pcard male"><div class="pcard-id male">M3</div><span class="dbadge db8">⑧중장년 퇴행</span><h4>50대 남성 — 퇴행성 허리</h4><table class="hypo-tbl male"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>네이버 직접 검색</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>구매동기</td><td>나이 들며 굳는 허리(남50대 8.2%)</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>달성목표</td><td>중장년 매일 온열 관리</td><td><span class="vtag vt-id">🔶간접</span></td></tr></table><div class="adv male">💡 "50 넘으니 더 필요 — 매일 온열로 관리"</div></div>
+      <div class="pcard male"><div class="pcard-id male">M4</div><span class="dbadge db2">②저주파 EMS</span><h4>배우자 권유형 — 가족 공용</h4><div class="cq">"아내가 권해 써봤더니 톡톡 자극이 좋아서 같이 써요"<div class="cs">스마트스토어 리뷰</div></div><table class="hypo-tbl male"><tr><th>차원</th><th>가설</th><th>검증</th></tr><tr><td>탐색</td><td>배우자 권유 후 사용</td><td><span class="vtag vt-cm">✅리뷰</span></td></tr><tr><td>구매동기</td><td>가족 공용(2인이상 93.8%)</td><td><span class="vtag vt-bq">✅BQ</span></td></tr><tr><td>달성목표</td><td>온 가족 허리 케어 하나로</td><td><span class="vtag vt-rv">✅리뷰</span></td></tr></table><div class="adv male">💡 "온 가족 허리 케어 — 하나면 다 같이"</div></div>
+    </div></div>
+  </div>
+</div>
+<!-- END TAB 4 -->
+
+<!-- ===== TAB 5: 지역 분석 ===== -->
+<div id="tab-region" class="tab-panel">
+  <div class="sec-header"><div class="sec-num sn-green">5</div><div><div class="sec-title">지역 분석</div></div></div>
+  <div class="sec-sub">ss_buyer_region · 245건 · 표본 작아 시·도 단위까지만 (시군구는 노이즈)</div>
+  <div class="metric-grid">
+    <div class="metric-box"><div class="ml">수도권 집중</div><div class="mv">71.8%</div><div class="md">서울+경기+인천</div></div>
+    <div class="metric-box"><div class="ml">서울 단독</div><div class="mv">41.6%</div><div class="md">102건</div></div>
+    <div class="metric-box"><div class="ml">경기</div><div class="mv">25.7%</div><div class="md">63건</div></div>
+    <div class="metric-box"><div class="ml">비수도권</div><div class="mv">28.2%</div><div class="md">부산·전북·충남 등 분산</div></div>
+  </div>
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">시·도별 구매 분포 TOP 8</div>
+  <table class="seg-tbl" style="margin-bottom:24px">
+    <thead><tr><th>#</th><th>시·도</th><th>건수</th><th>비중</th><th>그래프</th></tr></thead>
+    <tbody>
+      <tr><td><span class="rbadge t3">1</span></td><td><b>서울특별시</b></td><td>102건</td><td><b>41.6%</b></td><td><div class="bar-w"><div class="bar m" style="width:100%"></div></div></td></tr>
+      <tr><td><span class="rbadge t3">2</span></td><td><b>경기도</b></td><td>63건</td><td><b>25.7%</b></td><td><div class="bar-w"><div class="bar m" style="width:62%"></div></div></td></tr>
+      <tr><td><span class="rbadge">3</span></td><td>부산광역시</td><td>14건</td><td>5.7%</td><td><div class="bar-w"><div class="bar m" style="width:14%"></div></div></td></tr>
+      <tr><td><span class="rbadge">4</span></td><td>인천광역시</td><td>11건</td><td>4.5%</td><td><div class="bar-w"><div class="bar m" style="width:11%"></div></div></td></tr>
+      <tr><td><span class="rbadge">5</span></td><td>전북특별자치도</td><td>10건</td><td>4.1%</td><td><div class="bar-w"><div class="bar" style="width:10%"></div></div></td></tr>
+      <tr><td><span class="rbadge">6</span></td><td>충청남도</td><td>9건</td><td>3.7%</td><td><div class="bar-w"><div class="bar" style="width:9%"></div></div></td></tr>
+      <tr><td><span class="rbadge">7</span></td><td>경상남도</td><td>8건</td><td>3.3%</td><td><div class="bar-w"><div class="bar" style="width:8%"></div></div></td></tr>
+      <tr><td><span class="rbadge">8</span></td><td>전라남도</td><td>8건</td><td>3.3%</td><td><div class="bar-w"><div class="bar" style="width:8%"></div></div></td></tr>
+    </tbody>
+  </table>
+  <div class="insight-light">
+    <strong>📌 지역 인사이트</strong><br>
+    · 수도권 <b>71.8%</b> 집중(서울 41.6%·경기 25.7%) → 메타/네이버 지역타겟 시 <b>수도권 우선 배분</b>.<br>
+    · 표본 245건이라 시군구 단위는 한 자릿수 노이즈 → <b>시·도까지만</b> 신뢰. 누적 시 재분석.<br>
+    · AOV 13만원 고단가는 전 지역 유사 — 가격이 아니라 <b>고관여·효도 수요</b>가 지역 분포의 동인.
+  </div>
+</div>
+<!-- END TAB 5 (region) -->
+
+<!-- ===== TAB 7: 실행 미디어 브리프 ===== -->
+<div id="tab-action" class="tab-panel">
+  <div class="sec-header"><div class="sec-num sn-purple">7</div><div><div class="sec-title">실행 미디어 브리프</div></div></div>
+  <div class="sec-sub">분석 종합 → 우선순위 타겟 × 욕망 × 카피 × 채널 (시간대 데이터 미보유 → 욕망축 매트릭스)</div>
+
+  <div class="insight-box" style="margin-bottom:24px">
+    <strong>🎯 한 줄 전략</strong>
+    <div class="s-line" style="margin-top:12px"><b style="color:#b39dff">중장년(여 40~50대 36.7%·남 40~50대 18.8%)</b>를 축으로, 고단가 13만원을 <b>"온열+저주파로 마사지샵 대체"</b>로 정당화하고, <b style="color:#b39dff">효도 선물(성인자녀 20.5%)</b> 시장을 명절·생신 시즌에 공략. 핵심 카피어는 검증된 <b style="color:#b39dff">"따뜻하게"(온열 54%)</b>.</div>
+  </div>
+
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">🎯 타겟별 운영 매트릭스</div>
+  <table class="mx-tbl">
+    <thead><tr><th style="width:18%">우선 타겟</th><th style="width:20%">핵심 욕망</th><th style="width:34%">핵심 카피</th><th style="width:28%">채널·소구</th></tr></thead>
+    <tbody>
+      <tr><td><span class="mx-time morn">여 40~50대 (36.7%)</span></td><td>D1 온열 · D3 만성 · D5 샵대체</td><td class="mx-copy">"퇴근 후 허리부터 — 따뜻하게 풀어줘요"</td><td>네이버 검색·후기 / 자기돌봄</td></tr>
+      <tr><td><span class="mx-time">남 40~50대 (18.8%)</span></td><td>D3 디스크 · D2 저주파 · D7 노동</td><td class="mx-copy">"디스크로 굳은 허리 — 집에서 저주파+온열"</td><td>스펙·기능 비교 / 실용</td></tr>
+      <tr><td><span class="mx-time night">효도 선물 구매자</span></td><td>D6 효도 선물</td><td class="mx-copy">"허리 아픈 부모님께 — 받자마자 더 좋아하세요"</td><td>브랜드검색 / 명절·생신 시즌</td></tr>
+      <tr><td><span class="mx-time">여 30대 (17.2%)</span></td><td>D4 좌식 · D1 온열 · D9 복부</td><td class="mx-copy">"종일 앉아 굳은 허리, 차고 있으면 편해요"</td><td>인스타·후기 / 착용 간편</td></tr>
+    </tbody>
+  </table>
+
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">🥇 우선순위 타겟 (BQ 비중)</div>
+  <div class="prio-grid">
+    <div class="prio-card p1"><div class="prio-rank">1순위 · 36.7%</div><div class="prio-name">여성 40~50대</div><ul><li>발견: 네이버 검색·후기</li><li>욕망: D1 온열 · D3 만성 · D5 샵대체</li><li>훅: "퇴근 후 허리부터 따뜻하게"</li></ul></div>
+    <div class="prio-card p2"><div class="prio-rank">2순위 · 18.8%</div><div class="prio-name">남성 40~50대</div><ul><li>발견: 스펙·기능 비교</li><li>욕망: D3 디스크 · D2 저주파 · D7 노동</li><li>훅: "집에서 저주파+온열로 매일"</li></ul></div>
+    <div class="prio-card p3"><div class="prio-rank">3순위 · 17.2%</div><div class="prio-name">여성 30대</div><ul><li>발견: 인스타·후기</li><li>욕망: D4 좌식 · D1 온열 · D9 복부</li><li>훅: "차고 있으면 편한 허리 케어"</li></ul></div>
+    <div class="prio-card p4"><div class="prio-rank">교차 · 성인자녀 20.5%</div><div class="prio-name">효도 선물 구매자</div><ul><li>발견: 브랜드검색 직접</li><li>욕망: D6 효도 선물</li><li>훅: "부모님이 더 좋아하시는 효도템"</li></ul></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">✍️ 카피 메시지 뱅크 (리뷰·데이터 검증)</div>
+  <div class="copy-grid">
+    <div class="copy-box"><h4>✅ 강점 소구</h4>
+      <div class="copy-line">"허리 한가운데가 따뜻하게 — 긴장이 풀려요"<small>리뷰 1위 효과어 "온열·따뜻" 54%</small></div>
+      <div class="copy-line">"톡톡 저주파, 집에서 마사지 받는 느낌"<small>저주파 26% · 고단가 정당화</small></div>
+      <div class="copy-line">"허리 아픈 부모님께 — 받자마자 더 좋아하세요"<small>효도 선물(성인자녀 20.5%)</small></div>
+    </div>
+    <div class="copy-box"><h4>⚠️ 약점 방어 / 진입장벽 해소</h4>
+      <div class="copy-line">"벨트처럼 감으면 안정적으로 밀착"<small>착용 간편 32% — 사용법 불안 해소</small></div>
+      <div class="copy-line">"단계별 강도로 내게 맞게"<small>최대 불만 강도 12% 방어</small></div>
+      <div class="copy-line">"마사지샵 몇 번이면 본전 — 매일 집에서"<small>고단가(13만) 가치 정당화</small></div>
+    </div>
+  </div>
+
+  <div class="insight-light">
+    <strong>📣 채널·예산 가이드</strong><br><br>
+    <b>① 전환 = 네이버 99%</b> — 가격비교(26.7%)·플러스스토어(22.1%)·브랜드검색(15.3%). 고단가라 <b>비교·후기 검토</b>가 길다 → 가격비교/검색 하단 방어 + 상세페이지에 온열·저주파 시연.<br>
+    <b>② 효도 선물 = 브랜드검색·시즌</b> — 명절·어버이날·생신에 "부모님 허리" 메시지 집중.<br>
+    <b>③ 발견 보조</b> — 여성 인스타·후기 / 남성 유튜브 기능 리뷰. 고관여라 후기 신뢰가 핵심.<br>
+    <b>④ 지역</b> — 수도권 71.8% 우선 배분.
+  </div>
+
+  <div class="insight-light ora" style="margin-top:8px">
+    <strong>📌 브리프 근거·한계</strong> — 모든 수치는 BQ(245건)·리뷰(100건) 기반. <b>시간대 입찰 가이드는 미포함</b>(ss_purchase_timing 제품 분리 불가). 표본이 누적되면 시간대·시군구·세부 세그먼트 재분석 권장.
+  </div>
+</div>
+<!-- END TAB 7 (action) -->
+
+<!-- ===== TAB 8: 가설 검증 ===== -->
+<div id="tab-hypo" class="tab-panel">
+  <div class="sec-header"><div class="sec-num sn-red">8</div><div><div class="sec-title">가설 검증 현황</div></div></div>
+  <div class="sec-sub">4차원 가설 프레임 × 표본 245건·리뷰 100건 · 신제품(2026.02)이라 경향 검증</div>
+  <div class="insight-box" style="margin-bottom:20px">
+    <strong>4차원 가설 프레임</strong>
+    <div class="s-line" style="margin-top:12px">① 구매 습관·결정 — 탐색·고관여 비교·채널·가격 허들(13만)</div>
+    <div class="s-line">② 고민과 문제 — 허리 통증 맥락(만성/좌식/노동/퇴행)</div>
+    <div class="s-line">③ 관심사·동기 — 효도·자기돌봄·샵 대체</div>
+    <div class="s-line">④ 라이프스타일 — 중장년·기혼·가족 공용</div>
+  </div>
+  <table class="hypo-sum">
+    <thead><tr><th>차원</th><th>검증 항목</th><th>상태</th><th>핵심 근거</th></tr></thead>
+    <tbody>
+      <tr><td><b>구매자 프로필</b></td><td>여 40~50대 핵심 / 기혼 69% / 직장인 82% / 가구 2인이상 93.8%</td><td><span style="color:var(--grn);font-weight:700">✅ BQ(245)</span></td><td>ss_buyer_profile · 표본 작아 경향</td></tr>
+      <tr><td><b>검색 진입·채널</b></td><td>허리마사지기·EMS·브랜드검색 / 네이버 99% / 모바일 85%</td><td><span style="color:var(--grn);font-weight:700">✅ BQ</span></td><td>가격비교·플러스스토어 상위</td></tr>
+      <tr><td><b>효과 베네핏</b></td><td>온열·따뜻 54% / 저주파 26% / 착용 간편 32%</td><td><span style="color:var(--grn);font-weight:700">✅ 리뷰(100)</span></td><td>"한가운데가 따뜻해지며 긴장 풀림"</td></tr>
+      <tr><td><b>효도 선물 시장</b></td><td>성인자녀 20.5% / "부모님이 더 좋아"</td><td><span style="color:var(--grn);font-weight:700">✅ BQ+리뷰</span></td><td>고단가+효도 = 핵심 축</td></tr>
+      <tr><td><b>샵·한의원 대체</b></td><td>"마사지 따로 안 가도 될 정도"</td><td><span style="color:#0958d9;font-weight:700">🔷 리뷰</span></td><td>고단가 정당화 포지션</td></tr>
+      <tr><td><b>지역 분포</b></td><td>수도권 71.8% (서울 41.6%·경기 25.7%)</td><td><span style="color:var(--grn);font-weight:700">✅ BQ</span></td><td>시군구는 표본 부족</td></tr>
+      <tr><td><b>구매 시간대</b></td><td>오전/야간 등 시각 패턴</td><td><span style="color:var(--g3);font-weight:700">(검증 불가)</span></td><td>ss_purchase_timing 제품 분리 불가</td></tr>
+      <tr><td><b>소득·세부 세그먼트</b></td><td>월소득·라이프스타일 세부</td><td><span style="color:var(--g3);font-weight:700">(가설 유지)</span></td><td>표본 245 — 누적 후 재분석</td></tr>
+    </tbody>
+  </table>
+  <div class="insight-light ora">
+    <strong>📋 검증 방법·한계</strong><br><br>
+    <b>현재:</b> BQ 정량(245건) + 리뷰 정성(100건)으로 핵심 욕망·효과어·프로필 검증.<br>
+    <b>한계:</b> 2026.02 출시 신제품이라 표본이 작음 → 데모그래픽·지역·세그먼트는 <b>경향</b>으로 해석.<br>
+    <b>향후:</b> 누적 데이터로 시간대·시군구·소득 재검증 / 커뮤니티 리서치로 효도·통증 맥락 보강.
+  </div>
+</div>
+<!-- END TAB 8 -->
+
+<div style="background:linear-gradient(135deg,#1a1a2e,#2d1b69);color:rgba(255,255,255,.5);font-size:12px;padding:32px 40px;text-align:center;line-height:2">
+  <div style="color:#b39dff;font-size:13px;font-weight:700;margin-bottom:8px">바리바디 EMS 허리마사지기 페르소나 분석 리포트 v2</div>
+  BQ barybody-easypos.barybody_analytics (245건·리뷰 100건) · 2026.02 출시 신제품<br>
+  페르소나 = 타겟 × 욕망 &nbsp;·&nbsp; 표본 작아 경향 해석 &nbsp;·&nbsp; 2026-06-11
+</div>
+<script>
+/* ─── 욕망 카테고리별 훅 키워드 + 소재 컨셉 데이터 ─── */
+/* 후크·컨셉: 리뷰 검증 1위 효과어 "온열·따뜻"(54%)을 베네핏으로 반영 */
+const DESIRE_HOOKS = {
+  db1:{tags:['허리 한가운데가 따뜻하게','온열모드로 긴장 풀림','자기 전 허리 찜질 5분','뻐근한 허리 따뜻하게'],concept:'뻐근한 허리 — 온열로 한가운데부터 따뜻하게 풀어줘요'},
+  db2:{tags:['톡톡 저주파 자극','집에서 마사지 받는 느낌','은근하게 들어오는 EMS','전문 자극을 집에서'],concept:'EMS 저주파가 톡톡 — 집에서 마사지 받는 그 느낌'},
+  db3:{tags:['디스크로 굳은 허리','만성 요통 매일 관리','병원 가기 전 집에서','아침에 덜 뻣뻣하게'],concept:'디스크·만성 요통 — 매일 5분 온열+저주파로 관리'},
+  db4:{tags:['종일 앉아 굳은 허리','책상 앞 허리 케어','퇴근 후 허리부터','앉아있는 직업 필수템'],concept:'하루 종일 앉아 굳은 허리 — 퇴근 후 따뜻하게'},
+  db5:{tags:['마사지 받으러 안 가도','한의원 대신 집에서','예약·이동 필요 없이','한 번 사면 매일'],concept:'마사지·한의원 매번 가기 부담 — 집에서 매일 대신'},
+  db6:{tags:['부모님이 더 좋아하세요','효도 선물 1순위','연로하신 부모님 허리','명절·생신 선물'],concept:'허리 아픈 부모님께 — 받자마자 더 좋아하시는 효도템'},
+  db7:{tags:['운동 후 허리 회복','노동으로 묵직한 허리','무리한 날 저녁 케어','회복 루틴 완성'],concept:'운동·노동으로 묵직한 허리 — 그날 저녁 따뜻하게 회복'},
+  db8:{tags:['나이 들수록 굳는 허리','중장년 허리 매일 관리','퇴행성 통증 케어','50 넘으니 더 필요'],concept:'나이 들수록 굳는 허리 — 중장년 매일 온열 관리'},
+  db9:{tags:['허리+복부 같이','벨트로 복부에도','온열 부위 자유롭게','한 대로 여러 부위'],concept:'허리뿐 아니라 복부까지 — 벨트로 원하는 부위 온열'}
+};
+
+/* ─── 카드에 훅 자동 주입 ─── */
+function injectCardHooks(){
+  document.querySelectorAll('.pcard').forEach(card=>{
+    const badge=card.querySelector('.dbadge');
+    if(!badge) return;
+    // 욕망 클래스 추출 (db1~db9)
+    const dClass=Array.from(badge.classList).find(c=>/^db\d+$/.test(c));
+
+    if(!dClass || !DESIRE_HOOKS[dClass]) return;
+    const {tags,concept}=DESIRE_HOOKS[dClass];
+    // 이미 주입됐으면 스킵
+    if(card.querySelector('.card-hooks')) return;
+    const advEl=card.querySelector('.adv');
+    const hookHTML=`
+      <div class="card-hooks">
+        <div class="hook-label">🎯 광고 후크 키워드</div>
+        <div class="card-hook-tags">${tags.map(t=>`<span class="card-hook-tag">${t}</span>`).join('')}</div>
+        <div class="card-concept">📌 ${concept}</div>
+      </div>`;
+    if(advEl) advEl.insertAdjacentHTML('beforebegin', hookHTML);
+    else card.insertAdjacentHTML('beforeend', hookHTML);
+  });
+}
+
+/* ─── 카드 필터 ─── */
+const cardFilter={desire:null,time:null,gender:null};
+function toggleCardFilter(btn){
+  const type=btn.dataset.type, val=btn.dataset.val;
+  cardFilter[type] = (cardFilter[type]===val) ? null : val;
+  document.querySelectorAll(`.cf-chip[data-type="${type}"]`).forEach(c=>c.classList.toggle('active', c.dataset.val===cardFilter[type]));
+  applyCardFilter();
+}
+function resetCardFilter(){
+  cardFilter.desire=cardFilter.time=cardFilter.gender=null;
+  document.querySelectorAll('.cf-chip[data-type]').forEach(c=>c.classList.remove('active'));
+  applyCardFilter();
+}
+function applyCardFilter(){
+  injectCardHooks(); // time-rec/sku-rec 배지 존재 보장
+  const {desire,time,gender}=cardFilter;
+  const anyActive=desire||time||gender;
+  let total=0;
+  document.querySelectorAll('#tab-cards .acc-wrap').forEach(acc=>{
+    let vis=0;
+    acc.querySelectorAll('.pcard').forEach(card=>{
+      let show=true;
+      if(anyActive){
+        const badge=card.querySelector('.dbadge');
+        const dCls=badge?Array.from(badge.classList).find(c=>/^db\d+$/.test(c)):null;
+        const timeEl=card.querySelector('.time-rec');
+        const tCls=timeEl?Array.from(timeEl.classList).find(c=>/^time-(morn|day|eve|night|etc)$/.test(c)):null;
+        const isMale=card.classList.contains('male');
+        if(desire&&dCls!==desire)show=false;
+        if(time&&tCls!==time)show=false;
+        if(gender&&((gender==='male')!==isMale))show=false;
+      }
+      card.style.display=show?'':'none';
+      if(show){vis++;total++;}
+    });
+    const hdr=acc.querySelector('.acc-hdr'), body=acc.querySelector('.acc-body');
+    if(anyActive){
+      acc.style.display=vis>0?'':'none';
+      if(vis>0){hdr.classList.add('open');body.classList.add('open');}
+    }else{
+      acc.style.display='';
+      hdr.classList.remove('open');body.classList.remove('open');
+    }
+  });
+  const cc=document.getElementById('cfCount');
+  if(cc) cc.textContent = anyActive ? `${total}장 표시` : '';
+}
+
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  // 카드 탭 열릴 때 훅 주입
+  if(id==='cards') setTimeout(injectCardHooks,50);
+}
+
+function toggleAcc(hdr){
+  hdr.classList.toggle('open');
+  hdr.nextElementSibling.classList.toggle('open');
+  // 아코디언 열릴 때도 훅 주입
+  setTimeout(injectCardHooks,50);
+}
+// 초기 로드 시 주입
+document.addEventListener('DOMContentLoaded', injectCardHooks);
+</script>
+</body>
+</html>
