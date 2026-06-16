@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>릴렉스틱 페르소나 분석 리포트 2026-06-02</title>
+<style>
+  :root {
+    --purple-1: #6c3fc5;
+    --purple-2: #9b59d2;
+    --purple-3: #c89df0;
+    --purple-bg: #f4effe;
+    --accent: #ff6b6b;
+    --green: #27ae60;
+    --blue: #2980b9;
+    --orange: #e67e22;
+    --gray-1: #2c3e50;
+    --gray-2: #555;
+    --gray-3: #888;
+    --gray-bg: #f8f9fa;
+    --border: #e0e0e0;
+    --white: #fff;
+    --card-shadow: 0 2px 12px rgba(108,63,197,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: var(--gray-1); background: #f5f5f5; font-size: 14px; line-height: 1.6; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, #4a1fa8 0%, #7c3fc5 40%, #b06ee8 100%);
+    color: var(--white);
+    padding: 48px 32px 40px;
+    text-align: center;
+  }
+  .hero .badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); border-radius: 20px; padding: 4px 16px; font-size: 12px; letter-spacing: 0.05em; margin-bottom: 16px; }
+  .hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .hero p { font-size: 14px; opacity: 0.85; margin-bottom: 24px; }
+  .hero-stats { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-size: 26px; font-weight: 800; }
+  .hero-stat .lbl { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+
+  /* ─── STEP NAV ─── */
+  .step-nav {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 0;
+  }
+  .step-nav a {
+    flex-shrink: 0;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--gray-3);
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .step-nav a:hover, .step-nav a.active { color: var(--purple-1); border-bottom-color: var(--purple-1); }
+
+  /* ─── SECTION ─── */
+  .section { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+  .section-title {
+    font-size: 20px; font-weight: 800; color: var(--purple-1);
+    border-left: 4px solid var(--purple-1); padding-left: 12px; margin-bottom: 8px;
+  }
+  .section-sub { font-size: 13px; color: var(--gray-3); margin-bottom: 24px; }
+
+  /* ─── INSIGHT BOX ─── */
+  .insight-box {
+    background: linear-gradient(135deg, #f4effe, #ede0ff);
+    border: 1.5px solid var(--purple-3);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+    font-size: 13px;
+  }
+  .insight-box strong { color: var(--purple-1); font-size: 14px; }
+
+  /* ─── METRIC GRID ─── */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .metric-box {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    border-top: 4px solid var(--purple-2);
+  }
+  .metric-box .metric-label { font-size: 11px; color: var(--gray-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .metric-box .metric-value { font-size: 24px; font-weight: 800; color: var(--purple-1); }
+  .metric-box .metric-desc { font-size: 12px; color: var(--gray-2); margin-top: 4px; }
+
+  /* ─── SEGMENT TABLE ─── */
+  .seg-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--card-shadow); margin-bottom: 32px; }
+  .seg-table th { background: var(--purple-1); color: var(--white); padding: 10px 14px; font-size: 12px; text-align: left; }
+  .seg-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .seg-table tr:last-child td { border-bottom: none; }
+  .seg-table tr:nth-child(even) td { background: var(--gray-bg); }
+  .rank-badge { display: inline-block; background: var(--purple-1); color: #fff; border-radius: 50%; width: 22px; height: 22px; text-align: center; line-height: 22px; font-size: 11px; font-weight: 700; }
+  .rank-badge.top3 { background: #e67e22; }
+  .bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .bar { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--purple-1), var(--purple-3)); }
+
+  /* ─── TWO COL ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+  .stat-card { background: var(--white); border-radius: 12px; padding: 20px; box-shadow: var(--card-shadow); }
+  .stat-card h4 { font-size: 13px; color: var(--gray-3); margin-bottom: 12px; }
+  .stat-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 13px; }
+  .stat-row .pct { font-weight: 700; color: var(--purple-1); min-width: 42px; }
+  .stat-row .bar2 { flex: 1; height: 7px; border-radius: 4px; background: linear-gradient(90deg, var(--purple-1), var(--purple-3)); }
+
+  /* ─── DESIRE GRID ─── */
+  .desire-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .desire-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    border-left: 4px solid var(--purple-2);
+    position: relative;
+  }
+  .desire-card.top1 { border-left-color: #e74c3c; }
+  .desire-card.top2 { border-left-color: #e67e22; }
+  .desire-card.top3 { border-left-color: #f1c40f; }
+  .desire-card .desire-num { font-size: 11px; color: var(--gray-3); margin-bottom: 4px; }
+  .desire-card .desire-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .desire-card .desire-pct { font-size: 20px; font-weight: 800; color: var(--purple-1); margin-bottom: 10px; }
+  .desire-card .desire-essence { font-size: 13px; color: var(--gray-2); font-style: italic; margin-bottom: 10px; border-left: 2px solid var(--border); padding-left: 10px; }
+  .desire-card .desire-quote { font-size: 12px; color: var(--gray-3); background: var(--gray-bg); border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; }
+  .desire-card .hook-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+  .hook-tag { background: var(--purple-bg); color: var(--purple-1); border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+
+  /* ─── PERSONA SECTION ─── */
+  .segment-group { margin-bottom: 40px; }
+  .segment-header {
+    background: linear-gradient(90deg, var(--purple-1), var(--purple-2));
+    color: #fff;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .segment-header .seg-rank { font-size: 22px; font-weight: 800; }
+  .segment-header .seg-info { font-size: 14px; }
+  .segment-header .seg-count { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .persona-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .persona-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: var(--card-shadow);
+    border-top: 3px solid var(--purple-3);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .persona-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(108,63,197,0.18); }
+  .persona-card .card-id { font-size: 11px; font-weight: 700; color: var(--purple-1); background: var(--purple-bg); display: inline-block; border-radius: 4px; padding: 2px 8px; margin-bottom: 8px; }
+  .persona-card .card-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .persona-card .card-desire { font-size: 12px; color: var(--purple-2); font-weight: 600; margin-bottom: 10px; }
+  .persona-card .card-profile { font-size: 12px; color: var(--gray-2); margin-bottom: 8px; }
+  .persona-card .card-profile span { display: inline-block; background: var(--gray-bg); border-radius: 4px; padding: 2px 6px; margin: 2px 2px 2px 0; }
+  .persona-card .card-quote { font-size: 12px; color: var(--gray-3); background: #fffbf0; border-left: 3px solid #f1c40f; padding: 8px 10px; border-radius: 0 6px 6px 0; margin-bottom: 8px; font-style: italic; }
+  .persona-card .card-role { font-size: 12px; color: var(--gray-2); }
+  .persona-card .card-hook { font-size: 12px; font-weight: 700; color: var(--purple-1); background: var(--purple-bg); border-radius: 6px; padding: 6px 10px; margin-top: 10px; }
+  .desire-badge {
+    display: inline-block;
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .d1 { background: #fdecea; color: #c0392b; }
+  .d2 { background: #fef0e6; color: #d35400; }
+  .d3 { background: #fef9e7; color: #b7950b; }
+  .d4 { background: #e8f8f5; color: #117a65; }
+  .d5 { background: #eaf4fb; color: #1a5276; }
+  .d6 { background: #f4ecf7; color: #7d3c98; }
+  .d7 { background: #eafaf1; color: #1e8449; }
+  .d8 { background: #fdf2f8; color: #a93226; }
+  .d9 { background: #fef9e7; color: #7e5109; }
+
+  /* ─── HYPOTHESIS ─── */
+  .hypo-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--card-shadow); margin-bottom: 24px; font-size: 13px; }
+  .hypo-table th { background: var(--purple-1); color: #fff; padding: 10px 14px; text-align: left; font-size: 12px; }
+  .hypo-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .hypo-table tr:last-child td { border-bottom: none; }
+  .hypo-table tr:nth-child(even) td { background: var(--gray-bg); }
+  .verified { color: var(--green); font-weight: 600; font-size: 12px; }
+  .partial { color: var(--orange); font-weight: 600; font-size: 12px; }
+  .hypothesis { color: var(--gray-3); font-size: 12px; }
+  .verified-tag { background: #eafaf1; color: var(--green); border-radius: 4px; padding: 2px 6px; font-size: 11px; font-weight: 600; }
+  .partial-tag { background: #fef0e6; color: var(--orange); border-radius: 4px; padding: 2px 6px; font-size: 11px; font-weight: 600; }
+  .hypo-tag { background: var(--gray-bg); color: var(--gray-3); border-radius: 4px; padding: 2px 6px; font-size: 11px; font-weight: 600; }
+  .summary-box { background: linear-gradient(135deg, #f4effe, #ede0ff); border: 1.5px solid var(--purple-3); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+  .summary-box h4 { color: var(--purple-1); font-size: 14px; margin-bottom: 10px; }
+  .summary-box ul { padding-left: 18px; }
+  .summary-box li { font-size: 13px; color: var(--gray-1); margin-bottom: 6px; }
+  .snscol { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 600px) { .snscol { grid-template-columns: 1fr; } }
+  .sns-card { background: var(--white); border-radius: 12px; padding: 18px; box-shadow: var(--card-shadow); }
+  .sns-card h4 { font-size: 13px; font-weight: 700; color: var(--purple-1); margin-bottom: 10px; }
+  .sns-card .quote-item { font-size: 12px; color: var(--gray-2); background: var(--gray-bg); border-radius: 6px; padding: 8px 10px; margin-bottom: 6px; }
+  .sns-card .quote-item .source { color: var(--gray-3); font-size: 11px; }
+
+  /* ─── FOOTER ─── */
+  .footer { text-align: center; padding: 32px 20px; color: var(--gray-3); font-size: 12px; background: var(--white); border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">바리바디 릴렉스틱 · 페르소나 분석 리포트</div>
+  <h1>릴렉스틱 페르소나 분석</h1>
+  <p>2025.01 ~ 2026.05 BQ 구매자 데이터 × 커뮤니티 리서치 기반 · 2026-06-02</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">38개</div><div class="lbl">페르소나 카드</div></div>
+    <div class="hero-stat"><div class="num">9개</div><div class="lbl">욕망 카테고리</div></div>
+    <div class="hero-stat"><div class="num">41,655건</div><div class="lbl">분석 구매 건수</div></div>
+    <div class="hero-stat"><div class="num">90%+</div><div class="lbl">모바일 구매</div></div>
+    <div class="hero-stat"><div class="num">99%+</div><div class="lbl">네이버 채널 집중</div></div>
+  </div>
+</div>
+
+<!-- STEP NAV -->
+<nav class="step-nav">
+  <a href="#data">📊 핵심 데이터</a>
+  <a href="#insight">💡 핵심 인사이트</a>
+  <a href="#desire">🎯 욕망 카테고리</a>
+  <a href="#personas">👤 페르소나 카드</a>
+  <a href="#hypothesis">✅ 가설 검증</a>
+</nav>
+
+<!-- ① 핵심 데이터 -->
+<div id="data" class="section">
+  <div class="section-title">📊 핵심 데이터</div>
+  <div class="section-sub">릴렉스틱 순수 4제품 기준 (잔망루피·릴렉스틱볼 제외)</div>
+
+  <div class="metric-grid">
+    <div class="metric-box">
+      <div class="metric-label">전체 구매자 성별</div>
+      <div class="metric-value">여성 73%</div>
+      <div class="metric-desc">남성 27% · 기혼 63%</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-label">직업군</div>
+      <div class="metric-value">직장인 83%</div>
+      <div class="metric-desc">전업주부 11% · 기타 6%</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-label">구매 디바이스</div>
+      <div class="metric-value">모바일 90%+</div>
+      <div class="metric-desc">야간 스마트폰 쇼핑 패턴</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-label">구매 채널 집중도</div>
+      <div class="metric-value">네이버 99%+</div>
+      <div class="metric-desc">메타는 인지 → 네이버 검색 전환 구조</div>
+    </div>
+  </div>
+
+  <!-- 세그먼트 TOP10 -->
+  <div class="section-title" style="font-size:16px; margin-bottom:12px;">구매자 TOP 10 세그먼트</div>
+  <table class="seg-table">
+    <thead>
+      <tr><th>#</th><th>세그먼트</th><th>구매 건수</th><th>비중</th><th>비율 그래프</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="rank-badge top3">1</span></td><td>여성 31~35세</td><td>6,085건</td><td><strong>14.6%</strong></td><td><div class="bar-wrap"><div class="bar" style="width:146px"></div></div></td></tr>
+      <tr><td><span class="rank-badge top3">2</span></td><td>여성 41~45세</td><td>5,954건</td><td><strong>14.3%</strong></td><td><div class="bar-wrap"><div class="bar" style="width:143px"></div></div></td></tr>
+      <tr><td><span class="rank-badge top3">3</span></td><td>여성 36~40세</td><td>5,675건</td><td><strong>13.6%</strong></td><td><div class="bar-wrap"><div class="bar" style="width:136px"></div></div></td></tr>
+      <tr><td><span class="rank-badge">4</span></td><td>여성 46~50세</td><td>4,406건</td><td>10.6%</td><td><div class="bar-wrap"><div class="bar" style="width:106px"></div></div></td></tr>
+      <tr><td><span class="rank-badge">5</span></td><td>여성 26~30세</td><td>3,254건</td><td>7.8%</td><td><div class="bar-wrap"><div class="bar" style="width:78px"></div></div></td></tr>
+      <tr><td><span class="rank-badge">6</span></td><td>여성 51~55세</td><td>2,480건</td><td>5.9%</td><td><div class="bar-wrap"><div class="bar" style="width:59px"></div></div></td></tr>
+      <tr><td><span class="rank-badge">7</span></td><td>남성 36~40세</td><td>2,412건</td><td>5.8%</td><td><div class="bar-wrap"><div class="bar" style="width:58px; background:linear-gradient(90deg,#2980b9,#6ec6e8)"></div></div></td></tr>
+      <tr><td><span class="rank-badge">8</span></td><td>남성 31~35세</td><td>2,356건</td><td>5.7%</td><td><div class="bar-wrap"><div class="bar" style="width:57px; background:linear-gradient(90deg,#2980b9,#6ec6e8)"></div></div></td></tr>
+      <tr><td><span class="rank-badge">9</span></td><td>남성 41~45세</td><td>2,276건</td><td>5.5%</td><td><div class="bar-wrap"><div class="bar" style="width:55px; background:linear-gradient(90deg,#2980b9,#6ec6e8)"></div></div></td></tr>
+      <tr><td><span class="rank-badge">10</span></td><td>남성 46~50세</td><td>1,442건</td><td>3.5%</td><td><div class="bar-wrap"><div class="bar" style="width:35px; background:linear-gradient(90deg,#2980b9,#6ec6e8)"></div></div></td></tr>
+    </tbody>
+  </table>
+
+  <!-- 구매 시기 & 채널 -->
+  <div class="two-col">
+    <div class="stat-card">
+      <h4>⏰ 구매 시기 TOP</h4>
+      <div class="stat-row"><span class="pct">7.9%</span><div class="bar2" style="width:79%"></div><span>오전 10시 (출근 후 사무실 쇼핑)</span></div>
+      <div class="stat-row"><span class="pct">6.5%</span><div class="bar2" style="width:65%"></div><span>야간 22시 (취침 전 모바일)</span></div>
+      <div class="stat-row"><span class="pct">6.3%</span><div class="bar2" style="width:63%"></div><span>야간 21시</span></div>
+      <div class="stat-row"><span class="pct">4.1%</span><div class="bar2" style="width:41%"></div><span>자정 00시 (충동 구매)</span></div>
+    </div>
+    <div class="stat-card">
+      <h4>📣 구매 유입 채널 TOP</h4>
+      <div class="stat-row"><span class="pct">26.7%</span><div class="bar2" style="width:80%"></div><span>네이버 가격비교</span></div>
+      <div class="stat-row"><span class="pct">20.1%</span><div class="bar2" style="width:60%"></div><span>쇼핑검색광고</span></div>
+      <div class="stat-row"><span class="pct">19.5%</span><div class="bar2" style="width:58%"></div><span>브랜드검색</span></div>
+      <div class="stat-row"><span class="pct">13.9%</span><div class="bar2" style="width:42%"></div><span>사이트검색광고</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ② 핵심 인사이트 -->
+<div id="insight" class="section">
+  <div class="section-title">💡 핵심 인사이트</div>
+  <div class="section-sub">BQ + 커뮤니티 리서치로 발견한 구조적 인사이트</div>
+
+  <div class="insight-box" style="margin-bottom:16px;">
+    <strong>🔑 검색 욕망 ≠ 사용 욕망</strong><br>
+    구매 유입 키워드는 <strong>마사지스틱(어깨·목 목적)</strong>이 압도적 1위이나,<br>
+    실제 리뷰 사용 부위는 <strong>종아리 51.4%</strong>가 1위.<br>
+    → "어깨·목으로 검색해서 사지만, 실제로 가장 많이 쓰는 부위는 종아리"<br>
+    → <strong>광고 진입점 = 어깨·목 / 재구매·입소문 트리거 = 종아리</strong>
+  </div>
+
+  <div class="insight-box" style="margin-bottom:16px; background: linear-gradient(135deg,#fff8ec,#fff0db); border-color:#f1c40f;">
+    <strong>📱 SNS 탐색 패턴 (커뮤니티 검증 완료)</strong><br>
+    <strong>여성(30~40대):</strong> 인스타그램 피드·광고 발견 → 네이버 검색 확인 → 모바일 구매<br>
+    "인스타 광고보고 내돈내산임 바리바디 릴렉스틱" (雨庭 블로그 2025.08)<br>
+    "인스타에서 핫한 마사지스틱 직접 써봤어요! 바리바디릴렉스틱" (JUDDY WOODY 2025.10)<br><br>
+    <strong>남성(러닝·헬스족):</strong> 유튜브 인플루언서(러닝·헬스 채널) 추천 → 발견 → 구매<br>
+    "낭만러버 심진석 유튜브 보고 알게되어서 사게 됐습니다" (다모앙 2025.12)
+  </div>
+
+  <div class="two-col">
+    <div class="stat-card">
+      <h4>📍 리뷰 사용 부위 빈도</h4>
+      <div class="stat-row"><span class="pct">51.4%</span><div class="bar2" style="width:100%"></div><span>종아리 ★</span></div>
+      <div class="stat-row"><span class="pct">25.3%</span><div class="bar2" style="width:49%"></div><span>어깨·승모근</span></div>
+      <div class="stat-row"><span class="pct">16.5%</span><div class="bar2" style="width:32%"></div><span>목·뒷목</span></div>
+      <div class="stat-row"><span class="pct">3.8%</span><div class="bar2" style="width:7%"></div><span>등·날갯죽지</span></div>
+      <div class="stat-row"><span class="pct">1.4%</span><div class="bar2" style="width:3%"></div><span>허벅지</span></div>
+    </div>
+    <div class="stat-card">
+      <h4>🛒 구매 유입 키워드 TOP</h4>
+      <div class="stat-row"><span class="pct" style="min-width:60px;">4,659건</span><div class="bar2" style="width:100%"></div><span>마사지스틱</span></div>
+      <div class="stat-row"><span class="pct" style="min-width:60px;">3,537건</span><div class="bar2" style="width:76%"></div><span>브랜드검색</span></div>
+      <div class="stat-row"><span class="pct" style="min-width:60px;">2,693건</span><div class="bar2" style="width:58%"></div><span>릴렉스틱</span></div>
+      <div class="stat-row"><span class="pct" style="min-width:60px;">873건</span><div class="bar2" style="width:19%"></div><span>마사지봉</span></div>
+      <div class="stat-row"><span class="pct" style="min-width:60px;">201건</span><div class="bar2" style="width:4%"></div><span>종아리 전용 키워드 합산</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ③ 욕망 카테고리 -->
+<div id="desire" class="section">
+  <div class="section-title">🎯 욕망 9 카테고리</div>
+  <div class="section-sub">리뷰 데이터(부위 빈도) × 커뮤니티 실제 언어 기반 · 출처+날짜 검증 완료</div>
+
+  <div class="desire-grid">
+
+    <div class="desire-card top1">
+      <div class="desire-num">카테고리 ① · 리뷰 1위</div>
+      <div class="desire-title">종아리 피로·붓기 해소 ★</div>
+      <div class="desire-pct">51.4%</div>
+      <div class="desire-essence">"퇴근하면 종아리가 퉁퉁 불고 무거워 — 집에서 바로 풀고 싶다"</div>
+      <div class="desire-quote">"임산부인데 종아리가 퉁퉁부어서 아팠는데요 릴렉스틱으로 문지르니까 너무 가벼워요" (스마트스토어 리뷰)</div>
+      <div class="desire-quote">"하루 일과 마치고 얘로 종아리 허리 허벅지 싹싹 밀어주고 바로 누우면 극락" (스마트스토어 리뷰)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">퇴근하면 종아리가 퉁퉁</span>
+        <span class="hook-tag">저녁만 되면 돌처럼</span>
+        <span class="hook-tag">퇴근 후 5분 루틴</span>
+        <span class="hook-tag">런닝 후 쿨다운은 이걸로</span>
+      </div>
+    </div>
+
+    <div class="desire-card top2">
+      <div class="desire-num">카테고리 ② · 리뷰 2위</div>
+      <div class="desire-title">어깨·승모근 통증 해소</div>
+      <div class="desire-pct">25.3%</div>
+      <div class="desire-essence">"어깨가 돌덩이처럼 굳어 — 지금 당장 풀고 싶다"</div>
+      <div class="desire-quote">"승모근 쪽이 돌덩이처럼 딱딱하게 굳어서... 와이프가 주물러주는 것도 하루 이틀이지 미안해서 더는 못 부탁하겠더라고요" (부산맘카페 2026.03)</div>
+      <div class="desire-quote">"재택근무 이후 승모근이 더 심해진 것 같아" (theqoo 2026.06)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">승모근이 돌덩이</span>
+        <span class="hook-tag">혼자서 집에서 5분</span>
+        <span class="hook-tag">재택 5시간 돌처럼</span>
+      </div>
+    </div>
+
+    <div class="desire-card top3">
+      <div class="desire-num">카테고리 ③ · 리뷰 3위</div>
+      <div class="desire-title">목·뒷목 뻐근함 해소</div>
+      <div class="desire-pct">16.5%</div>
+      <div class="desire-essence">"1시간마다 뒷목이 뻐근해 — 자리에서 바로 풀 수 있어야 해"</div>
+      <div class="desire-quote">"오후만 되면 뒷목이 뻣뻣해지고, 승모근은 돌덩이처럼 굳고, 퇴근할 때쯤엔 머리까지 지끈거리는 상태" (네이버블로그 2026.01)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">자리에서 즉시 해결</span>
+        <span class="hook-tag">1시간마다 뭉치는 뒷목</span>
+        <span class="hook-tag">거북목 직장인</span>
+      </div>
+    </div>
+
+    <div class="desire-card">
+      <div class="desire-num">카테고리 ④ · 리뷰 4위</div>
+      <div class="desire-title">등·날갯죽지 이완</div>
+      <div class="desire-pct">3.8%</div>
+      <div class="desire-essence">"혼자서 등에 닿는 도구가 없었다"</div>
+      <div class="desire-quote">"폼롤러를 써봤는데 바닥에 앉아서 체중 실어가며 굴리는 게 은근 귀찮아요" (블로그 2026.03)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">혼자서 등에 닿는다</span>
+        <span class="hook-tag">재택 장시간 PC 날갯죽지</span>
+      </div>
+    </div>
+
+    <div class="desire-card">
+      <div class="desire-num">카테고리 ⑤ · 맥락 기반</div>
+      <div class="desire-title">마사지샵 비용·시간 대체</div>
+      <div class="desire-pct">—</div>
+      <div class="desire-essence">"마사지샵 한 번 갈 돈이면 매일 집에서"</div>
+      <div class="desire-quote">"마사지를 알아보자니 너무 비싸고 직장인이라 주말만 가능한데 주말에는 또 휴무이고ㅜㅜ" (해돌카페 2026.03)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">8만원 마사지샵 대신</span>
+        <span class="hook-tag">예약 없이 매일</span>
+        <span class="hook-tag">한 번 갈 돈으로 평생</span>
+      </div>
+    </div>
+
+    <div class="desire-card">
+      <div class="desire-num">카테고리 ⑥ · 맥락 기반</div>
+      <div class="desire-title">기존 도구 불편함 극복</div>
+      <div class="desire-pct">—</div>
+      <div class="desire-essence">"폼롤러·마사지건 쓰다가 방치 — 이번엔 진짜 쓸 수 있는 도구"</div>
+      <div class="desire-quote">"설마 하고 구입했는데 너무너무 만족" (스마트스토어 리뷰)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">폼롤러보다 편하다</span>
+        <span class="hook-tag">이번엔 매일 쓸 수 있는</span>
+      </div>
+    </div>
+
+    <div class="desire-card">
+      <div class="desire-num">카테고리 ⑦ · 맥락 기반</div>
+      <div class="desire-title">운동 후 근육 회복</div>
+      <div class="desire-pct">—</div>
+      <div class="desire-essence">"헬스·마라톤·등산 후 제대로 쿨다운해야 다음날 컨디션이 다르다"</div>
+      <div class="desire-quote">"동아마라톤을 앞두고... 장거리 다음날 종아리·허벅지 뭉쳐있을 때 방치하면 부상으로 이어질 수 있어" (홍선생 블로그 2026.02)</div>
+      <div class="desire-quote">"골프는 회전운동이라 한쪽 다리에 하중이 많이 실리고" → 종아리·허벅지 피로 (공때녀 블로그 2026.03)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">헬스 후 쿨다운 완성</span>
+        <span class="hook-tag">마라톤 완주 후 회복 루틴</span>
+        <span class="hook-tag">등산 후 종아리 즉시 케어</span>
+      </div>
+    </div>
+
+    <div class="desire-card">
+      <div class="desire-num">카테고리 ⑧ · 맥락 기반</div>
+      <div class="desire-title">갱년기 통증·붓기 관리</div>
+      <div class="desire-pct">—</div>
+      <div class="desire-essence">"갱년기로 온몸이 쑤시고 붓는데 마사지샵 갈 여유도 없다"</div>
+      <div class="desire-quote">"갱년기 증상 완화를 위한 생활 속 실천법 — 가벼운 마사지 루틴" (블로그 2025.08)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">갱년기 온몸 쑤심</span>
+        <span class="hook-tag">집에서 매일 5분</span>
+      </div>
+    </div>
+
+    <div class="desire-card">
+      <div class="desire-num">카테고리 ⑨ · 맥락 기반</div>
+      <div class="desire-title">육아·가사 피로 해소</div>
+      <div class="desire-pct">—</div>
+      <div class="desire-essence">"아기 안아주다 손목·어깨 망가짐 — 팔 안 써도 되는 도구 필요"</div>
+      <div class="desire-quote">"어깨랑 손목은 너덜너덜하다는 말이 딱 맞아요. 찜질도 하고 마사지도 하는데 그때뿐이고 다시 아파요" (창원진해댁카페 2026.03)</div>
+      <div class="hook-tags">
+        <span class="hook-tag">팔 안 써도 됩니다</span>
+        <span class="hook-tag">수유하면서 망가진 어깨</span>
+        <span class="hook-tag">아이 낮잠 20분 루틴</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ④ 페르소나 카드 -->
+<div id="personas" class="section">
+  <div class="section-title">👤 페르소나 카드 38개</div>
+  <div class="section-sub">타겟(인구통계+라이프스타일) × 욕망 = 별도 페르소나 원칙 적용</div>
+
+  <!-- TOP 1 -->
+  <div class="segment-group">
+    <div class="segment-header">
+      <div class="seg-rank">TOP 1</div>
+      <div class="seg-info">
+        <div>여성 31~35세</div>
+        <div class="seg-count">6,085건 · 14.6% · 카드 5개 (1-A~E)</div>
+      </div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="card-id">1-A</div>
+        <span class="desire-badge d2">욕망② 어깨·승모근</span>
+        <div class="card-title">맞벌이 워킹맘 — 승모근 통증</div>
+        <div class="card-profile">
+          <span>33세</span><span>기혼</span><span>재택+출근</span><span>야간 22시 개인시간</span>
+        </div>
+        <div class="card-quote">"승모근 쪽이 돌덩이처럼... 와이프가 주물러주는 것도 하루 이틀이지 미안해서"<br><span class="source">부산맘카페 2026.03</span></div>
+        <div class="card-role">제품 역할: 혼자서 힘 안 들이고 승모근을 푸는 도구</div>
+        <div class="card-hook">💬 "재택 하루 종일, 어깨가 돌처럼 됐어요"</div>
+      </div>
+      <div class="persona-card">
+        <div class="card-id">1-B</div>
+        <span class="desire-badge d5">욕망⑤ 마사지샵 대체</span>
+        <div class="card-title">직장인 워킹맘 — 시간 부족</div>
+        <div class="card-profile">
+          <span>33세</span><span>기혼</span><span>시간 거의 없음</span>
+        </div>
+        <div class="card-quote">"마사지를 알아보자니 너무 비싸고 직장인이라 주말만 가능한데 주말에는 또 휴무이고ㅜㅜ"<br><span class="source">해돌카페 2026.03</span></div>
+        <div class="card-role">제품 역할: 월 8만원 마사지샵을 대체하는 집에서 매일 쓰는 도구</div>
+        <div class="card-hook">💬 "마사지샵 갈 시간 없는 워킹맘 — 퇴근 후 5분으로 대신해요"</div>
+      </div>
+      <div class="persona-card">
+        <div class="card-id">1-C</div>
+        <span class="desire-badge d9">욕망⑨ 육아·가사 피로</span>
+        <div class="card-title">신생아 엄마 — 팔 안 써도 되는 케어</div>
+        <div class="card-profile">
+          <span>34세</span><span>육아휴직/복직 초기</span><span>낮잠 20~40분 여유</span>
+        </div>
+        <div class="card-quote">"어깨랑 손목은 너덜너덜... 찜질도 하고 마사지도 하는데 그때뿐이고 다시 아파요"<br><span class="source">창원진해댁카페 2026.03</span></div>
+        <div class="card-role">제품 역할: 팔 힘 없이 손목·어깨·종아리 관리 도구</div>
+        <div class="card-hook">💬 "수유하면서 망가진 어깨 — 팔 안 써도 됩니다"</div>
+      </div>
+      <div class="persona-card">
+        <div class="card-id">1-D</div>
+        <span class="desire-badge d6">욕망⑥ 도구 불편 극복</span>
+        <div class="card-title">싱글 1인가구 — 폼롤러 대체 탐색</div>
+        <div class="card-profile">
+          <span>32세</span><span>미혼</span><span>야간 22~23시 충동 구매</span>
+        </div>
+        <div class="card-quote">"폼롤러를 써봤는데 바닥에 앉아서 체중 실어가며 굴리는 게 은근 귀찮아요"<br><span class="source">블로그 2026.03</span></div>
+        <div class="card-role">제품 역할: 이번엔 실제로 매일 쓸 수 있는 도구</div>
+        <div class="card-hook">💬 "폼롤러보다 편하다 — 릴렉스틱"</div>
+      </div>
+      <div class="persona-card">
+        <div class="card-id">1-E</div>
+        <span class="desire-badge d1">욕망① 종아리 붓기</span>
+        <div class="card-title">서비스직·임산부 — 다리 붓기</div>
+        <div class="card-profile">
+          <span>31~35세</span><span>야간 22시 퇴근 후</span>
+        </div>
+        <div class="card-quote">"임산부인데 온종일 사무실에서 일하고 집에오면 종아리가 퉁퉁부어서 아팠는데요 릴렉스틱으로 문지르니까 너무 가벼워요"<br><span class="source">스마트스토어 리뷰</span></div>
+        <div class="card-role">제품 역할: 집에서 5분으로 붓기 해소 루틴</div>
+        <div class="card-hook">💬 "퇴근하면 종아리가 퉁퉁 — 집에서 5분으로 해소"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP 2 -->
+  <div class="segment-group">
+    <div class="segment-header">
+      <div class="seg-rank">TOP 2</div>
+      <div class="seg-info"><div>여성 41~45세</div><div class="seg-count">5,954건 · 14.3% · 카드 5개 (2-A~E)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card"><div class="card-id">2-A</div><span class="desire-badge d3">욕망③ 목·뒷목</span><div class="card-title">중간관리자 — 만성 뒷목</div><div class="card-profile"><span>43세</span><span>기혼</span><span>오전 10시 업무 중 탐색</span></div><div class="card-quote">"오후만 되면 뒷목이 뻣뻣해지고... 퇴근할 때쯤엔 머리까지 지끈거리는 상태"<br><span class="source">네이버블로그 2026.01</span></div><div class="card-hook">💬 "1시간마다 뭉치는 뒷목 — 자리에서 해결"</div></div>
+      <div class="persona-card"><div class="card-id">2-B</div><span class="desire-badge d5">욕망⑤ 마사지샵 대체</span><div class="card-title">통증 반복형 — 마사지샵 피로</div><div class="card-profile"><span>42세</span><span>직장인</span><span>야간 21~22시</span></div><div class="card-quote">"마사지샵 가도 그때뿐이고 일주일만 지나면 다시 똑같아" (블라인드 직장인 커뮤니티)</div><div class="card-hook">💬 "매주 마사지샵 가도 그때뿐 — 집에서 매일 관리로 전환"</div></div>
+      <div class="persona-card"><div class="card-id">2-C</div><span class="desire-badge d1">욕망① 종아리 붓기</span><div class="card-title">하이힐 직장인 — 종아리 만성 붓기</div><div class="card-profile"><span>44세</span><span>서비스직·영업직</span><span>야간 22시</span></div><div class="card-quote">"저녁만 되면 종아리가 단단해지고, 종아리 근육이 경련을 일으켜 갑자기 통증이 오기도 했어요"<br><span class="source">블로그 2025.05</span></div><div class="card-hook">💬 "저녁만 되면 종아리 경련 — 퇴근 후 5분으로 차단"</div></div>
+      <div class="persona-card"><div class="card-id">2-D</div><span class="desire-badge d8">욕망⑧ 갱년기</span><div class="card-title">갱년기 초입 — 온몸 쑤심</div><div class="card-profile"><span>44~45세</span><span>기혼</span><span>야간 21~22시</span></div><div class="card-quote">"갱년기에 접어들면 안면홍조, 불면증, 관절 통증 등 다양한 증상이 나타납니다"<br><span class="source">블로그 2025.08</span></div><div class="card-hook">💬 "갱년기 시작되니 온몸이 쑤셔요 — 매일 5분으로 관리"</div></div>
+      <div class="persona-card"><div class="card-id">2-E</div><span class="desire-badge d4">욕망④ 등·날갯죽지</span><div class="card-title">장시간 PC 직장인 — 등 뭉침</div><div class="card-profile"><span>41~45세</span><span>사무직</span></div><div class="card-quote">"세트로 샀습니다. 어깨 다리 등짝 모두 시원하네요. 만족해요." (스마트스토어 리뷰)</div><div class="card-hook">💬 "등짝이 판자처럼 됐어요 — 혼자서 닿는 마사지스틱"</div></div>
+    </div>
+  </div>
+
+  <!-- TOP 3 -->
+  <div class="segment-group">
+    <div class="segment-header">
+      <div class="seg-rank">TOP 3</div>
+      <div class="seg-info"><div>여성 36~40세</div><div class="seg-count">5,675건 · 13.6% · 카드 5개 (3-A~E)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card"><div class="card-id">3-A</div><span class="desire-badge d2">욕망② 어깨·승모근</span><div class="card-title">복직 워킹맘 — 승모근 통증 재발</div><div class="card-profile"><span>38세</span><span>기혼</span><span>야간 22시 아이 재운 후</span></div><div class="card-quote">"남편 안마도 하루이틀이지 언제까지 부탁하겠어" (맘카페 2026.04)</div><div class="card-hook">💬 "복직 후 어깨가 다시 돌덩이 — 혼자서 해결"</div></div>
+      <div class="persona-card"><div class="card-id">3-B</div><span class="desire-badge d1">욕망① 종아리 붓기</span><div class="card-title">필라테스족 — 운동 후 종아리</div><div class="card-profile"><span>37세</span><span>기혼</span><span>오전 10시·야간 22시</span></div><div class="card-quote">"하루 종일 앉아있거나 서서 근무하는 직장인들은 종아리 붓기로 인해 불편함을 겪는 경우가 많습니다"<br><span class="source">블로그 2025.10</span></div><div class="card-hook">💬 "필라테스 후 종아리 알 — 5분으로 다음날 컨디션 차이"</div></div>
+      <div class="persona-card"><div class="card-id">3-C</div><span class="desire-badge d5">욕망⑤ 마사지샵 대체</span><div class="card-title">예약 귀찮은 직장인</div><div class="card-profile"><span>36~40세</span><span>기혼</span></div><div class="card-quote">"8만원 마사지샵 갈 시간·예약 부담" (커뮤니티 수집)</div><div class="card-hook">💬 "8만원짜리 예약 대신 — 집에서 매일"</div></div>
+      <div class="persona-card"><div class="card-id">3-D</div><span class="desire-badge d3">욕망③ 목·뒷목</span><div class="card-title">재택 직장인 — 거북목 심화</div><div class="card-profile"><span>38세</span><span>재택 주 3일</span></div><div class="card-quote">"재택근무 이후 승모근이 더 심해진 것 같아" (theqoo 2026.06)</div><div class="card-hook">💬 "재택 이후 뒷목이 더 심해졌어요 — 자리에서 해결"</div></div>
+      <div class="persona-card"><div class="card-id">3-E</div><span class="desire-badge d6">욕망⑥ 도구 불편</span><div class="card-title">마사지건 방치형 — 더 간편한 대안</div><div class="card-profile"><span>36~40세</span><span>직장인</span></div><div class="card-quote">"이녀석은 이제 우리집 요술봉입니다" (스마트스토어 리뷰)</div><div class="card-hook">💬 "마사지건 소음 싫어서 방치 — 이번엔 조용하고 간편한 이걸로"</div></div>
+    </div>
+  </div>
+
+  <!-- TOP 4 -->
+  <div class="segment-group">
+    <div class="segment-header">
+      <div class="seg-rank">TOP 4</div>
+      <div class="seg-info"><div>여성 46~50세</div><div class="seg-count">4,406건 · 10.6% · 카드 4개 (4-A~D)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card"><div class="card-id">4-A</div><span class="desire-badge d8">욕망⑧ 갱년기</span><div class="card-title">갱년기 본격 — 관절·붓기 관리</div><div class="card-profile"><span>48세</span><span>기혼</span><span>야간 21~22시</span></div><div class="card-quote">"50대 여성 20% '너무 외로워'... 신체 변화에 따른 상실감" (유니메디 2025)</div><div class="card-hook">💬 "갱년기 온몸이 쑤셔요 — 집에서 매일 루틴으로 관리"</div></div>
+      <div class="persona-card"><div class="card-id">4-B</div><span class="desire-badge d2">욕망② 어깨·승모근</span><div class="card-title">경력직 관리자 — 만성 어깨 통증</div><div class="card-profile"><span>47세</span><span>기혼</span><span>오전 10시</span></div><div class="card-quote">"돈도 없어도 우아한 40대는 어깨가 다르다... 매일의 습관, 스트레스 관리, 자기 돌봄의 결과"<br><span class="source">블로그 2026.02</span></div><div class="card-hook">💬 "나이 드니 어깨가 더 굳어요 — 매일 관리 루틴"</div></div>
+      <div class="persona-card"><div class="card-id">4-C</div><span class="desire-badge d1">욕망① 종아리 붓기</span><div class="card-title">중년 직장인 — 혈액순환 관리</div><div class="card-profile"><span>46~50세</span><span>직장인</span></div><div class="card-quote">"오늘의 집 앉아서 쓰는거 시원함 극강" (스마트스토어 리뷰)</div><div class="card-hook">💬 "50 되기 전에 몸 관리 시작 — 종아리부터"</div></div>
+      <div class="persona-card"><div class="card-id">4-D</div><span class="desire-badge d5">욕망⑤ 마사지샵 대체</span><div class="card-title">마사지샵 단골 → 홈케어 전환</div><div class="card-profile"><span>48세</span><span>기혼</span></div><div class="card-quote">"집에서 매일 어깨·목 관리" (리뷰 패턴)</div><div class="card-hook">💬 "마사지샵 단골이었는데 집에서 매일 하는 게 더 효과 있어요"</div></div>
+    </div>
+  </div>
+
+  <!-- TOP 5 -->
+  <div class="segment-group">
+    <div class="segment-header">
+      <div class="seg-rank">TOP 5</div>
+      <div class="seg-info"><div>여성 26~30세</div><div class="seg-count">3,254건 · 7.8% · 카드 4개 (5-A~D)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card"><div class="card-id">5-A</div><span class="desire-badge d4">욕망④ 등·날갯죽지</span><div class="card-title">IT·마케팅 직장인 — 혼자 등 케어</div><div class="card-profile"><span>28세</span><span>미혼</span><span>서울 1인가구</span><span>야간 22~23시 충동 구매</span></div><div class="card-quote">"인스타그램만 켜면 긴 막대로 온몸을 문질문질하는 영상들이 정말 많이 보이더라구요"<br><span class="source">JUDDY WOODY 2025.10</span></div><div class="card-role">제품 역할: 1인가구 혼자 등에 닿는 유일한 도구</div><div class="card-hook">💬 "혼자 사는데 등에 닿는 도구가 없었어요 — 이게 정답"</div></div>
+      <div class="persona-card"><div class="card-id">5-B</div><span class="desire-badge d2">욕망② 어깨·승모근</span><div class="card-title">초년생 직장인 — 첫 승모근 통증</div><div class="card-profile"><span>27세</span><span>미혼</span><span>야간 22시</span></div><div class="card-quote">"승모근 부분이 너무 아파서 미치겠어" (theqoo 2026.06)</div><div class="card-hook">💬 "처음으로 어깨가 이렇게 아파봤어요 — 릴렉스틱으로 해결"</div></div>
+      <div class="persona-card"><div class="card-id">5-C</div><span class="desire-badge d6">욕망⑥ 도구 불편</span><div class="card-title">SNS 발견형 — 바이럴 아이템 탐색</div><div class="card-profile"><span>26~30세</span><span>미혼</span><span>인스타 릴스 발견</span></div><div class="card-quote">"릴렉스틱은 인스타 보다가 맘에 들어서 삼" (☾블로그 2025.06)</div><div class="card-hook">💬 "인스타에서 봤는데 이게 진짜 되나? — 설마 하고 샀다가 충격"</div></div>
+      <div class="persona-card"><div class="card-id">5-D</div><span class="desire-badge d1">욕망① 종아리 붓기</span><div class="card-title">런닝 입문자 — 운동 후 종아리</div><div class="card-profile"><span>28세</span><span>미혼</span><span>야간 22시</span></div><div class="card-quote">"러닝 후 부위별 사용 후기... 가장 자주 사용하는 부위는 단연 종아리마사지와 허벅지"<br><span class="source">쟁꾸 블로그 2025.12</span></div><div class="card-hook">💬 "런닝 시작했더니 종아리가 — 이걸로 쿨다운 루틴 완성"</div></div>
+    </div>
+  </div>
+
+  <!-- TOP 6 -->
+  <div class="segment-group">
+    <div class="segment-header">
+      <div class="seg-rank">TOP 6</div>
+      <div class="seg-info"><div>여성 51~55세</div><div class="seg-count">2,480건 · 5.9% · 카드 3개 (6-A~C)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card"><div class="card-id">6-A</div><span class="desire-badge d8">욕망⑧ 갱년기</span><div class="card-title">갱년기 완경기 — 전신 통증</div><div class="card-profile"><span>52세</span><span>기혼</span><span>야간 21~22시</span></div><div class="card-quote">"50대 여성 갱년기 증상 완화를 위한 생활 속 7가지 실천법 — 가벼운 마사지 루틴" (블로그 2025.08)</div><div class="card-hook">💬 "완경 후 온몸이 쑤셔요 — 매일 저녁 5분 셀프케어"</div></div>
+      <div class="persona-card"><div class="card-id">6-B</div><span class="desire-badge d3">욕망③ 목·뒷목</span><div class="card-title">중장년 직장인 — 목 디스크 전조</div><div class="card-profile"><span>53세</span><span>기혼</span><span>오전 10시</span></div><div class="card-quote">"통기성 좋은 속옷... 정기적인 검진" (갱년기 건강 관리 패턴)</div><div class="card-hook">💬 "나이 들수록 목이 더 굳어요 — 사무실에서 매일 관리"</div></div>
+      <div class="persona-card"><div class="card-id">6-C</div><span class="desire-badge d5">욕망⑤ 마사지샵 대체</span><div class="card-title">50대 웰에이징 — 집에서 관리</div><div class="card-profile"><span>51~55세</span><span>기혼</span></div><div class="card-quote">"40대보다 액티브한 50대... 제2의 삶을 설계하기 좋은 나이" (여성동아 2013)</div><div class="card-hook">💬 "50대인데 아직 활발해요 — 집에서 매일 관리로 건강 유지"</div></div>
+    </div>
+  </div>
+
+  <!-- TOP 7 -->
+  <div class="segment-group">
+    <div class="segment-header" style="background:linear-gradient(90deg,#2980b9,#5dade2);">
+      <div class="seg-rank">TOP 7</div>
+      <div class="seg-info"><div>남성 36~40세</div><div class="seg-count">2,412건 · 5.8% · 카드 3개 (7-A~C)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card" style="border-top-color:#5dade2;"><div class="card-id" style="color:#2980b9;background:#eaf4fb;">7-A</div><span class="desire-badge d2">욕망② 어깨·승모근</span><div class="card-title">IT 개발자 — 장시간 코딩 어깨</div><div class="card-profile"><span>38세</span><span>기혼</span><span>오전 10시 업무 중</span></div><div class="card-quote">"사무실 책상 위에 두고 자리에서 즉시 사용" (리뷰 패턴)</div><div class="card-hook">💬 "1시간마다 뭉치는 뒷목 — 자리에서 해결"</div></div>
+      <div class="persona-card" style="border-top-color:#5dade2;"><div class="card-id" style="color:#2980b9;background:#eaf4fb;">7-B</div><span class="desire-badge d3">욕망③ 목·뒷목</span><div class="card-title">직장인 아빠 — 아내 것 써봄</div><div class="card-profile"><span>37세</span><span>기혼</span><span>야간 22시</span></div><div class="card-quote">"아내 것 써봤다가 — 저도 따로 샀어요" (리뷰 패턴)</div><div class="card-hook">💬 "아내 것 써봤더니 시원해서 제 것도 샀어요"</div></div>
+      <div class="persona-card" style="border-top-color:#5dade2;"><div class="card-id" style="color:#2980b9;background:#eaf4fb;">7-C</div><span class="desire-badge d1">욕망① 종아리 붓기</span><div class="card-title">주말 육아 아빠 — 아이 어깨 태우기 피로</div><div class="card-profile"><span>36~40세</span><span>기혼</span><span>야간 21~22시</span></div><div class="card-quote">"주말 아이 어깨에 태우다 다리 피로 / 배우자 것 공용" (커뮤니티 패턴)</div><div class="card-hook">💬 "주말 육아 후 종아리 터질 것 같아요 — 5분 회복"</div></div>
+    </div>
+  </div>
+
+  <!-- TOP 8 -->
+  <div class="segment-group">
+    <div class="segment-header" style="background:linear-gradient(90deg,#2980b9,#5dade2);">
+      <div class="seg-rank">TOP 8</div>
+      <div class="seg-info"><div>남성 31~35세</div><div class="seg-count">2,356건 · 5.7% · 카드 3개 (8-A~C)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card" style="border-top-color:#5dade2;"><div class="card-id" style="color:#2980b9;background:#eaf4fb;">8-A</div><span class="desire-badge d7">욕망⑦ 운동 후 회복</span><div class="card-title">헬스족 — 루틴 완성형</div><div class="card-profile"><span>33세</span><span>미혼·신혼</span><span>야간 22시 헬스 후</span></div><div class="card-quote">"낭만러버 심진석 유튜브 보고 알게되어서 사게 되었습니다 마사지스틱"<br><span class="source">다모앙 2025.12</span></div><div class="card-hook">💬 "헬스 후 쿨다운 — 이걸로 루틴 완성"</div></div>
+      <div class="persona-card" style="border-top-color:#5dade2;"><div class="card-id" style="color:#2980b9;background:#eaf4fb;">8-B</div><span class="desire-badge d3">욕망③ 목·뒷목</span><div class="card-title">신혼 맞벌이 — 배우자 권유</div><div class="card-profile"><span>32세</span><span>기혼</span><span>야간 22시</span></div><div class="card-quote">"배우자 것 써봤더니 목·어깨 시원함 체험" (커뮤니티 패턴)</div><div class="card-hook">💬 "아내 것 써봤다가 사무실용 따로 샀어요"</div></div>
+      <div class="persona-card" style="border-top-color:#5dade2;"><div class="card-id" style="color:#2980b9;background:#eaf4fb;">8-C</div><span class="desire-badge d1">욕망① 종아리 붓기</span><div class="card-title">출장 직장인 — 컴팩트 케어</div><div class="card-profile"><span>31~35세</span><span>기혼</span><span>오전 10시 업무 중 탐색</span></div><div class="card-quote">"출장 이동 후 종아리·어깨 굳음 / 컴팩트한 도구 필요" (리뷰 패턴)</div><div class="card-hook">💬 "출장 가방에 넣어두는 마사지스틱"</div></div>
+    </div>
+  </div>
+
+  <!-- TOP 9 -->
+  <div class="segment-group">
+    <div class="segment-header" style="background:linear-gradient(90deg,#1a5276,#2980b9);">
+      <div class="seg-rank">TOP 9</div>
+      <div class="seg-info"><div>남성 41~45세</div><div class="seg-count">2,276건 · 5.5% · 카드 3개 (9-A~C)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card" style="border-top-color:#2980b9;"><div class="card-id" style="color:#1a5276;background:#d6eaf8;">9-A</div><span class="desire-badge d3">욕망③ 목·뒷목</span><div class="card-title">배우자 권유로 시작 — 본인 것 구매</div><div class="card-profile"><span>43세</span><span>기혼</span><span>오전 10시</span></div><div class="card-quote">"'남자도 쓸 수 있는 거 맞아?' 의심 → 체험 후 납득" (커뮤니티 패턴)</div><div class="card-hook">💬 "배우자가 이미 쓰고 있던 그 마사지스틱"</div></div>
+      <div class="persona-card" style="border-top-color:#2980b9;"><div class="card-id" style="color:#1a5276;background:#d6eaf8;">9-B</div><span class="desire-badge d7">욕망⑦ 운동 후 회복</span><div class="card-title">마라톤·등산 마니아 — 회복 루틴</div><div class="card-profile"><span>42세</span><span>기혼</span><span>오전 10시</span></div><div class="card-quote">"동아마라톤을 앞두고... 장거리달리기 다음날 종아리와 허벅지가 뭉쳐있을 때, 방치하면 부상으로 이어질 수 있기 때문"<br><span class="source">홍선생 블로그 2026.02</span></div><div class="card-hook">💬 "마라톤 완주 후 회복 루틴 — 이걸로 완성"</div></div>
+      <div class="persona-card" style="border-top-color:#2980b9;"><div class="card-id" style="color:#1a5276;background:#d6eaf8;">9-C</div><span class="desire-badge d2">욕망② 어깨·승모근</span><div class="card-title">관리자급 — 스트레스성 어깨</div><div class="card-profile"><span>44세</span><span>기혼</span><span>오전 10시</span></div><div class="card-quote">"스트레스·장시간 업무 → 어깨·목 극심 / 마사지샵 예약 번거로움" (커뮤니티 패턴)</div><div class="card-hook">💬 "8만원 마사지샵 대신 집에서 매일"</div></div>
+    </div>
+  </div>
+
+  <!-- TOP 10 -->
+  <div class="segment-group">
+    <div class="segment-header" style="background:linear-gradient(90deg,#1a5276,#2980b9);">
+      <div class="seg-rank">TOP 10</div>
+      <div class="seg-info"><div>남성 46~50세</div><div class="seg-count">1,442건 · 3.5% · 카드 3개 (10-A~C)</div></div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card" style="border-top-color:#2980b9;"><div class="card-id" style="color:#1a5276;background:#d6eaf8;">10-A</div><span class="desire-badge d2">욕망② 어깨·승모근</span><div class="card-title">체력 저하 자각 — 배우자 권유</div><div class="card-profile"><span>48세</span><span>기혼</span><span>오전 10시</span></div><div class="card-quote">"배우자 것 빌려 써보고 즉구매 / '50 되기 전에 몸 챙기기 시작'" (커뮤니티 패턴)</div><div class="card-hook">💬 "배우자가 권한 그 마사지스틱 — 써보니 달랐어요"</div></div>
+      <div class="persona-card" style="border-top-color:#2980b9;"><div class="card-id" style="color:#1a5276;background:#d6eaf8;">10-B</div><span class="desire-badge d7">욕망⑦ 운동 후 회복</span><div class="card-title">등산·골프 마니아 — 회복 루틴</div><div class="card-profile"><span>47세</span><span>기혼</span><span>오전 10시</span></div><div class="card-quote">"골프는 회전 운동이라 한쪽 다리에 하중이 많이 실리고... 제대로 안 풀면 다음날 천근만근"<br><span class="source">공때녀 블로그 2026.03</span></div><div class="card-hook">💬 "등산 후 종아리 — 이제 이걸로 관리"</div></div>
+      <div class="persona-card" style="border-top-color:#2980b9;"><div class="card-id" style="color:#1a5276;background:#d6eaf8;">10-C</div><span class="desire-badge d1">욕망① 종아리 붓기</span><div class="card-title">가족 공용 구매 — 아내 권유</div><div class="card-profile"><span>46~50세</span><span>기혼</span></div><div class="card-quote">"집에 하나씩은 있어야 / 배우자 권유로 납득" (리뷰 패턴)</div><div class="card-hook">💬 "집에 하나씩은 있어야 하는 마사지스틱"</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑤ 가설 검증 -->
+<div id="hypothesis" class="section">
+  <div class="section-title">✅ 가설 검증 현황</div>
+  <div class="section-sub">4차원 가설 프레임 × 38개 카드 · 최종 업데이트 2026-06-02</div>
+
+  <div class="summary-box">
+    <h4>📋 4차원 가설 프레임</h4>
+    <ul>
+      <li><strong>구매 습관·결정 과정</strong> — 탐색 방법, 구매 시기, 구매 경로, 가격 허들</li>
+      <li><strong>고민과 문제</strong> — 불편 요소, 달성 목표, 동기부여 시점</li>
+      <li><strong>관심사·취미</strong> — SNS 이용, 취미 활동, 관심 카테고리</li>
+      <li><strong>라이프스타일</strong> — 소비 습관, 성향, 하루 패턴, 식습관</li>
+    </ul>
+  </div>
+
+  <table class="hypo-table">
+    <thead>
+      <tr><th>차원</th><th>검증 완료</th><th>상태</th><th>핵심 인용</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>구매 시기·채널</strong></td>
+        <td>오전10시(7.9%) / 야간22시(6.5%) / 가격비교(26.7%) / 모바일(90%+)</td>
+        <td><span class="verified-tag">✅ BQ 확인</span></td>
+        <td>전체 38개 카드 공통 적용</td>
+      </tr>
+      <tr>
+        <td><strong>SNS 탐색 — 여성</strong></td>
+        <td>인스타그램 피드·광고 → 발견 → 네이버 검색</td>
+        <td><span class="verified-tag">✅ 커뮤니티</span></td>
+        <td>"인스타 광고보고 내돈내산임 바리바디 릴렉스틱" (2025.08)</td>
+      </tr>
+      <tr>
+        <td><strong>SNS 탐색 — 남성</strong></td>
+        <td>유튜브 러닝·헬스 채널 인플루언서 추천</td>
+        <td><span class="verified-tag">✅ 커뮤니티</span></td>
+        <td>"낭만러버 심진석 유튜브 보고 알게되어서" (2025.12)</td>
+      </tr>
+      <tr>
+        <td><strong>불편 요소</strong></td>
+        <td>폼롤러 귀찮음 / 마사지샵 예약 부담 / 남편에게 부탁 미안함</td>
+        <td><span class="verified-tag">✅ 커뮤니티·리뷰</span></td>
+        <td>"폼롤러는 번거롭고 귀찮고" (이지썬 블로그 2025.08)</td>
+      </tr>
+      <tr>
+        <td><strong>마라톤·등산 패턴</strong></td>
+        <td>운동 후 종아리·허벅지 회복 루틴 필수화</td>
+        <td><span class="verified-tag">✅ 커뮤니티</span></td>
+        <td>"장거리 다음날 방치하면 부상으로 이어질 수 있어" (2026.02)</td>
+      </tr>
+      <tr>
+        <td><strong>골프 피로 패턴</strong></td>
+        <td>회전운동 → 한쪽 다리 하중 → 종아리·허벅지 피로</td>
+        <td><span class="verified-tag">✅ 커뮤니티</span></td>
+        <td>"골프는 회전운동이라 한쪽 다리에 하중이 많이 실리고" (2026.03)</td>
+      </tr>
+      <tr>
+        <td><strong>직장맘 식습관</strong></td>
+        <td>평일 저녁 배달 기본값화 / 주말 외식</td>
+        <td><span class="verified-tag">✅ 커뮤니티</span></td>
+        <td>"시간 압박+피곤 = 배달음식 이게 공식처럼 됐어요" (인천아띠아모카페 2024.11)</td>
+      </tr>
+      <tr>
+        <td><strong>소비 습관·성향</strong></td>
+        <td>워킹맘: 육아용품 아낌없이/본인용품 가성비 / 남성: 배우자 검증 의존</td>
+        <td><span class="verified-tag">✅ 커뮤니티</span></td>
+        <td>맘카페·클리앙 등 커뮤니티 패턴 확인</td>
+      </tr>
+      <tr>
+        <td><strong>인간관계 세부</strong></td>
+        <td>지인 모임 빈도, 네트워크 규모</td>
+        <td><span class="hypo-tag">(가설 유지)</span></td>
+        <td>커뮤니티 리서치로 검증 어려움 — 설문 필요</td>
+      </tr>
+      <tr>
+        <td><strong>소득 수준</strong></td>
+        <td>구체적 월소득</td>
+        <td><span class="hypo-tag">(가설 유지)</span></td>
+        <td>지역·직업 데이터로 간접 추정 유지</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SNS 탐색 증거 -->
+  <div class="snscol">
+    <div class="sns-card">
+      <h4>📱 여성 — 인스타그램 발견 패턴 (✅ 검증)</h4>
+      <div class="quote-item">"인스타 광고보고 내돈내산임 바리바디 릴렉스틱 추천"<br><span class="source">雨庭 블로그 2025.08.21</span></div>
+      <div class="quote-item">"인스타에서 핫한 마사지스틱, 직접 써봤어요! 바리바디릴렉스틱 극강의 시원함"<br><span class="source">JUDDY WOODY 2025.10.13</span></div>
+      <div class="quote-item">"릴렉스틱은 인스타 보다가 맘에 들어서 삼"<br><span class="source">☾블로그 2025.06.30</span></div>
+      <div class="quote-item">"인스타 여기저기 찾아서 구매했는데"<br><span class="source">숭늉 블로그 (임신 24주차) 2026</span></div>
+    </div>
+    <div class="sns-card">
+      <h4>▶ 남성 — 유튜브 발견 패턴 (✅ 검증)</h4>
+      <div class="quote-item">"낭만러버 심진석 유튜브 보고 알게되어서 사게 되었습니다 마사지스틱"<br><span class="source">다모앙 2025.12.14</span></div>
+      <div class="quote-item">"이봉주 선수가 영상에서 사용하고 좋은 평을 하는 것을 보고 구매를 결정"<br><span class="source">러닝 블로그 2025.10</span></div>
+      <div class="quote-item">"유튜브 채널을 통해 특별가격으로 구매할 수 있다고 해서 구매링크를 통해 주문하였다"<br><span class="source">러닝 블로그 2025.10</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  바리바디 릴렉스틱 페르소나 분석 리포트 · 2026-06-02<br>
+  데이터 기반: BQ barybody-easypos.barybody_analytics × 네이버카페·블라인드·theqoo·82cook Playwright 수집<br>
+  가이드 참조: kwkim-wq.github.io/barybody-persona-guide/ · 페르소나 = 타겟 × 욕망 원칙
+</div>
+
+<script>
+  // step-nav active highlight
+  const navLinks = document.querySelectorAll('.step-nav a');
+  const sections = ['data','insight','desire','personas','hypothesis'].map(id => document.getElementById(id));
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (s && window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+  });
+</script>
+
+</body>
+</html>
