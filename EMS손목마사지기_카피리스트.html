@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EMS 손목마사지기 카피 리스트 — 메타 광고 2026.06</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+       background: #f5f6f8; color: #1a1a2e; line-height: 1.7; font-size: 13px; }
+.hero { background: linear-gradient(135deg, #08141f 0%, #0e2a3a 55%, #0891b2 130%);
+        color: #fff; padding: 52px 40px 44px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; left: -80px; bottom: -80px; width: 280px; height: 280px; border-radius: 50%; background: rgba(8,145,178,0.16); }
+.hero::after  { content: ''; position: absolute; right: 40px; top: 30px; width: 180px; height: 180px; border-radius: 50%; background: rgba(125,211,252,0.10); }
+.hero .tag { display: inline-block; background: rgba(8,145,178,0.30); color: #7dd3fc; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 18px; }
+.hero h1 { font-size: 28px; font-weight: 800; line-height: 1.35; margin-bottom: 10px; }
+.hero p   { font-size: 13px; color: rgba(255,255,255,0.7); }
+.hero .meta { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.5); display: flex; gap: 24px; flex-wrap: wrap; }
+.hero .meta strong { color: rgba(255,255,255,0.9); }
+.back-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 600; text-decoration: none; margin-bottom: 24px; transition: background .15s; }
+.back-btn:hover { background: rgba(255,255,255,0.25); }
+.tab-nav { display: flex; gap: 0; background: #fff; border-radius: 16px; padding: 8px; margin-bottom: 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); overflow-x: auto; }
+.tab-btn { flex: 1; min-width: 120px; text-align: center; padding: 10px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; color: #999; cursor: pointer; border: none; background: none; transition: background .15s, color .15s; }
+.tab-btn:hover { background: #ecfeff; color: #0891b2; }
+.tab-btn.active { background: #08141f; color: #fff; }
+.container { max-width: 980px; margin: 0 auto; padding: 36px 20px 80px; }
+.info-box { background: #fff; border-radius: 16px; padding: 20px 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); margin-bottom: 24px; border-left: 4px solid #0891b2; }
+.info-box .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 13px; color: #555; margin-bottom: 4px; }
+.info-box .row:last-child { margin-bottom: 0; }
+.info-box .label { font-weight: 700; color: #1a1a2e; min-width: 80px; }
+.info-badge { display: inline-block; background: #ecfeff; color: #0891b2; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; margin-left: 6px; }
+.info-badge.blue { background: #e6f4ff; color: #0958d9; }
+.info-badge.green { background: #f6ffed; color: #389e0d; }
+.section { margin-bottom: 36px; }
+.section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.section-num { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0; }
+.n1 { background: #ecfeff; color: #0891b2; }
+.n2 { background: #e6f4ff; color: #0958d9; }
+.n3 { background: #f9f0ff; color: #531dab; }
+.n4 { background: #f6ffed; color: #389e0d; }
+.section-title { font-size: 18px; font-weight: 800; color: #1a1a2e; }
+.section-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
+.card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); margin-bottom: 20px; }
+.copy-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.copy-table th { background: #08141f; color: #fff; padding: 10px 14px; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-align: left; }
+.copy-table th:first-child { border-radius: 8px 0 0 0; }
+.copy-table th:last-child { border-radius: 0 8px 0 0; }
+.copy-table td { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+.copy-table tr:last-child td { border-bottom: none; }
+.copy-table tr:nth-child(even) td { background: #fafafa; }
+.appeal-tag { display: inline-block; background: #ecfeff; color: #0891b2; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; }
+.cold-tag { background: #f6ffed; color: #389e0d; }
+.warm-tag { background: #fff7e6; color: #d46b08; }
+.type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media(max-width: 700px) { .type-grid { grid-template-columns: 1fr; } }
+.type-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+.type-head { padding: 16px 20px 12px; border-bottom: 1px solid #f0f0f0; }
+.type-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+.badge-c { background: #f9f0ff; color: #531dab; }
+.badge-b { background: #e6f4ff; color: #0958d9; }
+.badge-a { background: #ecfeff; color: #0891b2; }
+.type-title { font-size: 14px; font-weight: 800; color: #1a1a2e; }
+.type-sub { font-size: 11px; color: #888; margin-top: 2px; }
+.type-formula { font-size: 11px; color: #555; background: #f8f8f8; border-radius: 6px; padding: 8px 12px; margin-top: 8px; line-height: 1.6; }
+.type-body { padding: 16px 20px; }
+.copy-item { padding: 8px 0; border-bottom: 1px solid #f5f5f5; font-size: 13px; }
+.copy-item:last-child { border-bottom: none; }
+.copy-num { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: #f0f0f0; color: #555; font-size: 10px; font-weight: 800; text-align: center; line-height: 18px; margin-right: 6px; flex-shrink: 0; }
+.copy-text { font-weight: 600; color: #1a1a2e; }
+.copy-count { font-size: 11px; color: #888; margin-left: 6px; }
+.psy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+@media(max-width: 700px) { .psy-grid { grid-template-columns: 1fr; } }
+.psy-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+.psy-head { padding: 14px 20px 10px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 10px; }
+.psy-icon { font-size: 22px; }
+.psy-num { font-size: 10px; font-weight: 800; color: #aaa; }
+.psy-name { font-size: 14px; font-weight: 800; color: #1a1a2e; }
+.psy-desc { font-size: 11px; color: #888; margin-top: 1px; }
+.psy-body { padding: 14px 20px 16px; }
+.psy-label { font-size: 10px; font-weight: 800; color: #aaa; letter-spacing: 1px; margin-bottom: 6px; margin-top: 10px; }
+.psy-label:first-child { margin-top: 0; }
+.hl-item { display: flex; align-items: flex-start; gap: 6px; padding: 6px 0; border-bottom: 1px solid #f5f5f5; font-size: 12px; }
+.hl-item:last-child { border-bottom: none; }
+.hl-n { flex-shrink: 0; width: 16px; height: 16px; border-radius: 4px; background: #f0f0f0; color: #555; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.hl-txt { font-weight: 600; color: #1a1a2e; flex: 1; }
+.hl-cnt { font-size: 10px; color: #aaa; flex-shrink: 0; white-space: nowrap; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.cta-chip { background: #ecfeff; color: #0891b2; border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 700; }
+.cta-count { font-size: 10px; color: #aaa; margin-left: 2px; }
+.warn-box { background: #fffbe6; border: 1px solid #ffe58f; border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; }
+.warn-box .warn-title { font-size: 13px; font-weight: 800; color: #d46b08; margin-bottom: 4px; }
+.warn-box p { font-size: 12px; color: #555; }
+.ok-box { background: #f6ffed; border: 1px solid #b7eb8f; border-radius: 12px; padding: 14px 20px; font-size: 13px; font-weight: 700; color: #389e0d; }
+.tab-section { display: none; }
+.tab-section.active { display: block; }
+.source-note { font-size: 11px; color: #aaa; background: #f8f8f8; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
+.quote-box { background: #fafafa; border-left: 3px solid #0891b2; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 8px 0; font-size: 12px; color: #333; font-style: italic; }
+.quote-src { font-size: 10px; color: #aaa; font-style: normal; margin-top: 4px; }
+.persona-toggle-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.persona-btn { padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; border: 2px solid #e0e0e0; background: #fff; color: #666; transition: all .15s; }
+.persona-btn:hover { border-color: #0891b2; color: #0891b2; }
+.persona-btn.p-active { background: #08141f; border-color: #08141f; color: #fff; }
+.persona-panel { display: none; background: #ecfeff; border-radius: 12px; padding: 18px 20px; margin-bottom: 4px; border-top: 3px solid #0891b2; }
+.persona-panel.p-active { display: block; }
+.persona-panel-title { font-size: 13px; font-weight: 800; color: #1a1a2e; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #d6f3f8; }
+.kw-group { margin-bottom: 10px; }
+.kw-label-sm { font-size: 10px; font-weight: 800; color: #aaa; letter-spacing: 1px; margin-bottom: 6px; }
+.kw-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.kw-tag { background: #ecfeff; color: #0891b2; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+.kw-tag.pain { background: #fff1f0; color: #cf1322; }
+.kw-tag.trigger { background: #f6ffed; color: #389e0d; }
+.kw-tag.time { background: #fff7e6; color: #d46b08; }
+.iboss-cite { font-size: 10px; font-style: italic; background: #f3f0ff; color: #531dab; border-radius: 4px; padding: 1px 6px; margin-left: 4px; white-space: nowrap; display: inline-block; }
+.psy-card.persona-active .psy-head { border-bottom: 2px solid #0891b2; }
+.psy-card.persona-active .psy-num::after { content: ' ✦'; color: #0891b2; }
+.type-card.persona-active .type-head { border-bottom: 2px solid #0891b2; }
+/* community theme */
+.comm-theme { margin-bottom: 20px; }
+.comm-theme-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.comm-num { width: 22px; height: 22px; border-radius: 50%; background: #0891b2; color: #fff; font-size: 10px; font-weight: 800; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; }
+.comm-theme-title { font-size: 13px; font-weight: 800; color: #1a1a2e; }
+.comm-theme-target { font-size: 10px; color: #888; font-weight: 600; margin-top: 2px; }
+.comm-copy { font-size: 11px; color: #389e0d; background: #f6ffed; border-radius: 6px; padding: 6px 10px; margin-top: 6px; font-weight: 600; }
+.copy-ad-item { padding: 8px 0; border-bottom: 1px solid #f5f5f5; display: flex; align-items: flex-start; gap: 6px; font-size: 12px; }
+.copy-ad-item:last-child { border-bottom: none; }
+.copy-ad-n { flex-shrink: 0; width: 18px; height: 18px; border-radius: 4px; background: #ecfeff; color: #0891b2; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.copy-ad-text { flex: 1; font-weight: 600; color: #1a1a2e; }
+.copy-ad-cnt { font-size: 10px; color: #aaa; white-space: nowrap; flex-shrink: 0; }
+.reg-warn-badge { display: inline-block; background: #cf1322; color: #fff; font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 5px; margin-left: 6px; letter-spacing: .5px; vertical-align: middle; white-space: nowrap; }
+.reg-item { padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
+.reg-item:last-child { border-bottom: none; }
+.reg-risky { font-weight: 700; color: #1a1a2e; font-size: 13px; }
+.reg-reason { font-size: 11px; color: #cf1322; margin-top: 3px; }
+.reg-alt { font-size: 11px; color: #389e0d; margin-top: 2px; }
+.reg-group-label { font-size: 11px; font-weight: 800; color: #cf1322; margin: 14px 0 6px; letter-spacing: .5px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <a href="EMS손목마사지기_타겟분석_20260609.html" class="back-btn">← 타겟 분석 리포트로 돌아가기</a>
+  <div class="tag">COPY LIST · META ADS · ⌚ EMS 손목 TENS·온열</div>
+  <h1>EMS 손목마사지기<br>메타 광고 카피 리스트</h1>
+  <p>커뮤니티 보이스 5주제 + iboss 프레임워크 · 13개 심리 카테고리 · 페르소나 6인 토글 (남성 직장인·게이머·운동·선물·육아)</p>
+  <div class="meta">
+    <span><strong>채널</strong> 메타 광고 (9:16)</span>
+    <span><strong>목적</strong> 남성 직장인 획득 + 선물 + 광고의존 방어</span>
+    <span><strong>데이터</strong> BQ 1,368건+리뷰 1,136건+검색량 (draft)</span>
+    <span><strong>작성일</strong> 2026-06-09</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="info-box">
+    <div class="row">
+      <span class="label">타겟</span>
+      <span>30~40대 남성 직장인(남성 61%·검색자 53%) · 마우스·키보드·게임·운동 손목 · 선물러·육아 보조 · 수도권 도심 — A형~F형</span>
+    </div>
+    <div class="row">
+      <span class="label">글자 수</span>
+      <span class="info-badge">헤드라인 ~40자</span>
+      <span class="info-badge blue">본문 125자 이하</span>
+      <span class="info-badge green">CTA 15자 이하</span>
+    </div>
+    <div class="row">
+      <span class="label">⚠️ 규제</span>
+      <span>EMS·TENS 기기 — "손목터널증후군·통증 완화·치료·물리치료·근육 이완" 금지, "찌릿 자극·시원·뻐근함 케어·온열" 톤. 별점 4.81은 실수치.</span>
+    </div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('bank')">소구점 뱅크</button>
+    <button class="tab-btn" onclick="switchTab('abc')">A/B/C 타입</button>
+    <button class="tab-btn" onclick="switchTab('psy')">심리 편향</button>
+    <button class="tab-btn" onclick="switchTab('need')">인간 욕구</button>
+    <button class="tab-btn" onclick="switchTab('reg')">규제 검토</button>
+  </div>
+
+  <div id="tab-bank" class="tab-section active">
+    <div class="section">
+      <div class="section-head"><div class="section-num n1">1</div><div><div class="section-title">소구점 카피 뱅크</div><div class="section-sub">iboss copy/02_frameworks.md — 상시(Cold)/리타겟(Warm) · 비의료 톤</div></div></div>
+      <div class="source-note">⌚ EMS 손목마사지기 핵심 소구점은 <b>찌릿 자극·온열 + 무선 간편 + 선물</b>. 통증 제품이라 "치료/손목터널"은 회피, "찌릿 자극·뻐근함 케어" 톤. 남성 직장인 중심.</div>
+      <div class="card">
+        <table class="copy-table">
+          <thead><tr><th style="width:18%">소구점</th><th style="width:41%"><span class="cold-tag" style="border-radius:4px;padding:2px 8px;font-size:11px;">상시(Cold)</span> — 신규 획득</th><th style="width:41%"><span class="warm-tag" style="border-radius:4px;padding:2px 8px;font-size:11px;">리타겟(Warm)</span> — 전환</th></tr></thead>
+          <tbody>
+            <tr><td><span class="appeal-tag">자극·체감(결과)</span></td><td>마우스 잡던 손목, 차고만 있으면 찌릿하게</td><td>장바구니 속 그 손목 기기, 지금 데려가요</td></tr>
+            <tr><td><span class="appeal-tag">편의성/휴대</span></td><td>차고만 있으면 끝 — 무선 손목 케어</td><td>지금 담으면 오늘 바로 출발</td></tr>
+            <tr><td><span class="appeal-tag">신뢰/증거</span></td><td>리뷰 평점 4.81 — TENS 온열 손목 마사지기</td><td>별점 4.81, 후기부터 확인하세요</td></tr>
+            <tr><td><span class="appeal-tag">감성/공감</span></td><td>하루 종일 마우스 잡은 손목, 고생했어요</td><td>손목 아픈 그분께, 차고만 있는 선물</td></tr>
+            <tr><td><span class="appeal-tag">가격/가치</span></td><td>마사지샵 안 가도 책상에서 매일 손목</td><td>행사가 마감 전, 지금 가격 확인</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><div class="section-num n1">★</div><div><div class="section-title">커뮤니티 보이스 직접 인용</div><div class="section-sub">5개 대주제 × 실제 발화 → 파생 광고 카피</div></div></div>
+      <div class="card">
+        <div class="source-note">출처: 클리앙 · 82cook · 인벤/헬스경향 · Wacom(통계) + 자사 리뷰(BQ) — <b>페르소나 draft</b>. ⚠️ 인용 중 '손목터널·저주파 효과'는 커뮤니티 발화이며 <b>우리 카피로는 의료 효능 주장 불가</b>.</div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">1</div><div><div class="comm-theme-title">마우스·키보드 직장인 손목 (사무직 — 핵심)</div><div class="comm-theme-target">주요 타겟: A형(현우 38 사무직) · D형(서연 직장여성)</div></div></div>
+          <div class="quote-box">"개발자·직장인 — 마우스 사용 시 손목에 문제 있는 분?" / "손목통증 때문에 마우스 고르기 어렵다"<div class="quote-src">클리앙</div></div>
+          <div class="quote-box">"직장인 80%가 손목 통증을 호소한다"<div class="quote-src">Wacom Korea Blog (통계)</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">하루 종일 마우스 잡은 손목, 퇴근하고 찌릿하게</div><div class="copy-ad-cnt">(24자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">직장인 손목, 책상에서 틈틈이 케어</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">마우스·키보드로 뻐근한 손목이라면</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">버티컬 마우스로도 안 풀리던 손목</div><div class="copy-ad-cnt">(17자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">종일 타이핑한 손목, 차고만 있으면</div><div class="copy-ad-cnt">(18자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: PAS 06 · 공감 05 · C형(사무직)</div>
+        </div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">2</div><div><div class="comm-theme-title">개발자·게이머 손목 (장시간 PC)</div><div class="comm-theme-target">주요 타겟: B형(진수 33 게이머·개발자)</div></div></div>
+          <div class="quote-box">"개발자 직업병인 손목이 저릴 때 어떻게 하시나요?" / "거북목과 손목터널, 개발자 고질병"<div class="quote-src">클리앙 · elancer</div></div>
+          <div class="quote-box">"게임 너무 오래 하면 손목도 피곤 — 30~60분마다 스트레칭으로 리셋"<div class="quote-src">Herman Miller Gaming · 인벤</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">게임·코딩에 혹사한 손목, 책상에서 바로</div><div class="copy-ad-cnt">(21자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">개발자 직업병 손목 저림, 매일 케어</div><div class="copy-ad-cnt">(19자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">30분마다 스트레칭도 귀찮다면 — 차고만</div><div class="copy-ad-cnt">(21자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">장시간 PC 후 손목 찌릿할 때</div><div class="copy-ad-cnt">(15자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">마우스 오래 잡는 당신의 손목 루틴</div><div class="copy-ad-cnt">(18자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: 호기심갭 07 · 자아 13 · B형(게이머)</div>
+        </div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">3</div><div><div class="comm-theme-title">손목 저림·뻐근 (반복 사용 — 비의료 톤)</div><div class="comm-theme-target">주요 타겟: 전 타겟 (PAS·증상 검색층)</div></div></div>
+          <div class="quote-box">"손이 저리고 손가락이 화끈, 아침에 손이 굳거나 경련" (수근관 증상) → 우리 카피는 비의료 표현으로<div class="quote-src">나무위키·보건타임즈</div></div>
+          <div class="quote-box">"손목보호대를 밤새 착용하며 버틴다"(보호대로만 버팀)<div class="quote-src">82cook · 클리앙</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인) <span style="font-weight:400;color:#cf1322;">— 비의료 톤(저릿·뻐근)</span></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">아침에 손 굳고 저릿한 손목이라면</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">손가락까지 찌릿한 손목, 매일 케어</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">보호대로만 버티던 손목, 찌릿+온열로</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">손목 저림 미루지 말고 오늘부터</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">반복 작업에 뻐근한 손목 케어</div><div class="copy-ad-cnt">(15자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: PAS 06 · 손실회피 02 · (질환명·치료 금지)</div>
+        </div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">4</div><div><div class="comm-theme-title">육아 손목 (산후·아기 안기)</div><div class="comm-theme-target">주요 타겟: F형(육아 손목 민지)</div></div></div>
+          <div class="quote-box">"출산 후 손 저림·손목터널이 온다" / "아기 안고 손목이 아프다"<div class="quote-src">82cook</div></div>
+          <div class="quote-box">자사 리뷰: "잘 쓰고 있어요" · "사용하게 편하다"<div class="quote-src">자사 스마트스토어 리뷰(BQ)</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">아기 안다 시큰해진 손목, 재운 뒤 10분</div><div class="copy-ad-cnt">(22자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">산후 손목 저림, 쉴 틈도 없죠</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">수유·안기로 무리한 손목 케어</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">엄마 손목도 챙겨야죠 — 차고만 있으면</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">육아로 지친 손목, 자기 전 찌릿하게</div><div class="copy-ad-cnt">(19자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: 생리 09 · 존중 12 · F형(육아)</div>
+        </div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">5</div><div><div class="comm-theme-title">🎁 부모님 선물 — '효자템' 손목 EMS 기기</div><div class="comm-theme-target">주요 타겟: E형(효도선물러 지훈)</div></div></div>
+          <div class="quote-box">"저주파 마사지기는 비싸지 않아 효도 선물로 인기"<div class="quote-src">앱스토리류·헬스 매체</div></div>
+          <div class="quote-box">자사 리뷰: "아버지께서 손목 부상 입으셔서 마사지용으로 구매"<div class="quote-src">자사 스마트스토어 리뷰(BQ)</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">손목 아프신 부모님께, 차고만 있는 선물</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">효도선물로 인기 — 손목 찌릿 케어</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">아버지 손목에 드리는 매일 10분</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">받으면 매일 쓰시는 손목 효도템</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">조작 쉬운 무선 — 부모님도 혼자 쉽게</div><div class="copy-ad-cnt">(19자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: 존중 12 · 사회증거 03 · E형(선물)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-abc" class="tab-section" data-tab-type="abc">
+    <div class="section">
+      <div class="section-head"><div class="section-num n2">2</div><div><div class="section-title">A/B/C 타겟 타입별 카피</div><div class="section-sub">iboss 02_abc_types.md — 페르소나 버튼 클릭 시 해당 타겟 카피로 자동 교체</div></div></div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나별 분석 키워드 — 버튼 클릭 시 ① 패널 + ② 아래 카피 자동 교체</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('pa',this)">A형 현우 · 38세 (사무직)</button>
+          <button class="persona-btn" onclick="togglePersona('pb',this)">B형 진수 · 33세 (게이머)</button>
+          <button class="persona-btn" onclick="togglePersona('pc',this)">C형 상호 · 48세 (운동)</button>
+          <button class="persona-btn" onclick="togglePersona('pd',this)">D형 서연 · 34세 (직장여성)</button>
+          <button class="persona-btn" onclick="togglePersona('pe',this)">E형 효도선물러</button>
+          <button class="persona-btn" onclick="togglePersona('pf',this)">F형 육아 손목</button>
+        </div>
+        <div id="panel-pa" class="persona-panel">
+          <div class="persona-panel-title">A형 현우 · 38세 — 사무직 남성(마우스·키보드 손목) · 핵심: "퇴근하고 책상에서 찌릿하게"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">손목마사지기</span><span class="kw-tag">바리바디손목</span><span class="kw-tag">손목저림</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">마우스·키보드 손목 뻐근</span><span class="kw-tag pain">퇴근 후 손목 묵직</span><span class="kw-tag pain">병원 갈 정도는 아님</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">손목마사지기 검색</span><span class="kw-tag trigger">쇼핑검색광고</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">오전 10시·야간 22시</span><span class="kw-tag time">서울 중구·강남</span></div></div>
+        </div>
+        <div id="panel-pb" class="persona-panel">
+          <div class="persona-panel-title">B형 진수 · 33세 — 게이머·개발자(장시간 PC) · 핵심: "책상에서 바로 케어"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">ems손목마사지기</span><span class="kw-tag">손목마사지기추천</span><span class="kw-tag">손목ems</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">게임·코딩 후 손목 저림</span><span class="kw-tag pain">보호대로 부족</span><span class="kw-tag pain">책상에서 바로 쓸 기기</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">PC 스펙·가격 비교</span><span class="kw-tag trigger">추천 검색</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">야간·근무시간 PC</span><span class="kw-tag time">남성 PC 검색↑</span></div></div>
+        </div>
+        <div id="panel-pc" class="persona-panel">
+          <div class="persona-panel-title">C형 상호 · 48세 — 중년 남성(운동·노동 손목) · 핵심: "라운딩·운동 후 어디서나"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">손목마사지기</span><span class="kw-tag">손목안마기</span><span class="kw-tag">손목보호대</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">골프·운동·작업 손목</span><span class="kw-tag pain">회복 느려짐(나이)</span><span class="kw-tag pain">스펙·품질 중시</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">스펙·후기 검토</span><span class="kw-tag trigger">가격비교</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">야간·주말</span><span class="kw-tag time">고AOV</span></div></div>
+        </div>
+        <div id="panel-pd" class="persona-panel">
+          <div class="persona-panel-title">D형 서연 · 34세 — 직장여성(스마트폰·집안일 손목) · 핵심: "간편·작은 손목 케어"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">손목마사지기</span><span class="kw-tag">손목보호대</span><span class="kw-tag">팔목마사지</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">스마트폰·마우스 엄지 저림</span><span class="kw-tag pain">설거지·청소 후 손목 시큰</span><span class="kw-tag pain">큰 기기 부담·사이즈</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">후기·디자인 확인</span><span class="kw-tag trigger">야간 모바일</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">야간</span><span class="kw-tag time">※손목 둘레 안내</span></div></div>
+        </div>
+        <div id="panel-pe" class="persona-panel">
+          <div class="persona-panel-title">E형 효도선물러 — 부모님 손목 선물 · 핵심: "차고만 있으면 — 효도 선물"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">부모님 손목 선물</span><span class="kw-tag">효도템 마사지기</span><span class="kw-tag">손목마사지기</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">부모님 손목 통증 안쓰러움</span><span class="kw-tag pain">조작 쉬운 효도템</span><span class="kw-tag pain">실제로 쓸 선물</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">가정의달·생신</span><span class="kw-tag trigger">무선·간편 보고 결정</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">선물 시즌</span><span class="kw-tag time">선물 102 언급</span></div></div>
+        </div>
+        <div id="panel-pf" class="persona-panel">
+          <div class="persona-panel-title">F형 육아 손목 — 영유아 부모(아기 안기) · 핵심: "재운 뒤 10분 손목 케어"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">산후 손목통증</span><span class="kw-tag">손목마사지기</span><span class="kw-tag">손목보호대</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">아기 안기·수유 손목 시큰</span><span class="kw-tag pain">병원·관리 갈 시간 없음</span><span class="kw-tag pain">잠깐 쉴 때 간편히</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">맘카페 추천</span><span class="kw-tag trigger">증상 검색</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">야간(아기 재운 후)</span><span class="kw-tag time">0-24개월 자녀 11.8%</span></div></div>
+        </div>
+      </div>
+
+      <div class="type-grid">
+
+        <div class="type-card" data-cid="c">
+          <div class="type-head"><div><span class="type-badge badge-c">C형 — TOFU</span></div><div class="type-title">문제 인식 전 · 70~80%</div><div class="type-sub">현우(38) 사무직 · 진수(33) 게이머 · 손목 검색러</div><div class="type-formula"><strong>iboss</strong>: [대상 지정] + [극적 베네핏] — 상품명 뒤로<br><strong>심리</strong>: 주의편향 · PAS · 문제-해결형</div></div>
+          <div class="type-body">
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">하루 종일 마우스 잡아 손목 뻐근한 분들 보세요</span><span class="copy-count">(24자)</span><span class="iboss-cite">대상지정+베네핏</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">게임·코딩 오래 하면 손목부터 찌릿한 당신께</span><span class="copy-count">(23자)</span><span class="iboss-cite">대상지정</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">스마트폰 많이 보면 손목·엄지 저린다면</span><span class="copy-count">(21자)</span><span class="iboss-cite">문제 공감</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">종일 타이핑한 손목, 누워서 찌릿하게</span><span class="copy-count">(20자)</span><span class="iboss-cite">베네핏</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">퇴근하면 손목부터 뻐근한 직장인이라면</span><span class="copy-count">(20자)</span><span class="iboss-cite">공감</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">마우스·키보드로 굳은 손목, 차고만 있으면</span><span class="copy-count">(22자)</span><span class="iboss-cite">문제-해결형</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">보호대로만 버티던 손목이라면</span><span class="copy-count">(16자)</span><span class="iboss-cite">역설/커뮤니티</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">손목 아플 때 뭘 사야 할지 모르겠다면</span><span class="copy-count">(20자)</span><span class="iboss-cite">PAS</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">운동·골프 후 욱신한 손목, 집에서</span><span class="copy-count">(18자)</span><span class="iboss-cite">대상지정</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">아침에 손 굳고 저릿한 손목이라면</span><span class="copy-count">(18자)</span><span class="iboss-cite">생리욕구</span></div>
+            <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
+            <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">종일 마우스·키보드 잡아 손목 뻐근하시죠? 차고만 있으면 TENS 찌릿 자극+온열로 시원하게. 무선이라 책상에서 틈틈이. 리뷰 평점 4.81. <span style="color:#aaa;font-size:11px;">(72자)</span></div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
+            <div class="cta-row"><span class="cta-chip">손목 케어 보기<span class="cta-count">(7자)</span></span><span class="cta-chip">제품 보러가기<span class="cta-count">(7자)</span></span><span class="cta-chip">후기 보기<span class="cta-count">(5자)</span></span><span class="cta-chip">지금 확인하기<span class="cta-count">(7자)</span></span><span class="cta-chip">방법 보기<span class="cta-count">(5자)</span></span></div>
+          </div>
+        </div>
+
+        <div class="type-card" data-cid="b">
+          <div class="type-head"><div><span class="type-badge badge-b">B형 — MOFU</span></div><div class="type-title">망설이는 중 · 15~20%</div><div class="type-sub">상호(48) 운동 · 비교 검토층·게이머</div><div class="type-formula"><strong>iboss</strong>: [대상 지정] + [베네핏] + [차이점] + [상품명]<br><strong>심리</strong>: 확증편향 · 역설형 · 사회적 증거</div></div>
+          <div class="type-body">
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">손목 마사지기 고민이라면 — TENS+온열, 평점 4.81</span><span class="copy-count">(27자)</span><span class="iboss-cite">대상지정+차이점+증거</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">손목 보호대론 부족 — 찌릿 자극+온열 무선 기기</span><span class="copy-count">(25자)</span><span class="iboss-cite">역설/차별화</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">마사지건 무거웠다면 — 차고만 있는 손목 전용</span><span class="copy-count">(23자)</span><span class="iboss-cite">역설/차별화</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">손목 받침대로 안 풀렸다면 — TENS 손목 케어</span><span class="copy-count">(24자)</span><span class="iboss-cite">역설/커뮤니티</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">안마기 여러 개 말고 — 손목 전용 하나</span><span class="copy-count">(20자)</span><span class="iboss-cite">앵커링+차별화</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">리뷰 평점 4.81, 후기부터 보고 정하세요</span><span class="copy-count">(22자)</span><span class="iboss-cite">사회적 증거</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">무선·충전 — 책상·어디서나 차고만</span><span class="copy-count">(17자)</span><span class="iboss-cite">베네핏</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">게이머·개발자가 고른 손목 케어</span><span class="copy-count">(16자)</span><span class="iboss-cite">고객 사례</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">비슷한 손목 고민이던 분들이 이걸 골랐어요</span><span class="copy-count">(22자)</span><span class="iboss-cite">고객 사례</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">손목 전용 밀착 설계 — 바리바디 EMS</span><span class="copy-count">(20자)</span><span class="iboss-cite">차별화+상품명</span></div>
+            <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
+            <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">손목 마사지기 어떤 거 살지 고민이라면 — TENS 찌릿 자극에 온열, 무선 충전까지. 마사지건처럼 손 아플 일 없이 차고만. 평점 4.81·리뷰 1,136건. <span style="color:#aaa;font-size:11px;">(78자)</span></div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
+            <div class="cta-row"><span class="cta-chip">차이점 확인<span class="cta-count">(6자)</span></span><span class="cta-chip">후기 전체 보기<span class="cta-count">(7자)</span></span><span class="cta-chip">스펙 보기<span class="cta-count">(5자)</span></span><span class="cta-chip">지금 비교하기<span class="cta-count">(7자)</span></span><span class="cta-chip">가격 보기<span class="cta-count">(5자)</span></span></div>
+          </div>
+        </div>
+
+        <div class="type-card" data-cid="a">
+          <div class="type-head"><div><span class="type-badge badge-a">A형 — BOFU</span></div><div class="type-title">즉시 구매 · 5~10%</div><div class="type-sub">효도선물러 · 재입고 대기 · 즉시 전환</div><div class="type-formula"><strong>iboss</strong>: [대상 지정] + [매력적 오퍼] + [베네핏]<br><strong>심리</strong>: FOMO · 긴급성 · 앵커링</div></div>
+          <div class="type-body">
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">TENS 손목 기기 — 오늘 주문 시 바로 출발</span><span class="copy-count">(23자)</span><span class="iboss-cite">오퍼+배송</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">평점 4.81 손목 마사지기, 지금 가격 확인</span><span class="copy-count">(23자)</span><span class="iboss-cite">증거+오퍼</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">손목 아픈 그분께 선물 — 지금 담으면 도착</span><span class="copy-count">(23자)</span><span class="iboss-cite">선물+긴급</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">행사가 마감 전, 인기 색상 품절 임박</span><span class="copy-count">(21자)</span><span class="iboss-cite">FOMO</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">부모님 선물 고민 끝 — 무선 손목 케어</span><span class="copy-count">(20자)</span><span class="iboss-cite">오퍼+베네핏</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">장바구니 속 그 손목 기기, 행사 끝나기 전에</span><span class="copy-count">(23자)</span><span class="iboss-cite">리타겟+FOMO</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">마사지샵 비용으로 매일 — 지금</span><span class="copy-count">(16자)</span><span class="iboss-cite">앵커링</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">오늘만 이 가격 — TENS 온열 손목</span><span class="copy-count">(18자)</span><span class="iboss-cite">긴급성</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">받으면 매일 쓰는 손목 효도템, 지금 담기</span><span class="copy-count">(21자)</span><span class="iboss-cite">선물+오퍼</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">재고 한정 — 다음 입고 미정</span><span class="copy-count">(15자)</span><span class="iboss-cite">희소성</span></div>
+            <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
+            <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">TENS 온열 손목 기기, 지금 주문. 차고만 있으면 되는 무선, 손목 아픈 부모님 선물로도. 평점 4.81. 오늘 주문 시 바로 출발합니다. <span style="color:#aaa;font-size:11px;">(70자)</span></div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
+            <div class="cta-row"><span class="cta-chip">지금 주문하기<span class="cta-count">(7자)</span></span><span class="cta-chip">가격 확인<span class="cta-count">(5자)</span></span><span class="cta-chip">선물 담기<span class="cta-count">(5자)</span></span><span class="cta-chip">행사가 보기<span class="cta-count">(6자)</span></span><span class="cta-chip">재고 확인<span class="cta-count">(5자)</span></span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="tab-psy" class="tab-section" data-tab-type="psy">
+    <div class="section">
+      <div class="section-head"><div class="section-num n3">3</div><div><div class="section-title">심리 편향 카피 01~08</div><div class="section-sub">FOMO·손실회피·사회증거·앵커링·공감·PAS·호기심갭·권위 — 페르소나 버튼으로 교체</div></div></div>
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나 필터 — 클릭 시 8개 카드 헤드라인 교체</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('psy-pa',this)">A형 현우 (사무직)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pb',this)">B형 진수 (게이머)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pc',this)">C형 상호 (운동)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pd',this)">D형 서연 (직장여성)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pe',this)">E형 효도선물러</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pf',this)">F형 육아 손목</button>
+        </div>
+        <div id="panel-psy-pa" class="persona-panel"><div class="persona-panel-title">A형 현우 · 38세 — 사무직 · 주효 편향: 공감 · PAS · 사회증거</div></div>
+        <div id="panel-psy-pb" class="persona-panel"><div class="persona-panel-title">B형 진수 · 33세 — 게이머·개발자 · 주효 편향: 호기심갭 · PAS · 권위</div></div>
+        <div id="panel-psy-pc" class="persona-panel"><div class="persona-panel-title">C형 상호 · 48세 — 운동 · 주효 편향: 권위 · 앵커링 · 사회증거</div></div>
+        <div id="panel-psy-pd" class="persona-panel"><div class="persona-panel-title">D형 서연 · 34세 — 직장여성 · 주효 편향: 공감 · 사회증거 · 손실회피</div></div>
+        <div id="panel-psy-pe" class="persona-panel"><div class="persona-panel-title">E형 효도선물러 · 주효 편향: 공감 · 사회증거 · FOMO(시즌)</div></div>
+        <div id="panel-psy-pf" class="persona-panel"><div class="persona-panel-title">F형 육아 손목 · 주효 편향: 공감 · 손실회피 · 사회증거</div></div>
+      </div>
+
+      <div class="psy-grid">
+        <div class="psy-card" data-cid="01">
+          <div class="psy-head"><span class="psy-icon">🔴</span><div><div class="psy-num">BIAS 01</div><div class="psy-name">FOMO / 희소성</div><div class="psy-desc">한정·마감·품절</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">인기 색상 재고 한정 — 품절 임박</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">이 가격, 이번 행사까지만</div><div class="hl-cnt">(13자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">선물 시즌, 마감 임박</div><div class="hl-cnt">(11자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">다음 입고는 미정입니다</div><div class="hl-cnt">(12자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">지금 가격 확인</span><span class="cta-chip">재고 확인하기</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="02">
+          <div class="psy-head"><span class="psy-icon">💙</span><div><div class="psy-num">BIAS 02</div><div class="psy-name">손실 회피</div><div class="psy-desc">잃지 않는 것이 강함</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">오늘도 손목 찌릿한 채로 잠드시나요?</div><div class="hl-cnt">(20자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">방치하면 더 굳는 손목 — 오늘부터 매일</div><div class="hl-cnt">(20자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">마사지샵 비용, 매번 그냥 나가죠</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">장바구니에 둔 사이 행사가 끝날 수 있어요</div><div class="hl-cnt">(22자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">지금 챙기기</span><span class="cta-chip">행사가 확인</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="03">
+          <div class="psy-head"><span class="psy-icon">✅</span><div><div class="psy-num">BIAS 03</div><div class="psy-name">사회적 증거</div><div class="psy-desc">후기·다수 선택</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">리뷰 평점 4.81 — TENS 온열 손목 마사지기</div><div class="hl-cnt">(24자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">직장인들이 책상 옆에 둔 그 기기</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">'찌릿찌릿 매일 조금씩' 후기 가득</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">남성들이 더 많이 사는 손목 케어템</div><div class="hl-cnt">(18자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">리얼 후기 보기</span><span class="cta-chip">4.81점 확인</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="04">
+          <div class="psy-head"><span class="psy-icon">⚓</span><div><div class="psy-num">BIAS 04</div><div class="psy-name">앵커링</div><div class="psy-desc">기준점 대비 이득</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">마사지샵 한 번 값으로, 책상에서 매일</div><div class="hl-cnt">(20자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">안마기 여러 개 말고 — 손목 전용 하나</div><div class="hl-cnt">(20자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">한 번 사서 온 가족 손목까지</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">받으면 비싸 보이는데, 가격은 합리적</div><div class="hl-cnt">(19자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">가성비 비교</span><span class="cta-chip">지금 가격 보기</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="05">
+          <div class="psy-head"><span class="psy-icon">❤️</span><div><div class="psy-num">BIAS 05</div><div class="psy-name">공감 / 감정</div><div class="psy-desc">감정 언어 반영</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">하루 종일 마우스 잡은 손목, 고생했어요</div><div class="hl-cnt">(21자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">퇴근하면 손목부터 뻐근한 하루</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">게임·코딩에 혹사한 내 손목</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">아기 안다 시큰해진 손목, 쉴 틈도 없죠</div><div class="hl-cnt">(21자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">손목 챙기기</span><span class="cta-chip">지금 케어</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="06">
+          <div class="psy-head"><span class="psy-icon">🔍</span><div><div class="psy-num">BIAS 06</div><div class="psy-name">PAS (문제→고통→해결)</div><div class="psy-desc">증상→증폭→해결</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">마우스·키보드로 굳은 손목 → 차고 찌릿하게</div><div class="hl-cnt">(23자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">게임 오래 하면 더 저린 손목, 미루면 더해요</div><div class="hl-cnt">(24자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">보호대론 그때뿐 — TENS+온열로 매일</div><div class="hl-cnt">(21자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">손목 아플 때 뭘 사야 할지 모르겠다면</div><div class="hl-cnt">(20자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">찌릿하게 케어</span><span class="cta-chip">오늘부터 시작</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="07">
+          <div class="psy-head"><span class="psy-icon">🎯</span><div><div class="psy-num">BIAS 07</div><div class="psy-name">호기심 갭</div><div class="psy-desc">절반만 공개</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">직장인 책상 옆에 늘어나는 그 기기의 정체</div><div class="hl-cnt">(22자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">남성들이 의외로 더 많이 사는 손목템은?</div><div class="hl-cnt">(21자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">차고 있으면 찌릿해지는 손목 기기?</div><div class="hl-cnt">(19자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">마우스 손목에 다들 쓴다는 이것</div><div class="hl-cnt">(16자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">이유 확인하기</span><span class="cta-chip">지금 보기</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="08">
+          <div class="psy-head"><span class="psy-icon">🏅</span><div><div class="psy-num">BIAS 08</div><div class="psy-name">권위 / 신뢰</div><div class="psy-desc">수치·기능·브랜드</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">리뷰 평점 4.81 · TENS+온열 손목 전용</div><div class="hl-cnt">(23자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">무선·충전 — 어디서나 차고만 있으면</div><div class="hl-cnt">(19자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">손목 전용 밀착 설계</div><div class="hl-cnt">(11자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">바리바디 EMS 라인 — 검증된 브랜드</div><div class="hl-cnt">(19자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">스펙·후기 보기</span><span class="cta-chip">신뢰도 확인</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-need" class="tab-section" data-tab-type="need">
+    <div class="section">
+      <div class="section-head"><div class="section-num n4">4</div><div><div class="section-title">인간 본연의 욕구 09~13 (매슬로우)</div><div class="section-sub">우선순위: 9 생리(손목 저림·휴식) &gt; 10 안전(만성화) &gt; 13 자아(자기관리) &gt; 12 존중(선물) &gt; 11 사회</div></div></div>
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나 필터 — 클릭 시 5개 카드 헤드라인 교체</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('need-pa',this)">A형 현우 (사무직)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pb',this)">B형 진수 (게이머)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pc',this)">C형 상호 (운동)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pd',this)">D형 서연 (직장여성)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pe',this)">E형 효도선물러</button>
+          <button class="persona-btn" onclick="togglePersona('need-pf',this)">F형 육아 손목</button>
+        </div>
+        <div id="panel-need-pa" class="persona-panel"><div class="persona-panel-title">A형 현우 · 38세 — 핵심 욕구: 생리(휴식) · 안전 · 자아(루틴)</div></div>
+        <div id="panel-need-pb" class="persona-panel"><div class="persona-panel-title">B형 진수 · 33세 — 핵심 욕구: 생리(저림) · 자아(루틴) · 안전</div></div>
+        <div id="panel-need-pc" class="persona-panel"><div class="persona-panel-title">C형 상호 · 48세 — 핵심 욕구: 생리·안전(만성화) · 존중(자기보상)</div></div>
+        <div id="panel-need-pd" class="persona-panel"><div class="persona-panel-title">D형 서연 · 34세 — 핵심 욕구: 생리(저림) · 존중(자기보상)</div></div>
+        <div id="panel-need-pe" class="persona-panel"><div class="persona-panel-title">E형 효도선물러 — 핵심 욕구: 존중(효도·선물) · 사회</div></div>
+        <div id="panel-need-pf" class="persona-panel"><div class="persona-panel-title">F형 육아 손목 — 핵심 욕구: 생리(저림·휴식) · 존중(자기보상)</div></div>
+      </div>
+
+      <div class="psy-grid">
+        <div class="psy-card" data-cid="09">
+          <div class="psy-head"><span class="psy-icon">🍃</span><div><div class="psy-num">NEED 09 ⭐</div><div class="psy-name">생리적 욕구 (손목 저림·휴식)</div><div class="psy-desc">손목 저림이 휴식 방해 — 1순위</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">자다 손목 저려 깨던 밤, 자기 전 찌릿 케어</div><div class="hl-cnt">(23자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">아침에 손목 뻐근해 마우스 잡기 싫을 때</div><div class="hl-cnt">(21자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">종일 일한 손목, 누워서 온열로 마무리</div><div class="hl-cnt">(20자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">쉬어도 안 풀리는 손목, 차고 찌릿하게</div><div class="hl-cnt">(20자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">자기 전 10분</span><span class="cta-chip">오늘 밤 케어</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"손목통증으로 잠 못 드는 밤, TENS로 완화"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">통증 완화</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"자다 깨는 손저림, 치료로 푹 주무세요"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">'치료' 단정</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="10">
+          <div class="psy-head"><span class="psy-icon">🛡️</span><div><div class="psy-num">NEED 10</div><div class="psy-name">안전 욕구 (만성화 방지)</div><div class="psy-desc">미리 관리</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">오늘의 찌릿함, 쌓이기 전에 매일 케어</div><div class="hl-cnt">(20자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">손목은 한 번 무리하면 오래가요</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">매일 케어로 미리미리 챙기세요</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">방치 말고 지금부터 손목 관리 루틴</div><div class="hl-cnt">(19자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">매일 케어 시작</span><span class="cta-chip">지금 관리</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"방치하면 손목터널로 — 미리 관리"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">질환명(손목터널)</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"손저림 악화 전에 매일 치료"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">'치료' 단정</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="11">
+          <div class="psy-head"><span class="psy-icon">🤝</span><div><div class="psy-num">NEED 11</div><div class="psy-name">사회적 욕구 (가족·동조)</div><div class="psy-desc">가족 공용·소속</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">온 가족이 돌려 쓰는 손목 케어템</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">손목 아픈 사람끼리 아는 그 기기</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">부모님도 나도 같이 쓰는 하나</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">다들 책상에 하나씩 두는 손목템</div><div class="hl-cnt">(17자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">온 가족 케어</span><span class="cta-chip">같이 쓰기</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"손목터널 있는 사람끼리 아는 그것"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">질환명</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"온 가족 손저림, 하나로 완화"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">효능 단정</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="12">
+          <div class="psy-head"><span class="psy-icon">👑</span><div><div class="psy-num">NEED 12</div><div class="psy-name">존중 욕구 (자기보상·선물)</div><div class="psy-desc">선물·나를 위한 투자</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">고생한 내 손목에, 찌릿한 보상 한 번</div><div class="hl-cnt">(19자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">손목 아프신 부모님께 드리는 선물</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">받는 분이 매일 쓰는 효도템</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">나를 위한 매일 10분, 손목 온열</div><div class="hl-cnt">(18자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">선물하기</span><span class="cta-chip">나에게 선물</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"부모님 손목통증 치료, 선물로"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">'통증·치료' 단정</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"물리치료 대신 드리는 선물"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">의료행위 대체</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="13">
+          <div class="psy-head"><span class="psy-icon">🌟</span><div><div class="psy-num">NEED 13</div><div class="psy-name">자아실현 (자기관리·루틴)</div><div class="psy-desc">손목 챙기는 사람</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">손목 챙기는 사람의 책상 루틴</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">매일 찌릿 10분, 나를 돌보는 습관</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">일도 게임도 손목부터 챙기는 어른</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">꾸준히 관리하는 내가 좋다</div><div class="hl-cnt">(14자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">내 루틴 시작</span><span class="cta-chip">오늘부터</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"통증 치료를 매일 습관으로"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">'통증·치료' 단정</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"근육 이완 루틴으로 건강하게"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">'근육 이완' 의학적</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-reg" class="tab-section">
+    <div class="section">
+      <div class="section-head"><div class="section-num n1">5</div><div><div class="section-title">규제 주의 검토 — EMS/TENS 기기 (강한 주의)</div><div class="section-sub">의료기기 오인·효능 단정 규제 엄격</div></div></div>
+      <div class="card">
+        <div class="warn-box"><div class="warn-title">⚠️ "손목터널증후군·건초염" 등 질환명</div><p>질병 치료 암시·의료기기 오인. <b>대안:</b> "반복 사용에 뻐근한 손목", "손 저릿할 때".</p></div>
+        <div class="warn-box"><div class="warn-title">⚠️ "통증 완화·치료·물리치료"</div><p>효능 단정·의료행위 암시. <b>대안:</b> "찌릿 자극으로 시원하게", "뻐근함 케어", "온열 찜질감".</p></div>
+        <div class="warn-box"><div class="warn-title">⚠️ "근육 이완·신경 자극·혈액순환"</div><p>의학적·작용기전 표현. <b>대안:</b> "찌릿 자극", "따뜻하게". TENS·저주파는 기능 표기는 가능, 효능 연결은 회피.</p></div>
+        <div class="warn-box"><div class="warn-title">⚠️ 사이즈·핏 / 비교·최상급</div><p>리뷰 "여자가 쓰기엔 큼" → 여성 소재엔 손목 둘레·사이즈 안내. "최고/완벽/100%" 단독 금지. 별점 4.81·리뷰 1,136건은 실수치 일치. 경쟁사명 직접 비교 금지.</p></div>
+        <div class="ok-box">✅ 안전: 찌릿 자극·온열·무선·휴대·"차고만 있으면"·선물·자기관리·"책상에서 틈틈이" 톤은 위험 낮음. EMS·TENS '기능'은 표기하되 '효능'은 단정하지 않기.</div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:800;margin-bottom:4px;">🚨 규제 위험 카피 모음 — 고효율이나 사용 시 검토 필요</h3>
+        <div class="source-note">전환력은 높지만 식약처 표시·광고 가이드에 걸릴 수 있는 표현. <b>각 카피 옆 🚨 규제주의 배지</b> 확인 후, 법무/대행사 검토 없이는 안전 대안을 사용하세요. (의료기기 광고는 사전심의 대상일 수 있음)</div>
+
+        <div class="reg-group-label">A. 효능 단정 (통증 완화·저림 해소)</div>
+        <div class="reg-item"><span class="reg-risky">"손목통증, TENS로 직접 완화"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '통증 완화' 효능 단정 / 의료기기 오인</div><div class="reg-alt">✅ 대안: "뻐근한 손목, 찌릿 자극으로 시원하게"</div></div>
+        <div class="reg-item"><span class="reg-risky">"저주파로 손저림이 사라져요"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '사라져요' 효과 단정 + 증상 치료 암시</div><div class="reg-alt">✅ 대안: "저주파 자극으로 손목 시원하게"</div></div>
+        <div class="reg-item"><span class="reg-risky">"근육 이완으로 손목 뻐근함이 풀려요"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '근육 이완'은 의학적 표현 + 효과 단정</div><div class="reg-alt">✅ 대안: "온열·찌릿 자극으로 뻐근함 케어"</div></div>
+
+        <div class="reg-group-label">B. 질환명·의료행위 대체</div>
+        <div class="reg-item"><span class="reg-risky">"손목터널증후군에 좋은 마사지기"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: 질환명(손목터널) 적응증 표방</div><div class="reg-alt">✅ 대안: "마우스·반복 작업에 뻐근한 손목에"</div></div>
+        <div class="reg-item"><span class="reg-risky">"손목 건초염 케어, 집에서"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: 질환명(건초염) 사용</div><div class="reg-alt">✅ 대안: "많이 쓴 손목, 집에서 찌릿 케어"</div></div>
+        <div class="reg-item"><span class="reg-risky">"물리치료 안 가도 집에서 손목 케어"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: 물리치료(의료행위) 대체 암시</div><div class="reg-alt">✅ 대안: "마사지샵 가는 시간 대신, 책상에서 매일"</div></div>
+
+        <div class="reg-group-label">C. 작용기전·최상급</div>
+        <div class="reg-item"><span class="reg-risky">"혈액순환 개선으로 손저림 완화"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '혈액순환 개선' 의학적 효능</div><div class="reg-alt">✅ 대안: "찌릿 자극으로 개운하게"</div></div>
+        <div class="reg-item"><span class="reg-risky">"신경을 자극해 손목 통증 차단"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '신경 자극·통증 차단' 작용기전·효능 단정</div><div class="reg-alt">✅ 대안: "TENS 자극으로 시원하게"</div></div>
+        <div class="reg-item"><span class="reg-risky">"100% 만족, 손목통증 끝"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '100%' 최상급 단독 + '통증 끝' 효능 단정</div><div class="reg-alt">✅ 대안: "리뷰 평점 4.81 — 뻐근한 손목 케어"</div></div>
+
+        <div class="source-note" style="margin-top:14px;background:#fff1f0;color:#cf1322;">⚠️ 위 카피들은 <b>참고용</b>입니다. 메타·네이버 광고 심사 및 식약처 가이드상 반려·제재 소지가 있으니, 실제 집행 전 반드시 검토하고 가급적 안전 대안을 사용하세요. EMS·TENS 기기는 의료기기 광고 사전심의 대상일 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  if (window.event && window.event.target) window.event.target.classList.add('active');
+}
+function togglePersona(id, btn) {
+  var card = btn.closest('.card');
+  var isActive = btn.classList.contains('p-active');
+  card.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('p-active'));
+  card.querySelectorAll('.persona-panel').forEach(p => p.classList.remove('p-active'));
+  var tabSection = btn.closest('.tab-section');
+  if (!isActive) {
+    btn.classList.add('p-active');
+    var panel = document.getElementById('panel-' + id);
+    if (panel) panel.classList.add('p-active');
+    if (tabSection && tabSection.dataset.tabType) applyPersonaCopy(tabSection, id.slice(-1).toUpperCase());
+  } else {
+    if (tabSection && tabSection.dataset.tabType) applyPersonaCopy(tabSection, null);
+  }
+}
+function applyPersonaCopy(tabSection, personaKey) {
+  var tabType = tabSection.dataset.tabType;
+  var isAbc = (tabType === 'abc');
+  var cardSel = isAbc ? '.type-card' : '.psy-card';
+  var itemSel = isAbc ? '.copy-item' : '.hl-item';
+  var bodySel = isAbc ? '.type-body' : '.psy-body';
+  tabSection.querySelectorAll(cardSel).forEach(function(pc){
+    var cid = pc.dataset.cid;
+    var body = pc.querySelector(bodySel);
+    if (!body) return;
+    if (!pc._origHl) pc._origHl = Array.from(body.querySelectorAll(itemSel)).map(function(el){ return el.outerHTML; });
+    var anchor = null;
+    body.querySelectorAll('.psy-label').forEach(function(el){
+      var txt = el.textContent.trim();
+      if (isAbc ? txt.indexOf('본문 예시') === 0 : txt === 'CTA') anchor = el;
+    });
+    body.querySelectorAll(itemSel).forEach(function(el){ el.remove(); });
+    var htmlArr;
+    var d = (PERSONA_COPY[tabType] && PERSONA_COPY[tabType][cid] && PERSONA_COPY[tabType][cid][personaKey]);
+    if (personaKey && d) {
+      htmlArr = d.map(function(item, i){
+        return isAbc
+          ? '<div class="copy-item"><span class="copy-num">'+(i+1)+'</span><span class="copy-text">'+item.t+'</span><span class="copy-count">'+item.c+'</span>'+(item.src?'<span class="iboss-cite">'+item.src+'</span>':'')+'</div>'
+          : '<div class="hl-item"><div class="hl-n">'+(i+1)+'</div><div class="hl-txt">'+item.t+'</div><div class="hl-cnt">'+item.c+'</div></div>';
+      });
+      pc.classList.add('persona-active');
+    } else { htmlArr = pc._origHl || []; pc.classList.remove('persona-active'); }
+    var tmp = document.createElement('div');
+    htmlArr.forEach(function(html){ tmp.innerHTML = html; anchor ? body.insertBefore(tmp.firstChild, anchor) : body.appendChild(tmp.firstChild); });
+  });
+}
+// 페르소나: A=현우(사무직)/B=진수(게이머)/C=상호(운동)/D=서연(직장여성)/E=효도선물러/F=육아손목
+var PERSONA_COPY = { abc: {}, psy: {}, need: {} };
+PERSONA_COPY.abc.c = {
+  A:[{t:"종일 마우스 잡아 손목 뻐근한 직장인이라면",c:"(22자)"},{t:"퇴근하면 손목부터 묵직한 당신께",c:"(17자)"},{t:"책상 앞 하루, 손목이 찌릿하다면",c:"(17자)"}],
+  B:[{t:"게임·코딩 오래 하면 손목 저린 당신께",c:"(20자)"},{t:"장시간 PC에 손목 혹사한 분들 보세요",c:"(20자)"},{t:"마우스 오래 잡아 손목 찌릿하다면",c:"(18자)"}],
+  C:[{t:"골프·운동 후 손목 욱신한 분들 보세요",c:"(20자)"},{t:"반복 작업에 손목 뻐근한 당신께",c:"(17자)"},{t:"나이 들며 손목 회복 느려졌다면",c:"(17자)"}],
+  D:[{t:"스마트폰·마우스로 엄지·손목 저린다면",c:"(20자)"},{t:"설거지·청소 후 손목 시큰하다면",c:"(17자)"},{t:"작은 손목 케어 찾고 계신다면",c:"(16자)"}],
+  E:[{t:"부모님 손목 아프신 거 안쓰럽다면",c:"(18자)"},{t:"손목 아프신 부모님 늘 마음 쓰이죠",c:"(18자)"},{t:"조작 쉬운 손목 효도템 찾는다면",c:"(17자)"}],
+  F:[{t:"아기 안다 손목 시큰한 엄마·아빠라면",c:"(19자)"},{t:"산후 손목 저림에 쉴 틈 없다면",c:"(16자)"},{t:"수유·안기로 손목 무리했다면",c:"(15자)"}]
+};
+PERSONA_COPY.abc.b = {
+  A:[{t:"직장인 손목템 — TENS+온열, 평점 4.81",c:"(21자)"},{t:"마우스 손목, 보호대 말고 차고만 있으면",c:"(20자)"},{t:"퇴근 후 5분, 무선 손목 케어",c:"(15자)"}],
+  B:[{t:"게이머·개발자 손목템 — 책상에서 바로",c:"(19자)"},{t:"보호대론 부족 — TENS 손목 케어",c:"(17자)"},{t:"스펙 보고 정하는 손목 마사지기 4.81",c:"(19자)"}],
+  C:[{t:"운동·골프 손목 — 무선 휴대 TENS 온열",c:"(20자)"},{t:"스펙·후기 보고 — 손목 전용 기기",c:"(17자)"},{t:"안마기 말고 손목만 콕 — 평점 4.81",c:"(19자)"}],
+  D:[{t:"작고 간편한 손목 케어 — 평점 4.81",c:"(18자)"},{t:"큰 기기 부담이면 손목 전용 무선",c:"(17자)"},{t:"후기·디자인 보고 — 손목 마사지기",c:"(18자)"}],
+  E:[{t:"효도선물 비교라면 — 무선 손목 케어",c:"(18자)"},{t:"받는 분이 매일 쓰는 효도템 4.81",c:"(17자)"},{t:"부모님도 혼자 쉽게 — 차고만 있으면",c:"(18자)"}],
+  F:[{t:"육아맘 손목템 — 재운 뒤 차고만",c:"(16자)"},{t:"보호대로 버텼다면 — TENS 손목 케어",c:"(19자)"},{t:"맘카페가 찾는 손목 케어 4.81",c:"(16자)"}]
+};
+PERSONA_COPY.abc.a = {
+  A:[{t:"직장인 손목 기기 — 오늘 주문 바로 출발",c:"(20자)"},{t:"퇴근 전 주문, 책상에서 바로 케어",c:"(17자)"},{t:"평점 4.81, 지금 가격 확인",c:"(14자)"}],
+  B:[{t:"게이머 손목 기기, 지금 최저가 확인",c:"(18자)"},{t:"재고 한정 — 오늘 주문 시 바로 출발",c:"(19자)"},{t:"스펙·후기 보고 — 지금 담기",c:"(15자)"}],
+  C:[{t:"운동 손목 기기 — 오늘 주문 바로 출발",c:"(19자)"},{t:"라운딩 전에 — 지금 담으면 도착",c:"(16자)"},{t:"스펙 검증 끝 — 지금이 가장 쌀 때",c:"(18자)"}],
+  D:[{t:"작은 손목 케어, 지금 가격 확인",c:"(16자)"},{t:"오늘만 이 가격 — 손목 온열",c:"(15자)"},{t:"장바구니 속 그것, 품절 전에",c:"(15자)"}],
+  E:[{t:"가정의달 효도선물 — 지금 담으면 도착",c:"(19자)"},{t:"손목 효도템, 부모님 선물 마감 전",c:"(17자)"},{t:"받으면 매일 쓰시는 선물, 지금",c:"(16자)"}],
+  F:[{t:"육아맘 손목 기기 — 오늘 주문 바로",c:"(17자)"},{t:"재운 뒤 쓸 손목 케어, 지금 담기",c:"(17자)"},{t:"행사가 마감 — 지금 담기",c:"(13자)"}]
+};
+PERSONA_COPY.psy['01'] = {
+  A:[{t:"직장인 인기템 — 품절 임박",c:"(13자)"},{t:"이 가격, 이번 행사까지만",c:"(13자)"}],
+  B:[{t:"게이밍 손목템 재고 한정",c:"(12자)"},{t:"지금 아니면 정가",c:"(9자)"}],
+  C:[{t:"인기 색상 품절 임박",c:"(10자)"},{t:"이 구성, 이번 행사까지",c:"(12자)"}],
+  D:[{t:"예쁜 색 품절 임박",c:"(9자)"},{t:"행사 끝나면 정가예요",c:"(11자)"}],
+  E:[{t:"효도선물 시즌, 마감 임박",c:"(13자)"},{t:"부모님 선물, 품절 전에",c:"(12자)"}],
+  F:[{t:"맘카페 인기 — 품절 임박",c:"(12자)"},{t:"이 가격은 지금만",c:"(9자)"}]
+};
+PERSONA_COPY.psy['02'] = {
+  A:[{t:"오늘도 손목 찌릿한 채로 퇴근하나요?",c:"(19자)"},{t:"마우스 손목, 미루면 더 굳어요",c:"(16자)"}],
+  B:[{t:"게임할 때마다 더 저린 손목",c:"(14자)"},{t:"방치하면 더 굳는 손목",c:"(12자)"}],
+  C:[{t:"운동할 때마다 더 욱신한 손목",c:"(15자)"},{t:"미루면 회복 더 느려져요",c:"(13자)"}],
+  D:[{t:"설거지할 때마다 더 시큰한 손목",c:"(16자)"},{t:"장바구니 둔 사이 행사 끝나요",c:"(15자)"}],
+  E:[{t:"부모님 손목, 미루면 더 안 좋아져요",c:"(18자)"},{t:"선물 타이밍 놓치면 정가뿐",c:"(14자)"}],
+  F:[{t:"아기 안을 때마다 더 시큰한 손목",c:"(16자)"},{t:"쉴 틈 없이 손목만 더 아파져요",c:"(16자)"}]
+};
+PERSONA_COPY.psy['03'] = {
+  A:[{t:"직장인들이 책상 옆에 둔 그 기기",c:"(17자)"},{t:"리뷰 4.81 — 사무직 손목템",c:"(15자)"}],
+  B:[{t:"게이머·개발자가 고른 손목템",c:"(15자)"},{t:"'찌릿찌릿 매일 조금씩' 후기",c:"(16자)"}],
+  C:[{t:"40·50대 남성이 많이 사는 손목템",c:"(17자)"},{t:"스펙·후기로 검증된 평점 4.81",c:"(16자)"}],
+  D:[{t:"직장 여성들이 쓰는 작은 손목템",c:"(16자)"},{t:"리뷰 4.81 · 후기 가득",c:"(12자)"}],
+  E:[{t:"'아버지가 좋아하세요' 후기 가득",c:"(17자)"},{t:"효도선물로 많이 찾는 그것",c:"(14자)"}],
+  F:[{t:"육아맘들이 찾는 손목 케어",c:"(13자)"},{t:"리뷰 4.81 · 부모도 자녀도",c:"(14자)"}]
+};
+PERSONA_COPY.psy['04'] = {
+  A:[{t:"마사지샵 값으로 책상에서 매일",c:"(15자)"},{t:"안마기 말고 손목만 콕",c:"(12자)"}],
+  B:[{t:"장비값 일부로 손목 케어",c:"(13자)"},{t:"비싼 기기 말고 손목 전용",c:"(13자)"}],
+  C:[{t:"라운딩 한 번 값으로 평생 손목",c:"(16자)"},{t:"안마의자는 부담, 손목 하나면",c:"(15자)"}],
+  D:[{t:"마사지샵 대신 집에서 매일",c:"(13자)"},{t:"큰 기기 말고 작은 손목 케어",c:"(15자)"}],
+  E:[{t:"비싼 선물 아니어도 매일 쓰는 효도템",c:"(19자)"},{t:"부모님 마사지 비용 대신",c:"(13자)"}],
+  F:[{t:"산후관리 비용 대신 집에서",c:"(13자)"},{t:"비싼 기기 말고 손목 전용",c:"(13자)"}]
+};
+PERSONA_COPY.psy['05'] = {
+  A:[{t:"하루 종일 마우스 잡은 손목, 고생했어요",c:"(21자)"},{t:"퇴근하면 손목부터 뻐근한 하루",c:"(16자)"}],
+  B:[{t:"게임·코딩에 혹사한 내 손목",c:"(15자)"},{t:"손목 저려 마우스 잡기 싫은 날",c:"(16자)"}],
+  C:[{t:"운동·골프로 욱신한 손목, 고생했어요",c:"(19자)"},{t:"나이 들수록 손목부터 신호 와요",c:"(16자)"}],
+  D:[{t:"스마트폰·설거지에 시큰한 손목",c:"(16자)"},{t:"나 챙길 틈 없이 굳은 손목",c:"(14자)"}],
+  E:[{t:"손목 아프신 부모님, 늘 마음 쓰이죠",c:"(18자)"},{t:"받으면 매일 쓰시는 그 마음",c:"(14자)"}],
+  F:[{t:"아기 안다 시큰해진 손목, 쉴 틈도 없죠",c:"(20자)"},{t:"나보다 아기 먼저인 엄마 손목",c:"(15자)"}]
+};
+PERSONA_COPY.psy['06'] = {
+  A:[{t:"마우스로 굳은 손목 → 차고 찌릿하게",c:"(18자)"},{t:"퇴근 후 묵직한 손목, 미루면 더해요",c:"(18자)"}],
+  B:[{t:"게임·코딩 누적 손목 → 책상에서 바로",c:"(19자)"},{t:"장시간 PC 손목, 더 저리기 전에",c:"(17자)"}],
+  C:[{t:"운동·작업 누적 손목 → 무선으로 어디서나",c:"(20자)"},{t:"참고 버틴 손목, 더 굳기 전에",c:"(15자)"}],
+  D:[{t:"스마트폰·가사 손목 → 차고 찌릿하게",c:"(18자)"},{t:"시큰한 손목 미루면 더 시큰해져요",c:"(17자)"}],
+  E:[{t:"부모님 손목 → 차고만 있는 무선으로",c:"(18자)"},{t:"멀리서 못 챙기던 손목, 이걸로",c:"(16자)"}],
+  F:[{t:"아기 안기 손목 → 재운 뒤 10분 찌릿",c:"(19자)"},{t:"산후 손목 미루면 더 시큰해요",c:"(15자)"}]
+};
+PERSONA_COPY.psy['07'] = {
+  A:[{t:"직장인 책상 옆 그 기기의 정체",c:"(15자)"},{t:"마우스 손목에 다들 쓴다는 이것",c:"(16자)"}],
+  B:[{t:"게이머·개발자가 책상에 둔 그것",c:"(16자)"},{t:"장시간 PC족이 쓰는 손목 비결",c:"(16자)"}],
+  C:[{t:"골프 가방에 하나씩 있는 그것",c:"(15자)"},{t:"중년 남성이 더 사는 손목템?",c:"(15자)"}],
+  D:[{t:"직장 여성 책상 위 작은 그 기기",c:"(16자)"},{t:"스마트폰 엄지에 쓴다는 이것",c:"(15자)"}],
+  E:[{t:"효도선물 1순위가 왜 손목 기기일까",c:"(18자)"},{t:"부모님이 혼자 쓰는 비결",c:"(13자)"}],
+  F:[{t:"육아맘들이 재운 뒤 쓰는 그것",c:"(15자)"},{t:"산후 손목에 다들 쓴다는 이것",c:"(16자)"}]
+};
+PERSONA_COPY.psy['08'] = {
+  A:[{t:"리뷰 4.81 · TENS+온열 손목",c:"(15자)"},{t:"무선 — 책상에서 차고만 있으면",c:"(16자)"}],
+  B:[{t:"TENS+온열 스펙 · 손목 전용 설계",c:"(17자)"},{t:"스펙·후기로 검증된 바리바디",c:"(15자)"}],
+  C:[{t:"TENS+온열 · 손목 밀착 설계",c:"(15자)"},{t:"리뷰 4.81, 검증된 브랜드",c:"(14자)"}],
+  D:[{t:"작고 가벼운 무선 · 평점 4.81",c:"(15자)"},{t:"손목 전용 — 차고만 있으면",c:"(14자)"}],
+  E:[{t:"무선·간편 — 부모님도 혼자 쉽게",c:"(16자)"},{t:"리뷰 평점 4.81 효도템",c:"(13자)"}],
+  F:[{t:"차고만 있으면 — 육아 중에도 간편",c:"(17자)"},{t:"리뷰 4.81 · 검증된 브랜드",c:"(14자)"}]
+};
+PERSONA_COPY.need['09'] = {
+  A:[{t:"마우스로 굳은 손목, 자기 전 찌릿 케어",c:"(20자)"},{t:"아침에 손목 뻐근해 일하기 싫을 때",c:"(17자)"}],
+  B:[{t:"게임 후 저린 손목, 자기 전 찌릿하게",c:"(19자)"},{t:"밤새 PC 한 손목, 누워서 온열로",c:"(16자)"}],
+  C:[{t:"운동 후 욱신한 손목, 자기 전 케어",c:"(17자)"},{t:"아침마다 뻣뻣한 손목 풀기",c:"(14자)"}],
+  D:[{t:"스마트폰 보다 저린 손목, 자기 전 케어",c:"(19자)"},{t:"아침에 손 굳어 마우스 잡기 싫을 때",c:"(18자)"}],
+  E:[{t:"부모님 손목 편히 — 자기 전 찌릿 케어",c:"(19자)"},{t:"손목 저려 못 주무시던 부모님께",c:"(16자)"}],
+  F:[{t:"아기 재운 뒤, 시큰한 손목 찌릿 케어",c:"(19자)"},{t:"산후 손목 저림에 잠 설치던 밤",c:"(16자)"}]
+};
+PERSONA_COPY.need['10'] = {
+  A:[{t:"마우스 손목, 굳기 전 매일 케어",c:"(16자)"},{t:"오늘 찌릿함, 만성 되기 전에",c:"(15자)"}],
+  B:[{t:"게임 손목, 더 저리기 전에 매일",c:"(16자)"},{t:"장시간 PC 손목 미리 관리",c:"(14자)"}],
+  C:[{t:"운동 손목, 더 굳기 전에 매일",c:"(15자)"},{t:"중년 손목은 매일 관리가 답",c:"(14자)"}],
+  D:[{t:"스마트폰 손목, 굳기 전 매일 케어",c:"(17자)"},{t:"방치 말고 지금부터 손목 루틴",c:"(15자)"}],
+  E:[{t:"부모님 손목, 미리 챙겨드려요",c:"(14자)"},{t:"더 안 좋아지기 전에 매일",c:"(13자)"}],
+  F:[{t:"산후 손목, 더 시큰하기 전에 매일",c:"(16자)"},{t:"육아 손목 미리미리 챙기세요",c:"(14자)"}]
+};
+PERSONA_COPY.need['11'] = {
+  A:[{t:"직장인들 책상에 하나씩",c:"(12자)"},{t:"손목 아픈 동료끼리 아는 그것",c:"(15자)"}],
+  B:[{t:"게이머들 사이 그 손목템",c:"(12자)"},{t:"PC족이 다 쓰는 그것",c:"(11자)"}],
+  C:[{t:"골프 동호회에 하나씩",c:"(11자)"},{t:"운동하는 사람끼리 아는 그것",c:"(15자)"}],
+  D:[{t:"직장 여성들이 같이 쓰는 손목템",c:"(16자)"},{t:"친구 보고 바로 산 그것",c:"(12자)"}],
+  E:[{t:"부모님도 자녀도 같이 쓰는 하나",c:"(16자)"},{t:"온 가족 건강 선물로",c:"(11자)"}],
+  F:[{t:"육아맘들이 돌려 쓰는 손목템",c:"(15자)"},{t:"맘카페에서 다들 하나씩",c:"(12자)"}]
+};
+PERSONA_COPY.need['12'] = {
+  A:[{t:"고생한 내 손목에 찌릿한 보상",c:"(15자)"},{t:"열심히 일한 나를 위한 10분",c:"(14자)"}],
+  B:[{t:"혹사한 손목에 주는 보상",c:"(13자)"},{t:"게임·일 끝낸 나를 위한 케어",c:"(15자)"}],
+  C:[{t:"버틴 손목에 주는 보상",c:"(12자)"},{t:"나를 위한 매일 손목 온열",c:"(13자)"}],
+  D:[{t:"고생한 내 손목에 작은 보상",c:"(14자)"},{t:"바쁜 나를 위한 매일 10분",c:"(13자)"}],
+  E:[{t:"손목 아프신 부모님께 드리는 선물",c:"(17자)"},{t:"받으면 인정받는 효도템",c:"(12자)"}],
+  F:[{t:"고생한 엄마 손목에 보상 한 번",c:"(15자)"},{t:"나를 위한 재운 뒤 10분",c:"(13자)"}]
+};
+PERSONA_COPY.need['13'] = {
+  A:[{t:"손목 챙기는 직장인의 책상 루틴",c:"(16자)"},{t:"일도 손목부터 챙기는 어른",c:"(14자)"}],
+  B:[{t:"게임도 손목부터 챙기는 사람",c:"(15자)"},{t:"PC 오래 해도 손목 관리하는 나",c:"(16자)"}],
+  C:[{t:"운동도 손목부터 챙기는 어른",c:"(15자)"},{t:"꾸준히 관리하는 내가 좋다",c:"(14자)"}],
+  D:[{t:"바쁜 중에도 손목 챙기는 사람",c:"(15자)"},{t:"매일 나를 돌보는 습관",c:"(12자)"}],
+  E:[{t:"부모님도 나도 손목 챙기는 사람",c:"(16자)"},{t:"챙길 줄 아는 사람의 선물",c:"(13자)"}],
+  F:[{t:"육아 중에도 나를 돌보는 습관",c:"(15자)"},{t:"엄마도 자기 손목 챙기는 사람",c:"(15자)"}]
+};
+</script>
+</body>
+</html>
