@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>릴렉스틱 페르소나 × VP(세분화) 카피 — 2026.06</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:#f5f6f8;color:#1a1a2e;line-height:1.7;font-size:13px;}
+.hero{background:linear-gradient(135deg,#0a0a1a,#1a1a2e 60%,#2d1b69);color:#fff;padding:44px 40px 38px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;left:-80px;bottom:-80px;width:280px;height:280px;border-radius:50%;background:rgba(100,60,255,.10);}
+.hero .tag{display:inline-block;background:rgba(150,100,255,.25);color:#b39dff;font-size:12px;font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:20px;margin-bottom:14px;}
+.hero h1{font-size:25px;font-weight:800;line-height:1.35;margin-bottom:8px;}
+.hero p{font-size:13px;color:rgba(255,255,255,.62);}
+.back-btn{display:inline-flex;gap:6px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;text-decoration:none;margin-bottom:20px;}
+.chips{margin-top:16px;display:flex;gap:7px;flex-wrap:wrap;}
+.chip{background:rgba(255,255,255,.12);color:rgba(255,255,255,.9);font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.15);}
+.container{max-width:1000px;margin:0 auto;padding:30px 20px 80px;}
+.legend{background:#fff;border-radius:14px;padding:14px 20px;box-shadow:0 2px 16px rgba(0,0,0,.06);margin-bottom:18px;font-size:12px;color:#555;}
+.legend b{color:#1a1a2e;}
+.flag{display:inline-block;background:#fff1f0;color:#cf1322;border-radius:5px;padding:1px 6px;font-size:10.5px;font-weight:700;}
+.fb{display:inline-block;border-radius:5px;padding:1px 6px;font-size:10px;font-weight:800;}
+.fb.tofu{background:#f9f0ff;color:#531dab;}.fb.mofu{background:#e6f4ff;color:#0958d9;}.fb.bofu{background:#fff1f0;color:#cf1322;}
+.m{display:inline-block;background:#f3f4f6;color:#555;border-radius:5px;padding:1px 7px;font-size:10.5px;font-weight:700;}
+.tab-nav{display:flex;background:#fff;border-radius:16px;padding:8px;margin-bottom:22px;box-shadow:0 2px 16px rgba(0,0,0,.06);overflow-x:auto;}
+.tab-btn{flex:1;min-width:118px;text-align:center;padding:11px 8px;border-radius:10px;font-size:12px;font-weight:700;color:#999;cursor:pointer;border:none;background:none;white-space:nowrap;}
+.tab-btn:hover{background:#f0f4ff;color:#0958d9;}.tab-btn.active{background:#1a1a2e;color:#fff;}
+.psec{display:none;}.psec.active{display:block;}
+.info{background:#fff;border-radius:16px;padding:18px 22px;box-shadow:0 2px 16px rgba(0,0,0,.06);margin-bottom:18px;border-left:4px solid #cf1322;}
+.info h2{font-size:18px;margin-bottom:8px;}
+.info .r{font-size:12.5px;color:#555;margin-bottom:4px;}.info .r b{color:#1a1a2e;}
+.vpb{display:inline-block;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:4px;}
+.vpb.main{background:#fff1f0;color:#cf1322;}.vpb.sub{background:#e6f4ff;color:#0958d9;}
+.vp{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:12px;overflow:hidden;}
+.vh{display:flex;align-items:center;gap:10px;padding:15px 20px;cursor:pointer;user-select:none;}
+.vh:hover{background:#fafbfc;}
+.vi{font-size:20px;}.vn{font-size:15px;font-weight:800;}.vm{font-size:11px;color:#999;margin-top:1px;}
+.vr{margin-left:auto;display:flex;align-items:center;gap:8px;}.vc{font-size:11px;color:#aaa;font-weight:700;}
+.arr{font-size:13px;color:#bbb;transition:transform .2s;}.vp.open .arr{transform:rotate(90deg);}
+.vbody{display:none;padding:6px 20px 16px;border-top:1px solid #f2f2f2;}.vp.open .vbody{display:block;}
+.anchor{background:#f8f7ff;border-left:3px solid #531dab;border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:#444;margin:10px 0;}
+.anchor .src{display:block;font-size:10.5px;color:#999;margin-top:2px;}
+.sd{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;color:#531dab;margin:14px 0 3px;padding:4px 10px;background:#faf7ff;border-radius:6px;}
+.sd .sdc{margin-left:auto;font-size:10px;color:#b39dff;}
+.cp{display:flex;align-items:flex-start;gap:8px;padding:6px 0 6px 4px;border-bottom:1px solid #f7f7f7;flex-wrap:wrap;}
+.cp:last-child{border-bottom:none;}
+.cn{display:inline-block;width:18px;height:18px;border-radius:50%;background:#f0f0f0;color:#666;font-size:10px;font-weight:800;text-align:center;line-height:18px;flex-shrink:0;}
+.ct{font-weight:600;font-size:13.5px;}.cc{font-size:11px;color:#999;}
+.legacy-src .ct::after{content:'📋 기존';display:inline-block;background:#f0e9ff;color:#6b3fd4;font-size:9px;font-weight:800;padding:1px 5px;border-radius:4px;margin-left:6px;vertical-align:middle;letter-spacing:.3px;}
+.tags{margin-left:26px;flex-basis:100%;display:flex;gap:5px;flex-wrap:wrap;margin-top:1px;}
+.body{background:#f8f8f8;border-radius:8px;padding:10px 12px;font-size:12px;color:#555;margin-top:10px;}
+.body b{color:#1a1a2e;}
+.cta{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.cta .k{font-size:10px;font-weight:800;color:#aaa;letter-spacing:1px;}
+.cta .chip2{background:#1a1a2e;color:#fff;border-radius:14px;padding:3px 11px;font-size:11.5px;font-weight:600;}
+.note{background:#fffbe9;border:1px solid #f5e6a8;border-radius:12px;padding:16px 20px;margin-top:20px;font-size:12.5px;color:#5c4d09;}
+.note b{color:#92700a;}
+</style></head>
+<body>
+<div class="hero">
+  <a class="back-btn" href="릴렉스틱_타겟분석_20260602.html">← 릴렉스틱 타겟분석으로</a>
+  <div class="tag">PERSONA × VP(세분화) · DEEP</div>
+  <h1>릴렉스틱 페르소나 × VP 카피 (세분화·DEEP)</h1>
+  <p>페르소나 6인 × VP 5유형 → 각 VP를 소분류로 쪼개고, 소분류마다 방법론별 헤드라인 다수. 커뮤니티 보이스 앵커 + 본문 + CTA.</p>
+  <div class="chips"><span class="chip">정가 99,000→59,000 (40%↓)</span><span class="chip">누적 240,000개</span><span class="chip">네이버 4.91</span><span class="chip">네이버쇼핑·쿠팡 1위</span><span class="chip">국대 트레이너 검증</span><span class="chip">연예인 사용</span><span class="chip">1년 A/S</span><span class="chip">당일출고</span></div>
+</div>
+<div class="container">
+  <div class="legend">
+    <b>읽기</b>: <span class="sd" style="display:inline-flex;padding:1px 8px;">소분류</span> 안에 헤드라인 + <span class="cc">(자수)</span> · <span class="fb tofu">TOFU</span><span class="fb mofu">MOFU</span><span class="fb bofu">BOFU</span> · <span class="m">방법론</span> · <span class="flag">⚠️규제</span><br>
+    <b>규제(빼지 않고 표시만)</b>: <span class="flag">⚠️효능</span>통증·치료 · <span class="flag">⚠️이완</span>풀림 · <span class="flag">⚠️근거</span>1위·평점 출처병기 · <span class="flag">⚠️체형</span>붓기·둘레 · 표시없음=안전(뻐근·뭉침·시원·개운).
+  </div>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="sp(0,this)">A 지영 43</button>
+    <button class="tab-btn" onclick="sp(1,this)">B 소연 34</button>
+    <button class="tab-btn" onclick="sp(2,this)">C 수현 28</button>
+    <button class="tab-btn" onclick="sp(3,this)">D 미숙 51</button>
+    <button class="tab-btn" onclick="sp(4,this)">E 준혁 40</button>
+    <button class="tab-btn" onclick="sp(5,this)">F 은정 45</button>
+  </div>
+
+  <!-- ===== A 지영 ===== -->
+  <div class="psec active">
+    <div class="info"><h2>A · 강남 워킹맘 지영 43세 <span class="fb bofu">BOFU</span></h2>
+      <div class="r"><b>페인:</b> 만성 어깨·목 · 주 8만원 마사지샵 · 육아+직장 이중피로 · 자다 깰 만큼 뻐근</div>
+      <div class="r"><b>성공의 정의:</b> 마사지샵 비용·예약 신경 끄고 매일 밤 5분으로 아침이 가벼운 + 자기관리 정체성</div>
+      <div class="r"><b>VP:</b> <span class="vpb main">주력 경제</span> <span class="vpb sub">보조 자기표현</span></div></div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">💰</span><div><div class="vn">경제 VP</div><div class="vm">정가앵커링·회당단가·대안절감·시간가치·분담·A/S</div></div><div class="vr"><span class="vpb main">주력</span><span class="vc">21</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "마사지를 알아보자니 너무 비싸고 직장인이라 주말만 가능한데 주말엔 또 휴무이고ㅜㅜ"<span class="src">해돌카페</span></div>
+        <div class="sd">① 정가 앵커링 (99,000→59,000)<span class="sdc">5</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"정가 99,000 → 오늘 59,000원 (40%↓)"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"99,000원짜리를, 오늘 4만원 덜 내고"</span><span class="cc">(18자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"40% 할인은 이번 행사까지만"</span><span class="cc">(14자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">FOMO</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"장바구니에 둔 사이, 정가로 돌아가요"</span><span class="cc">(18자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"같은 제품, 99,000원 다 내고 사지 마세요"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">② 회당 단가 가성비<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"매일 쓰면 회당 150원, 커피값도 안 돼요"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"한 번 사서 매일 — 쓸수록 싸지는 셀프케어"</span><span class="cc">(22자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"5만원으로 1년 매일, 계산해보면 답 나와요"</span><span class="cc">(22자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"하루 150원에 어깨 풀고 출근해요"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">생리</span></div></div>
+        <div class="sd">③ 마사지샵·도수 대안 절감<span class="sdc">5</span></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"주 8만원 마사지샵, 이제 끊었어요"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"마사지샵 한 번 값으로, 1년 매일 셀프케어"</span><span class="cc">(22자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"매주 나가던 8만원이 안 나가요"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">13</span><span class="ct">"도수치료 회당 10만원, 그 돈이면 평생 쓸 하나"</span><span class="cc">(24자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">14</span><span class="ct">"마사지샵 한 달 비용이면 가족 다 쓸 하나"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">④ 시간 가치 (예약·왕복 절약)<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">15</span><span class="ct">"예약·왕복 2시간 대신, 책상에서 5분"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">16</span><span class="ct">"샵 갈 시간에 그냥 자리에서 — 시간이 돈"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">17</span><span class="ct">"바쁜 워킹맘, 마사지샵 갈 그 시간이 없죠"</span><span class="cc">(21자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="sd">⑤ 사무실+집 2개 / 가족 분담<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">18</span><span class="ct">"사무실·집에 하나씩 둬도 마사지샵보다 쌉니다"</span><span class="cc">(24자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">19</span><span class="ct">"하나 더 사도 마사지샵 한 번 값"</span><span class="cc">(16자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">⑥ 리스크 리버설 (1년 A/S)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">20</span><span class="ct">"1년 무상 A/S — 사고 나서도 안심"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
+        <div class="cp"><span class="cn">21</span><span class="ct">"5만원이 아까울 일 없게, 1년 보장"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">손실회피</span></div></div>
+        <div class="body"><b>본문</b> 매주 8만원 마사지샵, 예약·왕복 2시간도 부담이죠. 사무실·집에 하나씩, 자리에서 매일 5분이면 — 정가 99,000원 → 오늘 59,000원, 회당 150원 꼴. 1년 무상 A/S에 네이버 4.91점. <span style="color:#aaa;">(86자)</span></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">오늘 40% 받기</span><span class="chip2">당일 출발 주문</span><span class="chip2">가격 비교</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">🌟</span><div><div class="vn">자기표현 VP</div><div class="vm">정체성·밤 루틴·자기보상</div></div><div class="vr"><span class="vpb sub">보조</span><span class="vc">10</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "지친 하루를 마무리하는 작은 힐링 의식" / "매일 밤 5분씩, 아침에 목이 훨씬 가벼워졌어요"<span class="src">자사 리뷰</span></div>
+        <div class="sd">① 자기관리 정체성<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"퇴근 후 5분, 내 몸은 내가 챙깁니다"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"바쁠수록 더 — 나를 챙기는 사람의 밤 루틴"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"일도 육아도, 그래도 나를 놓지 않는"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"강남 워킹맘의 자기관리는 거창하지 않아요"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="sd">② 밤 루틴·의식화<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"하루 끝 5분, 지친 나를 마무리하는 의식"</span><span class="cc">(21자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"매일 밤 5분이 만드는 가벼운 아침"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"씻고 자기 전, 5분짜리 내 시간"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="sd">③ 자기보상<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"고생한 어깨에, 나를 위한 5분 보상"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"열심히 산 나에게, 이 정도는"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"남 챙기느라 미룬 내 어깨, 오늘은 나"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">내 루틴 시작</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">🔧</span><div><div class="vn">기능 VP</div><div class="vm">셀프·무노력·성능·다용도·휴대</div></div><div class="vr"><span class="vc">11</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "오후만 되면 뒷목 뻣뻣, 승모근은 돌덩이, 퇴근할 때쯤 머리까지 지끈"<span class="src">네이버블로그</span></div>
+        <div class="sd">① 셀프·무노력<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"사무실 책상 옆, 앉은 채로 어깨 5분"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"손 안 대고 승모근까지 — 회전 헤드"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"남편한테 주물러달라기 미안했다면"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"팔 힘 안 들이고, 쥐고 미는 것만"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">② 성능·도달<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"오후 돌덩이 승모근, 자리에서 바로"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"혼자 못 닿던 등·날갯죽지까지"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"회전 헤드로 깊게 — 손힘 안 들이고"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"출근 전 5분, 굳은 목 풀고 시작"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="sd">③ 다용도 (사무실·집)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"어깨·목·종아리·발 — 하나로 전신"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"사무실에선 어깨, 집에선 종아리까지"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">④ 휴대·즉시성<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"평일 1시 전 주문 시 오늘 바로 출발"</span><span class="cc">(18자)</span><div class="tags"><span class="fb bofu">BOFU</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">사용법 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">💗</span><div><div class="vn">감성 VP</div><div class="vm">수면·안심·개운·여유</div></div><div class="vr"><span class="vc">8</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "자다가 통증으로 울었던 사람" / "아침에 일어났을 때 목이 훨씬 가벼워졌어요"<span class="src">82cook·자사 리뷰</span></div>
+        <div class="sd">① 수면·안심<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"자다 깰 만큼 뻐근하던 밤, 이제 편하게"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">공감</span><span class="flag">⚠️효능</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"밤새 뒤척이게 하던 어깨, 자기 전 5분"</span><span class="cc">(20자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"아침에 목이 가벼우면 하루가 달라져요"</span><span class="cc">(19자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">생리</span></div></div>
+        <div class="sd">② 개운·보상감<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"하루 끝, 나를 위한 5분의 개운함"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"굳은 하루가 사르르 — 그 시원함"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"퇴근하고 어깨 풀면 그제야 숨 쉬는 느낌"</span><span class="cc">(20자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="sd">③ 여유·가족케어 안심<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"내 몸이 편해야 가족도 챙기죠"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"지친 표정 대신 개운한 저녁"</span><span class="cc">(14자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">감성</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">개운하게 케어</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">👥</span><div><div class="vn">사회 VP</div><div class="vm">사회적증거·권위·셀럽·선물</div></div><div class="vr"><span class="vc">9</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 사회적 증거<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"24만 명이 선택한 그 마사지스틱"</span><span class="cc">(15자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"네이버 4.91점 — 강남 워킹맘들이 먼저"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"후기 24만 — 안 써본 사람만 모르는"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">② 권위·검증<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"국가대표 트레이너가 검증한 그 스틱"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"현대·롯데 백화점이 먼저 찾은 제품"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"네이버쇼핑·쿠팡 1위 마사지스틱"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">③ 셀럽·선물<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"연예인도 일상 관리로 쓰는 그것"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"써보고 남편·부모님 선물로도"</span><span class="cc">(14자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"강남 워킹맘들 사이에서 도는 그 템"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">후기 24만 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp legacy-src"><div class="vh" onclick="tg(this)"><span class="vi">📋</span><div><div class="vn">기존 카피리스트 매핑</div><div class="vm">릴렉스틱_카피리스트 카피를 VP로 재분류 (직장여성 A형)</div></div><div class="vr"><span class="vc">20</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">💰 경제 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"마사지샵 값으로 매일 집에서"</span><span class="cc">(14자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"마사지샵 비용, 매번 그냥 나가죠"</span><span class="cc">(17자)</span><div class="tags"><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"샵 다닐 시간에 집에서 매일"</span><span class="cc">(14자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"평점 4.89, 지금 가격 확인"</span><span class="cc">(14자)</span><div class="tags"><span class="m">오퍼</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">🔧 기능 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"샵 갈 시간 없다면 — 소파에서 1분"</span><span class="cc">(18자)</span><div class="tags"><span class="m">차별화</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"마사지건 충전 귀찮았다면 손에 잡고"</span><span class="cc">(18자)</span><div class="tags"><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"마사지볼로 부족했다면 손에 잡는 스틱"</span><span class="cc">(19자)</span><div class="tags"><span class="m">차별화</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"전동기기 말고 손에 잡는 하나"</span><span class="cc">(15자)</span><div class="tags"><span class="m">차별화</span></div></div>
+        <div class="sd">💗 감성 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"하루 종일 앉아 무거워진 다리, 고생했어요"</span><span class="cc">(21자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"퇴근하면 종아리부터 주저앉는 하루"</span><span class="cc">(18자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"사무직 무거운 다리, 자기 전 1분 쭉"</span><span class="cc">(19자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"아침에 다리 묵직해 출근 싫을 때"</span><span class="cc">(17자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="sd">👥 사회 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">13</span><span class="ct">"직장 여성들이 소파 옆에 둔 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">14</span><span class="ct">"직장 동료끼리 다 쓰는 그것"</span><span class="cc">(14자)</span><div class="tags"><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">15</span><span class="ct">"다들 소파 옆에 하나씩"</span><span class="cc">(12자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">16</span><span class="ct">"직장 여성 인기템 — 품절 임박"</span><span class="cc">(14자)</span><div class="tags"><span class="m">FOMO</span></div></div>
+        <div class="sd">🌟 자기표현 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">17</span><span class="ct">"다리 챙기는 직장인의 저녁 루틴"</span><span class="cc">(16자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">18</span><span class="ct">"바빠도 나를 돌보는 습관"</span><span class="cc">(13자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">19</span><span class="ct">"고생한 내 다리에 시원한 보상"</span><span class="cc">(15자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">20</span><span class="ct">"열심히 일한 나를 위한 1분"</span><span class="cc">(14자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="sd">💬 커뮤니티 보이스 → 감성·생리 VP<span class="sdc">8</span></div>
+        <div class="anchor">💬 "장시간 앉아있는 사무직은 오후가 되면 발목·종아리가 무거워지고 다리가 붓는 느낌"<span class="src">헬스매체·82cook</span></div>
+        <div class="cp"><span class="cn">21</span><span class="ct">하루 종일 앉아 오후엔 다리 퉁퉁한 분들</span><span class="cc">(21자)</span></div>
+        <div class="cp"><span class="cn">22</span><span class="ct">퇴근하면 종아리부터 무거운 직장인이라면</span><span class="cc">(21자)</span></div>
+        <div class="cp"><span class="cn">23</span><span class="ct">발목·종아리 묵직한 저녁, 쭉 밀어 시원하게</span><span class="cc">(23자)</span></div>
+        <div class="cp"><span class="cn">24</span><span class="ct">종일 서서 일한 다리, 소파에서 1분 케어</span><span class="cc">(21자)</span></div>
+        <div class="cp"><span class="cn">25</span><span class="ct">오후만 되면 무거운 다리, 자기 전 롤링</span><span class="cc">(20자)</span></div>
+        <div class="cp"><span class="cn">26</span><span class="ct">앉아만 있으면 오후엔 발목까지 묵직</span><span class="cc">(18자)</span></div>
+        <div class="cp"><span class="cn">27</span><span class="ct">다리 부어 신발이 꽉 끼는 저녁이라면</span><span class="cc">(18자)</span><div class="tags"><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">28</span><span class="ct">종일 회의·책상, 다리는 천근만근</span><span class="cc">(17자)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== B 소연 ===== -->
+  <div class="psec">
+    <div class="info"><h2>B · 워킹맘 소연 34세 <span class="fb mofu">MOFU</span></h2>
+      <div class="r"><b>페인:</b> 직장+육아 이중피로 · 손으로 마사지할 체력 없음 · 폼롤러는 팔로 버텨야 함 · 야간 22시 유일한 개인시간</div>
+      <div class="r"><b>성공의 정의:</b> 팔 힘 안 들이고 5분으로 어깨가 풀리고, 아이 종아리까지 + 가족 공용으로 '잘 산 소비'</div>
+      <div class="r"><b>VP:</b> <span class="vpb main">주력 기능</span> <span class="vpb sub">보조 경제·사회</span></div></div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">🔧</span><div><div class="vn">기능 VP</div><div class="vm">무노력·다용도·즉시성</div></div><div class="vr"><span class="vpb main">주력</span><span class="vc">12</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "어깨랑 손목은 너덜너덜… 아기 안고 수유하고 재우고. 찜질도 마사지도 그때뿐"<span class="src">창원 진해댁 카페</span></div>
+        <div class="sd">① 팔 안 써도 됨 (무노력)<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"팔 힘 하나 안 들이고, 앉아서 5분"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"아기 안다 너덜너덜해진 손목으로도, 쥐기만"</span><span class="cc">(22자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"폼롤러처럼 바닥에 구를 필요 없어요"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"손목 아픈 엄마도, 쥐기만 하면 끝"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">② 아이까지 — 다용도<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"내 어깨도, 아이 종아리도 하나로"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"아이 다리 손으로 주무르다 내 팔 아팠다면"</span><span class="cc">(22자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"목·어깨·종아리, 가족 모두 한 자루로"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">③ 야간 5분 즉시성<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"아이 재우고 소파에서 — 팔 안 써도 시원"</span><span class="cc">(22자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"22시, 유일한 내 시간 5분이면 충분"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"뭉친 어깨가 풀리는 느낌, 손 안 대고"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="sd">④ 서랍행 방지<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"폼롤러는 서랍에, 이건 매일 손이 가요"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"꺼내기 귀찮아 안 쓰던 그 도구 말고"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="body"><b>본문</b> 아기 안고 수유하다 너덜너덜해진 어깨·손목, 남편한테 부탁도 하루 이틀이죠. 팔 힘 안 들이고 쥐기만 — 아이 재운 22시 소파에서 5분, 같은 걸로 아이 종아리까지. 폼롤러처럼 서랍행 안 돼요. <span style="color:#aaa;">(90자)</span></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">5분 루틴 시작</span><span class="chip2">당일 출발 주문</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">💰</span><div><div class="vn">경제 VP</div><div class="vm">가족분담·대안절감·회당단가·정가·A/S</div></div><div class="vr"><span class="vpb sub">보조</span><span class="vc">10</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "남편 안마도 하루이틀이지 산후조리경비 몽땅 마사지에 쏟아붓고 있어요"<span class="src">맘스홀릭 베이비</span></div>
+        <div class="sd">① 가족 공용 분담<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"하나 사면 온가족 — 1인당 만원도 안 돼요"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"아이 마사지값까지 치면 이게 남는 장사"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"식구대로 쓰면 1인당 커피 한 잔 값"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">② 마사지 비용 절감<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"산후조리비 마사지에 쏟기 전에, 하나면 매일"</span><span class="cc">(23자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"마사지샵 갈 시간 없는 워킹맘, 5분이면"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"남편한테 안마 부탁 하루이틀, 이젠 셀프로"</span><span class="cc">(21자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="sd">③ 회당 단가 가성비<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"온가족 매일 쓰면 1인당 회당 몇십 원"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"한 번 사서 가족 전부 — 쓸수록 싸져요"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="sd">④ 정가·A/S<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"정가 99,000 → 59,000 (40%↓) 온가족용"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"아이가 막 써도 1년 무상 A/S"</span><span class="cc">(15자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">온가족 1+1 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">👥</span><div><div class="vn">사회 VP</div><div class="vm">온가족·증거·입소문·검증·선물</div></div><div class="vr"><span class="vpb sub">보조</span><span class="vc">9</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "아이들 종아리 허벅지 마사지 손으로 하느라 힘들었는데 편하고 좋네요" / "우리집 요술봉"<span class="src">자사 리뷰</span></div>
+        <div class="sd">① 온가족·소속<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"엄마도, 아이 종아리도 — 온가족 마사지스틱"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"남편이 먼저 찾게 되는 그것"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"온 가족이 돌려 쓰는 '우리집 요술봉'"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회</span></div></div>
+        <div class="sd">② 사회적 증거<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"24만 가구가 쓰는 '우리집 요술봉'"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"워킹맘 후기 24만, 네이버 4.91점"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">③ 입소문·호기심<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"워킹맘들 사이 입소문 난 그 스틱"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"맘카페에서 다들 하나씩 있다는 그것"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span></div></div>
+        <div class="sd">④ 선물·검증<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"친정 엄마 선물로도 1순위"</span><span class="cc">(13자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"국대 트레이너 검증·네이버쇼핑 1위"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">후기 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">💗</span><div><div class="vn">감성 VP</div><div class="vm">나를 위한 시간·즉각쾌감·안심</div></div><div class="vr"><span class="vc">7</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "지친 하루를 마무리하는 작은 힐링 의식"<span class="src">자사 리뷰</span></div>
+        <div class="sd">① 나를 위한 시간<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"아이 재운 22시, 나한테 주는 5분"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"지친 하루 마무리하는 작은 의식"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"하루 종일 엄마였던 나, 22시엔 나로"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="sd">② 즉각 쾌감<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"'아 시원해' 소리 절로 나는 5분"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">감성</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"하루 종일 굳었던 어깨가 사르르"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="sd">③ 안심·여유<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"내가 좀 풀려야 아이한테도 웃어주죠"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"소파에서 5분, 그제야 내 시간 같은"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">나를 위한 5분</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">🌟</span><div><div class="vn">자기표현 VP</div><div class="vm">엄마 정체성·워킹맘 공감·필수템</div></div><div class="vr"><span class="vc">6</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 엄마 정체성<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"바빠도 나를 안 놓는 엄마의 루틴"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"가족도 나도 챙기는 사람의 5분"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"아이만 챙기던 손, 이제 나도 챙겨요"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="sd">② 워킹맘 공감<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"퇴근하고도 끝나지 않는 하루, 그래도 5분"</span><span class="cc">(21자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"워킹맘의 셀프케어는 짧고 확실하게"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="sd">③ 집안 필수템<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"우리집 필수템이 된 마사지스틱"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp legacy-src"><div class="vh" onclick="tg(this)"><span class="vi">📋</span><div><div class="vn">기존 카피리스트 매핑</div><div class="vm">릴렉스틱_카피리스트 카피를 VP로 재분류 (워킹맘 B형)</div></div><div class="vr"><span class="vc">20</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">💰 경제 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"10만원대 다리마사지기 대신 평생 하나"</span><span class="cc">(20자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"10만원대 사기 전에 이것부터"</span><span class="cc">(15자)</span><div class="tags"><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"1+1로 가족과 함께 — 지금 담기"</span><span class="cc">(17자)</span><div class="tags"><span class="m">오퍼</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"행사 끝나면 정가예요"</span><span class="cc">(11자)</span><div class="tags"><span class="m">FOMO</span></div></div>
+        <div class="sd">🔧 기능 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"전동기기 충전 귀찮아 안 쓰던 분들"</span><span class="cc">(18자)</span><div class="tags"><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"전동기기 다 있는데 결국 쓰는 이것"</span><span class="cc">(18자)</span><div class="tags"><span class="m">역설/고객사례</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"온 가족 쓰는데 충전 다툼 없는 하나"</span><span class="cc">(18자)</span><div class="tags"><span class="m">차별화</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"물리치료 시간 대신 집에서 — 손에 잡는 롤링"</span><span class="cc">(23자)</span><div class="tags"><span class="m">차별화</span><span class="flag">⚠️효능</span></div></div>
+        <div class="sd">💗 감성 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"가족 챙기다 내 다리는 뒷전이었죠"</span><span class="cc">(17자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"밤에 다리 무거워 못 자던 분께"</span><span class="cc">(16자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"가족 챙기고 무거운 다리, 소파에서 1분"</span><span class="cc">(20자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"물리치료 다니며 버틴 어깨·다리"</span><span class="cc">(16자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="sd">👥 사회 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">13</span><span class="ct">"워킹맘들이 TV보며 쓰는 그것"</span><span class="cc">(15자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">14</span><span class="ct">"워킹맘들이 돌려 쓰는 마사지스틱"</span><span class="cc">(17자)</span><div class="tags"><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">15</span><span class="ct">"후기 2.3만으로 검증된 바리바디"</span><span class="cc">(16자)</span><div class="tags"><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">16</span><span class="ct">"가족이 다 같이 쓰는 하나"</span><span class="cc">(13자)</span><div class="tags"><span class="m">사회</span></div></div>
+        <div class="sd">🌟 자기표현 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">17</span><span class="ct">"가족도 나도 챙기는 사람의 루틴"</span><span class="cc">(16자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">18</span><span class="ct">"매일 나를 돌보는 습관"</span><span class="cc">(12자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">19</span><span class="ct">"가족 챙긴 나에게 주는 보상"</span><span class="cc">(14자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">20</span><span class="ct">"엄마이자 나, 둘 다 챙기기"</span><span class="cc">(14자)</span><div class="tags"><span class="m">존중</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== C 수현 ===== -->
+  <div class="psec">
+    <div class="info"><h2>C · 싱글 직장인 수현 28세 <span class="fb tofu">TOFU</span></h2>
+      <div class="r"><b>페인:</b> 승모근·날갯죽지 만성 뭉침 · 병원 일시적 · 1인가구라 혼자 등 못 닿음 · "사봐도 서랍행" 우려</div>
+      <div class="r"><b>성공의 정의:</b> 혼자서 등·승모근까지 닿아 풀리고, 서랍행 안 되고 '계속 손이 가는' 요술봉</div>
+      <div class="r"><b>VP:</b> <span class="vpb main">주력 기능</span> <span class="vpb sub">보조 감성</span></div></div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">🔧</span><div><div class="vn">기능 VP</div><div class="vm">셀프도달·길이·서랍행방지</div></div><div class="vr"><span class="vpb main">주력</span><span class="vc">12</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "진짜 돌 들어있는 것처럼 딱딱하게 뭉쳐있어서 목도 뻣뻣하구 불편하구" / "폼롤러 굴리는 게 귀찮"<span class="src">블라인드·블로그</span></div>
+        <div class="sd">① 혼자 등까지 (셀프 도달)<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"1인 가구도 혼자서 등까지 닿아요"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"혼자 못 닿던 날갯죽지, 긴 길이로 해결"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"등 긁어줄 사람 없어도 — 혼자서 쭉"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"폼롤러는 등에 안 닿죠? 이건 닿습니다"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span></div></div>
+        <div class="sd">② 돌처럼 굳은 승모근 (성능)<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"재택 5시간, 돌처럼 굳은 승모근 — 손 안 대고"</span><span class="cc">(24자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"승모근 미치겠는 날, 자리에서 바로"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"회전 헤드로 돌덩이 같던 곳까지"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"병원 가도 그때뿐이던 뒷목, 매일 집에서"</span><span class="cc">(21자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="sd">③ 서랍행 방지 (지속 사용)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"바닥에 앉아 굴리기 귀찮았다면 — 쥐고 미는 것만"</span><span class="cc">(25자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"산 도구 또 서랍행? 이건 계속 손이 가요"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">손실회피</span></div></div>
+        <div class="sd">④ 휴대·즉시성<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"책상 옆에 두고 일하다 틈틈이"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"가벼워서 어디든 — 자취방 필수템"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span></div></div>
+        <div class="body"><b>본문</b> 1인 가구라 등·날갯죽지는 혼자 닿지도 못하고, 폼롤러는 바닥에 굴리는 게 귀찮아 서랍행이었죠. 긴 길이로 혼자서 승모근까지, 쥐고 미는 것만. 병원처럼 그때뿐 아니고 매일 — 처음 대는 순간 '아 시원해'. <span style="color:#aaa;">(94자)</span></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">오늘 받아보기</span><span class="chip2">후기 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">💗</span><div><div class="vn">감성 VP</div><div class="vm">즉각쾌감·보상·애착</div></div><div class="vr"><span class="vpb sub">보조</span><span class="vc">8</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "직접 해보니까 생각했던 거보다 너무 시원해요" / "이녀석은 이제 우리집 요술봉입니다"<span class="src">자사 리뷰</span></div>
+        <div class="sd">① 첫 사용 즉각 쾌감<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"처음 대는 순간 '아 시원해' 소리 나요"</span><span class="cc">(20자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">감성</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"생각보다 너무 시원해서 놀란 사람들"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"굳었던 어깨가 사르르 — 그 개운함"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"반신반의했다가 푹 빠지는 그 첫 느낌"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="sd">② 나를 위한 보상<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"재택 끝, 나한테 주는 5분짜리 보상"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"하루 종일 노트북 본 나에게"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="sd">③ 애착·요술봉<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"서랍행 걱정? 계속 손이 가는 '요술봉'"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"하루에도 몇 번씩 손이 가는 내 책상템"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">지금 확인</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">👥</span><div><div class="vn">사회 VP</div><div class="vm">SNS·증거·추천·셀럽</div></div><div class="vr"><span class="vc">9</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 사회적 증거<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"설마 했는데 — 24만 명이 산 이유"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"SNS에서 본 그 요술봉, 네이버 4.91점"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"리뷰 24만 — 안 써본 사람만 모르는"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">② 셀럽·과시<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"연예인도 쓴다는 그 마사지스틱"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"인스타에서 자꾸 보이던 그 종아리템"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"내 책상에 두면 좀 있어 보이는 그것"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회</span></div></div>
+        <div class="sd">③ 추천·공유<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"친구한테 추천했더니 같이 산 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"써본 친구들이 다 사라고 한 이유"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"자취하는 친구 선물로도 딱"</span><span class="cc">(14자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">후기 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">💰</span><div><div class="vn">경제 VP</div><div class="vm">대안절감·회당단가·정가·A/S</div></div><div class="vr"><span class="vc">7</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 마사지샵 대안<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"마사지샵 한 번 값으로 집에서 매일"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"월급에서 마사지비 빠지던 거, 이제 한 번"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"혼자 사는데 마사지샵까지 부담이라면"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="sd">② 회당단가<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"1인 가구 셀프케어, 회당 150원"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"한 번 사두면 — 커피 한 잔 값에 한 달"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">③ 정가·A/S<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"정가 99,000 → 59,000 (40%↓)"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"1년 무상 A/S — 자취방에서도 안심"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">지금 가격 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">🌟</span><div><div class="vn">자기표현 VP</div><div class="vm">셀프케어 정체성·다리라인·자율성</div></div><div class="vr"><span class="vc">6</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 셀프케어 정체성<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"재택러의 책상 옆 셀프케어 루틴"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"내 몸 챙기는 1인 가구의 기본템"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"바쁜 20대도 5분은 나를 챙겨요"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
+        <div class="sd">② 다리 라인 관리<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"종아리 신경 쓰는 저녁 셀프 루틴"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"거울 보며 다리 쭉쭉 미는 저녁 습관"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span><span class="flag">⚠️체형</span></div></div>
+        <div class="sd">③ 자율성<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"등 긁어줄 사람 없어도 — 내 몸은 내가"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp legacy-src"><div class="vh" onclick="tg(this)"><span class="vi">📋</span><div><div class="vn">기존 카피리스트 매핑</div><div class="vm">릴렉스틱_카피리스트 카피를 VP로 재분류 (SNS싱글 E형)</div></div><div class="vr"><span class="vc">20</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">👥 사회 VP로<span class="sdc">6</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"SNS에서 다들 쓰는 그 종아리템"</span><span class="cc">(16자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"인플루언서도 쓰는 그 마사지스틱"</span><span class="cc">(17자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"조권도 쓴다는 그 핫템 진짜?"</span><span class="cc">(15자)</span><div class="tags"><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"리뷰 2.3만·4.89 — SNS 핫템"</span><span class="cc">(16자)</span><div class="tags"><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"친구 따라 다들 하나씩"</span><span class="cc">(12자)</span><div class="tags"><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"'올해 산 것 중 제일' 후기"</span><span class="cc">(14자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="sd">💰 경제 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"10만원대 안 부럽다는 그 가성비"</span><span class="cc">(16자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"비싼 기기 말고 핫템 하나"</span><span class="cc">(13자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"SNS 그 핫템 — 지금 최저가 확인"</span><span class="cc">(16자)</span><div class="tags"><span class="m">오퍼</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"지금이 가장 쌀 때 — 최저가"</span><span class="cc">(14자)</span><div class="tags"><span class="m">FOMO</span></div></div>
+        <div class="sd">💗 감성 VP로<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"쉬어도 안 풀리는 다리라면"</span><span class="cc">(14자)</span><div class="tags"><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"다리 무거운 밤, 자기 전 셀프 케어"</span><span class="cc">(18자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">13</span><span class="ct">"SNS 보다 나도 해보고 싶던 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="sd">🌟 자기표현 VP로<span class="sdc">5</span></div>
+        <div class="cp"><span class="cn">14</span><span class="ct">"다리 라인 가꾸는 사람의 루틴"</span><span class="cc">(15자)</span><div class="tags"><span class="m">자아</span><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">15</span><span class="ct">"예뻐지려는 나를 위한 매일 1분"</span><span class="cc">(15자)</span><div class="tags"><span class="m">존중</span><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">16</span><span class="ct">"다이어트보다 다리 라인 관리"</span><span class="cc">(14자)</span><div class="tags"><span class="m">자아</span><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">17</span><span class="ct">"꾸준히 관리하는 나"</span><span class="cc">(10자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">18</span><span class="ct">"거울 앞 다리 신경 쓰이는 분들"</span><span class="cc">(15자)</span><div class="tags"><span class="m">공감</span><span class="flag">⚠️체형</span></div></div>
+        <div class="sd">🔧 기능 VP로<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">19</span><span class="ct">"SNS만 보다 직접 — 오늘부터"</span><span class="cc">(15자)</span><div class="tags"><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">20</span><span class="ct">"반신반의했지만 후기 좋은 그것"</span><span class="cc">(16자)</span><div class="tags"><span class="m">확증편향</span></div></div>
+        <div class="sd">💬 커뮤니티 보이스 → 기능 VP (폼롤러 대비)<span class="sdc">8</span></div>
+        <div class="anchor">💬 "10만원 넘는 다리마사지기보다 훨씬 시원" / "마사지건 충전이 귀찮아 안 쓰게 되는데"<span class="src">barybody 후기·클리앙</span></div>
+        <div class="cp"><span class="cn">21</span><span class="ct">폼롤러 위에서 굴려도 안 풀렸다면</span><span class="cc">(17자)</span></div>
+        <div class="cp"><span class="cn">22</span><span class="ct">마사지건 충전 귀찮아 안 쓰게 됐다면</span><span class="cc">(19자)</span></div>
+        <div class="cp"><span class="cn">23</span><span class="ct">10만원대 다리마사지기보다 시원했어요</span><span class="cc">(20자)</span></div>
+        <div class="cp"><span class="cn">24</span><span class="ct">큰 기기 말고 손에 잡는 마사지스틱</span><span class="cc">(18자)</span></div>
+        <div class="cp"><span class="cn">25</span><span class="ct">전동기기 다 있는데 결국 이것만 써요</span><span class="cc">(19자)</span></div>
+        <div class="cp"><span class="cn">26</span><span class="ct">안마의자 자리 차지에 결국 안 쓰던 분들</span><span class="cc">(20자)</span></div>
+        <div class="cp"><span class="cn">27</span><span class="ct">마사지볼·폼롤러 다 있는데 손 안 가던</span><span class="cc">(19자)</span></div>
+        <div class="cp"><span class="cn">28</span><span class="ct">비싼 기기보다 손에 잡는 게 편하다면</span><span class="cc">(19자)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== D 미숙 ===== -->
+  <div class="psec">
+    <div class="info"><h2>D · 중장년 미숙 51세 <span class="fb mofu">MOFU</span></h2>
+      <div class="r"><b>페인:</b> 갱년기 관절·어깨 · 다나손 미끄러짐 · 깊은 지압 필요 · 효과 의심 · 자녀·남편 선물</div>
+      <div class="r"><b>성공의 정의:</b> 다 실패했던 사람이 '거의 뼈까지, 이건 되네'를 처음 경험하고 자녀·지인에게 자신 있게 추천</div>
+      <div class="r"><b>VP:</b> <span class="vpb main">주력 기능</span> <span class="vpb sub">보조 사회</span></div></div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">🔧</span><div><div class="vn">기능 VP</div><div class="vm">깊은압력·고정성·다용도·기존도구극복</div></div><div class="vr"><span class="vpb main">주력</span><span class="vc">11</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "거의 뼈까지 마사지 되는 느낌" / "다나손은 고정이 안 돼서 미끄러져요"<span class="src">82cook·커뮤니티</span></div>
+        <div class="sd">① 깊은 압력 (성능)<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"지압받듯 깊게 눌러주는 느낌"</span><span class="cc">(14자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="flag">⚠️효능</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"손에 힘 안 줘도 깊게 들어가요"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"묵직한 회전 헤드 — 얕지 않게 제대로"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">② 고정성 / 기존 도구 극복<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"다나손도 폼롤러도 안 됐다면 — 거의 뼈까지"</span><span class="cc">(22자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"미끄러지던 마사지 도구, 이건 고정돼요"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"기존 마사지 도구 다 실패하셨죠? 이건 다릅니다"</span><span class="cc">(24자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span></div></div>
+        <div class="sd">③ 전신 다용도<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"어디든 닿는 길이 — 어깨부터 종아리까지"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"갱년기로 여기저기 굳은 몸, 하나로"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"목·어깨·손목·종아리 한 자루로"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">④ 간편 (전원·버튼 없음)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"복잡한 기기 싫다면 — 쥐고 미는 것만"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"전원도 충전도 없이, 손에 잡고 바로"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="body"><b>본문</b> 다나손은 미끄러지고 폼롤러는 안 닿고 — 기존 도구 다 실망하셨죠? 회전 헤드로 미끄러지지 않게, 긴 길이로 어깨부터 종아리까지. '거의 뼈까지 닿는 느낌'이라는 후기. 전원·버튼 없이 쥐고 미는 것만, 1년 무상 A/S. <span style="color:#aaa;">(96자)</span></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">1년 A/S 받기</span><span class="chip2">후기 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">👥</span><div><div class="vn">사회 VP</div><div class="vm">권위·증거·선물·추천</div></div><div class="vr"><span class="vpb sub">보조</span><span class="vc">8</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "제 거 샀는데 좋아서 부모님 사 드렸는데 만족하셨어요" / 지인 추천으로 시작<span class="src">자사 리뷰</span></div>
+        <div class="sd">① 권위·검증 (의심 해소)<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"설마 했는데 — 24만 개 팔린 데는 이유가"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"현대·롯데 백화점이 먼저 찾은 그 제품"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"국가대표 트레이너가 검증, 네이버 1위"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">② 지인 추천<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"지인 추천으로 시작해 가족이 다 쓰는"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"친구가 좋다길래 샀다가 또 산 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span></div></div>
+        <div class="sd">③ 선물·효도 (인정)<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"내가 써보고 부모님께 — 효도템 됐어요"</span><span class="cc">(19자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"자녀가 사드리면 매일 쓰시는 선물"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"네이버 4.91점 — 선물로도 1순위"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">선물 포장 주문</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">💰</span><div><div class="vn">경제 VP</div><div class="vm">도수·병원 대안·가족분담·정가·A/S</div></div><div class="vr"><span class="vc">7</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 도수·병원 대안<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"도수치료 한 번 값도 안 되는데 평생"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"병원 갈 시간·비용 아끼고 집에서 매일"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"한의원·물리치료 그때뿐이던 그 돈으로"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="sd">② 가족 분담·선물 겸용<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"내가 쓰다 자녀 선물로 — 하나로 두 몫"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"남편이랑 같이 쓰면 1인당 반값"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">③ 정가·A/S<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"정가 99,000 → 59,000 (40%↓)"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"1년 무상 A/S — 이 나이엔 더 안심"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">지금 가격 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">💗</span><div><div class="vn">감성 VP</div><div class="vm">수면·안심·시원함·서프라이즈</div></div><div class="vr"><span class="vc">7</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "3주째 어깨랑 등이 결려서 잠을 설치는데요" / "설마 했는데 너무너무 만족"<span class="src">김포맘 카페·자사 리뷰</span></div>
+        <div class="sd">① 수면·안심<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"어깨 결려 잠 설치던 밤이라면"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"자기 전 5분, 한결 편한 밤"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">② 시원함<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"거의 뼈까지 닿는 그 시원함"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="flag">⚠️효능</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"이 나이에도 이렇게 시원할 수 있구나"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">감성</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"전신 뻐근하던 게 쭉 내려가는 느낌"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="sd">③ 기대 이상 (서프라이즈)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"설마 했는데 — 써보고 너무너무 만족"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"기대 안 했는데 매일 찾게 되는 그것"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">개운하게 케어</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">🌟</span><div><div class="vn">자기표현 VP</div><div class="vm">건강한 노화·자기보상</div></div><div class="vr"><span class="vc">6</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 건강하게 나이 들기<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"50대도 매일 관리하는 몸"</span><span class="cc">(12자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"이 나이에도 나를 챙기는 셀프케어"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"건강하게 나이 드는 사람들의 습관"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
+        <div class="sd">② 자기보상 (자녀 키운 후)<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"자녀 다 키우고, 이제 내 몸 차례"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"평생 가족 챙긴 손, 이제 나를"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"나를 위한 5분, 이 정도는 누려도"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp legacy-src"><div class="vh" onclick="tg(this)"><span class="vi">📋</span><div><div class="vn">기존 카피리스트 매핑</div><div class="vm">릴렉스틱_카피리스트 카피를 VP로 재분류 (중년 D형)</div></div><div class="vr"><span class="vc">20</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">🔧 기능 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"복잡한 기기 싫다면 — 손에 잡고 미는 것만"</span><span class="cc">(21자)</span><div class="tags"><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"버튼 없이 미는 것만 — 평점 4.89"</span><span class="cc">(18자)</span><div class="tags"><span class="m">차별화</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"전신 하나로 — 평점 4.89 마사지스틱"</span><span class="cc">(19자)</span><div class="tags"><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"5060도 쉽게 쓰는 마사지스틱"</span><span class="cc">(15자)</span><div class="tags"><span class="m">차별화</span></div></div>
+        <div class="sd">👥 사회 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"'부모님이 매일 쓰세요' 후기"</span><span class="cc">(15자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"딸이 추천한 그 전신 마사지스틱"</span><span class="cc">(16자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"딸이랑 같이 쓰는 마사지스틱"</span><span class="cc">(15자)</span><div class="tags"><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"친구가 쓰는 거 보고 바로"</span><span class="cc">(13자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="sd">💰 경제 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"비싼 안마기 말고 손에 잡는 것만"</span><span class="cc">(16자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"한 번 사서 온 가족이"</span><span class="cc">(11자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"딸·부모님 함께 — 1+1 지금"</span><span class="cc">(15자)</span><div class="tags"><span class="m">오퍼</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"이 구성, 이번 행사까지"</span><span class="cc">(12자)</span><div class="tags"><span class="m">FOMO</span></div></div>
+        <div class="sd">💗 감성 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">13</span><span class="ct">"나이 들수록 무거워지는 다리"</span><span class="cc">(15자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">14</span><span class="ct">"참고 지낸 어깨·종아리 뭉침"</span><span class="cc">(15자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">15</span><span class="ct">"무거운 다리로 뒤척이던 밤, 손에 잡고"</span><span class="cc">(19자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">16</span><span class="ct">"아침마다 묵직한 다리 풀기"</span><span class="cc">(14자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="sd">🌟 자기표현 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">17</span><span class="ct">"이 나이 나를 위한 다리 투자"</span><span class="cc">(14자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">18</span><span class="ct">"딸에게 주는 센스 있는 선물"</span><span class="cc">(14자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">19</span><span class="ct">"나이 들수록 나를 돌보는 습관"</span><span class="cc">(15자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">20</span><span class="ct">"건강 챙기는 어른의 루틴"</span><span class="cc">(13자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="sd">💬 커뮤니티 보이스 → 자기표현 VP (다리 라인 · ⚠️체형)<span class="sdc">8</span></div>
+        <div class="anchor">💬 "발목에서 위로 쭉 밀어주는 게 더 시원" / "종아리 뿌실만큼 시원한 마사지"<span class="src">더쿠 — ※둘레/얇아짐 단정 금지</span></div>
+        <div class="cp"><span class="cn">21</span><span class="ct">종아리 묵직함, 매일 밀어 가볍게</span><span class="cc">(17자)</span></div>
+        <div class="cp"><span class="cn">22</span><span class="ct">다리 신경 쓰는 분들의 저녁 셀프 루틴</span><span class="cc">(20자)</span><div class="tags"><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">23</span><span class="ct">발목부터 위로 쭉 — 종아리 시원하게</span><span class="cc">(19자)</span></div>
+        <div class="cp"><span class="cn">24</span><span class="ct">SNS에서 본 그 종아리 마사지스틱</span><span class="cc">(18자)</span></div>
+        <div class="cp"><span class="cn">25</span><span class="ct">거울 보며 다리 쭉쭉 미는 저녁 습관</span><span class="cc">(19자)</span><div class="tags"><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">26</span><span class="ct">거울 앞에서 다리 신경 쓰이는 날</span><span class="cc">(16자)</span><div class="tags"><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">27</span><span class="ct">매일 밀어 관리하는 다리 습관</span><span class="cc">(15자)</span><div class="tags"><span class="flag">⚠️체형</span></div></div>
+        <div class="cp"><span class="cn">28</span><span class="ct">종아리·허벅지 라인 챙기는 저녁</span><span class="cc">(16자)</span><div class="tags"><span class="flag">⚠️체형</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== E 준혁 ===== -->
+  <div class="psec">
+    <div class="info"><h2>E · 남성 러너 준혁 40세 <span class="fb mofu">MOFU</span></h2>
+      <div class="r"><b>페인:</b> 런닝·헬스 후 종아리·허벅지 뭉침 · 거북목·어깨 · 마사지 지속 안 됨 · 남성용 도구 부족 · 습관화 어려움</div>
+      <div class="r"><b>성공의 정의:</b> 운동 후 즉각 풀려 다음날 뻐근함이 줄고, 방치되지 않고 운동 루틴 마지막(쿨다운)으로 자리</div>
+      <div class="r"><b>VP:</b> <span class="vpb main">주력 기능</span> <span class="vpb sub">보조 사회</span></div></div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">🔧</span><div><div class="vn">기능 VP</div><div class="vm">운동회복·무게감·휴대·거북목</div></div><div class="vr"><span class="vpb main">주력</span><span class="vc">11</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "자판에서 1시간 이상 하면 어깨가 슬슬 뭉치네요" / "런닝 후 마사지 이걸로 편하게"<span class="src">clien·자사 리뷰</span></div>
+        <div class="sd">① 운동 후 회복 (쿨다운)<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"런닝 후 종아리, 앉은 자리에서 바로"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"다음날 뻐근함 줄이는 5분 쿨다운"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="flag">⚠️효능</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"헬스 끝 그냥 자면 다음날 뭉쳐요"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">손실회피</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"종아리·허벅지 — 운동 루틴의 마지막"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="sd">② 무게감·성능 (폼롤러 대비)<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"폼롤러 자세 잡기 번거로웠다면 — 쥐고 바로"</span><span class="cc">(22자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"묵직한 무게감으로 깊게 — 손힘 안 들이고"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"폼롤러보다 빠르게, 종아리 핀포인트"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span></div></div>
+        <div class="sd">③ 거북목·사무 (확장)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"자판 1시간이면 슬슬 뭉치는 어깨도"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"운동도 사무도 — 어깨·종아리 한 자루로"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">④ 휴대 (출장·여행)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"출장 가방에도 쏙 — 어디서나 쿨다운"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"러닝화 옆에 챙기는 회복 도구"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
+        <div class="body"><b>본문</b> 런닝·헬스 후 종아리·허벅지, 그냥 자면 다음날 천근만근이죠. 폼롤러처럼 자세 잡을 필요 없이 쥐고 미는 것만 — 무게감 있게 깊게. 자판 1시간에 뭉치는 어깨도. 출장 가방에 쏙. 국대 트레이너가 검증. <span style="color:#aaa;">(92자)</span></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">리커버리템 보기</span><span class="chip2">오늘 출발</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">👥</span><div><div class="vn">사회 VP</div><div class="vm">권위(트레이너)·1위·배우자검증·셀럽</div></div><div class="vr"><span class="vpb sub">보조</span><span class="vc">7</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "좋다고 남편이 인정한 바리바디 릴렉스틱 👍" / "남편도 잘 풀린다고 저 다 쓸 때까지"<span class="src">네이버블로그</span></div>
+        <div class="sd">① 전문가 권위 (트레이너)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"국가대표 트레이너가 검증한 리커버리템"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"선수들이 쓰는 회복 루틴, 집에서도"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">권위</span></div></div>
+        <div class="sd">② 1위·판매량<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"쿠팡·네이버쇼핑 1위 리커버리 스틱"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"누적 24만 개, 러너들이 고른 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">③ 배우자 검증·셀럽<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"아내가 먼저 쓰던 그 마사지스틱 — 러너 필수템"</span><span class="cc">(24자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"남편도 인정한 그것, 이번엔 내 것"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"연예인도 운동 후 쓰는 그 스틱"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">검증 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">💰</span><div><div class="vn">경제 VP</div><div class="vm">스포츠마사지 대안·회당·장비대비·정가·A/S</div></div><div class="vr"><span class="vc">7</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 스포츠마사지·샵 대안<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"스포츠 마사지 갈 시간 없는 직장인 러너"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"마사지샵 회당 비용이면 평생 쓸 하나"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">② 회당단가·장비 대비<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"회당 150원짜리 회복 루틴"</span><span class="cc">(13자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"비싼 안마건 살 돈으로 — 손에 잡는 하나"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"충전·고장 걱정인 마사지건 대신"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="sd">③ 정가·A/S<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"정가 99,000 → 59,000 (40%↓)"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"1년 무상 A/S — 막 굴려도 안심"</span><span class="cc">(16자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">가격 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">💗</span><div><div class="vn">감성 VP</div><div class="vm">회복 쾌감·성취감</div></div><div class="vr"><span class="vc">6</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 회복 쾌감<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"런닝 후 뭉친 종아리가 풀리는 쾌감"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"무게감 있게 눌러주는 그 시원함"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">감성</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"땀 흘린 다리에, 묵직하게 쭉"</span><span class="cc">(14자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">감성</span></div></div>
+        <div class="sd">② 운동 성취·마무리감<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"운동 끝 이게 있어야 마무리되는 기분"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"제대로 달리고 제대로 푸는 만족"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"내일 또 달릴 다리, 오늘 챙겨주는"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">안전</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">🌟</span><div><div class="vn">자기표현 VP</div><div class="vm">러너 정체성·루틴·자기관리</div></div><div class="vr"><span class="vc">6</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 러너 정체성<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"러너의 회복 루틴을 완성하는 한 가지"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"운동 후 케어까지 챙기는 사람"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"제대로 달리는 사람의 마지막 5분"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
+        <div class="sd">② 루틴·꾸준함<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"러닝화 옆에 두는 회복 루틴"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"운동만큼 회복도 챙기는 게 진짜"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"몸 관리하는 40대 직장인의 기본템"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp legacy-src"><div class="vh" onclick="tg(this)"><span class="vi">📋</span><div><div class="vn">기존 카피리스트 매핑</div><div class="vm">릴렉스틱_카피리스트 카피를 VP로 재분류 (러너 C형)</div></div><div class="vr"><span class="vc">20</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">🔧 기능 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"러너 회복템 — 폼롤러보다 핀포인트"</span><span class="cc">(18자)</span><div class="tags"><span class="m">차별화</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"마사지건 vs 마사지스틱 — 손에 잡고 바로"</span><span class="cc">(21자)</span><div class="tags"><span class="m">역설/차별화</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"폼롤러 자세 잡기 번거로웠다면"</span><span class="cc">(15자)</span><div class="tags"><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"운동 가방에 쏙 — 슬림 마사지스틱"</span><span class="cc">(17자)</span><div class="tags"><span class="m">차별화</span></div></div>
+        <div class="sd">👥 사회 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"러너들이 운동 가방에 넣는 그것"</span><span class="cc">(16자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"'폼롤러보다 낫다' 후기"</span><span class="cc">(12자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"러너들 사이 그 회복템"</span><span class="cc">(11자)</span><div class="tags"><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"리뷰 4.89, 검증된 브랜드"</span><span class="cc">(14자)</span><div class="tags"><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">💗 감성 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"운동 다음날 천근만근 다리"</span><span class="cc">(14자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"열심히 달린 종아리, 고생했어요"</span><span class="cc">(16자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"운동 후 무거운 다리, 자기 전 쭉 밀어"</span><span class="cc">(19자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"다음날 가벼우려면 오늘 밤 1분"</span><span class="cc">(16자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="sd">💰 경제 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">13</span><span class="ct">"후기 보고 — 지금이 가장 쌀 때"</span><span class="cc">(16자)</span><div class="tags"><span class="m">오퍼</span></div></div>
+        <div class="cp"><span class="cn">14</span><span class="ct">"운동 전에 — 지금 담으면 도착"</span><span class="cc">(15자)</span><div class="tags"><span class="m">오퍼</span></div></div>
+        <div class="cp"><span class="cn">15</span><span class="ct">"재고 한정 — 인기 색상 임박"</span><span class="cc">(14자)</span><div class="tags"><span class="m">FOMO</span></div></div>
+        <div class="cp"><span class="cn">16</span><span class="ct">"지금 아니면 정가"</span><span class="cc">(9자)</span><div class="tags"><span class="m">FOMO</span></div></div>
+        <div class="sd">🌟 자기표현 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">17</span><span class="ct">"운동도 회복도 챙기는 러너"</span><span class="cc">(14자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">18</span><span class="ct">"꾸준히 관리하는 내가 좋다"</span><span class="cc">(14자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">19</span><span class="ct">"달린 내 다리에 주는 보상"</span><span class="cc">(13자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">20</span><span class="ct">"운동 끝낸 나를 위한 케어"</span><span class="cc">(13자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="sd">💬 커뮤니티 보이스 → 기능 VP<span class="sdc">8</span></div>
+        <div class="anchor">💬 "종아리 근육 너무 뭉쳐서 폼롤러 위에서 굴리는데 잘 안 풀려서…"<span class="src">클리앙(러닝/짐)</span></div>
+        <div class="cp"><span class="cn">21</span><span class="ct">러닝 끝나고 종아리·허벅지 뭉친 날</span><span class="cc">(18자)</span></div>
+        <div class="cp"><span class="cn">22</span><span class="ct">다음날 다리 무거운 운동러라면</span><span class="cc">(16자)</span></div>
+        <div class="cp"><span class="cn">23</span><span class="ct">헬스·러닝 후 5분, 종아리 쭉 풀기</span><span class="cc">(18자)</span></div>
+        <div class="cp"><span class="cn">24</span><span class="ct">폼롤러로 안 풀리던 종아리, 핀포인트로</span><span class="cc">(20자)</span></div>
+        <div class="cp"><span class="cn">25</span><span class="ct">운동 후 회복 루틴, 손에 잡고 바로</span><span class="cc">(18자)</span></div>
+        <div class="cp"><span class="cn">26</span><span class="ct">라이딩·러닝 후 다리 무거운 날</span><span class="cc">(16자)</span></div>
+        <div class="cp"><span class="cn">27</span><span class="ct">헬스 하체 데이 다음날 종아리</span><span class="cc">(16자)</span></div>
+        <div class="cp"><span class="cn">28</span><span class="ct">등산·트레킹 후 뭉친 종아리·허벅지</span><span class="cc">(18자)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== F 은정 ===== -->
+  <div class="psec">
+    <div class="info"><h2>F · 전업주부 은정 45세 <span class="fb mofu">MOFU</span></h2>
+      <div class="r"><b>페인:</b> 가사 반복 손목·허리 · 아이 종아리 해주다 내 팔 아픔 · 전신 피로 · 혼자 쓰기 비싸 → 가족 공용 정당화</div>
+      <div class="r"><b>성공의 정의:</b> 손목·허리를 팔 안 쓰고 풀고, 아이 마사지까지 한 도구로, '온가족이 쓰니 가성비'로 가격 부담 해소</div>
+      <div class="r"><b>VP:</b> <span class="vpb main">주력 경제</span> <span class="vpb sub">보조 기능·사회</span></div></div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">💰</span><div><div class="vn">경제 VP</div><div class="vm">가족분담·대안절감·정가·A/S</div></div><div class="vr"><span class="vpb main">주력</span><span class="vc">11</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "남편이랑 같이 사용하다 보니 집에 하나 두기 너무 잘했다는 생각이 계속 들어요"<span class="src">네이버블로그</span></div>
+        <div class="sd">① 가족 공용 분담<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"나 혼자 쓰기 아까워서 — 온가족이 씁니다"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"한 번 사면 온가족, 1인당 만원도 안 돼요"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"비싸 보여도 식구 수로 나누면 제일 싸요"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"집에 하나 두니 너무 잘했다 — 온가족 공용"</span><span class="cc">(22자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">사회증거</span></div></div>
+        <div class="sd">② 마사지 비용 절감<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"마사지샵 식구대로 가면 한 달에 얼마예요?"</span><span class="cc">(21자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"가족 마사지값 생각하면 하나가 남는 장사"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"동네 마사지 한 번 갈 돈으로 집에 하나"</span><span class="cc">(20자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">③ 정가 앵커링<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"정가 99,000 → 59,000 (40%↓) 1+1까지"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"1+1으로 친정 엄마 것까지"</span><span class="cc">(13자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span></div></div>
+        <div class="sd">④ 리스크 리버설 (A/S)<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"온가족이 막 써도 1년 무상 A/S"</span><span class="cc">(16자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"고장 걱정 없이 — 1년 보장"</span><span class="cc">(13자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">손실회피</span></div></div>
+        <div class="body"><b>본문</b> 혼자 쓰기엔 비싸 보여도 — 남편·아이·나 다 같이 쓰면 1인당 만원도 안 돼요. 마사지샵 식구대로 가면 한 달에 얼마? 정가 99,000원 → 59,000원, 1+1까지. 온가족이 막 써도 1년 무상 A/S. <span style="color:#aaa;">(90자)</span></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">온가족 1+1 보기</span><span class="chip2">당일 출발</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">🔧</span><div><div class="vn">기능 VP</div><div class="vm">팔 안 써도·온가족 다용도·가사피로·간편</div></div><div class="vr"><span class="vpb sub">보조</span><span class="vc">9</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "아이들 종아리 허벅지 마사지 손으로 하느라 힘들었는데 편하고 좋네요"<span class="src">자사 리뷰</span></div>
+        <div class="sd">① 팔 안 써도 됨<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"아이 종아리 해주다 내 팔이 더 아프셨죠? 팔 안 써도"</span><span class="cc">(28자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"손목 아픈 가사맘 — 쥐기만 하면 끝"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"손으로 주무르다 손목 더 아팠다면"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
+        <div class="sd">② 온가족 다용도<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"아이도, 남편도, 나도 한 도구로"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"종아리·허리·어깨 다 되는 한 자루"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"아이 다리도, 내 어깨도 이거 하나면"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="sd">③ 가사 피로 + 간편<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"가사로 굳은 허리·어깨, 손 안 대고"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"종일 집안일한 손목, 자기 전 5분"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"전원도 충전도 없이, TV 보며 쓱쓱"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">사용법 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">👥</span><div><div class="vn">사회 VP</div><div class="vm">증거·선물·필수템·권위</div></div><div class="vr"><span class="vpb sub">보조</span><span class="vc">8</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 사회적 증거<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"24만 가구의 '우리집 요술봉'"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"온가족이 돌려 쓰는 집안 필수템"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"엄마들이 집에 하나씩 둔다는 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span></div></div>
+        <div class="sd">② 선물·인정<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"지인 선물로 1순위, 네이버 4.91점"</span><span class="cc">(19자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"친구한테 선물했더니 또 사달라고"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"친정·시댁 선물로도 센스 있다 소리"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="sd">③ 권위·검증<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"네이버쇼핑·쿠팡 1위 — 믿고 사는"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"현대·롯데 백화점에도 들어간 그 브랜드"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">선물 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">💗</span><div><div class="vn">감성 VP</div><div class="vm">하루 끝 보상·손목 휴식·즉각</div></div><div class="vr"><span class="vc">6</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="anchor">💬 "하루 일과 마치고 종아리 허리 허벅지 싹싹 밀어주고 바로 누우면 극락"<span class="src">자사 리뷰</span></div>
+        <div class="sd">① 하루 끝 보상<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"하루 일 끝, 싹 밀어주고 누우면 극락"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">감성</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"가사 끝 손목 쉬게 해주는 5분"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"남편·아이 챙기고, 마지막은 나"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">존중</span></div></div>
+        <div class="sd">② 즉각 쾌감<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"종아리·허리 쭉 밀면 바로 가벼운 느낌"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="flag">⚠️이완</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"굳었던 하루가 싹 — 그 개운함"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">감성</span></div></div>
+        <div class="sd">③ 가족 케어 안심<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"내가 덜 지쳐야 식구도 더 챙기죠"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">개운하게 케어</span></div>
+      </div>
+    </div>
+
+    <div class="vp"><div class="vh" onclick="tg(this)"><span class="vi">🌟</span><div><div class="vn">자기표현 VP</div><div class="vm">가족 건강 관리자·살림 정체성</div></div><div class="vr"><span class="vc">5</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">① 가족 건강 챙기는 사람<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"가족 건강 챙기는 엄마의 필수템"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"우리집 건강은 내가 챙겨요"</span><span class="cc">(13자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"식구들 몸 챙기는 살림 9단의 선택"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
+        <div class="sd">② 나도 챙기는 사람<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"가족만 챙기던 내가, 나도 챙기기 시작"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">존중</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"집안일도, 내 몸도 야무지게"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
+        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+      </div>
+    </div>
+
+    <div class="vp legacy-src"><div class="vh" onclick="tg(this)"><span class="vi">📋</span><div><div class="vn">기존 카피리스트 매핑</div><div class="vm">릴렉스틱_카피리스트 카피를 VP로 재분류 (선물주부 F형)</div></div><div class="vr"><span class="vc">20</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">👥 사회 VP로 (선물·인정·증거)<span class="sdc">6</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">"선물로 많이 찾는 그것"</span><span class="cc">(11자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">2</span><span class="ct">"받은 분이 더 좋아하는 효도템"</span><span class="cc">(15자)</span><div class="tags"><span class="m">사회증거</span></div></div>
+        <div class="cp"><span class="cn">3</span><span class="ct">"선물 1순위가 왜 마사지스틱일까"</span><span class="cc">(16자)</span><div class="tags"><span class="m">호기심갭</span></div></div>
+        <div class="cp"><span class="cn">4</span><span class="ct">"리뷰 2.3만·4.89 효도템"</span><span class="cc">(13자)</span><div class="tags"><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">5</span><span class="ct">"부모님도 자녀도 같이 쓰는 하나"</span><span class="cc">(16자)</span><div class="tags"><span class="m">사회</span></div></div>
+        <div class="cp"><span class="cn">6</span><span class="ct">"받으면 인정받는 효도템"</span><span class="cc">(12자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="sd">💰 경제 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">7</span><span class="ct">"비싼 선물 아니어도 매일 쓰는 효도템"</span><span class="cc">(19자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">8</span><span class="ct">"부모님 마사지 비용 대신"</span><span class="cc">(13자)</span><div class="tags"><span class="m">앵커링</span></div></div>
+        <div class="cp"><span class="cn">9</span><span class="ct">"1+1로 나도 부모님도 함께"</span><span class="cc">(14자)</span><div class="tags"><span class="m">오퍼</span></div></div>
+        <div class="cp"><span class="cn">10</span><span class="ct">"선물 타이밍 놓치면 정가뿐"</span><span class="cc">(14자)</span><div class="tags"><span class="m">FOMO</span></div></div>
+        <div class="sd">💗 감성 VP로<span class="sdc">4</span></div>
+        <div class="cp"><span class="cn">11</span><span class="ct">"부모님 다리, 늘 마음 쓰이죠"</span><span class="cc">(14자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="cp"><span class="cn">12</span><span class="ct">"부모님 무거운 다리, 자기 전 1분"</span><span class="cc">(17자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">13</span><span class="ct">"다리 저려 못 주무시던 부모님께"</span><span class="cc">(16자)</span><div class="tags"><span class="m">생리</span></div></div>
+        <div class="cp"><span class="cn">14</span><span class="ct">"다리 무거운 친구 챙기고 싶죠"</span><span class="cc">(15자)</span><div class="tags"><span class="m">공감</span></div></div>
+        <div class="sd">🔧 기능 VP로<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">15</span><span class="ct">"받는 분 누구나 쉬운 전신 케어"</span><span class="cc">(16자)</span><div class="tags"><span class="m">차별화</span></div></div>
+        <div class="cp"><span class="cn">16</span><span class="ct">"멀리서 못 챙기던 다리, 이걸로"</span><span class="cc">(16자)</span><div class="tags"><span class="m">PAS</span></div></div>
+        <div class="cp"><span class="cn">17</span><span class="ct">"내가 써보고 선물 — 평점 4.89"</span><span class="cc">(16자)</span><div class="tags"><span class="m">확증편향</span><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">🌟 자기표현 VP로<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">18</span><span class="ct">"챙길 줄 아는 사람의 선물"</span><span class="cc">(13자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">19</span><span class="ct">"부모님도 나도 챙기는 사람"</span><span class="cc">(14자)</span><div class="tags"><span class="m">자아</span></div></div>
+        <div class="cp"><span class="cn">20</span><span class="ct">"받으면 매일 쓰시는 선물, 지금"</span><span class="cc">(16자)</span><div class="tags"><span class="m">존중</span></div></div>
+        <div class="sd">💬 커뮤니티 보이스 → 사회 VP (입소문·선물)<span class="sdc">8</span></div>
+        <div class="anchor">💬 "올해 소비 중 제일" / 자사: "친구가 쓰는 거 보고 바로 주문" · "부모님이 매일 쓰세요"<span class="src">더쿠·자사 리뷰</span></div>
+        <div class="cp"><span class="cn">21</span><span class="ct">올해 산 것 중 제일 잘 산 마사지스틱</span><span class="cc">(20자)</span></div>
+        <div class="cp"><span class="cn">22</span><span class="ct">친구가 쓰는 거 보고 바로 산 그것</span><span class="cc">(18자)</span></div>
+        <div class="cp"><span class="cn">23</span><span class="ct">삶의 질 올려준 종아리 셀프케어</span><span class="cc">(17자)</span></div>
+        <div class="cp"><span class="cn">24</span><span class="ct">부모님께 드렸더니 매일 쓰세요</span><span class="cc">(16자)</span></div>
+        <div class="cp"><span class="cn">25</span><span class="ct">여행 갈 때도 챙겨가는 마사지스틱</span><span class="cc">(18자)</span></div>
+        <div class="cp"><span class="cn">26</span><span class="ct">받은 사람이 더 좋아하는 그 선물</span><span class="cc">(16자)</span></div>
+        <div class="cp"><span class="cn">27</span><span class="ct">선물했더니 나도 하나 더 산 그것</span><span class="cc">(17자)</span></div>
+        <div class="cp"><span class="cn">28</span><span class="ct">후기 보고 반신반의했다 푹 빠진</span><span class="cc">(16자)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- (💬 커뮤니티·🧠 심리/욕구 일반 탭은 페르소나×VP 원칙에 따라 제거 — 커뮤니티는 각 페르소나 📋 카드로 분배, 심리/욕구는 각 페르소나 📋에 이미 반영) -->
+  <div style="display:none"><div class="vbody">
+        <div class="sd">01 FOMO / 희소성<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">인기 색상 품절 임박</span><span class="cc">(11)</span></div><div class="cp"><span class="cn">2</span><span class="ct">이 가격, 이번 행사까지만</span><span class="cc">(13)</span></div><div class="cp"><span class="cn">3</span><span class="ct">1+1 구성 한정 — 마감 임박</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">4</span><span class="ct">다음 입고는 미정입니다</span><span class="cc">(12)</span></div><div class="cp"><span class="cn">5</span><span class="ct">품절되면 재입고 2~3주</span><span class="cc">(13)</span></div><div class="cp"><span class="cn">6</span><span class="ct">오늘 자정까지만 이 가격</span><span class="cc">(12)</span></div><div class="cp"><span class="cn">7</span><span class="ct">한정 수량 소진 임박</span><span class="cc">(11)</span></div><div class="cp"><span class="cn">8</span><span class="ct">놓치면 다음 행사까지 정가</span><span class="cc">(14)</span></div>
+        <div class="sd">02 손실 회피<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">오늘도 무거운 다리로 잠드시나요?</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">2</span><span class="ct">마사지샵 비용, 매번 그냥 나가죠</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">3</span><span class="ct">장바구니에 둔 사이 행사가 끝날 수 있어요</span><span class="cc">(22)</span></div><div class="cp"><span class="cn">4</span><span class="ct">10만원대 기기 사기 전에 이것부터</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">5</span><span class="ct">비싼 기기 샀다 안 쓰는 일 없게</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">6</span><span class="ct">오늘 안 풀면 내일 더 무거운 다리</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">7</span><span class="ct">매일 쌓이는 다리 피로, 방치 말고</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">8</span><span class="ct">할인 끝나면 다시 정가예요</span><span class="cc">(14)</span></div>
+        <div class="sd">03 사회적 증거<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">리뷰 23,320건·평점 4.89</span><span class="cc">(15)</span><div class="tags"><span class="flag">⚠️근거</span></div></div><div class="cp"><span class="cn">2</span><span class="ct">'올해 산 것 중 제일' 후기 가득</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">3</span><span class="ct">직장 여성들이 소파 옆에 둔 그것</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">4</span><span class="ct">친구가 쓰는 거 보고 다들 삽니다</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">5</span><span class="ct">SNS·후기로 입소문 난 그것</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">6</span><span class="ct">재구매·선물 많은 스테디셀러</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">7</span><span class="ct">'여행에도 챙긴다'는 후기 가득</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">8</span><span class="ct">네이버쇼핑·쿠팡 1위 마사지스틱</span><span class="cc">(16)</span><div class="tags"><span class="flag">⚠️근거</span></div></div>
+        <div class="sd">04 앵커링<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">10만원대 다리마사지기 대신, 평생 하나</span><span class="cc">(21)</span></div><div class="cp"><span class="cn">2</span><span class="ct">마사지샵 한 번 값으로 매일 집에서</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">3</span><span class="ct">전동기기 여러 개 말고 이것 하나</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">4</span><span class="ct">한 번 사서 온 가족이 돌려 쓰는</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">5</span><span class="ct">안마의자 200만원? 스틱 하나면</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">6</span><span class="ct">마사지볼·폼롤러 다 합친 한 자루</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">7</span><span class="ct">받으면 비싸 보이는데 합리적</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">8</span><span class="ct">매달 샵 비용 vs 한 번 사서 평생</span><span class="cc">(18)</span></div>
+        <div class="sd">05 공감 / 감정<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">하루 종일 서서·앉아서 무거워진 다리</span><span class="cc">(19)</span></div><div class="cp"><span class="cn">2</span><span class="ct">퇴근하면 종아리부터 주저앉는 하루</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">3</span><span class="ct">나 챙길 틈 없이 무거운 다리</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">4</span><span class="ct">운동 다음날 천근만근 다리</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">5</span><span class="ct">신발이 꽉 끼는 저녁 다리</span><span class="cc">(14)</span><div class="tags"><span class="flag">⚠️체형</span></div></div><div class="cp"><span class="cn">6</span><span class="ct">손목 아파 못 주무르던 종아리</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">7</span><span class="ct">나만의 시간 없이 무거운 하루 끝</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">8</span><span class="ct">계단 오를 때 묵직한 다리</span><span class="cc">(14)</span></div>
+        <div class="sd">06 PAS (문제→고통→해결)<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">오후에 무거운 다리 → 발목부터 위로 쭉</span><span class="cc">(20)</span></div><div class="cp"><span class="cn">2</span><span class="ct">폼롤러론 안 풀리던 종아리, 핀포인트로</span><span class="cc">(21)</span></div><div class="cp"><span class="cn">3</span><span class="ct">방치하면 더 무거운 다리, 매일 1분</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">4</span><span class="ct">다리 무거울 때 뭘 살지 모르겠다면</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">5</span><span class="ct">오래 앉아 굳은 종아리 → 자기 전 1분</span><span class="cc">(19)</span></div><div class="cp"><span class="cn">6</span><span class="ct">파스·찜질론 그때뿐 → 매일 롤링으로</span><span class="cc">(19)</span></div><div class="cp"><span class="cn">7</span><span class="ct">마사지샵 매번 가기 부담 → 집에서</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">8</span><span class="ct">운동 후 방치 → 다음날 더 뭉쳐요</span><span class="cc">(17)</span></div>
+        <div class="sd">07 호기심 갭<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">직장 여성 소파 옆 그 마사지스틱의 정체</span><span class="cc">(21)</span></div><div class="cp"><span class="cn">2</span><span class="ct">10가지 기기 있는데 결국 쓰는 이것</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">3</span><span class="ct">SNS에서 다들 쓰는 그 종아리템</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">4</span><span class="ct">전동기기보다 이걸 더 쓰는 이유</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">5</span><span class="ct">10만원대 안 부러운 그 가성비의 정체</span><span class="cc">(19)</span></div><div class="cp"><span class="cn">6</span><span class="ct">여행 가방에 꼭 들어가는 그것</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">7</span><span class="ct">손에 잡는 것만으로 시원한 비결</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">8</span><span class="ct">부모님이 매일 찾으시는 그것</span><span class="cc">(15)</span></div>
+        <div class="sd">08 권위 / 신뢰<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">리뷰 23,320건·평점 4.89 마사지스틱</span><span class="cc">(20)</span><div class="tags"><span class="flag">⚠️근거</span></div></div><div class="cp"><span class="cn">2</span><span class="ct">충전 없이 — 손에 잡고 바로</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">3</span><span class="ct">목·어깨·종아리 전신 하나로</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">4</span><span class="ct">국가대표 트레이너가 검증한 리커버리템</span><span class="cc">(19)</span><div class="tags"><span class="flag">⚠️근거</span></div></div><div class="cp"><span class="cn">5</span><span class="ct">스틸 롤링·BPA프리 소재</span><span class="cc">(13)</span></div><div class="cp"><span class="cn">6</span><span class="ct">누적 240,000개·네이버 4.91점</span><span class="cc">(16)</span><div class="tags"><span class="flag">⚠️근거</span></div></div><div class="cp"><span class="cn">7</span><span class="ct">부위별 사용법 동봉</span><span class="cc">(10)</span></div><div class="cp"><span class="cn">8</span><span class="ct">슬림 디자인 — 손에 착 감기는 그립</span><span class="cc">(18)</span></div>
+      </div>
+    </div>
+
+    <div class="vp open"><div class="vh" onclick="tg(this)"><span class="vi">🍃</span><div><div class="vn">인간 욕구 09~13 (매슬로우)</div><div class="vm">생리·안전·사회·존중·자아</div></div><div class="vr"><span class="vc">40</span><span class="arr">▶</span></div></div>
+      <div class="vbody">
+        <div class="sd">09 생리적 욕구 ⭐ (다리 무거움·휴식)<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">무거운 다리로 뒤척이던 밤, 자기 전 1분</span><span class="cc">(21)</span></div><div class="cp"><span class="cn">2</span><span class="ct">아침에 다리 묵직해 못 일어날 때</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">3</span><span class="ct">종일 일한 다리, 소파에서 쭉 밀어</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">4</span><span class="ct">쉬어도 안 풀리는 다리, 손에 잡고</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">5</span><span class="ct">자다 다리 저려 깨던 밤</span><span class="cc">(13)</span></div><div class="cp"><span class="cn">6</span><span class="ct">종일 서 있던 발·종아리, 누워서 쭉</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">7</span><span class="ct">다리 무거워 잠 설치던 날</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">8</span><span class="ct">아침에 다리 가볍게 시작하고 싶다면</span><span class="cc">(18)</span></div>
+        <div class="sd">10 안전 욕구 (만성 뭉침 방지)<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">오후의 묵직함, 쌓이기 전에 매일</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">2</span><span class="ct">다리는 매일 풀어줘야 가벼워요</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">3</span><span class="ct">방치 말고 자기 전 종아리 루틴</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">4</span><span class="ct">뭉침 쌓이기 전에 미리미리</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">5</span><span class="ct">오늘 묵직함, 만성 되기 전에</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">6</span><span class="ct">매일 1분이 쌓이면 가벼운 다리</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">7</span><span class="ct">운동 루틴에 회복 루틴까지</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">8</span><span class="ct">미루지 말고 자기 전 종아리 쭉</span><span class="cc">(16)</span></div>
+        <div class="sd">11 사회적 욕구 (가족·동조)<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">온 가족이 돌려 쓰는 마사지스틱</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">2</span><span class="ct">친구 따라 다들 하나씩</span><span class="cc">(12)</span></div><div class="cp"><span class="cn">3</span><span class="ct">부모님도 나도 같이 쓰는 하나</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">4</span><span class="ct">다들 소파 옆에 하나씩 두는 그것</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">5</span><span class="ct">가족 단톡에 추천한 그 마사지스틱</span><span class="cc">(17)</span></div><div class="cp"><span class="cn">6</span><span class="ct">직장 동료가 빌려 쓰다 산 그것</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">7</span><span class="ct">운동 모임에서 다들 쓰는 하나</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">8</span><span class="ct">친구·가족이 다 아는 그 스틱</span><span class="cc">(15)</span></div>
+        <div class="sd">12 존중 욕구 (자기보상·선물)<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">고생한 내 다리에, 시원한 보상</span><span class="cc">(16)</span></div><div class="cp"><span class="cn">2</span><span class="ct">다리 무거운 부모님께 드리는 선물</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">3</span><span class="ct">받으면 매일 쓰는 효도템</span><span class="cc">(13)</span></div><div class="cp"><span class="cn">4</span><span class="ct">나를 위한 매일 1분, 종아리 케어</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">5</span><span class="ct">열심히 산 나에게 주는 시원함</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">6</span><span class="ct">부모님 발·종아리 챙기는 마음</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">7</span><span class="ct">받는 분이 더 좋아하는 선물</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">8</span><span class="ct">누구나 쉽게 쓰는 효도템</span><span class="cc">(13)</span></div>
+        <div class="sd">13 자아실현 (셀프케어 루틴)<span class="sdc">8</span></div>
+        <div class="cp"><span class="cn">1</span><span class="ct">다리 챙기는 사람의 저녁 루틴</span><span class="cc">(15)</span></div><div class="cp"><span class="cn">2</span><span class="ct">매일 종아리 미는, 나를 돌보는 습관</span><span class="cc">(18)</span></div><div class="cp"><span class="cn">3</span><span class="ct">운동도 회복도 챙기는 사람</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">4</span><span class="ct">꾸준히 관리하는 내가 좋다</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">5</span><span class="ct">운동도 회복도 챙기는 어른</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">6</span><span class="ct">매일 다리 미는 작은 루틴</span><span class="cc">(14)</span></div><div class="cp"><span class="cn">7</span><span class="ct">나를 돌보는 1분의 습관</span><span class="cc">(13)</span></div><div class="cp"><span class="cn">8</span><span class="ct">건강 챙기는 사람의 저녁</span><span class="cc">(13)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>세분화·DEEP 노트</b><br>
+    · <b>구조:</b> 페르소나(탭) × VP(아코디언) × <span class="sd" style="display:inline-flex;padding:0 6px;">소분류</span> × 방법론별 헤드라인. 소분류는 vp_framework.md 하위 항목 기준(경제→정가/회당/대안/분담/A·S 등).<br>
+    · <b>구조 원칙:</b> 모든 카피는 페르소나×VP 안에. 별도 카테고리 탭 없음 — 기존 카피리스트의 커뮤니티 보이스·심리·욕구도 각 페르소나 📋 카드에 VP로 분배.
+    · <b>규모:</b> 신규 ~300 + 📋 매핑 120 + 💬 커뮤니티 분배 40 = <b>약 460개</b>. 📋·💬 = 기존 카피리스트에서 가져온 것(보라색 <span style="background:#f0e9ff;color:#6b3fd4;padding:0 4px;border-radius:3px;">📋 기존</span> 배지).
+    · 커뮤니티 분배: 지영←사무직붓기 / 준혁←운동후 / 수현←폼롤러대비 / 미숙←다리라인 / 은정←선물 (소연은 매칭 테마 없어 제외).<br>
+    · <b>규제 ⚠️</b> 빼지 않고 표시(효능·이완·근거·체형). 송출 전 검토 또는 안전 대체.<br>
+    · 다음: ① 보조 VP에도 본문 추가 ② 채널 확장(네이버 25~30자/카카오 8자) ③ 콜아웃 4방법 반영 ④ 소분류별 본문·CTA 풀세트.
+  </div>
+</div>
+<script>
+function sp(i,btn){document.querySelectorAll('.psec').forEach((s,x)=>s.classList.toggle('active',x===i));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function tg(h){h.parentElement.classList.toggle('open');}
+</script>
+</body>
+</html>
