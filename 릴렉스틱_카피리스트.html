@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>릴렉스틱 카피 리스트 — 메타 광고 2026.06</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+       background: #f5f6f8; color: #1a1a2e; line-height: 1.7; font-size: 13px; }
+.hero { background: linear-gradient(135deg, #06210f 0%, #0c3a22 55%, #059669 130%);
+        color: #fff; padding: 52px 40px 44px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; left: -80px; bottom: -80px; width: 280px; height: 280px; border-radius: 50%; background: rgba(5,150,105,0.18); }
+.hero::after  { content: ''; position: absolute; right: 40px; top: 30px; width: 180px; height: 180px; border-radius: 50%; background: rgba(110,231,183,0.10); }
+.hero .tag { display: inline-block; background: rgba(5,150,105,0.30); color: #6ee7b7; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 18px; }
+.hero h1 { font-size: 28px; font-weight: 800; line-height: 1.35; margin-bottom: 10px; }
+.hero p   { font-size: 13px; color: rgba(255,255,255,0.7); }
+.hero .meta { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.5); display: flex; gap: 24px; flex-wrap: wrap; }
+.hero .meta strong { color: rgba(255,255,255,0.9); }
+.back-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 600; text-decoration: none; margin-bottom: 24px; transition: background .15s; }
+.back-btn:hover { background: rgba(255,255,255,0.25); }
+.tab-nav { display: flex; gap: 0; background: #fff; border-radius: 16px; padding: 8px; margin-bottom: 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); overflow-x: auto; }
+.tab-btn { flex: 1; min-width: 120px; text-align: center; padding: 10px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; color: #999; cursor: pointer; border: none; background: none; transition: background .15s, color .15s; }
+.tab-btn:hover { background: #ecfdf5; color: #059669; }
+.tab-btn.active { background: #06210f; color: #fff; }
+.container { max-width: 980px; margin: 0 auto; padding: 36px 20px 80px; }
+.info-box { background: #fff; border-radius: 16px; padding: 20px 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); margin-bottom: 24px; border-left: 4px solid #059669; }
+.info-box .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 13px; color: #555; margin-bottom: 4px; }
+.info-box .row:last-child { margin-bottom: 0; }
+.info-box .label { font-weight: 700; color: #1a1a2e; min-width: 80px; }
+.info-badge { display: inline-block; background: #ecfdf5; color: #059669; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; margin-left: 6px; }
+.info-badge.blue { background: #e6f4ff; color: #0958d9; }
+.info-badge.green { background: #f6ffed; color: #389e0d; }
+.section { margin-bottom: 36px; }
+.section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.section-num { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0; }
+.n1 { background: #ecfdf5; color: #059669; }
+.n2 { background: #e6f4ff; color: #0958d9; }
+.n3 { background: #f9f0ff; color: #531dab; }
+.n4 { background: #f6ffed; color: #389e0d; }
+.section-title { font-size: 18px; font-weight: 800; color: #1a1a2e; }
+.section-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
+.card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); margin-bottom: 20px; }
+.copy-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.copy-table th { background: #06210f; color: #fff; padding: 10px 14px; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-align: left; }
+.copy-table th:first-child { border-radius: 8px 0 0 0; }
+.copy-table th:last-child { border-radius: 0 8px 0 0; }
+.copy-table td { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+.copy-table tr:last-child td { border-bottom: none; }
+.copy-table tr:nth-child(even) td { background: #fafafa; }
+.appeal-tag { display: inline-block; background: #ecfdf5; color: #059669; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; }
+.cold-tag { background: #f6ffed; color: #389e0d; }
+.warm-tag { background: #fff7e6; color: #d46b08; }
+.type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media(max-width: 700px) { .type-grid { grid-template-columns: 1fr; } }
+.type-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+.type-head { padding: 16px 20px 12px; border-bottom: 1px solid #f0f0f0; }
+.type-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+.badge-c { background: #f9f0ff; color: #531dab; }
+.badge-b { background: #e6f4ff; color: #0958d9; }
+.badge-a { background: #ecfdf5; color: #059669; }
+.type-title { font-size: 14px; font-weight: 800; color: #1a1a2e; }
+.type-sub { font-size: 11px; color: #888; margin-top: 2px; }
+.type-formula { font-size: 11px; color: #555; background: #f8f8f8; border-radius: 6px; padding: 8px 12px; margin-top: 8px; line-height: 1.6; }
+.type-body { padding: 16px 20px; }
+.copy-item { padding: 8px 0; border-bottom: 1px solid #f5f5f5; font-size: 13px; }
+.copy-item:last-child { border-bottom: none; }
+.copy-num { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: #f0f0f0; color: #555; font-size: 10px; font-weight: 800; text-align: center; line-height: 18px; margin-right: 6px; flex-shrink: 0; }
+.copy-text { font-weight: 600; color: #1a1a2e; }
+.copy-count { font-size: 11px; color: #888; margin-left: 6px; }
+.psy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+@media(max-width: 700px) { .psy-grid { grid-template-columns: 1fr; } }
+.psy-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+.psy-head { padding: 14px 20px 10px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 10px; }
+.psy-icon { font-size: 22px; }
+.psy-num { font-size: 10px; font-weight: 800; color: #aaa; }
+.psy-name { font-size: 14px; font-weight: 800; color: #1a1a2e; }
+.psy-desc { font-size: 11px; color: #888; margin-top: 1px; }
+.psy-body { padding: 14px 20px 16px; }
+.psy-label { font-size: 10px; font-weight: 800; color: #aaa; letter-spacing: 1px; margin-bottom: 6px; margin-top: 10px; }
+.psy-label:first-child { margin-top: 0; }
+.hl-item { display: flex; align-items: flex-start; gap: 6px; padding: 6px 0; border-bottom: 1px solid #f5f5f5; font-size: 12px; }
+.hl-item:last-child { border-bottom: none; }
+.hl-n { flex-shrink: 0; width: 16px; height: 16px; border-radius: 4px; background: #f0f0f0; color: #555; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.hl-txt { font-weight: 600; color: #1a1a2e; flex: 1; }
+.hl-cnt { font-size: 10px; color: #aaa; flex-shrink: 0; white-space: nowrap; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.cta-chip { background: #ecfdf5; color: #059669; border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 700; }
+.cta-count { font-size: 10px; color: #aaa; margin-left: 2px; }
+.warn-box { background: #fffbe6; border: 1px solid #ffe58f; border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; }
+.warn-box .warn-title { font-size: 13px; font-weight: 800; color: #d46b08; margin-bottom: 4px; }
+.warn-box p { font-size: 12px; color: #555; }
+.ok-box { background: #f6ffed; border: 1px solid #b7eb8f; border-radius: 12px; padding: 14px 20px; font-size: 13px; font-weight: 700; color: #389e0d; }
+.tab-section { display: none; }
+.tab-section.active { display: block; }
+.source-note { font-size: 11px; color: #aaa; background: #f8f8f8; border-radius: 8px; padding: 8px 12px; margin-bottom: 16px; }
+.quote-box { background: #fafafa; border-left: 3px solid #059669; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 8px 0; font-size: 12px; color: #333; font-style: italic; }
+.quote-src { font-size: 10px; color: #aaa; font-style: normal; margin-top: 4px; }
+.persona-toggle-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.persona-btn { padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; border: 2px solid #e0e0e0; background: #fff; color: #666; transition: all .15s; }
+.persona-btn:hover { border-color: #059669; color: #059669; }
+.persona-btn.p-active { background: #06210f; border-color: #06210f; color: #fff; }
+.persona-panel { display: none; background: #ecfdf5; border-radius: 12px; padding: 18px 20px; margin-bottom: 4px; border-top: 3px solid #059669; }
+.persona-panel.p-active { display: block; }
+.persona-panel-title { font-size: 13px; font-weight: 800; color: #1a1a2e; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #cdeede; }
+.kw-group { margin-bottom: 10px; }
+.kw-label-sm { font-size: 10px; font-weight: 800; color: #aaa; letter-spacing: 1px; margin-bottom: 6px; }
+.kw-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.kw-tag { background: #ecfdf5; color: #059669; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+.kw-tag.pain { background: #fff1f0; color: #cf1322; }
+.kw-tag.trigger { background: #f6ffed; color: #389e0d; }
+.kw-tag.time { background: #fff7e6; color: #d46b08; }
+.iboss-cite { font-size: 10px; font-style: italic; background: #f3f0ff; color: #531dab; border-radius: 4px; padding: 1px 6px; margin-left: 4px; white-space: nowrap; display: inline-block; }
+.psy-card.persona-active .psy-head { border-bottom: 2px solid #059669; }
+.psy-card.persona-active .psy-num::after { content: ' ✦'; color: #059669; }
+.type-card.persona-active .type-head { border-bottom: 2px solid #059669; }
+/* community theme */
+.comm-theme { margin-bottom: 20px; }
+.comm-theme-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.comm-num { width: 22px; height: 22px; border-radius: 50%; background: #059669; color: #fff; font-size: 10px; font-weight: 800; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; }
+.comm-theme-title { font-size: 13px; font-weight: 800; color: #1a1a2e; }
+.comm-theme-target { font-size: 10px; color: #888; font-weight: 600; margin-top: 2px; }
+.comm-copy { font-size: 11px; color: #389e0d; background: #f6ffed; border-radius: 6px; padding: 6px 10px; margin-top: 6px; font-weight: 600; }
+.copy-ad-item { padding: 8px 0; border-bottom: 1px solid #f5f5f5; display: flex; align-items: flex-start; gap: 6px; font-size: 12px; }
+.copy-ad-item:last-child { border-bottom: none; }
+.copy-ad-n { flex-shrink: 0; width: 18px; height: 18px; border-radius: 4px; background: #ecfdf5; color: #059669; font-size: 9px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.copy-ad-text { flex: 1; font-weight: 600; color: #1a1a2e; }
+.copy-ad-cnt { font-size: 10px; color: #aaa; white-space: nowrap; flex-shrink: 0; }
+.reg-warn-badge { display: inline-block; background: #cf1322; color: #fff; font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 5px; margin-left: 6px; letter-spacing: .5px; vertical-align: middle; white-space: nowrap; }
+.reg-item { padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
+.reg-item:last-child { border-bottom: none; }
+.reg-risky { font-weight: 700; color: #1a1a2e; font-size: 13px; }
+.reg-reason { font-size: 11px; color: #cf1322; margin-top: 3px; }
+.reg-alt { font-size: 11px; color: #389e0d; margin-top: 2px; }
+.reg-group-label { font-size: 11px; font-weight: 800; color: #cf1322; margin: 14px 0 6px; letter-spacing: .5px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <a href="릴렉스틱_타겟분석_20260609.html" class="back-btn">← 타겟 분석 리포트로 돌아가기</a>
+  <div class="tag">COPY LIST · META ADS · 🦵 릴렉스틱 마사지스틱</div>
+  <h1>릴렉스틱<br>메타 광고 카피 리스트</h1>
+  <p>커뮤니티 보이스 5주제 + iboss 프레임워크 · 13개 심리 카테고리 · 페르소나 6인 토글 (직장여성·워킹맘·러너·중년·입소문·선물)</p>
+  <div class="meta">
+    <span><strong>채널</strong> 메타 광고 (9:16)</span>
+    <span><strong>목적</strong> 신규 인지 확장 + 폼롤러/마사지건 대체 + 선물</span>
+    <span><strong>데이터</strong> BQ 41,686건+리뷰 23,320건+검색량 (draft)</span>
+    <span><strong>작성일</strong> 2026-06-09</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="info-box">
+    <div class="row">
+      <span class="label">타겟</span>
+      <span>30~50대 여성(72%)·직장인 83% · 종아리 붓기·전신 뭉침 · 운동러(남 27%)·입소문·선물 · 수도권 — A형~F형</span>
+    </div>
+    <div class="row">
+      <span class="label">글자 수</span>
+      <span class="info-badge">헤드라인 ~40자</span>
+      <span class="info-badge blue">본문 125자 이하</span>
+      <span class="info-badge green">CTA 15자 이하</span>
+    </div>
+    <div class="row">
+      <span class="label">⚠️ 규제</span>
+      <span>비전동 마사지 도구(의료기기 아님) — "통증완화·치료·혈액순환 개선·부종/셀룰라이트 제거·종아리 얇아짐" 금지, "시원·다리 가벼운 느낌·뭉침 케어·개운" 톤. 별점 4.89는 실수치.</span>
+    </div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('bank')">소구점 뱅크</button>
+    <button class="tab-btn" onclick="switchTab('abc')">A/B/C 타입</button>
+    <button class="tab-btn" onclick="switchTab('psy')">심리 편향</button>
+    <button class="tab-btn" onclick="switchTab('need')">인간 욕구</button>
+    <button class="tab-btn" onclick="switchTab('reg')">규제 검토</button>
+  </div>
+
+  <div id="tab-bank" class="tab-section active">
+    <div class="section">
+      <div class="section-head"><div class="section-num n1">1</div><div><div class="section-title">소구점 카피 뱅크</div><div class="section-sub">iboss copy/02_frameworks.md — 상시(Cold)/리타겟(Warm) · 비의료 톤</div></div></div>
+      <div class="source-note">🦵 릴렉스틱 핵심 소구점은 <b>"시원"(리뷰 1만+) + 충전 없이 간편 + 전신 멀티 + 폼롤러/마사지건 대체</b>. 통증·부종 효능은 회피, "시원·다리 가벼운 느낌·뭉침 케어" 톤.</div>
+      <div class="card">
+        <table class="copy-table">
+          <thead><tr><th style="width:18%">소구점</th><th style="width:41%"><span class="cold-tag" style="border-radius:4px;padding:2px 8px;font-size:11px;">상시(Cold)</span> — 신규 획득</th><th style="width:41%"><span class="warm-tag" style="border-radius:4px;padding:2px 8px;font-size:11px;">리타겟(Warm)</span> — 전환</th></tr></thead>
+          <tbody>
+            <tr><td><span class="appeal-tag">시원·체감(결과)</span></td><td>퇴근하고 종아리 쭉 밀면 너무 시원해요</td><td>장바구니 속 그 마사지스틱, 지금 데려가요</td></tr>
+            <tr><td><span class="appeal-tag">편의성/간편</span></td><td>충전도 버튼도 없이 손에 잡고 바로</td><td>지금 담으면 오늘 바로 출발</td></tr>
+            <tr><td><span class="appeal-tag">신뢰/증거</span></td><td>리뷰 23,320건·평점 4.89 마사지스틱</td><td>별점 4.89, 후기부터 확인하세요</td></tr>
+            <tr><td><span class="appeal-tag">감성/공감</span></td><td>하루 종일 서서·앉아서 무거워진 다리</td><td>다리 무거운 그분께, 손에 잡는 선물</td></tr>
+            <tr><td><span class="appeal-tag">가격/가치</span></td><td>10만원대 다리마사지기 대신, 평생 쓰는 하나</td><td>행사가 마감 전, 지금 가격 확인</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><div class="section-num n1">★</div><div><div class="section-title">커뮤니티 보이스 직접 인용</div><div class="section-sub">5개 대주제 × 실제 발화 → 파생 광고 카피</div></div></div>
+      <div class="card">
+        <div class="source-note">출처: 82cook · 클리앙 · 더쿠 · barybody 후기 + 자사 리뷰(BQ) — <b>페르소나 draft</b>. ⚠️ 인용 중 '붓기/혈액순환/종아리 둘레' 발화는 커뮤니티 표현이며 <b>우리 카피로는 효능 단정 불가</b>.</div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">1</div><div><div class="comm-theme-title">사무직 종아리 붓기·다리 무거움 (핵심)</div><div class="comm-theme-target">주요 타겟: A형(지은 33 직장여성) · B형(워킹맘)</div></div></div>
+          <div class="quote-box">"장시간 앉아있는 사무직은 오후가 되면 발목·종아리가 무거워지고 다리가 붓는 느낌"<div class="quote-src">헬스 매체·82cook</div></div>
+          <div class="quote-box">"마사지하면 몸이 가벼워진다" / "퇴근하면 다리 퉁퉁"<div class="quote-src">82cook</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">하루 종일 앉아 오후엔 다리 퉁퉁한 분들</div><div class="copy-ad-cnt">(21자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">퇴근하면 종아리부터 무거운 직장인이라면</div><div class="copy-ad-cnt">(21자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">발목·종아리 묵직한 저녁, 쭉 밀어 시원하게</div><div class="copy-ad-cnt">(23자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">종일 서서 일한 다리, 소파에서 1분 케어</div><div class="copy-ad-cnt">(21자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">오후만 되면 무거운 다리, 자기 전 롤링</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">앉아만 있으면 오후엔 발목까지 묵직</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">다리 부어 신발이 꽉 끼는 저녁이라면</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">8</div><div class="copy-ad-text">종일 회의·책상, 다리는 천근만근</div><div class="copy-ad-cnt">(17자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: PAS 06 · 공감 05 · 생리 09 · A형</div>
+        </div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">2</div><div><div class="comm-theme-title">운동 후 종아리·허벅지 뭉침 (러너·헬스)</div><div class="comm-theme-target">주요 타겟: C형(현우 38 러너) · 남성 27%</div></div></div>
+          <div class="quote-box">"종아리 근육 너무 뭉쳐서 폼롤러 위에서 굴리는데 잘 안 풀려서…"<div class="quote-src">클리앙(러닝/짐)</div></div>
+          <div class="quote-box">"러닝 후 종아리 뭉침, 마사지·스트레칭도 신경 써야"<div class="quote-src">클리앙</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">러닝 끝나고 종아리·허벅지 뭉친 날</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">다음날 다리 무거운 운동러라면</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">헬스·러닝 후 5분, 종아리 쭉 풀기</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">폼롤러로 안 풀리던 종아리, 핀포인트로</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">운동 후 회복 루틴, 손에 잡고 바로</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">라이딩·러닝 후 다리 무거운 날</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">헬스 하체 데이 다음날 종아리</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">8</div><div class="copy-ad-text">등산·트레킹 후 뭉친 종아리·허벅지</div><div class="copy-ad-cnt">(18자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: PAS 06 · 자아 13 · C형(러너)</div>
+        </div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">3</div><div><div class="comm-theme-title">폼롤러·마사지건 대비 — 전동기기를 이긴 간편함</div><div class="comm-theme-target">주요 타겟: 전 타겟 (비교 검토층)</div></div></div>
+          <div class="quote-box">"10만원 넘는 다리마사지기보다 훨씬 시원" / "목·어깨·손에 잘 잡히고 롤링 편의"<div class="quote-src">barybody 후기</div></div>
+          <div class="quote-box">"마사지건 충전이 귀찮아 안 쓰게 되는데" / "폼롤러로는 잘 안 풀려서"<div class="quote-src">클리앙</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">폼롤러 위에서 굴려도 안 풀렸다면</div><div class="copy-ad-cnt">(17자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">마사지건 충전 귀찮아 안 쓰게 됐다면</div><div class="copy-ad-cnt">(19자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">10만원대 다리마사지기보다 시원했어요</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">큰 기기 말고 손에 잡는 마사지스틱</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">전동기기 다 있는데 결국 이것만 써요</div><div class="copy-ad-cnt">(19자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">안마의자 자리 차지에 결국 안 쓰던 분들</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">마사지볼·폼롤러 다 있는데 손 안 가던</div><div class="copy-ad-cnt">(19자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">8</div><div class="copy-ad-text">비싼 기기보다 손에 잡는 게 편하다면</div><div class="copy-ad-cnt">(19자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: 앵커링 04 · 역설형 · 호기심갭 07</div>
+        </div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">4</div><div><div class="comm-theme-title">다리 라인·종아리 알 (여성 뷰티 — 비의료 톤)</div><div class="comm-theme-target">주요 타겟: D형(중년) · E형(SNS 입소문러)</div></div></div>
+          <div class="quote-box">"마사지스틱 후기! 종아리 36cm→34-35cm" → ※ 우리 카피는 '둘레/얇아짐' 단정 금지<div class="quote-src">더쿠(diet)</div></div>
+          <div class="quote-box">"발목에서 위로 쭉 밀어주는 게 더 시원" / "종아리 뿌실만큼 시원한 마사지"<div class="quote-src">더쿠</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인) <span style="font-weight:400;color:#cf1322;">— 비의료 톤(시원·케어)</span></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">종아리 묵직함, 매일 밀어 가볍게</div><div class="copy-ad-cnt">(17자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">다리 신경 쓰는 분들의 저녁 셀프 루틴</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">발목부터 위로 쭉 — 종아리 시원하게</div><div class="copy-ad-cnt">(19자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">SNS에서 본 그 종아리 마사지스틱</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">거울 보며 다리 쭉쭉 미는 저녁 습관</div><div class="copy-ad-cnt">(19자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">거울 앞에서 다리 신경 쓰이는 날</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">매일 밀어 관리하는 다리 습관</div><div class="copy-ad-cnt">(15자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">8</div><div class="copy-ad-text">종아리·허벅지 라인 챙기는 저녁</div><div class="copy-ad-cnt">(16자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: 자아 13 · 호기심갭 07 · (체형 효과 단정 금지)</div>
+        </div>
+
+        <div class="comm-theme">
+          <div class="comm-theme-head"><div class="comm-num">5</div><div><div class="comm-theme-title">🎁 입소문·SNS 핫템 · 선물</div><div class="comm-theme-target">주요 타겟: E형(입소문러) · F형(선물러)</div></div></div>
+          <div class="quote-box">"종아리 마사지기 JONNA 좋다, 올해 소비 중 제일" / "삶의 질 상승"<div class="quote-src">더쿠</div></div>
+          <div class="quote-box">자사 리뷰: "친구가 쓰는 거 보고 바로 주문" · "여행 갈 때도 챙겨다녀요" · "부모님이 매일 쓰세요"<div class="quote-src">자사 스마트스토어 리뷰(BQ)</div></div>
+          <div style="margin-top:10px;">
+            <div class="psy-label" style="margin-bottom:6px;">파생 광고 카피 (헤드라인)</div>
+            <div class="copy-ad-item"><div class="copy-ad-n">1</div><div class="copy-ad-text">올해 산 것 중 제일 잘 산 마사지스틱</div><div class="copy-ad-cnt">(20자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">2</div><div class="copy-ad-text">친구가 쓰는 거 보고 바로 산 그것</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">3</div><div class="copy-ad-text">삶의 질 올려준 종아리 셀프케어</div><div class="copy-ad-cnt">(17자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">4</div><div class="copy-ad-text">부모님께 드렸더니 매일 쓰세요</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">5</div><div class="copy-ad-text">여행 갈 때도 챙겨가는 마사지스틱</div><div class="copy-ad-cnt">(18자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">6</div><div class="copy-ad-text">받은 사람이 더 좋아하는 그 선물</div><div class="copy-ad-cnt">(16자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">7</div><div class="copy-ad-text">선물했더니 나도 하나 더 산 그것</div><div class="copy-ad-cnt">(17자)</div></div>
+            <div class="copy-ad-item"><div class="copy-ad-n">8</div><div class="copy-ad-text">후기 보고 반신반의했다 푹 빠진</div><div class="copy-ad-cnt">(16자)</div></div>
+          </div>
+          <div class="comm-copy">→ 카피 연결: 사회증거 03 · 존중 12 · E·F형</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-abc" class="tab-section" data-tab-type="abc">
+    <div class="section">
+      <div class="section-head"><div class="section-num n2">2</div><div><div class="section-title">A/B/C 타겟 타입별 카피</div><div class="section-sub">iboss 02_abc_types.md — 페르소나 버튼 클릭 시 해당 타겟 카피로 자동 교체</div></div></div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나별 분석 키워드 — 버튼 클릭 시 ① 패널 + ② 아래 카피 자동 교체</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('pa',this)">A형 지은 · 33세 (직장여성)</button>
+          <button class="persona-btn" onclick="togglePersona('pb',this)">B형 미경 · 43세 (워킹맘)</button>
+          <button class="persona-btn" onclick="togglePersona('pc',this)">C형 현우 · 38세 (러너)</button>
+          <button class="persona-btn" onclick="togglePersona('pd',this)">D형 영숙 · 52세 (중년)</button>
+          <button class="persona-btn" onclick="togglePersona('pe',this)">E형 SNS 입소문러</button>
+          <button class="persona-btn" onclick="togglePersona('pf',this)">F형 선물러</button>
+        </div>
+        <div id="panel-pa" class="persona-panel">
+          <div class="persona-panel-title">A형 지은 · 33세 — 직장 여성(종아리 붓기·사무직) · 핵심: "퇴근하고 소파에서 종아리 쭉"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">마사지스틱</span><span class="kw-tag">종아리마사지</span><span class="kw-tag">릴렉스틱</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">오후 종아리 붓기·무거움</span><span class="kw-tag pain">어깨·목 뭉침</span><span class="kw-tag pain">샵 갈 시간 없음</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">SNS·친구추천</span><span class="kw-tag trigger">마사지스틱 검색</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">오전 10시·야간 22시</span><span class="kw-tag time">서울 중구·강남</span></div></div>
+        </div>
+        <div id="panel-pb" class="persona-panel">
+          <div class="persona-panel-title">B형 미경 · 43세 — 워킹맘/주부(전신·물리치료 대체) · 핵심: "충전 없이 TV보며 바로"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">마사지스틱</span><span class="kw-tag">마사지봉</span><span class="kw-tag">릴렉스틱</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">전신 만성 뭉침</span><span class="kw-tag pain">물리치료 의존</span><span class="kw-tag pain">전동기기 충전 귀찮아 안 씀</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">동생·지인 추천</span><span class="kw-tag trigger">후기 확인</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">오전 10~12시(집)</span><span class="kw-tag time">TV보면서</span></div></div>
+        </div>
+        <div id="panel-pc" class="persona-panel">
+          <div class="persona-panel-title">C형 현우 · 38세 — 남성 러너(운동 후 종아리·허벅지) · 핵심: "폼롤러보다 빠르게"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">종아리마사지</span><span class="kw-tag">마사지스틱</span><span class="kw-tag">폼롤러</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">러닝·헬스 후 종아리·허벅지</span><span class="kw-tag pain">다음날 다리 무거움</span><span class="kw-tag pain">폼롤러 자세 번거로움</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">폼롤러·마사지건 비교</span><span class="kw-tag trigger">운동 커뮤니티</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">야간·주말</span><span class="kw-tag time">남성 27%</span></div></div>
+        </div>
+        <div id="panel-pd" class="persona-panel">
+          <div class="persona-panel-title">D형 영숙 · 52세 — 중년 여성(전신·선물) · 핵심: "전원도 버튼도 없이 간편"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">마사지봉</span><span class="kw-tag">릴렉스틱</span><span class="kw-tag">종아리마사지</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">전신 뭉침·다리 무거움</span><span class="kw-tag pain">복잡한 기기 부담</span><span class="kw-tag pain">자녀·부모 선물</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">지인 추천·후기</span><span class="kw-tag trigger">선물 목적</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">오전·주간</span><span class="kw-tag time">50+ 18%</span></div></div>
+        </div>
+        <div id="panel-pe" class="persona-panel">
+          <div class="persona-panel-title">E형 SNS 입소문러 — 20~30대(알고리즘 유입) · 핵심: "SNS 그 핫템 직접"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">릴렉스틱</span><span class="kw-tag">조권마사지스틱</span><span class="kw-tag">마사지스틱</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">다리 라인·종아리 관심</span><span class="kw-tag pain">SNS 핫템 직접 써보고 싶음</span><span class="kw-tag pain">반신반의·후기 필요</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">릴스·인플루언서</span><span class="kw-tag trigger">브랜드 검색</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">야간 모바일</span><span class="kw-tag time">26~30여 7.8%</span></div></div>
+        </div>
+        <div id="panel-pf" class="persona-panel">
+          <div class="persona-panel-title">F형 선물러 — 가족·지인 선물 · 핵심: "내가 써보고 선물"</div>
+          <div class="kw-group"><div class="kw-label-sm">검색 유입 키워드</div><div class="kw-tags"><span class="kw-tag">마사지스틱 선물</span><span class="kw-tag">부모님 선물</span><span class="kw-tag">릴렉스틱</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">페인포인트</div><div class="kw-tags"><span class="kw-tag pain">부모·친구 다리 안쓰러움</span><span class="kw-tag pain">누구나 쉬운 선물</span><span class="kw-tag pain">검증된 선물</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 트리거</div><div class="kw-tags"><span class="kw-tag trigger">본인 사용 만족 → 선물</span><span class="kw-tag trigger">1+1</span></div></div>
+          <div class="kw-group"><div class="kw-label-sm">구매 피크</div><div class="kw-tags"><span class="kw-tag time">시즌·명절·생신</span><span class="kw-tag time">선물 1,404 언급</span></div></div>
+        </div>
+      </div>
+
+      <div class="type-grid">
+
+        <div class="type-card" data-cid="c">
+          <div class="type-head"><div><span class="type-badge badge-c">C형 — TOFU</span></div><div class="type-title">문제 인식 전 · 70~80%</div><div class="type-sub">지은(33) 직장여성 · 현우(38) 러너 · 붓기·뭉침층</div><div class="type-formula"><strong>iboss</strong>: [대상 지정] + [극적 베네핏] — 상품명 뒤로<br><strong>심리</strong>: 주의편향 · PAS · 문제-해결형</div></div>
+          <div class="type-body">
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">하루 종일 앉아 오후엔 다리 퉁퉁한 분들</span><span class="copy-count">(21자)</span><span class="iboss-cite">대상지정+공감</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">퇴근하면 종아리부터 무거운 직장인이라면</span><span class="copy-count">(21자)</span><span class="iboss-cite">대상지정</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">러닝·헬스 후 종아리 뭉친 분들 보세요</span><span class="copy-count">(20자)</span><span class="iboss-cite">대상지정/운동</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">종일 서서 일해 다리 묵직한 하루</span><span class="copy-count">(17자)</span><span class="iboss-cite">공감</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">폼롤러로 안 풀리던 종아리라면</span><span class="copy-count">(16자)</span><span class="iboss-cite">역설/커뮤니티</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">마사지샵 갈 시간 없이 집에서 다리 케어</span><span class="copy-count">(21자)</span><span class="iboss-cite">문제-해결형</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">손으로 주무르기엔 손목 아픈 종아리</span><span class="copy-count">(18자)</span><span class="iboss-cite">문제 공감</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">오후만 되면 무거워지는 다리, 자기 전</span><span class="copy-count">(19자)</span><span class="iboss-cite">생리욕구</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">다리 라인 신경 쓰는 저녁 셀프 루틴</span><span class="copy-count">(19자)</span><span class="iboss-cite">자아/뷰티</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">어깨·목·종아리 다 뭉친 하루였다면</span><span class="copy-count">(18자)</span><span class="iboss-cite">전신</span></div>
+            <div class="copy-item"><span class="copy-num">11</span><span class="copy-text">발목·종아리 묵직한 저녁이라면</span><span class="copy-count">(16자)</span><span class="iboss-cite">생리욕구</span></div>
+            <div class="copy-item"><span class="copy-num">12</span><span class="copy-text">의자에 오래 앉아 다리 저린 분들</span><span class="copy-count">(17자)</span><span class="iboss-cite">대상지정</span></div>
+            <div class="copy-item"><span class="copy-num">13</span><span class="copy-text">자기 전 다리 쭉 펴고 싶은 날</span><span class="copy-count">(16자)</span><span class="iboss-cite">공감</span></div>
+            <div class="copy-item"><span class="copy-num">14</span><span class="copy-text">손으로 주물러도 그때뿐이던 종아리</span><span class="copy-count">(18자)</span><span class="iboss-cite">문제-해결형</span></div>
+            <div class="copy-item"><span class="copy-num">15</span><span class="copy-text">하체 운동 다음날 계단도 힘든 날</span><span class="copy-count">(17자)</span><span class="iboss-cite">운동</span></div>
+            <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
+            <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">하루 종일 앉아·서서 오후엔 다리가 퉁퉁 무겁죠? 손에 잡고 발목에서 위로 쭉 밀면 종아리가 시원. 충전 없이 소파에서 1분. 리뷰 23,320건·평점 4.89. <span style="color:#aaa;font-size:11px;">(76자)</span></div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
+            <div class="cta-row"><span class="cta-chip">시원하게 케어<span class="cta-count">(7자)</span></span><span class="cta-chip">제품 보러가기<span class="cta-count">(7자)</span></span><span class="cta-chip">후기 보기<span class="cta-count">(5자)</span></span><span class="cta-chip">지금 확인하기<span class="cta-count">(7자)</span></span><span class="cta-chip">방법 보기<span class="cta-count">(5자)</span></span></div>
+          </div>
+        </div>
+
+        <div class="type-card" data-cid="b">
+          <div class="type-head"><div><span class="type-badge badge-b">B형 — MOFU</span></div><div class="type-title">망설이는 중 · 15~20%</div><div class="type-sub">미경(43) 워킹맘 · 폼롤러/마사지건 비교층</div><div class="type-formula"><strong>iboss</strong>: [대상 지정] + [베네핏] + [차이점] + [상품명]<br><strong>심리</strong>: 확증편향 · 역설형 · 사회적 증거</div></div>
+          <div class="type-body">
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">마사지스틱 고민이라면 — 리뷰 2.3만·평점 4.89</span><span class="copy-count">(24자)</span><span class="iboss-cite">대상지정+증거</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">폼롤러·마사지건 써봤다면 — 손에 잡는 롤링</span><span class="copy-count">(23자)</span><span class="iboss-cite">역설/차별화</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">10만원대 다리마사지기 대신 — 평생 쓰는 하나</span><span class="copy-count">(24자)</span><span class="iboss-cite">앵커링</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">충전·준비 없이 — 손에 잡고 바로 시원</span><span class="copy-count">(20자)</span><span class="iboss-cite">차별화</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">전동기기 많은데 결국 이것만 쓰는 이유</span><span class="copy-count">(20자)</span><span class="iboss-cite">역설/고객사례</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">목·어깨·종아리 하나로 — 전신 마사지스틱</span><span class="copy-count">(22자)</span><span class="iboss-cite">차별화+상품명</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">후기 2.3만 건, 보고 정하세요</span><span class="copy-count">(15자)</span><span class="iboss-cite">사회적 증거</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">묵직한 롤링이 두드림보다 시원</span><span class="copy-count">(16자)</span><span class="iboss-cite">USP</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">비슷한 고민이던 분들이 고른 그것</span><span class="copy-count">(17자)</span><span class="iboss-cite">고객 사례</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">슬림·휴대 — 여행에도 챙기는 마사지스틱</span><span class="copy-count">(21자)</span><span class="iboss-cite">차별화</span></div>
+            <div class="copy-item"><span class="copy-num">11</span><span class="copy-text">가족 다 쓰는데 충전 다툼 없는 하나</span><span class="copy-count">(18자)</span><span class="iboss-cite">차별화</span></div>
+            <div class="copy-item"><span class="copy-num">12</span><span class="copy-text">묵직한 스틸 롤링 — 손힘 안 들이고</span><span class="copy-count">(18자)</span><span class="iboss-cite">USP</span></div>
+            <div class="copy-item"><span class="copy-num">13</span><span class="copy-text">BPA프리 소재 — 몸에 닿아도 안심</span><span class="copy-count">(18자)</span><span class="iboss-cite">신뢰</span></div>
+            <div class="copy-item"><span class="copy-num">14</span><span class="copy-text">목·어깨·종아리·발바닥 한 자루로</span><span class="copy-count">(17자)</span><span class="iboss-cite">전신</span></div>
+            <div class="copy-item"><span class="copy-num">15</span><span class="copy-text">비싼 기기 사기 전, 후기부터 비교</span><span class="copy-count">(18자)</span><span class="iboss-cite">사회적 증거</span></div>
+            <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
+            <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">마사지스틱 어떤 거 살지 고민이라면 — 폼롤러·마사지건과 달리 충전·준비 없이 손에 잡고 바로. 목·어깨·종아리 하나로. 리뷰 2.3만·평점 4.89. <span style="color:#aaa;font-size:11px;">(76자)</span></div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
+            <div class="cta-row"><span class="cta-chip">차이점 확인<span class="cta-count">(6자)</span></span><span class="cta-chip">후기 2.3만 보기<span class="cta-count">(8자)</span></span><span class="cta-chip">비교하기<span class="cta-count">(4자)</span></span><span class="cta-chip">지금 보기<span class="cta-count">(5자)</span></span><span class="cta-chip">가격 보기<span class="cta-count">(5자)</span></span></div>
+          </div>
+        </div>
+
+        <div class="type-card" data-cid="a">
+          <div class="type-head"><div><span class="type-badge badge-a">A형 — BOFU</span></div><div class="type-title">즉시 구매 · 5~10%</div><div class="type-sub">선물러 · 입소문 확신층 · 즉시 전환</div><div class="type-formula"><strong>iboss</strong>: [대상 지정] + [매력적 오퍼] + [베네핏]<br><strong>심리</strong>: FOMO · 긴급성 · 앵커링</div></div>
+          <div class="type-body">
+            <div class="psy-label">헤드라인 (10개)</div>
+            <div class="copy-item"><span class="copy-num">1</span><span class="copy-text">마사지스틱 — 오늘 주문 시 바로 출발</span><span class="copy-count">(20자)</span><span class="iboss-cite">오퍼+배송</span></div>
+            <div class="copy-item"><span class="copy-num">2</span><span class="copy-text">평점 4.89 마사지스틱, 지금 가격 확인</span><span class="copy-count">(22자)</span><span class="iboss-cite">증거+오퍼</span></div>
+            <div class="copy-item"><span class="copy-num">3</span><span class="copy-text">다리 무거운 그분께 선물 — 지금 담으면 도착</span><span class="copy-count">(24자)</span><span class="iboss-cite">선물+긴급</span></div>
+            <div class="copy-item"><span class="copy-num">4</span><span class="copy-text">행사가 마감 전, 인기 색상 품절 임박</span><span class="copy-count">(21자)</span><span class="iboss-cite">FOMO</span></div>
+            <div class="copy-item"><span class="copy-num">5</span><span class="copy-text">1+1로 가족과 함께 — 지금 담기</span><span class="copy-count">(17자)</span><span class="iboss-cite">오퍼</span></div>
+            <div class="copy-item"><span class="copy-num">6</span><span class="copy-text">장바구니 속 그 마사지스틱, 행사 끝나기 전에</span><span class="copy-count">(24자)</span><span class="iboss-cite">리타겟+FOMO</span></div>
+            <div class="copy-item"><span class="copy-num">7</span><span class="copy-text">10만원대 대신 — 지금 이 가격</span><span class="copy-count">(16자)</span><span class="iboss-cite">앵커링</span></div>
+            <div class="copy-item"><span class="copy-num">8</span><span class="copy-text">오늘만 이 가격 — 전신 마사지스틱</span><span class="copy-count">(18자)</span><span class="iboss-cite">긴급성</span></div>
+            <div class="copy-item"><span class="copy-num">9</span><span class="copy-text">부모님 선물로도 — 매일 쓰시는 그것</span><span class="copy-count">(19자)</span><span class="iboss-cite">선물+오퍼</span></div>
+            <div class="copy-item"><span class="copy-num">10</span><span class="copy-text">재고 한정 — 길이 옵션 확인</span><span class="copy-count">(15자)</span><span class="iboss-cite">희소성</span></div>
+            <div class="copy-item"><span class="copy-num">11</span><span class="copy-text">퇴근 전 주문하면 집에서 바로</span><span class="copy-count">(15자)</span><span class="iboss-cite">배송</span></div>
+            <div class="copy-item"><span class="copy-num">12</span><span class="copy-text">선물 포장 가능 — 지금 담기</span><span class="copy-count">(14자)</span><span class="iboss-cite">선물+오퍼</span></div>
+            <div class="copy-item"><span class="copy-num">13</span><span class="copy-text">인기 색상 재입고 — 품절 전에</span><span class="copy-count">(15자)</span><span class="iboss-cite">FOMO</span></div>
+            <div class="copy-item"><span class="copy-num">14</span><span class="copy-text">1+1 마지막 수량 — 지금</span><span class="copy-count">(12자)</span><span class="iboss-cite">희소성+오퍼</span></div>
+            <div class="copy-item"><span class="copy-num">15</span><span class="copy-text">평점 4.89 검증템, 지금 최저가</span><span class="copy-count">(16자)</span><span class="iboss-cite">증거+오퍼</span></div>
+            <div class="psy-label" style="margin-top:12px;">본문 예시 (125자 이하)</div>
+            <div style="font-size:12px;color:#555;background:#f8f8f8;border-radius:8px;padding:10px 12px;">전신 마사지스틱, 지금 주문. 손에 잡고 미는 것만으로 시원, 다리 무거운 부모님 선물로도. 1+1·길이 옵션. 평점 4.89. 오늘 주문 시 바로 출발합니다. <span style="color:#aaa;font-size:11px;">(76자)</span></div>
+            <div class="psy-label" style="margin-top:12px;">CTA (5개)</div>
+            <div class="cta-row"><span class="cta-chip">지금 주문하기<span class="cta-count">(7자)</span></span><span class="cta-chip">가격 확인<span class="cta-count">(5자)</span></span><span class="cta-chip">선물 담기<span class="cta-count">(5자)</span></span><span class="cta-chip">1+1 보기<span class="cta-count">(5자)</span></span><span class="cta-chip">재고 확인<span class="cta-count">(5자)</span></span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="tab-psy" class="tab-section" data-tab-type="psy">
+    <div class="section">
+      <div class="section-head"><div class="section-num n3">3</div><div><div class="section-title">심리 편향 카피 01~08</div><div class="section-sub">FOMO·손실회피·사회증거·앵커링·공감·PAS·호기심갭·권위 — 페르소나 버튼으로 교체</div></div></div>
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나 필터 — 클릭 시 8개 카드 헤드라인 교체</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('psy-pa',this)">A형 지은 (직장여성)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pb',this)">B형 미경 (워킹맘)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pc',this)">C형 현우 (러너)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pd',this)">D형 영숙 (중년)</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pe',this)">E형 SNS 입소문러</button>
+          <button class="persona-btn" onclick="togglePersona('psy-pf',this)">F형 선물러</button>
+        </div>
+        <div id="panel-psy-pa" class="persona-panel"><div class="persona-panel-title">A형 지은 · 33세 — 직장여성 · 주효 편향: 공감 · PAS · 사회증거</div></div>
+        <div id="panel-psy-pb" class="persona-panel"><div class="persona-panel-title">B형 미경 · 43세 — 워킹맘 · 주효 편향: 앵커링 · 권위 · 손실회피</div></div>
+        <div id="panel-psy-pc" class="persona-panel"><div class="persona-panel-title">C형 현우 · 38세 — 러너 · 주효 편향: PAS · 호기심갭 · 자아</div></div>
+        <div id="panel-psy-pd" class="persona-panel"><div class="persona-panel-title">D형 영숙 · 52세 — 중년 · 주효 편향: 공감 · 권위 · 앵커링</div></div>
+        <div id="panel-psy-pe" class="persona-panel"><div class="persona-panel-title">E형 SNS 입소문러 · 주효 편향: 사회증거 · 호기심갭 · FOMO</div></div>
+        <div id="panel-psy-pf" class="persona-panel"><div class="persona-panel-title">F형 선물러 · 주효 편향: 공감 · 사회증거 · FOMO(시즌)</div></div>
+      </div>
+
+      <div class="psy-grid">
+        <div class="psy-card" data-cid="01">
+          <div class="psy-head"><span class="psy-icon">🔴</span><div><div class="psy-num">BIAS 01</div><div class="psy-name">FOMO / 희소성</div><div class="psy-desc">한정·마감·품절</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">인기 색상 품절 임박</div><div class="hl-cnt">(11자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">이 가격, 이번 행사까지만</div><div class="hl-cnt">(13자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">1+1 구성 한정 — 마감 임박</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">다음 입고는 미정입니다</div><div class="hl-cnt">(12자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">품절되면 재입고 2~3주</div><div class="hl-cnt">(13자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">오늘 자정까지만 이 가격</div><div class="hl-cnt">(12자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">한정 수량 소진 임박</div><div class="hl-cnt">(11자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">놓치면 다음 행사까지 정가</div><div class="hl-cnt">(14자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">지금 가격 확인</span><span class="cta-chip">재고 확인하기</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="02">
+          <div class="psy-head"><span class="psy-icon">💙</span><div><div class="psy-num">BIAS 02</div><div class="psy-name">손실 회피</div><div class="psy-desc">잃지 않는 것이 강함</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">오늘도 무거운 다리로 잠드시나요?</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">마사지샵 비용, 매번 그냥 나가죠</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">장바구니에 둔 사이 행사가 끝날 수 있어요</div><div class="hl-cnt">(22자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">10만원대 기기 사기 전에 이것부터</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">비싼 기기 샀다 안 쓰는 일 없게</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">오늘 안 풀면 내일 더 무거운 다리</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">매일 쌓이는 다리 피로, 방치 말고</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">할인 끝나면 다시 정가예요</div><div class="hl-cnt">(14자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">지금 챙기기</span><span class="cta-chip">행사가 확인</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="03">
+          <div class="psy-head"><span class="psy-icon">✅</span><div><div class="psy-num">BIAS 03</div><div class="psy-name">사회적 증거</div><div class="psy-desc">후기·다수 선택</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">리뷰 23,320건·평점 4.89</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">'올해 산 것 중 제일' 후기 가득</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">직장 여성들이 소파 옆에 둔 그것</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">친구가 쓰는 거 보고 다들 삽니다</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">SNS·후기로 입소문 난 그것</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">재구매·선물 많은 스테디셀러</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">'여행에도 챙긴다'는 후기 가득</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">카테고리 1위 마사지스틱</div><div class="hl-cnt">(13자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">리얼 후기 보기</span><span class="cta-chip">4.89점 확인</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="04">
+          <div class="psy-head"><span class="psy-icon">⚓</span><div><div class="psy-num">BIAS 04</div><div class="psy-name">앵커링</div><div class="psy-desc">기준점 대비 이득</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">10만원대 다리마사지기 대신, 평생 하나</div><div class="hl-cnt">(21자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">마사지샵 한 번 값으로 매일 집에서</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">전동기기 여러 개 말고 이것 하나</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">한 번 사서 온 가족이 돌려 쓰는</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">안마의자 200만원? 스틱 하나면</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">마사지볼·폼롤러 다 합친 한 자루</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">받으면 비싸 보이는데 합리적</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">매달 샵 비용 vs 한 번 사서 평생</div><div class="hl-cnt">(18자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">가성비 비교</span><span class="cta-chip">지금 가격 보기</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="05">
+          <div class="psy-head"><span class="psy-icon">❤️</span><div><div class="psy-num">BIAS 05</div><div class="psy-name">공감 / 감정</div><div class="psy-desc">감정 언어 반영</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">하루 종일 서서·앉아서 무거워진 다리</div><div class="hl-cnt">(19자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">퇴근하면 종아리부터 주저앉는 하루</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">나 챙길 틈 없이 무거운 다리</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">운동 다음날 천근만근 다리</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">신발이 꽉 끼는 저녁 다리</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">손목 아파 못 주무르던 종아리</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">나만의 시간 없이 무거운 하루 끝</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">계단 오를 때 묵직한 다리</div><div class="hl-cnt">(14자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">다리 챙기기</span><span class="cta-chip">지금 케어</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="06">
+          <div class="psy-head"><span class="psy-icon">🔍</span><div><div class="psy-num">BIAS 06</div><div class="psy-name">PAS (문제→고통→해결)</div><div class="psy-desc">증상→증폭→해결</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">오후에 무거운 다리 → 발목부터 위로 쭉</div><div class="hl-cnt">(20자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">폼롤러론 안 풀리던 종아리, 핀포인트로</div><div class="hl-cnt">(21자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">방치하면 더 무거운 다리, 매일 1분</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">다리 무거울 때 뭘 살지 모르겠다면</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">오래 앉아 굳은 종아리 → 자기 전 1분</div><div class="hl-cnt">(19자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">파스·찜질론 그때뿐 → 매일 롤링으로</div><div class="hl-cnt">(19자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">마사지샵 매번 가기 부담 → 집에서</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">운동 후 방치 → 다음날 더 뭉쳐요</div><div class="hl-cnt">(17자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">시원하게 케어</span><span class="cta-chip">오늘부터 시작</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="07">
+          <div class="psy-head"><span class="psy-icon">🎯</span><div><div class="psy-num">BIAS 07</div><div class="psy-name">호기심 갭</div><div class="psy-desc">절반만 공개</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">직장 여성 소파 옆 그 마사지스틱의 정체</div><div class="hl-cnt">(21자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">10가지 기기 있는데 결국 쓰는 이것</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">SNS에서 다들 쓰는 그 종아리템</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">전동기기보다 이걸 더 쓰는 이유</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">10만원대 안 부러운 그 가성비의 정체</div><div class="hl-cnt">(19자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">여행 가방에 꼭 들어가는 그것</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">손에 잡는 것만으로 시원한 비결</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">부모님이 매일 찾으시는 그것</div><div class="hl-cnt">(15자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">이유 확인하기</span><span class="cta-chip">지금 보기</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="08">
+          <div class="psy-head"><span class="psy-icon">🏅</span><div><div class="psy-num">BIAS 08</div><div class="psy-name">권위 / 신뢰</div><div class="psy-desc">수치·기능·브랜드</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">리뷰 23,320건·평점 4.89 마사지스틱</div><div class="hl-cnt">(20자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">충전 없이 — 손에 잡고 바로</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">목·어깨·종아리 전신 하나로</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">바리바디 릴렉스틱 — 카테고리 대표</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">스틸 롤링·BPA프리 소재</div><div class="hl-cnt">(13자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">누적 판매 4만+·리뷰 2.3만</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">부위별 사용법 동봉</div><div class="hl-cnt">(10자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">슬림 디자인 — 손에 착 감기는 그립</div><div class="hl-cnt">(18자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">후기 보기</span><span class="cta-chip">신뢰도 확인</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-need" class="tab-section" data-tab-type="need">
+    <div class="section">
+      <div class="section-head"><div class="section-num n4">4</div><div><div class="section-title">인간 본연의 욕구 09~13 (매슬로우)</div><div class="section-sub">우선순위: 9 생리(다리 무거움·휴식) &gt; 13 자아(셀프케어 루틴) &gt; 12 존중(자기보상·선물) &gt; 10 안전 &gt; 11 사회</div></div></div>
+      <div class="card" style="margin-bottom:20px;">
+        <h3 style="font-size:13px;font-weight:800;margin-bottom:12px;">페르소나 필터 — 클릭 시 5개 카드 헤드라인 교체</h3>
+        <div class="persona-toggle-wrap">
+          <button class="persona-btn" onclick="togglePersona('need-pa',this)">A형 지은 (직장여성)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pb',this)">B형 미경 (워킹맘)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pc',this)">C형 현우 (러너)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pd',this)">D형 영숙 (중년)</button>
+          <button class="persona-btn" onclick="togglePersona('need-pe',this)">E형 SNS 입소문러</button>
+          <button class="persona-btn" onclick="togglePersona('need-pf',this)">F형 선물러</button>
+        </div>
+        <div id="panel-need-pa" class="persona-panel"><div class="persona-panel-title">A형 지은 · 33세 — 핵심 욕구: 생리(다리 무거움) · 자아(루틴) · 존중(자기보상)</div></div>
+        <div id="panel-need-pb" class="persona-panel"><div class="persona-panel-title">B형 미경 · 43세 — 핵심 욕구: 생리(전신 뭉침) · 안전 · 존중(선물)</div></div>
+        <div id="panel-need-pc" class="persona-panel"><div class="persona-panel-title">C형 현우 · 38세 — 핵심 욕구: 생리(회복) · 자아(루틴) · 안전</div></div>
+        <div id="panel-need-pd" class="persona-panel"><div class="persona-panel-title">D형 영숙 · 52세 — 핵심 욕구: 생리·존중(선물) · 사회</div></div>
+        <div id="panel-need-pe" class="persona-panel"><div class="persona-panel-title">E형 SNS 입소문러 — 핵심 욕구: 자아(라인·정체성) · 사회</div></div>
+        <div id="panel-need-pf" class="persona-panel"><div class="persona-panel-title">F형 선물러 — 핵심 욕구: 존중(효도·선물) · 사회</div></div>
+      </div>
+
+      <div class="psy-grid">
+        <div class="psy-card" data-cid="09">
+          <div class="psy-head"><span class="psy-icon">🍃</span><div><div class="psy-num">NEED 09 ⭐</div><div class="psy-name">생리적 욕구 (다리 무거움·휴식)</div><div class="psy-desc">오후 묵직함이 휴식 방해 — 1순위</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">무거운 다리로 뒤척이던 밤, 자기 전 1분</div><div class="hl-cnt">(21자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">아침에 다리 묵직해 못 일어날 때</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">종일 일한 다리, 소파에서 쭉 밀어</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">쉬어도 안 풀리는 다리, 손에 잡고</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">자다 다리 저려 깨던 밤</div><div class="hl-cnt">(13자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">종일 서 있던 발·종아리, 누워서 쭉</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">다리 무거워 잠 설치던 날</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">아침에 다리 가볍게 시작하고 싶다면</div><div class="hl-cnt">(18자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">자기 전 1분</span><span class="cta-chip">오늘 밤 시원하게</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"다리 부종 싹 빠지는 자기 전 1분"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">부종 제거 단정</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"혈액순환 잘 돼 다리 가벼워요"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">'혈액순환' 의학적</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="10">
+          <div class="psy-head"><span class="psy-icon">🛡️</span><div><div class="psy-num">NEED 10</div><div class="psy-name">안전 욕구 (만성 뭉침 방지)</div><div class="psy-desc">미리 관리</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">오후의 묵직함, 쌓이기 전에 매일</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">다리는 매일 풀어줘야 가벼워요</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">방치 말고 자기 전 종아리 루틴</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">뭉침 쌓이기 전에 미리미리</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">오늘 묵직함, 만성 되기 전에</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">매일 1분이 쌓이면 가벼운 다리</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">운동 루틴에 회복 루틴까지</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">미루지 말고 자기 전 종아리 쭉</div><div class="hl-cnt">(16자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">매일 케어 시작</span><span class="cta-chip">지금 관리</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"방치하면 하지정맥류로 — 미리 관리"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">질환명(하지정맥류)</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"순환 안 되면 다리 더 부어요"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">순환·부종 단정</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="11">
+          <div class="psy-head"><span class="psy-icon">🤝</span><div><div class="psy-num">NEED 11</div><div class="psy-name">사회적 욕구 (가족·동조)</div><div class="psy-desc">가족 공용·소속</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">온 가족이 돌려 쓰는 마사지스틱</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">친구 따라 다들 하나씩</div><div class="hl-cnt">(12자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">부모님도 나도 같이 쓰는 하나</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">다들 소파 옆에 하나씩 두는 그것</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">가족 단톡에 추천한 그 마사지스틱</div><div class="hl-cnt">(17자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">직장 동료가 빌려 쓰다 산 그것</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">운동 모임에서 다들 쓰는 하나</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">친구·가족이 다 아는 그 스틱</div><div class="hl-cnt">(15자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">온 가족 케어</span><span class="cta-chip">같이 쓰기</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"다들 종아리 알 빼는 그 마사지스틱"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">체형 효과 단정</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"온 가족 붓기 빼는 하나"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">부종 제거 단정</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="12">
+          <div class="psy-head"><span class="psy-icon">👑</span><div><div class="psy-num">NEED 12</div><div class="psy-name">존중 욕구 (자기보상·선물)</div><div class="psy-desc">선물·나를 위한 투자</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">고생한 내 다리에, 시원한 보상</div><div class="hl-cnt">(16자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">다리 무거운 부모님께 드리는 선물</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">받으면 매일 쓰는 효도템</div><div class="hl-cnt">(13자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">나를 위한 매일 1분, 종아리 케어</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">열심히 산 나에게 주는 시원함</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">부모님 발·종아리 챙기는 마음</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">받는 분이 더 좋아하는 선물</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">누구나 쉽게 쓰는 효도템</div><div class="hl-cnt">(13자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">선물하기</span><span class="cta-chip">나에게 선물</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"부모님 다리 통증 풀어드리는 선물"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">'통증' 효능 단정</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"종아리 둘레 줄여주는 효도템"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">체형 효과 단정</span></div>
+          </div>
+        </div>
+        <div class="psy-card" data-cid="13">
+          <div class="psy-head"><span class="psy-icon">🌟</span><div><div class="psy-num">NEED 13</div><div class="psy-name">자아실현 (셀프케어 루틴)</div><div class="psy-desc">다리 챙기는 사람</div></div></div>
+          <div class="psy-body"><div class="psy-label">헤드라인</div>
+            <div class="hl-item"><div class="hl-n">1</div><div class="hl-txt">다리 챙기는 사람의 저녁 루틴</div><div class="hl-cnt">(15자)</div></div>
+            <div class="hl-item"><div class="hl-n">2</div><div class="hl-txt">매일 종아리 미는, 나를 돌보는 습관</div><div class="hl-cnt">(18자)</div></div>
+            <div class="hl-item"><div class="hl-n">3</div><div class="hl-txt">운동도 회복도 챙기는 사람</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">4</div><div class="hl-txt">꾸준히 관리하는 내가 좋다</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">5</div><div class="hl-txt">운동도 회복도 챙기는 어른</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">6</div><div class="hl-txt">매일 다리 미는 작은 루틴</div><div class="hl-cnt">(14자)</div></div>
+            <div class="hl-item"><div class="hl-n">7</div><div class="hl-txt">나를 돌보는 1분의 습관</div><div class="hl-cnt">(13자)</div></div>
+            <div class="hl-item"><div class="hl-n">8</div><div class="hl-txt">건강 챙기는 사람의 저녁</div><div class="hl-cnt">(13자)</div></div>
+            <div class="psy-label" style="margin-top:10px;">CTA</div><div class="cta-row"><span class="cta-chip">내 루틴 시작</span><span class="cta-chip">오늘부터</span></div>
+            <div class="psy-label" style="margin-top:12px;color:#cf1322;">🚨 규제 위험 변형 (참고 — 집행 전 검토)</div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;border-bottom:1px solid #f5f5f5;">"종아리 알 빼는 매일 루틴"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">체형 효과 단정</span></div>
+            <div style="font-size:12px;font-weight:600;color:#1a1a2e;padding:4px 0;">"셀룰라이트 관리 습관"<span class="reg-warn-badge">🚨 규제주의</span> <span style="font-size:10px;color:#cf1322;">셀룰라이트 효능</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-reg" class="tab-section">
+    <div class="section">
+      <div class="section-head"><div class="section-num n1">5</div><div><div class="section-title">규제 주의 검토 — 비전동 마사지 도구</div><div class="section-sub">의료기기 아님 — EMS보다 완화이나 효능·체형 단정은 주의</div></div></div>
+      <div class="card">
+        <div class="warn-box"><div class="warn-title">⚠️ "통증 완화·치료·물리치료"</div><p>효능·의료행위 암시. <b>대안:</b> "뭉친 곳 시원하게", "다리 가벼운 느낌", "개운하게 케어".</p></div>
+        <div class="warn-box"><div class="warn-title">⚠️ "혈액순환 개선·부종/붓기 제거·림프순환"</div><p>의학적 효능 단정. <b>대안:</b> "다리가 한결 가벼운 느낌", "오후 묵직함 케어"(주관적 체감).</p></div>
+        <div class="warn-box"><div class="warn-title">⚠️ "종아리 얇아짐·종아리 알 제거·둘레 감소·셀룰라이트 제거·다이어트"</div><p>체형 변화 효과 단정(근거 필요·과장광고 소지). 리뷰의 "36→34cm"는 고객 발화라 카피 금지. <b>대안:</b> "다리 라인 신경 쓰는 셀프 루틴", "매일 종아리 케어 습관".</p></div>
+        <div class="warn-box"><div class="warn-title">⚠️ 최상급·비교 광고</div><p>"100%·완벽·최고" 단독 금지. "10만원대 다리마사지기"처럼 <b>일반 카테고리</b> 비교만(특정 경쟁사명 금지). 별점 4.89·리뷰 23,320건은 실수치 일치.</p></div>
+        <div class="ok-box">✅ 안전: 시원·개운·뭉침 케어·"손에 잡고 바로"·전신·휴대·선물·"다리 가벼운 느낌"·셀프 루틴 톤은 위험 낮음. 비전동 도구라 EMS보다 자유롭지만, '효능·체형 변화' 단정만 피하면 됩니다.</div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:14px;font-weight:800;margin-bottom:4px;">🚨 규제 위험 카피 모음 — 고효율이나 사용 시 검토 필요</h3>
+        <div class="source-note">전환력은 높지만 효능·체형 단정으로 과장광고 소지가 있는 표현. <b>각 카피 옆 🚨 규제주의 배지</b> 확인 후, 검토 없이는 안전 대안을 사용하세요.</div>
+
+        <div class="reg-group-label">A. 효능 단정 (통증·붓기·순환)</div>
+        <div class="reg-item"><span class="reg-risky">"종아리 통증 싹 풀려요"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '통증' 효능 단정</div><div class="reg-alt">✅ 대안: "뭉친 종아리, 쭉 밀어 시원하게"</div></div>
+        <div class="reg-item"><span class="reg-risky">"붓기 쫙 빠지는 마사지스틱"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: 부종 제거 효능 단정</div><div class="reg-alt">✅ 대안: "오후 묵직한 다리, 한결 가벼운 느낌"</div></div>
+        <div class="reg-item"><span class="reg-risky">"혈액순환 개선으로 다리 가볍게"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '혈액순환 개선' 의학적 효능</div><div class="reg-alt">✅ 대안: "밀고 나면 다리가 개운한 느낌"</div></div>
+
+        <div class="reg-group-label">B. 체형·다이어트 단정</div>
+        <div class="reg-item"><span class="reg-risky">"종아리 알 빠지는 마사지스틱"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: 체형 변화 효과 단정(근거 필요)</div><div class="reg-alt">✅ 대안: "종아리 신경 쓰는 분들의 셀프 루틴"</div></div>
+        <div class="reg-item"><span class="reg-risky">"종아리 둘레 줄여드려요 (36→34cm)"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: 수치 효과 단정(리뷰라도 카피 금지)</div><div class="reg-alt">✅ 대안: "매일 밀어 관리하는 다리 라인 습관"</div></div>
+        <div class="reg-item"><span class="reg-risky">"셀룰라이트 제거 효과"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: 셀룰라이트 제거 효능 단정</div><div class="reg-alt">✅ 대안: "허벅지·종아리 매일 롤링 케어"</div></div>
+
+        <div class="reg-group-label">C. 의료 대체·최상급</div>
+        <div class="reg-item"><span class="reg-risky">"물리치료 대신 집에서"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: 의료행위 대체 암시</div><div class="reg-alt">✅ 대안: "마사지샵 가는 시간 대신, 집에서 매일"</div></div>
+        <div class="reg-item"><span class="reg-risky">"림프 순환 촉진"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '림프 순환' 의학적 기전</div><div class="reg-alt">✅ 대안: "발목에서 위로 쭉, 시원한 롤링"</div></div>
+        <div class="reg-item"><span class="reg-risky">"100% 시원함 보장, 다리 끝판왕"</span><span class="reg-warn-badge">🚨 규제주의</span><div class="reg-reason">위험: '100%·끝판왕' 최상급 단독</div><div class="reg-alt">✅ 대안: "리뷰 4.89 · 23,320건의 시원함"</div></div>
+
+        <div class="source-note" style="margin-top:14px;background:#fff1f0;color:#cf1322;">⚠️ 위 카피들은 <b>참고용</b>입니다. 효능·체형 단정은 과장광고로 제재 소지가 있으니, 실제 집행 전 검토하고 가급적 안전 대안을 사용하세요. (비전동 도구라 의료기기 사전심의 대상은 아니나 표시·광고 일반 규정 적용)</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  if (window.event && window.event.target) window.event.target.classList.add('active');
+}
+function togglePersona(id, btn) {
+  var card = btn.closest('.card');
+  var isActive = btn.classList.contains('p-active');
+  card.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('p-active'));
+  card.querySelectorAll('.persona-panel').forEach(p => p.classList.remove('p-active'));
+  var tabSection = btn.closest('.tab-section');
+  if (!isActive) {
+    btn.classList.add('p-active');
+    var panel = document.getElementById('panel-' + id);
+    if (panel) panel.classList.add('p-active');
+    if (tabSection && tabSection.dataset.tabType) applyPersonaCopy(tabSection, id.slice(-1).toUpperCase());
+  } else {
+    if (tabSection && tabSection.dataset.tabType) applyPersonaCopy(tabSection, null);
+  }
+}
+function applyPersonaCopy(tabSection, personaKey) {
+  var tabType = tabSection.dataset.tabType;
+  var isAbc = (tabType === 'abc');
+  var cardSel = isAbc ? '.type-card' : '.psy-card';
+  var itemSel = isAbc ? '.copy-item' : '.hl-item';
+  var bodySel = isAbc ? '.type-body' : '.psy-body';
+  tabSection.querySelectorAll(cardSel).forEach(function(pc){
+    var cid = pc.dataset.cid;
+    var body = pc.querySelector(bodySel);
+    if (!body) return;
+    if (!pc._origHl) pc._origHl = Array.from(body.querySelectorAll(itemSel)).map(function(el){ return el.outerHTML; });
+    var anchor = null;
+    body.querySelectorAll('.psy-label').forEach(function(el){
+      var txt = el.textContent.trim();
+      if (isAbc ? txt.indexOf('본문 예시') === 0 : txt === 'CTA') anchor = el;
+    });
+    body.querySelectorAll(itemSel).forEach(function(el){ el.remove(); });
+    var htmlArr;
+    var d = (PERSONA_COPY[tabType] && PERSONA_COPY[tabType][cid] && PERSONA_COPY[tabType][cid][personaKey]);
+    if (personaKey && d) {
+      htmlArr = d.map(function(item, i){
+        return isAbc
+          ? '<div class="copy-item"><span class="copy-num">'+(i+1)+'</span><span class="copy-text">'+item.t+'</span><span class="copy-count">'+item.c+'</span>'+(item.src?'<span class="iboss-cite">'+item.src+'</span>':'')+'</div>'
+          : '<div class="hl-item"><div class="hl-n">'+(i+1)+'</div><div class="hl-txt">'+item.t+'</div><div class="hl-cnt">'+item.c+'</div></div>';
+      });
+      pc.classList.add('persona-active');
+    } else { htmlArr = pc._origHl || []; pc.classList.remove('persona-active'); }
+    var tmp = document.createElement('div');
+    htmlArr.forEach(function(html){ tmp.innerHTML = html; anchor ? body.insertBefore(tmp.firstChild, anchor) : body.appendChild(tmp.firstChild); });
+  });
+}
+// 페르소나: A=지은(직장여성)/B=미경(워킹맘)/C=현우(러너)/D=영숙(중년)/E=SNS입소문러/F=선물러
+var PERSONA_COPY = { abc: {}, psy: {}, need: {} };
+PERSONA_COPY.abc.c = {
+  A:[{t:"종일 앉아 오후엔 다리 퉁퉁한 직장 여성이라면",c:"(24자)"},{t:"퇴근하면 종아리부터 무거운 당신께",c:"(18자)"},{t:"어깨·목·종아리 다 뭉친 하루였다면",c:"(18자)"},{t:"발목까지 붓는 오후가 힘든 직장 여성",c:"(18자)"},{t:"종일 회의·착석에 다리 묵직하다면",c:"(17자)"}],
+  B:[{t:"온종일 가족 챙기다 무거워진 다리라면",c:"(19자)"},{t:"물리치료 다니던 어깨·종아리라면",c:"(17자)"},{t:"전동기기 충전 귀찮아 안 쓰던 분들",c:"(18자)"},{t:"집안일에 서 있는 시간 긴 분들",c:"(16자)"},{t:"전동기기 충전이 일이라 안 쓰게 된다면",c:"(20자)"}],
+  C:[{t:"러닝·헬스 후 종아리 뭉친 분들 보세요",c:"(20자)"},{t:"다음날 다리 무거운 운동러라면",c:"(16자)"},{t:"폼롤러로 안 풀리던 종아리라면",c:"(16자)"},{t:"라이딩·등산 후 종아리 뭉친 날",c:"(16자)"},{t:"하체 운동 다음날 계단이 힘들다면",c:"(17자)"}],
+  D:[{t:"나이 들수록 무거워지는 다리라면",c:"(17자)"},{t:"전신 뭉침에 복잡한 기기 부담이면",c:"(17자)"},{t:"어깨·종아리 매일 뭉치는 분들",c:"(15자)"},{t:"오래 서서 일하는 분들의 다리",c:"(15자)"},{t:"전신 여기저기 뭉치는 50대라면",c:"(16자)"}],
+  E:[{t:"SNS에서 그 종아리템 봤다면",c:"(14자)"},{t:"다리 라인 신경 쓰는 분들이라면",c:"(16자)"},{t:"반신반의했지만 후기 좋은 그것",c:"(16자)"},{t:"거울 앞 다리 신경 쓰이는 분들",c:"(15자)"},{t:"다이어트보다 다리 라인 관리",c:"(14자)"}],
+  F:[{t:"부모님 다리 늘 안쓰러운 분들",c:"(15자)"},{t:"다리 무거운 친구 선물 고민이라면",c:"(17자)"},{t:"누구나 쉬운 선물 찾고 계신다면",c:"(16자)"},{t:"친구 집들이·생일 선물 고민이라면",c:"(17자)"},{t:"운동하는 지인에게 줄 선물",c:"(14자)"}]
+};
+PERSONA_COPY.abc.b = {
+  A:[{t:"직장 여성 다리템 — 평점 4.89·리뷰 2.3만",c:"(22자)"},{t:"샵 갈 시간 없다면 — 소파에서 1분",c:"(18자)"},{t:"마사지건 충전 귀찮았다면 손에 잡고",c:"(18자)"},{t:"샵 다닐 시간에 집에서 매일",c:"(14자)"},{t:"마사지볼로 부족했다면 손에 잡는 스틱",c:"(19자)"}],
+  B:[{t:"워킹맘 전신 케어 — 충전 없이 TV보며",c:"(19자)"},{t:"물리치료 시간 대신 집에서 — 손에 잡는 롤링",c:"(23자)"},{t:"전동기기 다 있는데 결국 쓰는 이것",c:"(18자)"},{t:"전동기기 다 제치고 손이 가는 이유",c:"(18자)"},{t:"온 가족 쓰는데 충전 다툼 없는 하나",c:"(18자)"}],
+  C:[{t:"러너 회복템 — 폼롤러보다 핀포인트",c:"(18자)"},{t:"마사지건 vs 마사지스틱 — 손에 잡고 바로",c:"(21자)"},{t:"운동 후 5분, 평점 4.89 마사지스틱",c:"(20자)"},{t:"폼롤러 자세 잡기 번거로웠다면",c:"(15자)"},{t:"운동 가방에 쏙 — 슬림 마사지스틱",c:"(17자)"}],
+  D:[{t:"복잡한 기기 싫다면 — 손에 잡고 미는 것만",c:"(21자)"},{t:"전신 하나로 — 평점 4.89 마사지스틱",c:"(19자)"},{t:"선물로도 좋은 전신 마사지스틱",c:"(16자)"},{t:"버튼 없이 미는 것만 — 평점 4.89",c:"(18자)"},{t:"딸이 추천한 그 전신 마사지스틱",c:"(16자)"}],
+  E:[{t:"SNS 핫템 진짜? — 리뷰 2.3만·4.89",c:"(19자)"},{t:"인플루언서도 쓰는 그 마사지스틱",c:"(17자)"},{t:"후기·실사용 보고 정하세요",c:"(14자)"},{t:"조권도 쓴다는 그 핫템 진짜?",c:"(15자)"},{t:"후기 2.3만, 실사용 영상 보고",c:"(16자)"}],
+  F:[{t:"선물 고민이라면 — 누구나 쉬운 전신 케어",c:"(21자)"},{t:"내가 써보고 선물 — 평점 4.89",c:"(16자)"},{t:"1+1로 나도 부모님도 함께",c:"(14자)"},{t:"내가 매일 쓰니 선물도 확신",c:"(14자)"},{t:"받는 분 누구나 쉬운 전신 케어",c:"(16자)"}]
+};
+PERSONA_COPY.abc.a = {
+  A:[{t:"직장 여성 다리템 — 오늘 주문 바로 출발",c:"(20자)"},{t:"퇴근 후 소파에서 바로 — 지금 담기",c:"(18자)"},{t:"평점 4.89, 지금 가격 확인",c:"(14자)"},{t:"퇴근 전 주문하면 집에서 바로",c:"(15자)"},{t:"오늘만 이 가격 — 지금 담기",c:"(14자)"}],
+  B:[{t:"워킹맘 전신템 — 오늘 주문 바로 출발",c:"(19자)"},{t:"1+1로 가족과 함께 — 지금 담기",c:"(17자)"},{t:"행사가 마감 — 지금 가격 확인",c:"(15자)"},{t:"1+1 마지막 수량 — 지금",c:"(12자)"},{t:"행사가 마감 전 가족용까지",c:"(14자)"}],
+  C:[{t:"러너 회복템 — 오늘 주문 바로 출발",c:"(18자)"},{t:"운동 전에 — 지금 담으면 도착",c:"(15자)"},{t:"후기 보고 — 지금이 가장 쌀 때",c:"(16자)"},{t:"운동 가기 전 받아두기 — 지금",c:"(15자)"},{t:"재고 한정 — 인기 색상 임박",c:"(14자)"}],
+  D:[{t:"전신 마사지스틱, 지금 가격 확인",c:"(16자)"},{t:"딸·부모님 함께 — 1+1 지금",c:"(15자)"},{t:"오늘만 이 가격 — 전신 케어",c:"(15자)"},{t:"선물 포장 — 지금 담으면 도착",c:"(15자)"},{t:"오늘 주문 시 바로 출발",c:"(12자)"}],
+  E:[{t:"SNS 그 핫템 — 지금 최저가 확인",c:"(16자)"},{t:"품절 전에 — 지금 담기",c:"(12자)"},{t:"재고 한정 — 인기 색상 임박",c:"(14자)"},{t:"SNS 핫템 품절 전 — 지금",c:"(13자)"},{t:"지금이 가장 쌀 때 — 최저가",c:"(14자)"}],
+  F:[{t:"가정의달 선물 — 지금 담으면 도착",c:"(17자)"},{t:"마사지스틱 효도템, 선물 마감 전",c:"(17자)"},{t:"받으면 매일 쓰시는 선물, 지금",c:"(16자)"},{t:"가정의달·생신 선물 마감 전",c:"(14자)"},{t:"1+1로 나도 부모님도 — 지금",c:"(15자)"}]
+};
+PERSONA_COPY.psy['01'] = {
+  A:[{t:"직장 여성 인기템 — 품절 임박",c:"(14자)"},{t:"이 가격, 이번 행사까지만",c:"(13자)"}],
+  B:[{t:"1+1 한정 — 마감 임박",c:"(11자)"},{t:"행사 끝나면 정가예요",c:"(11자)"}],
+  C:[{t:"운동러 인기 색상 품절 임박",c:"(14자)"},{t:"지금 아니면 정가",c:"(9자)"}],
+  D:[{t:"효도선물 시즌 품절 임박",c:"(12자)"},{t:"이 구성, 이번 행사까지",c:"(12자)"}],
+  E:[{t:"SNS 핫템 품절 임박",c:"(10자)"},{t:"재고 한정 — 지금만",c:"(10자)"}],
+  F:[{t:"선물 시즌 마감 임박",c:"(10자)"},{t:"1+1 품절 전에",c:"(8자)"}]
+};
+PERSONA_COPY.psy['02'] = {
+  A:[{t:"오늘도 무거운 다리로 잠드시나요?",c:"(17자)"},{t:"마사지샵 비용, 매번 그냥 나가죠",c:"(17자)"}],
+  B:[{t:"전동기기 또 충전 못 하고 방치?",c:"(16자)"},{t:"10만원대 사기 전에 이것부터",c:"(15자)"}],
+  C:[{t:"운동 다음날 또 다리 천근만근?",c:"(16자)"},{t:"폼롤러만 굴리다 안 풀린 종아리",c:"(16자)"}],
+  D:[{t:"오늘도 무거운 다리로 하루 끝?",c:"(16자)"},{t:"방치하면 더 무거운 다리",c:"(13자)"}],
+  E:[{t:"SNS 핫템 놓치면 또 품절나요",c:"(15자)"},{t:"장바구니 둔 사이 행사 끝나요",c:"(15자)"}],
+  F:[{t:"선물 타이밍 놓치면 정가뿐",c:"(14자)"},{t:"부모님 다리, 미루지 말고",c:"(13자)"}]
+};
+PERSONA_COPY.psy['03'] = {
+  A:[{t:"직장 여성들이 소파 옆에 둔 그것",c:"(17자)"},{t:"리뷰 2.3만·평점 4.89",c:"(13자)"}],
+  B:[{t:"워킹맘들이 TV보며 쓰는 그것",c:"(15자)"},{t:"'물리치료 덜 가요' 후기",c:"(13자)"}],
+  C:[{t:"러너들이 운동 가방에 넣는 그것",c:"(16자)"},{t:"'폼롤러보다 낫다' 후기",c:"(12자)"}],
+  D:[{t:"5060도 쉽게 쓰는 마사지스틱",c:"(15자)"},{t:"'부모님이 매일 쓰세요' 후기",c:"(15자)"}],
+  E:[{t:"SNS에서 다들 쓰는 그 종아리템",c:"(16자)"},{t:"'올해 산 것 중 제일' 후기",c:"(14자)"}],
+  F:[{t:"선물로 많이 찾는 그것",c:"(11자)"},{t:"받은 분이 더 좋아하는 효도템",c:"(15자)"}]
+};
+PERSONA_COPY.psy['04'] = {
+  A:[{t:"마사지샵 값으로 매일 집에서",c:"(14자)"},{t:"전동기기 말고 손에 잡는 하나",c:"(15자)"}],
+  B:[{t:"10만원대 다리마사지기 대신 평생 하나",c:"(20자)"},{t:"물리치료 시간 대신 집에서 매일",c:"(16자)"}],
+  C:[{t:"마사지건 충전 말고 손에 잡고 바로",c:"(17자)"},{t:"폼롤러 자리 차지? 슬림한 스틱",c:"(16자)"}],
+  D:[{t:"비싼 안마기 말고 손에 잡는 것만",c:"(16자)"},{t:"한 번 사서 온 가족이",c:"(11자)"}],
+  E:[{t:"10만원대 안 부럽다는 그 가성비",c:"(16자)"},{t:"비싼 기기 말고 핫템 하나",c:"(13자)"}],
+  F:[{t:"비싼 선물 아니어도 매일 쓰는 효도템",c:"(19자)"},{t:"부모님 마사지 비용 대신",c:"(13자)"}]
+};
+PERSONA_COPY.psy['05'] = {
+  A:[{t:"하루 종일 앉아 무거워진 다리, 고생했어요",c:"(21자)"},{t:"퇴근하면 종아리부터 주저앉는 하루",c:"(18자)"}],
+  B:[{t:"가족 챙기다 내 다리는 뒷전이었죠",c:"(17자)"},{t:"물리치료 다니며 버틴 어깨·다리",c:"(16자)"}],
+  C:[{t:"운동 다음날 천근만근 다리",c:"(14자)"},{t:"열심히 달린 종아리, 고생했어요",c:"(16자)"}],
+  D:[{t:"나이 들수록 무거워지는 다리",c:"(15자)"},{t:"참고 지낸 어깨·종아리 뭉침",c:"(15자)"}],
+  E:[{t:"예뻐지고 싶어 다리 신경 쓰는 마음",c:"(17자)"},{t:"SNS 보다 나도 해보고 싶던 그것",c:"(17자)"}],
+  F:[{t:"부모님 다리, 늘 마음 쓰이죠",c:"(14자)"},{t:"다리 무거운 친구 챙기고 싶죠",c:"(15자)"}]
+};
+PERSONA_COPY.psy['06'] = {
+  A:[{t:"오후에 붓는 다리 → 발목부터 위로 쭉",c:"(19자)"},{t:"퇴근 후 묵직한 종아리, 미루면 더해요",c:"(19자)"}],
+  B:[{t:"전신 뭉침 → 충전 없이 TV보며 바로",c:"(18자)"},{t:"물리치료만 의존 말고 매일 집에서",c:"(17자)"}],
+  C:[{t:"운동 후 뭉침 → 폼롤러보다 핀포인트",c:"(18자)"},{t:"방치하면 다음날 더 무거워요",c:"(15자)"}],
+  D:[{t:"전신 뭉침 → 손에 잡고 미는 것만",c:"(17자)"},{t:"참고 버틴 다리, 더 무겁기 전에",c:"(16자)"}],
+  E:[{t:"다리 라인 고민 → 매일 미는 셀프 루틴",c:"(19자)"},{t:"SNS만 보다 직접 — 오늘부터",c:"(15자)"}],
+  F:[{t:"부모님 무거운 다리 → 손에 잡는 선물로",c:"(19자)"},{t:"멀리서 못 챙기던 다리, 이걸로",c:"(16자)"}]
+};
+PERSONA_COPY.psy['07'] = {
+  A:[{t:"직장 여성 소파 옆 그것의 정체",c:"(15자)"},{t:"마사지샵 안 가도 시원하다는 이것",c:"(17자)"}],
+  B:[{t:"워킹맘이 TV보며 쓰는 그것",c:"(14자)"},{t:"전동기기 다 제치고 쓰는 비결",c:"(15자)"}],
+  C:[{t:"러너들이 폼롤러 대신 쓰는 그것",c:"(16자)"},{t:"운동 후 빠르게 푸는 비결",c:"(13자)"}],
+  D:[{t:"5060이 전동기기 대신 쓰는 그것",c:"(16자)"},{t:"복잡한 거 싫은데 매일 쓰는 비결",c:"(17자)"}],
+  E:[{t:"SNS에서 다들 쓰는 그 종아리템",c:"(16자)"},{t:"인플루언서도 쓴다는 그 마사지스틱",c:"(17자)"}],
+  F:[{t:"선물 1순위가 왜 마사지스틱일까",c:"(16자)"},{t:"받으면 매일 쓰는 그 비결",c:"(13자)"}]
+};
+PERSONA_COPY.psy['08'] = {
+  A:[{t:"리뷰 2.3만·평점 4.89 마사지스틱",c:"(18자)"},{t:"충전 없이 — 손에 잡고 바로",c:"(14자)"}],
+  B:[{t:"전신 하나로 — 목·어깨·종아리",c:"(15자)"},{t:"후기 2.3만으로 검증된 바리바디",c:"(16자)"}],
+  C:[{t:"묵직한 롤링 — 운동 회복에",c:"(14자)"},{t:"리뷰 4.89, 검증된 브랜드",c:"(14자)"}],
+  D:[{t:"손에 잡고 미는 것만 — 5060도 쉽게",c:"(18자)"},{t:"전신 하나로 — 평점 4.89",c:"(13자)"}],
+  E:[{t:"리뷰 2.3만·4.89 — SNS 핫템",c:"(16자)"},{t:"카테고리 대표 마사지스틱",c:"(13자)"}],
+  F:[{t:"리뷰 2.3만·4.89 효도템",c:"(13자)"},{t:"누구나 쉬운 전신 — 검증됨",c:"(14자)"}]
+};
+PERSONA_COPY.need['09'] = {
+  A:[{t:"사무직 무거운 다리, 자기 전 1분 쭉",c:"(19자)"},{t:"아침에 다리 묵직해 출근 싫을 때",c:"(17자)"}],
+  B:[{t:"가족 챙기고 무거운 다리, 소파에서 1분",c:"(20자)"},{t:"밤에 다리 무거워 못 자던 분께",c:"(16자)"}],
+  C:[{t:"운동 후 무거운 다리, 자기 전 쭉 밀어",c:"(19자)"},{t:"다음날 가벼우려면 오늘 밤 1분",c:"(16자)"}],
+  D:[{t:"무거운 다리로 뒤척이던 밤, 손에 잡고",c:"(19자)"},{t:"아침마다 묵직한 다리 풀기",c:"(14자)"}],
+  E:[{t:"다리 무거운 밤, 자기 전 셀프 케어",c:"(18자)"},{t:"쉬어도 안 풀리는 다리라면",c:"(14자)"}],
+  F:[{t:"부모님 무거운 다리, 자기 전 1분",c:"(17자)"},{t:"다리 저려 못 주무시던 부모님께",c:"(16자)"}]
+};
+PERSONA_COPY.need['10'] = {
+  A:[{t:"오후 묵직함, 쌓이기 전 매일",c:"(14자)"},{t:"다리는 매일 풀어야 가벼워요",c:"(15자)"}],
+  B:[{t:"전신 뭉침, 굳기 전 매일 케어",c:"(15자)"},{t:"방치 말고 자기 전 루틴",c:"(12자)"}],
+  C:[{t:"운동 누적 뭉침, 매일 풀어주기",c:"(16자)"},{t:"회복도 매일 해야 가벼워요",c:"(14자)"}],
+  D:[{t:"중년 다리는 매일 관리가 답",c:"(14자)"},{t:"방치 말고 지금부터 종아리 루틴",c:"(16자)"}],
+  E:[{t:"다리 라인, 매일 꾸준히 관리",c:"(14자)"},{t:"쌓이기 전에 미리미리",c:"(11자)"}],
+  F:[{t:"부모님 다리, 미리 챙겨드려요",c:"(15자)"},{t:"더 무거워지기 전에 매일",c:"(13자)"}]
+};
+PERSONA_COPY.need['11'] = {
+  A:[{t:"직장 동료끼리 다 쓰는 그것",c:"(14자)"},{t:"다들 소파 옆에 하나씩",c:"(12자)"}],
+  B:[{t:"워킹맘들이 돌려 쓰는 마사지스틱",c:"(17자)"},{t:"가족이 다 같이 쓰는 하나",c:"(13자)"}],
+  C:[{t:"러너들 사이 그 회복템",c:"(11자)"},{t:"운동하는 사람끼리 아는 그것",c:"(15자)"}],
+  D:[{t:"딸이랑 같이 쓰는 마사지스틱",c:"(15자)"},{t:"친구가 쓰는 거 보고 바로",c:"(13자)"}],
+  E:[{t:"SNS에서 다들 쓰는 그것",c:"(13자)"},{t:"친구 따라 다들 하나씩",c:"(12자)"}],
+  F:[{t:"부모님도 자녀도 같이 쓰는 하나",c:"(16자)"},{t:"온 가족 선물로",c:"(8자)"}]
+};
+PERSONA_COPY.need['12'] = {
+  A:[{t:"고생한 내 다리에 시원한 보상",c:"(15자)"},{t:"열심히 일한 나를 위한 1분",c:"(14자)"}],
+  B:[{t:"가족 챙긴 나에게 주는 보상",c:"(14자)"},{t:"엄마이자 나, 둘 다 챙기기",c:"(14자)"}],
+  C:[{t:"달린 내 다리에 주는 보상",c:"(13자)"},{t:"운동 끝낸 나를 위한 케어",c:"(13자)"}],
+  D:[{t:"이 나이 나를 위한 다리 투자",c:"(14자)"},{t:"딸에게 주는 센스 있는 선물",c:"(14자)"}],
+  E:[{t:"예뻐지려는 나를 위한 매일 1분",c:"(15자)"},{t:"나를 가꾸는 셀프 보상",c:"(12자)"}],
+  F:[{t:"다리 무거운 부모님께 드리는 선물",c:"(17자)"},{t:"받으면 인정받는 효도템",c:"(12자)"}]
+};
+PERSONA_COPY.need['13'] = {
+  A:[{t:"다리 챙기는 직장인의 저녁 루틴",c:"(16자)"},{t:"바빠도 나를 돌보는 습관",c:"(13자)"}],
+  B:[{t:"가족도 나도 챙기는 사람의 루틴",c:"(16자)"},{t:"매일 나를 돌보는 습관",c:"(12자)"}],
+  C:[{t:"운동도 회복도 챙기는 러너",c:"(14자)"},{t:"꾸준히 관리하는 내가 좋다",c:"(14자)"}],
+  D:[{t:"나이 들수록 나를 돌보는 습관",c:"(15자)"},{t:"건강 챙기는 어른의 루틴",c:"(13자)"}],
+  E:[{t:"다리 라인 가꾸는 사람의 루틴",c:"(15자)"},{t:"꾸준히 관리하는 나",c:"(10자)"}],
+  F:[{t:"부모님도 나도 챙기는 사람",c:"(14자)"},{t:"챙길 줄 아는 사람의 선물",c:"(13자)"}]
+};
+</script>
+</body>
+</html>
