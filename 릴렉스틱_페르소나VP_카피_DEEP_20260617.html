@@ -54,6 +54,12 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
 .cta .chip2{background:#1a1a2e;color:#fff;border-radius:14px;padding:3px 11px;font-size:11.5px;font-weight:600;}
 .note{background:#fffbe9;border:1px solid #f5e6a8;border-radius:12px;padding:16px 20px;margin-top:20px;font-size:12.5px;color:#5c4d09;}
 .note b{color:#92700a;}
+.strat-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#fff;border-radius:14px;padding:12px 16px;margin:-8px 0 22px;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.strat-lbl{font-size:12px;font-weight:800;color:#1a1a2e;margin-right:6px;}
+.strat-chip{border:1px solid #e5e7eb;background:#fafafa;color:#555;border-radius:18px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;transition:.12s;}
+.strat-chip:hover{background:#f0f4ff;color:#0958d9;border-color:#cdddff;}
+.strat-chip.active{background:#1a1a2e;color:#fff;border-color:#1a1a2e;}
+.strat-badge{display:inline-block;background:#eafaf1;color:#1c7c54;border-radius:5px;padding:1px 6px;font-size:10px;font-weight:700;margin-left:6px;vertical-align:middle;}
 </style></head>
 <body>
 <div class="hero">
@@ -75,6 +81,23 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
     <button class="tab-btn" onclick="sp(3,this)">D 미숙 51</button>
     <button class="tab-btn" onclick="sp(4,this)">E 준혁 40</button>
     <button class="tab-btn" onclick="sp(5,this)">F 은정 45</button>
+  </div>
+  <div class="strat-bar">
+    <span class="strat-lbl">카피 전략 ⓘ</span>
+    <button class="strat-chip active" onclick="fStrat('전체',this)">전체</button>
+    <button class="strat-chip" onclick="fStrat('문제제기',this)">문제 제기</button>
+    <button class="strat-chip" onclick="fStrat('사용상황',this)">사용 상황 제시</button>
+    <button class="strat-chip" onclick="fStrat('효과강조',this)">효과 강조</button>
+    <button class="strat-chip" onclick="fStrat('데이터기반',this)">데이터 기반</button>
+    <button class="strat-chip" onclick="fStrat('후기공유',this)">후기 공유</button>
+    <button class="strat-chip" onclick="fStrat('전문성',this)">전문성 강조</button>
+    <button class="strat-chip" onclick="fStrat('비교대조',this)">비교 / 대조</button>
+    <button class="strat-chip" onclick="fStrat('혜택강조',this)">혜택 강조</button>
+    <button class="strat-chip" onclick="fStrat('트렌드편승',this)">트렌드 편승</button>
+    <button class="strat-chip" onclick="fStrat('호기심자극',this)">호기심 자극</button>
+    <button class="strat-chip" onclick="fStrat('타겟직격',this)">타겟 직격</button>
+    <button class="strat-chip" onclick="fStrat('브랜딩',this)">브랜딩</button>
+    <button class="strat-chip" onclick="fStrat('사회적증거',this)">사회적 증거</button>
   </div>
 
   <!-- ===== A 지영 ===== -->
@@ -115,7 +138,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">20</span><span class="ct">"1년 무상 A/S — 사고 나서도 안심"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
         <div class="cp"><span class="cn">21</span><span class="ct">"5만원이 아까울 일 없게, 1년 보장"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">손실회피</span></div></div>
         <div class="body"><b>본문</b> 매주 8만원 마사지샵, 예약·왕복 2시간도 부담이죠. 사무실·집에 하나씩, 자리에서 매일 5분이면 — 정가 99,000원 → 오늘 59,000원, 회당 150원 꼴. 1년 무상 A/S에 네이버 4.91점. <span style="color:#aaa;">(86자)</span></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">오늘 40% 받기</span><span class="chip2">당일 출발 주문</span><span class="chip2">가격 비교</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"할인에 1년 무상 A/S까지, 받는 게 더 많아요"</span><span class="cc">(27자)</span><div class="tags"><span class="m">혜택강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">오늘 40% 받기</span><span class="chip2">당일 출발 주문</span><span class="chip2">가격 비교</span></div>
       </div>
     </div>
 
@@ -135,7 +160,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">8</span><span class="ct">"고생한 어깨에, 나를 위한 5분 보상"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
         <div class="cp"><span class="cn">9</span><span class="ct">"열심히 산 나에게, 이 정도는"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
         <div class="cp"><span class="cn">10</span><span class="ct">"남 챙기느라 미룬 내 어깨, 오늘은 나"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">내 루틴 시작</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"매일 밤 5분, 아침이 개운한 사람"</span><span class="cc">(19자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">내 루틴 시작</span></div>
       </div>
     </div>
 
@@ -157,7 +184,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">10</span><span class="ct">"사무실에선 어깨, 집에선 종아리까지"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
         <div class="sd">④ 휴대·즉시성<span class="sdc">1</span></div>
         <div class="cp"><span class="cn">11</span><span class="ct">"평일 1시 전 주문 시 오늘 바로 출발"</span><span class="cc">(18자)</span><div class="tags"><span class="fb bofu">BOFU</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">사용법 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"마사지볼·폼롤러보다 손에 착 감기는 그립"</span><span class="cc">(22자)</span><div class="tags"><span class="m">비교대조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">사용법 보기</span></div>
       </div>
     </div>
 
@@ -193,7 +222,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">7</span><span class="ct">"연예인도 일상 관리로 쓰는 그것"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
         <div class="cp"><span class="cn">8</span><span class="ct">"써보고 남편·부모님 선물로도"</span><span class="cc">(14자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
         <div class="cp"><span class="cn">9</span><span class="ct">"강남 워킹맘들 사이에서 도는 그 템"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">후기 24만 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"'사무실에 두려고 더 샀어요' 후기"</span><span class="cc">(19자)</span><div class="tags"><span class="m">후기공유</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">후기 24만 보기</span></div>
       </div>
     </div>
 
@@ -267,7 +298,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">11</span><span class="ct">"폼롤러는 서랍에, 이건 매일 손이 가요"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">손실회피</span></div></div>
         <div class="cp"><span class="cn">12</span><span class="ct">"꺼내기 귀찮아 안 쓰던 그 도구 말고"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">PAS</span></div></div>
         <div class="body"><b>본문</b> 아기 안고 수유하다 너덜너덜해진 어깨·손목, 남편한테 부탁도 하루 이틀이죠. 팔 힘 안 들이고 쥐기만 — 아이 재운 22시 소파에서 5분, 같은 걸로 아이 종아리까지. 폼롤러처럼 서랍행 안 돼요. <span style="color:#aaa;">(90자)</span></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">5분 루틴 시작</span><span class="chip2">당일 출발 주문</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"팔 안 쓰고도 어깨가 개운해지는 5분"</span><span class="cc">(20자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">5분 루틴 시작</span><span class="chip2">당일 출발 주문</span></div>
       </div>
     </div>
 
@@ -288,7 +321,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">④ 정가·A/S<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">9</span><span class="ct">"정가 99,000 → 59,000 (40%↓) 온가족용"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
         <div class="cp"><span class="cn">10</span><span class="ct">"아이가 막 써도 1년 무상 A/S"</span><span class="cc">(15자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">온가족 1+1 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"1+1으로 아이 것까지 — 받는 게 더 많은 구성"</span><span class="cc">(27자)</span><div class="tags"><span class="m">혜택강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">온가족 1+1 보기</span></div>
       </div>
     </div>
 
@@ -308,7 +343,11 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">④ 선물·검증<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">8</span><span class="ct">"친정 엄마 선물로도 1순위"</span><span class="cc">(13자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
         <div class="cp"><span class="cn">9</span><span class="ct">"국대 트레이너 검증·네이버쇼핑 1위"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">후기 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">3</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"'아이 종아리까지 편해요' 워킹맘 후기"</span><span class="cc">(21자)</span><div class="tags"><span class="m">후기공유</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"국가대표 트레이너가 검증한 그 스틱"</span><span class="cc">(19자)</span><div class="tags"><span class="m">전문성</span><span class="flag">⚠️근거</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"맘카페에서 요즘 다들 사는 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="m">트렌드편승</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">후기 보기</span></div>
       </div>
     </div>
 
@@ -325,7 +364,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">③ 안심·여유<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"내가 좀 풀려야 아이한테도 웃어주죠"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
         <div class="cp"><span class="cn">7</span><span class="ct">"소파에서 5분, 그제야 내 시간 같은"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">나를 위한 5분</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"아이 재운 22시, 소파에서 딱 5분"</span><span class="cc">(20자)</span><div class="tags"><span class="m">사용상황</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">나를 위한 5분</span></div>
       </div>
     </div>
 
@@ -340,7 +381,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">5</span><span class="ct">"워킹맘의 셀프케어는 짧고 확실하게"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
         <div class="sd">③ 집안 필수템<span class="sdc">1</span></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"우리집 필수템이 된 마사지스틱"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"5분이면 몸이 가벼워지는 나만의 루틴"</span><span class="cc">(20자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
       </div>
     </div>
 
@@ -405,7 +448,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">11</span><span class="ct">"책상 옆에 두고 일하다 틈틈이"</span><span class="cc">(15자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
         <div class="cp"><span class="cn">12</span><span class="ct">"가벼워서 어디든 — 자취방 필수템"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span></div></div>
         <div class="body"><b>본문</b> 1인 가구라 등·날갯죽지는 혼자 닿지도 못하고, 폼롤러는 바닥에 굴리는 게 귀찮아 서랍행이었죠. 긴 길이로 혼자서 승모근까지, 쥐고 미는 것만. 병원처럼 그때뿐 아니고 매일 — 처음 대는 순간 '아 시원해'. <span style="color:#aaa;">(94자)</span></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">오늘 받아보기</span><span class="chip2">후기 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"재택 책상 옆에 두고 틈틈이 5분"</span><span class="cc">(18자)</span><div class="tags"><span class="m">사용상황</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">오늘 받아보기</span><span class="chip2">후기 보기</span></div>
       </div>
     </div>
 
@@ -423,7 +468,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">③ 애착·요술봉<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">7</span><span class="ct">"서랍행 걱정? 계속 손이 가는 '요술봉'"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">호기심갭</span></div></div>
         <div class="cp"><span class="cn">8</span><span class="ct">"하루에도 몇 번씩 손이 가는 내 책상템"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">지금 확인</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"야간에 넷플 보며 승모근 슬슬"</span><span class="cc">(16자)</span><div class="tags"><span class="m">사용상황</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">지금 확인</span></div>
       </div>
     </div>
 
@@ -441,7 +488,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">7</span><span class="ct">"친구한테 추천했더니 같이 산 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">사회증거</span></div></div>
         <div class="cp"><span class="cn">8</span><span class="ct">"써본 친구들이 다 사라고 한 이유"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
         <div class="cp"><span class="cn">9</span><span class="ct">"자취하는 친구 선물로도 딱"</span><span class="cc">(14자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">후기 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"'1인 가구 필수템' 후기 가득"</span><span class="cc">(17자)</span><div class="tags"><span class="m">후기공유</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"트레이너도 추천하는 셀프 회복템"</span><span class="cc">(17자)</span><div class="tags"><span class="m">전문성</span><span class="flag">⚠️근거</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">후기 보기</span></div>
       </div>
     </div>
 
@@ -457,7 +507,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">③ 정가·A/S<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"정가 99,000 → 59,000 (40%↓)"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
         <div class="cp"><span class="cn">7</span><span class="ct">"1년 무상 A/S — 자취방에서도 안심"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">지금 가격 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"할인가에 1년 A/S까지 챙기는 구성"</span><span class="cc">(20자)</span><div class="tags"><span class="m">혜택강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">지금 가격 보기</span></div>
       </div>
     </div>
 
@@ -472,7 +524,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">5</span><span class="ct">"거울 보며 다리 쭉쭉 미는 저녁 습관"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span><span class="flag">⚠️체형</span></div></div>
         <div class="sd">③ 자율성<span class="sdc">1</span></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"등 긁어줄 사람 없어도 — 내 몸은 내가"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"재택러라면 책상 옆에 하나쯤"</span><span class="cc">(15자)</span><div class="tags"><span class="m">타겟직격</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"굳은 어깨가 개운해지는 내 루틴"</span><span class="cc">(17자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
       </div>
     </div>
 
@@ -546,7 +601,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">10</span><span class="ct">"복잡한 기기 싫다면 — 쥐고 미는 것만"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">PAS</span></div></div>
         <div class="cp"><span class="cn">11</span><span class="ct">"전원도 충전도 없이, 손에 잡고 바로"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
         <div class="body"><b>본문</b> 다나손은 미끄러지고 폼롤러는 안 닿고 — 기존 도구 다 실망하셨죠? 회전 헤드로 미끄러지지 않게, 긴 길이로 어깨부터 종아리까지. '거의 뼈까지 닿는 느낌'이라는 후기. 전원·버튼 없이 쥐고 미는 것만, 1년 무상 A/S. <span style="color:#aaa;">(96자)</span></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">1년 A/S 받기</span><span class="chip2">후기 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"묵직하게 깊이 눌러주는 시원함"</span><span class="cc">(16자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"오전 가사 틈틈이, TV 보며 쓱쓱"</span><span class="cc">(19자)</span><div class="tags"><span class="m">사용상황</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">1년 A/S 받기</span><span class="chip2">후기 보기</span></div>
       </div>
     </div>
 
@@ -564,7 +622,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">6</span><span class="ct">"내가 써보고 부모님께 — 효도템 됐어요"</span><span class="cc">(19자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
         <div class="cp"><span class="cn">7</span><span class="ct">"자녀가 사드리면 매일 쓰시는 선물"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">존중</span></div></div>
         <div class="cp"><span class="cn">8</span><span class="ct">"네이버 4.91점 — 선물로도 1순위"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span><span class="flag">⚠️근거</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">선물 포장 주문</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"'설마 했는데 만족' 5060 후기"</span><span class="cc">(19자)</span><div class="tags"><span class="m">후기공유</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"갱년기 모임에서 요즘 도는 그것"</span><span class="cc">(17자)</span><div class="tags"><span class="m">트렌드편승</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">선물 포장 주문</span></div>
       </div>
     </div>
 
@@ -580,7 +641,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">③ 정가·A/S<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"정가 99,000 → 59,000 (40%↓)"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
         <div class="cp"><span class="cn">7</span><span class="ct">"1년 무상 A/S — 이 나이엔 더 안심"</span><span class="cc">(17자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">지금 가격 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"할인에 1년 A/S, 선물 포장까지"</span><span class="cc">(19자)</span><div class="tags"><span class="m">혜택강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">지금 가격 보기</span></div>
       </div>
     </div>
 
@@ -597,7 +660,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">③ 기대 이상 (서프라이즈)<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"설마 했는데 — 써보고 너무너무 만족"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">사회증거</span></div></div>
         <div class="cp"><span class="cn">7</span><span class="ct">"기대 안 했는데 매일 찾게 되는 그것"</span><span class="cc">(18자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">호기심갭</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">개운하게 케어</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"자기 전 어깨·목 5분이면 한결"</span><span class="cc">(17자)</span><div class="tags"><span class="m">사용상황</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">개운하게 케어</span></div>
       </div>
     </div>
 
@@ -611,7 +676,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">4</span><span class="ct">"자녀 다 키우고, 이제 내 몸 차례"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">존중</span></div></div>
         <div class="cp"><span class="cn">5</span><span class="ct">"평생 가족 챙긴 손, 이제 나를"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"나를 위한 5분, 이 정도는 누려도"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">존중</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"이 나이에도 개운한 아침을 만드는"</span><span class="cc">(18자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
       </div>
     </div>
 
@@ -685,7 +752,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">10</span><span class="ct">"출장 가방에도 쏙 — 어디서나 쿨다운"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
         <div class="cp"><span class="cn">11</span><span class="ct">"러닝화 옆에 챙기는 회복 도구"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
         <div class="body"><b>본문</b> 런닝·헬스 후 종아리·허벅지, 그냥 자면 다음날 천근만근이죠. 폼롤러처럼 자세 잡을 필요 없이 쥐고 미는 것만 — 무게감 있게 깊게. 자판 1시간에 뭉치는 어깨도. 출장 가방에 쏙. 국대 트레이너가 검증. <span style="color:#aaa;">(92자)</span></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">리커버리템 보기</span><span class="chip2">오늘 출발</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"런닝 후 종아리가 개운하게 풀리는 5분"</span><span class="cc">(21자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">리커버리템 보기</span><span class="chip2">오늘 출발</span></div>
       </div>
     </div>
 
@@ -718,7 +787,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">③ 정가·A/S<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"정가 99,000 → 59,000 (40%↓)"</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">앵커링</span><span class="flag">⚠️근거</span></div></div>
         <div class="cp"><span class="cn">7</span><span class="ct">"1년 무상 A/S — 막 굴려도 안심"</span><span class="cc">(16자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">가격 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"할인가에 1년 A/S까지 — 막 굴려도 안심"</span><span class="cc">(24자)</span><div class="tags"><span class="m">혜택강조</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"스포츠 마사지 매번 가긴 부담이죠"</span><span class="cc">(18자)</span><div class="tags"><span class="m">문제제기</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">가격 보기</span></div>
       </div>
     </div>
 
@@ -732,7 +804,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">4</span><span class="ct">"운동 끝 이게 있어야 마무리되는 기분"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
         <div class="cp"><span class="cn">5</span><span class="ct">"제대로 달리고 제대로 푸는 만족"</span><span class="cc">(16자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"내일 또 달릴 다리, 오늘 챙겨주는"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">안전</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"운동 좋아하는 당신, 회복도 챙기죠"</span><span class="cc">(19자)</span><div class="tags"><span class="m">타겟직격</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
       </div>
     </div>
 
@@ -746,7 +820,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">4</span><span class="ct">"러닝화 옆에 두는 회복 루틴"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
         <div class="cp"><span class="cn">5</span><span class="ct">"운동만큼 회복도 챙기는 게 진짜"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">자아</span></div></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"몸 관리하는 40대 직장인의 기본템"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"제대로 달리는 러너라면"</span><span class="cc">(12자)</span><div class="tags"><span class="m">타겟직격</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"쿨다운까지 끝내야 개운한 사람"</span><span class="cc">(16자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
       </div>
     </div>
 
@@ -820,7 +897,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">10</span><span class="ct">"온가족이 막 써도 1년 무상 A/S"</span><span class="cc">(16자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">권위</span></div></div>
         <div class="cp"><span class="cn">11</span><span class="ct">"고장 걱정 없이 — 1년 보장"</span><span class="cc">(13자)</span><div class="tags"><span class="fb bofu">BOFU</span><span class="m">손실회피</span></div></div>
         <div class="body"><b>본문</b> 혼자 쓰기엔 비싸 보여도 — 남편·아이·나 다 같이 쓰면 1인당 만원도 안 돼요. 마사지샵 식구대로 가면 한 달에 얼마? 정가 99,000원 → 59,000원, 1+1까지. 온가족이 막 써도 1년 무상 A/S. <span style="color:#aaa;">(90자)</span></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">온가족 1+1 보기</span><span class="chip2">당일 출발</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"1+1에 1년 A/S까지 — 온가족 구성"</span><span class="cc">(22자)</span><div class="tags"><span class="m">혜택강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">온가족 1+1 보기</span><span class="chip2">당일 출발</span></div>
       </div>
     </div>
 
@@ -839,7 +918,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">7</span><span class="ct">"가사로 굳은 허리·어깨, 손 안 대고"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="flag">⚠️이완</span></div></div>
         <div class="cp"><span class="cn">8</span><span class="ct">"종일 집안일한 손목, 자기 전 5분"</span><span class="cc">(17자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
         <div class="cp"><span class="cn">9</span><span class="ct">"전원도 충전도 없이, TV 보며 쓱쓱"</span><span class="cc">(18자)</span><div class="tags"><span class="fb mofu">MOFU</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">사용법 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"쥐기만 해도 굳은 허리가 개운"</span><span class="cc">(16자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"손으로 주무르기보다 쥐고 미는 게 편해요"</span><span class="cc">(22자)</span><div class="tags"><span class="m">비교대조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">사용법 보기</span></div>
       </div>
     </div>
 
@@ -856,7 +938,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">③ 권위·검증<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">7</span><span class="ct">"네이버쇼핑·쿠팡 1위 — 믿고 사는"</span><span class="cc">(17자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span><span class="flag">⚠️근거</span></div></div>
         <div class="cp"><span class="cn">8</span><span class="ct">"현대·롯데 백화점에도 들어간 그 브랜드"</span><span class="cc">(19자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">권위</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">선물 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"'온가족이 쓴다'는 후기 가득"</span><span class="cc">(16자)</span><div class="tags"><span class="m">후기공유</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"엄마들 사이 요즘 그 마사지스틱"</span><span class="cc">(17자)</span><div class="tags"><span class="m">트렌드편승</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">선물 보기</span></div>
       </div>
     </div>
 
@@ -872,7 +957,9 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="cp"><span class="cn">5</span><span class="ct">"굳었던 하루가 싹 — 그 개운함"</span><span class="cc">(15자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">감성</span></div></div>
         <div class="sd">③ 가족 케어 안심<span class="sdc">1</span></div>
         <div class="cp"><span class="cn">6</span><span class="ct">"내가 덜 지쳐야 식구도 더 챙기죠"</span><span class="cc">(16자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">공감</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">개운하게 케어</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">1</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"가사 끝 소파에서 종아리 5분"</span><span class="cc">(16자)</span><div class="tags"><span class="m">사용상황</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">개운하게 케어</span></div>
       </div>
     </div>
 
@@ -885,7 +972,10 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
         <div class="sd">② 나도 챙기는 사람<span class="sdc">2</span></div>
         <div class="cp"><span class="cn">4</span><span class="ct">"가족만 챙기던 내가, 나도 챙기기 시작"</span><span class="cc">(19자)</span><div class="tags"><span class="fb tofu">TOFU</span><span class="m">존중</span></div></div>
         <div class="cp"><span class="cn">5</span><span class="ct">"집안일도, 내 몸도 야무지게"</span><span class="cc">(14자)</span><div class="tags"><span class="fb mofu">MOFU</span><span class="m">자아</span></div></div>
-        <div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
+                <div class="sd">🎯 전략 보강<span class="sdc">2</span></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"가족 건강 챙기는 엄마라면"</span><span class="cc">(14자)</span><div class="tags"><span class="m">타겟직격</span></div></div>
+        <div class="cp"><span class="cn">✚</span><span class="ct">"하루 끝 개운하게 마무리하는 살림 9단"</span><span class="cc">(21자)</span><div class="tags"><span class="m">효과강조</span></div></div>
+<div class="cta"><span class="k">CTA</span><span class="chip2">제품 보기</span></div>
       </div>
     </div>
 
@@ -946,6 +1036,64 @@ body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;b
 <script>
 function sp(i,btn){document.querySelectorAll('.psec').forEach((s,x)=>s.classList.toggle('active',x===i));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function tg(h){h.parentElement.classList.toggle('open');}
+
+/* ===== 카피 전략 자동 매핑 + 필터 ===== */
+function stratOf(cp){
+  var ct=cp.querySelector('.ct'); var t=ct?ct.textContent:'';
+  var ms=Array.from(cp.querySelectorAll('.m')).map(function(e){return e.textContent;}).join(' ');
+  // 0) 전략명 직접 태그 우선 (전략 보강 카피)
+  var direct=['문제제기','사용상황','효과강조','데이터기반','후기공유','전문성','비교대조','혜택강조','트렌드편승','호기심자극','타겟직격','브랜딩','사회적증거'];
+  for(var i=0;i<direct.length;i++){ if(ms.indexOf(direct[i])>=0) return direct[i]; }
+  // 1) 텍스트 우선 규칙
+  if(/24만|240,?000|4\.9|4\.8|1위|99,?000|59,?000|40%|150원|2\.3만|23,320|28,894|만원|회당/.test(t)) return '데이터기반';
+  if(/후기|리뷰|설마 했는데|별점|평점|푹 빠진|반신반의|인정한|올해 산 것/.test(t)) return '후기공유';
+  if(/폼롤러|마사지건|다나손|안마의자|10만원대|마사지샵 대신|대신|보다 시원|보다 낫|vs/.test(t)) return '비교대조';
+  if(/연예인|SNS|인스타|핫템|트렌드|요즘|유행/.test(t)) return '트렌드편승';
+  if(/트레이너|국가대표|검증|백화점|올영|오늘의집|전문/.test(t)) return '전문성';
+  // 2) 방법론 태그 규칙
+  if(/PAS|손실회피/.test(ms)) return '문제제기';
+  if(/호기심/.test(ms)) return '호기심자극';
+  if(/사회증거|욕구11|추천|입소문/.test(ms)) return '사회적증거';
+  if(/앵커링|차별화/.test(ms)) return '비교대조';
+  if(/FOMO/.test(ms)) return '트렌드편승';
+  if(/권위|전문성/.test(ms)) return '전문성';
+  if(/공감/.test(ms)) return '타겟직격';
+  if(/오퍼|혜택|욕구12/.test(ms)) return '혜택강조';
+  if(/자아|욕구13|브랜/.test(ms)) return '브랜딩';
+  if(/욕구09|욕구10|생리|안전/.test(ms)) return '사용상황';
+  // 3) 텍스트 보조 규칙
+  if(/추천|다들|온가족|동료|모임|친구|남편|아내|가족/.test(t)) return '사회적증거';
+  if(/통증|뻐근|뭉친|아프|굳|돌처럼|돌덩이|무거운|묵직|결려/.test(t)) return '문제제기';
+  if(/시원|개운|풀려|풀리|가벼|극락|사르르/.test(t)) return '효과강조';
+  if(/혼자|팔 안|쥐고|길이|당일|휴대/.test(t)) return '효과강조';
+  return '타겟직격';
+}
+function initStrat(){
+  document.querySelectorAll('.cp').forEach(function(cp){
+    if(cp.dataset.strat) return;
+    var s=stratOf(cp); cp.dataset.strat=s;
+    var ct=cp.querySelector('.ct');
+    if(ct){ var b=document.createElement('span'); b.className='strat-badge'; b.textContent=s; ct.parentNode.insertBefore(b, ct.nextSibling); }
+  });
+}
+var curStrat='전체';
+function fStrat(s,btn){
+  curStrat=s;
+  document.querySelectorAll('.strat-chip').forEach(function(c){c.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.psec').forEach(function(sec){
+    sec.querySelectorAll('.cp').forEach(function(cp){
+      cp.style.display=(s==='전체'||cp.dataset.strat===s)?'':'none';
+    });
+    sec.querySelectorAll('.sd,.anchor').forEach(function(el){ el.style.display=(s==='전체')?'':'none'; });
+    sec.querySelectorAll('.vp').forEach(function(vp){
+      if(s!=='전체') vp.classList.add('open');
+      var has=Array.from(vp.querySelectorAll('.cp')).some(function(cp){return cp.style.display!=='none';});
+      vp.style.display=(s==='전체'||has)?'':'none';
+    });
+  });
+}
+initStrat();
 </script>
 </body>
 </html>
