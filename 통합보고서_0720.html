@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>릴렉스틱 라인 주간보고서 2026-07-13~07-19</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','맑은 고딕',sans-serif;
+         background:#eceef2; display:flex; flex-direction:column; }
+  .topbar { flex:none; background:#fff; padding:8px 14px; display:flex; gap:10px; align-items:center;
+            box-shadow:0 1px 8px rgba(0,0,0,0.08); flex-wrap:wrap; }
+  .grp { display:flex; gap:6px; align-items:center; }
+  .glabel { font-size:11px; font-weight:800; color:#999; letter-spacing:-.2px; margin-right:2px; }
+  .sep { width:1px; height:22px; background:#e2e2ea; margin:0 4px; }
+  .tglbtn { padding:8px 18px; border-radius:9px; border:1px solid #e2e2ea; background:#f6f6fa;
+            color:#666; font-size:13px; font-weight:700; cursor:pointer; transition:.12s; white-space:nowrap; }
+  .tglbtn:hover { background:#eef0f6; color:#1d39c4; }
+  .tglbtn.active { background:#1a1a2e; color:#fff; border-color:#1a1a2e; }
+  .grp.ads .tglbtn.active { background:#531dab; border-color:#531dab; }
+  iframe { flex:1; width:100%; border:none; display:block; background:#fff; }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="grp">
+      <span class="glabel">📊 주간보고서</span>
+      <button class="tglbtn active" data-f="릴렉스틱볼_weekly_0720.html" onclick="show(this)">릴렉스틱볼</button>
+      <button class="tglbtn" data-f="릴렉스틱_weekly_0720.html" onclick="show(this)">릴렉스틱</button>
+      <button class="tglbtn" data-f="잔망루피_weekly_0720.html" onclick="show(this)">잔망루피</button>
+    </div>
+    <div class="sep"></div>
+    <div class="grp ads">
+      <span class="glabel">🔬 광고 분석</span>
+      <button class="tglbtn" data-f="릴렉스틱볼_광고분석_260720.html" onclick="show(this)">릴렉스틱볼</button>
+      <button class="tglbtn" data-f="릴렉스틱_광고분석_260720.html" onclick="show(this)">릴렉스틱</button>
+      <button class="tglbtn" data-f="루피_광고분석_260720.html" onclick="show(this)">잔망루피</button>
+    </div>
+  </div>
+  <iframe id="rpt" src="릴렉스틱볼_weekly_0720.html" title="보고서"></iframe>
+<script>
+function show(el){
+  document.getElementById('rpt').src = encodeURIComponent(el.getAttribute('data-f'));
+  var b = document.querySelectorAll('.tglbtn');
+  for (var i=0;i<b.length;i++) b[i].classList.remove('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
