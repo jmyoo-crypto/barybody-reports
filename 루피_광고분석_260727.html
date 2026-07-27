@@ -425,7 +425,7 @@ body.brief-on .tab-nav{opacity:.5}
     <h3>🔄 지난주 최신 업데이트 (7/20~26 완결 · cafe24 실매출)</h3>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px"><div style="flex:1;min-width:120px;background:#fff;border:1px solid #eee;border-radius:10px;padding:11px 13px"><div style="font-size:11px;color:#888">cafe24 매출</div><div style="font-size:19px;font-weight:800;color:#1a1a2e;margin-top:2px">1,217만</div></div><div style="flex:1;min-width:120px;background:#fff;border:1px solid #eee;border-radius:10px;padding:11px 13px"><div style="font-size:11px;color:#888">메타 광고비</div><div style="font-size:19px;font-weight:800;color:#1a1a2e;margin-top:2px">647만</div></div><div style="flex:1;min-width:120px;background:#fff;border:1px solid #eee;border-radius:10px;padding:11px 13px"><div style="font-size:11px;color:#888">cafe24 ROAS</div><div style="font-size:19px;font-weight:800;color:#d46b08;margin-top:2px">188%</div></div><div style="flex:1;min-width:120px;background:#fff;border:1px solid #eee;border-radius:10px;padding:11px 13px"><div style="font-size:11px;color:#888">공구(별도)</div><div style="font-size:19px;font-weight:800;color:#7c3aed;margin-top:2px">3,670만</div></div></div>
     
-    <div style="border-left:4px solid #d46b08;background:#fffbe6;border-radius:8px;padding:13px 16px;margin:12px 0 2px"><div style="font-weight:800;color:#b45309;font-size:13px;margin-bottom:7px">✏️ 운영 로그 · 예산 단계적 감액 (7/21 · 7/24)</div><ul style="margin:0;padding-left:17px;font-size:12.5px;line-height:1.7;color:#333"><li style='margin-bottom:4px'><b>7/21 1차</b> — 연예인 소재 4건 OFF→마감임박 2건 교체 (기존 <b>54만→44만원</b> / 연예인 <b>36만→31.5만원</b>)</li><li style='margin-bottom:4px'><b>7/24 2차</b> — Default 전체 OFF·GEM 20%↓·왜안해 OFF (기존 <b>44만→36만원</b> / 연예인 <b>31.5만→25.2만원</b>)</li><li style='margin-bottom:4px'>결과: cafe24 <b>188% · 순마진 +70만</b>(흑자) — 단 소재 성과 양호(왜안해 170%·광고를보셨다면 238%), cafe24 낮음은 <b>공구(3,670만·49%) 잠식</b> 탓이지 소재 문제 아님</li></ul><div style="font-weight:700;margin:9px 0 3px;font-size:12.5px">→ 이번 주 액션</div><ol style="margin:0;padding-left:17px;font-size:12.5px;line-height:1.7;color:#333"><li style='margin-bottom:3px'><b>소재 유지</b> — 광고가 공구·면세 매출까지 만든 것(끄면 손해)</li><li style='margin-bottom:3px'>공구 기간에만 자사몰 광고 <b>1차 30~50% 감액</b> 후 전체 채널 관찰</li><li style='margin-bottom:3px'>선결: 예약·특가 매핑 누락 정정 + 공구·면세 광고기여도 측정</li></ol></div>
+    <div style="border-left:4px solid #d46b08;background:#fffbe6;border-radius:8px;padding:13px 16px;margin:12px 0 2px"><div style="font-weight:800;color:#b45309;font-size:13px;margin-bottom:7px">✏️ 운영 로그 · 예산 단계적 감액 (7/21 · 7/24)</div><ul style="margin:0;padding-left:17px;font-size:12.5px;line-height:1.7;color:#333"><li style='margin-bottom:4px'><b>7/21 1차</b> — 연예인 소재 4건 OFF→마감임박 2건 교체 (기존 <b>54만→44만원</b> / 연예인 <b>36만→31.5만원</b>)</li><li style='margin-bottom:4px'><b>7/24 2차</b> — Default 전체 OFF·GEM 20%↓·왜안해 OFF (기존 <b>44만→36만원</b> / 연예인 <b>31.5만→25.2만원</b>)</li><li style='margin-bottom:4px'>결과: cafe24 <b>188% · 순마진 +70만</b>(흑자) — 단 소재 성과 양호(왜안해 170%·광고를보셨다면 238%), cafe24 낮음은 <b>공구(3,670만·49%) 잠식</b> 탓이지 소재 문제 아님</li></ul><div style="font-weight:700;margin:9px 0 3px;font-size:12.5px">→ 이번 주 액션</div><ol style="margin:0;padding-left:17px;font-size:12.5px;line-height:1.7;color:#333"><li style='margin-bottom:3px'><b>광고비 20% 감액</b> 진행 — GEM 세팅에 맞게 소재 추가 OFF (성과 좋은 소재는 추후 예약판매 풀리면 재세팅)</li><li style='margin-bottom:3px'><b>예약판매 소재 세팅</b></li></ol></div>
   </div>
   <div class="card">
     <h3>📈 CPA·ROAS 개선 요인 <span style="font-weight:600;color:#888">— 무엇이 효율을 끌어올렸나</span></h3>
@@ -672,7 +672,7 @@ function showTab(id,btn){
  }
  function start(){build();if(!steps.length)return;on=true;document.body.classList.add('brief-on');show(0);}
  function stop(){on=false;cur=-1;document.body.classList.remove('brief-on');clearHi();render();window.scrollTo({top:0,behavior:'smooth'});}
- function next(){if(!on){start();return;}if(cur>=steps.length-1){try{if(window.parent!==window)window.parent.postMessage({type:'brief:done',report:'ads'},'*');}catch(e){}stop();return;}show(cur+1);}
+ function next(){if(!on){start();return;}if(cur>=steps.length-1){stop();return;}show(cur+1);}
  function prev(){if(on&&cur>0)show(cur-1);}
  document.getElementById('bNext').addEventListener('click',next);
  document.getElementById('bPrev').addEventListener('click',prev);
@@ -686,7 +686,6 @@ function showTab(id,btn){
   else if(on&&e.key==='Escape'){e.preventDefault();stop();}
  });
  window.addEventListener('beforeprint',function(){if(on)stop();});
- window.addEventListener('message',function(e){var d=e.data||{};if(d.type==='brief:start'){if(!on)start();}else if(d.type==='brief:stop'){if(on)stop();}});
  build();render();
 })();
 </script>
