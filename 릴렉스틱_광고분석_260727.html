@@ -181,7 +181,7 @@ body.brief-on .tab-nav{opacity:.5}
   <div class="badge">BARYBODY · 릴렉스틱 · 메타 유료광고</div>
   <h1>릴렉스틱 유료광고 — 소재·지면 판정 &amp; 이번 주 예산 결정</h1>
   <p>광고비·인게이지먼트=메타 픽셀 · 매출·ROAS·CPA=cafe24 환산 · 기준일 2026-07-27(월) · 데이터 3/30~7/26 (17주·w9 7/20~26) · default + GEM 2계정</p>
-  <div class="hero-kpi"><div><div class="n">215%</div><div class="l">누적 cafe24 ROAS</div></div><div><div class="n">+3,213만</div><div class="l">누적 순마진 (16주)</div></div><div><div class="n">12/16주</div><div class="l">흑자 주차</div></div><div><div class="n">18종</div><div class="l">승자 소재 (양 계정)</div></div><div><div class="n">243%</div><div class="l">최신주 ROAS (7/13~19)</div></div></div>
+  <div class="hero-kpi"><div><div class="n">215%</div><div class="l">누적 cafe24 ROAS</div></div><div><div class="n">+3,502만</div><div class="l">누적 순마진 (17주)</div></div><div><div class="n">13/17주</div><div class="l">흑자 주차</div></div><div><div class="n">18종</div><div class="l">승자 소재 (양 계정)</div></div><div><div class="n">264%</div><div class="l">최신주 ROAS (7/20~26)</div></div></div>
   </div>
 </div>
 
@@ -209,7 +209,7 @@ body.brief-on .tab-nav{opacity:.5}
   </div>
 
   
-  <div class="sec-header"><div class="sec-num sn-red">!</div><div><div class="sec-title">한눈에 — 승자 4종에 예산 몰고, 손익분기 미달 7종은 정리, 릴스→스토리로 재배분</div></div></div>
+  <div class="sec-header"><div class="sec-num sn-red">!</div><div><div class="sec-title">한눈에 — 3제품 중 가장 건강 · 지난주(7/20~26) ROAS 264%·순마진 +289만, GEM 감액 후에도 흑자</div></div></div>
   <div class="sec-sub">❓ 질문: 릴렉스틱 광고비를 어디에 태울까? → 세트 승자 증액 · GEM 적자 정리 (판단 = cafe24 실매출 + 손익분기 180%)</div>
 
   <div data-brief="1" data-brief-label="핵심 결론" class="insight-box">
@@ -622,7 +622,7 @@ function showTab(id,btn){
  }
  function start(){build();if(!steps.length)return;on=true;document.body.classList.add('brief-on');show(0);}
  function stop(){on=false;cur=-1;document.body.classList.remove('brief-on');clearHi();render();window.scrollTo({top:0,behavior:'smooth'});}
- function next(){if(!on){start();return;}if(cur>=steps.length-1){try{if(window.parent!==window)window.parent.postMessage({type:'brief:done',report:'ads'},'*');}catch(e){}stop();return;}show(cur+1);}
+ function next(){if(!on){start();return;}if(cur>=steps.length-1){stop();return;}show(cur+1);}
  function prev(){if(on&&cur>0)show(cur-1);}
  document.getElementById('bNext').addEventListener('click',next);
  document.getElementById('bPrev').addEventListener('click',prev);
@@ -636,7 +636,6 @@ function showTab(id,btn){
   else if(on&&e.key==='Escape'){e.preventDefault();stop();}
  });
  window.addEventListener('beforeprint',function(){if(on)stop();});
- window.addEventListener('message',function(e){var d=e.data||{};if(d.type==='brief:start'){if(!on)start();}else if(d.type==='brief:stop'){if(on)stop();}});
  build();render();
 })();
 </script>

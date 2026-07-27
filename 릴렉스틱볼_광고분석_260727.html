@@ -214,7 +214,7 @@ body.brief-on .tab-nav{opacity:.5}
   </div>
 
   
-  <div class="sec-header"><div class="sec-num sn-red">!</div><div><div class="sec-title">한눈에 — 누적은 건강(279%)하나, 7/16 할인율 교체 후 최신주 적자 전환</div></div></div>
+  <div class="sec-header"><div class="sec-num sn-red">!</div><div><div class="sec-title">한눈에 — 지난주(7/20~26) ROAS 188.6%·순마진 −13만 소폭 적자 · 할인율 교체 소재 부진, 세트 승자가 방어</div></div></div>
   <div class="sec-sub">❓ 질문: 볼 광고를 어떻게 살릴까? → <b>할인율 이슈 해결 + 꺼진 승자 복구</b> (판단 = cafe24 실매출 + 손익분기 180%)</div>
 
   <div data-brief="1" data-brief-label="핵심 결론" class="insight-box">
@@ -738,7 +738,7 @@ function showTab(id,btn){
  }
  function start(){build();if(!steps.length)return;on=true;document.body.classList.add('brief-on');show(0);}
  function stop(){on=false;cur=-1;document.body.classList.remove('brief-on');clearHi();render();window.scrollTo({top:0,behavior:'smooth'});}
- function next(){if(!on){start();return;}if(cur>=steps.length-1){try{if(window.parent!==window)window.parent.postMessage({type:'brief:done',report:'ads'},'*');}catch(e){}stop();return;}show(cur+1);}
+ function next(){if(!on){start();return;}if(cur>=steps.length-1){stop();return;}show(cur+1);}
  function prev(){if(on&&cur>0)show(cur-1);}
  document.getElementById('bNext').addEventListener('click',next);
  document.getElementById('bPrev').addEventListener('click',prev);
@@ -752,7 +752,6 @@ function showTab(id,btn){
   else if(on&&e.key==='Escape'){e.preventDefault();stop();}
  });
  window.addEventListener('beforeprint',function(){if(on)stop();});
- window.addEventListener('message',function(e){var d=e.data||{};if(d.type==='brief:start'){if(!on)start();}else if(d.type==='brief:stop'){if(on)stop();}});
  build();render();
 })();
 </script>
