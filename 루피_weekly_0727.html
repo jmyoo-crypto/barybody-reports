@@ -851,9 +851,13 @@ function setActive(el) {
     if (cur===steps.length-1){ elMain.textContent='완료 ✓'; elMain.classList.add('done'); }
     else { elMain.textContent='다음 →'; elMain.classList.remove('done'); }
   }
-  function start(){ if(!steps.length) return; running=true; document.body.classList.add('brief-active'); bar.classList.add('running'); gotoStep(0); }
+  function start(){ if(!steps.length) return; running=true; document.body.classList.add('brief-active'); bar.classList.add('running');
+    /* 보고 모드: 멀티제품 포함 접힌 부분 자동 펼침 (KPI·Cafe24·스마트스토어) */
+    document.querySelectorAll('.mm-toggle-btn').forEach(function(b){ if((b.textContent||'').indexOf('보기')>=0) b.click(); });
+    gotoStep(0); }
   function exit(){ running=false; cur=-1; document.body.classList.remove('brief-active'); bar.classList.remove('running'); clearHi(); elMain.textContent='▶ 보고 시작'; elMain.classList.remove('done'); }
-  window.briefNext=function(){ if(!running){start();return;} if(cur>=steps.length-1){exit();return;} gotoStep(cur+1); };
+  function _briefDone(){ try{ if(window.parent!==window) window.parent.postMessage({type:'brief:done',report:'weekly'},'*'); }catch(e){} }
+  window.briefNext=function(){ if(!running){start();return;} if(cur>=steps.length-1){ _briefDone(); exit(); return; } gotoStep(cur+1); };
   window.briefPrev=function(){ if(running && cur>0) gotoStep(cur-1); };
   window.briefExit=function(){ exit(); };
   document.addEventListener('keydown', function(e){
@@ -865,6 +869,8 @@ function setActive(el) {
   });
   window.addEventListener('beforeprint', function(){ if(running) document.body.classList.remove('brief-active'); });
   window.addEventListener('afterprint', function(){ if(running) document.body.classList.add('brief-active'); });
+  /* 통합뷰 연속 보고: 부모가 시작/종료 지시 */
+  window.addEventListener('message', function(e){ var d=e.data||{}; if(d.type==='brief:start'){ if(!running) start(); } else if(d.type==='brief:stop'){ if(running) exit(); } });
 })();
 </script>
 </body>

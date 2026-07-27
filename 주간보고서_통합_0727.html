@@ -13,7 +13,6 @@
   .tab{padding:8px 18px;border:none;border-radius:999px;background:#1e293b;color:#cbd5e1;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
   .tab:hover{background:#334155;color:#fff}
   .tab.active{background:#6366f1;color:#fff;box-shadow:0 2px 10px rgba(99,102,241,.4)}
-  /* 서브바 (제품 안의 문서 전환) */
   .subbar{display:flex;align-items:center;gap:8px;padding:8px 18px;background:#111c33;border-bottom:1px solid #1e293b}
   .sub{padding:6px 15px;border:none;border-radius:8px;background:#1e293b;color:#cbd5e1;font-size:12.5px;font-weight:700;cursor:pointer;transition:.15s}
   .sub:hover{background:#334155;color:#fff}
@@ -46,13 +45,13 @@ var REPORTS = [
   { name:"잔망루피",   weekly:"루피_weekly_0727.html",       ads:"루피_광고분석_260727.html" }
 ];
 
-var cur = 0;        // 현재 제품 index
-var view = "weekly"; // weekly | brief | ads
+var cur = 0;          // 제품 index
+var view = "weekly";  // weekly | brief | ads
+var briefStage = null; // 연속 보고 중: 'weekly' -> 'ads'
 var tabs = document.getElementById('tabs');
 var frame = document.getElementById('frame');
 var subHint = document.getElementById('subHint');
 
-// 상단 제품 탭
 REPORTS.forEach(function(r, i){
   var b = document.createElement('button');
   b.className = 'tab' + (i===0?' active':'');
@@ -61,18 +60,23 @@ REPORTS.forEach(function(r, i){
   tabs.appendChild(b);
 });
 
-function fileFor(){
+function docFor(){
   var r = REPORTS[cur];
-  return (view==='ads') ? r.ads : r.weekly; // weekly·brief 모두 주간보고서 문서
+  if(view==='ads') return r.ads;
+  if(view==='brief') return (briefStage==='ads') ? r.ads : r.weekly; // 연속: 주간→광고분석
+  return r.weekly;
 }
+function send(type){ try{ if(frame.contentWindow) frame.contentWindow.postMessage({type:type}, '*'); }catch(e){} }
+
 function render(){
-  // 탭 active
   tabs.querySelectorAll('.tab').forEach(function(b,i){ b.classList.toggle('active', i===cur); });
   document.querySelectorAll('.sub').forEach(function(b){ b.classList.toggle('active', b.dataset.view===view); });
-  subHint.textContent = (view==='brief') ? '보고 모드 실행 — 리포트 하단 바 또는 →/← 키로 진행'
-                       : (view==='weekly') ? '보고모드 탭 또는 리포트 하단 ▶ 보고 시작 / B키'
-                       : '';
-  var want = encodeURIComponent(fileFor());
+  subHint.textContent =
+      (view==='brief' && briefStage==='ads') ? '연속 보고 — 광고분석 단계 (→/← 진행)'
+    : (view==='brief') ? '연속 보고 — 주간보고서 단계 (끝나면 자동으로 광고분석)'
+    : (view==='weekly') ? '보고모드 탭으로 브리핑 시작 (또는 리포트 B키)'
+    : '';
+  var want = encodeURIComponent(docFor());
   if(frame.getAttribute('src') !== want){
     frame.onload = function(){ afterLoad(); frame.onload=null; };
     frame.setAttribute('src', want);
@@ -81,16 +85,26 @@ function render(){
   }
 }
 function afterLoad(){
-  // 같은 주간보고서 문서에서 보고모드 자동 시작 / 해제 (동일 출처에서만 동작)
-  try{
-    var w = frame.contentWindow;
-    if(!w) return;
-    if(view==='brief' && w.briefNext){ w.briefNext(); }       // 브리핑 순서 자동 시작
-    else if(view==='weekly' && w.briefExit){ w.briefExit(); } // 주간보고서로 돌아오면 해제
-  }catch(e){ /* 로컬 file:// 등 교차출처 제한 시 무시 — 리포트 내 ▶ 버튼으로 실행 */ }
+  // 동일 출처(GitHub Pages)에서 postMessage로 자식 보고모드 제어
+  if(view==='brief'){ setTimeout(function(){ send('brief:start'); }, 150); }
+  else { send('brief:stop'); }
 }
-function setProduct(i){ cur=i; if(view==='brief') view='weekly'; render(); } // 제품 바꾸면 주간보고서로
-function setView(v){ view=v; render(); }
+function setProduct(i){ cur=i; if(view==='brief'){ view='weekly'; briefStage=null; } render(); }
+function setView(v){ if(v==='brief'){ briefStage='weekly'; } else { briefStage=null; } view=v; render(); }
+
+// 자식 보고모드 완료 신호 수신 → 다음 단계로 연속 진행
+window.addEventListener('message', function(e){
+  var d = e.data || {};
+  if(d.type !== 'brief:done') return;
+  if(view !== 'brief') return;
+  if(briefStage==='weekly' && d.report==='weekly'){
+    briefStage = 'ads';   // 주간보고서 끝 → 광고분석 로드 후 자동 시작
+    render();
+  } else if(briefStage==='ads' && d.report==='ads'){
+    briefStage = null;    // 연속 보고 완료
+    render();
+  }
+});
 
 render();
 </script>

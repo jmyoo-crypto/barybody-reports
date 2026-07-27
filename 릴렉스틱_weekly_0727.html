@@ -153,6 +153,14 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
 .tl-peak-badge { display: inline-block; background: #dcfce7; color: #15803d;
   font-size: 12px; font-weight: 800; border-radius: 4px; padding: 2px 7px;
   border: 1px solid #86efac; margin-right: 4px; vertical-align: middle; letter-spacing: -.2px; }
+.tl-cut-badge { display: inline-block; background: #fff1f0; color: #cf1322;
+  font-size: 11px; font-weight: 800; border-radius: 4px; padding: 1px 7px;
+  border: 1px solid #ffa39e; margin-right: 4px; vertical-align: middle; }
+.tl-sched-badge { display: inline-block; background: #fff7e6; color: #d46b08;
+  font-size: 11px; font-weight: 800; border-radius: 4px; padding: 1px 7px;
+  border: 1px solid #ffd591; margin-right: 4px; vertical-align: middle; }
+.tl-dot-red    { background: #ef4444; }
+.tl-dot-orange { background: #f59e0b; }
 .summary-box { background: linear-gradient(135deg, #1a1a2e, #2d1b69); color: #fff;
   border-radius: 16px; padding: 28px 32px; margin-bottom: 14px; }
 .summary-box h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #b39dff; }
@@ -623,9 +631,11 @@ function setActive(el) {
       evts.forEach(function(ev){
         var ex=_xOf(ev.idx);
         if(ex===null)return;
-        if(ex!==peakX)_drawVLine(ex,'rgba(99,102,241,0.8)');
+        var vcol=ev.color||'rgba(99,102,241,0.8)';
+        var bcol=ev.color||'rgba(79,70,229,0.9)';
+        if(ex!==peakX)_drawVLine(ex,vcol);
         var ety=ysc.top+(ex===peakX?36:14);
-        _drawBadge(ex,ety,ev.label,'rgba(79,70,229,0.9)');
+        _drawBadge(ex,ety,ev.label,bcol);
       });
     }
   }]});
@@ -841,9 +851,13 @@ function setActive(el) {
     if (cur===steps.length-1){ elMain.textContent='완료 ✓'; elMain.classList.add('done'); }
     else { elMain.textContent='다음 →'; elMain.classList.remove('done'); }
   }
-  function start(){ if(!steps.length) return; running=true; document.body.classList.add('brief-active'); bar.classList.add('running'); gotoStep(0); }
+  function start(){ if(!steps.length) return; running=true; document.body.classList.add('brief-active'); bar.classList.add('running');
+    /* 보고 모드: 멀티제품 포함 접힌 부분 자동 펼침 (KPI·Cafe24·스마트스토어) */
+    document.querySelectorAll('.mm-toggle-btn').forEach(function(b){ if((b.textContent||'').indexOf('보기')>=0) b.click(); });
+    gotoStep(0); }
   function exit(){ running=false; cur=-1; document.body.classList.remove('brief-active'); bar.classList.remove('running'); clearHi(); elMain.textContent='▶ 보고 시작'; elMain.classList.remove('done'); }
-  window.briefNext=function(){ if(!running){start();return;} if(cur>=steps.length-1){exit();return;} gotoStep(cur+1); };
+  function _briefDone(){ try{ if(window.parent!==window) window.parent.postMessage({type:'brief:done',report:'weekly'},'*'); }catch(e){} }
+  window.briefNext=function(){ if(!running){start();return;} if(cur>=steps.length-1){ _briefDone(); exit(); return; } gotoStep(cur+1); };
   window.briefPrev=function(){ if(running && cur>0) gotoStep(cur-1); };
   window.briefExit=function(){ exit(); };
   document.addEventListener('keydown', function(e){
@@ -855,6 +869,8 @@ function setActive(el) {
   });
   window.addEventListener('beforeprint', function(){ if(running) document.body.classList.remove('brief-active'); });
   window.addEventListener('afterprint', function(){ if(running) document.body.classList.add('brief-active'); });
+  /* 통합뷰 연속 보고: 부모가 시작/종료 지시 */
+  window.addEventListener('message', function(e){ var d=e.data||{}; if(d.type==='brief:start'){ if(!running) start(); } else if(d.type==='brief:stop'){ if(running) exit(); } });
 })();
 </script>
 </body>
