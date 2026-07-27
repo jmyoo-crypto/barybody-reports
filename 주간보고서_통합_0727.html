@@ -92,17 +92,23 @@ function afterLoad(){
 function setProduct(i){ cur=i; if(view==='brief'){ view='weekly'; briefStage=null; } render(); }
 function setView(v){ if(v==='brief'){ briefStage='weekly'; } else { briefStage=null; } view=v; render(); }
 
-// 자식 보고모드 완료 신호 수신 → 다음 단계로 연속 진행
+// 자식 보고모드 완료 신호 수신 → 연속 진행
+// 흐름: (제품 A) 주간 → 광고분석 → (제품 B) 주간 → 광고분석 → ... → 마지막 제품까지 끝나면 종료
+// 어느 탭(주간보고서/보고모드)에서 시작했든 동일하게 이어짐
 window.addEventListener('message', function(e){
   var d = e.data || {};
   if(d.type !== 'brief:done') return;
-  if(view !== 'brief') return;
-  if(briefStage==='weekly' && d.report==='weekly'){
-    briefStage = 'ads';   // 주간보고서 끝 → 광고분석 로드 후 자동 시작
+  if(d.report === 'weekly'){
+    view = 'brief'; briefStage = 'ads';        // 주간보고서 끝 → 같은 제품 광고분석
     render();
-  } else if(briefStage==='ads' && d.report==='ads'){
-    briefStage = null;    // 연속 보고 완료
-    render();
+  } else if(d.report === 'ads'){
+    if(cur < REPORTS.length - 1){
+      cur += 1; view = 'brief'; briefStage = 'weekly';  // 광고분석 끝 → 다음 제품 주간보고서
+      render();
+    } else {
+      briefStage = null;                       // 마지막 제품까지 완료 → 연속 보고 종료
+      render();
+    }
   }
 });
 
