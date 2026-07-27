@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>주간보고서 통합 · 2026-07-20~26</title>
+<style>
+  html,body{height:100%;margin:0;font-family:-apple-system,'Malgun Gothic',sans-serif;background:#0f172a}
+  .topbar{display:flex;align-items:center;gap:16px;padding:12px 20px;background:#0f172a;color:#fff;border-bottom:1px solid #1e293b}
+  .topbar .title{font-size:15px;font-weight:800;letter-spacing:-.2px}
+  .topbar .period{font-size:12px;color:#94a3b8}
+  .tabs{display:flex;gap:8px;margin-left:auto}
+  .tab{padding:8px 18px;border:none;border-radius:999px;background:#1e293b;color:#cbd5e1;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
+  .tab:hover{background:#334155;color:#fff}
+  .tab.active{background:#6366f1;color:#fff;box-shadow:0 2px 10px rgba(99,102,241,.4)}
+  .stage{position:absolute;top:57px;left:0;right:0;bottom:0}
+  iframe{width:100%;height:100%;border:0;background:#fff;display:none}
+  iframe.active{display:block}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <span class="title">📊 주간 유료광고 보고서 통합</span>
+    <span class="period">2026-07-20 ~ 07-26 (지난주)</span>
+    <div class="tabs" id="tabs"></div>
+  </div>
+  <div class="stage" id="stage"></div>
+
+<script>
+var REPORTS = [
+  { name: "릴렉스틱볼", file: "릴렉스틱볼_weekly_0727.html" },
+  { name: "릴렉스틱",   file: "릴렉스틱_weekly_0727.html" },
+  { name: "루피",       file: "루피_weekly_0727.html" }
+];
+
+var tabs = document.getElementById('tabs');
+var stage = document.getElementById('stage');
+
+REPORTS.forEach(function(r, i){
+  var btn = document.createElement('button');
+  btn.className = 'tab' + (i===0 ? ' active' : '');
+  btn.textContent = r.name;
+  btn.onclick = function(){ show(i); };
+  tabs.appendChild(btn);
+
+  var f = document.createElement('iframe');
+  f.className = 'frame' + (i===0 ? ' active' : '');
+  // 첫 탭만 즉시 로드, 나머지는 클릭 시 로드(lazy)
+  if(i===0) f.src = encodeURIComponent(r.file);
+  f.dataset.src = encodeURIComponent(r.file);
+  stage.appendChild(f);
+});
+
+function show(idx){
+  var btns = tabs.querySelectorAll('.tab');
+  var frames = stage.querySelectorAll('iframe');
+  btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); });
+  frames.forEach(function(f,i){
+    if(i===idx && !f.src) f.src = f.dataset.src; // lazy load
+    f.classList.toggle('active', i===idx);
+  });
+}
+</script>
+</body>
+</html>
