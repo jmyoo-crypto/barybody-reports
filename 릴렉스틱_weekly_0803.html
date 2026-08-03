@@ -579,20 +579,22 @@ function setActive(el) {
       var ca=chart.chartArea;
       var c2=chart.ctx;
       var dsm=chart.getDatasetMeta(1);
-      function _drawBadge(bx,by,btxt,bgColor){
+      function _measureB(btxt,fs){
+        c2.save(); c2.font='bold '+fs+'px sans-serif';
+        var w=c2.measureText(btxt).width; c2.restore(); return w;
+      }
+      function _paintBadge(tx,by,bw,bp,btxt,bgColor,fs){
         c2.save();
-        c2.font='bold 10px sans-serif';
-        var bw=c2.measureText(btxt).width, bp=4;
-        var tx2=Math.min(Math.max(bx,ca.left+bw/2+bp),ca.right-bw/2-bp);
+        c2.font='bold '+fs+'px sans-serif';
         c2.fillStyle=bgColor;
         c2.beginPath();
-        if(c2.roundRect){c2.roundRect(tx2-bw/2-bp,by-11,bw+bp*2,16,3);}
-        else{c2.rect(tx2-bw/2-bp,by-11,bw+bp*2,16);}
+        if(c2.roundRect){c2.roundRect(tx-bw/2-bp,by-11,bw+bp*2,16,3);}
+        else{c2.rect(tx-bw/2-bp,by-11,bw+bp*2,16);}
         c2.fill();
         c2.fillStyle='#fff';
         c2.textAlign='center';
         c2.textBaseline='middle';
-        c2.fillText(btxt,tx2,by-3);
+        c2.fillText(btxt,tx,by-3);
         c2.restore();
       }
       function _drawVLine(lx,color){
@@ -609,33 +611,32 @@ function setActive(el) {
       }
       var pi=pd.s.peakIdx!==undefined?pd.s.peakIdx:-1;
       var peakX=pi>=0?_xOf(pi):null;
+      var _badges=[];
       if(peakX!==null){
         _drawVLine(peakX,'rgba(34,197,94,0.85)');
         var pv=pd.s.peakVal||0;
-        var font11='bold 11px sans-serif';
-        c2.save(); c2.font=font11;
-        var ptxt='단일최고 '+pv.toLocaleString()+'원';
-        var ptw=c2.measureText(ptxt).width, pp=5;
-        var pty=ysc.top+14;
-        var ptx=Math.min(Math.max(peakX,ca.left+ptw/2+pp),ca.right-ptw/2-pp);
-        c2.fillStyle='rgba(22,163,74,0.92)';
-        c2.beginPath();
-        if(c2.roundRect){c2.roundRect(ptx-ptw/2-pp,pty-12,ptw+pp*2,16,3);}
-        else{c2.rect(ptx-ptw/2-pp,pty-12,ptw+pp*2,16);}
-        c2.fill();
-        c2.fillStyle='#fff'; c2.textAlign='center'; c2.textBaseline='middle';
-        c2.fillText(ptxt,ptx,pty-4);
-        c2.restore();
+        _badges.push({x:peakX,txt:'단일최고 '+pv.toLocaleString()+'원',bg:'rgba(22,163,74,0.92)',fs:11,bp:5});
       }
       var evts=pd.s.events||[];
       evts.forEach(function(ev){
         var ex=_xOf(ev.idx);
         if(ex===null)return;
-        var vcol=ev.color||'rgba(99,102,241,0.8)';
-        var bcol=ev.color||'rgba(79,70,229,0.9)';
-        if(ex!==peakX)_drawVLine(ex,vcol);
-        var ety=ysc.top+(ex===peakX?36:14);
-        _drawBadge(ex,ety,ev.label,bcol);
+        if(ex!==peakX)_drawVLine(ex,ev.color||'rgba(99,102,241,0.8)');
+        var lb=ev.label||'';
+        if(lb.length>26)lb=lb.slice(0,25)+'…';
+        _badges.push({x:ex,txt:lb,bg:ev.color||'rgba(79,70,229,0.9)',fs:10,bp:4});
+      });
+      // 겹침 방지: x축 순으로 정렬 후 빈 레인(줄)에 자동 배치
+      _badges.sort(function(a,b){return a.x-b.x;});
+      var _laneEnd=[];
+      _badges.forEach(function(b){
+        var bw=_measureB(b.txt,b.fs);
+        var tx=Math.min(Math.max(b.x,ca.left+bw/2+b.bp),ca.right-bw/2-b.bp);
+        var x1=tx-bw/2-b.bp, x2=tx+bw/2+b.bp, lane=-1;
+        for(var i=0;i<_laneEnd.length;i++){ if(x1>_laneEnd[i]+6){ lane=i; break; } }
+        if(lane<0){ lane=_laneEnd.length; _laneEnd.push(0); }
+        _laneEnd[lane]=x2;
+        _paintBadge(tx,ysc.top+14+lane*19,bw,b.bp,b.txt,b.bg,b.fs);
       });
     }
   }]});
