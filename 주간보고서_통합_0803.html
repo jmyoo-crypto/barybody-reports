@@ -151,7 +151,23 @@ function setProduct(i){ cur=i; if(view==='brief'){ view='weekly'; briefStage=nul
 function setView(v){ if(v==='brief'){ briefStage='weekly'; } else { briefStage=null; } view=v; render(); }
 
 // (보조) 패치된 리포트가 자연 완료 시 보내는 신호도 수신 — 폴링과 중복돼도 advanced 래치로 1회만
-window.addEventListener('message', function(e){ if((e.data||{}).type==='brief:done') advance(); });
+window.addEventListener('message', function(e){
+  var d = e.data || {};
+  if(d.type==='brief:done'){ advance(); return; }
+  if(d.type==='brief:started'){
+    // 리포트 하단 '보고 시작' 버튼으로 직접 시작한 경우 — iframe 리로드 없이 연속 모드로 전환
+    if(view!=='brief'){
+      briefStage = (view==='ads') ? 'ads' : 'weekly';
+      view = 'brief';
+      document.querySelectorAll('.sub').forEach(function(b){ b.classList.toggle('active', b.dataset.view===view); });
+      subHint.textContent = (briefStage==='ads')
+        ? '연속 보고 — 광고분석 (→/← 진행, 끝나면 다음 제품)'
+        : '연속 보고 — 주간보고서 (끝나면 광고분석 → 다음 제품)';
+    }
+    advanced = false;
+    beginPoll();
+  }
+});
 
 render();
 </script>

@@ -701,7 +701,7 @@ function showTab(id,btn){
   },60);
   render();
  }
- function start(){build();if(!steps.length)return;on=true;document.body.classList.add('brief-on');show(0);}
+ function start(){build();if(!steps.length)return;on=true;document.body.classList.add('brief-on');try{if(window.parent!==window)window.parent.postMessage({type:'brief:started',report:'ads'},'*');}catch(e){}show(0);}
  function stop(){on=false;cur=-1;document.body.classList.remove('brief-on');clearHi();render();window.scrollTo({top:0,behavior:'smooth'});}
  function next(){if(!on){start();return;}if(cur>=steps.length-1){try{if(window.parent!==window)window.parent.postMessage({type:'brief:done',report:'ads'},'*');}catch(e){}stop();return;}show(cur+1);}
  function prev(){if(on&&cur>0)show(cur-1);}

@@ -853,6 +853,8 @@ function setActive(el) {
     else { elMain.textContent='다음 →'; elMain.classList.remove('done'); }
   }
   function start(){ if(!steps.length) return; running=true; document.body.classList.add('brief-active'); bar.classList.add('running');
+    \* 리포트 안에서 직접 시작해도 통합뷰가 연속 모드로 붙도록 알림 */
+    try{ if(window.parent!==window) window.parent.postMessage({type:'brief:started',report:'weekly'},'*'); }catch(e){}
     /* 보고 모드: 멀티제품 포함 접힌 부분 자동 펼침 (KPI·Cafe24·스마트스토어) */
     document.querySelectorAll('.mm-toggle-btn').forEach(function(b){ if((b.textContent||'').indexOf('보기')>=0) b.click(); });
     gotoStep(0); }
