@@ -671,11 +671,13 @@ function showTab(id,btn){
  }
  function start(){build();if(!steps.length)return;on=true;document.body.classList.add('brief-on');show(0);}
  function stop(){on=false;cur=-1;document.body.classList.remove('brief-on');clearHi();render();window.scrollTo({top:0,behavior:'smooth'});}
- function next(){if(!on){start();return;}if(cur>=steps.length-1){stop();return;}show(cur+1);}
+ function next(){if(!on){start();return;}if(cur>=steps.length-1){try{if(window.parent!==window)window.parent.postMessage({type:'brief:done',report:'ads'},'*');}catch(e){}stop();return;}show(cur+1);}
  function prev(){if(on&&cur>0)show(cur-1);}
  document.getElementById('bNext').addEventListener('click',next);
  document.getElementById('bPrev').addEventListener('click',prev);
  document.getElementById('bExit').addEventListener('click',stop);
+ try{window.addEventListener('message',function(e){var d=e.data||{};if(d.type==='brief:start'){if(!on)start();}else if(d.type==='brief:stop'){if(on)stop();}});}catch(e){}
+
  document.addEventListener('keydown',function(e){
   var tag=(e.target.tagName||'').toLowerCase();
   if(tag==='input'||tag==='textarea')return;
