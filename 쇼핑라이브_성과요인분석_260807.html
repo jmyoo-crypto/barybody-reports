@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼핑라이브 성과 요인 분석 · 13회차</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  color:#22242a;background:#fff;
+  font-size:15.5px;line-height:1.85;
+  letter-spacing:-0.01em;
+}
+
+/* ---------- 레이아웃 ---------- */
+.wrap{max-width:840px;margin:0 auto;padding:0 28px}
+@media(max-width:640px){.wrap{padding:0 18px}}
+
+.head{padding:64px 0 40px;border-bottom:1px solid #e8e9ec}
+.head .kicker{font-size:13px;font-weight:700;color:#8b8f99;letter-spacing:.08em;margin-bottom:14px}
+.head h1{font-size:32px;font-weight:800;line-height:1.3;letter-spacing:-0.025em;margin-bottom:14px}
+.head .sub{font-size:16px;color:#6b7080;line-height:1.7}
+.head .meta{margin-top:26px;font-size:13.5px;color:#9096a2}
+.head .meta b{color:#4a4f5a;font-weight:700}
+
+nav.toc{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid #e8e9ec;margin-bottom:8px}
+nav.toc .wrap{display:flex;gap:2px;overflow-x:auto;padding-top:9px;padding-bottom:9px}
+nav.toc a{flex:none;font-size:13.5px;font-weight:600;color:#8b8f99;text-decoration:none;padding:5px 11px;border-radius:7px;white-space:nowrap}
+nav.toc a:hover{color:#1a1c22;background:#f2f3f6}
+
+section{padding:52px 0;border-bottom:1px solid #eef0f2;scroll-margin-top:56px}
+section:last-of-type{border-bottom:none}
+
+/* ---------- 제목 ---------- */
+.sec-no{font-size:13px;font-weight:800;color:#b0b4bd;letter-spacing:.1em;margin-bottom:8px}
+h2{font-size:25px;font-weight:800;letter-spacing:-0.025em;line-height:1.35;margin-bottom:8px}
+h2+.lede{font-size:15px;color:#7b8090;margin-bottom:34px;line-height:1.7}
+h3{font-size:20px;font-weight:800;letter-spacing:-0.02em;margin:46px 0 4px;padding-top:4px}
+h3:first-of-type{margin-top:0}
+h3 .tag{font-size:13px;font-weight:600;color:#9096a2;margin-left:8px;letter-spacing:0}
+h4{font-size:15.5px;font-weight:800;margin:30px 0 8px;color:#1a1c22}
+
+p{margin:14px 0}
+p.tight{margin:8px 0}
+ul{margin:12px 0;padding-left:22px}
+li{margin:6px 0}
+b,strong{font-weight:700;color:#0d0f14}
+.dim{color:#868b96}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- 결론 한 줄 ---------- */
+.lead{
+  font-size:18.5px;font-weight:700;line-height:1.65;letter-spacing:-0.02em;
+  color:#0d0f14;border-left:3px solid #1a1c22;
+  padding:2px 0 2px 20px;margin:20px 0 18px;
+}
+.lead.q{border-left-color:#c8ccd4;color:#4a4f5a;font-weight:600;font-size:17px}
+
+/* ---------- 보조 블록 (색 최소) ---------- */
+.aside{
+  border-left:3px solid #d8dbe1;padding:2px 0 2px 20px;margin:20px 0;
+  font-size:15px;color:#4a4f5a;line-height:1.8;
+}
+.aside .lb{display:block;font-size:13px;font-weight:800;color:#22242a;letter-spacing:-0.01em;margin-bottom:4px}
+.aside.fix{border-left-color:#d94f4f}
+.aside.fix .lb{color:#c0392b}
+.aside.add{border-left-color:#8b8f99}
+
+/* ---------- 결론 / 근거 ---------- */
+.vd{margin:22px 0 8px}
+.vd .lb{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.1em;color:#fff;background:#22242a;border-radius:4px;padding:3px 9px;margin-bottom:10px}
+.vd .txt{font-size:19px;font-weight:800;line-height:1.55;letter-spacing:-0.025em;color:#0d0f14;border-left:3px solid #22242a;padding-left:20px}
+.vd .txt .sm{display:block;font-size:15px;font-weight:600;color:#6b7080;margin-top:6px;letter-spacing:-.01em}
+.ev-lb{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.1em;color:#6b7080;background:#f2f3f6;border-radius:4px;padding:3px 9px;margin:34px 0 2px}
+
+/* ---------- 질문 캐스케이드 ---------- */
+.qa{margin:8px 0 0}
+.qa .q{font-size:17.5px;font-weight:800;letter-spacing:-0.022em;color:#0d0f14;margin:26px 0 8px;line-height:1.5}
+.qa .q .m{color:#b0b4bd;margin-right:9px;font-weight:700}
+.qa .q.sub{font-size:16px;margin-left:26px;color:#4a4f5a}
+.qa .a{font-size:16.5px;font-weight:700;line-height:1.6;color:#1a1c22;border-left:3px solid #22242a;padding:1px 0 1px 18px;margin:8px 0}
+.qa .a.sub{margin-left:26px;border-left-color:#b0b4bd;font-size:16px}
+.qa .a .hi{color:#0d0f14}
+.qa .note{font-size:14.5px;color:#6b7080;margin:8px 0 0 21px;line-height:1.75}
+.qa .note.sub{margin-left:47px}
+.qa .tw{margin-left:21px}
+.qa .tw.sub{margin-left:47px}
+@media(max-width:640px){.qa .q.sub,.qa .a.sub,.qa .note.sub,.qa .tw.sub{margin-left:12px}.qa .note,.qa .tw{margin-left:0}}
+
+.close{background:#f7f8fa;border-left:3px solid #1a7f37;border-radius:0 10px 10px 0;padding:16px 22px;margin:30px 0 0;font-size:16px;line-height:1.8;color:#22242a;font-weight:600}
+.close.no{border-left-color:#d94f4f}
+.close .lb{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;color:#8b8f99;margin-bottom:5px}
+.close b{font-weight:800}
+
+/* ---------- 인과 사슬 ---------- */
+.chain{
+  font-size:15px;line-height:2;color:#3a3e48;
+  background:#f7f8fa;border-radius:10px;padding:18px 22px;margin:20px 0;
+}
+.chain .a{color:#a8adb8;margin-right:4px}
+.chain .st{display:inline-block;min-width:22px;color:#a8adb8;font-weight:700;font-size:13px}
+.chain.done{border-left:3px solid #1a7f37}
+.chain.open{border-left:3px solid #d94f4f}
+.chain .cut{
+  display:block;border-top:1px dashed #c8ccd4;
+  margin:12px 0 10px;padding-top:12px;
+  color:#c0392b;font-weight:700;font-size:13.5px;letter-spacing:-.01em
+}
+.chain .x{color:#c0392b;font-weight:700}
+.chain .res{display:block;margin-top:10px;color:#22242a;font-weight:700}
+.chain .res.no{color:#c0392b}
+
+/* ---------- 표 ---------- */
+.tw{overflow-x:auto;margin:20px 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{
+  text-align:left;font-size:12.5px;font-weight:700;color:#8b8f99;
+  padding:0 14px 9px 0;border-bottom:1.5px solid #d8dbe1;white-space:nowrap;letter-spacing:0
+}
+td{padding:11px 14px 11px 0;border-bottom:1px solid #eef0f2;vertical-align:baseline}
+th:last-child,td:last-child{padding-right:0}
+th.r,td.r{text-align:right;font-variant-numeric:tabular-nums}
+tr.key td{background:#fcfcfd}
+tr.key td:first-child{box-shadow:inset 3px 0 0 #22242a}
+
+/* aside 안의 표 — aside 좌측 세로선과 강조행 막대가 겹쳐 보이므로 막대 제거, 배경으로만 구분 */
+.aside tr.key td:first-child{box-shadow:none}
+.aside tr.key td{background:#eef0f4}
+.aside table td:first-child{padding-left:0}
+.aside tr.key td:first-child{padding-left:10px;border-radius:6px 0 0 6px}
+.aside tr.key td:last-child{border-radius:0 6px 6px 0}
+.aside table td{border-bottom-color:#e4e7ec}
+tr.off td{color:#a8adb8}
+td .u{color:#1a7f37;font-weight:700}
+td .d{color:#c0392b;font-weight:700}
+caption{caption-side:bottom;text-align:left;font-size:13.5px;color:#868b96;padding-top:12px;line-height:1.7}
+.tlab{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:#8b8f99;margin:16px 0 -4px 21px}
+.tlab.sub{margin-left:47px}
+.tlab .calc{color:#c0392b}
+@media(max-width:640px){.tlab.sub{margin-left:12px}.tlab{margin-left:0}}
+
+/* ---------- 지표 토글 (질문 안에 접어두는 표) ---------- */
+details.mt{
+  margin:12px 0 0 21px;border:1px solid #e8eaee;border-top:1px solid #e8eaee;
+  border-radius:10px;background:#fafbfc;overflow:hidden
+}
+details.mt.sub{margin-left:47px}
+@media(max-width:640px){details.mt{margin-left:0}details.mt.sub{margin-left:12px}}
+details.mt summary{
+  padding:10px 15px;font-size:13.5px;font-weight:700;color:#6b7080;
+  display:flex;align-items:center;gap:7px
+}
+details.mt summary::before{content:'＋';font-size:13px;color:#a8adb8;width:auto}
+details.mt[open] summary::before{content:'－'}
+details.mt summary::after{content:'지표 열기';font-size:12px;font-weight:600;color:#b0b4bd;margin-left:auto}
+details.mt[open] summary::after{content:'닫기'}
+details.mt summary:hover{color:#22242a;background:#f2f3f6}
+details.mt[open]{background:#fff}
+details.mt[open] summary{border-bottom:1px solid #eef0f2;background:#fafbfc}
+details.mt .tw{margin:0;padding:0 15px}
+details.mt .tlab{margin:16px 0 -2px 15px}
+details.mt .tw:last-child{padding-bottom:6px}
+details.mt caption{padding:10px 0 14px}
+
+/* 전체폭 참고 토글 */
+details.mt.wide{margin-left:0;margin-top:26px}
+details.mt.wide summary::after{content:'열기'}
+details.mt.wide[open] summary::after{content:'닫기'}
+details.mt.wide summary{font-size:14.5px;color:#4a4f5a}
+details.mt .dbody{padding:14px 16px 4px;font-size:15px;color:#4a4f5a;line-height:1.8}
+details.mt .dbody .tw{padding:0}
+details.mt .dbody b{color:#0d0f14}
+table.mini{font-size:14.5px}
+table.mini th{padding-bottom:7px}
+table.mini td{padding-top:9px;padding-bottom:9px}
+
+/* ---------- 접힘 ---------- */
+details{margin:22px 0;border-top:1px solid #eef0f2}
+summary{
+  cursor:pointer;list-style:none;font-size:14px;font-weight:700;color:#8b8f99;
+  padding:13px 0 0;display:flex;align-items:center;gap:7px
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'펼치기';font-size:12.5px;font-weight:600;color:#b0b4bd;margin-left:auto}
+details[open] summary::after{content:'접기'}
+summary::before{content:'+';font-size:15px;font-weight:700;color:#b0b4bd;width:14px}
+details[open] summary::before{content:'–'}
+summary:hover{color:#22242a}
+
+/* ---------- 배지 ---------- */
+.ai{
+  display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.02em;
+  color:#7b8090;background:#f2f3f6;border-radius:5px;padding:2px 7px;
+  vertical-align:2px;margin-left:6px;white-space:nowrap
+}
+.ai.f{color:#c0392b;background:#fdf0ee}
+
+/* ---------- 액션 카드 ---------- */
+.acts{margin-top:8px}
+.act{padding:26px 0;border-bottom:1px solid #eef0f2}
+.act:last-child{border-bottom:none}
+.act .an{font-size:18px;font-weight:800;letter-spacing:-0.02em;margin-bottom:5px}
+.act .at{font-size:14.5px;color:#7b8090;margin-bottom:16px;line-height:1.7}
+.act .ag{margin:14px 0}
+.act .ag .agt{font-size:15px;font-weight:800;color:#0d0f14;margin-bottom:2px}
+.act .ag ul{margin:4px 0;padding-left:20px}
+.act .ag li{font-size:14.5px;color:#4a4f5a;margin:4px 0}
+
+/* ---------- 푸터 ---------- */
+footer{padding:44px 0 72px;font-size:13.5px;color:#9096a2;line-height:1.8}
+footer b{color:#5a5f6a}
+hr.soft{border:none;border-top:1px solid #eef0f2;margin:34px 0}
+</style>
+</head>
+<body>
+
+<header class="head"><div class="wrap">
+  <div class="kicker">성과 요인별 분석 · 디벨롭 &nbsp;/&nbsp; v2</div>
+  <h1>쇼핑라이브 성과 요인 분석</h1>
+  <div class="sub">13회차(2026.04.30–07.21) 기준. 무엇이 성과를 갈랐고, 각 요인을 어떻게 디벨롭할지.</div>
+  <div class="meta">
+    판정 완료 <b>4요인</b> — 시간대 · 상품구성 · 쇼호스트 · 요일 &nbsp;·&nbsp;
+    판단 보류 <b>3요인</b> — GFA · 플친 · 토스 &nbsp;·&nbsp;
+    작성 <b>2026.08.07</b>
+  </div>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#s0">참고사항</a>
+  <a href="#s1">목적</a>
+  <a href="#s2">영향력 순위</a>
+  <a href="#s3">요인별 분석</a>
+  <a href="#s4">디벨롭</a>
+  <a href="#s5">액션·검증</a>
+  <a href="#s6">판단 보류</a>
+</div></nav>
+
+<div class="wrap">
+
+<!-- ============ 0 ============ -->
+<section id="s0">
+  <div class="sec-no">00</div>
+  <h2>참고 사항 — 특수 상황<span class="ai">AI 추가</span></h2>
+  <div class="lede">아래 조건이 지표를 왜곡하고 있습니다. 이만큼 감안해서 읽어야 합니다.</div>
+
+  <div class="tw"><table>
+    <tbody>
+      <tr><td style="width:150px"><b>유입광고 편중</b></td><td>GFA 2회(6/24·6/30) · 플친 1회 · 토스 0회. 광고 회차가 특정 요일·호스트에 몰려 <b>해당 지표를 밀어올림.</b></td></tr>
+      <tr><td><b>제품 편중</b></td><td>잔망루피 에디션 세트가 <b>전체 매출의 34%.</b> 상품 요인은 “무엇이 최고인가”보다 <b>“그것만 틀었다”</b>에 가까움.</td></tr>
+      <tr><td><b>요인 혼입</b></td><td>요일 · 시간대 · 호스트 · 광고가 서로 섞여 있음. <b>각 요인의 순수효과가 분리되지 않음.</b></td></tr>
+      <tr><td><b>표본</b></td><td>총 13회. 요일별 <b>1~6회로 편차가 큼.</b> 회차가 적은 구분값은 대박·부진 1회가 평균을 그대로 만듦.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ 1 ============ -->
+<section id="s1">
+  <div class="sec-no">01</div>
+  <h2>분석 목적</h2>
+
+  <h4>1. 성과 요인별 분석</h4>
+  <ul>
+    <li>쇼핑라이브 성과 향상을 위해 성과에 영향을 미치는 요인 확인</li>
+    <li>각 요인이 성과에 <b>얼마나</b> 영향을 끼치는지 파악</li>
+    <li>각 요인이 성과에 <b>어떻게</b> 영향을 끼치는지 파악</li>
+  </ul>
+
+  <h4>2. 성과 요인별 디벨롭</h4>
+  <ul>
+    <li>각 요인별 성과 향상을 위한 디벨롭 아이데이션</li>
+  </ul>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="s2">
+  <div class="sec-no">02</div>
+  <h2>요인별 영향력 순위</h2>
+  <div class="lede">구분값 · 격차 근거 · 표본 상태</div>
+
+  <div class="tw"><table>
+    <thead><tr>
+      <th style="width:34px">　</th><th>요인</th><th>구분값</th>
+      <th class="r">최대–최소 격차</th><th>상태</th>
+    </tr></thead>
+    <tbody>
+      <tr class="key"><td><b>1</b></td><td><b>시간대</b></td><td class="dim">오전 / 야간</td><td class="r"><b>764만</b> <span class="dim">2.0배</span></td><td>판정 가능</td></tr>
+      <tr><td>2</td><td><b>상품 구성</b></td><td class="dim">세트 / 단품</td><td class="r">세트 7,143 : 단품 4,533</td><td class="dim">변별력 제한</td></tr>
+      <tr><td>3</td><td><b>쇼호스트</b></td><td class="dim">김성경 / 김예슬 / 이성훈</td><td class="r">334만 <span class="dim">1.3배</span></td><td class="dim">교란 있음</td></tr>
+      <tr class="key"><td><b>4</b></td><td><b>요일</b></td><td class="dim">월 ~ 일</td><td class="r"><b>800만</b> <span class="dim">2.3배</span></td><td>교란 최다</td></tr>
+      <tr class="off"><td>5</td><td>GFA <span class="dim">네이버 광고</span></td><td>집행 / 미집행</td><td class="r">n=2</td><td>데이터 부족 · 보류</td></tr>
+      <tr class="off"><td>6</td><td>플친 <span class="dim">기존 관심고객</span></td><td>발송 / 미발송</td><td class="r">n=1</td><td>데이터 부족 · 보류</td></tr>
+      <tr class="off"><td>7</td><td>토스 <span class="dim">트래픽 부스팅</span></td><td>집행 / 미집행</td><td class="r">n=0</td><td>미개척 · 보류</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="aside add">
+    <span class="lb">순위 해석 주의<span class="ai">AI 추가</span></span>
+    격차 절대값만 보면 <b>요일(800만)이 시간대(764만)보다 큽니다.</b>
+    다만 요일은 구분값이 6개라 최대–최소 폭이 자연히 넓어지고(시간대는 2개), 요일 안에 시간대·호스트·광고가 모두 섞여 있습니다.
+    <b>순위 확정은 요인 통제 후</b>에 가능하며, 현재는 통제 가능성·재현성을 함께 고려한 잠정 순위입니다.
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="s3">
+  <div class="sec-no">03</div>
+  <h2>요인별 분석</h2>
+  <div class="lede">요인마다 <b>결론</b>을 먼저 놓고, 근거는 <b>“왜 볼륨이 높았나” / “왜 효율이 좋았나”</b> 두 갈래로 나눠 정량으로 답합니다.<br>
+  지표 표는 <b>접어두었고</b>(클릭하면 열립니다), 안에서 <b>대시보드 원지표</b>와 <b>AI 계산값</b>을 분리 표기했습니다.</div>
+
+  <div class="tw"><table>
+    <thead><tr><th>요인</th><th>왜 볼륨이 높았나</th><th>왜 효율이 좋았나</th><th>못 연 것</th></tr></thead>
+    <tbody>
+      <tr><td><b>시간대</b></td><td>알림 외 경로에서 +313 <span class="dim">알림은 −52</span></td><td>상품 조회자 → 결제자수 <span class="dim">+5.9%p</span></td><td class="dim">—</td></tr>
+      <tr><td><b>상품구성</b></td><td>각 군 1위가 절반 이상 <span class="dim">55.6% · 59.3%</span></td><td>단품군만 볼륨·마진 1위 일치 <span class="dim">47.4%</span></td><td><span class="d">구매자 특성</span></td></tr>
+      <tr><td><b>쇼호스트</b></td><td>‘그 외’ +153 <span class="dim">우위의 64%</span></td><td class="dim">안 갈림 — 퍼널 전 단계 동일</td><td><span class="d">‘그 외’의 정체</span></td></tr>
+      <tr><td><b>요일 — 화</b></td><td>‘그 외’ 391 <span class="dim">6요일 1위</span></td><td>상품 조회자 → 결제자수 <span class="dim">41.2%, 1위</span></td><td><span class="d">‘그 외’의 정체</span></td></tr>
+      <tr><td><b>요일 — 월</b></td><td class="dim">3위 — 광고 없이 자연 유입만</td><td>시청자 → 상품 조회자 <span class="dim">62.4%, 1위</span></td><td><span class="d">결제 저조 원인</span></td></tr>
+      <tr><td><b>요일 — 목</b></td><td class="d">낮았음 <span class="dim">기존 고객만 옴</span></td><td class="d">시청자 → 상품 조회자 26.8% <span class="dim">최하위</span></td><td class="dim">—</td></tr>
+    </tbody>
+    <caption>못 연 4개 중 3개가 <b>“그 사람들이 누구인가”</b>에서 막힙니다.
+    이것이 §05 액션 1번(‘그 외’ 유입 소스 태깅)이 선결인 이유입니다.<span class="ai">AI 추가</span></caption>
+  </table></div>
+
+  <!-- 3-1 -->
+  <h3>① 시간대 <span class="tag">오전 / 야간</span></h3>
+  <div class="vd">
+    <span class="lb">결론</span>
+    <div class="txt">오전의 매출 볼륨·효율이 야간보다 눈에 띄게 높다
+      <span class="sm">추가매출 <b>2.0배</b>(1,541만 vs 776만) · 전환율 <b>+2.5%p</b>(15.4% vs 12.9%)</span>
+    </div>
+  </div>
+
+  <span class="ev-lb">근거</span>
+
+  <div class="qa">
+
+    <div class="q"><span class="m">Q1</span>왜 볼륨이 높았나?</div>
+    <div class="a">시청자가 많았다 — <span class="hi">1,142 vs 881 (+261, +30%)</span></div>
+
+    <div class="q sub"><span class="m">↳</span>어떤 경로의 시청자가 많았나?</div>
+    <div class="a sub"><span class="hi">알림 유입 비율(단골·플친)은 오전이 17.1%p 낮고</span>, <span class="hi">쇼핑라이브탭 유입 비율(오가닉 탐색)은 5.4%p 높다</span></div>
+
+    <details class="mt sub"><summary>유입 경로 지표</summary>
+      <div class="tlab">대시보드 원지표</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>지표</th><th class="r">오전</th><th class="r">야간</th><th class="r">차이</th></tr></thead>
+        <tbody>
+          <tr><td>시청자</td><td class="r">1,142</td><td class="r">881</td><td class="r"><span class="u">+261</span></td></tr>
+          <tr class="key"><td>알림 유입 비율(단골·플친)</td><td class="r">37.9%</td><td class="r">55.0%</td><td class="r"><span class="d">−17.1%p</span></td></tr>
+          <tr><td>쇼핑라이브탭 유입 비율(오가닉 탐색)</td><td class="r">29.4%</td><td class="r">24.0%</td><td class="r"><span class="u">+5.4%p</span></td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tlab"><span class="calc">계산값</span> — 시청자 × 유입 비율</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>경로</th><th class="r">오전</th><th class="r">야간</th><th class="r">차이</th></tr></thead>
+        <tbody>
+          <tr class="key"><td>알림 유입(단골·플친)</td><td class="r">433</td><td class="r">485</td><td class="r"><span class="d">−52</span></td></tr>
+          <tr><td>쇼핑라이브탭 유입(오가닉 탐색)</td><td class="r">336</td><td class="r">211</td><td class="r"><span class="u">+125</span></td></tr>
+          <tr><td>그 외 <span class="dim">100% − 위 두 비율</span></td><td class="r">373</td><td class="r">185</td><td class="r"><span class="u">+188</span></td></tr>
+        </tbody>
+        <caption>대시보드는 <b>비율만</b> 제공하므로 시청자 수를 곱해 환산했습니다.
+        <b>‘그 외’는 대시보드에 없는 항목</b>으로, 100%에서 두 비율을 뺀 잔여값입니다.<span class="ai">AI 계산</span></caption>
+      </table></div>
+    </details>
+
+    <div class="note sub"><b>확실한 것</b> — 알림 유입(단골·플친)은 <b>정의상 이미 우리를 단골 등록·플친 추가한 고객</b>인데, 오전이 야간보다 <b>52명 적습니다.</b><br>
+    <b>확실하지 않은 것</b> — 늘어난 쇼핑라이브탭 +125와 ‘그 외’ +188이 <b>신규인지는 확정할 수 없습니다.</b> 아래 참고 참조.</div>
+
+    <div class="q"><span class="m">Q2</span>왜 효율이 좋았나?</div>
+    <div class="a">유입자가 관심으로 끝나지 않고 <span class="hi">결제로 연결되었다</span></div>
+
+    <div class="q sub"><span class="m">↳</span>어느 단계에서 갈렸나?</div>
+    <div class="a sub">상품 조회자까지는 비슷하고, <span class="hi">상품 조회자 → 결제자수에서 갈렸다 (+5.9%p)</span></div>
+
+    <details class="mt sub"><summary>전환·관심 지표</summary>
+      <div class="tlab">대시보드 원지표</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>지표</th><th class="r">오전</th><th class="r">야간</th><th class="r">차이</th></tr></thead>
+        <tbody>
+          <tr><td>시청자</td><td class="r">1,142</td><td class="r">881</td><td class="r"><span class="u">+261</span></td></tr>
+          <tr><td>상품 조회수</td><td class="r">1,516</td><td class="r">1,016</td><td class="r"><span class="u">+500</span></td></tr>
+          <tr><td>상품 조회자</td><td class="r">497</td><td class="r">366</td><td class="r"><span class="u">+131</span></td></tr>
+          <tr class="key"><td>결제자수</td><td class="r">183</td><td class="r">113</td><td class="r"><span class="u">+70</span></td></tr>
+          <tr><td>전환율</td><td class="r">15.4%</td><td class="r">12.9%</td><td class="r"><span class="u">+2.5%p</span></td></tr>
+          <tr><td>객단가</td><td class="r">61,725</td><td class="r">58,973</td><td class="r dim">+4.7%</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tlab"><span class="calc">계산값</span> — 위 원지표로 단계별 전환 산출</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>단계</th><th class="r">오전</th><th class="r">야간</th><th class="r">차이</th></tr></thead>
+        <tbody>
+          <tr><td>시청자 → 상품 조회자</td><td class="r">43.5%</td><td class="r">41.5%</td><td class="r dim">+2.0%p</td></tr>
+          <tr class="key"><td>상품 조회자 → 결제자수</td><td class="r"><b>36.8%</b></td><td class="r">30.9%</td><td class="r"><span class="u">+5.9%p</span></td></tr>
+        </tbody>
+        <caption>대시보드에 없는 항목. 위 원지표(시청자 · 상품 조회자 · 결제자수)로 계산했습니다.<span class="ai">AI 계산</span></caption>
+      </table></div>
+    </details>
+
+    <div class="note sub">객단가는 <b>+4.7%</b>로 사실상 비슷 → 비싸게 판 게 아니라 <b>결제자수가 70명 더 많았다.</b></div>
+
+  </div>
+
+  <div class="close">
+    <span class="lb">그래서</span>
+    오전은 <b>알림 유입(단골·플친) 외 경로에서 시청자가 +313명 더 왔고</b>(볼륨),
+    그 시청자가 <b>상품 조회자에서 그치지 않고 결제자수로 이어졌다</b>(효율 · 상품 조회자→결제자수 +5.9%p).
+    <b>→ 그래서 오전 추가매출이 야간의 2.0배가 된다.</b><br>
+    <span class="dim" style="font-weight:500;font-size:14.5px">단, 환불액도 165만 vs 85만으로 2배 — §04 오전 ‘환불 방어’ 액션의 근거.</span>
+  </div>
+
+  <details class="mt wide"><summary>참고 — 쇼핑라이브탭 유입을 ‘신규’로 볼 수 있나 <span class="dim" style="font-weight:600">(논외)</span></summary>
+    <div class="dbody">
+    이 요인의 디벨롭이 <b>‘신규 트래픽 → 관심 고객 전환’</b>인 만큼, 그 전제가 성립하는지 짚어둡니다.
+
+    <div class="tw" style="margin:14px 0 4px"><table class="mini">
+      <thead><tr><th style="width:78px">　</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td><b>정황 ①</b></td><td>알림 유입(단골·플친)은 <b>정의상 기존 고객</b>. 이 경로가 아닌 유입은 상대적으로 신규일 가능성이 높음</td></tr>
+        <tr><td><b>정황 ②</b></td><td>쇼핑라이브탭 유입의 대시보드 부기가 <b>‘오가닉 탐색’</b> — 우리 브랜드를 알고 찾아온 게 아니라 <b>쇼핑라이브 안에서 방송을 탐색하다 들어온</b> 경로</td></tr>
+        <tr><td><b>정황 ③</b></td><td>쇼핑라이브탭 유입 비율이 높은 오전이 <b>환불액도 2배</b>(165만 vs 85만). 신규일수록 환불이 많은 일반적 패턴과 방향이 일치</td></tr>
+        <tr class="key"><td><b>한계 ①</b></td><td><b>보장이 없음.</b> 기존 고객도 쇼핑라이브탭에서 우리 방송을 찾아 들어올 수 있음</td></tr>
+        <tr class="key"><td><b>한계 ②</b></td><td>실제 신규·재구매는 <b>주문 데이터(첫 구매 여부)로만</b> 확정 가능한데, 그 데이터가 <b>유입 경로와 연결돼 있지 않음</b></td></tr>
+        <tr class="key"><td><b>한계 ③</b></td><td><b>‘그 외’(+188)는 대시보드에 없는 잔여값</b>이라 구성 자체가 불투명. 그런데 증가분의 <b>60%가 여기서</b> 나옴</td></tr>
+      </tbody>
+    </table></div>
+
+    <b>현재 표현 기준</b> — 본문에서 ‘신규’는 <b>확정된 사실이 아니라 정황에 기반한 표현</b>입니다.
+    확정하려면 <b>유입 경로 × 신규·재구매 교차 데이터</b>가 필요하며, 이는 §06 판단 보류에 올려두었습니다.
+    </div>
+  </details>
+
+  <details><summary>근거 지표 — 시간대</summary>
+    <div class="tw"><table>
+      <thead><tr><th>지표</th><th class="r">오전</th><th class="r">야간</th><th class="r">차이</th></tr></thead>
+      <tbody>
+        <tr class="key"><td><b>추가매출</b> <span class="dim">볼륨</span></td><td class="r"><b>1,541만</b></td><td class="r">776만</td><td class="r"><span class="u">+764만</span></td></tr>
+        <tr><td>순마진액 <span class="dim">볼륨</span></td><td class="r">472만</td><td class="r">227만</td><td class="r"><span class="u">+245만</span></td></tr>
+        <tr class="key"><td><b>전환율</b> <span class="dim">효율</span></td><td class="r"><b>15.4%</b></td><td class="r">12.9%</td><td class="r"><span class="u">+2.5%p</span></td></tr>
+        <tr><td>순마진율 <span class="dim">효율</span></td><td class="r">39.6%</td><td class="r">33.3%</td><td class="r"><span class="u">+6.3%p</span></td></tr>
+        <tr><td>채널마진율 <span class="dim">광고비 제외</span></td><td class="r">58.0%</td><td class="r">57.7%</td><td class="r dim">동일</td></tr>
+        <tr><td>객단가</td><td class="r">61,725</td><td class="r">58,973</td><td class="r dim">+4.7%</td></tr>
+        <tr><td>시청자</td><td class="r">1,142</td><td class="r">881</td><td class="r"><span class="u">+261</span></td></tr>
+        <tr><td>상품 조회자 → 결제자</td><td class="r">497 → 183</td><td class="r">366 → 113</td><td class="r"><span class="u">+131 / +70</span></td></tr>
+        <tr><td>잠식 · 후광</td><td class="r">+492만</td><td class="r">+189만</td><td class="r"><span class="u">+303만</span></td></tr>
+        <tr><td>알림 유입 비율</td><td class="r">37.9%</td><td class="r">55.0%</td><td class="r"><span class="d">−17.1%p</span></td></tr>
+        <tr><td>라이브탭 유입 비율</td><td class="r">29.4%</td><td class="r">24.0%</td><td class="r"><span class="u">+5.4%p</span></td></tr>
+        <tr><td>환불액 <span class="dim">낮을수록 좋음</span></td><td class="r"><span class="d">165만</span></td><td class="r">85만</td><td class="r"><span class="d">+80만</span></td></tr>
+        <tr><td>좋아요</td><td class="r">716</td><td class="r">2,218</td><td class="r"><span class="d">−1,502</span></td></tr>
+        <tr><td>평균 체류</td><td class="r">10분45초</td><td class="r">11분55초</td><td class="r"><span class="d">−70초</span></td></tr>
+      </tbody>
+      <caption>채널마진율은 동일(58.0 vs 57.7)한데 순마진율만 6.3%p 갈림 → 차이는 전부 <b>광고비</b>.
+      역산 시 오전 143만 / 야간 119만으로 오전이 더 썼으나, 시청자당 광고비는 <b>오전 1,256원 · 야간 1,346원</b>으로 오전이 더 효율적.</caption>
+    </table></div>
+  </details>
+
+  <!-- 3-2 -->
+  <h3>② 상품 구성 <span class="tag">세트 / 단품</span></h3>
+  <div class="vd">
+    <span class="lb">결론</span>
+    <div class="txt">세트군은 잔망루피, 단품군은 마사지스틱이 매출 볼륨을 끈다
+      <span class="sm">잔망루피 에디션 마사지스틱 세트 <b>3,974만</b> · 마사지스틱 <b>2,689만</b> — 단품군 1위는 <b>순마진율도 1위(47.4%)</b></span>
+    </div>
+  </div>
+
+  <span class="ev-lb">근거</span>
+
+  <div class="qa">
+
+    <div class="q"><span class="m">Q1</span>왜 볼륨이 높았나?</div>
+    <div class="a">각 군에서 <span class="hi">1위 제품 하나가 절반 이상</span>을 차지했다</div>
+
+    <div class="q sub"><span class="m">↳</span>얼마나 쏠려 있나?</div>
+    <div class="a sub">잔망루피 <span class="hi">세트군의 55.6%</span> · 마사지스틱 <span class="hi">단품군의 59.3%</span> — 둘이 <span class="hi">전체 매출의 57.1%</span></div>
+
+    <details class="mt sub"><summary>제품별 매출</summary>
+      <div class="tlab">대시보드 원지표 <span class="dim" style="font-weight:600">— 제품 순위(매출 · 순마진율)</span></div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>세트군</th><th class="r">매출</th><th class="r">순마진율</th></tr></thead>
+        <tbody>
+          <tr class="key"><td>잔망루피 에디션 마사지스틱 세트</td><td class="r"><b>3,974만</b></td><td class="r">35.8%</td></tr>
+          <tr><td>마사지 3종 세트</td><td class="r">860만</td><td class="r">36.6%</td></tr>
+          <tr><td>오리지널 + 릴렉스틱볼 마사지 세트</td><td class="r">768만</td><td class="r">46.1%</td></tr>
+          <tr><td>마사지스틱 1+1 <span class="dim">잔망루피 + 오리지널</span></td><td class="r">756만</td><td class="r">48.8%</td></tr>
+          <tr><td>잔망루피 에디션 세트 마사지스틱</td><td class="r">568만</td><td class="r">46.9%</td></tr>
+          <tr class="off"><td>EMS 슬림벨트v3 세트</td><td class="r">173만</td><td class="r">9.0%</td></tr>
+          <tr class="off"><td>오리지널 + 올인원마사지 세트</td><td class="r">44만</td><td class="r">36.4%</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>단품군</th><th class="r">매출</th><th class="r">순마진율</th></tr></thead>
+        <tbody>
+          <tr class="key"><td>마사지스틱 <span class="dim">종아리 허벅지 림프 마사지롤러</span></td><td class="r"><b>2,689만</b></td><td class="r">47.4%</td></tr>
+          <tr><td>릴렉스틱볼 <span class="dim">목 어깨 족저근막염 마사지볼</span></td><td class="r">1,168만</td><td class="r">39.1%</td></tr>
+          <tr><td>올인원마사지기</td><td class="r">270만</td><td class="r">30.7%</td></tr>
+          <tr><td>손목 마사지기 <span class="dim">TENS EMS</span></td><td class="r">163만</td><td class="r">37.4%</td></tr>
+          <tr class="off"><td>허리 마사지기 EMS</td><td class="r">136만</td><td class="r">17.1%</td></tr>
+          <tr class="off"><td>점핑큐브 트램폴린</td><td class="r">64만</td><td class="r">10.7%</td></tr>
+          <tr class="off"><td>마사지스틱 ver1</td><td class="r">31만</td><td class="r">36.0%</td></tr>
+          <tr class="off"><td>[리퍼제품] 릴렉스틱 마사지스틱 ver1</td><td class="r">12만</td><td class="r">45.8%</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tlab"><span class="calc">계산값</span> — 군 합계와 1위 제품 비중</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>　</th><th class="r">세트군</th><th class="r">단품군</th><th class="r">전체</th></tr></thead>
+        <tbody>
+          <tr><td>매출 합계</td><td class="r">7,143만</td><td class="r">4,533만</td><td class="r">11,676만</td></tr>
+          <tr class="key"><td>1위 제품 비중 <span class="dim">군 내</span></td><td class="r"><b>55.6%</b></td><td class="r"><b>59.3%</b></td><td class="r dim">—</td></tr>
+          <tr><td>1위 제품 비중 <span class="dim">전체 대비</span></td><td class="r">34.0%</td><td class="r">23.0%</td><td class="r"><b>57.1%</b></td></tr>
+        </tbody>
+        <caption>대시보드는 <b>제품별 매출·순마진율만</b> 제공. 군 합계와 비중은 그 값을 더해 산출했습니다.<span class="ai">AI 계산</span></caption>
+      </table></div>
+    </details>
+
+    <div class="note sub"><b>잔망루피</b> — 캐릭터 협업(팬덤) + 선물 수요가 매출 볼륨을 높인 것으로 판단.
+    <span class="dim">(작성자 판단 · 데이터로 검증된 항목은 아님)</span><br>
+    <b>마사지스틱</b> — 볼륨이 높은 원인은 <b>현재 데이터로 확인되지 않음.</b></div>
+
+    <div class="q"><span class="m">Q2</span>왜 효율이 좋았나?</div>
+    <div class="a">단품군은 <span class="hi">볼륨 1위와 순마진율 1위가 같은 제품</span>인데, 세트군은 <span class="hi">둘이 어긋난다</span></div>
+
+    <div class="q sub"><span class="m">↳</span>어디서 어긋나나?</div>
+    <div class="a sub">잔망루피 순마진율 <span class="hi">35.8%는 세트군 7종 중 6위</span> — 볼륨 1위인데 마진은 하위</div>
+
+    <details class="mt sub"><summary>순마진율 비교</summary>
+      <div class="tlab">대시보드 원지표 <span class="dim" style="font-weight:600">— 순마진율</span></div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>　</th><th>세트군 <span class="dim">순마진율 순</span></th><th class="r">　</th><th>단품군 <span class="dim">순마진율 순</span></th><th class="r">　</th></tr></thead>
+        <tbody>
+          <tr><td>1위</td><td>마사지스틱 1+1</td><td class="r">48.8%</td><td>마사지스틱 <span class="dim">볼륨도 1위</span></td><td class="r"><span class="u">47.4%</span></td></tr>
+          <tr><td>2위</td><td>잔망루피 에디션 세트 마사지스틱</td><td class="r">46.9%</td><td>[리퍼제품] 마사지스틱 ver1</td><td class="r">45.8%</td></tr>
+          <tr><td>3위</td><td>오리지널 + 릴렉스틱볼</td><td class="r">46.1%</td><td>릴렉스틱볼</td><td class="r">39.1%</td></tr>
+          <tr><td>4위</td><td>마사지 3종 세트</td><td class="r">36.6%</td><td>손목 마사지기</td><td class="r">37.4%</td></tr>
+          <tr><td>5위</td><td>오리지널 + 올인원마사지</td><td class="r">36.4%</td><td>마사지스틱 ver1</td><td class="r">36.0%</td></tr>
+          <tr class="key"><td>6위</td><td><b>잔망루피 에디션 마사지스틱 세트</b> <span class="dim">볼륨 1위</span></td><td class="r"><span class="d">35.8%</span></td><td>올인원마사지기</td><td class="r">30.7%</td></tr>
+          <tr class="off"><td>7위</td><td>EMS 슬림벨트v3 세트</td><td class="r">9.0%</td><td>허리 마사지기 EMS</td><td class="r">17.1%</td></tr>
+          <tr class="off"><td>8위</td><td class="dim">—</td><td class="r dim">—</td><td>점핑큐브 트램폴린</td><td class="r">10.7%</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tlab"><span class="calc">계산값</span> — 순마진액(매출 × 순마진율)과 군 가중 순마진율</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>　</th><th class="r">매출</th><th class="r">순마진액</th><th class="r">가중 순마진율</th></tr></thead>
+        <tbody>
+          <tr><td>세트군</td><td class="r">7,143만</td><td class="r">2,758만</td><td class="r"><span class="d">38.6%</span></td></tr>
+          <tr class="key"><td>단품군</td><td class="r">4,533만</td><td class="r">1,922만</td><td class="r"><span class="u">42.4%</span></td></tr>
+          <tr><td class="dim">└ 잔망루피 세트 <span class="dim">참고</span></td><td class="r dim">3,974만</td><td class="r dim">1,423만</td><td class="r dim">35.8%</td></tr>
+          <tr><td class="dim">└ 마사지스틱 <span class="dim">참고</span></td><td class="r dim">2,689만</td><td class="r dim">1,275만</td><td class="r dim">47.4%</td></tr>
+        </tbody>
+        <caption>대시보드에 없는 항목. 제품별 매출 × 순마진율로 계산했습니다.
+        매출 격차는 <b>1.48배</b>(3,974 vs 2,689)인데 순마진액 격차는 <b>1.12배</b>(1,423 vs 1,275)로 좁혀집니다.<span class="ai">AI 계산</span></caption>
+      </table></div>
+    </details>
+
+    <div class="note sub">단품군은 <b>볼륨과 마진이 같은 방향</b>(마사지스틱이 둘 다 1위)인 반면,
+    세트군은 <b>볼륨 1위 제품의 마진이 하위</b>라 두 축이 어긋납니다.</div>
+
+  </div>
+
+  <div class="close no">
+    <span class="lb">그래서</span>
+    <b>세트군은 잔망루피(3,974만), 단품군은 마사지스틱(2,689만)</b>이 볼륨을 끌었고 둘이 전체 매출의 <b>57.1%</b>입니다(볼륨).
+    단 <b>마사지스틱은 순마진율도 1위(47.4%)인 반면 잔망루피는 세트군 6위(35.8%)</b>로, 세트군은 볼륨과 마진이 어긋납니다(효율).
+    <b>→ “무엇이 얼마나 팔렸나”까지는 확인되지만, “왜 팔렸나”는 아래 사유로 미확정입니다.</b>
+  </div>
+
+  <details class="mt wide"><summary>참고 — 이 요인은 왜 ‘사람’까지 못 내려가나 <span class="dim" style="font-weight:600">(논외)</span></summary>
+    <div class="dbody">
+    시간대·쇼호스트·요일은 <b>회차 단위</b>라 시청자·유입 경로가 함께 붙는데,
+    <b>상품 구성만 SKU 단위 누적 매출</b>입니다. 그래서 같은 방식으로 분석되지 않습니다.
+
+    <div class="tw" style="margin:14px 0 4px"><table class="mini">
+      <thead><tr><th style="width:78px">　</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr class="key"><td><b>한계 ①</b></td><td>상품별 <b>시청자·유입 경로 데이터가 없음</b> → “누가 이 상품을 샀나”를 못 봄</td></tr>
+        <tr class="key"><td><b>한계 ②</b></td><td>13회 중 대부분 회차에 <b>잔망루피가 편성</b>(전체 매출의 34%) → “최고”인지 <b>“그것만 틀었는지”</b> 구분 불가</td></tr>
+        <tr class="key"><td><b>한계 ③</b></td><td>회차별로 나뉘지 않아 <b>시간대·요일·호스트와 교차 분석 불가</b></td></tr>
+      </tbody>
+    </table></div>
+
+    <b>그래서</b> — 영향력 순위 2위를 <b>“변별력 제한”</b>으로 표기했습니다.
+    다른 요인과 동일한 수준으로 판정하려면 <b>상품별 유입·시청 데이터</b>와 <b>다른 상품 단독 편성 회차</b>가 필요하며,
+    §06 판단 보류에 올려두었습니다.
+    </div>
+  </details>
+
+  <div class="aside fix">
+    <span class="lb">구조적 리스크<span class="ai">AI 추가</span></span>
+    잔망루피 세트 1개가 전체 매출의 <b>34%</b>, 상위 2개 제품이 <b>57.1%</b>.
+    IP 계약·시즌성에 성과가 묶여 있어 <b>단일 SKU 의존</b>이 위험 요소입니다.
+  </div>
+
+  <!-- 3-3 -->
+  <h3>③ 쇼호스트 <span class="tag">김성경 / 김예슬 / 이성훈</span></h3>
+
+  <div class="aside">
+    <span class="lb">특수 사항</span>
+    유입광고 회차가 몰려 있고, 오전·야간 편성이 호스트와 섞임 → <b>호스트 순수효과 미분리.</b>
+    아래는 그 전제 위의 관찰입니다.
+  </div>
+
+  <div class="vd">
+    <span class="lb">결론</span>
+    <div class="txt">김성경은 볼륨이 높아 매출이 높다 — 효율은 두 호스트가 비슷하다
+      <span class="sm">추가매출 <b>1,396만 vs 1,062만</b> · 시청자 <b>+26%</b> / 전환율 14.6% vs 14.3% · 객단가 59,260 vs 60,773 — <b>한 쪽이 더 판 게 아니다</b></span>
+    </div>
+  </div>
+
+  <span class="ev-lb">근거</span>
+
+  <div class="qa">
+
+    <div class="q"><span class="m">Q1</span>왜 볼륨이 높았나?</div>
+    <div class="a">시청자가 많았다 — <span class="hi">1,157 vs 918 (+239, +26%)</span></div>
+
+    <div class="q sub"><span class="m">↳</span>어떤 경로의 시청자가 많았나?</div>
+    <div class="a sub">두 유입 비율은 <span class="hi">오히려 김성경이 낮다</span> — 늘어난 건 <span class="hi">‘그 외’ +153, 우위의 64%</span></div>
+
+    <details class="mt sub"><summary>유입 경로 지표</summary>
+      <div class="tlab">대시보드 원지표</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>지표</th><th class="r">김성경</th><th class="r">김예슬</th><th class="r">이성훈 <span class="dim">n=1</span></th></tr></thead>
+        <tbody>
+          <tr><td>시청자</td><td class="r">1,157</td><td class="r">918</td><td class="r">835</td></tr>
+          <tr><td>최고 동접</td><td class="r">94</td><td class="r">71</td><td class="r">49</td></tr>
+          <tr class="key"><td>알림 유입 비율(단골·플친)</td><td class="r">44.5%</td><td class="r">47.5%</td><td class="r">43.0%</td></tr>
+          <tr class="key"><td>쇼핑라이브탭 유입 비율(오가닉 탐색)</td><td class="r">25.2%</td><td class="r">31.0%</td><td class="r">12.6%</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tlab"><span class="calc">계산값</span> — 시청자 × 유입 비율</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>경로</th><th class="r">김성경</th><th class="r">김예슬</th><th class="r">차이</th><th class="r">우위 기여</th></tr></thead>
+        <tbody>
+          <tr class="key"><td>그 외 <span class="dim">100% − 위 두 비율</span></td><td class="r">350</td><td class="r">197</td><td class="r"><b>+153</b></td><td class="r"><b>64%</b></td></tr>
+          <tr><td>알림 유입(단골·플친)</td><td class="r">515</td><td class="r">436</td><td class="r"><span class="u">+79</span></td><td class="r">33%</td></tr>
+          <tr><td>쇼핑라이브탭 유입(오가닉 탐색)</td><td class="r">292</td><td class="r">285</td><td class="r dim">+7</td><td class="r dim">3%</td></tr>
+        </tbody>
+        <caption>대시보드는 <b>비율만</b> 제공하므로 시청자 수를 곱해 환산했습니다.
+        <b>‘그 외’는 대시보드에 없는 항목</b>으로, 100%에서 두 비율을 뺀 잔여값입니다.<span class="ai">AI 계산</span></caption>
+      </table></div>
+    </details>
+
+    <div class="note sub"><b>확실한 것</b> — <b>쇼핑라이브탭 유입은 +7로 사실상 동률.</b> 이 경로는 호스트가 누구든 비슷하게 들어옵니다.<br>
+    <b>확실하지 않은 것</b> — 우위의 <b>64%(+153)가 ‘그 외’</b>인데, 이 항목은 대시보드에 없어 <b>구성을 알 수 없습니다.</b>
+    초안의 “다른 광고 유입요인 포함해서 판단 필요”가 정확히 이 지점입니다.</div>
+
+    <div class="q"><span class="m">Q2</span>왜 효율은 갈리지 않았나?</div>
+    <div class="a">전환율·객단가가 <span class="hi">사실상 같다</span> — 14.6% vs 14.3% · 59,260 vs 60,773</div>
+
+    <div class="q sub"><span class="m">↳</span>퍼널 어느 단계에서도 안 갈렸나?</div>
+    <div class="a sub"><span class="hi">두 단계 모두 동일</span> — 방송 안에서의 판매력에 차이가 없다</div>
+
+    <details class="mt sub"><summary>전환·관심 지표</summary>
+      <div class="tlab">대시보드 원지표</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>지표</th><th class="r">김성경</th><th class="r">김예슬</th><th class="r">이성훈 <span class="dim">n=1</span></th></tr></thead>
+        <tbody>
+          <tr><td>상품 조회수</td><td class="r">1,540</td><td class="r">1,135</td><td class="r">657</td></tr>
+          <tr><td>상품 조회자</td><td class="r">498</td><td class="r">402</td><td class="r">271</td></tr>
+          <tr><td>결제자수</td><td class="r">174</td><td class="r">136</td><td class="r">98</td></tr>
+          <tr class="key"><td>전환율</td><td class="r">14.6%</td><td class="r">14.3%</td><td class="r">11.7%</td></tr>
+          <tr class="key"><td>객단가</td><td class="r">59,260</td><td class="r">60,773</td><td class="r">65,721</td></tr>
+          <tr><td>순마진율(광고비 반영)</td><td class="r"><span class="u">40.5%</span></td><td class="r">35.1%</td><td class="r"><span class="d">22.8%</span></td></tr>
+          <tr><td>채널마진율(광고비 제외)</td><td class="r">58.3%</td><td class="r">58.2%</td><td class="r">52.6%</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tlab"><span class="calc">계산값</span> — 단계별 전환 · 광고비 역산</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>　</th><th class="r">김성경</th><th class="r">김예슬</th><th class="r">차이</th></tr></thead>
+        <tbody>
+          <tr><td>시청자 → 상품 조회자</td><td class="r">43.0%</td><td class="r">43.8%</td><td class="r dim">−0.8%p</td></tr>
+          <tr><td>상품 조회자 → 결제자수</td><td class="r">34.9%</td><td class="r">33.8%</td><td class="r dim">+1.1%p</td></tr>
+          <tr class="key"><td>광고비 <span class="dim">채널마진액 − 순마진액</span></td><td class="r">120만</td><td class="r">136만</td><td class="r"><span class="u">−16만</span></td></tr>
+          <tr class="key"><td>시청자당 광고비</td><td class="r"><b>1,037원</b></td><td class="r">1,482원</td><td class="r"><span class="u">−30%</span></td></tr>
+        </tbody>
+        <caption>대시보드에 없는 항목. 단계별 전환은 시청자·상품 조회자·결제자수로,
+        광고비는 <b>라이브 채널매출 × 채널마진율 − 순마진액</b>으로 역산했습니다.<span class="ai">AI 계산</span></caption>
+      </table></div>
+    </details>
+
+    <div class="note sub">퍼널 두 단계 모두 <b>1%p 내외로 동일</b> → 매출차는 순전히 “몇 명이 왔나”에서 나왔습니다.<br>
+    <b>단, 마진 효율은 갈립니다</b> — 채널마진율은 동일한데(58.3 vs 58.2) 순마진율만 40.5% vs 35.1%.
+    차이는 전부 광고비이고, <b>김성경이 광고를 덜 쓰고 더 데려왔습니다.</b>
+    ‘그 외 = 광고’ 해석과는 방향이 달라 소스 확인이 필요합니다.<span class="ai">AI 추가</span></div>
+
+  </div>
+
+  <div class="close no">
+    <span class="lb">그래서</span>
+    김성경 매출 우위는 <b>볼륨(시청자 +239) 단독</b>이고, <b>판매 효율은 퍼널 전 단계 동일</b>합니다.
+    그런데 그 <b>+239의 64%가 대시보드에 없는 ‘그 외’</b>이고, 광고비는 오히려 김성경이 적게 썼습니다.<br>
+    <b>→ 지금 말할 수 있는 건 “김성경 회차에 사람이 더 왔다”까지입니다. “왜 더 왔나”는 미확정.</b>
+  </div>
+
+  <details class="mt wide"><summary>참고 — 「다른 곳에서 유입된 시청자는 신규 고객이 많음」 가정 검증 <span class="dim" style="font-weight:600">(논외)</span></summary>
+    <div class="dbody">
+    초안이 근거로 든 <b>신규 알림 · 상품 조회수 · 상품 조회자 · 환불액</b> 4개를
+    <b>시청자 수로 정규화</b>해 다시 봤습니다. 절대수는 모수가 다르면 비교가 안 되기 때문입니다.
+
+    <div class="tw" style="margin:14px 0 4px"><table class="mini">
+      <thead><tr><th>초안 근거</th><th class="r">절대수</th><th class="r">정규화 후</th><th>판정</th></tr></thead>
+      <tbody>
+        <tr><td>상품 조회수</td><td class="r">1,540 vs 1,135</td><td class="r">1.33 vs 1.24 <span class="dim">회/인</span></td><td>유지</td></tr>
+        <tr class="key"><td>상품 조회자</td><td class="r">498 vs 402</td><td class="r">43.0% vs <b>43.8%</b></td><td><span class="d">역전</span></td></tr>
+        <tr class="key"><td>신규 알림</td><td class="r">34 vs 31</td><td class="r">5.3% vs <b>6.4%</b></td><td><span class="d">역전</span></td></tr>
+        <tr class="key"><td>환불액</td><td class="r">141만 vs 106만</td><td class="r">11.8% vs 11.6%</td><td class="dim">사실상 동일</td></tr>
+      </tbody>
+      <caption>신규 알림 비율은 <b>알림 유입자를 제외한 모수</b> 기준입니다(이미 단골·플친인 사람은 신규 알림 대상이 아니므로).
+      환불액은 <b>라이브 결제액 대비</b>로 환산했습니다.<span class="ai">AI 계산</span></caption>
+    </table></div>
+
+    <b>판정</b> — 4개 중 <b>2개가 역전, 1개는 동일.</b> 남는 건 상품 조회수 1개뿐입니다.
+    → <b>「신규가 많았다」는 현재 데이터로 지지되지 않습니다.</b> §06 판단 보류로 옮겼습니다.
+    확정하려면 <b>유입 경로 × 신규·재구매 교차 데이터</b>가 필요합니다.
+    </div>
+  </details>
+
+  <div class="aside">
+    <span class="lb">이성훈 — n=1, 순위 제외</span>
+    회차가 1회뿐이라 판정에서 뺐습니다. 다만 <b>순마진율 22.8%</b>(최하위)와
+    <b>환불액 179만</b>(라이브 결제액 대비 25.0% — 다른 두 호스트는 11%대)은 단발이라도 원인 확인이 필요합니다.
+  </div>
+
+  <!-- 3-4 -->
+  <h3>④ 요일 <span class="tag">월 ~ 일</span></h3>
+  <div class="vd">
+    <span class="lb">결론</span>
+    <div class="txt">화 · 월의 매출 볼륨·효율이 다른 요일 대비 눈에 띄게 높다
+      <span class="sm">추가매출 <b>1,397만 · 1,310만</b> vs 3위 1,075만 — 단 <b>화는 볼륨, 월은 효율</b>로 오른 경로가 다르다</span>
+    </div>
+  </div>
+
+  <span class="ev-lb">근거 — A. 화요일 <span class="dim" style="font-weight:600;letter-spacing:0">추가매출 1,397만 (1위)</span></span>
+
+  <div class="qa">
+    <div class="q"><span class="m">Q1</span>왜 볼륨이 높았나?</div>
+    <div class="a">시청자·결제자수가 1위 — <span class="hi">1,153명 · 177명</span> <span class="dim" style="font-weight:600">(잠식/후광 +483만은 금 484만에 이어 2위)</span></div>
+
+    <div class="q sub"><span class="m">↳</span>어떤 경로의 시청자가 많았나?</div>
+    <div class="a sub"><span class="hi">‘그 외’ 391명으로 6요일 1위</span> — 쇼핑라이브탭 유입은 278명(3위)로 <span class="hi">월요일보다 75명 적다</span></div>
+
+    <details class="mt sub"><summary>유입 경로 지표</summary>
+      <div class="tlab">대시보드 원지표</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>요일</th><th class="r">시청자</th><th class="r">최고 동접</th><th class="r">알림 유입 비율<br><span class="dim">단골·플친</span></th><th class="r">쇼핑라이브탭 유입 비율<br><span class="dim">오가닉 탐색</span></th></tr></thead>
+        <tbody>
+          <tr class="key"><td><b>화</b></td><td class="r">1,153</td><td class="r">91</td><td class="r">42.0%</td><td class="r">24.1%</td></tr>
+          <tr class="key"><td><b>월</b></td><td class="r">955</td><td class="r">79</td><td class="r">44.9%</td><td class="r"><b>37.0%</b></td></tr>
+          <tr><td>수</td><td class="r">961</td><td class="r">80</td><td class="r">51.1%</td><td class="r">29.9%</td></tr>
+          <tr><td>금</td><td class="r">820</td><td class="r">64</td><td class="r">56.7%</td><td class="r">17.0%</td></tr>
+          <tr><td>일</td><td class="r">1,010</td><td class="r">68</td><td class="r">43.0%</td><td class="r">26.5%</td></tr>
+          <tr><td>목</td><td class="r">851</td><td class="r">68</td><td class="r"><b>56.8%</b></td><td class="r">18.1%</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tlab"><span class="calc">계산값</span> — 시청자 × 유입 비율</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>요일</th><th class="r">알림 유입</th><th class="r">쇼핑라이브탭 유입</th><th class="r">그 외</th><th class="r">합계</th></tr></thead>
+        <tbody>
+          <tr class="key"><td><b>화</b></td><td class="r">484</td><td class="r">278</td><td class="r"><b>391</b> <span class="dim">1위</span></td><td class="r">1,153</td></tr>
+          <tr class="key"><td><b>월</b></td><td class="r">429</td><td class="r"><b>353</b> <span class="dim">1위</span></td><td class="r">173 <span class="dim">최하위</span></td><td class="r">955</td></tr>
+          <tr><td>수</td><td class="r">491</td><td class="r">287</td><td class="r">183</td><td class="r">961</td></tr>
+          <tr><td>금</td><td class="r">465</td><td class="r">139</td><td class="r">216</td><td class="r">820</td></tr>
+          <tr><td>일</td><td class="r">434</td><td class="r">268</td><td class="r">308</td><td class="r">1,010</td></tr>
+          <tr><td>목</td><td class="r">483</td><td class="r">154</td><td class="r">214</td><td class="r">851</td></tr>
+        </tbody>
+        <caption>화 vs 월 시청자 격차 <b>+198명</b>의 내역 — 그 외 <b>+218</b> · 알림 <b>+55</b> · 쇼핑라이브탭 <b>−75</b>.
+        <b>‘그 외’는 대시보드에 없는 잔여값</b>입니다.<span class="ai">AI 계산</span></caption>
+      </table></div>
+    </details>
+
+    <div class="note sub">화요일 볼륨은 <b>‘그 외’ 단독</b>이고, 자연 유입(쇼핑라이브탭)은 오히려 적었습니다.
+    화요일 회차에 <b>6/30 GFA가 집행</b>됐고, ‘그 외’ 항목은 대시보드에 없어 <b>GFA인지 다른 외부인지 구분되지 않습니다.</b></div>
+
+    <div class="q"><span class="m">Q2</span>왜 효율은 월요일보다 낮았나?</div>
+    <div class="a">전환율이 낮다 — <span class="hi">14.8% vs 17.1%</span></div>
+
+    <div class="q sub"><span class="m">↳</span>어느 단계에서 갈렸나?</div>
+    <div class="a sub"><span class="hi">상품 조회자 단계에서 크게 밀리고(−25.1%p)</span>, <span class="hi">결제자수 단계에서는 오히려 앞선다(+12.5%p)</span></div>
+
+    <details class="mt sub"><summary>전환·관심 지표</summary>
+      <div class="tlab">대시보드 원지표</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>요일</th><th class="r">추가매출</th><th class="r">순마진액</th><th class="r">순마진율</th><th class="r">전환율</th><th class="r">객단가</th><th class="r">상품 조회자</th><th class="r">결제자수</th></tr></thead>
+        <tbody>
+          <tr class="key"><td><b>화</b></td><td class="r"><b>1,397만</b></td><td class="r">426만</td><td class="r">38.1%</td><td class="r">14.8%</td><td class="r">56,828</td><td class="r">430</td><td class="r"><b>177</b></td></tr>
+          <tr class="key"><td><b>월</b></td><td class="r">1,310만</td><td class="r"><b>430만</b></td><td class="r">38.8%</td><td class="r"><b>17.1%</b></td><td class="r">60,127</td><td class="r"><b>596</b></td><td class="r">171</td></tr>
+          <tr><td>수</td><td class="r">1,075만</td><td class="r">359만</td><td class="r"><span class="u">41.2%</span></td><td class="r">14.5%</td><td class="r">59,812</td><td class="r">441</td><td class="r">139</td></tr>
+          <tr><td>금</td><td class="r">1,054만</td><td class="r">206만</td><td class="r">34.1%</td><td class="r">12.4%</td><td class="r">65,419</td><td class="r">335</td><td class="r">102</td></tr>
+          <tr><td>일</td><td class="r">902만</td><td class="r">254만</td><td class="r">31.9%</td><td class="r">11.3%</td><td class="r"><b>66,690</b></td><td class="r">366</td><td class="r">114</td></tr>
+          <tr><td>목</td><td class="r"><span class="d">597만</span></td><td class="r"><span class="d">178만</span></td><td class="r"><span class="d">30.9%</span></td><td class="r"><span class="d">10.5%</span></td><td class="r">62,778</td><td class="r"><span class="d">228</span></td><td class="r"><span class="d">89</span></td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tlab"><span class="calc">계산값</span> — 단계별 전환 · 환불률</div>
+      <div class="tw"><table class="mini">
+        <thead><tr><th>요일</th><th class="r">시청자 → 상품 조회자</th><th class="r">상품 조회자 → 결제자수</th><th class="r">환불률 <span class="dim">환불액/라이브 결제액</span></th></tr></thead>
+        <tbody>
+          <tr class="key"><td><b>월</b></td><td class="r"><span class="u">62.4%</span> <span class="dim">1위</span></td><td class="r"><span class="d">28.7%</span> <span class="dim">최하위</span></td><td class="r">12.2%</td></tr>
+          <tr class="key"><td><b>화</b></td><td class="r">37.3%</td><td class="r"><span class="u">41.2%</span> <span class="dim">1위</span></td><td class="r">11.9%</td></tr>
+          <tr><td>수</td><td class="r">45.9%</td><td class="r">31.5%</td><td class="r"><span class="u">9.6%</span></td></tr>
+          <tr><td>금</td><td class="r">40.9%</td><td class="r">30.4%</td><td class="r">13.6%</td></tr>
+          <tr><td>일</td><td class="r">36.2%</td><td class="r">31.1%</td><td class="r"><span class="d">16.2%</span></td></tr>
+          <tr><td>목</td><td class="r"><span class="d">26.8%</span> <span class="dim">최하위</span></td><td class="r">39.0%</td><td class="r">11.0%</td></tr>
+        </tbody>
+        <caption>대시보드에 없는 항목. 시청자·상품 조회자·결제자수, 환불액·라이브 결제액으로 계산했습니다.<span class="ai">AI 계산</span></caption>
+      </table></div>
+    </details>
+
+    <div class="note sub">온 사람 중 <b>상품을 보는 비율은 낮은데(37.3%), 본 사람은 가장 잘 삽니다(41.2%, 1위).</b><br>
+    <b>「환불액이 높다」 가정은 기각됩니다</b><span class="ai f">정정</span> — 환불액 138만은 6요일 중 3위이고,
+    라이브 결제액 대비 환불률은 <b>11.9%로 4위(낮은 편)</b>입니다.
+    <span class="dim">(일 16.2% &gt; 금 13.6% &gt; 월 12.2% &gt; 화 11.9% &gt; 목 11.0% &gt; 수 9.6%)</span></div>
+  </div>
+
+  <span class="ev-lb">근거 — B. 월요일 <span class="dim" style="font-weight:600;letter-spacing:0">순마진액 430만 · 전환율 17.1% (둘 다 1위)</span></span>
+
+  <div class="qa">
+    <div class="q"><span class="m">Q1</span>왜 효율이 높았나?</div>
+    <div class="a">전환율·순마진액이 1위 — <span class="hi">17.1% · 430만</span></div>
+
+    <div class="q sub"><span class="m">↳</span>어느 단계에서 갈렸나?</div>
+    <div class="a sub"><span class="hi">상품 조회자 단계가 62.4%로 압도적</span> — 2위(수 45.9%)를 16.5%p 상회</div>
+
+    <div class="note sub">유입에서도 <b>쇼핑라이브탭 유입 비율 37%로 1위</b>, 상품 조회수 1,623 · 상품 조회자 596 · 신규 알림 48건 <b>모두 1위</b>.<br>
+    작성자 판단 — <b>주말 동안 구매를 예정했던 사람들이 방송 중 구매</b>했고, 신규 손님이 관심도까지 있어 구매로 이어짐.
+    <span class="dim">(작성자 판단 · 데이터로 검증된 항목은 아님)</span></div>
+
+    <div class="q"><span class="m">Q2</span>왜 볼륨은 3위인가?</div>
+    <div class="a">시청자 955명 — <span class="hi">‘그 외’가 173명으로 6요일 최하위</span></div>
+
+    <div class="q sub"><span class="m">↳</span>그럼 무엇으로 만든 볼륨인가?</div>
+    <div class="a sub"><span class="hi">광고 없이 자연 유입만으로</span> — 쇼핑라이브탭 353명(1위)</div>
+
+    <div class="note sub">화요일과 시청자 수는 비슷한 급(955 vs 1,153)이지만 <b>구성이 정반대</b>입니다.
+    화 = ‘그 외’ 391 / 월 = 쇼핑라이브탭 353. <b>같은 볼륨이어도 온 사람의 성격이 다릅니다.</b><br>
+    <b>단, 결제 단계는 최하위(28.7%)</b>입니다 — 관심은 폭넓게 만드는데 결제로 못 닫고 있습니다.<span class="ai">AI 추가</span></div>
+  </div>
+
+  <span class="ev-lb">근거 — C. 목요일 <span class="dim" style="font-weight:600;letter-spacing:0">전 지표 최하위 · 진행 지양</span></span>
+
+  <div class="qa">
+    <div class="q"><span class="m">Q1</span>왜 볼륨·효율이 모두 낮았나?</div>
+    <div class="a">추가매출 597만 · 전환율 10.5% · 순마진율 30.9% — <span class="hi">전부 꼴찌</span></div>
+
+    <div class="q sub"><span class="m">↳</span>어느 단계에서 무너졌나?</div>
+    <div class="a sub"><span class="hi">상품 조회자 단계 26.8%로 최하위</span> — 단, 결제자수 단계는 39.0%로 2위</div>
+
+    <div class="note sub">유입은 <b>알림 유입 비율 56.8%로 1위</b>인데 쇼핑라이브탭은 154명으로 최하위 →
+    <b>기존 고객만 모인 날</b>입니다.<br>
+    <b>몰입 지표는 최상위인데 매출은 꼴찌</b>입니다 — 평균 체류 <b>17분1초(1위)</b> · 좋아요 <b>7,071(1위)</b> · 채팅수 574(2위).
+    본 사람은 사는데(39.0%) <b>애초에 상품을 안 봤습니다.</b>
+    <b>몰입 지표는 매출의 선행 지표가 아니라는 것</b>이 데이터로 확인됩니다.<span class="ai">AI 추가</span></div>
+  </div>
+
+  <div class="close">
+    <span class="lb">그래서</span>
+    화 · 월이 나란히 상위지만 <b>오른 경로가 정반대</b>입니다.
+    <b>화 = ‘그 외’ 391명으로 사람을 모아 결제로 닫았고(41.2%, 1위), 월 = 자연 유입 353명이 관심을 넓게 만들었습니다(62.4%, 1위).</b><br>
+    <b>→ 두 요일의 디벨롭 액션은 서로 달라야 합니다.</b> 화는 조회 단계, 월은 결제 단계가 남은 상방입니다.
+  </div>
+
+  <details class="mt wide"><summary>참고 — 요일 요인을 얼마나 믿을 수 있나 <span class="dim" style="font-weight:600">(논외)</span></summary>
+    <div class="dbody">
+    요일은 <b>격차가 가장 크지만(800만) 교란도 가장 많은</b> 요인입니다.
+
+    <div class="tw" style="margin:14px 0 4px"><table class="mini">
+      <thead><tr><th style="width:78px">　</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr class="key"><td><b>한계 ①</b></td><td>요일별 <b>회차 수가 1~6회로 편차가 큼.</b> 회차가 적은 요일은 부진·대박 1회가 평균을 그대로 만듦</td></tr>
+        <tr class="key"><td><b>한계 ②</b></td><td>화요일에 <b>6/30 GFA가 집행</b>됨. ‘그 외’ 391명(1위)이 그 영향인지 <b>구분되지 않음</b></td></tr>
+        <tr class="key"><td><b>한계 ③</b></td><td>요일 안에 <b>시간대·호스트·상품이 모두 섞여</b> 있음 → 요일 단독 효과가 분리되지 않음</td></tr>
+      </tbody>
+    </table></div>
+
+    <b>그래서</b> — 영향력 순위에서 요일을 4위에 둔 이유입니다(격차만 보면 1위급).
+    <b>“화요일이 좋다”인지 “그날 광고를 태웠다”인지</b> 가르려면 <b>광고 미집행 화요일 회차</b>가 필요하며,
+    §05 액션 2번에 올려두었습니다.
+    </div>
+  </details>
+
+  <!-- 3-5 -->
+  <h3>⑤~⑦ GFA · 플친 · 토스 <span class="tag">데이터 부족 · 판단 보류</span></h3>
+  <p>GFA 2회 · 플친 1회 · 토스 0회로 표본이 부족해 이번 분석에서 제외했습니다.
+  다만 <b>화요일 기타 유입 391명(1위)</b>과 <b>오전 기타 373명</b>이 이 요인들과 겹칠 가능성이 높아,
+  트래킹을 켜고 재실행하면 <b>앞선 요일·호스트 판정도 함께 확정</b>됩니다.</p>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="s4">
+  <div class="sec-no">04</div>
+  <h2>요인별 디벨롭 방향성</h2>
+  <div class="lede">요인의 특성 → 강점 / 약점 → 강화 · 보완 → 액션</div>
+
+  <div class="acts">
+
+    <div class="act">
+      <div class="an">① 시간대 — 오전</div>
+      <div class="at">특성: 신규 트래픽 多 → 신규 구매 多 / 대신 환불도 多 (85만 → 165만)</div>
+      <div class="ag"><div class="agt">신규 트래픽 → 관심 고객 전환</div><ul><li>알림 / 플친 설정 유도</li></ul></div>
+      <div class="ag"><div class="agt">환불 방어</div><ul><li>라이브 구매의 이점 소구</li></ul></div>
+      <div class="ag"><div class="agt">기타 유입 정체 확인<span class="ai">AI 추가</span></div><ul><li>오전 기타 373명의 소스 태깅 (GFA / 플친 / 외부링크 / 인스타)</li></ul></div>
+    </div>
+
+    <div class="act">
+      <div class="an">① 시간대 — 야간</div>
+      <div class="at">특성: 알림 유입 55%(기존 관심고객) · 좋아요 3배 · 체류 우위 / 단 구매 전환은 신규보다 낮음</div>
+      <div class="ag"><div class="agt">관심 고객의 구매 전환 유도</div><ul><li>할인</li><li>신제품 구성</li><li>알림 고객 전용 프로모션</li></ul></div>
+      <div class="ag"><div class="agt">몰입 자산의 회수<span class="ai">AI 추가</span></div><ul><li>좋아요 2,218 · 체류 11분55초 대비 결제 전환 30.9%로 낮음 → <b>몰입 구간에 클로징·오퍼 배치</b></li></ul></div>
+    </div>
+
+    <div class="act">
+      <div class="an">② 상품 구성 — 세트</div>
+      <div class="at">특성: 볼륨 엔진(7,143만) / 단 가중 순마진율 38.6%로 단품보다 낮고, 잔망루피 1개에 34% 의존</div>
+      <div class="ag"><div class="agt">상품 세트군 다양화</div><ul><li>오리지널 + 마사지볼 세트 이외에 <b>길이별 조합 세트</b> 구성</li></ul></div>
+      <div class="ag"><div class="agt">세트 상품 매출 증대</div><ul><li>잔망루피 에디션 세트 제외, 추가 세트에 기존보다 <b>할인쿠폰·할인율 상향</b></li><li>희소성 — “라이브 동안만 100명 한정 이 가격”</li></ul></div>
+      <div class="ag"><div class="agt">볼륨 → 마진 전환<span class="ai">AI 추가</span></div><ul><li>잔망루피 순마진율 35.8%(세트 최하위) → 구성·가격 재설계로 46%대 세트 수준 접근</li><li>단일 SKU 34% 의존 완화 — 2순위 세트 육성</li></ul></div>
+    </div>
+
+    <div class="act">
+      <div class="an">② 상품 구성 — 단품</div>
+      <div class="at">특성: <b>수익성 엔진</b> — 가중 순마진율 42.4%(세트 38.6%) · 마사지스틱 단독 2,689만 / 47.4%<br>
+      <b>약점</b> — 볼륨은 세트의 63%(4,533 vs 7,143), 상위 2종이 단품군의 <b>85%</b>라 롱테일 부재<span class="ai">AI 추가</span></div>
+      <div class="ag"><div class="agt">방송 노출 시간 증대</div><ul><li>릴렉스틱볼 사용 장면을 늘려 시청자에게 자주 노출</li></ul></div>
+      <div class="ag"><div class="agt">객단가 올리기 — 단품 → 세트 유도</div><ul>
+        <li>“1만원만 추가하면 릴렉스틱볼까지 함께 받을 수 있다”</li>
+        <li>“따로 사면 10만원 넘는데, 세트로 구매하면 6만원대”</li>
+        <li>“저라면 무조건 이 세트로 갑니다. 대부분 고객님들이 이 구성을 선택하세요”</li>
+      </ul></div>
+    </div>
+
+    <div class="act">
+      <div class="an">③ 쇼호스트 — 김성경</div>
+      <div class="at">특성: <b>볼륨형</b> — 시청자 1,157(1위) · 시청자당 광고비 1,037원으로 광고비 효율 우위<br>
+      <b>약점</b> — 볼륨의 64%가 정체 불명의 ‘기타’ 유입 / 좋아요 637로 <b>팬 호감·알림 전환 최약</b>(획득률 5.3%)<span class="ai">AI 추가</span></div>
+      <div class="ag"><div class="agt">볼륨 출처 확정 <span class="dim" style="font-weight:600">— 이게 안 되면 판정 자체가 잠정</span><span class="ai">AI 추가</span></div><ul>
+        <li>기타 유입 소스 태깅 (GFA / 플친 / 외부링크 / 인스타)</li>
+        <li>광고 진행일 · 시간대 편성 · 요일별로 나눠 <b>순수 효과 분리</b></li>
+      </ul></div>
+      <div class="ag"><div class="agt">광고비 효율 강점 확대<span class="ai">AI 추가</span></div><ul>
+        <li>시청자당 1,037원(김예슬 1,482원) 우위가 회차 누적 후에도 유지되는지 확인</li>
+        <li>유지되면 광고비 증액 테스트로 볼륨 상한 확인</li>
+      </ul></div>
+      <div class="ag"><div class="agt">볼륨 → 관심고객 자산 전환<span class="ai">AI 추가</span></div><ul>
+        <li>신규 알림 획득률 5.3% → 김예슬 수준(6.4%) 목표</li>
+        <li>방송 중 알림 유도 고정 슬롯 3회 (오프닝 · 중반 · 클로징)</li>
+      </ul></div>
+    </div>
+
+    <div class="act">
+      <div class="an">③ 쇼호스트 — 김예슬</div>
+      <div class="at">특성: <b>효율·팬호감형</b> — 좋아요 2,408(김성경의 3.8배) · 신규 알림 획득률 6.4%(1위) · 객단가 우위<br>
+      <b>약점</b> — 시청자 918로 볼륨 상한 낮고, 시청자당 광고비 1,482원으로 <b>43% 비쌈</b><span class="ai">AI 추가</span></div>
+      <div class="ag"><div class="agt">볼륨 끌어올리기</div><ul>
+        <li>편성 시간 · 광고 발송 진행 여부를 바꿔 추가 테스트</li>
+        <li>김성경과 <b>동일 조건</b>(오전 + 광고 ON) 회차로 볼륨 천장 확인<span class="ai">AI 추가</span></li>
+      </ul></div>
+      <div class="ag"><div class="agt">팬호감 → 재유입 전환<span class="ai">AI 추가</span></div><ul>
+        <li>좋아요 <b>2,408(3.8배)</b>인데 신규 알림은 31로 동급 → <b>호감이 자산으로 회수되지 않음</b></li>
+        <li>좋아요·채팅 폭발 구간에 알림 유도 멘트 삽입 → 다음 회차 알림 유입 증분으로 측정</li>
+      </ul></div>
+      <div class="ag"><div class="agt">광고비 효율 개선<span class="ai">AI 추가</span></div><ul>
+        <li>김성경 회차의 광고 소재 · 타겟과 비교해 <b>차이 지점 특정</b></li>
+      </ul></div>
+    </div>
+
+    <div class="act">
+      <div class="an">④ 요일 — 월요일</div>
+      <div class="at">특성: 오가닉 신규 유입 1위 · 관심 전환 62.4% 압도 / 단 조회→결제 28.7%로 최하위</div>
+      <div class="ag"><div class="agt">신규 트래픽 증대</div><ul><li>주말 중 쇼핑라이브 예고 광고 진행</li><li>라이브 당일 오전 플친 발송</li></ul></div>
+      <div class="ag"><div class="agt">결제 병목 해소<span class="ai">AI 추가 · 우선순위 상향</span></div><ul>
+        <li>관심(조회)은 이미 최고 → <b>결제 레버가 진짜 공백</b></li>
+        <li>한정 수량 · 타이머 · 라이브 전용가 등 <b>긴급성 오퍼</b> 배치</li>
+        <li>조회 후 이탈 구간에 클로징 반복</li>
+      </ul></div>
+      <div class="ag"><div class="agt">환불 방어</div><ul><li>라이브 구매의 이점 소구</li></ul></div>
+    </div>
+
+    <div class="act">
+      <div class="an">④ 요일 — 화요일</div>
+      <div class="at">특성: 볼륨 1위 · 결제 전환 41.2%로 강함 / 단 볼륨의 대부분이 기타(광고) 유입</div>
+      <div class="ag"><div class="agt">순수 요일 효과 분리 <span class="dim" style="font-weight:600">— 최우선</span></div><ul>
+        <li>광고를 진행하지 않았을 때의 순수 요일 효율 판단 필요</li>
+        <li><b>6/30(GFA) 제외한 화요일 회차만</b>으로 기타 비율 재측정<span class="ai">AI 추가</span></li>
+      </ul></div>
+      <div class="ag"><div class="agt">결제 강점 확대<span class="ai">AI 추가</span></div><ul>
+        <li>조회→결제 41.2%(1위) = 화요일 트래픽은 <b>구매 의사가 뚜렷</b> → 조회 단계(37.3%, 하위권)를 끌어올리면 상방 큼</li>
+        <li>상품 핀 고정 · 노출 순서 조정</li>
+      </ul></div>
+      <div class="ag"><div class="agt"><s style="color:#a8adb8">환불 방어</s><span class="ai f">우선순위 하향</span></div><ul>
+        <li>환불률 11.9%로 6요일 중 4위 → 화요일 고유 문제 아님. 필요 시 <b>일요일(16.2%)</b>에 적용</li>
+      </ul></div>
+    </div>
+
+    <div class="act">
+      <div class="an">④ 요일 — 기타 요일</div>
+      <div class="at">특성: 회차 1~2회로 표본 부족 / 목요일만 전 지표 최하위로 일관</div>
+      <div class="ag"><div class="agt">표본 축적</div><ul><li>월·화 이외 요일은 최대 2회 또는 1회 → 추가 테스트로 표본 확보</li></ul></div>
+      <div class="ag"><div class="agt">목요일 진행 지양</div><ul>
+        <li>볼륨·효율 모두 좋지 않았음 (추가매출 597만 · 전환율 10.5% · 순마진율 30.9% 전부 꼴찌)</li>
+        <li>단, 좋아요 7,071은 이상치 → <b>좋아요 이벤트 여부 확인 후 최종 판단</b><span class="ai">AI 추가</span></li>
+      </ul></div>
+      <div class="ag"><div class="agt">일요일 환불 방어<span class="ai">AI 추가</span></div><ul><li>환불률 16.2%로 최악 → 환불 방어 소구는 여기에 우선 적용</li></ul></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="s5">
+  <div class="sec-no">05</div>
+  <h2>다음 액션 → 테스트 → 재측정<span class="ai">AI 추가</span></h2>
+  <div class="lede">실행 → 다음 회차 성과 측정 → 이전 대비 개선 여부 판정 → 유지·확대 또는 폐기</div>
+
+  <div class="tw"><table>
+    <thead><tr><th style="width:30px">　</th><th>실행</th><th>고정 조건</th><th>판정 지표</th><th>우선</th></tr></thead>
+    <tbody>
+      <tr class="key"><td><b>1</b></td><td><b>기타 유입 소스 태깅</b> — 전 회차<br><span class="dim">GFA / 플친 / 외부링크 / 인스타 구분</span></td><td class="dim">—</td><td>기타 유입 세부 구성비</td><td><b>선결</b></td></tr>
+      <tr class="key"><td><b>2</b></td><td><b>화요일 광고 미집행 회차 2회</b> 확보</td><td>오전 편성 · 호스트 고정</td><td>기타 유입 절대수 · 추가매출<br><span class="dim">6/30 제외 시 33.9% → ?</span></td><td><b>1순위</b></td></tr>
+      <tr><td>3</td><td><b>월요일 결제 오퍼 투입</b><br><span class="dim">한정수량 · 타이머 · 라이브 전용가</span></td><td>월요일 · 오전</td><td>조회→결제 전환 <span class="dim">28.7% 기준</span></td><td>2순위</td></tr>
+      <tr><td>4</td><td><b>오전 알림 유도 슬롯 3회</b><br><span class="dim">오프닝 · 중반 · 클로징</span></td><td>오전 편성</td><td>신규 알림 <span class="dim">34건 기준</span> · 다음 회차 알림 유입 증분</td><td>2순위</td></tr>
+      <tr><td>5</td><td><b>김예슬 오전 + 광고 ON</b> 2회</td><td>김성경 회차와 동일 조건</td><td>시청자 수(볼륨 상한) · 시청자당 광고비</td><td class="dim">3순위</td></tr>
+      <tr><td>6</td><td><b>2순위 세트 육성</b><br><span class="dim">잔망루피 외 세트 할인율 상향 + 100명 한정</span></td><td>동일 시간대</td><td>세트군 내 잔망루피 비중 <span class="dim">현 55.6%</span> · 세트 가중 순마진율 <span class="dim">38.6%</span></td><td class="dim">3순위</td></tr>
+      <tr><td>7</td><td><b>단품 → 세트 업셀 멘트</b> 고정 적용</td><td>전 회차</td><td>객단가 · 단품 대비 세트 결제 비중</td><td class="dim">3순위</td></tr>
+    </tbody>
+    <caption>1 · 2번이 먼저인 이유 — <b>기타 유입의 정체가 안 갈리면 요일·호스트 판정이 모두 잠정</b>으로 남습니다. 나머지 액션의 측정 정확도도 여기에 걸려 있습니다.</caption>
+  </table></div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="s6">
+  <div class="sec-no">06</div>
+  <h2>데이터가 부족해 판단 보류한 것<span class="ai">AI 추가</span></h2>
+
+  <div class="tw"><table>
+    <thead><tr><th>항목</th><th>사유</th><th>언제 판정 가능</th></tr></thead>
+    <tbody>
+      <tr><td><b>GFA · 플친 · 토스</b></td><td>n = 2 / 1 / 0</td><td>트래킹 켜고 각 3~4회 누적 후</td></tr>
+      <tr><td><b>호스트 순수 효과</b></td><td>광고 · 시간대 · 요일과 혼입</td><td>기타 소스 태깅 + 조건 고정 회차 확보 후</td></tr>
+      <tr class="key"><td><b>「쇼핑라이브탭·기타 = 신규」 전제</b></td><td>대시보드는 <b>유입 경로만</b> 제공하고 신규·재구매 구분이 없음. 알림(단골·플친)만 정의상 기존 고객으로 확정 가능</td><td><b>유입경로 × 신규·재구매 교차 데이터</b> 확보 시</td></tr>
+      <tr><td><b>호스트 「기타 = 신규」 가정</b></td><td>정규화 시 근거 4개 중 2개 역전</td><td>위와 동일</td></tr>
+      <tr><td><b>상품 요인 — 인과 사슬</b></td><td>잔망루피 편중(34%)으로 회차 비교 불가 <b>+ 상품별 시청자·유입경로 데이터 부재</b>로 ③④가 통째로 빔</td><td>상품별 유입·시청 데이터 연결 + 다른 상품 단독 편성 회차 확보 후</td></tr>
+      <tr><td><b>이성훈</b></td><td>n = 1</td><td>3회 이상 누적 후</td></tr>
+      <tr><td><b>수 · 금 · 일 요일</b></td><td>회차 1~2회</td><td>요일당 3~4회 누적 후</td></tr>
+      <tr><td><b>진행 능력</b> <span class="dim">채팅 · 좋아요</span></td><td>몰입 3지표가 서로 다른 대상을 지목하고,<br>목요일 사례로 <b>매출과 무관</b>이 확인됨</td><td>이벤트 유무 통제 + 채팅 내용 분류 후</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <hr class="soft">
+  데이터: 쇼핑라이브 관리자 통계 13회차 (2026.04.30 – 07.21) · 작성 2026.08.07 · <b>v2</b><br>
+  <b>v1 → v2 변경</b> — ① 4개 요인 전부를 <b>결론 → “왜 볼륨” / “왜 효율”</b> 질문 구조로 재작성
+  ② 지표명을 대시보드 캡처 그대로 사용하고 <b>원지표와 AI 계산값을 분리 표기</b>
+  ③ 지표 표·논외 항목을 <b>토글로 접음</b>
+  ④ 요인별 <b>“못 연 것”</b>과 그 사유를 논외 항목으로 명시<br>
+  <b>AI 추가</b> 표시 항목은 분석 프레임(특수상황 · 절대수 분해 · 볼륨/효율 판정 · 액션·재측정) 기준으로 보완한 부분입니다. 나머지는 작성자 원안 유지.<br>
+  ※ n=13 소표본. 유입광고 · 요일 · 이성훈 관련 수치는 회차 누적 후 재검증 필요.
+</footer>
+
+</div>
+</body>
+</html>
