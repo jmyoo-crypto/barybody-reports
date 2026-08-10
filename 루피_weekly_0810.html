@@ -369,6 +369,24 @@ td.c, th.c { text-align: center; }
                       border-left: 3px solid #f5c518; }
 .tc-when { font-size: 11px; color: #a09ab8; font-weight: 700; }
 .ag-li { padding: 2px 0; line-height: 1.65; }
+/* ===== 금주 방향성 — Cafe24 필독 강조 ===== */
+.dev-block.dev-must { border-left: 4px solid #f5222d; background: #fffbfb;
+                      padding-left: 14px; border-radius: 8px; }
+.must-badge { font-size: 10.5px; font-weight: 800; color: #fff; background: #f5222d;
+              padding: 2px 8px; border-radius: 5px; margin-left: 9px; vertical-align: middle;
+              letter-spacing: .5px; }
+.must-wrap { margin-top: 12px; border: 2px solid #ffccc7; border-radius: 10px;
+             background: #fff; padding: 12px 14px; }
+.must-t { font-size: 12px; font-weight: 800; color: #a8071a; margin-bottom: 9px;
+          letter-spacing: -.2px; }
+.must-wrap .ag { margin-bottom: 10px; }
+.must-wrap .ag:last-child { margin-bottom: 0; }
+.must-wrap .ag-t { font-size: 13.5px; font-weight: 800; color: #111; }
+.must-wrap .ag-a { font-size: 12.5px; color: #333; line-height: 1.75; }
+/* 액션 안의 핵심 토큰 — 동사(빨강)·수치(남색) */
+.hl-do { color: #cf1322; font-weight: 800; background: #fff1f0;
+         padding: 0 4px; border-radius: 3px; }
+.hl-num { color: #0958d9; font-weight: 800; }
 /* 결과 줄바꿈 — 한 문장씩 끊어 읽히게 */
 .tc-line { display: block; padding: 2px 0 2px 12px; position: relative; }
 .tc-line + .tc-line { margin-top: 3px; }
@@ -912,7 +930,7 @@ function setActive(el) {
     </div>
   </div>
   <div class="card"><h3><span class="dot" style="background:#8c8c8c"></span>지난주 액션 결과</h3><p class="note" style="margin:0">지난주(2026-07-27) 등록된 액션이 없습니다 — 이번 주 액션을 <code>ACTIONS_MANUAL['루피']['2026-08-03']</code>에 기록하면 다음 주 리포트가 자동으로 개선/미개선을 판정합니다.</p></div>
-  <div class="card" data-brief="9" data-brief-label="디벨롭 · 액션"><h3><span class="dot" style="background:#389e0d"></span>금주 방향성 — 강점·약점 → 액션</h3><div class="dev-block"><div class="dev-head">🛒 Cafe24 (메타·카카오·구글)</div><div class="ve-verdict ve-both"><span class="vv-badge">볼륨·효율 모두 우위</span><span class="vv-desc">더 크게, 더 잘 벌었다 — 확대 구간</span></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i">효율 — ROAS 227.4% → 316.9%</div><div class="sw-i">볼륨 — 매출 7,966,586원 → 10,232,624원</div><div class="sw-i">순마진 927,914원 → 2,496,325원</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i dim">—</div></div></div><div class="ag"><div class="ag-t">적자 소재 단계 감액</div><div class="ag-a">급정지 시 볼륨이 급감하므로 주 50% 단계 감액: 릴렉스틱오리지널_루피/릴렉스틱볼_루피_영상_15초_일반_3(ROAS 133%), 릴렉스틱오리지널_루피/릴렉스틱볼_루피_영상_2시간뒤_일반_2(ROAS 113%)</div></div><div class="ag"><div class="ag-t">감액분을 승자로 이관</div><div class="ag-a">같은 예산에서 볼륨 유지: → 릴렉스틱오리지널_루피/릴렉스틱볼_루피_영상_자사몰런칭_일반_3(ROAS 203%)</div></div><div class="ag"><div class="ag-t">꺼진 고효율 소재 재가동</div><div class="ag-a">신규 제작 없이 즉시 보강: 릴렉스틱오리지널_루피/릴렉스틱볼_루피_영상_자사몰런칭_일반_3</div></div><div class="ag"><div class="ag-t">신규 소재 제작 방향 (소구점 기준)</div><div class="ag-a">확대 앵글 <b>채널</b>(ROAS 203%·16건) 변주 제작 / 중단 검토 <b>타이밍</b>(113%)</div></div></div><div class="dev-block"><div class="dev-head">🟢 Naver (검색광고·GFA·애드부스트)</div><div class="ve-verdict ve-vol"><span class="vv-badge">볼륨 우위 · 효율 유지</span><span class="vv-desc">규모가 커졌고 효율은 유지됐다</span></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i">효율 — ROAS 0.0% → 1245.5%</div><div class="sw-i">볼륨 — 매출 6,704,573원 → 8,631,683원</div><div class="sw-i">순마진 3,924,367원 → 4,386,021원</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i dim">—</div></div></div><div class="ag"><div class="ag-t">네이버 볼륨 확대</div><div class="ag-a">ROAS 유지 구간 — 상위 광고그룹 예산 증액 여지 점검</div></div></div><p class="note">※ 액션 출처: 자동 초안. 자동 초안 규칙 = ①구매 0 정리 ②적자 단계 감액 ③감액분 승자 이관 ④꺼진 승자 재가동 ⑤승자 앵글 신규 제작.</p></div>
+  <div class="card" data-brief="9" data-brief-label="디벨롭 · 액션"><h3><span class="dot" style="background:#389e0d"></span>금주 방향성 — 강점·약점 → 액션</h3><div class="dev-block dev-must"><div class="dev-head">🛒 Cafe24 (메타·카카오·구글)<span class="must-badge">필독</span></div><div class="ve-verdict ve-both"><span class="vv-badge">볼륨·효율 모두 우위</span><span class="vv-desc">더 크게, 더 잘 벌었다 — 확대 구간</span></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 227.4%</b> → 316.9%</div><div class="sw-i">볼륨 — 매출 7,966,586원 → 10,232,624원</div><div class="sw-i">순마진 927,914원 → 2,496,325원</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i dim">—</div></div></div><div class="must-wrap"><div class="must-t">📌 이번 주 실행 — 여기만은 꼭</div><div class="ag ag-must"><div class="ag-t">적자 소재 단계 <b class="hl-do">감액</b></div><div class="ag-a">급정지 시 볼륨이 급감하므로 주 50% 단계 <b class="hl-do">감액</b>: 릴렉스틱오리지널_루피/릴렉스틱볼_루피_영상_15초_일반_3(<b class="hl-num">ROAS 133%</b>), 릴렉스틱오리지널_루피/릴렉스틱볼_루피_영상_2시간뒤_일반_2(<b class="hl-num">ROAS 113%</b>)</div></div><div class="ag ag-must"><div class="ag-t"><b class="hl-do">감액</b>분을 승자로 이관</div><div class="ag-a">같은 예산에서 볼륨 유지: → 릴렉스틱오리지널_루피/릴렉스틱볼_루피_영상_자사몰런칭_일반_3(<b class="hl-num">ROAS 203%</b>)</div></div><div class="ag ag-must"><div class="ag-t">꺼진 고효율 소재 <b class="hl-do">재가동</b></div><div class="ag-a">신규 제작 없이 즉시 보강: 릴렉스틱오리지널_루피/릴렉스틱볼_루피_영상_자사몰런칭_일반_3</div></div><div class="ag ag-must"><div class="ag-t"><b class="hl-do">신규 소재 제작</b> 방향 (소구점 기준)</div><div class="ag-a">확대 앵글 <b>채널</b>(<b class="hl-num">ROAS 203%</b>·16건) 변주 제작 / <b class="hl-do">중단</b> 검토 <b>타이밍</b>(113%)</div></div></div></div><div class="dev-block"><div class="dev-head">🟢 Naver (검색광고·GFA·애드부스트)</div><div class="ve-verdict ve-vol"><span class="vv-badge">볼륨 우위 · 효율 유지</span><span class="vv-desc">규모가 커졌고 효율은 유지됐다</span></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 0.0%</b> → 1245.5%</div><div class="sw-i">볼륨 — 매출 6,704,573원 → 8,631,683원</div><div class="sw-i">순마진 3,924,367원 → 4,386,021원</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i dim">—</div></div></div><div class="ag"><div class="ag-t">네이버 볼륨 확대</div><div class="ag-a">ROAS 유지 구간 — 상위 광고그룹 예산 <b class="hl-do">증액</b> 여지 점검</div></div></div><p class="note">※ 액션 출처: 자동 초안. 자동 초안 규칙 = ①구매 0 정리 ②적자 단계 감액 ③감액분 승자 이관 ④꺼진 승자 재가동 ⑤승자 앵글 신규 제작.</p></div>
   
   
 </div>
