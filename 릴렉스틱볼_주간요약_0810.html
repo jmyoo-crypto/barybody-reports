@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>릴렉스틱볼 유료광고 · 주간보고</title>
+<style>
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    color:#1d1d1f; background:#ececed; padding:28px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+  .page{max-width:840px; margin:0 auto; background:#fff; padding:42px 48px 36px;
+    box-shadow:0 4px 24px rgba(0,0,0,.10); border-radius:10px;}
+  .num{font-variant-numeric:tabular-nums;}
+  header{border-bottom:3px solid #b10202; padding-bottom:16px; margin-bottom:22px;}
+  .date{float:right; font-size:12px; color:#9a9a9f; margin-top:4px; text-align:right;}
+  .eyebrow{font-size:12px; font-weight:700; letter-spacing:.12em; color:#b10202; text-transform:uppercase;}
+  h1{font-size:25px; font-weight:800; margin-top:6px; letter-spacing:-.01em;}
+  .decision{background:#fdf2f2; border:1px solid #f3cccc; border-left:5px solid #b10202;
+    border-radius:8px; padding:14px 20px; margin-bottom:22px; font-size:15px; font-weight:700;}
+  .decision .lbl{display:inline-block; font-size:11px; font-weight:800; color:#fff; background:#b10202;
+    padding:2px 9px; border-radius:5px; margin-right:9px; vertical-align:middle;}
+  .decision b{color:#b10202;}
+  h2{font-size:15px; font-weight:800; margin:24px 0 10px; padding-left:11px; border-left:4px solid #b10202;}
+  table{width:100%; border-collapse:collapse;}
+  table.kpi{font-size:13px; margin-bottom:4px;}
+  table.kpi thead th{background:#b10202; color:#fff; font-weight:700; padding:7px 12px; text-align:left; font-size:12px;}
+  table.kpi td{border:1px solid #e2e2e4; padding:10px 12px; vertical-align:top;}
+  table.kpi .ktop{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;}
+  table.kpi .big{font-size:17px; font-weight:800; letter-spacing:-.02em;}
+  table.kpi .big .u{font-size:11px; color:#8a8a8f; font-weight:700; margin-left:1px;}
+  table.kpi .chg{font-size:11px; color:#8a8a8f; font-weight:800; white-space:nowrap;}
+  table.kpi .chg.down{color:#b10202;} table.kpi .chg.up{color:#1e7a36;} table.kpi .chg.flat{color:#a8a8ad;}
+  table.kpi .d{font-size:11px; color:#8a8a8f; font-weight:700; display:block; margin-top:3px;}
+  table.plat, table.crea{font-size:12.5px; margin-bottom:4px;}
+  table.plat thead th, table.crea thead th{background:#f0f0f2; color:#3a3a3f; font-weight:800;
+    padding:6px 10px; text-align:left; font-size:11.5px; border-bottom:1px solid #e2e2e4;}
+  table.plat td, table.crea td{border-bottom:1px solid #f0f0f2; padding:7px 10px; vertical-align:middle;}
+  table.plat .r, table.crea .r, th.r{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  table.plat .pname, table.crea .cname{font-weight:800; white-space:nowrap;}
+  table.crea .cname{max-width:190px; overflow:hidden; text-overflow:ellipsis;}
+  .vb{font-size:11px; font-weight:800; padding:2px 8px; border-radius:5px; white-space:nowrap;}
+  .vb.g{background:#eaf6ec; color:#1e7a36;} .vb.r{background:#fdeceb; color:#b10202;}
+  .vb.y{background:#fdf6e3; color:#9a6b00;} .vb.n{background:#f0f0f2; color:#6b6b70;}
+  .cta{font-size:11px; color:#8a8a8f; font-weight:700;}
+  .cards{display:flex; gap:14px; margin-top:6px;}
+  .card{flex:1; border:1px solid #e2e2e4; border-radius:8px; padding:13px 16px;}
+  .card.good{background:#f3f9f4; border-color:#cfe6d3;} .card.bad{background:#fdf4f3; border-color:#f1d3cf;}
+  .card .ttl{font-weight:800; font-size:12.5px; margin-bottom:5px;}
+  .card.good .ttl{color:#1e7a36;} .card.bad .ttl{color:#b10202;}
+  .card .name{font-size:17px; font-weight:800; letter-spacing:-.02em; word-break:break-all;}
+  .card .name .acct{font-size:11px; color:#8a8a8f; font-weight:700; margin-left:6px;}
+  .card .stat{font-size:13px; font-weight:800; margin-top:3px;}
+  .card.good .stat{color:#1e7a36;} .card.bad .stat{color:#b10202;}
+  .card .why{font-size:12px; color:#555; margin-top:4px;}
+  .issue{border:1px solid #e2e2e4; border-radius:8px; margin-top:12px; overflow:hidden;}
+  .i-head{display:flex; align-items:center; gap:10px; padding:10px 16px; background:#f7f7f8;
+    border-bottom:1px solid #e2e2e4; font-size:14.5px; font-weight:800;}
+  .tag{font-size:11px; font-weight:800; padding:2px 9px; border-radius:5px; white-space:nowrap;
+    background:#f0f0f2; color:#3a3a3f;}
+  dl.body{display:grid; grid-template-columns:60px 1fr;}
+  dl.body dt{font-weight:800; font-size:12px; color:#6b6b70; padding:9px 0 9px 16px; border-bottom:1px solid #f0f0f2;}
+  dl.body dd{margin:0; padding:9px 16px 9px 8px; font-size:13.3px; border-bottom:1px solid #f0f0f2;}
+  dl.body dt:last-of-type, dl.body dd:last-of-type{border-bottom:0;}
+  dl.body dd.now{background:#fcfaf5;}
+  dl.body b{font-weight:700; color:#1d1d1f;}
+  .ok{color:#1e7a36 !important; font-weight:800;}
+  .ng{color:#b10202 !important; font-weight:800;}
+  .wait{color:#6b6b70 !important; font-weight:800;}
+  footer{margin-top:22px; padding-top:12px; border-top:1px solid #e2e2e4; font-size:11px; color:#a8a8ad; text-align:center;}
+  footer a{color:#8a8a8f; text-decoration:none; font-weight:700; margin:0 6px;}
+  footer a:hover{color:#b10202;}
+  @media print{ body{background:#fff; padding:0;} .page{box-shadow:none; border-radius:0; max-width:100%; padding:24px 28px;}
+    .issue{break-inside:avoid;} footer a{display:none;} }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <span class="date">기준일 2026. 08. 10<br>데이터 08. 03 ~ 08. 08</span>
+    <div class="eyebrow">마케팅 주간 공유</div>
+    <h1>릴렉스틱볼</h1>
+  </header>
+
+  <div class="decision"><span class="lbl">이번 주 결정</span>적자 <b>4종 단계 감액</b>(1200_퍼센트변경_1 외) · 승자 <b>2종 증액</b>(세트 리뷰_2) · <b>리뷰·후기</b> 앵글 신규 제작</div>
+
+  <h2>이번 주 성과 (전주 대비)</h2>
+  <table class="kpi">
+    <thead><tr><th>광고비</th><th>매출 (페이드채널)</th><th>ROAS</th><th>순마진</th></tr></thead>
+    <tbody><tr><td><div class="ktop"><span class="big num">3,282,945<span class="u">원</span></span><span class="chg up">▼ 6%</span></div><span class="d num">전주 3,475,061원</span></td><td><div class="ktop"><span class="big num">11,633,505<span class="u">원</span></span><span class="chg down">▼ 5%</span></div><span class="d num">전주 12,302,033원</span></td><td><div class="ktop"><span class="big num">354<span class="u">%</span></span><span class="chg flat">= 동일</span></div><span class="d num">전주 354%</span></td><td><div class="ktop"><span class="big num">3,040,012<span class="u">원</span></span><span class="chg down">▼ 5%</span></div><span class="d num">전주 3,214,193원</span></td></tr></tbody>
+  </table>
+
+  <h2>플랫폼별 — 어디가 움직였나</h2>
+  <table class="plat">
+    <thead><tr><th>플랫폼</th><th class="r">광고비</th><th class="r">매출</th><th class="r">ROAS</th><th class="r">순마진</th><th>판정</th></tr></thead>
+    <tbody><tr><td class="pname">🛒 Cafe24</td><td class="r">3,052,681<span class="cta"> ▼ 5.5%</span></td><td class="r">5,614,506<span class="cta"> ▼ 9.0%</span></td><td class="r"><b>184%</b><span class="cta"> ▼ 3.7%</span></td><td class="r">-141,073</td><td><span class="vb g">볼륨 축소 · 효율 유지</span></td></tr><tr><td class="pname">🟢 Naver</td><td class="r">230,264<span class="cta"> ▼ 5.6%</span></td><td class="r">6,018,999<span class="cta"> ▼ 1.8%</span></td><td class="r"><b>2614%</b><span class="cta"> ▲ 4.0%</span></td><td class="r">3,181,085</td><td><span class="vb n">보합</span></td></tr></tbody>
+  </table>
+
+  <h2>이번 주 이슈 — 무슨 일 → 뭘 했나 → 결과 → 다음</h2>
+  <div class="issue pr"><div class="i-head"><span class="tag">🔴 문제</span> 적자 소재에 예산 최다 투입 — 1200_퍼센트변경_1</div><dl class="body"><dt>이슈</dt><dd>ROAS <b>105%</b>로 손익분기(192%) 미달인데 광고비 <b class="num">1,286,476원</b>(지출 비중 <b>28%</b>로 최대) 집행</dd><dt>대응</dt><dd>급정지 시 볼륨이 급감하므로 <b>주 50% 단계 감액</b> 후 승자 소재로 예산 이관</dd><dt>결과</dt><dd class="now"><span class="ng">🔴 미해결</span> — 전전주 119% → 지난주 <b>105%</b> <b>악화</b></dd><dt>다음</dt><dd>다음 주 해당 소재 ROAS가 손익분기 192% 위로 회복되는지 확인</dd></dl></div><div class="issue op"><div class="i-head"><span class="tag">🟢 기회</span> 승자 소재 확보 — 세트 리뷰_2</div><dl class="body"><dt>이슈</dt><dd>ROAS <b>344%</b>(계정평균 195%) · 구매 13건</dd><dt>대응</dt><dd>적자 소재에서 회수한 예산을 이 소재로 <b>증액</b></dd><dt>결과</dt><dd class="now"><span class="ok">✅ 확보</span> — 승자 3종 · 지난주 전체는 <b>볼륨 축소 · 효율 유지</b></dd><dt>다음</dt><dd>증액 후 ROAS 유지 여부 확인 — 하락 시 원복</dd></dl></div><div class="issue ts"><div class="i-head"><span class="tag">🧪 테스트</span> 진행 중 테스트 — 비밀링크 썸네일 + 선착순 시간표시 변경</div><dl class="body"><dt>이슈</dt><dd>비밀링크 랜딩 이탈을 줄여 같은 광고비로 전환율을 올린다 (개시 07/29)</dd><dt>대응</dt><dd>변경 전 대비 cafe24 전환수·ROAS 상승 확인</dd><dt>결과</dt><dd class="now">중간 판정 — 전환 효율 개선 (ROAS 139% → 148% · CPA −2,923원). 단 표본 5일이라 확정은 이름</dd><dt>다음</dt><dd>차주 완결 주로 재판정. 단독 효과가 필요하면 둘 중 하나만 롤백해 분리 측정</dd></dl></div>
+
+  <h2>소재 — 지출 상위 5종</h2>
+  <table class="crea">
+    <thead><tr><th>소재</th><th>소구점</th><th class="r">광고비</th><th class="r">ROAS</th><th class="r">구매</th><th>판정</th></tr></thead>
+    <tbody><tr><td class="cname">1200_퍼센트변경_1</td><td>기타</td><td class="r">1,286,476</td><td class="r"><b>105%</b></td><td class="r">47건</td><td><span class="vb r">🔴 적자</span></td></tr><tr><td class="cname">기존소재_1200개_2</td><td>기타</td><td class="r">1,093,055</td><td class="r"><b>95%</b></td><td class="r">27건</td><td><span class="vb r">🔴 적자</span></td></tr><tr><td class="cname">세트 공홈특가</td><td>가격·특가</td><td class="r">665,228</td><td class="r"><b>232%</b></td><td class="r">58건</td><td><span class="vb g">🟢 승자</span></td></tr><tr><td class="cname">극락_퍼센트변경_2</td><td>감각·효능</td><td class="r">637,633</td><td class="r"><b>179%</b></td><td class="r">38건</td><td><span class="vb r">🔴 적자</span></td></tr><tr><td class="cname">품절대란_3</td><td>희소</td><td class="r">586,025</td><td class="r"><b>96%</b></td><td class="r">18건</td><td><span class="vb r">🔴 적자</span></td></tr><tr><td class="cta" colspan="6">그 외 10종 (광고비 406,096원) — 상세 보고서 참조</td></tr></tbody>
+  </table>
+
+  <h2>이번 주 베스트 · 워스트 소재</h2>
+  <div class="cards"><div class="card good"><div class="ttl">🏆 베스트 소재</div><div class="name">세트 리뷰_2<span class="acct">리뷰·후기</span></div><div class="stat num">실ROAS 344% · 구매 13건</div><div class="why">계정평균 195% 상회 — 증액·변주 1순위</div></div><div class="card bad"><div class="ttl">🔻 워스트 소재</div><div class="name">기존소재_1200개_2<span class="acct">기타</span></div><div class="stat num">실ROAS 95% · 구매 27건</div><div class="why">광고비 1,093,055원 집행 — 감액·중단 검토</div></div></div>
+
+  <footer>
+    ROAS·매출 = 페이드채널(메타+네이버) 합산 · 인플루언서/멀티제품 귀속 차감 기준 | 손익분기 192%<br>
+    <a href="릴렉스틱볼_weekly_0810.html">📋 상세 주간보고서</a> · <a href="https://jmyoo-crypto.github.io/barybody-reports/%EB%A6%B4%EB%A0%89%EC%8A%A4%ED%8B%B1%EB%B3%BC_%EA%B4%91%EA%B3%A0%EB%B6%84%EC%84%9D_260809.html" target="_blank">📈 광고분석 리포트</a>
+  </footer>
+</div>
+</body>
+</html>
