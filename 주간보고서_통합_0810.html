@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>주간 보고 통합 · 2026-08-03~08-09 (8월 3일~8월 9일)</title>
+<style>
+  html,body{height:100%;margin:0;font-family:-apple-system,'Malgun Gothic',sans-serif;background:#0f172a}
+  .topbar{display:flex;align-items:center;gap:14px;padding:11px 18px;background:#0f172a;color:#fff;border-bottom:1px solid #1e293b;flex-wrap:wrap}
+  .topbar .title{font-size:15px;font-weight:800;letter-spacing:-.2px}
+  .topbar .period{font-size:12px;color:#94a3b8}
+  .tabs{display:flex;gap:8px;margin-left:auto}
+  .tab{padding:8px 18px;border:none;border-radius:999px;background:#1e293b;color:#cbd5e1;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
+  .tab:hover{background:#334155;color:#fff}
+  .tab.active{background:#6366f1;color:#fff;box-shadow:0 2px 10px rgba(99,102,241,.4)}
+  .tab .kpi{display:block;font-size:10.5px;font-weight:600;opacity:.75;margin-top:1px}
+  .subbar{display:flex;align-items:center;gap:8px;padding:8px 18px;background:#111c33;border-bottom:1px solid #1e293b}
+  .sub{padding:6px 15px;border:none;border-radius:8px;background:#1e293b;color:#cbd5e1;font-size:12.5px;font-weight:700;cursor:pointer;transition:.15s}
+  .sub:hover{background:#334155;color:#fff}
+  .sub.active{background:#e2e8f0;color:#0f172a}
+  .sub.brief.active{background:#7c3aed;color:#fff}
+  .sub-hint{margin-left:auto;font-size:11px;color:#64748b}
+  .sub-hint b{color:#fbbf24}
+  .stage{position:absolute;top:96px;left:0;right:0;bottom:0}
+  iframe{width:100%;height:100%;border:0;background:#fff}
+  @media(max-width:640px){.stage{top:132px}}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <span class="title">📊 주간 보고 통합</span>
+    <span class="period">2026-08-03 ~ 08-09 (지난주 · 8월 3일~8월 9일)</span>
+    <div class="tabs" id="tabs"></div>
+  </div>
+  <div class="subbar">
+    <button class="sub" data-view="weekly" onclick="setView('weekly')">📋 주간보고서</button>
+    <button class="sub brief" data-view="brief" onclick="setView('brief')">▶ 보고모드</button>
+    <button class="sub" data-view="ads" onclick="setView('ads')">📈 광고분석</button>
+    <span class="sub-hint" id="subHint"></span>
+  </div>
+  <div class="stage"><iframe id="frame" src=""></iframe></div>
+
+<script>
+/* 부모 주도 연속 보고모드:
+   - 통합뷰가 iframe(주간/광고분석)의 보고모드를 직접 시작·완료감지·다음 전환.
+   - 리포트에 별도 훅이 없어도 동작(광고분석 재생성돼도 무관). 단 동일 출처(GitHub Pages https)에서만.
+   - 흐름: (제품A) 주간→광고분석 → (제품B) 주간→광고분석 → ... → 마지막까지 끝나면 종료 */
+var REPORTS = [
+  { name:"릴렉스틱볼", kpi:"ROAS 306% · 순마진 +374만",
+    weekly:"릴렉스틱볼_weekly_0810.html", ads:"릴렉스틱볼_광고분석_260803.html", adsOld:true },
+  { name:"릴렉스틱",   kpi:"ROAS 533% · 순마진 +1,881만",
+    weekly:"릴렉스틱_weekly_0810.html",   ads:"릴렉스틱_광고분석_260803.html",   adsOld:true },
+  { name:"잔망루피",   kpi:"ROAS 481% · 순마진 +688만",
+    weekly:"루피_weekly_0810.html",       ads:"루피_광고분석_260803.html",       adsOld:true }
+];
+var CB = Date.now();  // 캐시버스터: 통합뷰를 새로고침하면 iframe도 최신본 재로드
+
+var cur = 0;           // 제품 index
+var view = "weekly";   // weekly | brief | ads
+var briefStage = null; // 연속 보고 중: 'weekly' -> 'ads'
+var poll = null, wasRun = false, lastEnd = false, advanced = false;
+
+var tabs = document.getElementById('tabs');
+var frame = document.getElementById('frame');
+var subHint = document.getElementById('subHint');
+
+REPORTS.forEach(function(r, i){
+  var b = document.createElement('button');
+  b.className = 'tab' + (i===0?' active':'');
+  b.innerHTML = r.name + (r.kpi ? '<span class="kpi">' + r.kpi + '</span>' : '');
+  b.onclick = function(){ setProduct(i); };
+  tabs.appendChild(b);
+});
+
+function docFor(){
+  var r = REPORTS[cur];
+  if(view==='ads') return r.ads;
+  if(view==='brief') return (briefStage==='ads') ? r.ads : r.weekly;
+  return r.weekly;
+}
+// iframe 보고모드 상태: {run: 실행중, end: 마지막 스텝} — 동일 출처에서만 접근 가능
+function bstate(){
+  try{
+    var d = frame.contentDocument; if(!d) return {run:false, end:false};
+    var run = d.body.classList.contains('brief-active') || d.body.classList.contains('brief-on');
+    var c = d.getElementById('bbCount') || d.getElementById('bCount');
+    var end = false;
+    if(c){ var m = (c.textContent||'').match(/(\d+)\s*\/\s*(\d+)/); if(m) end = (m[1]===m[2]); }
+    return {run:run, end:end};
+  }catch(e){ return {run:false, end:false}; }
+}
+function startBrief(){
+  try{
+    var w = frame.contentWindow, d = frame.contentDocument;
+    if(w && typeof w.briefNext === 'function'){ w.briefNext(); return; }  // 주간보고서
+    if(d){ var b = d.getElementById('bNext'); if(b){ b.click(); return; } } // 광고분석
+  }catch(e){}
+}
+function stopBrief(){
+  try{
+    var w = frame.contentWindow, d = frame.contentDocument;
+    if(w && typeof w.briefExit === 'function'){ w.briefExit(); return; }
+    if(d && (d.body.classList.contains('brief-on'))){ var x = d.getElementById('bExit'); if(x) x.click(); }
+  }catch(e){}
+}
+// 광고분석은 이번주(0810)본이 아직 없어 260803본을 띄운다 → 기간이 다르다는 걸 항상 알린다
+function adsWarn(){
+  return REPORTS[cur].adsOld ? ' · <b>광고분석은 260803본(7/27~8/2 기준)</b>' : '';
+}
+function render(){
+  tabs.querySelectorAll('.tab').forEach(function(b,i){ b.classList.toggle('active', i===cur); });
+  document.querySelectorAll('.sub').forEach(function(b){ b.classList.toggle('active', b.dataset.view===view); });
+  subHint.innerHTML =
+      (view==='brief' && briefStage==='ads') ? '연속 보고 — 광고분석 (→/← 진행, 끝나면 다음 제품)' + adsWarn()
+    : (view==='brief') ? '연속 보고 — 주간보고서 (끝나면 광고분석 → 다음 제품)'
+    : (view==='weekly') ? '보고모드 탭으로 연속 브리핑 시작'
+    : (view==='ads') ? '지난주 기준 리포트' + adsWarn()
+    : '';
+  clearInterval(poll); poll=null; wasRun=false; lastEnd=false;
+  var want = encodeURIComponent(docFor()) + '?v=' + CB;
+  if(frame.getAttribute('src') !== want){
+    frame.onload = function(){ frame.onload=null; afterLoad(); };
+    frame.setAttribute('src', want);
+  } else {
+    afterLoad();
+  }
+}
+function afterLoad(){
+  advanced = false;   // 새 단계 준비 완료 → 완료감지 재무장
+  if(view==='brief'){
+    setTimeout(function(){
+      startBrief();
+      try{ frame.contentWindow.focus(); }catch(e){}  // 키보드(→/←) 포커스를 새 리포트로
+      beginPoll();
+    }, 300);
+  } else { stopBrief(); }
+}
+function beginPoll(){
+  clearInterval(poll); wasRun=false; lastEnd=false;
+  poll = setInterval(function(){
+    var s = bstate();
+    if(s.run){ wasRun = true; lastEnd = s.end; }
+    else if(wasRun){                 // 실행중 → 종료됨
+      clearInterval(poll); poll=null; wasRun=false;
+      if(lastEnd) advance();         // 마지막 스텝까지 갔다가 종료 = 완료 → 다음 단계
+      // 중간에 Esc 등 조기 종료면 아무 것도 안 함
+    }
+  }, 200);
+}
+function advance(){
+  if(advanced || view!=='brief') return;
+  advanced = true;
+  if(briefStage==='weekly'){
+    view='brief'; briefStage='ads'; render();                 // 주간 → 같은 제품 광고분석
+  } else {
+    if(cur < REPORTS.length-1){ cur+=1; view='brief'; briefStage='weekly'; render(); } // 다음 제품 주간
+    else { view='ads'; briefStage=null; render(); }            // 마지막 제품 광고분석까지 완료 → 그대로 멈춤(재시작 안 함)
+  }
+}
+function setProduct(i){ cur=i; if(view==='brief'){ view='weekly'; briefStage=null; } render(); }
+function setView(v){ if(v==='brief'){ briefStage='weekly'; } else { briefStage=null; } view=v; render(); }
+
+// (보조) 패치된 리포트가 자연 완료 시 보내는 신호도 수신 — 폴링과 중복돼도 advanced 래치로 1회만
+window.addEventListener('message', function(e){
+  var d = e.data || {};
+  if(d.type==='brief:done'){ advance(); return; }
+  if(d.type==='brief:started'){
+    // 리포트 하단 '보고 시작' 버튼으로 직접 시작한 경우 — iframe 리로드 없이 연속 모드로 전환
+    if(view!=='brief'){
+      briefStage = (view==='ads') ? 'ads' : 'weekly';
+      view = 'brief';
+      document.querySelectorAll('.sub').forEach(function(b){ b.classList.toggle('active', b.dataset.view===view); });
+      subHint.innerHTML = (briefStage==='ads')
+        ? '연속 보고 — 광고분석 (→/← 진행, 끝나면 다음 제품)' + adsWarn()
+        : '연속 보고 — 주간보고서 (끝나면 광고분석 → 다음 제품)';
+    }
+    advanced = false;
+    beginPoll();
+  }
+});
+
+render();
+</script>
+</body>
+</html>
