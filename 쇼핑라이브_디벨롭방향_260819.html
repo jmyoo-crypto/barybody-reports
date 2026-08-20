@@ -146,6 +146,10 @@
   .src{display:inline-block; font-size:9.5px; font-weight:800; letter-spacing:.02em; padding:1px 5px; border-radius:3px; margin-left:5px; vertical-align:1px; white-space:nowrap;}
   .src.ai{background:#ede9fe; color:#5b21b6;}
   .src.mtg{background:#e8f3ec; color:#1e7a36;}
+  .sch{background:#f2f8f4; border-left:3px solid #1e7a36; border-radius:0 6px 6px 0; padding:7px 12px; margin:9px 0 0; font-size:12.3px; color:#1d1d1f; line-height:1.75;}
+  .sch .sl{display:inline-block; font-weight:800; color:#1e7a36; font-size:10.5px; letter-spacing:.03em; margin-right:8px; vertical-align:1px;}
+  .sch b{font-weight:700;}
+  .sch .sd{color:#8a8a8f;}
   .srcbar{background:#fafafb; border:1px solid #e6e6e9; border-radius:8px; padding:10px 14px; margin:12px 0 4px; font-size:12px; color:#555; line-height:1.9;}
   .srcbar b{color:#1d1d1f;}
 
@@ -194,56 +198,12 @@
   </div>
   <div class="purpose">
     이 문서의 목적은 <b>분석 결과 공유가 아니라 다음 라이브에 적용할 방향을 정하는 것</b>입니다.
-    각 요인의 <b>테스트 카드(가설 → 실행 → 측정 → 기대)</b>를 먼저 보시고,
+    각 요인의 <b>실행 방향</b>을 먼저 보시고,
     근거가 필요하면 <b>「근거 보기」를 눌러</b> 지표를 확인해주세요.
   </div>
   <div class="srcbar">
-    <b>출처 표시</b> —
-    <span class="src mtg">회의</span> 8/12 회의·구두 공유에서 나온 내용 &nbsp;·&nbsp;
-    <span class="src ai">AI</span> 데이터에서 도출·추정해 붙인 내용<br>
-    <b>표시가 없는 항목</b>(테스트 카드의 <b>실행</b>, <b>추가 방향</b>, <b>다음 단계</b> 표의 개별 액션)은
-    회의 발언과 정리가 섞여 있어 <b>단정하지 않았습니다.</b> 확인해주시면 구분해 넣겠습니다.
-  </div>
-
-  <h2>우선순위 — 회차당 순마진 기대효과 순<span class="src ai">AI</span></h2>
-  <div class="lead">13회차 실측값에 "이만큼 개선되면"을 대입한 추정치. 선형 가정이라 상한이 아니라 방향입니다.</div>
-  <table class="pri">
-    <thead><tr><th style="width:44px">순위</th><th>테스트</th><th style="width:78px">요인</th><th style="width:120px">회차당 순마진</th><th style="width:60px">난이도</th></tr></thead>
-    <tbody>
-      <tr>
-        <td class="rk">1</td>
-        <td class="nm">GFA 상시 집행 + 예산 증액<small>미집행 11회 → 집행 시 순마진 301만 → 680만</small></td>
-        <td class="fc">B-3</td><td class="ef">+379만원</td><td class="lv"><span class="lvb a">낮음</span></td>
-      </tr>
-      <tr>
-        <td class="rk">2</td>
-        <td class="nm">월요일 트래픽 확보<small>전환율 17.1%(최고)인데 시청자가 화요일보다 198명 적음</small></td>
-        <td class="fc">A-2</td><td class="ef">+79만원</td><td class="lv"><span class="lvb b">중간</span></td>
-      </tr>
-      <tr>
-        <td class="rk">3</td>
-        <td class="nm">야간 전환율 개선<small>12.9% → 오전 수준 15.4%로 올리면 결제자 +22명</small></td>
-        <td class="fc">A-1</td><td class="ef">+43만원</td><td class="lv"><span class="lvb b">중간</span></td>
-      </tr>
-      <tr>
-        <td class="rk">4</td>
-        <td class="nm">오전 환불 방어<small>환불률 13.1% → 야간 수준 11.2%로 낮추면</small></td>
-        <td class="fc">A-1</td><td class="ef">+13만원</td><td class="lv"><span class="lvb a">낮음</span></td>
-      </tr>
-      <tr>
-        <td class="rk">—</td>
-        <td class="nm">호스트 풀 확대 · 상품 구성 · 플친 재집행<small>기준 데이터가 없어 사전 추정 불가 — 테스트로 확보</small></td>
-        <td class="fc">A-3·A-4·B-1</td><td class="ef" style="color:#8a8a8f">측정 필요</td><td class="lv"><span class="lvb c">높음</span></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="note">
-    <span class="nt">이 순위가 회의 논의와 다른 지점<span class="src ai">AI</span></span>
-    <ul class="bl">
-      <li class="r"><b>오전 환불은 생각보다 작습니다.</b> 절대액은 165만 vs 85만으로 1.9배지만, 매출이 1.67배라 <b>환불률 차이는 1.8%p</b>(13.1% vs 11.2%)</li>
-      <li>환불률 기준으로 고치면 개선 여지는 회차당 <b>13만원</b> — 4순위</li>
-      <li class="g"><b>GFA가 압도적 1순위</b>입니다. 광고비 16만원으로 순마진 379만원 — 손익분기의 <b>26배 여유</b></li>
-    </ul>
+    <b>이 문서에 담긴 것</b> — <span class="src mtg">회의</span> 8/12 회의 결정 · 구두 공유된 일정 · 회의에서 나온 실행 항목<br>
+    AI가 도출·추정해 붙였던 내용(가설 · 측정 목표 · 기대효과 · 우선순위 · 분석 한계)은 <b>이번 버전에서 제외</b>했습니다.
   </div>
 
   <h2>요인별 디벨롭 방향</h2>
@@ -252,15 +212,13 @@
   <!-- B-3 GFA -->
   <div class="issue">
     <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">B-3</span> GFA 라이브 소재</div>
+    <div class="sch"><span class="sl">확정 일정</span><b>8/23(일) 11:00</b> · <b>8/31(월) 11:00</b> <span class="sd">— 오전 2회 · 표본 2회 → 4회</span></div>
     <div class="dev">
       <div class="dev-t">핵심 테스트</div>
       <div class="tc">
         <div class="tc-h"><span class="pri">1순위</span> GFA 상시 집행 + 예산 증액</div>
         <dl class="tcb">
-          <dt>가설<span class="src ai">AI</span></dt><dd>GFA를 <b>매 회차 집행</b>하면 전환율이 5%p 오르고, 광고비를 빼고도 순마진이 늘어난다</dd>
           <dt>실행</dt><dd>· 월·화 오전 회차에 <b>상시 집행</b>으로 전환<br>· 예산 <b>16만 → 30만원</b>으로 증액해 한계 효율 확인<br>· 소재는 6/30형(지면별 PM_) — CPC 752원으로 6/24형보다 30% 저렴</dd>
-          <dt>측정<span class="src ai">AI</span></dt><dd>전환율 <b>13.4% → 18%</b> · 순마진율 <b>35.1% → 45%</b><br>손익분기 = 광고비 1원당 매출 <b>2.19원</b> (현재 57원)</dd>
-          <dt>기대<span class="src ai">AI</span></dt><dd class="mz">회차당 순마진 <b>+379만원</b> · 광고비 1원당 순마진 23원</dd>
         </dl>
       </div>
       <div class="more-t">추가 방향</div>
@@ -314,15 +272,13 @@
   <!-- A-2 요일 -->
   <div class="issue">
     <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">A-2</span> 요일</div>
+    <div class="sch"><span class="sl">확정 일정</span>화 <b>8/18</b>(플친) · 일 <b>8/23</b>(GFA) · 수 <b>8/26</b>(플친) · 월 <b>8/31</b>(GFA)</div>
     <div class="dev">
       <div class="dev-t">핵심 테스트</div>
       <div class="tc">
         <div class="tc-h"><span class="pri">2순위</span> 월요일 트래픽 확보</div>
         <dl class="tcb">
-          <dt>가설<span class="src ai">AI</span></dt><dd>월요일은 <b>전환율이 최고인데 시청자만 부족</b>하다. 사람만 더 데려오면 그대로 매출이 된다</dd>
           <dt>실행</dt><dd>· 주말(토·일)에 <b>예약 라이브 광고</b> 집행 — 월요일 오전 예약자 확보<br>· 소구는 <b>혜택 중심</b> — "월요일 들어오면 얻는 게 있다"<br>· 퍼포먼스 예산도 일요일 저녁 증액</dd>
-          <dt>측정<span class="src ai">AI</span></dt><dd>월요일 시청자 <b>955명 → 1,153명</b>(화요일 수준)<br>전환율은 <b>17.1% 유지</b>가 조건 — 떨어지면 트래픽 질이 나쁜 것</dd>
-          <dt>기대<span class="src ai">AI</span></dt><dd class="mz">결제자 <b>+34명</b> · 매출 <b>+204만원</b> · 순마진 <b>+79만원</b></dd>
         </dl>
       </div>
       <div class="more-t">추가 방향</div>
@@ -371,24 +327,19 @@
   <!-- A-1 시간대 -->
   <div class="issue">
     <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">A-1</span> 시간대</div>
+    <div class="sch"><span class="sl">확정 일정</span>오전 11:00 — GFA <b>8/23(일)·8/31(월)</b> &nbsp;/&nbsp; 야간 21:00 — 플친 <b>8/18(화)·8/26(수)</b></div>
     <div class="dev">
       <div class="dev-t">핵심 테스트</div>
       <div class="tc">
         <div class="tc-h"><span class="pri">3순위</span> 야간 전환율 끌어올리기</div>
         <dl class="tcb">
-          <dt>가설<span class="src ai">AI</span></dt><dd>야간 시청자는 <b>이미 호감이 쌓인 관심 고객</b>(알림 유입 55% · 좋아요 3배)인데 살 이유가 없다. <b>전용 혜택</b>을 주면 전환이 붙는다</dd>
           <dt>실행</dt><dd>· <b>신규 제품을 야간에 먼저 공개</b> — 관심 고객에게 새로움 제공<br>· <b>알림 설정자 전용 옵션·가격</b> 소구<br>· 공구 대비 메리트 있는 구성 추가</dd>
-          <dt>측정<span class="src ai">AI</span></dt><dd>야간 전환율 <b>12.9% → 15.4%</b>(오전 수준)<br>알림 유입 비율은 55% 유지 — 떨어지면 대상이 바뀐 것</dd>
-          <dt>기대<span class="src ai">AI</span></dt><dd class="mz">결제자 <b>+22명</b> · 매출 <b>+130만원</b> · 순마진 <b>+43만원</b></dd>
         </dl>
       </div>
       <div class="tc">
         <div class="tc-h"><span class="pri n">4순위</span> 오전 환불 방어</div>
         <dl class="tcb">
-          <dt>가설<span class="src ai">AI</span></dt><dd>오전 신규는 <b>충동구매 후 후회</b>한다. 사기 전에 정보를 주면 환불이 준다</dd>
           <dt>실행</dt><dd>· 판매 전 <b>사이즈·사용법·주의사항</b> 안내 추가<br>· 조급함 소구("오늘만") 축소<br>· 라이브 한정 혜택으로 <b>구매 만족도</b> 보강</dd>
-          <dt>측정<span class="src ai">AI</span></dt><dd>오전 환불률 <b>13.1% → 11.2%</b>(야간 수준)</dd>
-          <dt>기대<span class="src ai">AI</span></dt><dd class="mz">환불 <b>−23만원</b> · 순마진 <b>+13만원</b>/회차</dd>
         </dl>
       </div>
       <div class="more-t">추가 방향</div>
@@ -458,10 +409,7 @@
       <div class="tc">
         <div class="tc-h"><span class="pri n">측정 필요</span> 호스트 풀 확대 — 인크리멘탈 확인</div>
         <dl class="tcb">
-          <dt>가설<span class="src ai">AI</span></dt><dd>현재 두 호스트는 <b>하방을 지키는 수준</b>이다. 상방을 여는 유형이 따로 있다면 매출이 계단식으로 오른다</dd>
           <dt>실행</dt><dd>· <b>유튜버 기반</b> 호스트 — 팬덤 유입 테스트<br>· <b>중가대</b> 호스트 — 지금은 최저가만 써봄<br>· 미남재형(900만원·수수료 25%) → <b>손익분기 매출부터 산출</b></dd>
-          <dt>측정<span class="src ai">AI</span></dt><dd>기준선 — 전환율 <b>14.5%</b> · 시청자 <b>1,038명</b>(두 호스트 평균)<br>판정 — <b>시청자 1인당 매출</b>로 비교(시청자 수는 편성 영향이라 제외)</dd>
-          <dt>기대<span class="src ai">AI</span></dt><dd class="mz">사전 추정 불가 — <b>테스트로 확보</b>할 값</dd>
         </dl>
       </div>
       <div class="more-t">추가 방향</div>
@@ -523,10 +471,7 @@
       <div class="tc">
         <div class="tc-h"><span class="pri n">측정 필요</span> 시간대별 컨셉 분리</div>
         <dl class="tcb">
-          <dt>가설<span class="src ai">AI</span></dt><dd>오전과 야간은 <b>보는 상황이 다르다</b>(살림 중 vs 능동 탐색). 상황에 맞는 구성을 걸면 같은 트래픽에서 더 팔린다</dd>
           <dt>실행</dt><dd>· <b>오전</b> — 아침 스트레칭 · 일상 컨셉. 설명보다 <b>액션 시연</b><br>· <b>야간</b> — 자기 전 · 하루 마무리 컨셉<br>· 야간에만 살 수 있는 <b>시간 한정 구성</b> 신설</dd>
-          <dt>측정<span class="src ai">AI</span></dt><dd>시간대별 <b>객단가</b>와 <b>전환율</b> 변화<br>기준선 — 오전 객단가 61,725원 · 야간 58,973원</dd>
-          <dt>기대<span class="src ai">AI</span></dt><dd class="mz">사전 추정 불가 — 구성 변경 폭에 따라 달라짐</dd>
         </dl>
       </div>
       <div class="more-t">추가 방향</div>
@@ -565,15 +510,13 @@
   <!-- B-1 플친 -->
   <div class="issue">
     <div class="i-head"><span class="tag wt">⏳ 검증</span><span class="fno">B-1</span> 카카오 플친</div>
+    <div class="sch"><span class="sl">확정 일정</span><b>8/18(화) 21:00</b> · <b>8/26(수) 21:00</b> <span class="sd">— 야간 2회 · 표본 1회 → 3회</span></div>
     <div class="dev">
       <div class="dev-t">핵심 테스트</div>
       <div class="tc">
         <div class="tc-h"><span class="pri n">측정 필요</span> 재집행 + 추적 태깅</div>
         <dl class="tcb">
-          <dt>가설<span class="src ai">AI</span></dt><dd>6/15 최고 성과(전환율 24.3%)에 <b>플친이 기여</b>했다. 태깅하면 기여분이 분리된다</dd>
           <dt>실행</dt><dd>· 다음 화요일 <b>재집행</b><br>· 발송 URL에 <b>추적 파라미터</b> 부착<br>· <b>연령대별 발송 시간 분리</b> — 중장년 오전 / 젊은층 야간</dd>
-          <dt>측정<span class="src ai">AI</span></dt><dd>플친 경유 <b>유입수 · 전환율 · 매출</b>을 별도 집계<br>비교 기준 — 미발송 12회 평균 전환율 <b>13.4%</b></dd>
-          <dt>기대<span class="src ai">AI</span></dt><dd class="mz">사전 추정 불가 — <b>1회 + 태깅 없음</b>이라 기여분 미상</dd>
         </dl>
       </div>
       <div class="more-t">추가 방향</div>
@@ -654,40 +597,6 @@
     </tbody>
   </table>
 
-  <div class="note">
-    <span class="nt">이 일정으로 확보되는 것<span class="src ai">AI</span></span>
-    <ul class="bl">
-      <li class="g"><b>표본이 판단 가능 수준에 근접</b> — 플친 1회 → 3회, GFA 2회 → 4회. 보류였던 플친이 테스트 단계로 올라섬</li>
-      <li class="g"><b>8/31(월) 오전 GFA</b> — 다음 단계의 "월요일 오전 트래픽 확보"와 정확히 맞물림</li>
-      <li class="g"><b>GFA 2회</b>로 "상시 집행 전환 + 예산 16만 → 30만원" 증액 테스트를 바로 시작할 수 있음</li>
-    </ul>
-  </div>
-
-  <div class="note">
-    <span class="nt">짚고 갈 것 — 이대로면 못 재는 게 생깁니다<span class="src ai">AI</span></span>
-    <ul class="bl">
-      <li class="r"><b>「시간대별 GFA 효율 차이 테스트 — 오전·야간 중 어디가 더 남는지」가 불가능해집니다.</b>
-        확정된 GFA 2회가 <b>둘 다 오전 11시</b>라 야간 비교군이 없습니다</li>
-      <li class="r"><b>채널과 시간대가 1:1로 붙었습니다</b> — 플친 = 야간 21시 2회 / GFA = 오전 11시 2회.
-        두 채널을 비교해도 <b>광고 차이인지 시간대 차이인지 가를 수 없습니다</b></li>
-      <li class="r"><b>8/18(화) 플친</b> — "화요일은 GFA 효과가 섞여 있음 → 광고와 분리해 재평가" 계획과 충돌.
-        여기에 플친을 또 얹으면 <b>화요일 순수 요일 효과 검증이 다시 밀립니다</b></li>
-      <li><b>8/23(일) GFA</b> — 본문 기준 <b>주말·일요일은 전 지표 하위</b>인 구간입니다.
-        광고비를 태우는 회차로는 회수 리스크가 있어, 결과를 <b>GFA 효과가 아니라 요일 페널티</b>로 읽을 여지가 있습니다</li>
-      <li><b>8/31(월) GFA</b> — 월요일은 관심 전환이 이미 강하고 <b>병목은 결제 단계</b>입니다.
-        사람만 더 넣으면 병목은 그대로일 수 있어 <b>결제 오퍼를 같이 걸어야</b> 증액 효과가 납니다</li>
-    </ul>
-  </div>
-
-  <div class="note">
-    <span class="nt">집행 전에 정하면 좋을 것<span class="src ai">AI</span></span>
-    <ul class="bl">
-      <li><b>4회차 전부에 소스 태깅</b> — 안 하면 이번에도 유입이 뭉뚱그려져 채널별 판정이 또 미뤄집니다</li>
-      <li><b>플친 1회를 오전으로</b> 옮길 수 있으면 채널 × 시간대 교차가 생겨 두 요인을 가를 수 있습니다</li>
-      <li>같은 요일·시간대의 <b>광고 미집행 회차</b>를 최소 1회 확보 — 비교군이 없으면 증감을 광고 덕으로 돌릴 근거가 없습니다</li>
-    </ul>
-  </div>
-
   <h2>다음 단계<span class="src mtg">회의</span></h2>
   <table class="act">
     <thead><tr><th style="width:84px">담당</th><th style="width:80px">요인</th><th>내용</th></tr></thead>
@@ -726,37 +635,6 @@
           <li><b>18회차(8/10)</b> — 토스 리워드. 1회성 + 태깅 없이 광고 집행 → 별도 분리</li>
           <li><b>14~17회차</b> — 춈미 언급 이후 품절 발생. 매출 조건이 달라짐 → 제외</li>
           <li>조건이 일관된 <b>13회차</b>만 남김</li>
-        </ul>
-      </div>
-      <div class="note">
-        <span class="nt">기대효과는 어떻게 계산했나<span class="src ai">AI</span></span>
-        <ul class="bl">
-          <li><b>GFA</b> — 집행 2회 순마진 680만 − 미집행 11회 301만 = <b>+379만</b></li>
-          <li><b>월요일</b> — 시청자 격차 198명 × 전환율 17.1% × 객단가 60,127원 × 순마진율 38.8%</li>
-          <li><b>야간</b> — 시청자 881명 × 전환율 격차 2.5%p × 객단가 58,973원 × 순마진율 33.3%</li>
-          <li><b>오전 환불</b> — 라이브결제 1,259만 × 환불률 격차 1.8%p × 채널마진율 57.8%</li>
-          <li class="r">모두 <b>선형 가정</b>입니다. 실제로는 시청자가 늘면 전환율이 떨어지는 등 상호작용이 있습니다</li>
-          <li class="r">상한이 아니라 <b>우선순위를 정하기 위한 방향</b>으로 보셔야 합니다</li>
-        </ul>
-      </div>
-      <div class="note">
-        <span class="nt">요인 영향력 순위 — 읽을 때 주의<span class="src ai">AI</span></span>
-        <ul class="bl">
-          <li>배관 산출(그룹 간 격차) — ① 시간대 <b>245만원</b> · ② 쇼호스트 <b>141만원</b> · ③ 요일 <b>4만원</b></li>
-          <li>3회 미만 그룹 제외 (이성훈 1회 제외)</li>
-          <li class="r"><b>쇼호스트 2위</b>는 GFA 2회가 김성경 회차에 몰린 결과 — 순수 호스트 효과 아님</li>
-          <li><b>요일 3위(4만원)</b>는 월·화 두 그룹만 비교한 값 — 요일이 안 중요하다는 뜻이 아님</li>
-          <li>위 <b>우선순위 표는 다른 개념</b>입니다 — 그룹 간 격차(현상)가 아니라 개선 여지(액션)</li>
-        </ul>
-      </div>
-      <div class="note">
-        <span class="nt">이 분석의 한계<span class="src ai">AI</span></span>
-        <ul class="bl">
-          <li>회차마다 <b>사전 업로드 시점</b>이 달라 라이브 전 누적 매출이 섞임</li>
-          <li>일부 회차는 <b>가격 오류</b>로 쇼호스트가 직접 환불을 안내한 이력 있음</li>
-          <li>요인들이 서로 겹쳐 있어 <b>단일 요인의 순수 효과</b> 분리가 어려움</li>
-          <li class="r">그래서 이 문서는 <b>정답이 아니라 가설</b></li>
-          <li>가설 → 테스트 → 결과 분석 → 재디벨롭. 이 반복이 목적</li>
         </ul>
       </div>
     </div>
