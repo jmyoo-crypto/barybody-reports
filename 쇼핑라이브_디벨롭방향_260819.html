@@ -146,6 +146,41 @@
   .src{display:inline-block; font-size:9.5px; font-weight:800; letter-spacing:.02em; padding:1px 5px; border-radius:3px; margin-left:5px; vertical-align:1px; white-space:nowrap;}
   .src.ai{background:#ede9fe; color:#5b21b6;}
   .src.mtg{background:#e8f3ec; color:#1e7a36;}
+  .st{display:inline-block; font-size:10px; font-weight:800; padding:1px 6px; border-radius:3px; white-space:nowrap;}
+  .st.done{background:#e8e8ea; color:#6a6a70;}
+  .st.soon{background:#fdecec; color:#b10202;}
+  .st.next{background:#eef3fa; color:#2b5aa8;}
+  .ann{font-size:11px; font-weight:700; color:#6a6a70; background:#f0f0f2; border-radius:3px; padding:1px 6px; margin-left:6px; white-space:nowrap;}
+  .src.res{background:#fff4e5; color:#a35a00;}
+  .idea{margin:12px 16px 14px; padding:12px 14px; background:#fbfbfc; border:1px solid #e6e6e9; border-radius:9px;}
+  .idea-t{font-size:12px; font-weight:800; color:#1d1d1f; letter-spacing:.02em; margin-bottom:10px;}
+  .ic{background:#fff; border:1px solid #ececef; border-radius:8px; padding:12px 14px; margin-bottom:9px;}
+  .ic:last-child{margin-bottom:0;}
+  .ic-h{font-size:12.8px; font-weight:800; color:#1d1d1f; margin-bottom:9px;}
+  .ic-alert{background:#fdf3f3; border:1px solid #f3d6d6; border-radius:7px; padding:10px 13px; font-size:12.2px; color:#7a1212; line-height:1.95;}
+  .ic-alert b{color:#b10202; font-weight:800;}
+  .ic-q{background:#f7f7f8; border-left:3px solid #c9c9ce; border-radius:0 6px 6px 0; padding:9px 13px; font-size:12.1px; color:#4a4a50; line-height:1.85;}
+  .ic-q .qd{display:block; font-size:10.5px; font-weight:800; color:#8a8a8f; margin-bottom:4px;}
+  .ic-q b{color:#1d1d1f;}
+  .ic-p{font-size:12px; color:#6a6a70; margin:9px 0 6px;}
+  table.itbl{width:100%; border-collapse:collapse; font-size:12.1px; margin:8px 0 2px;}
+  table.itbl th{background:#f4f4f6; color:#6a6a70; font-weight:700; font-size:10.8px; text-align:left; padding:6px 10px; border-bottom:1px solid #e6e6e9;}
+  table.itbl td{padding:7px 10px; border-bottom:1px solid #f0f0f2; vertical-align:top; color:#3a3a40;}
+  table.itbl tr:last-child td{border-bottom:none;}
+  table.itbl tr.hl td{background:#f2f8f4;}
+  table.itbl .est{font-size:10px; font-weight:700; color:#8a8a8f; background:#f0f0f2; border-radius:3px; padding:1px 5px; margin-left:4px;}
+  .ic-k{font-size:12.2px; color:#4a4a50; line-height:1.8; margin-bottom:5px;}
+  .ic-k b{color:#b10202; font-weight:800;}
+  details.idd{margin-top:8px; border-top:1px dashed #ececef; padding-top:6px;}
+  details.idd summary{cursor:pointer; list-style:none; font-size:11px; font-weight:700; color:#9a9aa0;}
+  details.idd summary::-webkit-details-marker{display:none;}
+  details.idd summary::before{content:'＋ '; color:#b8b8be;}
+  details.idd[open] summary::before{content:'－ ';}
+  details.idd summary:hover{color:#1d1d1f;}
+  .ic-c{margin-top:9px; padding-top:9px; border-top:1px dashed #e6e6e9; font-size:12.2px; color:#1d1d1f; line-height:1.8;}
+  .ic-c::before{content:'👉 '; }
+  .ic-s{margin-top:7px; font-size:10.8px; color:#9a9aa0; line-height:1.7;}
+  .ic-s .old{display:inline-block; background:#fdf0e6; color:#a35a00; font-weight:800; border-radius:3px; padding:1px 5px; margin:0 4px;}
   .sch{background:#f2f8f4; border-left:3px solid #1e7a36; border-radius:0 6px 6px 0; padding:7px 12px; margin:9px 0 0; font-size:12.3px; color:#1d1d1f; line-height:1.75;}
   .sch .sl{display:inline-block; font-weight:800; color:#1e7a36; font-size:10.5px; letter-spacing:.03em; margin-right:8px; vertical-align:1px;}
   .sch b{font-weight:700;}
@@ -198,12 +233,13 @@
   </div>
   <div class="purpose">
     이 문서의 목적은 <b>분석 결과 공유가 아니라 다음 라이브에 적용할 방향을 정하는 것</b>입니다.
-    각 요인의 <b>실행 방향</b>을 먼저 보시고,
+    각 요인의 <b>디벨롭 방향</b>을 먼저 보시고,
     근거가 필요하면 <b>「근거 보기」를 눌러</b> 지표를 확인해주세요.
   </div>
   <div class="srcbar">
     <b>이 문서에 담긴 것</b> — <span class="src mtg">회의</span> 8/12 회의 결정 · 구두 공유된 일정 · 회의에서 나온 실행 항목<br>
-    AI가 도출·추정해 붙였던 내용(가설 · 측정 목표 · 기대효과 · 우선순위 · 분석 한계)은 <b>이번 버전에서 제외</b>했습니다.
+    AI가 도출·추정해 붙였던 내용(우선순위 · 가설 · 실행 구체화 · 측정 목표 · 기대효과 · 분석 한계)은 <b>이번 버전에서 제외</b>했습니다.<br>
+    요인별 디벨롭 방향은 <b>8/12 회의 원본 그대로</b>입니다.
   </div>
 
   <h2>요인별 디벨롭 방향</h2>
@@ -212,19 +248,14 @@
   <!-- B-3 GFA -->
   <div class="issue">
     <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">B-3</span> GFA 라이브 소재</div>
-    <div class="sch"><span class="sl">확정 일정</span><b>8/23(일) 11:00</b> · <b>8/31(월) 11:00</b> <span class="sd">— 오전 2회 · 표본 2회 → 4회</span></div>
+    <div class="sch"><span class="sl">확정 일정</span><b>8/23(일) 11:00</b> <span class="st soon">D-2</span> · <b>8/31(월) 11:00</b> <span class="st next">D-10</span> <span class="sd">— 오전 2회 · 표본 2회 → 4회</span></div>
     <div class="dev">
-      <div class="dev-t">핵심 테스트</div>
-      <div class="tc">
-        <div class="tc-h"><span class="pri">1순위</span> GFA 상시 집행 + 예산 증액</div>
-        <dl class="tcb">
-          <dt>실행</dt><dd>· 월·화 오전 회차에 <b>상시 집행</b>으로 전환<br>· 예산 <b>16만 → 30만원</b>으로 증액해 한계 효율 확인<br>· 소재는 6/30형(지면별 PM_) — CPC 752원으로 6/24형보다 30% 저렴</dd>
-        </dl>
-      </div>
-      <div class="more-t">추가 방향</div>
+      <div class="dev-t">디벨롭 방향</div>
       <ul class="bl">
-        <li>시간대별 GFA 효율 차이 테스트 — 오전·야간 중 어디가 더 남는지</li>
-        <li>다음 화요일 <b>플친과 연계</b> 집행</li>
+        <li class="g"><b>지속 집행 확정</b> — 광고비 빼고도 순마진율 +10.5%p</li>
+        <li class="g"><b>예산 증액</b> → 퍼포먼스 어디까지 오르는지 확인</li>
+        <li>시간대별 GFA 효율 차이 테스트</li>
+        <li>다음 화요일 <b>플친과 연계</b> 집행<span class="ann">→ 8/18(화) 플친만 집행 · GFA 연계 미실행</span></li>
         <li>DFA는 이전 세팅 파악 후 유지 여부 판단</li>
       </ul>
     </div>
@@ -272,20 +303,15 @@
   <!-- A-2 요일 -->
   <div class="issue">
     <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">A-2</span> 요일</div>
-    <div class="sch"><span class="sl">확정 일정</span>화 <b>8/18</b>(플친) · 일 <b>8/23</b>(GFA) · 수 <b>8/26</b>(플친) · 월 <b>8/31</b>(GFA)</div>
+    <div class="sch"><span class="sl">확정 일정</span>화 <b>8/18</b>(플친) <span class="st done">완료</span> · 일 <b>8/23</b>(GFA) <span class="st soon">D-2</span> · 수 <b>8/26</b>(플친) <span class="st next">D-5</span> · 월 <b>8/31</b>(GFA) <span class="st next">D-10</span></div>
     <div class="dev">
-      <div class="dev-t">핵심 테스트</div>
-      <div class="tc">
-        <div class="tc-h"><span class="pri">2순위</span> 월요일 트래픽 확보</div>
-        <dl class="tcb">
-          <dt>실행</dt><dd>· 주말(토·일)에 <b>예약 라이브 광고</b> 집행 — 월요일 오전 예약자 확보<br>· 소구는 <b>혜택 중심</b> — "월요일 들어오면 얻는 게 있다"<br>· 퍼포먼스 예산도 일요일 저녁 증액</dd>
-        </dl>
-      </div>
-      <div class="more-t">추가 방향</div>
+      <div class="dev-t">디벨롭 방향</div>
       <ul class="bl">
         <li class="g"><b>월·화 오전 중심 편성</b>으로 고정</li>
         <li class="g"><b>주말 지양</b> — 트래픽·구매 여력 모두 낮음</li>
-        <li>화요일은 GFA 효과가 섞여 있음 → 광고와 분리해 재평가</li>
+        <li class="g">주말 중 <b>예약 라이브 광고</b>로 월요일 타겟 미리 확보</li>
+        <li>사전 광고는 <b>혜택 소구</b> 중심 — "들어오면 얻는 게 있다"</li>
+        <li>퍼포먼스 예산도 주말 축소 / 일요일 저녁 증액 패턴 참고</li>
       </ul>
     </div>
     <div class="nxt">
@@ -327,32 +353,23 @@
   <!-- A-1 시간대 -->
   <div class="issue">
     <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">A-1</span> 시간대</div>
-    <div class="sch"><span class="sl">확정 일정</span>오전 11:00 — GFA <b>8/23(일)·8/31(월)</b> &nbsp;/&nbsp; 야간 21:00 — 플친 <b>8/18(화)·8/26(수)</b></div>
+    <div class="sch"><span class="sl">확정 일정</span>오전 11:00 — GFA <b>8/23(일)</b> <span class="st soon">D-2</span> · <b>8/31(월)</b> <span class="st next">D-10</span><br>야간 21:00 — 플친 <b>8/18(화)</b> <span class="st done">완료</span> · <b>8/26(수)</b> <span class="st next">D-5</span></div>
     <div class="dev">
-      <div class="dev-t">핵심 테스트</div>
-      <div class="tc">
-        <div class="tc-h"><span class="pri">3순위</span> 야간 전환율 끌어올리기</div>
-        <dl class="tcb">
-          <dt>실행</dt><dd>· <b>신규 제품을 야간에 먼저 공개</b> — 관심 고객에게 새로움 제공<br>· <b>알림 설정자 전용 옵션·가격</b> 소구<br>· 공구 대비 메리트 있는 구성 추가</dd>
-        </dl>
-      </div>
-      <div class="tc">
-        <div class="tc-h"><span class="pri n">4순위</span> 오전 환불 방어</div>
-        <dl class="tcb">
-          <dt>실행</dt><dd>· 판매 전 <b>사이즈·사용법·주의사항</b> 안내 추가<br>· 조급함 소구("오늘만") 축소<br>· 라이브 한정 혜택으로 <b>구매 만족도</b> 보강</dd>
-        </dl>
-      </div>
-      <div class="more-t">추가 방향</div>
+      <div class="dev-t">디벨롭 방향</div>
       <div class="grp"><span class="gl am">오전 — 신규를 붙잡는다</span>
         <ul class="bl">
           <li class="g">방송 중 <b>알림받기 · 플친 설정 유도</b> — 쇼호스트가 직접 멘트</li>
-          <li>선행지표: 신규 알림 <b>34.3건 → 48건</b>(월요일 수준)</li>
+          <li class="g">그날로 끝내지 말고 <b>관심 고객으로 전환</b></li>
+          <li class="g"><b>환불 방어</b> — 라이브 한정 혜택으로 이탈 억제</li>
           <li>썸네일·소구를 오전 타겟에 맞춰 분리</li>
           <li>신규 유입 채널 파악 → 오전 노출 최적화</li>
         </ul>
       </div>
-      <div class="grp"><span class="gl pm">야간</span>
+      <div class="grp"><span class="gl pm">야간 — 관심 고객을 사게 만든다</span>
         <ul class="bl">
+          <li class="g"><b>신규 제품</b>을 야간에 먼저 공개</li>
+          <li class="g"><b>알림 설정자 전용 혜택</b> 소구</li>
+          <li>공구 대비 메리트 있는 옵션 추가</li>
           <li>야간에 인기 품목 방송 횟수 조정</li>
         </ul>
       </div>
@@ -405,19 +422,21 @@
   <div class="issue">
     <div class="i-head"><span class="tag hold">⚫ 보류</span><span class="fno">A-3</span> 쇼호스트</div>
     <div class="dev">
-      <div class="dev-t">핵심 테스트</div>
-      <div class="tc">
-        <div class="tc-h"><span class="pri n">측정 필요</span> 호스트 풀 확대 — 인크리멘탈 확인</div>
-        <dl class="tcb">
-          <dt>실행</dt><dd>· <b>유튜버 기반</b> 호스트 — 팬덤 유입 테스트<br>· <b>중가대</b> 호스트 — 지금은 최저가만 써봄<br>· 미남재형(900만원·수수료 25%) → <b>손익분기 매출부터 산출</b></dd>
-        </dl>
-      </div>
-      <div class="more-t">추가 방향</div>
+      <div class="dev-t">디벨롭 방향</div>
       <div class="grp"><span class="gl">기존 호스트</span>
         <ul class="bl">
           <li class="g">우열 가리기 <b>보류</b> — 현재 둘 다 합격선</li>
           <li>김성경·김예슬 <b>특징 정리</b> → 운영 효율화에 활용</li>
           <li>채팅수 1.67배 차이의 <b>원인 규명</b></li>
+        </ul>
+      </div>
+      <div class="grp"><span class="gl rd">풀 확대 테스트</span>
+        <ul class="bl">
+          <li class="g"><b>유튜버 기반</b> 호스트 — 팬덤 유입 테스트</li>
+          <li class="g"><b>중가대</b> 호스트 — 지금은 최저가만 써봄</li>
+          <li>미남재형 — 900만원 · 수수료 25% → <b>손익분기 매출 먼저 산출</b></li>
+          <li>타사 진행 매출 성과 확인 후 판단</li>
+          <li>등급별 테스트로 <b>인크리멘탈</b> 확인</li>
         </ul>
       </div>
       <div class="grp"><span class="gl">선발 기준 만들기</span>
@@ -426,6 +445,45 @@
           <li>하방 유지형 vs 상방 확대형 구분</li>
           <li>말발 · 외부 SNS 파급력 등 후보 요소 관찰</li>
         </ul>
+      </div>
+    </div>
+    <div class="idea">
+      <div class="idea-t">추가 디벨롭 아이디어<span class="src res">리서치</span></div>
+
+      <div class="ic">
+        <div class="ic-h">① 1분 내 이탈률 90% — 큐시트를 이 전제로 짜야 함</div>
+        <div class="ic-k">평균 시청 지속 <b>2분 이내</b>. “시청자 수 6만명”은 대부분 <b>스쳐 지나간 노출</b>입니다.</div>
+        <div class="ic-c">메인 키워드 <b>1개로 압축</b> · 구매 불안 <b>첫 60초</b>에 배치 · 혜택 <b>반복 고지</b> · 큐시트에 <b>장점 나열 금지</b></div>
+        <details class="idd"><summary>근거 · 출처</summary>
+          <table class="itbl">
+            <tbody>
+              <tr><td style="width:168px"><b>메인 키워드 1개로 압축</b></td><td>“우리 제품은 [ ]다” — 세부 사양 설명은 이탈만 부름</td></tr>
+              <tr><td><b>구매 불안 첫 60초</b></td><td>회사 소개·제품 히스토리는 이탈 구간에 낭비됨</td></tr>
+              <tr><td><b>혜택 반복 고지</b></td><td>시청자가 계속 교체되므로 한 번만 말하면 대부분이 못 들음</td></tr>
+              <tr><td><b>장점 나열 금지</b></td><td>“1시간에 모든 걸 쏟아내리는” 구성이 가장 흔한 실패 패턴</td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">TV 홈쇼핑의 미니 버전으로 접근하면 실패 — “TV 홈쇼핑과 라이브커머스는 시청 층 자체가 다릅니다.”<br>
+            출처: 라이브커머스 큐시트 작성 방법(2022-10-11) · i-boss 6141-57586(2022-04-13) <span class="old">3년 초과</span> 참고용</div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">② 상품 설명보다 “구매 불안”을 먼저 해결</div>
+        <div class="ic-k">고객은 설명을 들으러 오는 게 아니라 <b>사진으로 확인 안 되는 것</b>을 보러 옵니다 — 크기 · 질감 · 색상 · 사용법 · 포장 상태.</div>
+        <div class="ic-c">마사지기라면 <b>실제 크기감 · 착용 방식 · 소음 · 강도 체감 · 충전 시간</b>을 먼저. 방송 순서를 <b>자주 묻는 질문 순</b>으로.</div>
+        <details class="idd"><summary>카테고리별 · 출처</summary>
+          <table class="itbl">
+            <tbody>
+              <tr><td style="width:168px">의류</td><td>체형별 핏 · 비침 정도</td></tr>
+              <tr><td>식품</td><td>보관법 · 실제 양</td></tr>
+              <tr><td>화장품</td><td>발림성 · 사용 순서</td></tr>
+              <tr><td>생활용품</td><td>설치 과정 · 소음 정도</td></tr>
+              <tr class="hl"><td><b>마사지기</b> <span class="est">추정</span></td><td><b>실제 크기감 · 착용 방식 · 소음 · 강도 체감 · 충전 시간</b></td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">“고객이 궁금해하는 장면을 보여줄수록 구매 판단은 쉬워집니다.”<br>출처: i-boss 6141-71418 (2026-08-03)</div>
+        </details>
       </div>
     </div>
     <div class="nxt">
@@ -467,19 +525,27 @@
   <div class="issue">
     <div class="i-head"><span class="tag test">🔵 테스트</span><span class="fno">A-4</span> 상품 구성</div>
     <div class="dev">
-      <div class="dev-t">핵심 테스트</div>
-      <div class="tc">
-        <div class="tc-h"><span class="pri n">측정 필요</span> 시간대별 컨셉 분리</div>
-        <dl class="tcb">
-          <dt>실행</dt><dd>· <b>오전</b> — 아침 스트레칭 · 일상 컨셉. 설명보다 <b>액션 시연</b><br>· <b>야간</b> — 자기 전 · 하루 마무리 컨셉<br>· 야간에만 살 수 있는 <b>시간 한정 구성</b> 신설</dd>
-        </dl>
+      <div class="dev-t">디벨롭 방향</div>
+      <div class="grp"><span class="gl am">오전 구성</span>
+        <ul class="bl">
+          <li class="g"><b>아침 스트레칭 · 일상</b> 컨셉</li>
+          <li>산만한 환경 고려 — 설명보다 <b>액션 시연</b> 중심</li>
+        </ul>
       </div>
-      <div class="more-t">추가 방향</div>
-      <ul class="bl">
-        <li>마진율 높은 조합(<b>1+1</b>) 비중 조정 — 1+1 &gt; 오리지널 세트 &gt; 마사지 3종</li>
-        <li>배너·설명 노출 방식 점검 — 10분 전부터 반복 안내</li>
-        <li>신규 구성부터 순차 투입</li>
-      </ul>
+      <div class="grp"><span class="gl pm">야간 구성</span>
+        <ul class="bl">
+          <li class="g"><b>자기 전 · 하루 마무리</b> 컨셉</li>
+          <li class="g"><b>야간에만 살 수 있는 구성</b> — 재방문 이유 제공</li>
+        </ul>
+      </div>
+      <div class="grp"><span class="gl">공통</span>
+        <ul class="bl">
+          <li>세트 · 단품 조합 바꿔가며 성과 테스트</li>
+          <li>마진율 높은 조합(1+1) 비중 조정</li>
+          <li>배너·설명 노출 방식 점검 — 10분 전부터 반복 안내</li>
+          <li>신규 구성부터 순차 투입</li>
+        </ul>
+      </div>
     </div>
     <div class="nxt">
       <div class="nxt-t">다음</div>
@@ -510,17 +576,13 @@
   <!-- B-1 플친 -->
   <div class="issue">
     <div class="i-head"><span class="tag wt">⏳ 검증</span><span class="fno">B-1</span> 카카오 플친</div>
-    <div class="sch"><span class="sl">확정 일정</span><b>8/18(화) 21:00</b> · <b>8/26(수) 21:00</b> <span class="sd">— 야간 2회 · 표본 1회 → 3회</span></div>
+    <div class="sch"><span class="sl">확정 일정</span><b>8/18(화) 21:00</b> <span class="st done">집행 완료</span> · <b>8/26(수) 21:00</b> <span class="st next">D-5</span> <span class="sd">— 야간 2회 · 표본 현재 2회 → 3회</span></div>
     <div class="dev">
-      <div class="dev-t">핵심 테스트</div>
-      <div class="tc">
-        <div class="tc-h"><span class="pri n">측정 필요</span> 재집행 + 추적 태깅</div>
-        <dl class="tcb">
-          <dt>실행</dt><dd>· 다음 화요일 <b>재집행</b><br>· 발송 URL에 <b>추적 파라미터</b> 부착<br>· <b>연령대별 발송 시간 분리</b> — 중장년 오전 / 젊은층 야간</dd>
-        </dl>
-      </div>
-      <div class="more-t">추가 방향</div>
+      <div class="dev-t">디벨롭 방향</div>
       <ul class="bl">
+        <li class="g">다음 화요일 <b>재집행</b><span class="ann">→ 8/18(화) 집행 완료</span></li>
+        <li class="g">발송 URL에 <b>추적 파라미터</b> 부착 — 유입 분리</li>
+        <li class="g"><b>연령대별 발송 시간 분리</b> — 중장년 오전 / 젊은층 야간</li>
         <li>GFA와 <b>연계 집행</b> 테스트</li>
         <li class="r">짧은 기간에 과다 발송 금지 — 피로도 관리</li>
       </ul>
@@ -556,9 +618,9 @@
     <div class="dev">
       <div class="dev-t">디벨롭 방향</div>
       <ul class="bl">
-        <li>목적은 당일 매출이 아니라 <b>리타겟팅 모수 확보</b>였음</li>
-        <li class="g">모은 <b>54,213명</b>에 리타겟팅 광고를 돌린 뒤 성과 판정</li>
-        <li>실패로 단정하지 않음 — <b>판정 시점이 아직 안 옴</b></li>
+        <li>목적은 당일 매출이 아니라 <b>리타겟팅 모수 확보</b></li>
+        <li class="g">그 모수에 <b>리타겟팅 광고 집행</b> 후 성과 판정</li>
+        <li>실패로 단정하지 않음 — 판정 시점이 아직 안 옴</li>
       </ul>
     </div>
     <div class="nxt">
@@ -586,14 +648,14 @@
     </details>
   </div>
 
-  <h2>확정 일정 — 유입광고<span class="src mtg">구두 공유</span></h2>
+  <h2>확정 일정 — 유입광고 <span style="font-weight:600;font-size:11.5px;color:#8a8a8f;">(2026. 08. 21.(금) 기준)</span><span class="src mtg">구두 공유</span></h2>
   <table class="act">
-    <thead><tr><th style="width:104px">일자</th><th style="width:92px">채널</th><th style="width:56px">시간</th><th style="width:52px">구분</th><th>연결되는 계획</th></tr></thead>
+    <thead><tr><th style="width:104px">일자</th><th style="width:92px">채널</th><th style="width:56px">시간</th><th style="width:52px">구분</th><th style="width:74px">상태</th><th>연결되는 계획</th></tr></thead>
     <tbody>
-      <tr><td class="who">8월 18일 (화)</td><td class="fac">카카오 플친</td><td>21:00</td><td>야간</td><td>플친 재집행 — 표본 <b>1회 → 2회</b></td></tr>
-      <tr><td class="who">8월 23일 (일)</td><td class="fac">네이버 GFA</td><td>11:00</td><td>오전</td><td>GFA <b>상시 집행 전환 · 예산 증액</b> 테스트 시작</td></tr>
-      <tr><td class="who">8월 26일 (수)</td><td class="fac">카카오 플친</td><td>21:00</td><td>야간</td><td>플친 표본 <b>3회</b> 확보</td></tr>
-      <tr><td class="who">8월 31일 (월)</td><td class="fac">네이버 GFA</td><td>11:00</td><td>오전</td><td><b>월요일 오전 트래픽 확보</b>와 일치 · GFA 표본 <b>4회</b></td></tr>
+      <tr><td class="who">8월 18일 (화)</td><td class="fac">카카오 플친</td><td>21:00</td><td>야간</td><td><span class="st done">집행 완료</span></td><td>플친 재집행 — 표본 <b>1회 → 2회</b> 확보됨</td></tr>
+      <tr><td class="who">8월 23일 (일)</td><td class="fac">네이버 GFA</td><td>11:00</td><td>오전</td><td><span class="st soon">D-2</span></td><td>GFA <b>상시 집행 전환 · 예산 증액</b> 테스트 시작</td></tr>
+      <tr><td class="who">8월 26일 (수)</td><td class="fac">카카오 플친</td><td>21:00</td><td>야간</td><td><span class="st next">D-5</span></td><td>플친 표본 <b>3회</b> 확보</td></tr>
+      <tr><td class="who">8월 31일 (월)</td><td class="fac">네이버 GFA</td><td>11:00</td><td>오전</td><td><span class="st next">D-10</span></td><td><b>월요일 오전 트래픽 확보</b>와 일치 · GFA 표본 <b>4회</b></td></tr>
     </tbody>
   </table>
 
