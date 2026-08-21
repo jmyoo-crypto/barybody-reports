@@ -92,6 +92,10 @@
   ul.bl li{position:relative; padding-left:13px; margin:4px 0;}
   ul.bl li::before{content:''; position:absolute; left:2px; top:8px; width:4px; height:4px;
     border-radius:50%; background:#c2c2c8;}
+  ul.bl ul.sl{list-style:none; margin:5px 0 3px; padding:0;}
+  ul.bl ul.sl li{position:relative; padding-left:22px; margin:3px 0; font-size:12.6px; color:#4a4a50;}
+  ul.bl ul.sl li::before{content:attr(data-k); position:absolute; left:2px; top:0; width:auto; height:auto;
+    background:none; border-radius:0; font-weight:800; font-size:11.8px; color:#8a8a8f;}
   ul.bl li.g::before{background:#1e7a36;}
   ul.bl li.r::before{background:#b10202;}
   ul.bl b{font-weight:700;}
@@ -273,7 +277,12 @@
         <li class="g"><b>예산 증액</b> → 퍼포먼스 어디까지 오르는지 확인</li>
         <li>시간대별 GFA 효율 차이 테스트</li>
         <li>다음 화요일 <b>플친과 연계</b> 집행</li>
-        <li>GFA는 이전 세팅 파악 후 유지 여부 판단</li>
+        <li>GFA는 이전 세팅 파악 후 유지 여부 판단
+          <ul class="sl">
+            <li data-k="a.">기존 소재 중 <b>지표가 좋았던 소재</b> 추가 광고비 증액해서 테스트</li>
+            <li data-k="b.">쇼핑라이브 일정 맞추어 <b>사전 라이브 링크 생성 되는 시기</b>에 맞춰 GFA 소재 제작 후 테스트</li>
+          </ul>
+        </li>
       </ul>
     </div>
     <details class="ideabox">
