@@ -152,6 +152,21 @@
   .st.next{background:#eef3fa; color:#2b5aa8;}
   .ann{font-size:11px; font-weight:700; color:#6a6a70; background:#f0f0f2; border-radius:3px; padding:1px 6px; margin-left:6px; white-space:nowrap;}
   .src.res{background:#fff4e5; color:#a35a00;}
+  details.ideabox{margin:12px 16px 14px; border:1px solid #f0dcbe; border-radius:9px; background:#fffdf8; overflow:hidden;}
+  details.ideabox.top{margin:0 0 4px;}
+  details.ideabox > summary{list-style:none; cursor:pointer; padding:10px 14px; display:flex; align-items:center; gap:9px; background:#fff6e9;}
+  details.ideabox > summary::-webkit-details-marker{display:none;}
+  details.ideabox > summary::before,details.ideabox > summary::after{content:none; display:none;}
+  details.ideabox > summary:hover{background:#fff0da;}
+  details.ideabox[open] > summary{border-bottom:1px solid #f0dcbe;}
+  details.ideabox .ibt{font-size:12.4px; font-weight:800; color:#7a4a00;}
+  details.ideabox .ibn{font-size:10.5px; font-weight:800; color:#a3762f; background:#fff; border:1px solid #f0dcbe; border-radius:10px; padding:1px 7px;}
+  details.ideabox .ibm{margin-left:auto; font-size:11.5px; font-weight:700; color:#c9a366;}
+  details.ideabox:not([open]) .ibm::after{content:'＋  펼치기';}
+  details.ideabox[open] .ibm::after{content:'－  접기';}
+  details.ideabox .ideabody{padding:12px 14px 4px;}
+  details.ideabox .ic{border:1px solid #f0e4d2; border-left:3px solid #e8b563; background:#fff;}
+  details.ideabox .ic-h{color:#7a4a00;}
   .idea{margin:12px 16px 14px; padding:12px 14px; background:#fbfbfc; border:1px solid #e6e6e9; border-radius:9px;}
   .idea-t{font-size:12px; font-weight:800; color:#1d1d1f; letter-spacing:.02em; margin-bottom:10px;}
   .ic{background:#fff; border:1px solid #ececef; border-radius:8px; padding:12px 14px; margin-bottom:9px;}
@@ -449,8 +464,9 @@
         </ul>
       </div>
     </div>
-    <div class="idea">
-      <div class="idea-t">추가 디벨롭 아이디어<span class="src res">리서치</span></div>
+    <details class="ideabox">
+      <summary><span class="src res">리서치</span><span class="ibt">추가 디벨롭 아이디어</span><span class="ibn">4건</span><span class="ibm"></span></summary>
+      <div class="ideabody">
 
       <div class="ic">
         <div class="ic-h">① 1분 내 이탈률 90% — 큐시트를 이 전제로 짜야 함</div>
@@ -529,6 +545,7 @@
         </details>
       </div>
     </div>
+    </details>
     <div class="nxt">
       <div class="nxt-t">다음</div>
       <ul class="bl">
@@ -590,6 +607,90 @@
         </ul>
       </div>
     </div>
+    <details class="ideabox">
+      <summary><span class="src res">리서치</span><span class="ibt">추가 디벨롭 아이디어</span><span class="ibn">4건</span><span class="ibm"></span></summary>
+      <div class="ideabody">
+
+      <div class="ic">
+        <div class="ic-h">① 상품구성 3대 원칙 — 방송당 메인 3~5 + 서브 3</div>
+        <div class="ic-k"><b>상품 수를 압축</b>할 것 · <b>할인이 아니라 “구성”</b>으로 혜택을 만들 것 · <b>손익 계산을 방송 전에</b> 끝낼 것.</div>
+        <div class="ic-c">메인 <b>3~5개</b>(60분을 15분 루프 4회로 쪼개면 루프당 1개) · 서브 <b>3개</b> · <b>대표 상품 1개를 명확히</b> — 예고·썸네일·브랜드검색 연동 전부 이 상품 기준</div>
+        <details class="idd"><summary>기준 · 이유 · 흔한 실패</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:104px">항목</th><th style="width:96px">기준</th><th>이유</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>메인 상품</b></td><td><b>3~5개</b></td><td>60분을 15분 루프 4회로 쪼개면 <b>루프당 1개</b>가 적정</td></tr>
+              <tr><td>서브 상품</td><td>3개</td><td>반응 없을 때 교체용 · 객단가 상향용</td></tr>
+              <tr><td>대표 상품</td><td>1개를 명확히</td><td>“오늘 이거 사러 왔다”가 되는 앵커. 예고·썸네일·브랜드검색 연동 전부 이 상품 기준</td></tr>
+              <tr><td><b>흔한 실패</b></td><td>상품 10개 이상 나열</td><td>1분 내 이탈률 90% → 시청자는 <b>첫 15분에 본 것만</b> 기억함</td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">3대 원칙 원문 — “많이 걸수록 안 팔립니다” / “상시가를 깎으면 브랜드 가격이 무너집니다” /
+            “즉흥으로 혜택을 얹다 팔수록 손해나는 게 라방의 고전적 사고입니다”</div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">② 가격 설계 — 할인 대신 구성</div>
+        <div class="ic-k">같은 5,000원을 써도 <b>“5천원 할인”보다 “5천원짜리 사은품 증정”</b>이 낫습니다.
+          전자는 <b>가격 기준선을 영구히 내리고</b>, 후자는 <b>이번 방송에서만 소모</b>됩니다.</div>
+        <div class="ic-c">상시 판매가는 건드리지 말고 <b>라이브 한정 세트 · 방송 중 주문 사은품 · N페이 포인트</b>로 혜택 설계</div>
+        <details class="idd"><summary>방식별 브랜드 가격 영향 · 적용 예시</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:132px">방식</th><th style="width:72px">브랜드 가격</th><th>우리 적용 예시 <span class="est">가안</span></th></tr></thead>
+            <tbody>
+              <tr><td><b>상시가 직접 할인</b></td><td><b style="color:#b10202">훼손</b></td><td>“릴렉스틱 정가 89,000 → 69,000”</td></tr>
+              <tr class="hl"><td><b>라이브 한정 세트</b></td><td><b style="color:#1e7a36">안전</b></td><td>“본품 + 전용 파우치 + 여분 밴드” 묶음을 <b>라이브에서만</b> 구성</td></tr>
+              <tr class="hl"><td><b>방송 중 주문 사은품</b></td><td><b style="color:#1e7a36">안전</b></td><td>방송 시간 내 주문자에 한해 사은품</td></tr>
+              <tr class="hl"><td><b>N페이 포인트 적립</b></td><td><b style="color:#1e7a36">안전</b></td><td>CPS 상품 쓰면 결제액 <b>10%를 네이버가 적립</b> — 우리 비용 0</td></tr>
+              <tr><td>수량 한정 특가</td><td><b style="color:#a35a00">부분</b></td><td>“이 가격 50개 준비” — 수량을 못 박으면 상시가 영향 최소화</td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">원문 — “상시 판매가를 깎으면 브랜드 가격이 무너져요.
+            ‘라이브 한정 세트(상의+양말)’, ‘방송 중 주문 시 사은품’처럼 구성으로 혜택을 만들어야 평소 가격이 안전해요.”</div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">③ 혜택 공개 순서 — 한 번에 다 풀지 않기</div>
+        <div class="ic-k">시청자가 <b>계속 새로 들어오기</b> 때문에 혜택은 한 번에 공개하지 말고 <b>단계적으로 쌓아 올려야</b> 합니다.</div>
+        <div class="ic-c">기본 구성 공개 → 중반에 사은품 추가 → <b>클로징 10분에 최종 혜택 + 수량 카운트</b>
+          <span class="est">라이브 매출의 30~40%가 마지막 10분에 몰림</span></div>
+        <details class="idd"><summary>권장 순서 · 근거</summary>
+          <table class="itbl">
+            <tbody>
+              <tr><td style="width:60px"><b>①</b></td><td>기본 구성 공개</td></tr>
+              <tr><td><b>②</b></td><td>중반에 사은품 추가</td></tr>
+              <tr class="hl"><td><b>③</b></td><td><b>클로징 10분에 최종 혜택 + 수량 카운트</b></td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">15분 루프마다 <b>혜택 리마인드 2분</b>이 배치되는 이유이기도 합니다.<br>
+            근거 — <b>라이브 매출의 30~40%가 마지막 10분에 몰립니다.</b></div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">④ 상품명에 구성·혜택을 넣고, 다목적성을 앞세운다</div>
+        <div class="ic-k">상위 매출 상품의 공통점 — 상품명에 <b>“3종 사은품” “프리미엄 낮밤패키지” “가시제로”</b>처럼
+          <b>구성물 개수와 혜택</b>이 드러나 있습니다.</div>
+        <div class="ic-c">“릴렉스틱 오리지널” 대신 <b>“릴렉스틱 전신세트(본품+파우치+밴드2종)”</b> ·
+          마사지기 강점인 <b>부위 다목적성을 숫자화</b>(목·어깨·허리·종아리 4부위)</div>
+        <details class="idd"><summary>사례 · 적용 논리</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:118px">원칙</th><th style="width:210px">상위 매출 상품 사례</th><th>우리 적용 <span class="est">가안</span></th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>상품명에 구성·혜택</b></td><td>“3종 사은품” · “2025 프리미엄 낮밤패키지”(팸퍼스) · “가시제로”</td>
+                <td>릴렉스틱 오리지널 → <b>릴렉스틱 전신세트(본품+파우치+밴드2종)</b><br>
+                  <b>“3종”·“세트”·“패키지”</b>가 검색·라이브 양쪽에서 클릭을 만듦</td></tr>
+              <tr class="hl"><td><b>다목적성을 앞세움</b></td><td>싸이벡스 레모 하이체어 <b>4in1</b> — “한 번 구매로 오랫동안” 경제성이 매출 3위 견인</td>
+                <td><b>목·어깨·허리·종아리 4부위</b>처럼 숫자화<br>
+                  “하나로 온 가족이 여러 부위에” = <b>객단가 방어 논리</b></td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </div>
+    </details>
     <div class="nxt">
       <div class="nxt-t">다음</div>
       <ul class="bl">
@@ -692,7 +793,9 @@
   </div>
 
   <h2>추가 아이디어 · 디벨롭 방향성<span class="src res">리서치</span></h2>
-  <div class="idea top">
+  <details class="ideabox top">
+      <summary><span class="src res">리서치</span><span class="ibt">추가 디벨롭 아이디어</span><span class="ibn">2건</span><span class="ibm"></span></summary>
+      <div class="ideabody">
 
     <div class="ic">
       <div class="ic-h">① 라이브 + 숏클립을 하나의 판매 흐름으로 설계</div>
@@ -739,6 +842,7 @@
     </div>
 
   </div>
+    </details>
 
   <h2>확정 일정 — 유입광고 <span style="font-weight:600;font-size:11.5px;color:#8a8a8f;">(2026. 08. 21.(금) 기준)</span><span class="src mtg">구두 공유</span></h2>
   <table class="act">
