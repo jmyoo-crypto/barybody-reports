@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>주간 보고 통합 · 2026-08-17~08-22 (8월 17일~8월 22일)</title>
+<title>주간 보고 통합 · 2026-08-17~08-23 (8월 17일~8월 23일)</title>
 <style>
   /* 헤더 높이를 픽셀로 고정하지 않는다 — 탭에 KPI 줄이 붙으면 높이가 변해 iframe이 서브바를 덮는다 */
   html,body{height:100%;margin:0;font-family:-apple-system,'Malgun Gothic',sans-serif;background:#0f172a}
@@ -36,7 +36,7 @@
 <body>
   <div class="topbar">
     <span class="title">📊 주간 보고 통합</span>
-    <span class="period">2026-08-17 ~ 08-22 (지난주 · 8월 17일~8월 22일)</span>
+    <span class="period">2026-08-17 ~ 08-23 (지난주 · 8월 17일~8월 23일)</span>
     <div class="tabs" id="tabs"></div>
   </div>
   <div class="subbar">
@@ -45,7 +45,7 @@
     <button class="sub" data-view="ads" onclick="setView('ads')">📈 광고분석</button>
     <span class="sub-hint" id="subHint"></span>
   </div>
-  <div class="note">⚠️ 매출·마진은 BigQuery 기준입니다 (유통 시트 cafe24·smartstore가 8/11에서 멈춤). 매출·ROAS는 확정값, 마진·순마진은 과거 주차와 기준이 다르고 인플루언서·멀티 차감이 미적용입니다.</div>
+  <div class="note">⚠️ 주간보고서 매출·마진은 BigQuery 기준 (유통 시트 cafe24·smartstore 8/11 이후 미적재). 광고분석은 w11·w12·w13 3주 소급 반영.</div>
   <div class="stage"><iframe id="frame" src=""></iframe></div>
 
 <script>
@@ -53,12 +53,12 @@
    동일 출처(GitHub Pages https)에서만 동작.
    ※ scripts/build_combined_report.py 가 생성한다. 직접 수정하지 말 것. */
 var REPORTS = [
-  { name:"릴렉스틱볼", kpi:"ROAS 571.0% · 순마진 +681만",
-    weekly:"릴렉스틱볼_weekly_0824.html", ads:"릴렉스틱볼_광고분석_260803.html", adsOld:true, adsNote:"광고분석은 260803본(이번 주차 아님)" },
-  { name:"릴렉스틱", kpi:"ROAS 486.0% · 순마진 +1,154만",
-    weekly:"릴렉스틱_weekly_0824.html", ads:"릴렉스틱_광고분석_260803.html", adsOld:true, adsNote:"광고분석은 260803본(이번 주차 아님)" },
-  { name:"잔망루피", kpi:"ROAS 517.5% · 순마진 +851만",
-    weekly:"루피_weekly_0824.html", ads:"루피_광고분석_260803.html", adsOld:true, adsNote:"광고분석은 260803본(이번 주차 아님)" }
+  { name:"릴렉스틱볼", kpi:"ROAS 587.0% · 순마진 +840만",
+    weekly:"릴렉스틱볼_weekly_0824.html", ads:"릴렉스틱볼_광고분석_260824.html", adsOld:false, adsNote:"" },
+  { name:"릴렉스틱", kpi:"ROAS 653.2% · 순마진 +2,007만",
+    weekly:"릴렉스틱_weekly_0824.html", ads:"릴렉스틱_광고분석_260824.html", adsOld:false, adsNote:"" },
+  { name:"잔망루피", kpi:"ROAS 511.0% · 순마진 +1,014만",
+    weekly:"루피_weekly_0824.html", ads:"루피_광고분석_260824.html", adsOld:false, adsNote:"" }
 ];
 var CB = Date.now();
 var cur = 0, view = "weekly", briefStage = null;
