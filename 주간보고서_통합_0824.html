@@ -45,7 +45,7 @@
     <button class="sub" data-view="ads" onclick="setView('ads')">📈 광고분석</button>
     <span class="sub-hint" id="subHint"></span>
   </div>
-  <div class="note">⚠️ 주간보고서 매출·마진은 BigQuery 기준 (유통 시트 cafe24·smartstore 8/11 이후 미적재). 광고분석은 w11·w12·w13 3주 소급 반영.</div>
+  <div class="note">⚠️ 주간보고서 매출·마진은 BigQuery 기준(유통 시트 cafe24·smartstore 8/11 이후 미적재) + 스마트스토어 제품별 배분 보정 적용(세트상품 매핑 오류 3건). 8/18 등 일부 날짜는 대시보드 실측과 잔여 오차 있음(원인 규명 중). 광고분석은 w11·w12·w13 3주 반영.</div>
   <div class="stage"><iframe id="frame" src=""></iframe></div>
 
 <script>
@@ -53,11 +53,11 @@
    동일 출처(GitHub Pages https)에서만 동작.
    ※ scripts/build_combined_report.py 가 생성한다. 직접 수정하지 말 것. */
 var REPORTS = [
-  { name:"릴렉스틱볼", kpi:"ROAS 587.0% · 순마진 +840만",
+  { name:"릴렉스틱볼", kpi:"ROAS 568.7% · 순마진 +802만",
     weekly:"릴렉스틱볼_weekly_0824.html", ads:"릴렉스틱볼_광고분석_260824.html", adsOld:false, adsNote:"" },
   { name:"릴렉스틱", kpi:"ROAS 653.2% · 순마진 +2,007만",
     weekly:"릴렉스틱_weekly_0824.html", ads:"릴렉스틱_광고분석_260824.html", adsOld:false, adsNote:"" },
-  { name:"잔망루피", kpi:"ROAS 511.0% · 순마진 +1,014만",
+  { name:"잔망루피", kpi:"ROAS 545.3% · 순마진 +1,016만",
     weekly:"루피_weekly_0824.html", ads:"루피_광고분석_260824.html", adsOld:false, adsNote:"" }
 ];
 var CB = Date.now();
