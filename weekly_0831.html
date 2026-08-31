@@ -84,11 +84,12 @@ h3 { font-size:12px; color:var(--ink); }
 .switch button[aria-current="true"] { background:var(--ink); color:var(--paper); border-color:var(--ink); }
 .switch button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 .lede { display:flex; flex-direction:column; gap:7px; margin:0; }
-.lede div { display:grid; grid-template-columns:38px 1fr; gap:12px; align-items:baseline; }
+.lede > div { display:grid; grid-template-columns:38px 1fr; gap:12px; align-items:baseline; }
 .lede dt {
   font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.06em;
   color:var(--ink-3); text-transform:uppercase;
 }
+.lede .ltext { display:flex; flex-direction:column; gap:4px; }
 .lede p { margin:0; font-size:15.5px; line-height:1.45; letter-spacing:-.012em; }
 .lede b { font-weight:600; }
 .lede .neg { color:var(--bad); font-weight:600; }
@@ -112,7 +113,7 @@ h3 { font-size:12px; color:var(--ink); }
 .legend span { display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--ink-2); }
 .legend i { width:9px; height:9px; border-radius:2px; display:block; }
 figure { margin:0; }
-figure svg { display:block; width:100%; height:auto; overflow:visible; }
+figure svg { display:block; width:100%; max-width:560px; height:auto; overflow:visible; }
 figcaption { margin-top:7px; font-size:10.5px; color:var(--ink-3); line-height:1.45; }
 .bar { cursor:default; }
 .bar:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
@@ -252,37 +253,28 @@ td.owner { font-family:var(--mono); font-size:11px; white-space:nowrap; }
 
   <div class="stats" id="p-stats"></div>
 
-  <div class="cols">
-    <section class="block">
-      <div class="block-head">
-        <h2>마케팅 채널별 광고비</h2>
-        <div class="legend" id="p-legend"></div>
-      </div>
-      <figure>
-        <svg id="chart" viewBox="0 0 460 218" role="img" aria-labelledby="chart-t"></svg>
-        <figcaption id="chart-t"></figcaption>
-      </figure>
-    </section>
+  <section class="block">
+    <div class="block-head">
+      <h2>마케팅 채널별 광고비</h2>
+      <div class="legend" id="p-legend"></div>
+    </div>
+    <figure>
+      <svg id="chart" viewBox="0 0 460 218" role="img" aria-labelledby="chart-t"></svg>
+      <figcaption id="chart-t"></figcaption>
+    </figure>
+  </section>
 
-    <section class="block">
-      <div class="block-head"><h2>페이드채널 실매출</h2></div>
-      <table id="p-sales"></table>
-      <p class="rule" id="p-sales-note"></p>
-    </section>
-  </div>
+  <section class="block">
+    <div class="block-head"><h2>페이드채널 실매출과 광고 후 마진</h2></div>
+    <div class="tablewrap"><table id="p-sales"></table></div>
+    <p class="rule" id="p-sales-note"></p>
+  </section>
 
   <section class="block">
     <div class="block-head"><h2>마케팅 채널별 효율</h2></div>
     <div class="tablewrap"><table id="p-chaneff"></table></div>
     <p class="rule" id="p-chaneff-note"></p>
   </section>
-
-  <section class="block">
-    <div class="block-head"><h2>귀인 그룹 판정</h2></div>
-    <div class="tablewrap"><table id="p-groups"></table></div>
-    <p class="rule" id="p-rule"></p>
-  </section>
-
 
   <section class="block">
     <div class="block-head"><h2>이번 주 액션</h2></div>
@@ -329,12 +321,19 @@ const REPORTS = {
   
     // 결론. 볼륨 -> 효율 -> 결론. 2면의 전개와 같은 축.
     lede: [
-      { k:"볼륨", v:"매출 4,004 → <b>3,092만원(-22.8%)</b>, 주문 938 → <b>641건(-31.7%)</b>. " +
-                    "매출 감소는 스마트스토어 -450 · 쿠팡 -320 · 자사몰 -143만원으로 3채널 동반." },
-      { k:"효율", v:"매출 = 광고비 × ROAS. 하락 912만원 = <b>투입 558만(61%) + 효율 354만(39%)</b>. " +
-                    "마케팅 채널 중 효율이 떨어진 건 <mark>검색광고 하나뿐</mark>(귀인 ROAS 476 → 343%, -133%p). " +
-                    "메타 +4%p · 애드부스트 +65%p · GFA +76%p로 나머지는 올랐다." },
-      { k:"결론", v:"<mark>자사몰 43만원 적자.</mark> 메타 광고비 296만 > 채널마진 253만. 스마트스토어는 +1,134만원." }
+      { k:"볼륨", v:[
+        "매출 4,004 → <b>3,092만원(-22.8%)</b>, 주문 938 → <b>641건(-31.7%)</b>.",
+        "매출 감소는 스마트스토어 -450 · 쿠팡 -320 · 자사몰 -143만원으로 3채널 동반."
+      ]},
+      { k:"효율", v:[
+        "매출 = 광고비 × ROAS. 하락 912만원 = <b>투입 558만(61%) + 효율 354만(39%)</b>.",
+        "마케팅 채널 중 효율이 떨어진 건 <mark>검색광고 하나뿐</mark>이다. 귀인 ROAS 476 → 343%(-133%p).",
+        "메타 +4%p · 애드부스트 +65%p · GFA +76%p로 나머지 셋은 올랐다."
+      ]},
+      { k:"결론", v:[
+        "<mark>자사몰 43만원 적자.</mark> 메타 광고비 296만 > 채널마진 253만.",
+        "스마트스토어는 광고 후 마진 +1,134만원."
+      ]}
     ],
   
     // 서로 파생되지 않는 5개 사실: 투입 / 산출 / 효율 / 볼륨 / 남는 돈
@@ -361,13 +360,22 @@ const REPORTS = {
       note:"단위 만원. BigQuery mkt_marketing_daily_native, 제품 라벨 4종 합계. 그룹 위 숫자는 주간 증감."
     },
   
-    // 페이드채널별 실주문 매출(원)
+    // 페이드채널. 광고비는 귀인 규칙대로 붙인다(메타→자사몰, 네이버 3종→스마트스토어).
     sales: [
-      { name:"스마트스토어", sub:"네이버 3종 귀인", prev:26177278, curr:21682067, prevO:557, currO:398 },
-      { name:"쿠팡",        sub:"직접 광고비 없음", prev:8657750,  curr:5457750,  prevO:275, currO:165 },
-      { name:"자사몰",      sub:"메타 귀인",       prev:5203263,  curr:3777886,  prevO:106, currO:78  }
+      { name:"스마트스토어", sub:"네이버 3종 귀인", sales:"2,168", salesDelta:-17.2, orders:398, ordersDelta:-28.5,
+        cost:"356", costDelta:-16.0, bep:145, contrib:"+1,134", contribDelta:-13.9 },
+      { name:"쿠팡", sub:"직접 광고비 없음", sales:"546", salesDelta:-37.0, orders:165, ordersDelta:-40.0,
+        cost:null, costDelta:null, bep:145, contrib:"+377", contribDelta:-36.7 },
+      { name:"자사몰", sub:"메타 귀인", sales:"378", salesDelta:-27.4, orders:78, ordersDelta:-26.4,
+        cost:"296", costDelta:-11.4, bep:149, contrib:"-43", contribDelta:-407.6, negative:true }
     ],
-    salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 공구·팝업·홈쇼핑 제외.",
+    salesSum: { sales:"3,092", salesDelta:-22.8, orders:641, ordersDelta:-31.7, cost:"653", costDelta:-13.9, bep:146, contrib:"+1,468", contribDelta:-23.8 },
+    salesNote: [
+      "실주문 매출. 광고 플랫폼 전환값이 아니다. 공구·팝업·홈쇼핑 제외.",
+      "손익분기 = 실매출 ÷ 채널마진. 채널마진 = 매출 − 원가 − 수수료 − 배송비. 광고 후 마진 = 채널마진 − 광고비.",
+      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
+      "<mark>자사몰은 메타 광고비 296만원이 채널마진 253만원을 넘어 43만원 적자다.</mark> 지지난주에는 +14만원이었다."
+    ],
   
     // 귀인 그룹 = 광고 채널과 그 채널이 매출을 만드는 판매채널의 짝
     // 마케팅 채널별 효율 (귀인 기준). 광고비 순.
@@ -385,21 +393,6 @@ const REPORTS = {
       "<mark>효율이 떨어진 마케팅 채널은 검색광고 하나뿐이다.</mark> 광고비의 43%를 쓰면서 귀인 매출이 1,273 → 958만원(-25%)으로 빠졌다.",
       "메타 귀인 ROAS는 101 → 105%로 올랐다. 1면의 메타 판정이 나쁜 것은 자사몰 <b>실매출</b> 기준이며, 여기는 메타 픽셀 <b>귀인</b> 기준이다. 두 지표가 반대 방향이다.",
       "귀인 매출은 각 플랫폼 자체 집계다. 채널 간 절대 비교나 실매출과의 합산은 하지 않는다. 주 대 주 방향만 본다."
-    ],
-    groups: [
-      { name:"네이버 3종", sub:"→ 스마트스토어", cost:"356", sales:"2,168", salesDelta:-17.2, roas:608, roasPrev:617, bep:145,
-        contrib:"+1,134", cpa:"8,954", orders:398, verdict:"증액 후보", tone:"up" },
-      { name:"쿠팡",      sub:"직접 광고비 없음", cost:null, sales:"546", salesDelta:-37.0, roas:null, bep:145,
-        contrib:"+377", cpa:null, orders:165, verdict:"귀인 미정", tone:"hold" },
-      { name:"메타",      sub:"→ 자사몰",       cost:"296", sales:"378", salesDelta:-27.4, roas:128, roasPrev:156, bep:149,
-        contrib:"-43", negative:true, cpa:"37,989", orders:78, verdict:"보류", tone:"down" }
-    ],
-    groupSum: { cost:"653", sales:"3,092", salesDelta:-22.8, roas:474, roasPrev:528, bep:146, contrib:"+1,468", cpa:"10,182", orders:641 },
-    verdictRule: [
-      "<b>판정</b> 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액. 쿠팡은 광고비 0이라 제외.",
-      "<b>정의</b> 손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비.",
-      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
-      "<b>예외</b> 메타는 규칙상 감액이나 <mark>보류</mark>다. 쿠팡 546만원을 메타에 귀속하면 ROAS 312%로 부호가 뒤집혀 귀인 규칙 확정이 먼저다(액션 1)."
     ],
   
     // ---- 2면: 특수상황 · 영향력 순위 ----
@@ -574,13 +567,20 @@ const REPORTS = {
   
     // 결론. 볼륨 -> 효율 -> 결론. 2면의 전개와 같은 축.
     lede: [
-      { k:"볼륨", v:"매출 2,312 → <b>1,537만원(-33.5%)</b>, 주문 725 → <b>447건(-38.3%)</b>. " +
-                    "매출 감소는 자사몰 -417 · 스마트스토어 -358만원으로 두 채널이 비슷하게 빠졌다." },
-      { k:"효율", v:"매출 = 광고비 × ROAS. 하락 775만원 = <b>투입 162만(21%) + 효율 613만(79%)</b>. " +
-                    "<mark>집행한 세 채널 전부 효율 악화</mark>(귀인 ROAS 애드부스트 -880%p · 검색광고 -627%p · 메타 -51%p). " +
-                    "개선된 채널이 하나도 없다." },
-      { k:"결론", v:"<mark>자사몰 광고 후 마진 217 → 37만원(-83%).</mark> " +
-                    "메타 ROAS 200%가 손익분기 184%에 붙었다. 스마트스토어는 +346만원." }
+      { k:"볼륨", v:[
+        "매출 2,312 → <b>1,537만원(-33.5%)</b>, 주문 725 → <b>447건(-38.3%)</b>.",
+        "매출 감소는 자사몰 -417 · 스마트스토어 -358만원으로 두 채널이 비슷하게 빠졌다."
+      ]},
+      { k:"효율", v:[
+        "매출 = 광고비 × ROAS. 하락 775만원 = <b>투입 162만(21%) + 효율 613만(79%)</b>.",
+        "<mark>집행한 세 채널 전부 효율 악화.</mark> 개선된 채널이 하나도 없다.",
+        "귀인 ROAS 애드부스트 -880%p · 검색광고 -627%p · 메타 -51%p."
+      ]},
+      { k:"결론", v:[
+        "<mark>자사몰 광고 후 마진 217 → 37만원(-83%).</mark>",
+        "메타 ROAS 200%가 손익분기 184%에 붙었다. 다음 주 하락하면 적자 전환.",
+        "스마트스토어는 광고 후 마진 +346만원."
+      ]}
     ],
   
     // 서로 파생되지 않는 5개 사실: 투입 / 산출 / 효율 / 볼륨 / 남는 돈
@@ -607,12 +607,20 @@ const REPORTS = {
       note:"단위 만원. BigQuery mkt_marketing_daily_native, 라벨 릴렉스틱볼. GFA는 두 주 다 미집행."
     },
   
-    // 페이드채널별 실주문 매출(원)
+    // 페이드채널. 광고비는 귀인 규칙대로 붙인다(메타→자사몰, 네이버 3종→스마트스토어).
     sales: [
-      { name:"자사몰",      sub:"메타 귀인",       prev:12767531, curr:8596001, prevO:386, currO:262 },
-      { name:"스마트스토어", sub:"네이버 3종 귀인", prev:10349962, curr:6771252, prevO:339, currO:185 }
+      { name:"자사몰", sub:"메타 귀인", sales:"860", salesDelta:-32.7, orders:262, ordersDelta:-32.1,
+        cost:"430", costDelta:-10.5, bep:184, contrib:"+37", contribDelta:-83.2 },
+      { name:"스마트스토어", sub:"네이버 3종 귀인", sales:"677", salesDelta:-34.6, orders:185, ordersDelta:-45.4,
+        cost:"52", costDelta:+36.5, bep:171, contrib:"+346", contribDelta:-37.1 }
     ],
-    salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 쿠팡 매출은 없다. 공구·팝업·홈쇼핑 제외.",
+    salesSum: { sales:"1,537", salesDelta:-33.5, orders:447, ordersDelta:-38.3, cost:"482", costDelta:-7.0, bep:178, contrib:"+382", contribDelta:-50.1 },
+    salesNote: [
+      "실주문 매출. 광고 플랫폼 전환값이 아니다. 쿠팡 매출은 없다. 공구·팝업·홈쇼핑 제외.",
+      "손익분기 = 실매출 ÷ 채널마진. 채널마진 = 매출 − 원가 − 수수료 − 배송비. 광고 후 마진 = 채널마진 − 광고비.",
+      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
+      "<mark>자사몰 ROAS 200%가 손익분기 184%에 붙었다.</mark> 여유 16%p. 다음 주 하락하면 적자 전환한다."
+    ],
   
     // 마케팅 채널별 효율 (귀인 기준). 광고비 순.
     chanEff: [
@@ -629,20 +637,6 @@ const REPORTS = {
       "<mark>집행한 세 채널 전부 효율이 떨어졌다.</mark> 개선된 채널이 하나도 없다. 세 제품 중 유일하다.",
       "낙폭은 애드부스트 -880%p > 검색광고 -627%p > 메타 -51%p 순이지만, 금액 비중은 메타가 89%다. 실제 손실액은 메타가 가장 크다.",
       "귀인 매출은 각 플랫폼 자체 집계다. 채널 간 절대 비교나 실매출과의 합산은 하지 않는다. 주 대 주 방향만 본다."
-    ],
-    groups: [
-      { name:"네이버 3종", sub:"→ 스마트스토어", cost:"52", sales:"677", salesDelta:-34.6, roas:1310, roasPrev:2733, bep:171,
-        contrib:"+346", cpa:"2,795", orders:185, verdict:"증액 보류", tone:"hold" },
-      { name:"메타",      sub:"→ 자사몰",       cost:"430", sales:"860", salesDelta:-32.7, roas:200, roasPrev:266, bep:184,
-        contrib:"+37", cpa:"16,406", orders:262, verdict:"경보", tone:"down" }
-    ],
-    groupSum: { cost:"482", sales:"1,537", salesDelta:-33.5, roas:319, roasPrev:446, bep:178, contrib:"+382", cpa:"10,773", orders:447 },
-    verdictRule: [
-      "<b>판정</b> 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액.",
-      "<b>정의</b> 손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비.",
-      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
-      "<b>예외</b> 메타는 200 ÷ 184 = 1.09배로 유지 구간이나 <mark>여유가 16%p뿐이라 경보</mark>다. 다음 주 하락하면 적자 전환한다.",
-      "<b>예외</b> 네이버는 7.7배로 증액 후보이나 지난주 광고비를 +37% 늘리고 매출이 -35%였으므로 <mark>증액 보류</mark>다."
     ],
   
     // ---- 2면: 특수상황 · 영향력 순위 ----
@@ -781,13 +775,20 @@ const REPORTS = {
   
     // 결론. 볼륨 -> 효율 -> 결론. 2면의 전개와 같은 축.
     lede: [
-      { k:"볼륨", v:"매출 2,429 → <b>1,948만원(-19.8%)</b>, 주문 659 → <b>524건(-20.5%)</b>. " +
-                    "매출 감소는 스마트스토어 -454 · 자사몰 -27만원으로 스마트스토어에 몰렸다." },
-      { k:"효율", v:"매출 = 광고비 × ROAS. <b>광고비를 +32% 늘려 투입은 +779만인데 효율이 -1,260만</b>으로 상쇄해 순 -481만원. " +
-                    "<mark>증액한 채널이 정확히 무너졌다</mark>(귀인 ROAS 애드부스트 -753%p · 메타 -31%p · GFA -24%p). " +
-                    "옮길 곳이 없다." },
-      { k:"결론", v:"<mark>네이버 광고비 2.2배, 스마트스토어 매출 -30%.</mark> " +
-                    "광고 후 마진 953 → 551만원(-42%). 두 채널 다 손익분기 위지만 여유가 줄었다." }
+      { k:"볼륨", v:[
+        "매출 2,429 → <b>1,948만원(-19.8%)</b>, 주문 659 → <b>524건(-20.5%)</b>.",
+        "매출 감소는 스마트스토어 -454 · 자사몰 -27만원으로 스마트스토어에 몰렸다."
+      ]},
+      { k:"효율", v:[
+        "매출 = 광고비 × ROAS. <b>광고비를 +32% 늘려 투입은 +779만인데 효율이 -1,260만</b>으로 상쇄해 순 -481만원.",
+        "<mark>증액한 채널이 정확히 무너졌다.</mark> 귀인 ROAS 애드부스트 -753%p · 메타 -31%p · GFA -24%p.",
+        "세 채널 다 악화라 예산을 옮길 곳이 없다."
+      ]},
+      { k:"결론", v:[
+        "<mark>네이버 광고비 2.2배, 스마트스토어 매출 -30%.</mark>",
+        "광고 후 마진 953 → 551만원(-42%).",
+        "두 채널 다 손익분기 위지만 여유가 줄었다."
+      ]}
     ],
   
     // 서로 파생되지 않는 5개 사실: 투입 / 산출 / 효율 / 볼륨 / 남는 돈
@@ -814,12 +815,20 @@ const REPORTS = {
       note:"단위 만원. BigQuery mkt_marketing_daily_native, 라벨 릴렉스틱오리지널_루피 + 릴렉스틱볼_루피. 검색광고는 집행 0원."
     },
   
-    // 페이드채널별 실주문 매출(원)
+    // 페이드채널. 광고비는 귀인 규칙대로 붙인다(메타→자사몰, 네이버 3종→스마트스토어).
     sales: [
-      { name:"스마트스토어", sub:"네이버 3종 귀인", prev:15346458, curr:10808067, prevO:429, currO:303 },
-      { name:"자사몰",      sub:"메타 귀인",       prev:8948375,  curr:8674934,  prevO:230, currO:221 }
+      { name:"스마트스토어", sub:"네이버 3종 귀인", sales:"1,081", salesDelta:-29.6, orders:303, ordersDelta:-29.4,
+        cost:"158", costDelta:+116.0, bep:174, contrib:"+462", contribDelta:-41.8 },
+      { name:"자사몰", sub:"메타 귀인", sales:"867", salesDelta:-3.1, orders:221, ordersDelta:-3.9,
+        cost:"423", costDelta:+15.3, bep:170, contrib:"+88", contribDelta:-44.4 }
     ],
-    salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 쿠팡 매출은 없다. 공구·팝업·홈쇼핑 제외.",
+    salesSum: { sales:"1,948", salesDelta:-19.8, orders:524, ordersDelta:-20.5, cost:"582", costDelta:+32.0, bep:172, contrib:"+551", contribDelta:-42.2 },
+    salesNote: [
+      "실주문 매출. 광고 플랫폼 전환값이 아니다. 쿠팡 매출은 없다. 공구·팝업·홈쇼핑 제외.",
+      "손익분기 = 실매출 ÷ 채널마진. 채널마진 = 매출 − 원가 − 수수료 − 배송비. 광고 후 마진 = 채널마진 − 광고비.",
+      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
+      "<mark>두 채널 다 손익분기 위지만 광고 후 마진이 42% 줄었다.</mark> 스마트스토어는 광고비를 2.2배 늘리고도 -42%다."
+    ],
   
     // 마케팅 채널별 효율 (귀인 기준). 광고비 순.
     chanEff: [
@@ -836,19 +845,6 @@ const REPORTS = {
       "<mark>증액한 두 채널이 가장 크게 무너졌다.</mark> 애드부스트는 광고비 +121%에 귀인 ROAS -753%p, GFA는 +115%에 -24%p다.",
       "메타 귀인 ROAS 100%는 광고비와 귀인 매출이 같다는 뜻이다. 픽셀 기준으로도 본전이다.",
       "귀인 매출은 각 플랫폼 자체 집계다. 채널 간 절대 비교나 실매출과의 합산은 하지 않는다. 주 대 주 방향만 본다."
-    ],
-    groups: [
-      { name:"네이버 3종", sub:"→ 스마트스토어", cost:"158", sales:"1,081", salesDelta:-29.6, roas:683, roasPrev:2095, bep:174,
-        contrib:"+462", cpa:"5,223", orders:303, verdict:"증액 보류", tone:"hold" },
-      { name:"메타",      sub:"→ 자사몰",       cost:"423", sales:"867", salesDelta:-3.1, roas:205, roasPrev:244, bep:170,
-        contrib:"+88", cpa:"19,161", orders:221, verdict:"유지", tone:"hold" }
-    ],
-    groupSum: { cost:"582", sales:"1,948", salesDelta:-19.8, roas:335, roasPrev:552, bep:172, contrib:"+551", cpa:"11,101", orders:524 },
-    verdictRule: [
-      "<b>판정</b> 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액.",
-      "<b>정의</b> 손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비.",
-      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
-      "<b>예외</b> 네이버는 683 ÷ 174 = 3.9배로 규칙상 증액 후보이나 <mark>증액 보류</mark>다. 지난주에 이미 광고비를 116% 늘렸고 매출은 -30%였다."
     ],
   
     // ---- 2면: 특수상황 · 영향력 순위 ----
@@ -1061,7 +1057,7 @@ function render(key) {
   $("p-name").textContent = R.product;
   $("p-sub").innerHTML = R.subtitle;
   $("p-lede").innerHTML = R.lede
-    .map(l => `<div><dt>${esc(l.k)}</dt><p>${l.v}</p></div>`).join("");
+    .map(l => `<div><dt>${esc(l.k)}</dt><div class="ltext">${lines(l.v)}</div></div>`).join("");
 
   $("p-stats").innerHTML = R.stats.map(s => {
     const rising = s.delta > 0;
@@ -1083,24 +1079,26 @@ function render(key) {
     `<span><i style="background:var(--curr)"></i>${esc(C.currLabel)}</span>`;
   drawChart();
 
-  /* 페이드채널 실매출 */
+  /* 페이드채널 실매출과 광고 후 마진 */
   {
-    const s = R.sales;
-    const tp = s.reduce((a,x)=>a+x.prev,0), tc = s.reduce((a,x)=>a+x.curr,0);
-    const op = s.reduce((a,x)=>a+x.prevO,0), oc = s.reduce((a,x)=>a+x.currO,0);
-    const row = (n, sub, p, c, po, co, cls) => {
-      const d = pct(c,p), dv = pct(co,po);
-      return `<tr class="${cls||""}">
-        <td class="name">${esc(n)}${sub?`<small>${esc(sub)}</small>`:""}</td>
-        <td class="n">${won(c)}<br><span class="wow ${d>=0?"up":"down"}">${d>=0?"+":""}${d.toFixed(1)}%</span></td>
-        <td class="n">${won(co)}<br><span class="wow ${dv>=0?"up":"down"}">${dv>=0?"+":""}${dv.toFixed(1)}%</span></td>
+    const S = R.salesSum;
+    const d1 = (v) => (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
+    const wow = (v) => `<span class="wow ${v >= 0 ? "up" : "down"}">${d1(v)}</span>`;
+    const na = `<span class="na">-</span>`;
+    const row = (x, cls) => `<tr class="${cls || ""}">
+        <td class="name">${esc(x.name)}${x.sub ? `<small>${esc(x.sub)}</small>` : ""}</td>
+        <td class="n">${esc(x.sales)} ${wow(x.salesDelta)}</td>
+        <td class="n">${x.orders} ${wow(x.ordersDelta)}</td>
+        <td class="n${x.cost == null ? " na" : ""}">${x.cost == null ? na : esc(x.cost) + " " + wow(x.costDelta)}</td>
+        <td class="n">${x.bep}%</td>
+        <td class="n${x.negative ? " neg" : ""}">${esc(x.contrib)} ${wow(x.contribDelta)}</td>
       </tr>`;
-    };
     $("p-sales").innerHTML =
-      `<thead><tr><th>페이드채널</th><th>지난주 실매출</th><th>주문</th></tr></thead><tbody>` +
-      s.map(x => row(x.name, x.sub, x.prev, x.curr, x.prevO, x.currO)).join("") +
-      row("합계", "", tp, tc, op, oc, "sum") + `</tbody>`;
-    $("p-sales-note").textContent = R.salesNote;
+      `<thead><tr><th>페이드채널</th><th>실매출 만원</th><th>주문</th><th>광고비 만원</th>` +
+      `<th>손익분기</th><th>광고 후 마진 만원</th></tr></thead>` +
+      `<tbody>${R.sales.map(x => row(x)).join("")}` +
+      row(Object.assign({ name: "합계", sub: "" }, S), "sum") + `</tbody>`;
+    $("p-sales-note").innerHTML = lines(R.salesNote);
   }
 
   /* 마케팅 채널별 효율. 광고 플랫폼 귀인 기준이므로 주 대 주 방향 비교용이다. */
@@ -1125,46 +1123,6 @@ function render(key) {
         </tr>`).join("")}</tbody>`;
     $("p-chaneff-note").innerHTML = lines(R.chanEffNote);
   }
-
-  /* 귀인 그룹 판정 */
-  {
-    const g = R.groups, S = R.groupSum;
-    const roasCell = (r, rp) => {
-      if (r == null) return `<span class="na">-</span>`;
-      const d = r - rp;
-      return `${r.toLocaleString()}% <span class="wow ${d>0?"up":d<0?"down":"same"}">${d>=0?"+":""}${d.toLocaleString()}%p</span>`;
-    };
-    const cell = v => v == null ? `<span class="na">-</span>` : esc(v);
-    const salesCell = (v, d) => d == null ? esc(v) :
-      `${esc(v)} <span class="wow ${d>0?"up":d<0?"down":"same"}">${d>=0?"+":""}${d.toFixed(1)}%</span>`;
-    $("p-groups").innerHTML =
-      `<thead><tr><th>귀인 그룹</th><th>광고비 만원</th><th>실매출 만원</th><th>실매출 ROAS</th>` +
-      `<th>손익분기</th><th>광고 후 마진 만원</th><th>주문</th><th>CPA 원</th><th>판정</th></tr></thead>` +
-      `<tbody>${g.map(x => `<tr>
-          <td class="name">${esc(x.name)}<small>${esc(x.sub)}</small></td>
-          <td class="n${x.cost==null?" na":""}">${cell(x.cost)}</td>
-          <td class="n">${salesCell(x.sales, x.salesDelta)}</td>
-          <td class="n">${roasCell(x.roas, x.roasPrev)}</td>
-          <td class="n">${x.bep}%</td>
-          <td class="n${x.negative?" neg":""}">${esc(x.contrib)}</td>
-          <td class="n">${x.orders}</td>
-          <td class="n${x.cpa==null?" na":""}">${cell(x.cpa)}</td>
-          <td><span class="pill ${x.tone}">${esc(x.verdict)}</span></td>
-        </tr>`).join("")}
-        <tr class="sum">
-          <td class="name">합계</td>
-          <td class="n">${esc(S.cost)}</td>
-          <td class="n">${salesCell(S.sales, S.salesDelta)}</td>
-          <td class="n">${roasCell(S.roas, S.roasPrev)}</td>
-          <td class="n">${S.bep}%</td>
-          <td class="n">${esc(S.contrib)}</td>
-          <td class="n">${S.orders}</td>
-          <td class="n">${esc(S.cpa)}</td>
-          <td></td>
-        </tr></tbody>`;
-    $("p-rule").innerHTML = lines(R.verdictRule);
-  }
-
   $("p-actions").innerHTML =
     `<thead><tr><th style="width:34%">액션</th><th>소유자</th><th style="text-align:left">수용 기준</th></tr></thead>` +
     `<tbody>${R.actions.map(a => `<tr>
