@@ -272,6 +272,12 @@ td.owner { font-family:var(--mono); font-size:11px; white-space:nowrap; }
   </div>
 
   <section class="block">
+    <div class="block-head"><h2>마케팅 채널별 효율</h2></div>
+    <div class="tablewrap"><table id="p-chaneff"></table></div>
+    <p class="rule" id="p-chaneff-note"></p>
+  </section>
+
+  <section class="block">
     <div class="block-head"><h2>귀인 그룹 판정</h2></div>
     <div class="tablewrap"><table id="p-groups"></table></div>
     <p class="rule" id="p-rule"></p>
@@ -326,8 +332,8 @@ const REPORTS = {
       { k:"볼륨", v:"매출 4,004 → <b>3,092만원(-22.8%)</b>, 주문 938 → <b>641건(-31.7%)</b>. " +
                     "매출 감소는 스마트스토어 -450 · 쿠팡 -320 · 자사몰 -143만원으로 3채널 동반." },
       { k:"효율", v:"매출 = 광고비 × ROAS. 하락 912만원 = <b>투입 558만(61%) + 효율 354만(39%)</b>. " +
-                    "전체 ROAS 528 → <b>474%</b>는 스마트스토어(-69%p)·쿠팡(-49%p) 매출 감소가 끌어내렸고, " +
-                    "채널 자체 효율은 <b>메타만 악화</b>(156 → 128%), 네이버 608% 유지." },
+                    "마케팅 채널 중 효율이 떨어진 건 <mark>검색광고 하나뿐</mark>(귀인 ROAS 476 → 343%, -133%p). " +
+                    "메타 +4%p · 애드부스트 +65%p · GFA +76%p로 나머지는 올랐다." },
       { k:"결론", v:"<mark>자사몰 43만원 적자.</mark> 메타 광고비 296만 > 채널마진 253만. 스마트스토어는 +1,134만원." }
     ],
   
@@ -364,6 +370,22 @@ const REPORTS = {
     salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 공구·팝업·홈쇼핑 제외.",
   
     // 귀인 그룹 = 광고 채널과 그 채널이 매출을 만드는 판매채널의 짝
+    // 마케팅 채널별 효율 (귀인 기준). 광고비 순.
+    chanEff: [
+      { name:"메타", sub:"→ 자사몰", cost:"296", costDelta:-11.4, sales:"311", salesDelta:-7.9,
+        roas:105, roasPrev:101, cpa:"39,508", cpaDelta:+14.7, verdict:"개선", tone:"up" },
+      { name:"검색광고", sub:"→ 스마트스토어", cost:"280", costDelta:+4.5, sales:"958", salesDelta:-24.8,
+        roas:343, roasPrev:476, cpa:"16,069", cpaDelta:+49.0, verdict:"악화", tone:"down" },
+      { name:"애드부스트", sub:"→ 스마트스토어", cost:"43", costDelta:+53.7, sales:"352", salesDelta:+67.1,
+        roas:813, roasPrev:748, cpa:"8,839", cpaDelta:+41.2, verdict:"개선", tone:"up" },
+      { name:"GFA", sub:"→ 스마트스토어", cost:"33", costDelta:-73.9, sales:"56", salesDelta:-52.7,
+        roas:168, roasPrev:93, cpa:"33,472", cpaDelta:-34.9, verdict:"개선", tone:"up" }
+    ],
+    chanEffNote: [
+      "<mark>효율이 떨어진 마케팅 채널은 검색광고 하나뿐이다.</mark> 광고비의 43%를 쓰면서 귀인 매출이 1,273 → 958만원(-25%)으로 빠졌다.",
+      "메타 귀인 ROAS는 101 → 105%로 올랐다. 1면의 메타 판정이 나쁜 것은 자사몰 <b>실매출</b> 기준이며, 여기는 메타 픽셀 <b>귀인</b> 기준이다. 두 지표가 반대 방향이다.",
+      "귀인 매출은 각 플랫폼 자체 집계다. 채널 간 절대 비교나 실매출과의 합산은 하지 않는다. 주 대 주 방향만 본다."
+    ],
     groups: [
       { name:"네이버 3종", sub:"→ 스마트스토어", cost:"356", sales:"2,168", salesDelta:-17.2, roas:608, roasPrev:617, bep:145,
         contrib:"+1,134", cpa:"8,954", orders:398, verdict:"증액 후보", tone:"up" },
@@ -401,14 +423,16 @@ const REPORTS = {
         "광고비만 줄였으면 3,446만이어야 하나 실제는 3,092만원."
       ]},
       { step:"3. 효율 위치", q:"어느 채널인가", a:[
-        "전체 ROAS -54.2%p 분해:",
-        "<span class=\"calc\">비용 감소 +85.5%p · 스마트스토어 -68.9%p · 쿠팡 -49.0%p · 자사몰 -21.8%p</span>",
-        "전체를 끌어내린 건 <mark>스마트스토어·쿠팡 매출 감소</mark>.",
-        "채널 자체 ROAS는 <b>메타만 악화</b>(156 → 128%). 네이버 608% 유지, 쿠팡은 산출 불가."
+        "판매채널 기준과 마케팅 채널 기준이 서로 다른 답을 준다. 둘 다 본다.",
+        "<span class=\"calc\">판매채널 ROAS 기여 -54.2%p: 비용 감소 +85.5 · 스마트스토어 -68.9 · 쿠팡 -49.0 · 자사몰 -21.8</span>",
+        "<span class=\"calc\">마케팅 채널 귀인 ROAS: 검색광고 476→343(-133%p) · 메타 101→105(+4) · 애드부스트 748→813(+65) · GFA 93→168(+76)</span>",
+        "<mark>효율이 떨어진 마케팅 채널은 검색광고 하나뿐이다.</mark> 광고비의 43%를 쓰면서 귀인 매출이 -25% 빠졌다.",
+        "메타는 자사몰 실매출 기준으로는 악화(156→128%)지만 귀인 기준으로는 개선이다. 실매출이 판정 기준이므로 메타 판정은 유지하되, 효율 회복의 지렛대는 검색광고에 있다."
       ]},
       { step:"4. 지표 원인", q:"무슨 지표인가", a:[
         "전환 단가. 노출·클릭이 아니다.",
-        "<span class=\"calc\">메타 CPA +20.5% · 검색광고 CPA +18.8%</span>"
+        "<span class=\"calc\">귀인 CPA: 검색광고 10,788→16,069(+49.0%) · 애드부스트 6,261→8,839(+41.2%) · 메타 34,459→39,508(+14.7%) · GFA 51,383→33,472(-34.9%)</span>",
+        "검색광고 CPA 상승분이 가장 크다. 2면 광고그룹 표에서 브랜드명 그룹 CPA 12,396원이 메인의 2배인 것과 이어진다."
       ]},
       { step:"5. 내외부", q:"광고 밖 요인인가", a:[
         "<b>보류.</b> 최대 낙폭 쿠팡 -40%가 광고비 0원 채널이다.",
@@ -553,7 +577,8 @@ const REPORTS = {
       { k:"볼륨", v:"매출 2,312 → <b>1,537만원(-33.5%)</b>, 주문 725 → <b>447건(-38.3%)</b>. " +
                     "매출 감소는 자사몰 -417 · 스마트스토어 -358만원으로 두 채널이 비슷하게 빠졌다." },
       { k:"효율", v:"매출 = 광고비 × ROAS. 하락 775만원 = <b>투입 162만(21%) + 효율 613만(79%)</b>. " +
-                    "전체 ROAS 446 → <b>319%</b>. 채널 자체 ROAS는 메타 266 → 200%, 네이버 2,733 → 1,310%로 <b>둘 다 하락</b>." },
+                    "<mark>집행한 세 채널 전부 효율 악화</mark>(귀인 ROAS 애드부스트 -880%p · 검색광고 -627%p · 메타 -51%p). " +
+                    "개선된 채널이 하나도 없다." },
       { k:"결론", v:"<mark>자사몰 광고 후 마진 217 → 37만원(-83%).</mark> " +
                     "메타 ROAS 200%가 손익분기 184%에 붙었다. 스마트스토어는 +346만원." }
     ],
@@ -589,6 +614,22 @@ const REPORTS = {
     ],
     salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 쿠팡 매출은 없다. 공구·팝업·홈쇼핑 제외.",
   
+    // 마케팅 채널별 효율 (귀인 기준). 광고비 순.
+    chanEff: [
+      { name:"메타", sub:"→ 자사몰", cost:"430", costDelta:-10.5, sales:"590", salesDelta:-34.6,
+        roas:137, roasPrev:188, cpa:"24,013", cpaDelta:+32.6, verdict:"악화", tone:"down" },
+      { name:"검색광고", sub:"→ 스마트스토어", cost:"41", costDelta:+25.7, sales:"254", salesDelta:-37.2,
+        roas:625, roasPrev:1251, cpa:"7,394", cpaDelta:+194.9, verdict:"악화", tone:"down" },
+      { name:"애드부스트", sub:"→ 스마트스토어", cost:"11", costDelta:+99.6, sales:"98", salesDelta:+0.5,
+        roas:892, roasPrev:1771, cpa:"3,450", cpaDelta:+99.6, verdict:"악화", tone:"down" },
+      { name:"GFA", sub:"미집행", cost:"0", costDelta:0, sales:"4", salesDelta:-70.5,
+        roas:null, cpa:null, verdict:"미집행", tone:"hold" }
+    ],
+    chanEffNote: [
+      "<mark>집행한 세 채널 전부 효율이 떨어졌다.</mark> 개선된 채널이 하나도 없다. 세 제품 중 유일하다.",
+      "낙폭은 애드부스트 -880%p > 검색광고 -627%p > 메타 -51%p 순이지만, 금액 비중은 메타가 89%다. 실제 손실액은 메타가 가장 크다.",
+      "귀인 매출은 각 플랫폼 자체 집계다. 채널 간 절대 비교나 실매출과의 합산은 하지 않는다. 주 대 주 방향만 본다."
+    ],
     groups: [
       { name:"네이버 3종", sub:"→ 스마트스토어", cost:"52", sales:"677", salesDelta:-34.6, roas:1310, roasPrev:2733, bep:171,
         contrib:"+346", cpa:"2,795", orders:185, verdict:"증액 보류", tone:"hold" },
@@ -625,14 +666,16 @@ const REPORTS = {
         "효율분이 투입분의 3.8배다."
       ]},
       { step:"3. 효율 위치", q:"어느 채널인가", a:[
-        "전체 ROAS -127.3%p 분해:",
-        "<span class=\"calc\">비용 감소 +33.7%p · 자사몰 -86.6%p · 스마트스토어 -74.3%p</span>",
-        "<mark>두 채널이 같이 무너졌다.</mark> 메타 266 → 200%(-25%), 네이버 2,733 → 1,310%(-52%).",
-        "한쪽만 나쁜 릴렉스틱·잔망루피와 다른 점이다."
+        "판매채널도 마케팅 채널도 전부 나빠졌다. 이 제품은 예외가 없다.",
+        "<span class=\"calc\">판매채널 ROAS 기여 -127.3%p: 비용 감소 +33.7 · 자사몰 -86.6 · 스마트스토어 -74.3</span>",
+        "<span class=\"calc\">마케팅 채널 귀인 ROAS: 애드부스트 1,771→892(-880%p) · 검색광고 1,251→625(-627) · 메타 188→137(-51)</span>",
+        "<mark>집행한 세 채널 전부 효율 악화. 개선된 채널이 없다.</mark>",
+        "낙폭 순위는 애드부스트지만 금액 비중은 메타가 89%다. 손실액 기준으로는 메타가 가장 크다."
       ]},
       { step:"4. 지표 원인", q:"무슨 지표인가", a:[
-        "전환 단가. 양쪽 다 올랐다.",
-        "<span class=\"calc\">메타 CPA 12,435 → 16,406원(+31.9%) · 네이버 CPA 1,117 → 2,795원(+150.2%)</span>"
+        "전환 단가. 세 채널 다 올랐다.",
+        "<span class=\"calc\">귀인 CPA: 검색광고 2,507→7,394(+194.9%) · 애드부스트 1,729→3,450(+99.6%) · 메타 18,113→24,013(+32.6%)</span>",
+        "검색광고 CPA가 3배가 됐다. 단일 그룹(06. 릴렉스틱볼_메인)이라 배분으로 고칠 여지가 없다."
       ]},
       { step:"5. 내외부", q:"광고 밖 요인인가", a:[
         "<b>의심 신호 있음.</b> 공구 -71%, 팝업 -57%로 광고를 안 쓰는 채널도 같이 빠졌다.",
@@ -741,7 +784,8 @@ const REPORTS = {
       { k:"볼륨", v:"매출 2,429 → <b>1,948만원(-19.8%)</b>, 주문 659 → <b>524건(-20.5%)</b>. " +
                     "매출 감소는 스마트스토어 -454 · 자사몰 -27만원으로 스마트스토어에 몰렸다." },
       { k:"효율", v:"매출 = 광고비 × ROAS. <b>광고비를 +32% 늘려 투입은 +779만인데 효율이 -1,260만</b>으로 상쇄해 순 -481만원. " +
-                    "전체 ROAS 552 → <b>335%</b>. 채널 자체 ROAS는 네이버 2,095 → 683%, 메타 244 → 205%." },
+                    "<mark>증액한 채널이 정확히 무너졌다</mark>(귀인 ROAS 애드부스트 -753%p · 메타 -31%p · GFA -24%p). " +
+                    "옮길 곳이 없다." },
       { k:"결론", v:"<mark>네이버 광고비 2.2배, 스마트스토어 매출 -30%.</mark> " +
                     "광고 후 마진 953 → 551만원(-42%). 두 채널 다 손익분기 위지만 여유가 줄었다." }
     ],
@@ -777,6 +821,22 @@ const REPORTS = {
     ],
     salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 쿠팡 매출은 없다. 공구·팝업·홈쇼핑 제외.",
   
+    // 마케팅 채널별 효율 (귀인 기준). 광고비 순.
+    chanEff: [
+      { name:"메타", sub:"→ 자사몰", cost:"423", costDelta:+15.3, sales:"423", salesDelta:-11.9,
+        roas:100, roasPrev:131, cpa:"30,246", cpaDelta:+41.7, verdict:"악화", tone:"down" },
+      { name:"GFA", sub:"→ 스마트스토어", cost:"118", costDelta:+114.5, sales:"79", salesDelta:+58.4,
+        roas:67, roasPrev:90, cpa:"59,055", cpaDelta:+18.0, verdict:"악화", tone:"down" },
+      { name:"애드부스트", sub:"→ 스마트스토어", cost:"40", costDelta:+120.7, sales:"201", salesDelta:-11.8,
+        roas:501, roasPrev:1254, cpa:"8,191", cpaDelta:+156.7, verdict:"악화", tone:"down" },
+      { name:"검색광고", sub:"미집행", cost:"0", costDelta:0, sales:"334", salesDelta:-38.2,
+        roas:null, cpa:null, verdict:"미집행", tone:"hold" }
+    ],
+    chanEffNote: [
+      "<mark>증액한 두 채널이 가장 크게 무너졌다.</mark> 애드부스트는 광고비 +121%에 귀인 ROAS -753%p, GFA는 +115%에 -24%p다.",
+      "메타 귀인 ROAS 100%는 광고비와 귀인 매출이 같다는 뜻이다. 픽셀 기준으로도 본전이다.",
+      "귀인 매출은 각 플랫폼 자체 집계다. 채널 간 절대 비교나 실매출과의 합산은 하지 않는다. 주 대 주 방향만 본다."
+    ],
     groups: [
       { name:"네이버 3종", sub:"→ 스마트스토어", cost:"158", sales:"1,081", salesDelta:-29.6, roas:683, roasPrev:2095, bep:174,
         contrib:"+462", cpa:"5,223", orders:303, verdict:"증액 보류", tone:"hold" },
@@ -812,14 +872,16 @@ const REPORTS = {
         "ROAS가 유지됐다면 매출은 3,208만원이어야 했다."
       ]},
       { step:"3. 효율 위치", q:"어느 채널인가", a:[
-        "전체 ROAS -216.6%p 분해:",
-        "<span class=\"calc\">비용 증가 -133.9%p · 스마트스토어 -78.0%p · 자사몰 -4.7%p</span>",
-        "채널 자체 ROAS는 <b>네이버가 무너졌다</b>(2,095 → 683%, -67%). 메타는 244 → 205%(-16%).",
-        "네이버는 광고비를 2.2배 넣고 매출이 -30%다."
+        "증액한 채널이 정확히 무너졌다.",
+        "<span class=\"calc\">판매채널 ROAS 기여 -216.6%p: 비용 증가 -133.9 · 스마트스토어 -78.0 · 자사몰 -4.7</span>",
+        "<span class=\"calc\">마케팅 채널 귀인 ROAS: 애드부스트 1,254→501(-753%p) · 메타 131→100(-31) · GFA 90→67(-24)</span>",
+        "<mark>광고비를 늘린 애드부스트(+121%)와 GFA(+115%)가 가장 크게 떨어졌다.</mark>",
+        "증액분이 효율을 사지 못했다. 세 채널 다 악화라 옮길 곳도 없다."
       ]},
       { step:"4. 지표 원인", q:"무슨 지표인가", a:[
-        "전환 단가. 네이버가 3배 나빠졌다.",
-        "<span class=\"calc\">네이버 CPA 1,708 → 5,223원(+206%) · 메타 CPA 15,967 → 19,161원(+20%)</span>"
+        "전환 단가. 증액한 채널일수록 더 올랐다.",
+        "<span class=\"calc\">귀인 CPA: 애드부스트 3,191→8,191(+156.7%) · 메타 21,351→30,246(+41.7%) · GFA 50,065→59,055(+18.0%)</span>",
+        "메타 귀인 ROAS 100%는 픽셀 기준으로도 본전이라는 뜻이다."
       ]},
       { step:"5. 내외부", q:"광고 밖 요인인가", a:[
         "<b>보류.</b> 같은 기간 팝업 매출 -75%가 있었으나 페이드 밖이다.",
@@ -1039,6 +1101,29 @@ function render(key) {
       s.map(x => row(x.name, x.sub, x.prev, x.curr, x.prevO, x.currO)).join("") +
       row("합계", "", tp, tc, op, oc, "sum") + `</tbody>`;
     $("p-sales-note").textContent = R.salesNote;
+  }
+
+  /* 마케팅 채널별 효율. 광고 플랫폼 귀인 기준이므로 주 대 주 방향 비교용이다. */
+  {
+    const d1 = (v) => (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
+    const dp = (a, b) => (a - b >= 0 ? "+" : "") + (a - b).toLocaleString() + "%p";
+    const roasCol = (x) => x.roas == null
+      ? `<span class="na">-</span>`
+      : `${x.roas.toLocaleString()}% <span class="wow ${x.roas - x.roasPrev > 0 ? "up" : "down"}">${dp(x.roas, x.roasPrev)}</span>`;
+    const cpaCol = (x) => x.cpa == null
+      ? `<span class="na">-</span>`
+      : `${esc(x.cpa)} <span class="wow ${x.cpaDelta >= 0 ? "down" : "up"}">${d1(x.cpaDelta)}</span>`;
+    $("p-chaneff").innerHTML =
+      `<thead><tr><th>마케팅 채널</th><th>광고비 만원</th><th>귀인 매출 만원</th><th>귀인 ROAS</th><th>귀인 CPA 원</th><th>효율</th></tr></thead>` +
+      `<tbody>${R.chanEff.map(x => `<tr>
+          <td class="name">${esc(x.name)}${x.sub ? `<small>${esc(x.sub)}</small>` : ""}</td>
+          <td class="n">${esc(x.cost)} <span class="wow ${x.costDelta >= 0 ? "up" : "down"}">${d1(x.costDelta)}</span></td>
+          <td class="n">${esc(x.sales)} <span class="wow ${x.salesDelta >= 0 ? "up" : "down"}">${d1(x.salesDelta)}</span></td>
+          <td class="n">${roasCol(x)}</td>
+          <td class="n">${cpaCol(x)}</td>
+          <td><span class="pill ${x.tone}">${esc(x.verdict)}</span></td>
+        </tr>`).join("")}</tbody>`;
+    $("p-chaneff-note").innerHTML = lines(R.chanEffNote);
   }
 
   /* 귀인 그룹 판정 */
