@@ -260,7 +260,7 @@ td.owner { font-family:var(--mono); font-size:11px; white-space:nowrap; }
         <div class="legend" id="p-legend"></div>
       </div>
       <figure>
-        <svg id="chart" viewBox="0 0 460 218" role="img" aria-labelledby="chart-t"></svg>
+        <svg id="chart" viewBox="0 0 460 252" role="img" aria-labelledby="chart-t"></svg>
         <figcaption id="chart-t"></figcaption>
       </figure>
     </section>
@@ -1003,7 +1003,7 @@ const won = (n) => n.toLocaleString();
 const lines = (v) => (Array.isArray(v) ? v : [v]).map(l => `<p>${l}</p>`).join("");
 
 /* 차트 기하는 고정, 데이터에 따라 바뀌는 값만 렌더 시 갱신 */
-const W=460, H=218, PAD={t:34,r:12,b:26,l:44};
+const W=460, H=252, PAD={t:34,r:12,b:26,l:44};
 const plotW = W-PAD.l-PAD.r, plotH = H-PAD.t-PAD.b;
 const barW = 34, gap = 7;
 let R, C, DIV = 1, band = plotW;
