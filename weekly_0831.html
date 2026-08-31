@@ -23,6 +23,7 @@
   --good:#0e7c5a; --good-bg:#e4f2ec; --bad:#b3261e; --bad-bg:#f8e7e5;
   --prev:#86b6ef; --curr:#2a78d6;
   --grid:#e6e9ec; --tip-bg:#1f262c; --tip-ink:#ffffff;
+  --mark:#fdf0c8;
   --sans:"IBM Plex Sans KR","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
 }
@@ -35,6 +36,7 @@
     --good:#3fbf92; --good-bg:#16302a; --bad:#e66767; --bad-bg:#35211f;
     --prev:#1c5cab; --curr:#3987e5;
     --grid:#2c343a; --tip-bg:#eef1f3; --tip-ink:#1f262c;
+    --mark:#4a3d18;
   }
 }
 :root[data-theme="dark"] {
@@ -45,6 +47,7 @@
   --good:#3fbf92; --good-bg:#16302a; --bad:#e66767; --bad-bg:#35211f;
   --prev:#1c5cab; --curr:#3987e5;
   --grid:#2c343a; --tip-bg:#eef1f3; --tip-ink:#1f262c;
+    --mark:#4a3d18;
 }
 
 * { box-sizing: border-box; }
@@ -139,14 +142,19 @@ td.na { color:var(--ink-3); }
 .wow { font-family:var(--mono); font-size:10.5px; font-variant-numeric:tabular-nums; }
 .wow.up { color:var(--good); } .wow.down { color:var(--bad); } .wow.same { color:var(--ink-3); }
 
-.rule { margin:6px 0 0; font-size:10.5px; line-height:1.5; color:var(--ink-3); }
+/* 강조 마크. 그 문단에서 한 번만 쓴다. */
+mark { background:var(--mark); color:inherit; padding:0 3px; border-radius:2px; font-weight:600; }
+
+.rule { margin:6px 0 0; font-size:10.5px; line-height:1.5; color:var(--ink-3); display:flex; flex-direction:column; gap:3px; }
+.rule p { margin:0; }
 .rule b { font-weight:600; color:var(--ink-2); }
 
 td.owner { font-family:var(--mono); font-size:11px; white-space:nowrap; }
 
 .drill { display:flex; flex-direction:column; gap:22px; }
 .drill section { display:flex; flex-direction:column; gap:8px; }
-.drill .cap { font-size:11px; color:var(--ink-3); line-height:1.5; margin:0; }
+.drill .cap { font-size:11px; color:var(--ink-3); line-height:1.5; margin:0; display:flex; flex-direction:column; gap:3px; }
+.drill .cap p { margin:0; }
 .drill .hd { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
 .drill .hd .spend { font-family:var(--mono); font-size:11px; color:var(--ink-2); font-variant-numeric:tabular-nums; }
 .tablewrap { overflow-x:auto; }
@@ -320,7 +328,7 @@ const REPORTS = {
       { k:"효율", v:"매출 = 광고비 × ROAS. 하락 912만원 = <b>투입 558만(61%) + 효율 354만(39%)</b>. " +
                     "전체 ROAS 528 → <b>474%</b>는 스마트스토어(-69%p)·쿠팡(-49%p) 매출 감소가 끌어내렸고, " +
                     "채널 자체 효율은 <b>메타만 악화</b>(156 → 128%), 네이버 608% 유지." },
-      { k:"결론", v:"<span class=\"neg\">자사몰 43만원 적자.</span> 메타 광고비 296만 > 채널마진 253만. 스마트스토어는 +1,134만원." }
+      { k:"결론", v:"<mark>자사몰 43만원 적자.</mark> 메타 광고비 296만 > 채널마진 253만. 스마트스토어는 +1,134만원." }
     ],
   
     // 서로 파생되지 않는 5개 사실: 투입 / 산출 / 효율 / 볼륨 / 남는 돈
@@ -365,10 +373,12 @@ const REPORTS = {
         contrib:"-43", negative:true, cpa:"37,989", orders:78, verdict:"보류", tone:"down" }
     ],
     groupSum: { cost:"653", sales:"3,092", salesDelta:-22.8, roas:474, roasPrev:528, bep:146, contrib:"+1,468", cpa:"10,182", orders:641 },
-    verdictRule: "판정 - 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액. 쿠팡은 광고비 0이라 제외.<br>" +
-                 "손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비, " +
-                 "<b>고정비·시딩비 차감 전이라 순이익 아님.</b><br>" +
-                 "메타는 규칙상 감액이나 <b>보류</b>다. 쿠팡 546만원을 메타에 귀속하면 ROAS 312%로 부호가 뒤집혀 귀인 규칙 확정이 먼저다(액션 1).",
+    verdictRule: [
+      "<b>판정</b> 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액. 쿠팡은 광고비 0이라 제외.",
+      "<b>정의</b> 손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비.",
+      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
+      "<b>예외</b> 메타는 규칙상 감액이나 <mark>보류</mark>다. 쿠팡 546만원을 메타에 귀속하면 ROAS 312%로 부호가 뒤집혀 귀인 규칙 확정이 먼저다(액션 1)."
+    ],
   
     // ---- 2면: 특수상황 · 영향력 순위 ----
     situation: {
@@ -393,7 +403,7 @@ const REPORTS = {
       { step:"3. 효율 위치", q:"어느 채널인가", a:[
         "전체 ROAS -54.2%p 분해:",
         "<span class=\"calc\">비용 감소 +85.5%p · 스마트스토어 -68.9%p · 쿠팡 -49.0%p · 자사몰 -21.8%p</span>",
-        "전체를 끌어내린 건 스마트스토어·쿠팡 <b>매출 감소</b>.",
+        "전체를 끌어내린 건 <mark>스마트스토어·쿠팡 매출 감소</mark>.",
         "채널 자체 ROAS는 <b>메타만 악화</b>(156 → 128%). 네이버 608% 유지, 쿠팡은 산출 불가."
       ]},
       { step:"4. 지표 원인", q:"무슨 지표인가", a:[
@@ -438,8 +448,11 @@ const REPORTS = {
           ["260723_GEM세팅","중단","15,153","0","8","0","386%","-"]
         ],
         sum:["합계","","2,106,459","1,782,277","71","54","117%","130%"],
-        note:"meta_ads_purchase, 라벨 릴렉스틱. 캠페인 합계 178만 ≠ 채널 296만 (marketing_daily는 제품 수 N빵, 여기는 귀인분만). 채널 합계가 기준. " +
-             "주의 - 캠페인 귀인 ROAS 합계는 117 → 130%로 올랐는데 자사몰 실매출 ROAS는 156 → 128%로 내렸다. 픽셀과 실매출이 반대 방향이므로 판정은 실매출로 한다."
+        note:[
+          "meta_ads_purchase, 라벨 릴렉스틱.",
+          "캠페인 합계 178만 ≠ 채널 296만. marketing_daily는 제품 수로 N빵 배분하고 여기는 귀인분만 담는다. 채널 합계가 기준.",
+          "<b>주의</b> 캠페인 귀인 ROAS 합계는 117 → 130%로 올랐는데 자사몰 실매출 ROAS는 156 → 128%로 내렸다. 픽셀과 실매출이 반대 방향이므로 판정은 실매출로 한다."
+        ]
       },
       {
         title:"네이버 검색광고 · 광고그룹별",
@@ -469,7 +482,10 @@ const REPORTS = {
           ["02. 릴렉스틱","파워링크 브랜드","43,023","45,732","10","4,573","2,541%"]
         ],
         sum:["합계","","2,675,610","2,795,982","387","7,224","1,533%"],
-        note:"naver_searchad, 광고그룹명에 릴렉스틱 포함(볼 제외). 비용 합계는 채널 합계와 일치. 플랫폼 ROAS는 네이버 자체 집계라 실매출 ROAS와 비교 불가. 비용·전환·CPA만 실측."
+        note:[
+          "naver_searchad, 광고그룹명에 릴렉스틱 포함(볼 제외). 비용 합계는 채널 합계와 일치.",
+          "플랫폼 ROAS는 네이버 자체 집계라 실매출 ROAS와 비교 불가. 비용·전환·CPA만 실측."
+        ]
       },
       {
         title:"네이버 애드부스트 · 상품별",
@@ -538,7 +554,7 @@ const REPORTS = {
                     "매출 감소는 자사몰 -417 · 스마트스토어 -358만원으로 두 채널이 비슷하게 빠졌다." },
       { k:"효율", v:"매출 = 광고비 × ROAS. 하락 775만원 = <b>투입 162만(21%) + 효율 613만(79%)</b>. " +
                     "전체 ROAS 446 → <b>319%</b>. 채널 자체 ROAS는 메타 266 → 200%, 네이버 2,733 → 1,310%로 <b>둘 다 하락</b>." },
-      { k:"결론", v:"<span class=\"neg\">자사몰 광고 후 마진 217 → 37만원(-83%).</span> " +
+      { k:"결론", v:"<mark>자사몰 광고 후 마진 217 → 37만원(-83%).</mark> " +
                     "메타 ROAS 200%가 손익분기 184%에 붙었다. 스마트스토어는 +346만원." }
     ],
   
@@ -580,11 +596,13 @@ const REPORTS = {
         contrib:"+37", cpa:"16,406", orders:262, verdict:"경보", tone:"down" }
     ],
     groupSum: { cost:"482", sales:"1,537", salesDelta:-33.5, roas:319, roasPrev:446, bep:178, contrib:"+382", cpa:"10,773", orders:447 },
-    verdictRule: "판정 - 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액.<br>" +
-                 "손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비, " +
-                 "<b>고정비·시딩비 차감 전이라 순이익 아님.</b><br>" +
-                 "메타는 200 ÷ 184 = 1.09배로 유지 구간이나 여유가 16%p뿐이라 <b>경보</b>로 표기했다. 다음 주 하락하면 적자 전환한다. " +
-                 "네이버는 7.7배로 증액 후보이나, 지난주 광고비를 +37% 늘리고 매출이 -35%였으므로 <b>증액 보류</b>다.",
+    verdictRule: [
+      "<b>판정</b> 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액.",
+      "<b>정의</b> 손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비.",
+      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
+      "<b>예외</b> 메타는 200 ÷ 184 = 1.09배로 유지 구간이나 <mark>여유가 16%p뿐이라 경보</mark>다. 다음 주 하락하면 적자 전환한다.",
+      "<b>예외</b> 네이버는 7.7배로 증액 후보이나 지난주 광고비를 +37% 늘리고 매출이 -35%였으므로 <mark>증액 보류</mark>다."
+    ],
   
     // ---- 2면: 특수상황 · 영향력 순위 ----
     situation: {
@@ -609,7 +627,7 @@ const REPORTS = {
       { step:"3. 효율 위치", q:"어느 채널인가", a:[
         "전체 ROAS -127.3%p 분해:",
         "<span class=\"calc\">비용 감소 +33.7%p · 자사몰 -86.6%p · 스마트스토어 -74.3%p</span>",
-        "<b>두 채널이 같이 무너졌다.</b> 메타 266 → 200%(-25%), 네이버 2,733 → 1,310%(-52%).",
+        "<mark>두 채널이 같이 무너졌다.</mark> 메타 266 → 200%(-25%), 네이버 2,733 → 1,310%(-52%).",
         "한쪽만 나쁜 릴렉스틱·잔망루피와 다른 점이다."
       ]},
       { step:"4. 지표 원인", q:"무슨 지표인가", a:[
@@ -697,7 +715,10 @@ const REPORTS = {
           ["릴렉스틱볼 목 어깨 족저근막염 마사지볼","단품","27,902","60,877","13","21","증액"]
         ],
         sum:["합계","","90,758","174,455","57","67",""],
-        note:"naver_gfa_advoost. 합계 9/17만원은 1면 채널 합계 6/11만원과 다르다. 세트 상품이 릴렉스틱에도 걸쳐 있어 배분이 갈리기 때문이다. 채널 합계가 기준. 구매는 시트의 구매완료수이며 marketing_daily 귀인 구매(32 → 32건)와 정의가 다르다."
+        note:[
+          "naver_gfa_advoost. 합계 9/17만원은 1면 채널 합계 6/11만원과 다르다. 세트 상품이 릴렉스틱에도 걸쳐 있어 배분이 갈린다. 채널 합계가 기준.",
+          "구매는 시트의 구매완료수이며 marketing_daily 귀인 구매(32 → 32건)와 정의가 다르다."
+        ]
       }
     ],
   
@@ -721,7 +742,7 @@ const REPORTS = {
                     "매출 감소는 스마트스토어 -454 · 자사몰 -27만원으로 스마트스토어에 몰렸다." },
       { k:"효율", v:"매출 = 광고비 × ROAS. <b>광고비를 +32% 늘려 투입은 +779만인데 효율이 -1,260만</b>으로 상쇄해 순 -481만원. " +
                     "전체 ROAS 552 → <b>335%</b>. 채널 자체 ROAS는 네이버 2,095 → 683%, 메타 244 → 205%." },
-      { k:"결론", v:"<span class=\"neg\">네이버 광고비를 2.2배 늘렸는데 스마트스토어 매출은 -30%.</span> " +
+      { k:"결론", v:"<mark>네이버 광고비 2.2배, 스마트스토어 매출 -30%.</mark> " +
                     "광고 후 마진 953 → 551만원(-42%). 두 채널 다 손익분기 위지만 여유가 줄었다." }
     ],
   
@@ -763,11 +784,12 @@ const REPORTS = {
         contrib:"+88", cpa:"19,161", orders:221, verdict:"유지", tone:"hold" }
     ],
     groupSum: { cost:"582", sales:"1,948", salesDelta:-19.8, roas:335, roasPrev:552, bep:172, contrib:"+551", cpa:"11,101", orders:524 },
-    verdictRule: "판정 - 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액.<br>" +
-                 "손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비, " +
-                 "<b>고정비·시딩비 차감 전이라 순이익 아님.</b><br>" +
-                 "네이버는 683 ÷ 174 = 3.9배로 규칙상 증액 후보이나 <b>증액 보류</b>다. " +
-                 "지난주에 이미 광고비를 116% 늘렸고 매출은 -30%였다. 증액이 증분을 만들지 못한 직후이므로 규칙을 그대로 적용하지 않는다.",
+    verdictRule: [
+      "<b>판정</b> 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액.",
+      "<b>정의</b> 손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비.",
+      "<b>주의</b> 광고 후 마진은 고정비·시딩비 차감 전이라 순이익이 아니다.",
+      "<b>예외</b> 네이버는 683 ÷ 174 = 3.9배로 규칙상 증액 후보이나 <mark>증액 보류</mark>다. 지난주에 이미 광고비를 116% 늘렸고 매출은 -30%였다."
+    ],
   
     // ---- 2면: 특수상황 · 영향력 순위 ----
     situation: {
@@ -785,7 +807,7 @@ const REPORTS = {
         "객단가는 36,866 → 37,181원으로 거의 같다. 순수하게 건수가 줄었다."
       ]},
       { step:"2. 분해", q:"투입인가 효율인가", a:[
-        "광고비를 <b>+32% 늘렸는데</b> 매출이 줄었다. 전부 효율 문제다.",
+        "<mark>광고비를 +32% 늘렸는데 매출이 줄었다.</mark> 전부 효율 문제다.",
         "<span class=\"calc\">투입 +779만 · 효율 -1,260만 → 순 -481만</span>",
         "ROAS가 유지됐다면 매출은 3,208만원이어야 했다."
       ]},
@@ -832,9 +854,11 @@ const REPORTS = {
           ["260810_GEM잔망_예약판매","미집행","0","0","0","0","-","-"]
         ],
         sum:["합계","","3,672,334","4,234,454","172","140","131%","100%"],
-        note:"meta_ads_purchase, 제품 릴렉스틱오리지널_루피 + 릴렉스틱볼_루피. " +
-             "캠페인 합계 423만원이 1면 채널 합계와 정확히 일치한다. 루피 전용 캠페인이라 제품 수 N빵 희석이 없다. " +
-             "귀인 ROAS 합계 131 → 100%와 자사몰 실매출 ROAS 244 → 205%가 같은 방향이다."
+        note:[
+          "meta_ads_purchase, 제품 릴렉스틱오리지널_루피 + 릴렉스틱볼_루피.",
+          "캠페인 합계 423만원이 1면 채널 합계와 정확히 일치한다. 루피 전용 캠페인이라 N빵 희석이 없다.",
+          "귀인 ROAS 합계 131 → 100%와 자사몰 실매출 ROAS 244 → 205%가 같은 방향이다."
+        ]
       },
       {
         title:"네이버 애드부스트 · 상품별",
@@ -916,6 +940,7 @@ const esc = (s) => String(s).replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", 
 const cv = (t) => getComputedStyle(document.documentElement).getPropertyValue(t).trim();
 const pct = (a, b) => b ? ((a - b) / b) * 100 : 0;
 const won = (n) => n.toLocaleString();
+const lines = (v) => (Array.isArray(v) ? v : [v]).map(l => `<p>${l}</p>`).join("");
 
 /* 차트 기하는 고정, 데이터에 따라 바뀌는 값만 렌더 시 갱신 */
 const W=460, H=218, PAD={t:34,r:12,b:26,l:44};
@@ -1052,7 +1077,7 @@ function render(key) {
           <td class="n">${esc(S.cpa)}</td>
           <td></td>
         </tr></tbody>`;
-    $("p-rule").innerHTML = R.verdictRule;
+    $("p-rule").innerHTML = lines(R.verdictRule);
   }
 
   $("p-actions").innerHTML =
@@ -1102,7 +1127,7 @@ function render(key) {
       </div>
       ${frame}
       ${table}
-      <p class="cap">${esc(d.note)}</p>
+      <div class="cap">${lines(d.note)}</div>
     </section>`;
   }).join("");
 
