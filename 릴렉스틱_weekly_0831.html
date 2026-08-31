@@ -260,8 +260,12 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
 .op-auto .op-text { color: #8c8c8c; }
 .op-none  { color: #aaa; }
 
-.ve-verdict { display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-              padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; }
+.ve-verdict { padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; }
+.vv-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.vv-axes { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 7px;
+           padding-top: 7px; border-top: 1px dashed rgba(0,0,0,.10);
+           font-size: 11.5px; font-weight: 700; color: #5a5a66; }
+.vv-ax { display: inline-flex; align-items: center; gap: 5px; }
 .vv-badge { font-size: 13px; font-weight: 800; }
 .vv-desc  { font-size: 12px; color: #555; }
 .ve-both { background: #f6ffed; border: 1px solid #b7eb8f; } .ve-both .vv-badge { color: #237804; }
@@ -300,20 +304,40 @@ details.eb > *:not(summary) { padding: 0 12px 12px; }
 .dxs-win { background: #f6ffed; color: #237804; } .dxs-bad { background: #fff1f0; color: #a8071a; }
 .dxs-hold { background: #fafafa; color: #8c8c8c; } .dxs-base { background: #f5f3ff; color: #4c1d95; }
 .cv-tbl td { vertical-align: middle; }
-/* 플랫폼별 — 어디가 움직였나 (원페이저와 같은 형식) */
-.plat-tbl td { vertical-align: middle; padding: 9px 10px; }
-.plat-tbl .pname { font-weight: 800; white-space: nowrap; }
-.plt-d { font-size: 11px; color: #8c8c8c; font-weight: 700; }
-.setv { display: block; font-size: 10.5px; color: #9a9a9f; font-weight: 700;
-        margin-top: 2px; white-space: nowrap; }
-.setv.flip { color: #b10202; }
-.setv i { font-style: normal; color: #8b8b95; }
-.vb { display: inline-block; font-size: 11px; font-weight: 800; padding: 3px 9px;
+/* 플랫폼별 — 어디가 움직였나.
+   2026-08-31: 한 줄에 값·증감·세트포함이 뭉쳐 안 읽힌다는 지적 → 세로 3단 스택으로 분리.
+   ① 지난주 값(크게) ② 증감 칩(색) ③ 점선 아래 세트포함. */
+.plat-tbl td { vertical-align: top; padding: 12px 10px; }
+.plat-tbl th { vertical-align: bottom; }
+.plat-tbl .pname { font-weight: 800; white-space: nowrap; vertical-align: middle;
+                   font-size: 13.5px; }
+.pth-s { display: block; font-size: 10px; font-weight: 600; color: #9a9aa5;
+         margin-top: 2px; letter-spacing: -.2px; }
+.pv { font-size: 15px; font-weight: 800; color: #1a1a2e; line-height: 1.25; }
+.pd-row { margin-top: 4px; }
+.pd { display: inline-block; font-size: 11px; font-weight: 800; padding: 1px 6px;
+      border-radius: 5px; white-space: nowrap; }
+.pd.up { color: #237804; background: #f0fbe8; }
+.pd.dn { color: #a8071a; background: #fff0ef; }
+.pd.na { color: #7a7a85; background: #f3f4f6; }
+.pset { margin-top: 8px; padding-top: 6px; border-top: 1px dashed #e4e6ec;
+        font-size: 11px; color: #8b8b95; font-weight: 700; white-space: nowrap; }
+.pset .pd { font-size: 10px; padding: 0 4px; }
+.pset-k { display: inline-block; font-size: 9.5px; font-weight: 800; color: #9a9aa5;
+          background: #f3f4f6; border-radius: 4px; padding: 1px 5px; margin-right: 4px; }
+.pset.flip { color: #b10202; }
+.setv-mk { color: #b10202; font-size: 10px; }
+.plat-tbl td.pj { vertical-align: middle; }
+.vb { display: inline-block; font-size: 11.5px; font-weight: 800; padding: 4px 10px;
       border-radius: 6px; white-space: nowrap; }
 .vb.g { background: #f6ffed; color: #237804; }
 .vb.y { background: #fffbe6; color: #ad6800; }
 .vb.r { background: #fff1f0; color: #a8071a; }
 .vb.n { background: #fafafa; color: #8c8c8c; }
+.vb-why { font-size: 11px; color: #6b6b76; margin-top: 5px; line-height: 1.45; }
+.vb-axis { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px;
+           font-size: 10.5px; color: #8b8b95; font-weight: 700; }
+.vb-axis .pd { font-size: 10px; padding: 0 5px; }
 /* 누적(개시~) 열 — 1주 열과 눈으로 구분되게 옅은 보라 배경 */
 .cum-c { background: #faf8ff; }
 .cv-tbl td.cum-c { border-left: 1px solid #ece7fa; }
@@ -696,7 +720,7 @@ function setActive(el) {
   </div>
   <div class="card" data-brief="2" data-brief-label="핵심 결론 · 핵심 KPI">
     <h3><span class="dot" style="background:#0958d9"></span>핵심 KPI 5가지</h3>
-    <div class="ve-verdict ve-none"><span class="vv-badge">한 줄 결론 — 볼륨·효율 모두 열위</span><span class="vv-desc">규모·효율 동반 악화 — 원인 규명 우선</span></div>
+    <div class="ve-verdict ve-none"><div class="vv-line"><span class="vv-badge">한 줄 결론 — 볼륨·효율 모두 열위</span><span class="vv-desc">규모·효율 동반 악화 — 원인 규명 우선</span></div></div>
     <div class="metric-grid"><div class="metric-box">
   <div class="m-icon">📢</div>
   <div class="m-label">총 광고비</div>
@@ -923,8 +947,8 @@ function setActive(el) {
   </div>
   <div class="card" data-brief="4" data-brief-label="플랫폼별 어디가 움직였나">
     <h3><span class="dot" style="background:#0958d9"></span>볼륨 / 효율 — 플랫폼별 어디가 움직였나</h3>
-    <div class="ve-verdict ve-none"><span class="vv-badge">지지난주 대비 — 볼륨·효율 모두 열위</span><span class="vv-desc">규모·효율 동반 악화 — 원인 규명 우선</span></div>
-    <div class="tbl-wrap"><table class="daily-data-tbl plat-tbl"><thead><tr><th>플랫폼</th><th class="r">광고비</th><th class="r">매출</th><th class="r">ROAS</th><th class="r">순마진</th><th>판정</th></tr></thead><tbody><tr><td class="pname">🛒 Cafe24</td><td class="r">1,867,578<span class="plt-d"> ▲ 1.9%</span><span class="setv">세트포함 2,963,133 <i>▼ 11.4%</i></span></td><td class="r">2,614,936<span class="plt-d"> ▼ 12.8%</span><span class="setv">세트포함 3,777,886 <i>▼ 27.4%</i></span></td><td class="r"><b>140%</b><span class="plt-d"> ▼ 14.5%</span><span class="setv">세트포함 127% <i>▼ 18.1%</i></span></td><td class="r">-116,655<span class="setv">세트포함 -433,516</span></td><td><span class="vb r">볼륨·효율 모두 열위</span></td></tr><tr><td class="pname">🟢 Naver</td><td class="r">3,563,832<span class="plt-d"> ▼ 16.0%</span></td><td class="r">21,682,067<span class="plt-d"> ▼ 17.2%</span></td><td class="r"><b>608%</b><span class="plt-d"> ▼ 1.4%</span></td><td class="r">11,340,344</td><td><span class="vb g">볼륨 축소 · 효율 유지</span></td></tr></tbody></table></div><p class="note">기본값 = 헤드라인과 같은 <b>세트(멀티제품) 차감</b> 기준 · 회색 = <b>세트 포함</b>. 아래 소재표는 세트 소재를 포함하므로 규모 비교 시 <b>세트포함</b> 값과 맞춰 볼 것</p>
+    <div class="ve-verdict ve-none"><div class="vv-line"><span class="vv-badge">지지난주 대비 — 볼륨·효율 모두 열위</span><span class="vv-desc">규모·효율 동반 악화 — 원인 규명 우선</span></div><div class="vv-axes"><span class="vv-ax">📦 볼륨(매출) <span class="pd dn">▼ 21.4%</span></span><span class="vv-ax">⚡ 효율(ROAS) <span class="pd dn">▼ 12.1%</span></span></div></div>
+    <div class="tbl-wrap"><table class="daily-data-tbl plat-tbl"><thead><tr><th>플랫폼</th><th class="r">광고비<span class="pth-s">지지난주 대비</span></th><th class="r">매출<span class="pth-s">= 볼륨 축</span></th><th class="r">ROAS<span class="pth-s">= 효율 축</span></th><th class="r">순마진<span class="pth-s">마진 − 광고비</span></th><th>판정<span class="pth-s">볼륨 × 효율</span></th></tr></thead><tbody><tr><td class="pname">🛒 Cafe24</td><td class="r"><div class="pv">1,867,578</div><div class="pd-row"><span class="pd na">▲ 1.9%</span></div><div class="pset"><span class="pset-k">세트포함</span> 2,963,133 <span class="pd na">▼ 11.4%</span></div></td><td class="r"><div class="pv">2,614,936</div><div class="pd-row"><span class="pd dn">▼ 12.8%</span></div><div class="pset"><span class="pset-k">세트포함</span> 3,777,886 <span class="pd dn">▼ 27.4%</span></div></td><td class="r"><div class="pv">140%</div><div class="pd-row"><span class="pd dn">▼ 14.5%</span></div><div class="pset"><span class="pset-k">세트포함</span> 127% <span class="pd dn">▼ 18.1%</span></div></td><td class="r"><div class="pv">-116,655</div><div class="pd-row"><span class="pd na">—</span></div><div class="pset"><span class="pset-k">세트포함</span> -433,516</div></td><td class="pj"><span class="vb r">볼륨·효율 모두 열위</span><div class="vb-why">규모·효율 동반 악화 — 원인 규명 우선</div><div class="vb-axis"><span>📦 볼륨 <span class="pd dn">▼ 12.8%</span></span><span>⚡ 효율 <span class="pd dn">▼ 14.5%</span></span></div></td></tr><tr><td class="pname">🟢 Naver</td><td class="r"><div class="pv">3,563,832</div><div class="pd-row"><span class="pd na">▼ 16.0%</span></div></td><td class="r"><div class="pv">21,682,067</div><div class="pd-row"><span class="pd dn">▼ 17.2%</span></div></td><td class="r"><div class="pv">608%</div><div class="pd-row"><span class="pd dn">▼ 1.4%</span></div></td><td class="r"><div class="pv">11,340,344</div><div class="pd-row"><span class="pd dn">▼ 13.9%</span></div></td><td class="pj"><span class="vb g">볼륨 축소 · 효율 유지</span><div class="vb-why">규모는 줄었지만 효율은 지켰다</div><div class="vb-axis"><span>📦 볼륨 <span class="pd dn">▼ 17.2%</span></span><span>⚡ 효율 <span class="pd dn">▼ 1.4%</span></span></div></td></tr></tbody></table></div><p class="note">각 칸은 <b>지난주 값</b> → 그 아래 <b>지지난주 대비 증감</b> → 점선 아래 <b>세트포함</b> 순입니다. 기본값 = 헤드라인과 같은 <b>세트(멀티제품) 차감</b> 기준 · <b>세트포함</b> = 세트 소재 매출을 빼지 않은 값. 아래 소재표는 세트 소재를 포함하므로 규모 비교 시 <b>세트포함</b> 값과 맞춰 볼 것. 광고비 증감은 <span class="pd na">회색</span>(늘어난 게 곧 나쁜 건 아님), 나머지는 <span class="pd up">▲초록</span>·<span class="pd dn">▼빨강</span></p>
     <details class="eb"><summary>전체 볼륨·효율 축 상세 보기</summary><div class="ve-axis-row"><span class="ve-axis-k">📦 볼륨</span><span>매출 37,834,666원 → <b>29,754,753원</b> <span class="dn">▼ 21.4%</span></span><span class="dim">순마진 19,305,648원 → 14,996,331원 <span class="dn">▼ 22.3%</span></span></div><div class="ve-axis-row"><span class="ve-axis-k">⚡ 효율</span><span>ROAS 622.9% → <b>547.8%</b> <span class="dn">▼ 12.1%</span></span><span class="dim">마진율 67.1% → 68.7%</span></div></details>
     <details class="eb"><summary>지난주 절대값 보기</summary><div class="ve-split">
   <div class="ve-box volume">
@@ -995,7 +1019,7 @@ function setActive(el) {
     </div>
   </div>
   <div class="card"><h3><span class="dot" style="background:#8c8c8c"></span>지난주 액션 결과</h3><p class="note" style="margin:0">지난주(2026-08-17) 등록된 액션이 없습니다 — 이번 주 액션을 <code>ACTIONS_MANUAL['릴렉스틱']['2026-08-24']</code>에 기록하면 다음 주 리포트가 자동으로 개선/미개선을 판정합니다.</p></div>
-  <div class="card" data-brief="9" data-brief-label="디벨롭 · 액션"><h3><span class="dot" style="background:#389e0d"></span>금주 방향성 — 강점·약점 → 액션</h3><div class="dev-block dev-must"><div class="dev-head">🛒 Cafe24 (메타·카카오·구글)<span class="must-badge">필독</span></div><div class="ve-verdict ve-none"><span class="vv-badge">볼륨·효율 모두 열위</span><span class="vv-desc">규모·효율 동반 악화 — 원인 규명 우선</span></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i dim">—</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 163.7%</b> → 140.0%</div><div class="sw-i">볼륨 — 매출 2,999,638원 → 2,614,936원</div><div class="sw-i">순마진 적자 -116,655원 — 광고비가 채널 마진 초과</div></div></div><div class="must-wrap"><div class="must-t">📌 이번 주 실행 — 여기만은 꼭</div><div class="ag ag-must"><div class="ag-t">적자 소재 단계 <b class="hl-do">감액</b></div><div class="ag-a">급정지 시 볼륨이 급감하므로 주 50% 단계 <b class="hl-do">감액</b>: 릴렉스틱_영상_여성승모마감임박_전환값극대화_일반_2(<b class="hl-num">ROAS 128%</b>), 릴렉스틱/릴렉스틱볼_영상_공홈특가_일반(<b class="hl-num">ROAS 85%</b>)</div></div><div class="ag ag-must"><div class="ag-t"><b class="hl-do">신규 소재 제작</b> 방향 (소구점 기준)</div><div class="ag-a">확대 앵글 <b>기타</b>(<b class="hl-num">ROAS 135%</b>·13건) 변주 제작 / <b class="hl-do">중단</b> 검토 <b>리뷰·후기</b>(83%)</div></div></div></div><div class="dev-block"><div class="dev-head">🟢 Naver (검색광고·GFA·애드부스트)</div><div class="ve-verdict ve-eff"><span class="vv-badge">볼륨 축소 · 효율 유지</span><span class="vv-desc">규모는 줄었지만 효율은 지켰다</span></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i dim">—</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 617.1%</b> → 608.4%</div><div class="sw-i">볼륨 — 매출 26,177,278원 → 21,682,067원</div></div></div><div class="ag"><div class="ag-t">네이버 효율 점검</div><div class="ag-a">검색광고·GFA 키워드/소재별 ROAS 확인 후 저효율 그룹 <b class="hl-do">감액</b></div></div></div><p class="note">※ 액션 출처: 자동 초안. 자동 초안 규칙 = ①구매 0 정리 ②적자 단계 감액 ③감액분 승자 이관 ④꺼진 승자 재가동 ⑤승자 앵글 신규 제작.</p></div>
+  <div class="card" data-brief="9" data-brief-label="디벨롭 · 액션"><h3><span class="dot" style="background:#389e0d"></span>금주 방향성 — 강점·약점 → 액션</h3><div class="dev-block dev-must"><div class="dev-head">🛒 Cafe24 (메타·카카오·구글)<span class="must-badge">필독</span></div><div class="ve-verdict ve-none"><div class="vv-line"><span class="vv-badge">볼륨·효율 모두 열위</span><span class="vv-desc">규모·효율 동반 악화 — 원인 규명 우선</span></div></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i dim">—</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 163.7%</b> → 140.0%</div><div class="sw-i">볼륨 — 매출 2,999,638원 → 2,614,936원</div><div class="sw-i">순마진 적자 -116,655원 — 광고비가 채널 마진 초과</div></div></div><div class="must-wrap"><div class="must-t">📌 이번 주 실행 — 여기만은 꼭</div><div class="ag ag-must"><div class="ag-t">적자 소재 단계 <b class="hl-do">감액</b></div><div class="ag-a">급정지 시 볼륨이 급감하므로 주 50% 단계 <b class="hl-do">감액</b>: 릴렉스틱_영상_여성승모마감임박_전환값극대화_일반_2(<b class="hl-num">ROAS 128%</b>), 릴렉스틱/릴렉스틱볼_영상_공홈특가_일반(<b class="hl-num">ROAS 85%</b>)</div></div><div class="ag ag-must"><div class="ag-t"><b class="hl-do">신규 소재 제작</b> 방향 (소구점 기준)</div><div class="ag-a">확대 앵글 <b>기타</b>(<b class="hl-num">ROAS 135%</b>·13건) 변주 제작 / <b class="hl-do">중단</b> 검토 <b>리뷰·후기</b>(83%)</div></div></div></div><div class="dev-block"><div class="dev-head">🟢 Naver (검색광고·GFA·애드부스트)</div><div class="ve-verdict ve-eff"><div class="vv-line"><span class="vv-badge">볼륨 축소 · 효율 유지</span><span class="vv-desc">규모는 줄었지만 효율은 지켰다</span></div></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i dim">—</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 617.1%</b> → 608.4%</div><div class="sw-i">볼륨 — 매출 26,177,278원 → 21,682,067원</div></div></div><div class="ag"><div class="ag-t">네이버 효율 점검</div><div class="ag-a">검색광고·GFA 키워드/소재별 ROAS 확인 후 저효율 그룹 <b class="hl-do">감액</b></div></div></div><p class="note">※ 액션 출처: 자동 초안. 자동 초안 규칙 = ①구매 0 정리 ②적자 단계 감액 ③감액분 승자 이관 ④꺼진 승자 재가동 ⑤승자 앵글 신규 제작.</p></div>
   
   
 </div>
