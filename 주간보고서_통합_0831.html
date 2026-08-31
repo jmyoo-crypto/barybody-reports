@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>주간 보고 통합 · 2026-08-24~08-29 (8월 24일~8월 29일)</title>
+<title>주간 보고 통합 · 2026-08-24~08-30 (8월 24일~8월 30일)</title>
 <style>
   /* 헤더 높이를 픽셀로 고정하지 않는다 — 탭에 KPI 줄이 붙으면 높이가 변해 iframe이 서브바를 덮는다 */
   html,body{height:100%;margin:0;font-family:-apple-system,'Malgun Gothic',sans-serif;background:#0f172a}
@@ -36,7 +36,7 @@
 <body>
   <div class="topbar">
     <span class="title">📊 주간 보고 통합</span>
-    <span class="period">2026-08-24 ~ 08-29 (지난주 · 8월 24일~8월 29일)</span>
+    <span class="period">2026-08-24 ~ 08-30 (지난주 · 8월 24일~8월 30일)</span>
     <div class="tabs" id="tabs"></div>
   </div>
   <div class="subbar">
@@ -45,7 +45,7 @@
     <button class="sub" data-view="ads" onclick="setView('ads')">📈 광고분석</button>
     <span class="sub-hint" id="subHint"></span>
   </div>
-  <div class="note">⚠️ 8/30(일) 메타 광고 데이터 미적재로 이번 주는 6일(월~토) 기준입니다. 유통 시트 cafe24·smartstore는 8/11 이후 미적재 지속 -> 매출은 BigQuery 기준. 광고분석 리포트는 아직 이번 주차본이 없어 260824(지난주)본을 참조합니다.</div>
+  <div class="note">⚠️ 유통 시트 cafe24·smartstore는 8/11 이후 여전히 미적재(20일째) -> 매출은 BigQuery 기준입니다. 광고분석 리포트는 아직 이번 주차본이 없어 260824(지난주)본을 참조합니다.</div>
   <div class="stage"><iframe id="frame" src=""></iframe></div>
 
 <script>
@@ -53,11 +53,11 @@
    동일 출처(GitHub Pages https)에서만 동작.
    ※ scripts/build_combined_report.py 가 생성한다. 직접 수정하지 말 것. */
 var REPORTS = [
-  { name:"릴렉스틱볼", kpi:"ROAS 387.5% · 순마진 +380만",
+  { name:"릴렉스틱볼", kpi:"ROAS 381.9% · 순마진 +429만",
     weekly:"릴렉스틱볼_weekly_0831.html", ads:"릴렉스틱볼_광고분석_260824.html", adsOld:true, adsNote:"광고분석은 260824본(이번 주차 아님)" },
-  { name:"릴렉스틱", kpi:"ROAS 510.4% · 순마진 +1,145만",
+  { name:"릴렉스틱", kpi:"ROAS 547.8% · 순마진 +1,500만",
     weekly:"릴렉스틱_weekly_0831.html", ads:"릴렉스틱_광고분석_260824.html", adsOld:true, adsNote:"광고분석은 260824본(이번 주차 아님)" },
-  { name:"잔망루피", kpi:"ROAS 358.1% · 순마진 +523만",
+  { name:"잔망루피", kpi:"ROAS 334.9% · 순마진 +551만",
     weekly:"루피_weekly_0831.html", ads:"루피_광고분석_260824.html", adsOld:true, adsNote:"광고분석은 260824본(이번 주차 아님)" }
 ];
 var CB = Date.now();
