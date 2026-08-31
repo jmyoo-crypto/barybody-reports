@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barybody 주간 유료광고 원페이지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap">
+
+<style>
+/* ============================================================
+   주간 유료광고 원페이지. 비교 기준은 지지난주 -> 지난주.
+   1면 = 결정, 2면 = 채널별 상세.
+   페이지 아이덴티티는 무채색. 채도는 데이터에만 준다.
+   ============================================================ */
+:root {
+  color-scheme: light;
+  --ink:#1f262c; --ink-2:#4a555e; --ink-3:#78848d;
+  --paper:#eef0f2; --surface:#ffffff; --surface-2:#f7f8f9;
+  --line:#dde1e5; --line-2:#c6ccd2;
+  --accent:#2a78d6;
+  --good:#0e7c5a; --good-bg:#e4f2ec; --bad:#b3261e; --bad-bg:#f8e7e5;
+  --prev:#86b6ef; --curr:#2a78d6;
+  --grid:#e6e9ec; --tip-bg:#1f262c; --tip-ink:#ffffff;
+  --sans:"IBM Plex Sans KR","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ink:#eef1f3; --ink-2:#b3bcc4; --ink-3:#828d96;
+    --paper:#15191d; --surface:#1e2429; --surface-2:#242b31;
+    --line:#333c44; --line-2:#46515a; --accent:#3987e5;
+    --good:#3fbf92; --good-bg:#16302a; --bad:#e66767; --bad-bg:#35211f;
+    --prev:#1c5cab; --curr:#3987e5;
+    --grid:#2c343a; --tip-bg:#eef1f3; --tip-ink:#1f262c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink:#eef1f3; --ink-2:#b3bcc4; --ink-3:#828d96;
+  --paper:#15191d; --surface:#1e2429; --surface-2:#242b31;
+  --line:#333c44; --line-2:#46515a; --accent:#3987e5;
+  --good:#3fbf92; --good-bg:#16302a; --bad:#e66767; --bad-bg:#35211f;
+  --prev:#1c5cab; --curr:#3987e5;
+  --grid:#2c343a; --tip-bg:#eef1f3; --tip-ink:#1f262c;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:14px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+/* 한국어는 어절 단위로 줄바꿈한다. 단어 중간에서 잘리지 않게. */
+p, li, dd, .sub, .cap, .rule, .a { word-break:keep-all; overflow-wrap:break-word; }
+.sheet {
+  max-width:900px; margin:24px auto; padding:34px 38px 30px;
+  background:var(--surface); border:1px solid var(--line);
+  display:flex; flex-direction:column; gap:20px;
+}
+.sheet + .sheet { margin-top:0; }
+
+.eyebrow { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); }
+h1,h2,h3 { margin:0; text-wrap:balance; font-weight:600; }
+h2 { font-size:13px; color:var(--ink); }
+h3 { font-size:12px; color:var(--ink); }
+
+.head { display:flex; justify-content:space-between; align-items:flex-start; gap:32px; padding-bottom:17px; border-bottom:1px solid var(--line-2); }
+.head h1 { font-size:29px; font-weight:700; letter-spacing:-.025em; line-height:1.12; }
+.head .sub { margin-top:6px; font-size:12.5px; line-height:1.5; color:var(--ink-2); }
+
+/* 제품 토글 */
+.switch { max-width:900px; margin:24px auto 0; display:flex; gap:6px; }
+.switch button {
+  font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:-.01em;
+  padding:8px 16px; border:1px solid var(--line-2); border-radius:3px;
+  background:var(--surface); color:var(--ink-3); cursor:pointer;
+}
+.switch button[aria-current="true"] { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.switch button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.lede { display:flex; flex-direction:column; gap:7px; margin:0; }
+.lede div { display:grid; grid-template-columns:38px 1fr; gap:12px; align-items:baseline; }
+.lede dt {
+  font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.06em;
+  color:var(--ink-3); text-transform:uppercase;
+}
+.lede p { margin:0; font-size:15.5px; line-height:1.45; letter-spacing:-.012em; }
+.lede b { font-weight:600; }
+.lede .neg { color:var(--bad); font-weight:600; }
+
+.stats { display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.stat { padding:12px 13px 13px; }
+.stat + .stat { border-left:1px solid var(--line); }
+.stat .k { font-size:11px; color:var(--ink-3); font-weight:500; }
+.stat .v { margin-top:4px; font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:22px; font-weight:600; letter-spacing:-.035em; line-height:1.05; }
+.stat .v small { font-size:11.5px; font-weight:500; margin-left:2px; color:var(--ink-2); letter-spacing:0; }
+.stat .d { margin-top:5px; font-family:var(--mono); font-size:10.5px; font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:4px; }
+.d.up { color:var(--good); } .d.down { color:var(--bad); }
+.d .cmp { color:var(--ink-3); }
+.stat .ref { margin-top:3px; font-family:var(--mono); font-size:9.5px; color:var(--ink-3); line-height:1.35; }
+
+.cols { display:grid; grid-template-columns:1.1fr 1fr; gap:26px; align-items:start; }
+.block { display:flex; flex-direction:column; gap:9px; }
+.block-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+
+.legend { display:flex; flex-wrap:wrap; gap:11px; }
+.legend span { display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--ink-2); }
+.legend i { width:9px; height:9px; border-radius:2px; display:block; }
+figure { margin:0; }
+figure svg { display:block; width:100%; height:auto; overflow:visible; }
+figcaption { margin-top:7px; font-size:10.5px; color:var(--ink-3); line-height:1.45; }
+.bar { cursor:default; }
+.bar:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
+
+#tip { position:fixed; z-index:20; pointer-events:none; background:var(--tip-bg); color:var(--tip-ink); padding:7px 9px; border-radius:3px; font-family:var(--mono); font-size:11px; line-height:1.45; font-variant-numeric:tabular-nums; white-space:nowrap; opacity:0; transition:opacity .1s; }
+#tip.on { opacity:1; }
+#tip b { font-weight:600; }
+
+table { width:100%; border-collapse:collapse; font-size:12px; }
+th,td { text-align:right; padding:7px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:10px; font-family:var(--mono); font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); border-bottom-color:var(--line-2); white-space:nowrap; }
+th:first-child, td:first-child { text-align:left; padding-left:0; }
+th:last-child, td:last-child { padding-right:0; }
+td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+tbody tr:last-child td { border-bottom:none; }
+tr.sum td { border-top:1px solid var(--line-2); font-weight:600; }
+td.name { line-height:1.4; }
+td.name small { display:block; font-size:10.5px; color:var(--ink-3); font-weight:400; }
+td.neg { color:var(--bad); font-weight:600; }
+td.na { color:var(--ink-3); }
+
+.pill { display:inline-block; font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.04em; padding:2px 6px; border:1px solid currentColor; border-radius:2px; white-space:nowrap; }
+.pill.up { color:var(--good); background:var(--good-bg); }
+.pill.hold { color:var(--ink-2); background:var(--surface-2); }
+.pill.down { color:var(--bad); background:var(--bad-bg); }
+
+.wow { font-family:var(--mono); font-size:10.5px; font-variant-numeric:tabular-nums; }
+.wow.up { color:var(--good); } .wow.down { color:var(--bad); } .wow.same { color:var(--ink-3); }
+
+.rule { margin:6px 0 0; font-size:10.5px; line-height:1.5; color:var(--ink-3); }
+.rule b { font-weight:600; color:var(--ink-2); }
+
+td.owner { font-family:var(--mono); font-size:11px; white-space:nowrap; }
+
+.drill { display:flex; flex-direction:column; gap:22px; }
+.drill section { display:flex; flex-direction:column; gap:8px; }
+.drill .cap { font-size:11px; color:var(--ink-3); line-height:1.5; margin:0; }
+.drill .hd { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.drill .hd .spend { font-family:var(--mono); font-size:11px; color:var(--ink-2); font-variant-numeric:tabular-nums; }
+.tablewrap { overflow-x:auto; }
+
+/* 분석 프레임: 결과 → 원인 → 액션 */
+.frame { display:flex; flex-direction:column; gap:7px; margin:0; }
+.frame .row { display:grid; grid-template-columns:52px 1fr; gap:10px; align-items:baseline; }
+.frame dt {
+  font-family:var(--mono); font-size:9.5px; font-weight:600; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--ink-3); padding-top:2px;
+}
+.frame dd { margin:0; font-size:12.5px; line-height:1.55; }
+.frame .axis { font-family:var(--mono); font-size:10.5px; color:var(--ink-2); }
+.chain { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:2px; }
+.chain li { font-size:12px; line-height:1.5; padding-left:13px; position:relative; }
+.chain li::before { content:"└"; position:absolute; left:0; color:var(--ink-3); font-family:var(--mono); }
+.chain li:first-child { padding-left:0; }
+.chain li:first-child::before { content:none; }
+.chain li.close { color:var(--ink); font-weight:600; }
+.agenda { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:5px; }
+.agenda > li > b { font-size:12px; font-weight:600; }
+.agenda ul { margin:2px 0 0; padding-left:15px; }
+.agenda ul li { font-size:12px; line-height:1.5; color:var(--ink-2); }
+
+.situation {
+  border:1px solid var(--line-2); background:var(--surface-2);
+  padding:12px 15px; display:flex; flex-direction:column; gap:6px;
+}
+.situation h2 { font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-2); font-weight:500; }
+.situation p { margin:0; font-size:12.5px; line-height:1.55; }
+.situation .todo { color:var(--bad); font-weight:600; }
+.rank { font-size:12.5px; line-height:1.6; margin:0; }
+.rank b { font-weight:600; }
+.rank .sh { font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+
+/* 볼륨 -> 효율 전개 */
+.vol { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; }
+.vol li { display:grid; grid-template-columns:66px 1fr; gap:12px; padding:9px 0; border-bottom:1px solid var(--line); }
+.vol li:last-child { border-bottom:none; }
+.vol .st { font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.05em; color:var(--ink-3); padding-top:3px; }
+.vol .q { font-size:12px; font-weight:600; color:var(--ink); margin:0 0 4px; }
+.vol .a { font-size:12.5px; line-height:1.55; color:var(--ink-2); margin:0; }
+.vol .a + .a { margin-top:2px; }
+.vol .a b { color:var(--ink); font-weight:600; }
+.vol .calc {
+  display:inline-block; font-family:var(--mono); font-size:11px;
+  font-variant-numeric:tabular-nums; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--line);
+  border-radius:2px; padding:2px 7px; margin:1px 0;
+}
+
+.ev { font-family:var(--mono); font-size:9.5px; font-weight:600; letter-spacing:.06em; padding:1px 5px; border:1px solid currentColor; border-radius:2px; }
+.ev.pass { color:var(--good); }
+.ev.unknown { color:var(--ink-3); }
+
+@media (max-width:760px) {
+  .sheet { margin:0; padding:24px 20px; border:none; }
+  .head { flex-direction:column; gap:16px; }
+  .stats { grid-template-columns:repeat(2,1fr); }
+  .stat:nth-child(odd) { border-left:none; }
+  .stat:nth-child(n+3) { border-top:1px solid var(--line); }
+  .cols { grid-template-columns:1fr; gap:22px; }
+  .lede p { font-size:14.5px; }
+}
+
+@media print {
+  @page { size:A4 portrait; margin:11mm; }
+  body { background:#fff; font-size:11.5px; }
+  .sheet { margin:0; padding:0; border:none; max-width:none; gap:14px; }
+  .sheet.page2 { break-before:page; }
+  .switch { display:none; }
+  .head h1 { font-size:24px; }
+  .lede p { font-size:13px; }
+  .stat .v { font-size:19px; }
+  .drill section { break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== 1면: 결정 ===================== -->
+<!-- 제품 토글 -->
+<nav class="switch" id="p-switch" aria-label="제품 선택"></nav>
+
+<div class="sheet">
+  <header class="head">
+    <div>
+      <p class="eyebrow" style="margin:0 0 7px">주간 유료광고 원페이지</p>
+      <h1 id="p-name"></h1>
+      <p class="sub" id="p-sub"></p>
+    </div>
+  </header>
+
+  <div class="lede" id="p-lede"></div>
+
+  <div class="stats" id="p-stats"></div>
+
+  <div class="cols">
+    <section class="block">
+      <div class="block-head">
+        <h2>마케팅 채널별 광고비</h2>
+        <div class="legend" id="p-legend"></div>
+      </div>
+      <figure>
+        <svg id="chart" viewBox="0 0 460 218" role="img" aria-labelledby="chart-t"></svg>
+        <figcaption id="chart-t"></figcaption>
+      </figure>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><h2>페이드채널 실매출</h2></div>
+      <table id="p-sales"></table>
+      <p class="rule" id="p-sales-note"></p>
+    </section>
+  </div>
+
+  <section class="block">
+    <div class="block-head"><h2>귀인 그룹 판정</h2></div>
+    <div class="tablewrap"><table id="p-groups"></table></div>
+    <p class="rule" id="p-rule"></p>
+  </section>
+
+
+  <section class="block">
+    <div class="block-head"><h2>이번 주 액션</h2></div>
+    <div class="tablewrap"><table id="p-actions"></table></div>
+  </section>
+
+</div>
+
+<!-- ===================== 2면: 채널별 상세 ===================== -->
+<div class="sheet page2">
+  <header class="head" style="padding-bottom:14px">
+    <div>
+      <p class="eyebrow" style="margin:0 0 7px">2면 · 채널 상세</p>
+      <h1 style="font-size:22px">채널별 결과 · 원인 · 액션</h1>
+      <p class="sub">각 채널을 캠페인·광고그룹·상품 단위로 분해하고, 결과 → 원인 → 액션으로 닫았다. 기간은 1면과 같다.</p>
+    </div>
+  </header>
+
+  <section class="situation" id="p-situation"></section>
+  <p class="rank" id="p-rank"></p>
+
+  <section class="block">
+    <div class="block-head"><h2>볼륨 → 효율 전개</h2></div>
+    <ol class="vol" id="p-volume"></ol>
+  </section>
+
+  <div class="drill" id="p-drill"></div>
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   REPORTS - 제품별 데이터. 매주 이 객체만 갈아끼운다.
+   출처: BigQuery barybody_analytics 네이티브 테이블 + 마케팅 시트(채널 상세).
+   집계 기준: 페이드채널 = 자사몰 + 스마트스토어 + 쿠팡(제품에 매출이 있을 때만)
+   ============================================================ */
+const REPORTS = {
+  relaxtic: {
+    product: "릴렉스틱",
+    // 기간은 부제에만 둔다. 별도 메타 박스는 두지 않는다.
+    subtitle: "지난주 2026-08-24 ~ 08-30 · 비교 지지난주 08-17 ~ 08-23<br>" +
+              "메타·네이버 유료광고. 페이드채널 = 자사몰·스마트스토어·쿠팡. 제품 = 릴렉스틱 오리지널·롱·숏.",
+  
+    // 결론. 볼륨 -> 효율 -> 결론. 2면의 전개와 같은 축.
+    lede: [
+      { k:"볼륨", v:"매출 4,004 → <b>3,092만원(-22.8%)</b>, 주문 938 → <b>641건(-31.7%)</b>. " +
+                    "매출 감소는 스마트스토어 -450 · 쿠팡 -320 · 자사몰 -143만원으로 3채널 동반." },
+      { k:"효율", v:"매출 = 광고비 × ROAS. 하락 912만원 = <b>투입 558만(61%) + 효율 354만(39%)</b>. " +
+                    "전체 ROAS 528 → <b>474%</b>는 스마트스토어(-69%p)·쿠팡(-49%p) 매출 감소가 끌어내렸고, " +
+                    "채널 자체 효율은 <b>메타만 악화</b>(156 → 128%), 네이버 608% 유지." },
+      { k:"결론", v:"<span class=\"neg\">자사몰 43만원 적자.</span> 메타 광고비 296만 > 채널마진 253만. 스마트스토어는 +1,134만원." }
+    ],
+  
+    // 서로 파생되지 않는 5개 사실: 투입 / 산출 / 효율 / 볼륨 / 남는 돈
+    stats: [
+      { k:"총 광고비",      v:"653",   unit:"만원", delta:-13.9, good:"down" },
+      { k:"페이드채널 매출", v:"3,092", unit:"만원", delta:-22.8, good:"up" },
+      { k:"ROAS",          v:"474",   unit:"%",   delta:-54.2, good:"up", pp:true,
+        ref:"손익분기 146% · 대시보드 -10.3%" },
+      { k:"주문수",         v:"641",   unit:"건",   delta:-31.7, good:"up" },
+      { k:"광고 후 마진",   v:"1,468", unit:"만원", delta:-23.8, good:"up",
+        ref:"채널마진 2,121만 − 광고비 653만" }
+    ],
+  
+    // 차트: 마케팅 채널별 광고비. 값은 원 단위, 표시는 만원.
+    chart: {
+      prevLabel:"지지난주", currLabel:"지난주",
+      rows: [
+        { name:"메타",       prev:3342509, curr:2963133 },
+        { name:"검색광고",    prev:2675610, curr:2795982 },
+        { name:"애드부스트",  prev:281760,  curr:433130  },
+        { name:"GFA",       prev:1284573, curr:334720  }
+      ],
+      yMax:4000000, yStep:1000000, div:10000,
+      note:"단위 만원. BigQuery mkt_marketing_daily_native, 제품 라벨 4종 합계. 그룹 위 숫자는 주간 증감."
+    },
+  
+    // 페이드채널별 실주문 매출(원)
+    sales: [
+      { name:"스마트스토어", sub:"네이버 3종 귀인", prev:26177278, curr:21682067, prevO:557, currO:398 },
+      { name:"쿠팡",        sub:"직접 광고비 없음", prev:8657750,  curr:5457750,  prevO:275, currO:165 },
+      { name:"자사몰",      sub:"메타 귀인",       prev:5203263,  curr:3777886,  prevO:106, currO:78  }
+    ],
+    salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 공구·팝업·홈쇼핑 제외.",
+  
+    // 귀인 그룹 = 광고 채널과 그 채널이 매출을 만드는 판매채널의 짝
+    groups: [
+      { name:"네이버 3종", sub:"→ 스마트스토어", cost:"356", sales:"2,168", salesDelta:-17.2, roas:608, roasPrev:617, bep:145,
+        contrib:"+1,134", cpa:"8,954", orders:398, verdict:"증액 후보", tone:"up" },
+      { name:"쿠팡",      sub:"직접 광고비 없음", cost:null, sales:"546", salesDelta:-37.0, roas:null, bep:145,
+        contrib:"+377", cpa:null, orders:165, verdict:"귀인 미정", tone:"hold" },
+      { name:"메타",      sub:"→ 자사몰",       cost:"296", sales:"378", salesDelta:-27.4, roas:128, roasPrev:156, bep:149,
+        contrib:"-43", negative:true, cpa:"37,989", orders:78, verdict:"보류", tone:"down" }
+    ],
+    groupSum: { cost:"653", sales:"3,092", salesDelta:-22.8, roas:474, roasPrev:528, bep:146, contrib:"+1,468", cpa:"10,182", orders:641 },
+    verdictRule: "판정 - 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액. 쿠팡은 광고비 0이라 제외.<br>" +
+                 "손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비, " +
+                 "<b>고정비·시딩비 차감 전이라 순이익 아님.</b><br>" +
+                 "메타는 규칙상 감액이나 <b>보류</b>다. 쿠팡 546만원을 메타에 귀속하면 ROAS 312%로 부호가 뒤집혀 귀인 규칙 확정이 먼저다(액션 1).",
+  
+    // ---- 2면: 특수상황 · 영향력 순위 ----
+    situation: {
+      found: "애드부스트 바캉스 이벤트 종료. 해당 상품 구매 8 → 1건.",
+      todo: "품절·가격·프로모션·경쟁사·인플루언서·쿠팡 순위 미확인. 쿠팡 -40%는 광고비 0원이라 광고로 설명 불가."
+    },
+    rank: "감소 기여 (총 -912만원) - <b>① 스마트스토어 -450만</b> <span class=\"sh\">49%</span> · " +
+          "<b>② 쿠팡 -320만</b> <span class=\"sh\">35%</span> · <b>③ 자사몰 -143만</b> <span class=\"sh\">16%</span>. " +
+          "근거 커버리지 75%(GFA 분해 불가) → 판정 <b>잠정</b>.",
+  
+    // 볼륨 -> 효율 하향 전개. 매출 = 광고비 x ROAS 로 정확히 분해된다.
+    volume: [
+      { step:"1. 볼륨", q:"볼륨이 떨어졌나", a:[
+        "매출 <b>-22.8%</b>, 주문 <b>-31.7%</b>.",
+        "주문 낙폭이 커 객단가는 42,685 → 48,234원으로 올랐다."
+      ]},
+      { step:"2. 분해", q:"투입인가 효율인가", a:[
+        "매출 = 광고비 × ROAS 로 갈린다.",
+        "<span class=\"calc\">투입 558만(61%) · 효율 354만(39%)</span>",
+        "광고비만 줄였으면 3,446만이어야 하나 실제는 3,092만원."
+      ]},
+      { step:"3. 효율 위치", q:"어느 채널인가", a:[
+        "전체 ROAS -54.2%p 분해:",
+        "<span class=\"calc\">비용 감소 +85.5%p · 스마트스토어 -68.9%p · 쿠팡 -49.0%p · 자사몰 -21.8%p</span>",
+        "전체를 끌어내린 건 스마트스토어·쿠팡 <b>매출 감소</b>.",
+        "채널 자체 ROAS는 <b>메타만 악화</b>(156 → 128%). 네이버 608% 유지, 쿠팡은 산출 불가."
+      ]},
+      { step:"4. 지표 원인", q:"무슨 지표인가", a:[
+        "전환 단가. 노출·클릭이 아니다.",
+        "<span class=\"calc\">메타 CPA +20.5% · 검색광고 CPA +18.8%</span>"
+      ]},
+      { step:"5. 내외부", q:"광고 밖 요인인가", a:[
+        "<b>보류.</b> 최대 낙폭 쿠팡 -40%가 광고비 0원 채널이다.",
+        "특수상황 미입력."
+      ]}
+    ],
+  
+    // ---- 2면: 채널별 상세 ----
+    drill: [
+      {
+        title:"메타 · 캠페인별",
+        spend:"광고비 334 → 296만원 (-11.4%)",
+        evidence:"Pass",
+        result:"<b>볼륨·효율 동시 악화.</b> 자사몰 매출 -27.4%, ROAS 156 → 128%로 손익분기 149% 미달. 광고 후 마진 +14만 → -43만원.",
+        chain:[
+          "광고비 -11.4% 대비 주문 -26.4%",
+          "CPA 31,533 → 37,989원(+20.5%)",
+          "주력 260426 87 → 40만원(-54%), 미검증 신규 2개에 36만원",
+          "검증 물량을 미검증으로 교체 → 구매자 28명 감소"
+        ],
+        agenda:[
+          { t:"미검증 비중 관리", items:["신규 캠페인 주간 예산 15% 이내. 지난주 20%"] },
+          { t:"최하위 진단 (중단 아님)", items:[
+            "260426 ROAS 94%는 구매 11건 표본. 표본·전환지연·학습단계 확인 후 판단",
+            "교체 소재 준비 후 중단. 교체 없이 끄지 않는다"
+          ]},
+          { t:"판정 기준 고정", items:["픽셀 ROAS는 방향만, 최종 판정은 자사몰 실매출. 합산 금지"] }
+        ],
+        cols:["캠페인","비용 지지난주","비용 지난주","구매 지지난주","구매 지난주","귀인 ROAS 지지난주","귀인 ROAS 지난주"],
+        rows:[
+          ["260522_GEMx테스트3","증액 +34%","557,427","745,491","13","20","119%","149%"],
+          ["260426_4월말 테스트","감액 -54%","870,166","404,148","26","11","104%","94%"],
+          ["260730_공홈세트","감액 -34%","361,819","237,180","14","9","120%","123%"],
+          ["260828_GEM세팅 전환수","신규","0","221,658","0","7","-","146%"],
+          ["260821_재입고이벤트","신규","0","137,579","0","6","-","116%"],
+          ["260402_테스트 세트","감액 -88%","301,894","36,221","10","1","134%","127%"],
+          ["260723_GEM세팅","중단","15,153","0","8","0","386%","-"]
+        ],
+        sum:["합계","","2,106,459","1,782,277","71","54","117%","130%"],
+        note:"meta_ads_purchase, 라벨 릴렉스틱. 캠페인 합계 178만 ≠ 채널 296만 (marketing_daily는 제품 수 N빵, 여기는 귀인분만). 채널 합계가 기준. " +
+             "주의 - 캠페인 귀인 ROAS 합계는 117 → 130%로 올랐는데 자사몰 실매출 ROAS는 156 → 128%로 내렸다. 픽셀과 실매출이 반대 방향이므로 판정은 실매출로 한다."
+      },
+      {
+        title:"네이버 검색광고 · 광고그룹별",
+        spend:"광고비 268 → 280만원 (+4.5%)",
+        evidence:"Pass",
+        result:"<b>볼륨 유지, 효율 악화.</b> 비용 +4.5%인데 전환 440 → 387건(-12.0%). CPA 6,081 → 7,224원(+18.8%).",
+        chain:[
+          "증액분은 상위 2개 그룹: 메인 +19만, 조권 +9만",
+          "전환은 엇갈림: 메인 211 → 169(-20%), 조권 147 → 166(+13%)",
+          "그룹 CPA 편차 2배: 메인 6,192원 vs 브랜드명 12,396원",
+          "브랜드명이 예산 13% 쓰고 전환 7% 생산 → 채널 CPA 상승"
+        ],
+        agenda:[
+          { t:"CPA 편차 정리", items:[
+            "브랜드명 36만원(CPA 12,396원) → 메인(6,192원)으로 이동",
+            "기대 채널 CPA 7,224 → 6,500원대 · 롤백 2주 내 주문 370건 미만"
+          ]},
+          { t:"소액 고효율 상한 확인", items:["02. 릴렉스틱(4,573원)·추천컨텐츠(3,453원) 합 9만원. 노출 상한인지 예산 상한인지"] },
+          { t:"증액 여력", items:["ROAS 608%는 손익분기 145%의 4.2배. ROAS 하락 자체는 증액 중단 사유 아님"] }
+        ],
+        cols:["광고그룹","지지난주 비용","지난주 비용","지난주 전환","CPA","플랫폼 ROAS"],
+        rows:[
+          ["02. 릴렉스틱(조권마사지스틱)","브랜디드","1,213,800","1,299,245","166","7,826","1,370%"],
+          ["01. 릴렉스틱_메인","파워링크 일반","853,584","1,046,612","169","6,192","1,732%"],
+          ["01. 릴렉스틱(브랜드명)","브랜드 검색","386,848","359,493","29","12,396","961%"],
+          ["02. 릴렉스틱(조권마사지스틱)_추천컨텐츠","추천 지면","178,355","44,900","13","3,453","5,149%"],
+          ["02. 릴렉스틱","파워링크 브랜드","43,023","45,732","10","4,573","2,541%"]
+        ],
+        sum:["합계","","2,675,610","2,795,982","387","7,224","1,533%"],
+        note:"naver_searchad, 광고그룹명에 릴렉스틱 포함(볼 제외). 비용 합계는 채널 합계와 일치. 플랫폼 ROAS는 네이버 자체 집계라 실매출 ROAS와 비교 불가. 비용·전환·CPA만 실측."
+      },
+      {
+        title:"네이버 애드부스트 · 상품별",
+        spend:"광고비 28 → 43만원 (+53.7%)",
+        evidence:"Pass",
+        result:"<b>볼륨 정체, 효율 악화.</b> 비용 25 → 37만원(+50%), 구매 59 → 59건. 순증 0.",
+        chain:[
+          "증액은 메인 SKU 한 곳 19 → 35만원(+84%)",
+          "메인 구매 47 → 54건(+7)",
+          "바캉스 이벤트 8 → 1건(-7)으로 상쇄",
+          "이벤트 종료분을 증액으로 메움 → 순증 0, 증분 CPA 산출 불가"
+        ],
+        agenda:[
+          { t:"증분 검증", items:["다음 주 19만원 원복해 대조군 생성 · 롤백 구매 45건 미만"] },
+          { t:"이벤트 대체", items:["종료로 8건 소멸. 대체 상품 확인"] }
+        ],
+        cols:["상품","지지난주 비용","지난주 비용","지지난주 구매","지난주 구매","비고"],
+        rows:[
+          ["릴렉스틱 마사지스틱 종아리 허벅지 림프 마사지롤러","메인 SKU","188,837","347,487","47","54","증액"],
+          ["릴렉스틱 1+1 마사지스틱","번들","25,917","21,600","4","4","유지"],
+          ["(바캉스 이벤트) 릴렉스틱 마사지스틱 숏버전","이벤트","31,317","0","8","1","종료"]
+        ],
+        sum:["합계","","246,071","369,087","59","59",""],
+        note:"naver_gfa_advoost, 상품명 릴렉스틱(볼·루피 제외). 합계 25/37만 ≠ 채널 28/43만. 차액은 세트 등 미필터 행."
+      },
+      {
+        title:"네이버 GFA · 판정 보류",
+        spend:"광고비 128 → 33만원 (-73.9%)",
+        evidence:"Unknown",
+        result:"<b>판정 불가.</b> 광고비 -73.9%만 사실. 릴렉스틱분을 분리할 수 없다.",
+        chain:[
+          "소재·광고그룹에 제품 귀속 컬럼 없음",
+          "128 → 33만원 중 릴렉스틱 몫 불명",
+          "성과 부진이 아니라 근거 부재 → 감점하지 않는다"
+        ],
+        agenda:[
+          { t:"근거 확보", items:["소재명에 제품 코드 삽입. 다음 주부터 분해 가능"] },
+          { t:"판단 보류", items:["근거 생길 때까지 증감 판단 안 함"] }
+        ],
+        cols:[],
+        rows:[],
+        sum:null,
+        note:"naver_gfa. 소재명 예: 남여_3060_구_헬스/일반운동_SB_3. 액션 5번."
+      }
+    ],
+  
+  
+    actions: [
+      { do:"쿠팡 귀인 규칙 확정 (메타 귀속 여부)",      owner:"대표·퍼포먼스", ac:"9/3까지. 확정 시 판정 규칙과 다음 주 보고서에 반영" },
+      { do:"메타 예산 296만원 유지",                  owner:"퍼포먼스",     ac:"다음 주 소진 285~305만원" },
+      { do:"260426_4월말 테스트 중단 또는 소재 교체",   owner:"퍼포먼스",     ac:"귀인 ROAS 94%로 7개 중 최하. 3일 내 결정" },
+      { do:"주문 -31.7% 원인 확인",                   owner:"퍼포먼스",     ac:"3채널 동시 감소. 시즌·가격·경쟁 중 무엇인지 9/3까지 1개로 특정" },
+      { do:"GFA 소재명에 제품 코드 삽입",              owner:"퍼포먼스",     ac:"다음 주부터 GFA 상세 분해 가능" }
+    ],
+  
+  },
+  ball: {
+    product: "릴렉스틱볼",
+    // 기간은 부제에만 둔다. 별도 메타 박스는 두지 않는다.
+    subtitle: "지난주 2026-08-24 ~ 08-30 · 비교 지지난주 08-17 ~ 08-23<br>" +
+              "메타·네이버 유료광고. 페이드채널 = 자사몰·스마트스토어. 제품 = 릴렉스틱볼 (잔망루피 에디션 제외).",
+  
+    // 결론. 볼륨 -> 효율 -> 결론. 2면의 전개와 같은 축.
+    lede: [
+      { k:"볼륨", v:"매출 2,312 → <b>1,537만원(-33.5%)</b>, 주문 725 → <b>447건(-38.3%)</b>. " +
+                    "매출 감소는 자사몰 -417 · 스마트스토어 -358만원으로 두 채널이 비슷하게 빠졌다." },
+      { k:"효율", v:"매출 = 광고비 × ROAS. 하락 775만원 = <b>투입 162만(21%) + 효율 613만(79%)</b>. " +
+                    "전체 ROAS 446 → <b>319%</b>. 채널 자체 ROAS는 메타 266 → 200%, 네이버 2,733 → 1,310%로 <b>둘 다 하락</b>." },
+      { k:"결론", v:"<span class=\"neg\">자사몰 광고 후 마진 217 → 37만원(-83%).</span> " +
+                    "메타 ROAS 200%가 손익분기 184%에 붙었다. 스마트스토어는 +346만원." }
+    ],
+  
+    // 서로 파생되지 않는 5개 사실: 투입 / 산출 / 효율 / 볼륨 / 남는 돈
+    stats: [
+      { k:"총 광고비",      v:"482",   unit:"만원", delta:-7.0,   good:"down" },
+      { k:"페이드채널 매출", v:"1,537", unit:"만원", delta:-33.5,  good:"up" },
+      { k:"ROAS",          v:"319",   unit:"%",   delta:-127.3, good:"up", pp:true,
+        ref:"손익분기 178%" },
+      { k:"주문수",         v:"447",   unit:"건",   delta:-38.3,  good:"up" },
+      { k:"광고 후 마진",   v:"382",   unit:"만원", delta:-50.1,  good:"up",
+        ref:"채널마진 864만 − 광고비 482만" }
+    ],
+  
+    // 차트: 마케팅 채널별 광고비. 값은 원 단위, 표시는 만원.
+    chart: {
+      prevLabel:"지지난주", currLabel:"지난주",
+      rows: [
+        { name:"메타",       prev:4799923, curr:4298295 },
+        { name:"검색광고",    prev:323399,  curr:406672  },
+        { name:"애드부스트",  prev:55316,   curr:110412  },
+        { name:"GFA",       prev:0,       curr:0       }
+      ],
+      yMax:5000000, yStep:1000000, div:10000,
+      note:"단위 만원. BigQuery mkt_marketing_daily_native, 라벨 릴렉스틱볼. GFA는 두 주 다 미집행."
+    },
+  
+    // 페이드채널별 실주문 매출(원)
+    sales: [
+      { name:"자사몰",      sub:"메타 귀인",       prev:12767531, curr:8596001, prevO:386, currO:262 },
+      { name:"스마트스토어", sub:"네이버 3종 귀인", prev:10349962, curr:6771252, prevO:339, currO:185 }
+    ],
+    salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 쿠팡 매출은 없다. 공구·팝업·홈쇼핑 제외.",
+  
+    groups: [
+      { name:"네이버 3종", sub:"→ 스마트스토어", cost:"52", sales:"677", salesDelta:-34.6, roas:1310, roasPrev:2733, bep:171,
+        contrib:"+346", cpa:"2,795", orders:185, verdict:"증액 보류", tone:"hold" },
+      { name:"메타",      sub:"→ 자사몰",       cost:"430", sales:"860", salesDelta:-32.7, roas:200, roasPrev:266, bep:184,
+        contrib:"+37", cpa:"16,406", orders:262, verdict:"경보", tone:"down" }
+    ],
+    groupSum: { cost:"482", sales:"1,537", salesDelta:-33.5, roas:319, roasPrev:446, bep:178, contrib:"+382", cpa:"10,773", orders:447 },
+    verdictRule: "판정 - 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액.<br>" +
+                 "손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비, " +
+                 "<b>고정비·시딩비 차감 전이라 순이익 아님.</b><br>" +
+                 "메타는 200 ÷ 184 = 1.09배로 유지 구간이나 여유가 16%p뿐이라 <b>경보</b>로 표기했다. 다음 주 하락하면 적자 전환한다. " +
+                 "네이버는 7.7배로 증액 후보이나, 지난주 광고비를 +37% 늘리고 매출이 -35%였으므로 <b>증액 보류</b>다.",
+  
+    // ---- 2면: 특수상황 · 영향력 순위 ----
+    situation: {
+      found: "메타 260819 이미지소재 캠페인이 지난주 ROAS 46%로 7개 중 최하. 19만원 집행 중이며 구매는 3건이다.",
+      todo: "품절·가격·프로모션·경쟁·인플루언서 미확인. 같은 기간 공구 519 → 152만원(-71%), 팝업 530 → 229만원(-57%)으로 페이드 밖 채널도 함께 빠졌다. 제품 전반 수요 문제인지 확인이 필요하다."
+    },
+    rank: "감소 기여 (총 -775만원) - <b>① 자사몰 -417만</b> <span class=\"sh\">54%</span> · " +
+          "<b>② 스마트스토어 -358만</b> <span class=\"sh\">46%</span>. " +
+          "근거 커버리지 100%(집행 3채널 모두 분해, GFA 미집행) → 판정 <b>확정</b>.",
+  
+    // 볼륨 -> 효율 하향 전개. 매출 = 광고비 x ROAS 로 정확히 분해된다.
+    volume: [
+      { step:"1. 볼륨", q:"볼륨이 떨어졌나", a:[
+        "매출 <b>-33.5%</b>, 주문 <b>-38.3%</b>. 세 제품 중 낙폭이 가장 크다.",
+        "객단가는 31,886 → 34,378원(+7.8%)으로 올랐다. 건수가 더 크게 빠졌다."
+      ]},
+      { step:"2. 분해", q:"투입인가 효율인가", a:[
+        "광고비는 7%만 줄었다. 하락의 대부분이 효율이다.",
+        "<span class=\"calc\">투입 -162만(21%) · 효율 -613만(79%)</span>",
+        "효율분이 투입분의 3.8배다."
+      ]},
+      { step:"3. 효율 위치", q:"어느 채널인가", a:[
+        "전체 ROAS -127.3%p 분해:",
+        "<span class=\"calc\">비용 감소 +33.7%p · 자사몰 -86.6%p · 스마트스토어 -74.3%p</span>",
+        "<b>두 채널이 같이 무너졌다.</b> 메타 266 → 200%(-25%), 네이버 2,733 → 1,310%(-52%).",
+        "한쪽만 나쁜 릴렉스틱·잔망루피와 다른 점이다."
+      ]},
+      { step:"4. 지표 원인", q:"무슨 지표인가", a:[
+        "전환 단가. 양쪽 다 올랐다.",
+        "<span class=\"calc\">메타 CPA 12,435 → 16,406원(+31.9%) · 네이버 CPA 1,117 → 2,795원(+150.2%)</span>"
+      ]},
+      { step:"5. 내외부", q:"광고 밖 요인인가", a:[
+        "<b>의심 신호 있음.</b> 공구 -71%, 팝업 -57%로 광고를 안 쓰는 채널도 같이 빠졌다.",
+        "광고 효율만의 문제가 아닐 수 있다. 특수상황 확인이 이 제품에서 가장 급하다."
+      ]}
+    ],
+  
+    // ---- 2면: 채널별 상세 ----
+    drill: [
+      {
+        title:"메타 · 캠페인별",
+        spend:"광고비 480 → 430만원 (-10.5%)",
+        evidence:"Pass",
+        result:"<b>볼륨·효율 동시 악화.</b> 광고비 -10.5%인데 자사몰 매출 -32.7%, ROAS 266 → 200%. 손익분기 184%에 붙어 광고 후 마진 217 → 37만원(-83%).",
+        chain:[
+          "광고비 -10.5% 대비 자사몰 주문 386 → 262건(-32.1%)",
+          "CPA 12,435 → 16,406원(+31.9%)",
+          "최대 캠페인 260429가 224만원(예산 57%)을 유지하며 ROAS 192 → 124%",
+          "주력이 무너지고 이미지소재 260819도 46% → 광고 후 마진 -83%"
+        ],
+        agenda:[
+          { t:"최대 캠페인 진단", items:["260429가 224만원으로 예산의 57%. ROAS 192 → 124%, 구매 80건 표본이라 노이즈가 아니다. 3일 내 소재·타겟 확인"] },
+          { t:"이미지소재 판정 보류", items:["260819 ROAS 46%지만 구매 3건 표본. 표본이 얇아 중단 판단을 미루고 예산 상한 20만원으로 2주 관측"] },
+          { t:"손익분기 근접 경보", items:["메타 ROAS 200%와 손익분기 184%의 차이가 16%p. 다음 주 하락하면 적자 전환한다"] }
+        ],
+        cols:["캠페인","비용 지지난주","비용 지난주","구매 지지난주","구매 지난주","귀인 ROAS 지지난주","귀인 ROAS 지난주"],
+        rows:[
+          ["260429_복사_재세팅_증액","감액 -2%","2,297,033","2,244,827","120","80","192%","124%"],
+          ["260529_GEM릴렉스틱볼","감액 -18%","1,396,820","1,144,237","71","52","185%","165%"],
+          ["260819_GEM릴렉스틱볼_이미지소재","감액 -11%","217,675","192,936","5","3","94%","46%"],
+          ["260426_4월말 테스트","감액 -54%","372,928","173,206","26","11","187%","169%"],
+          ["260730_공홈세트","감액 -34%","155,064","101,650","14","9","217%","222%"],
+          ["260821_재입고이벤트","신규","0","58,962","0","6","-","210%"],
+          ["260402_테스트 세트","감액 -88%","129,383","15,523","10","1","241%","230%"]
+        ],
+        sum:["합계","","4,568,903","3,931,341","246","162","187%","138%"],
+        note:"meta_ads_purchase, 라벨 릴렉스틱볼. 캠페인 합계 393만 ≠ 채널 430만 (marketing_daily는 제품 수 N빵, 여기는 귀인분만). 채널 합계가 기준."
+      },
+      {
+        title:"네이버 검색광고 · 광고그룹별",
+        spend:"광고비 32 → 41만원 (+25.7%)",
+        evidence:"Pass",
+        result:"<b>볼륨 감소, 효율 악화.</b> 비용 +25.7%인데 전환 69 → 45건(-34.8%). CPA 4,687 → 9,037원(+92.8%).",
+        chain:[
+          "집행 그룹은 06. 릴렉스틱볼_메인 하나뿐",
+          "비용 +25.7%, 전환 -34.8%",
+          "CPA 4,687 → 9,037원(+92.8%)",
+          "단일 그룹이라 배분으로 고칠 여지가 없다 → 그룹 자체 효율 문제"
+        ],
+        agenda:[
+          { t:"증액 원복", items:["비용 +26%에 전환 -35%. 다음 주 32만원으로 되돌려 대조군을 만든다"] },
+          { t:"그룹 분화 검토", items:["단일 그룹이라 키워드별 성과가 섞여 있다. 키워드 단위 확인 후 분화 여부 결정"] }
+        ],
+        cols:["광고그룹","비용 지지난주","비용 지난주","전환 지지난주","전환 지난주","CPA 지난주"],
+        rows:[
+          ["06. 릴렉스틱볼_메인","단일 집행 그룹","323,399","406,672","69","45","9,037"],
+          ["03. 릴렉스틱볼","미집행","0","0","0","0","-"]
+        ],
+        sum:["합계","","323,399","406,672","69","45","9,037"],
+        note:"naver_searchad. 비용 합계가 1면 채널 합계와 정확히 일치한다. 전환수는 네이버 자체 집계이며 자사몰 실매출과 다르다."
+      },
+      {
+        title:"네이버 애드부스트 · 상품별",
+        spend:"광고비 6 → 11만원 (+99.6%)",
+        evidence:"Pass",
+        result:"<b>볼륨 증가, 단가 악화.</b> 비용 +99.6%인데 구매는 57 → 67건(+17.5%). 증분 CPA가 평균의 3.2배다.",
+        chain:[
+          "2개 상품에 집행. 릴렉스틱 세트가 비용의 65%",
+          "증분 비용 8.4만원에 증분 구매 10건",
+          "증분 CPA 8,370원, 채널 평균 CPA 1,592 → 2,604원(+64%)",
+          "증액분이 기존보다 3.2배 비싼 구매를 사왔다"
+        ],
+        agenda:[
+          { t:"증분 검증", items:["다음 주 6만원으로 원복해 대조군 생성. 롤백 구매 50건 미만이면 증액 복귀"] },
+          { t:"세트 귀속 확정", items:["릴렉스틱 오리지널 + 릴렉스틱볼 세트가 비용의 65%. 릴렉스틱과 볼 중 어디에 귀속할지 정한다"] }
+        ],
+        cols:["상품","비용 지지난주","비용 지난주","구매 지지난주","구매 지난주","비고"],
+        rows:[
+          ["릴렉스틱 오리지널 + 릴렉스틱볼 마사지 세트","세트","62,856","113,578","44","46","비용 65%"],
+          ["릴렉스틱볼 목 어깨 족저근막염 마사지볼","단품","27,902","60,877","13","21","증액"]
+        ],
+        sum:["합계","","90,758","174,455","57","67",""],
+        note:"naver_gfa_advoost. 합계 9/17만원은 1면 채널 합계 6/11만원과 다르다. 세트 상품이 릴렉스틱에도 걸쳐 있어 배분이 갈리기 때문이다. 채널 합계가 기준. 구매는 시트의 구매완료수이며 marketing_daily 귀인 구매(32 → 32건)와 정의가 다르다."
+      }
+    ],
+  
+    actions: [
+      { do:"260429 캠페인 진단",                owner:"퍼포먼스", ac:"224만원(예산 57%), ROAS 192 → 124%. 3일 내 소재·타겟 확인" },
+      { do:"검색광고 41 → 32만원 원복",          owner:"퍼포먼스", ac:"비용 +26%에 전환 -35%. 다음 주 소진 30~34만원" },
+      { do:"애드부스트 11 → 6만원 원복",         owner:"퍼포먼스", ac:"증분 CPA 8,370원. 다음 주 대조군 확보" },
+      { do:"메타 손익분기 근접 경보 설정",         owner:"데이터",   ac:"자사몰 실매출 ROAS 190% 하회 시 알림" },
+      { do:"공구·팝업 동반 하락 원인 확인",        owner:"영업",     ac:"공구 -71%, 팝업 -57%. 제품 전반 수요인지 9/3까지" }
+    ]
+  },
+  lupy: {
+    product: "잔망루피 에디션",
+    // 기간은 부제에만 둔다. 별도 메타 박스는 두지 않는다.
+    subtitle: "지난주 2026-08-24 ~ 08-30 · 비교 지지난주 08-17 ~ 08-23<br>" +
+              "메타·네이버 유료광고. 페이드채널 = 자사몰·스마트스토어. 제품 = 릴렉스틱오리지널_루피 · 릴렉스틱볼_루피.",
+  
+    // 결론. 볼륨 -> 효율 -> 결론. 2면의 전개와 같은 축.
+    lede: [
+      { k:"볼륨", v:"매출 2,429 → <b>1,948만원(-19.8%)</b>, 주문 659 → <b>524건(-20.5%)</b>. " +
+                    "매출 감소는 스마트스토어 -454 · 자사몰 -27만원으로 스마트스토어에 몰렸다." },
+      { k:"효율", v:"매출 = 광고비 × ROAS. <b>광고비를 +32% 늘려 투입은 +779만인데 효율이 -1,260만</b>으로 상쇄해 순 -481만원. " +
+                    "전체 ROAS 552 → <b>335%</b>. 채널 자체 ROAS는 네이버 2,095 → 683%, 메타 244 → 205%." },
+      { k:"결론", v:"<span class=\"neg\">네이버 광고비를 2.2배 늘렸는데 스마트스토어 매출은 -30%.</span> " +
+                    "광고 후 마진 953 → 551만원(-42%). 두 채널 다 손익분기 위지만 여유가 줄었다." }
+    ],
+  
+    // 서로 파생되지 않는 5개 사실: 투입 / 산출 / 효율 / 볼륨 / 남는 돈
+    stats: [
+      { k:"총 광고비",      v:"582",   unit:"만원", delta:+32.0, good:"down" },
+      { k:"페이드채널 매출", v:"1,948", unit:"만원", delta:-19.8, good:"up" },
+      { k:"ROAS",          v:"335",   unit:"%",   delta:-216.6, good:"up", pp:true,
+        ref:"손익분기 172%" },
+      { k:"주문수",         v:"524",   unit:"건",   delta:-20.5, good:"up" },
+      { k:"광고 후 마진",   v:"551",   unit:"만원", delta:-42.2, good:"up",
+        ref:"채널마진 1,132만 − 광고비 582만" }
+    ],
+  
+    // 차트: 마케팅 채널별 광고비. 값은 원 단위, 표시는 만원.
+    chart: {
+      prevLabel:"지지난주", currLabel:"지난주",
+      rows: [
+        { name:"메타",       prev:3672334, curr:4234454 },
+        { name:"GFA",       prev:550716,  curr:1181105 },
+        { name:"애드부스트",  prev:181881,  curr:401360  },
+        { name:"검색광고",    prev:0,       curr:0       }
+      ],
+      yMax:4500000, yStep:1500000, div:10000,
+      note:"단위 만원. BigQuery mkt_marketing_daily_native, 라벨 릴렉스틱오리지널_루피 + 릴렉스틱볼_루피. 검색광고는 집행 0원."
+    },
+  
+    // 페이드채널별 실주문 매출(원)
+    sales: [
+      { name:"스마트스토어", sub:"네이버 3종 귀인", prev:15346458, curr:10808067, prevO:429, currO:303 },
+      { name:"자사몰",      sub:"메타 귀인",       prev:8948375,  curr:8674934,  prevO:230, currO:221 }
+    ],
+    salesNote: "실주문 매출. 광고 플랫폼 전환값이 아니다. 쿠팡 매출은 없다. 공구·팝업·홈쇼핑 제외.",
+  
+    groups: [
+      { name:"네이버 3종", sub:"→ 스마트스토어", cost:"158", sales:"1,081", salesDelta:-29.6, roas:683, roasPrev:2095, bep:174,
+        contrib:"+462", cpa:"5,223", orders:303, verdict:"증액 보류", tone:"hold" },
+      { name:"메타",      sub:"→ 자사몰",       cost:"423", sales:"867", salesDelta:-3.1, roas:205, roasPrev:244, bep:170,
+        contrib:"+88", cpa:"19,161", orders:221, verdict:"유지", tone:"hold" }
+    ],
+    groupSum: { cost:"582", sales:"1,948", salesDelta:-19.8, roas:335, roasPrev:552, bep:172, contrib:"+551", cpa:"11,101", orders:524 },
+    verdictRule: "판정 - 실매출 ROAS ÷ 손익분기. <b>2배↑</b> 증액 후보 · <b>1~2배</b> 유지 · <b>1배↓</b> 감액.<br>" +
+                 "손익분기 = 매출 ÷ 채널마진(매출 − 원가 − 수수료 − 배송비). 광고 후 마진 = 채널마진 − 광고비, " +
+                 "<b>고정비·시딩비 차감 전이라 순이익 아님.</b><br>" +
+                 "네이버는 683 ÷ 174 = 3.9배로 규칙상 증액 후보이나 <b>증액 보류</b>다. " +
+                 "지난주에 이미 광고비를 116% 늘렸고 매출은 -30%였다. 증액이 증분을 만들지 못한 직후이므로 규칙을 그대로 적용하지 않는다.",
+  
+    // ---- 2면: 특수상황 · 영향력 순위 ----
+    situation: {
+      found: "지난주 메타 신규 캠페인 2개(260826·260827) 개시, 합 75만원. 귀인 ROAS 80%·106%로 기존 103~114%보다 낮거나 비슷.",
+      todo: "품절·가격·프로모션·경쟁·인플루언서 미확인. 같은 기간 팝업(easypos) 매출이 704 → 176만원(-75%)으로 급감했으나 페이드 밖이라 이 보고서 범위가 아니다."
+    },
+    rank: "감소 기여 (총 -481만원) - <b>① 스마트스토어 -454만</b> <span class=\"sh\">94%</span> · " +
+          "<b>② 자사몰 -27만</b> <span class=\"sh\">6%</span>. " +
+          "근거 커버리지 50%(GFA 제품 귀속 불가, 검색광고 집행 0원) → 판정 <b>잠정</b>.",
+  
+    // 볼륨 -> 효율 하향 전개. 매출 = 광고비 x ROAS 로 정확히 분해된다.
+    volume: [
+      { step:"1. 볼륨", q:"볼륨이 떨어졌나", a:[
+        "매출 <b>-19.8%</b>, 주문 <b>-20.5%</b>.",
+        "객단가는 36,866 → 37,181원으로 거의 같다. 순수하게 건수가 줄었다."
+      ]},
+      { step:"2. 분해", q:"투입인가 효율인가", a:[
+        "광고비를 <b>+32% 늘렸는데</b> 매출이 줄었다. 전부 효율 문제다.",
+        "<span class=\"calc\">투입 +779만 · 효율 -1,260만 → 순 -481만</span>",
+        "ROAS가 유지됐다면 매출은 3,208만원이어야 했다."
+      ]},
+      { step:"3. 효율 위치", q:"어느 채널인가", a:[
+        "전체 ROAS -216.6%p 분해:",
+        "<span class=\"calc\">비용 증가 -133.9%p · 스마트스토어 -78.0%p · 자사몰 -4.7%p</span>",
+        "채널 자체 ROAS는 <b>네이버가 무너졌다</b>(2,095 → 683%, -67%). 메타는 244 → 205%(-16%).",
+        "네이버는 광고비를 2.2배 넣고 매출이 -30%다."
+      ]},
+      { step:"4. 지표 원인", q:"무슨 지표인가", a:[
+        "전환 단가. 네이버가 3배 나빠졌다.",
+        "<span class=\"calc\">네이버 CPA 1,708 → 5,223원(+206%) · 메타 CPA 15,967 → 19,161원(+20%)</span>"
+      ]},
+      { step:"5. 내외부", q:"광고 밖 요인인가", a:[
+        "<b>보류.</b> 같은 기간 팝업 매출 -75%가 있었으나 페이드 밖이다.",
+        "특수상황 미입력. 네이버 증액분이 어느 지면으로 갔는지도 GFA 귀속 불가로 확인 안 된다."
+      ]}
+    ],
+  
+    // ---- 2면: 채널별 상세 ----
+    drill: [
+      {
+        title:"메타 · 캠페인별",
+        spend:"광고비 367 → 423만원 (+15.3%)",
+        evidence:"Pass",
+        result:"<b>볼륨 유지, 효율 악화.</b> 광고비 +15.3%인데 자사몰 매출 -3.1%, ROAS 244 → 205%. 손익분기 170% 위지만 광고 후 마진 159 → 88만원(-44%).",
+        chain:[
+          "광고비 +15.3%, 자사몰 주문 230 → 221건(-3.9%)",
+          "CPA 15,967 → 19,161원(+20.0%)",
+          "신규 캠페인 2개에 75만원(예산의 18%). 귀인 ROAS 80%·106%",
+          "주력 260710 연예인 캠페인이 163 → 100%로 반토막 → 광고 후 마진 -44%"
+        ],
+        agenda:[
+          { t:"신규 비중 관리", items:["신규 2개 75만원(18%). 기존 103~114%보다 낮거나 비슷하므로 2주 관측 후 판단"] },
+          { t:"260710 연예인 캠페인 진단", items:["ROAS 163 → 100%. 구매 54건 표본. 소재 피로인지 타겟 변화인지 3일 내 확인"] },
+          { t:"판정 기준 고정", items:["픽셀 ROAS는 방향만, 판정은 자사몰 실매출"] }
+        ],
+        cols:["캠페인","비용 지지난주","비용 지난주","구매 지지난주","구매 지난주","귀인 ROAS 지지난주","귀인 ROAS 지난주"],
+        rows:[
+          ["260529_GEM잔망루피","감액 -19%","2,403,316","1,949,082","100","64","114%","103%"],
+          ["260710_GEM잔망_연예인","증액 +21%","1,269,018","1,537,411","72","54","163%","100%"],
+          ["260826_GEM세팅 전환수","신규","0","416,711","0","12","-","80%"],
+          ["260827_GEM세팅 전환수 미소진","신규","0","331,250","0","10","-","106%"],
+          ["260810_GEM잔망_예약판매","미집행","0","0","0","0","-","-"]
+        ],
+        sum:["합계","","3,672,334","4,234,454","172","140","131%","100%"],
+        note:"meta_ads_purchase, 제품 릴렉스틱오리지널_루피 + 릴렉스틱볼_루피. " +
+             "캠페인 합계 423만원이 1면 채널 합계와 정확히 일치한다. 루피 전용 캠페인이라 제품 수 N빵 희석이 없다. " +
+             "귀인 ROAS 합계 131 → 100%와 자사몰 실매출 ROAS 244 → 205%가 같은 방향이다."
+      },
+      {
+        title:"네이버 애드부스트 · 상품별",
+        spend:"광고비 18 → 40만원 (+120.7%)",
+        evidence:"Pass",
+        result:"<b>볼륨 증가, 단가 악화.</b> 광고비 +120.7%, 구매 90 → 128건(+42.2%). 증분은 났으나 단가가 나빠졌다.",
+        chain:[
+          "단일 상품(잔망루피 에디션 마사지스틱 세트)에 전액 집행",
+          "증분 비용 22만원에 증분 구매 38건 → 증분 CPA 5,776원",
+          "채널 평균 CPA 2,021 → 3,136원(+55%)",
+          "증액이 구매를 늘리긴 했으나 새로 산 건수의 단가가 기존의 2.9배"
+        ],
+        agenda:[
+          { t:"증분 지속 확인", items:["증분 CPA 5,776원은 네이버 그룹 평균 5,223원과 비슷. 한 주 더 유지하고 3주차에 증분 재측정"] },
+          { t:"구매 정의 통일", items:["marketing_daily 귀인 구매는 57 → 49건으로 감소, 애드부스트 시트 구매완료수는 90 → 128건으로 증가. 방향이 반대다"] }
+        ],
+        cols:["상품","비용 지지난주","비용 지난주","구매 지지난주","구매 지난주","CPA 지난주"],
+        rows:[
+          ["릴렉스틱 잔망루피 에디션 마사지스틱 세트","단일 상품","181,881","401,360","90","128","3,136"]
+        ],
+        sum:["합계","","181,881","401,360","90","128","3,136"],
+        note:"naver_gfa_advoost. 단일 상품이라 채널 합계와 정확히 일치한다. 구매는 시트의 구매완료수 기준이며 marketing_daily 귀인 구매와 정의가 다르다."
+      },
+      {
+        title:"네이버 GFA · 판정 보류",
+        spend:"광고비 55 → 118만원 (+114.5%)",
+        evidence:"Unknown",
+        result:"<b>판정 불가.</b> 광고비 +114.5%만 사실. 증액분 63만원의 성과를 확인할 수 없다.",
+        chain:[
+          "소재·광고그룹에 제품 귀속 컬럼 없음",
+          "55 → 118만원 중 잔망루피 몫 불명. 제품 예산의 20%다",
+          "성과 부진이 아니라 근거 부재 → 감점하지 않는다"
+        ],
+        agenda:[
+          { t:"근거 확보", items:["소재명에 제품 코드 삽입. 다음 주부터 분해 가능"] },
+          { t:"증액분 검증 보류", items:["63만원 증액이 스마트스토어 매출 하락과 같은 주에 일어났으나 인과를 확인할 수 없다"] }
+        ],
+        cols:[],
+        rows:[],
+        sum:null,
+        note:"naver_gfa. 소재명 예: 남여_3060_구_헬스/일반운동_SB_3."
+      },
+      {
+        title:"네이버 검색광고 · 집행 0원",
+        spend:"광고비 0 → 0원",
+        evidence:"Unknown",
+        result:"<b>판정 불가.</b> 집행이 0원인데 귀인 구매가 129 → 82건(-36.4%) 잡힌다.",
+        chain:[
+          "잔망루피 전용 검색광고 그룹이 없다",
+          "비용 0원이라 ROAS·CPA를 산출할 수 없다",
+          "귀인 구매 감소가 신호일 수 있으나 광고 조정으로 설명되지 않는다"
+        ],
+        agenda:[
+          { t:"귀인 정의 확인", items:["집행 0원에 구매가 귀인되는 규칙을 확인한다. 브랜드 검색 무료 노출인지 다른 그룹의 배분인지"] }
+        ],
+        cols:[],
+        rows:[],
+        sum:null,
+        note:"naver_searchad에 잔망루피 광고그룹이 없다. marketing_daily의 searchad 귀인 구매만 존재한다."
+      }
+    ],
+  
+    actions: [
+      { do:"네이버 광고비 158 → 80만원으로 원복",      owner:"퍼포먼스",   ac:"다음 주 소진 70~90만원. 스마트스토어 매출 회복 여부로 증액 효과 판정" },
+      { do:"260710 연예인 캠페인 진단",               owner:"퍼포먼스",   ac:"ROAS 163 → 100%. 3일 내 소재 피로 여부 확인" },
+      { do:"GFA 소재명에 제품 코드 삽입",              owner:"퍼포먼스",   ac:"증액분 63만원 검증. 다음 주부터 분해 가능" },
+      { do:"애드부스트 구매 정의 통일",                owner:"데이터",     ac:"marketing_daily 49건 vs 시트 128건. 판정 기준 확정" },
+      { do:"팝업 매출 -75% 원인 확인",                owner:"영업",       ac:"페이드 밖이나 같은 제품. 9/3까지" }
+    ]
+  }
+};
+
+/* ============================================================
+   렌더. 제품이 바뀌어도 이 아래는 바뀌지 않는다.
+   render(key) 를 호출하면 REPORTS[key] 로 전체를 다시 그린다.
+   ============================================================ */
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" }[c]));
+const cv = (t) => getComputedStyle(document.documentElement).getPropertyValue(t).trim();
+const pct = (a, b) => b ? ((a - b) / b) * 100 : 0;
+const won = (n) => n.toLocaleString();
+
+/* 차트 기하는 고정, 데이터에 따라 바뀌는 값만 렌더 시 갱신 */
+const W=460, H=218, PAD={t:34,r:12,b:26,l:44};
+const plotW = W-PAD.l-PAD.r, plotH = H-PAD.t-PAD.b;
+const barW = 34, gap = 7;
+let R, C, DIV = 1, band = plotW;
+
+const yy = v => PAD.t + plotH - (v / C.yMax) * plotH;
+const disp = v => Math.round(v / DIV).toLocaleString();
+
+function bar(x, v, fill, label, series) {
+  const top = yy(v), h = PAD.t + plotH - top, r = Math.min(4, h);
+  const d = h <= 0 ? "" :
+    `M${x},${top+h} V${top+r} q0,${-r} ${r},${-r} H${x+barW-r} q${r},0 ${r},${r} V${top+h} Z`;
+  return (d ? `<path class="bar" d="${d}" fill="${fill}" tabindex="0"
+            data-l="${esc(label)} · ${esc(series)}" data-v="${disp(v)}만원"></path>` : "") +
+    `<text x="${x+barW/2}" y="${top-5}" text-anchor="middle"
+       font-family="IBM Plex Mono, monospace" font-size="9.5"
+       fill="${cv("--ink-3")}">${disp(v)}</text>`;
+}
+
+function drawChart() {
+  if (!C) return;
+  let g = "";
+  for (let v = 0; v <= C.yMax; v += C.yStep) {
+    const y = yy(v);
+    g += `<line x1="${PAD.l}" y1="${y}" x2="${PAD.l+plotW}" y2="${y}"
+            stroke="${v===0?cv("--line-2"):cv("--grid")}" stroke-width="1" shape-rendering="crispEdges"/>
+          <text x="${PAD.l-8}" y="${y+3.5}" text-anchor="end"
+            font-family="IBM Plex Mono, monospace" font-size="9.5"
+            fill="${cv("--ink-3")}">${disp(v)}</text>`;
+  }
+  C.rows.forEach((r, i) => {
+    const groupW = barW*2 + gap;
+    const x0 = PAD.l + band*i + (band-groupW)/2;
+    g += bar(x0, r.prev, cv("--prev"), r.name, C.prevLabel);
+    g += bar(x0+barW+gap, r.curr, cv("--curr"), r.name, C.currLabel);
+    const d = pct(r.curr, r.prev), up = d >= 0;
+    g += `<text x="${x0+groupW/2}" y="${PAD.t-17}" text-anchor="middle"
+            font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600"
+            fill="${up?cv("--good"):cv("--bad")}">${up?"+":""}${d.toFixed(1)}%</text>`;
+    g += `<text x="${x0+groupW/2}" y="${PAD.t+plotH+15}" text-anchor="middle"
+            font-family="IBM Plex Sans KR, sans-serif" font-size="11" font-weight="500"
+            fill="${cv("--ink-2")}">${esc(r.name)}</text>`;
+  });
+  $("chart").innerHTML = g;
+  $("chart-t").textContent = C.note;
+}
+
+/* ---------- 전체 렌더 ---------- */
+function render(key) {
+  R = REPORTS[key];
+  C = R.chart; DIV = C.div || 1; band = plotW / C.rows.length;
+  document.title = R.product + " 주간 유료광고 원페이지";
+
+  $("p-name").textContent = R.product;
+  $("p-sub").innerHTML = R.subtitle;
+  $("p-lede").innerHTML = R.lede
+    .map(l => `<div><dt>${esc(l.k)}</dt><p>${l.v}</p></div>`).join("");
+
+  $("p-stats").innerHTML = R.stats.map(s => {
+    const rising = s.delta > 0;
+    const isGood = (rising && s.good === "up") || (!rising && s.good === "down");
+    return `<div class="stat">
+      <div class="k">${esc(s.k)}</div>
+      <div class="v">${esc(s.v)}<small>${esc(s.unit)}</small></div>
+      <div class="d ${isGood?"up":"down"}">
+        <span aria-hidden="true">${rising?"▲":"▼"}</span>
+        <span>${rising?"+":""}${s.delta.toFixed(1)}${s.pp?"%p":"%"}</span>
+        <span class="cmp">지지난주</span>
+      </div>
+      ${s.ref ? `<div class="ref">${esc(s.ref)}</div>` : ""}
+    </div>`;
+  }).join("");
+
+  $("p-legend").innerHTML =
+    `<span><i style="background:var(--prev)"></i>${esc(C.prevLabel)}</span>` +
+    `<span><i style="background:var(--curr)"></i>${esc(C.currLabel)}</span>`;
+  drawChart();
+
+  /* 페이드채널 실매출 */
+  {
+    const s = R.sales;
+    const tp = s.reduce((a,x)=>a+x.prev,0), tc = s.reduce((a,x)=>a+x.curr,0);
+    const op = s.reduce((a,x)=>a+x.prevO,0), oc = s.reduce((a,x)=>a+x.currO,0);
+    const row = (n, sub, p, c, po, co, cls) => {
+      const d = pct(c,p), dv = pct(co,po);
+      return `<tr class="${cls||""}">
+        <td class="name">${esc(n)}${sub?`<small>${esc(sub)}</small>`:""}</td>
+        <td class="n">${won(c)}<br><span class="wow ${d>=0?"up":"down"}">${d>=0?"+":""}${d.toFixed(1)}%</span></td>
+        <td class="n">${won(co)}<br><span class="wow ${dv>=0?"up":"down"}">${dv>=0?"+":""}${dv.toFixed(1)}%</span></td>
+      </tr>`;
+    };
+    $("p-sales").innerHTML =
+      `<thead><tr><th>페이드채널</th><th>지난주 실매출</th><th>주문</th></tr></thead><tbody>` +
+      s.map(x => row(x.name, x.sub, x.prev, x.curr, x.prevO, x.currO)).join("") +
+      row("합계", "", tp, tc, op, oc, "sum") + `</tbody>`;
+    $("p-sales-note").textContent = R.salesNote;
+  }
+
+  /* 귀인 그룹 판정 */
+  {
+    const g = R.groups, S = R.groupSum;
+    const roasCell = (r, rp) => {
+      if (r == null) return `<span class="na">-</span>`;
+      const d = r - rp;
+      return `${r.toLocaleString()}% <span class="wow ${d>0?"up":d<0?"down":"same"}">${d>=0?"+":""}${d.toLocaleString()}%p</span>`;
+    };
+    const cell = v => v == null ? `<span class="na">-</span>` : esc(v);
+    const salesCell = (v, d) => d == null ? esc(v) :
+      `${esc(v)} <span class="wow ${d>0?"up":d<0?"down":"same"}">${d>=0?"+":""}${d.toFixed(1)}%</span>`;
+    $("p-groups").innerHTML =
+      `<thead><tr><th>귀인 그룹</th><th>광고비 만원</th><th>실매출 만원</th><th>실매출 ROAS</th>` +
+      `<th>손익분기</th><th>광고 후 마진 만원</th><th>주문</th><th>CPA 원</th><th>판정</th></tr></thead>` +
+      `<tbody>${g.map(x => `<tr>
+          <td class="name">${esc(x.name)}<small>${esc(x.sub)}</small></td>
+          <td class="n${x.cost==null?" na":""}">${cell(x.cost)}</td>
+          <td class="n">${salesCell(x.sales, x.salesDelta)}</td>
+          <td class="n">${roasCell(x.roas, x.roasPrev)}</td>
+          <td class="n">${x.bep}%</td>
+          <td class="n${x.negative?" neg":""}">${esc(x.contrib)}</td>
+          <td class="n">${x.orders}</td>
+          <td class="n${x.cpa==null?" na":""}">${cell(x.cpa)}</td>
+          <td><span class="pill ${x.tone}">${esc(x.verdict)}</span></td>
+        </tr>`).join("")}
+        <tr class="sum">
+          <td class="name">합계</td>
+          <td class="n">${esc(S.cost)}</td>
+          <td class="n">${salesCell(S.sales, S.salesDelta)}</td>
+          <td class="n">${roasCell(S.roas, S.roasPrev)}</td>
+          <td class="n">${S.bep}%</td>
+          <td class="n">${esc(S.contrib)}</td>
+          <td class="n">${S.orders}</td>
+          <td class="n">${esc(S.cpa)}</td>
+          <td></td>
+        </tr></tbody>`;
+    $("p-rule").innerHTML = R.verdictRule;
+  }
+
+  $("p-actions").innerHTML =
+    `<thead><tr><th style="width:34%">액션</th><th>소유자</th><th style="text-align:left">수용 기준</th></tr></thead>` +
+    `<tbody>${R.actions.map(a => `<tr>
+        <td>${esc(a.do)}</td>
+        <td class="owner">${esc(a.owner)}</td>
+        <td style="text-align:left">${esc(a.ac)}</td>
+      </tr>`).join("")}</tbody>`;
+
+  /* 2면 - 특수상황 · 영향력 순위 · 볼륨 전개 */
+  $("p-situation").innerHTML = `
+    <h2>참고 사항 · 특수상황</h2>
+    <p>${esc(R.situation.found)}</p>
+    <p><span class="todo">[입력 필요]</span> ${esc(R.situation.todo)}</p>`;
+  $("p-rank").innerHTML = R.rank;
+  $("p-volume").innerHTML = R.volume.map(v => `<li>
+      <span class="st">${esc(v.step)}</span>
+      <div><p class="q">${esc(v.q)}</p>${v.a.map(l => `<p class="a">${l}</p>`).join("")}</div>
+    </li>`).join("");
+
+  /* 2면 - 채널별 결과 · 원인 · 액션 */
+  $("p-drill").innerHTML = R.drill.map(d => {
+    const table = d.cols.length ? `<div class="tablewrap"><table>
+        <thead><tr>${d.cols.map((c,i) => `<th${i===0?' style="width:30%"':""}>${esc(c)}</th>`).join("")}</tr></thead>
+        <tbody>${d.rows.map(r => `<tr>
+            <td class="name">${esc(r[0])}<small>${esc(r[1])}</small></td>
+            ${r.slice(2).map(v => `<td class="n">${esc(v)}</td>`).join("")}
+          </tr>`).join("")}
+          ${d.sum ? `<tr class="sum"><td class="name">${esc(d.sum[0])}</td>${d.sum.slice(2).map(v => `<td class="n">${esc(v)}</td>`).join("")}</tr>` : ""}
+        </tbody></table></div>` : "";
+    const frame = `<dl class="frame">
+      <div class="row"><dt>결과</dt><dd>${d.result}</dd></div>
+      <div class="row"><dt>원인</dt><dd><ul class="chain">${
+        d.chain.map((c,i) => `<li${i===d.chain.length-1?' class="close"':""}>${esc(c)}</li>`).join("")
+      }</ul></dd></div>
+      <div class="row"><dt>액션</dt><dd><ul class="agenda">${
+        d.agenda.map(a => `<li><b>${esc(a.t)}</b><ul>${a.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul></li>`).join("")
+      }</ul></dd></div>
+    </dl>`;
+    const ev = d.evidence === "Pass" ? "pass" : "unknown";
+    return `<section>
+      <div class="hd">
+        <h3>${esc(d.title)}</h3>
+        <span class="ev ${ev}">${esc(d.evidence)}</span>
+        <span class="spend">${esc(d.spend)}</span>
+      </div>
+      ${frame}
+      ${table}
+      <p class="cap">${esc(d.note)}</p>
+    </section>`;
+  }).join("");
+
+  /* 토글 활성 표시 */
+  [...$("p-switch").children].forEach(b =>
+    b.setAttribute("aria-current", String(b.dataset.key === key)));
+  location.hash = key;
+}
+
+/* ---------- 제품 토글 ---------- */
+$("p-switch").innerHTML = Object.entries(REPORTS)
+  .map(([k, r]) => `<button type="button" data-key="${k}" aria-current="false">${esc(r.product)}</button>`).join("");
+$("p-switch").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (b) { render(b.dataset.key); window.scrollTo({ top: 0, behavior: "smooth" }); }
+});
+
+/* ---------- 차트 호버 (한 번만 연결) ---------- */
+const tip = $("tip");
+function showTip(el, cx, cy) {
+  tip.innerHTML = `${esc(el.dataset.l)}<br><b>${esc(el.dataset.v)}</b>`;
+  tip.classList.add("on");
+  const r = tip.getBoundingClientRect();
+  tip.style.left = Math.min(innerWidth-r.width-8, Math.max(8, cx-r.width/2)) + "px";
+  tip.style.top = Math.max(8, cy-r.height-12) + "px";
+}
+const hideTip = () => tip.classList.remove("on");
+["mouseover","mousemove"].forEach(ev =>
+  $("chart").addEventListener(ev, e => { const b = e.target.closest(".bar"); if (b) showTip(b, e.clientX, e.clientY); }));
+$("chart").addEventListener("mouseout", hideTip);
+$("chart").addEventListener("focusin", e => {
+  const b = e.target.closest(".bar"); if (!b) return;
+  const r = b.getBoundingClientRect(); showTip(b, r.left+r.width/2, r.top);
+});
+$("chart").addEventListener("focusout", hideTip);
+addEventListener("scroll", hideTip, { passive:true });
+
+/* 테마 변경 시 SVG에 구운 색을 다시 계산한다 */
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawChart);
+new MutationObserver(drawChart).observe(document.documentElement, { attributes:true, attributeFilter:["data-theme"] });
+
+/* 첫 렌더. 주소 해시가 있으면 그 제품으로 연다. */
+render(REPORTS[location.hash.slice(1)] ? location.hash.slice(1) : Object.keys(REPORTS)[0]);
+</script>
+</body>
+</html>
