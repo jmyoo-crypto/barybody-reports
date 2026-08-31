@@ -442,6 +442,38 @@ td.c, th.c { text-align: center; }
              border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; font-size: 12.5px;
              color: #613400; line-height: 1.7; }
 .bf-banner b { color: #ad6800; }
+/* ===== 금주 방향성 — 액션 카드 (2026-08-31 가독성 개편) =====
+   액션을 맨 위로 올리고 대상 소재를 한 줄씩 칩으로 분리. 강점·약점은 접기로 내림. */
+.dev-vb { margin-left: 9px; vertical-align: middle; }
+.dev-kpi { float: right; font-size: 12px; font-weight: 700; color: #6b6b76; }
+.dev-kpi b { color: #1a1a2e; }
+.act-wrap { margin-top: 11px; border: 1px solid #e8eaf0; border-radius: 10px; padding: 12px 14px;
+            background: #fcfcfd; }
+.act-wrap.act-must { border: 2px solid #ffccc7; background: #fff; }
+.act-hd { font-size: 12.5px; font-weight: 800; color: #a8071a; margin-bottom: 10px; }
+.act-hd.act-hd-sub { color: #6b6b76; }
+.act { display: flex; gap: 11px; padding: 11px 0; border-top: 1px dashed #eceef3; }
+.act:first-of-type { border-top: none; padding-top: 2px; }
+.act-n { flex: 0 0 23px; height: 23px; border-radius: 50%; background: #1a1a2e; color: #fff;
+         font-size: 12px; font-weight: 800; display: flex; align-items: center;
+         justify-content: center; margin-top: 1px; }
+.act-b { flex: 1 1 auto; min-width: 0; }
+.act-t { font-size: 13.5px; font-weight: 800; color: #1a1a2e; line-height: 1.5; }
+.act-k { display: inline-block; font-size: 10.5px; font-weight: 800; padding: 2px 8px;
+         border-radius: 5px; margin-right: 8px; vertical-align: 1px; white-space: nowrap; }
+.act-k-cut  { background: #fff1f0; color: #a8071a; }
+.act-k-off  { background: #f2f3f5; color: #55555c; }
+.act-k-up   { background: #f6ffed; color: #237804; }
+.act-k-move { background: #e6f4ff; color: #0958d9; }
+.act-k-make { background: #f5f0fd; color: #6b3fb5; }
+.act-k-chk  { background: #fff7e6; color: #ad6800; }
+.act-why { font-size: 12.5px; color: #55555c; line-height: 1.65; margin-top: 4px; }
+.act-tgs { margin-top: 7px; }
+.act-tgs .tg { font-size: 12px; color: #1a1a2e; line-height: 1.6; padding: 5px 10px;
+               background: #fff; border: 1px solid #e8eaf0; border-radius: 7px;
+               margin-top: 5px; word-break: break-all; }
+.act-must .act-tgs .tg { border-color: #ffd8d5; background: #fffafa; }
+.dev-sw { margin-top: 10px; }
 /* ===== 금주 방향성 — Cafe24 필독 강조 ===== */
 .dev-block.dev-must { border-left: 4px solid #f5222d; background: #fffbfb;
                       padding-left: 14px; border-radius: 8px; }
@@ -1044,7 +1076,7 @@ function setActive(el) {
     </div>
   </div>
   <div class="card"><h3><span class="dot" style="background:#8c8c8c"></span>지난주 액션 결과</h3><p class="note" style="margin:0">지난주(2026-08-17) 등록된 액션이 없습니다 — 이번 주 액션을 <code>ACTIONS_MANUAL['릴렉스틱볼']['2026-08-24']</code>에 기록하면 다음 주 리포트가 자동으로 개선/미개선을 판정합니다.</p></div>
-  <div class="card" data-brief="9" data-brief-label="디벨롭 · 액션"><h3><span class="dot" style="background:#389e0d"></span>금주 방향성 — 강점·약점 → 액션</h3><div class="dev-block dev-must"><div class="dev-head">🛒 Cafe24 (메타·카카오·구글)<span class="must-badge">필독</span></div><div class="ve-verdict ve-none"><div class="vv-line"><span class="vv-badge">볼륨·효율 모두 열위</span><span class="vv-desc">규모·효율 동반 악화 — 원인 규명 우선</span></div></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i dim">—</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 321.7%</b> → 232.1%</div><div class="sw-i">볼륨 — 매출 10,679,231원 → 7,433,051원</div></div></div><div class="must-wrap"><div class="must-t">📌 이번 주 실행 — 여기만은 꼭</div><div class="ag ag-must"><div class="ag-t">적자 소재 단계 <b class="hl-do">감액</b></div><div class="ag-a">급정지 시 볼륨이 급감하므로 주 50% 단계 <b class="hl-do">감액</b>: 릴렉스틱볼_영상_극락마사지볼_일반_3(<b class="hl-num">ROAS 121%</b>), 릴렉스틱볼_영상_집에오면_일반_4(<b class="hl-num">ROAS 166%</b>)</div></div><div class="ag ag-must"><div class="ag-t"><b class="hl-do">신규 소재 제작</b> 방향 (소구점 기준)</div><div class="ag-a">확대 앵글 <b>상황·사용</b>(<b class="hl-num">ROAS 162%</b>·51건) 변주 제작 / <b class="hl-do">중단</b> 검토 <b>기타</b>(110%)</div></div></div></div><div class="dev-block"><div class="dev-head">🟢 Naver (검색광고·GFA·애드부스트)</div><div class="ve-verdict ve-none"><div class="vv-line"><span class="vv-badge">볼륨·효율 모두 열위</span><span class="vv-desc">규모·효율 동반 악화 — 원인 규명 우선</span></div></div><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i dim">—</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 2732.9%</b> → 1309.5%</div><div class="sw-i">볼륨 — 매출 10,349,962원 → 6,771,252원</div></div></div><div class="ag"><div class="ag-t">네이버 효율 점검</div><div class="ag-a">검색광고·GFA 키워드/소재별 ROAS 확인 후 저효율 그룹 <b class="hl-do">감액</b></div></div></div><p class="note">※ 액션 출처: 자동 초안. 자동 초안 규칙 = ①구매 0 정리 ②적자 단계 감액 ③감액분 승자 이관 ④꺼진 승자 재가동 ⑤승자 앵글 신규 제작.</p></div>
+  <div class="card" data-brief="9" data-brief-label="디벨롭 · 액션"><h3><span class="dot" style="background:#389e0d"></span>금주 방향성 — 이번 주 무엇을 할까</h3><div class="dev-block dev-must"><div class="dev-head">🛒 Cafe24 (메타·카카오·구글)<span class="must-badge">필독</span><span class="vb r dev-vb">볼륨·효율 모두 열위</span><span class="dev-kpi">ROAS 321.7% → <b>232.1%</b></span></div><div class="act-wrap act-must"><div class="act-hd">📌 이번 주 실행 — 여기만은 꼭</div><div class="act"><div class="act-n">1</div><div class="act-b"><div class="act-t"><span class="act-k act-k-cut">감액</span>적자 소재 단계 <b class="hl-do">감액</b></div><div class="act-why">급정지 시 볼륨이 급감하므로 주 50% 단계 <b class="hl-do">감액</b></div><div class="act-tgs"><div class="tg">릴렉스틱볼_영상_극락마사지볼_일반_3(<b class="hl-num">ROAS 121%</b>)</div><div class="tg">릴렉스틱볼_영상_집에오면_일반_4(<b class="hl-num">ROAS 166%</b>)</div></div></div></div><div class="act"><div class="act-n">2</div><div class="act-b"><div class="act-t"><span class="act-k act-k-make">제작</span><b class="hl-do">신규 소재 제작</b> 방향 (소구점 기준)</div><div class="act-why">확대 앵글 <b>상황·사용</b>(<b class="hl-num">ROAS 162%</b>·51건) 변주 제작 / <b class="hl-do">중단</b> 검토 <b>기타</b>(110%)</div></div></div></div><details class="eb dev-sw"><summary>강점·약점 근거 보기</summary><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i dim">이번 주 개선된 지표 없음</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 321.7%</b> → 232.1%</div><div class="sw-i">볼륨 — 매출 10,679,231원 → 7,433,051원</div></div></div></details></div><div class="dev-block"><div class="dev-head">🟢 Naver (검색광고·GFA·애드부스트)<span class="vb r dev-vb">볼륨·효율 모두 열위</span><span class="dev-kpi">ROAS 2732.9% → <b>1309.5%</b></span></div><div class="act-wrap"><div class="act-hd act-hd-sub">이번 주 실행</div><div class="act"><div class="act-n">1</div><div class="act-b"><div class="act-t"><span class="act-k act-k-chk">점검</span>네이버 효율 점검</div><div class="act-why">검색광고·GFA 키워드/소재별 ROAS 확인 후 저효율 그룹 <b class="hl-do">감액</b></div></div></div></div><details class="eb dev-sw"><summary>강점·약점 근거 보기</summary><div class="sw-grid"><div class="sw-box sw-s"><div class="sw-t">강점</div><div class="sw-i dim">이번 주 개선된 지표 없음</div></div><div class="sw-box sw-w"><div class="sw-t">약점</div><div class="sw-i">효율 — <b class="hl-num">ROAS 2732.9%</b> → 1309.5%</div><div class="sw-i">볼륨 — 매출 10,349,962원 → 6,771,252원</div></div></div></details></div><p class="note">※ 액션 출처: 자동 초안. 자동 초안 규칙 = ①구매 0 정리 ②적자 단계 감액 ③감액분 승자 이관 ④꺼진 승자 재가동 ⑤승자 앵글 신규 제작.</p></div>
   
   
 </div>
