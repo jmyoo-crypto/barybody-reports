@@ -105,7 +105,7 @@ h3 { font-size:12px; color:var(--ink); }
 .d .cmp { color:var(--ink-3); }
 .stat .ref { margin-top:3px; font-family:var(--mono); font-size:9.5px; color:var(--ink-3); line-height:1.35; }
 
-.cols { display:grid; grid-template-columns:1.1fr 1fr; gap:26px; align-items:start; }
+.cols { display:grid; grid-template-columns:1fr 1.15fr; gap:24px; align-items:start; }
 .block { display:flex; flex-direction:column; gap:9px; }
 .block-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
 
@@ -113,7 +113,7 @@ h3 { font-size:12px; color:var(--ink); }
 .legend span { display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--ink-2); }
 .legend i { width:9px; height:9px; border-radius:2px; display:block; }
 figure { margin:0; }
-figure svg { display:block; width:100%; max-width:560px; height:auto; overflow:visible; }
+figure svg { display:block; width:100%; height:auto; overflow:visible; }
 figcaption { margin-top:7px; font-size:10.5px; color:var(--ink-3); line-height:1.45; }
 .bar { cursor:default; }
 .bar:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
@@ -124,7 +124,7 @@ figcaption { margin-top:7px; font-size:10.5px; color:var(--ink-3); line-height:1
 
 table { width:100%; border-collapse:collapse; font-size:12px; }
 th,td { text-align:right; padding:7px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
-th { font-size:10px; font-family:var(--mono); font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); border-bottom-color:var(--line-2); white-space:nowrap; }
+th { font-size:10px; font-family:var(--mono); font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); border-bottom-color:var(--line-2); line-height:1.35; }
 th:first-child, td:first-child { text-align:left; padding-left:0; }
 th:last-child, td:last-child { padding-right:0; }
 td.n { font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
@@ -253,22 +253,24 @@ td.owner { font-family:var(--mono); font-size:11px; white-space:nowrap; }
 
   <div class="stats" id="p-stats"></div>
 
-  <section class="block">
-    <div class="block-head">
-      <h2>마케팅 채널별 광고비</h2>
-      <div class="legend" id="p-legend"></div>
-    </div>
-    <figure>
-      <svg id="chart" viewBox="0 0 460 218" role="img" aria-labelledby="chart-t"></svg>
-      <figcaption id="chart-t"></figcaption>
-    </figure>
-  </section>
+  <div class="cols">
+    <section class="block">
+      <div class="block-head">
+        <h2>마케팅 채널별 광고비</h2>
+        <div class="legend" id="p-legend"></div>
+      </div>
+      <figure>
+        <svg id="chart" viewBox="0 0 460 218" role="img" aria-labelledby="chart-t"></svg>
+        <figcaption id="chart-t"></figcaption>
+      </figure>
+    </section>
 
-  <section class="block">
-    <div class="block-head"><h2>페이드채널 실매출과 광고 후 마진</h2></div>
-    <div class="tablewrap"><table id="p-sales"></table></div>
-    <p class="rule" id="p-sales-note"></p>
-  </section>
+    <section class="block">
+      <div class="block-head"><h2>페이드채널 실매출과 광고 후 마진</h2></div>
+      <div class="tablewrap"><table id="p-sales"></table></div>
+      <p class="rule" id="p-sales-note"></p>
+    </section>
+  </div>
 
   <section class="block">
     <div class="block-head"><h2>마케팅 채널별 효율</h2></div>
@@ -1079,23 +1081,23 @@ function render(key) {
     `<span><i style="background:var(--curr)"></i>${esc(C.currLabel)}</span>`;
   drawChart();
 
-  /* 페이드채널 실매출과 광고 후 마진 */
+  /* 페이드채널 실매출과 광고 후 마진. 반폭이라 값과 증감을 두 줄로 쌓는다. */
   {
     const S = R.salesSum;
     const d1 = (v) => (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
-    const wow = (v) => `<span class="wow ${v >= 0 ? "up" : "down"}">${d1(v)}</span>`;
-    const na = `<span class="na">-</span>`;
+    const cell2 = (v, d, extra) => `<td class="n${extra || ""}">${esc(v)}<br><span class="wow ${d >= 0 ? "up" : "down"}">${d1(d)}</span></td>`;
+    const na = `<td class="n na">-</td>`;
     const row = (x, cls) => `<tr class="${cls || ""}">
         <td class="name">${esc(x.name)}${x.sub ? `<small>${esc(x.sub)}</small>` : ""}</td>
-        <td class="n">${esc(x.sales)} ${wow(x.salesDelta)}</td>
-        <td class="n">${x.orders} ${wow(x.ordersDelta)}</td>
-        <td class="n${x.cost == null ? " na" : ""}">${x.cost == null ? na : esc(x.cost) + " " + wow(x.costDelta)}</td>
+        ${cell2(x.sales, x.salesDelta)}
+        ${cell2(String(x.orders), x.ordersDelta)}
+        ${x.cost == null ? na : cell2(x.cost, x.costDelta)}
         <td class="n">${x.bep}%</td>
-        <td class="n${x.negative ? " neg" : ""}">${esc(x.contrib)} ${wow(x.contribDelta)}</td>
+        ${cell2(x.contrib, x.contribDelta, x.negative ? " neg" : "")}
       </tr>`;
     $("p-sales").innerHTML =
-      `<thead><tr><th>페이드채널</th><th>실매출 만원</th><th>주문</th><th>광고비 만원</th>` +
-      `<th>손익분기</th><th>광고 후 마진 만원</th></tr></thead>` +
+      `<thead><tr><th>페이드채널</th><th>실매출<br>만원</th><th>주문</th><th>광고비<br>만원</th>` +
+      `<th>손익<br>분기</th><th>광고 후<br>마진 만원</th></tr></thead>` +
       `<tbody>${R.sales.map(x => row(x)).join("")}` +
       row(Object.assign({ name: "합계", sub: "" }, S), "sum") + `</tbody>`;
     $("p-sales-note").innerHTML = lines(R.salesNote);
