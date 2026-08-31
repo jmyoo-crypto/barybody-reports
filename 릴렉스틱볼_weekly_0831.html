@@ -26,7 +26,8 @@ body { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-s
   color: #fff; font-size: 12px; font-weight: 600; padding: 7px 14px;
   border-radius: 20px; text-decoration: none; transition: background .2s; }
 .raw-link:hover { background: rgba(255,255,255,0.22); }
-.container { max-width: 980px; margin: 0 auto; padding: 36px 20px 80px; }
+/* 2026-08-31: 980px는 넓은 모니터에서 너무 좁다는 지적 — 데일리 대시보드(1400px)에 맞춤 */
+.container { max-width: 1400px; margin: 0 auto; padding: 36px 20px 80px; }
 .step-nav { display: flex; gap: 0; background: #fff; border-radius: 16px; padding: 8px;
   margin-bottom: 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); overflow-x: auto;
   position: sticky; top: 10px; z-index: 100; }
