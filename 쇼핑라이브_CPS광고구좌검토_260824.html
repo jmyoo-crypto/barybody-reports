@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>네이버 쇼핑라이브 CPS 검토</title>
+<style>
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    color:#1d1d1f; background:#ececed; padding:28px; line-height:1.55; -webkit-font-smoothing:antialiased;}
+  .page{max-width:880px; margin:0 auto; background:#fff; padding:42px 48px 36px;
+    box-shadow:0 4px 24px rgba(0,0,0,.10); border-radius:10px;}
+
+  header{border-bottom:3px solid #b10202; padding-bottom:16px; margin-bottom:22px;}
+  .date{float:right; font-size:12px; color:#9a9a9f; margin-top:4px; text-align:right;}
+  .eyebrow{font-size:12px; font-weight:700; letter-spacing:.12em; color:#b10202;}
+  h1{font-size:25px; font-weight:800; margin-top:6px; letter-spacing:-.01em;}
+  .sub{font-size:13px; color:#6b6b70; margin-top:6px;}
+
+  .decision{background:#fdf2f2; border:1px solid #f3cccc; border-left:5px solid #b10202;
+    border-radius:8px; padding:14px 20px; margin-bottom:10px;}
+  .decision .lbl{display:inline-block; font-size:11px; font-weight:800; color:#fff; background:#b10202;
+    padding:2px 9px; border-radius:5px; margin-bottom:8px;}
+  .decision ul{list-style:none;}
+  .decision li{font-size:14px; font-weight:700; padding-left:14px; position:relative; margin:4px 0;}
+  .decision li::before{content:''; position:absolute; left:2px; top:9px; width:5px; height:5px;
+    border-radius:50%; background:#b10202;}
+  .decision b{color:#b10202;}
+  .purpose{font-size:12.5px; color:#6b6b70; margin-bottom:20px;}
+  .purpose b{color:#1d1d1f;}
+
+  h2{font-size:15px; font-weight:800; margin:24px 0 9px; padding-left:11px; border-left:4px solid #b10202;}
+  .lead{font-size:12.5px; color:#6b6b70; margin:-3px 0 9px 11px;}
+
+  table{width:100%; border-collapse:collapse;}
+  .scroll{overflow-x:auto;}
+  table.mini{font-size:12.3px; min-width:520px;}
+  table.mini th{background:#f2f2f4; color:#6b6b70; font-weight:700; padding:6px 10px; text-align:right;
+    border:1px solid #e9e9eb; white-space:nowrap; font-size:11px;}
+  table.mini th:first-child{text-align:left;}
+  table.mini td{border:1px solid #e9e9eb; padding:7px 10px; text-align:right; background:#fff;
+    font-variant-numeric:tabular-nums;}
+  table.mini td:first-child{text-align:left; font-weight:700;}
+  table.mini tr.hi td{background:#f3f9f4;}
+  table.mini tr.dg td{background:#fdf3f3;}
+  .gap{color:#1e7a36; font-weight:800;} .gapd{color:#b10202; font-weight:800;}
+
+  table.itbl{font-size:12.2px;}
+  table.itbl th{background:#f4f4f6; color:#6a6a70; font-weight:700; font-size:10.8px; text-align:left;
+    padding:6px 10px; border-bottom:1px solid #e6e6e9;}
+  table.itbl td{padding:8px 10px; border-bottom:1px solid #f0f0f2; vertical-align:top; color:#3a3a40;}
+  table.itbl tr:last-child td{border-bottom:none;}
+  table.itbl tr.hl td{background:#f2f8f4;}
+  table.itbl tr.dg td{background:#fdf3f3;}
+  table.itbl td:first-child{font-weight:700;}
+
+  .ic{background:#fff; border:1px solid #ececef; border-radius:8px; padding:12px 15px; margin-top:10px;}
+  .ic-h{font-size:12.8px; font-weight:800; margin-bottom:8px;}
+  .ic-c{margin-top:9px; padding-top:9px; border-top:1px dashed #e6e6e9; font-size:12.3px; line-height:1.8;}
+  .ic-c::before{content:'👉 ';}
+  .alert{background:#fdf3f3; border:1px solid #f3d6d6; border-radius:7px; padding:10px 13px;
+    font-size:12.3px; color:#7a1212; line-height:1.9; margin-top:10px;}
+  .alert b{color:#b10202; font-weight:800;}
+  .est{font-size:10px; font-weight:700; color:#8a8a8f; background:#f0f0f2; border-radius:3px; padding:1px 5px; margin-left:4px;}
+
+  ul.bl{list-style:none; font-size:13px;}
+  ul.bl li{position:relative; padding-left:13px; margin:4px 0;}
+  ul.bl li::before{content:''; position:absolute; left:2px; top:8px; width:4px; height:4px;
+    border-radius:50%; background:#c2c2c8;}
+  ul.bl li.g::before{background:#1e7a36;}
+  ul.bl li.r::before{background:#b10202;}
+
+  .flow{display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin:6px 0 2px;}
+  .flow .bx{border:1.5px solid #e2e2e4; border-radius:7px; padding:7px 13px; font-size:12.2px;
+    font-weight:700; text-align:center; background:#fff;}
+  .flow .bx.hi{border-color:#b10202; background:#fdf2f2; color:#b10202;}
+  .flow .bx small{display:block; font-weight:600; font-size:10.5px; color:#8a8a8f; margin-top:2px;}
+  .flow .ar{color:#c2c2c8; font-weight:800;}
+
+  .tag{font-size:11px; font-weight:800; padding:2px 9px; border-radius:5px;}
+  .tag.wt{background:#fdf6e8; color:#8a5d06;}
+  .issue{border:1px solid #e2e2e4; border-radius:8px; margin-top:11px; overflow:hidden;}
+  .i-head{display:flex; align-items:center; gap:9px; padding:10px 16px; background:#f7f7f8;
+    border-bottom:1px solid #e2e2e4; font-size:14.5px; font-weight:800;}
+  .dev{padding:13px 17px;}
+  .nxt{background:#fcfaf5; border-top:1px solid #f0f0f2; padding:11px 17px 12px;}
+  .nxt-t{font-size:10.5px; font-weight:800; color:#8a5d06; letter-spacing:.09em; margin-bottom:5px;}
+
+  details.ev{border:1px solid #e2e2e4; border-radius:8px; background:#fafafb; margin-top:11px;}
+  details.ev summary{cursor:pointer; padding:10px 16px; font-size:12.3px; font-weight:800; color:#4a5160;
+    list-style:none; display:flex; align-items:center; gap:8px;}
+  details.ev summary::-webkit-details-marker{display:none;}
+  details.ev summary::before{content:'▸'; font-size:11px; color:#a8a8ad;}
+  details.ev[open] summary::before{content:'▾';}
+  details.ev summary:hover{background:#f2f2f4;}
+  details.ev summary .hint{margin-left:auto; font-weight:700; color:#a8a8ad; font-size:10.5px;}
+  .ev-body{padding:6px 16px 15px; border-top:1px solid #eeeef0;}
+
+  .src{display:inline-block; font-size:9.5px; font-weight:800; padding:1px 5px; border-radius:3px; margin-left:5px;}
+  .src.res{background:#fff4e5; color:#a35a00;}
+  .src.ai{background:#ede9fe; color:#5b21b6;}
+  .src.bq{background:#e8f3ec; color:#1e7a36;}
+  .srcbar{background:#fafafb; border:1px solid #e6e6e9; border-radius:8px; padding:9px 14px;
+    margin:11px 0 4px; font-size:11.8px; color:#555; line-height:1.85;}
+  .srcbar b{color:#1d1d1f;}
+
+  footer{margin-top:20px; padding-top:12px; border-top:1px solid #e2e2e4; font-size:11px; color:#a8a8ad; text-align:center;}
+  @media print{body{background:#fff; padding:0;} .page{box-shadow:none; max-width:100%; padding:24px 28px;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <span class="date">2026. 08. 24.(월)</span>
+    <div class="eyebrow">쇼핑라이브 · 광고 구좌 단독 검토</div>
+    <h1>네이버 쇼핑라이브 CPS</h1>
+    <div class="sub">성과 보장형(ROAS 500%) 신규 구좌 — 도입 판단</div>
+  </header>
+
+  <div class="decision">
+    <span class="lbl">결론<span class="src ai">분석</span></span>
+    <ul>
+      <li><b>"ROAS 500% 보장" = 수수료율 20% 고정</b>이다. 성과 보장이 아니다</li>
+      <li>네이버 수수료까지 더하면 <b>매출의 26.6%</b>가 나간다</li>
+      <li><b>지금 계약하지 않는다</b> — 결정 변수 2개가 미확인</li>
+    </ul>
+  </div>
+  <div class="purpose">
+    결정 변수 — <b>①과금 대상이 증분인가 전체인가 ②우리 실제 마진율이 26.6%를 넘는가.</b>
+    둘 다 통과하면 <b>선불 0원·소재 불필요</b>라 리스크가 가장 낮은 구좌다.
+  </div>
+
+  <h2>① 상품 사양</h2>
+  <div class="scroll"><table class="itbl">
+    <tbody>
+      <tr class="hl"><td style="width:120px">과금</td><td><b>구매 전환 시에만</b> (CPS) · <b>최소 광고비 없음</b> · 표시가 0원~</td></tr>
+      <tr class="dg"><td>요율</td><td><b>최대 광고비 = 결제금액 × 20%</b> ← 이 조항이 핵심</td></tr>
+      <tr><td>보장</td><td>투입 광고비 대비 매출 5배 (ROAS 500%)</td></tr>
+      <tr><td>고객 혜택</td><td>결제액 <b>10% 네이버페이 포인트 적립</b></td></tr>
+      <tr><td>노출</td><td>라이브 당일 ~ 종료 후 <b>D+6일, 최대 7일</b></td></tr>
+      <tr class="hl"><td>소재</td><td><b>제작 불필요</b> — 라이브 ID·채널 ID 기반</td></tr>
+      <tr><td>연계</td><td>쇼핑라이브 부스터와 연계 가능 · 프로모션 기간 <b>입점비 20만원 무료</b></td></tr>
+      <tr><td>집행 이력</td><td class="gapd"><b>0건</b> — 레퍼런스 없음</td></tr>
+    </tbody>
+  </table></div>
+  <div class="ic-c" style="border-top:none;padding-top:6px">리워드 앱 광고가 <b>시청자를 선불로 사는</b> 구좌라면, CPS는 <b>산 사람에게만 후불로 내는</b> 구좌다. 시청자 수는 늘려주지 않는다.</div>
+
+  <h2>② 구조 — "보장"의 실체</h2>
+  <div class="lead">조항을 뒤집으면 요율이 나온다.</div>
+  <div class="flow">
+    <div class="bx">결제 100만원</div>
+    <div class="ar">→</div>
+    <div class="bx hi">광고비 상한<br><small>× 20% = 20만원</small></div>
+    <div class="ar">=</div>
+    <div class="bx">ROAS<br><small>100 ÷ 20 = <b>500%</b></small></div>
+  </div>
+  <div class="ic-c" style="border-top:none">매출이 얼마든 <b>ROAS는 항상 500%</b>. 성과가 좋아서 나오는 값이 아니라 <b>요율을 묶어 산술적으로 고정된 값</b>이다.
+    → 성과 보장 상품이 아니라 <b>판매 수수료 20% 제휴 상품</b>에 가깝다.</div>
+
+  <div class="ic">
+    <div class="ic-h">실제로 빠지는 돈은 20%가 아니다</div>
+    <div class="scroll"><table class="mini">
+      <thead><tr><th>차감 항목</th><th>요율</th><th>매출 100만원 기준</th></tr></thead>
+      <tbody>
+        <tr><td>CPS 광고비</td><td>20.00%</td><td>200,000원</td></tr>
+        <tr><td>라이브 매출연동 수수료</td><td>3.00%</td><td>30,000원</td></tr>
+        <tr><td>네이버페이 주문관리 <span class="est">최대</span></td><td>3.63%</td><td>36,300원</td></tr>
+        <tr class="dg"><td><b>합계</b></td><td><b class="gapd">26.63%</b></td><td><b class="gapd">266,300원</b></td></tr>
+      </tbody>
+    </table></div>
+    <div class="alert">
+      <b>판단 기준은 하나 — 우리 마진율이 26.6%를 넘는가.</b> 못 넘으면 팔수록 손해다.
+      캘린더 노출 방송이면 매출연동이 3%→5%로 올라 <b>28.6%</b>.<br>
+      ※ SA BEP ROAS 500%에서 역산한 마진율은 <b>약 20%</b><span class="est">추정</span> — 이 값이면 <b>CPS 요율만으로 마진이 전부 소진</b>된다. <b>실제 마진율 확인이 선행</b>되어야 한다.
+    </div>
+  </div>
+
+  <h2>③ 우리 숫자 대입</h2>
+  <div class="lead">8/18 GFA×라이브 분석 실측치 기준 <span class="src bq">실측</span></div>
+  <div class="scroll"><table class="mini">
+    <thead><tr><th>항목</th><th>값</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td>시청수 / CVR / 객단가</td><td>1,145명 / 6.78% / 19,116원</td><td>라이브 18회 실측</td></tr>
+      <tr class="hi"><td><b>추정 매출 (1회)</b></td><td><b>약 1,483,000원</b></td><td>1,145 × 6.78% × 19,116</td></tr>
+      <tr class="dg"><td><b>총 차감 (26.63%)</b></td><td><b class="gapd">394,900원</b></td><td>CPS 29.7만 + 수수료 9.8만</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="ic">
+    <div class="ic-h">선불형(부스터)과의 손익분기 — 매출 500만원</div>
+    <div class="scroll"><table class="mini">
+      <thead><tr><th>라이브 매출</th><th>CPS (20%)</th><th>부스터 (정액)</th><th>유리</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>150만원 <span class="est">현 수준</span></td><td>300,000원</td><td>1,000,000원</td><td class="gap">CPS</td></tr>
+        <tr><td>500만원</td><td>1,000,000원</td><td>1,000,000원</td><td>동일</td></tr>
+        <tr class="dg"><td>1,000만원</td><td>2,000,000원</td><td>1,000,000원</td><td class="gapd">부스터</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ic-c">현 수준에선 <b>CPS가 명확히 유리</b>. 단 부스터는 시청자 15만명을 데려와 <b>매출 자체를 키우므로</b> 같은 축의 비교가 아니다.</div>
+  </div>
+
+  <h2>④ 계약 전 확인 질문</h2>
+  <div class="lead"><b>1번</b>의 답에 따라 도입 여부가 갈린다.</div>
+  <div class="scroll"><table class="itbl">
+    <thead><tr><th style="width:34px">#</th><th style="width:190px">질문</th><th>왜 중요한가</th></tr></thead>
+    <tbody>
+      <tr class="dg"><td>1</td><td><b>과금 대상이 "CPS 경유 구매"인가 "라이브 전체 매출"인가</b></td>
+        <td>전체 매출이면 <b>원래 살 사람 구매까지 20%</b>를 낸다. 우리 라이브 매출 대부분은 <b>알림받기·단골</b>에서 나오므로 <b>도입 불가</b></td></tr>
+      <tr class="dg"><td>2</td><td><b>ROAS 500%가 대시보드 기준인가 구매완료 기준인가</b></td>
+        <td>8/17~23 검색광고 실측에서 <b>전환의 64%·매출의 81%가 구매완료가 아닌 전환</b>이었다. 대시보드 기준이면 실구매로는 한참 미달</td></tr>
+      <tr><td>3</td><td>보장 미달 시 보전 방식</td>
+        <td>환불·추가집행·크레딧 중 무엇인지 · 구조상 500% 밑으로 못 내려가면 <b>보장이 실제로 발동하긴 하는지</b></td></tr>
+      <tr><td>4</td><td>입점비 20만원 · 프로모션 기한</td>
+        <td>기한 미명시 · 단독 집행도 무료인지 · 종료 후 <b>매 회차인지 1회성인지</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>⑤ 판단 · 다음 단계</h2>
+  <div class="issue">
+    <div class="i-head"><span class="tag wt">🟡 조건부</span> 지금 계약하지 않는다</div>
+    <div class="dev">
+      <ul class="bl">
+        <li class="g"><b>구조적 장점</b> — 선불 0원 · 소재 불필요 · <b>전용소재 실패 리스크를 구조적으로 회피</b></li>
+        <li class="r"><b>결정 변수 ①</b> 과금 대상 — 전체 매출이면 도입 불가</li>
+        <li class="r"><b>결정 변수 ②</b> 실제 마진율 — 26.6% 미만이면 도입 불가</li>
+      </ul>
+    </div>
+    <div class="nxt">
+      <div class="nxt-t">다음 단계</div>
+      <ul class="bl">
+        <li><b>1.</b> 릴렉스틱 <b>실제 마진율 확인</b> (내부)</li>
+        <li><b>2.</b> 애즈순에 <b>④의 질문 4개 발송</b> — ads@cv-3.com / 070-4400-5732</li>
+        <li><b>3.</b> 둘 다 통과 시 <b>1회 테스트</b> — 선불 없어 소액 리스크</li>
+        <li><b>4.</b> 테스트는 <b>CPS 단독</b> — 부스터 동시 집행 시 기여 분리 불가</li>
+      </ul>
+    </div>
+  </div>
+
+  <details class="ev">
+    <summary>8/18 분석 결론과의 정합성<span class="hint">CPS는 전환율 축</span></summary>
+    <div class="ev-body">
+      <div class="scroll"><table class="itbl">
+        <thead><tr><th style="width:110px">축</th><th>8/18 분석 결론</th><th>CPS의 위치</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>시청수 → 매출</td><td>r=0.932 · 매출의 93% 설명</td><td><b>CPS는 시청수를 못 늘림</b> — 이 축에 기여 없음</td></tr>
+          <tr><td>GFA → 시청수</td><td>r=0.232 · 유의 안 함</td><td>부스터는 N페이 포인트탭이라 <b>GFA와 다른 경로</b> — 재검증 대상</td></tr>
+          <tr class="hl"><td>전환율(CVR)</td><td>라이브일 6.78% vs 비라이브 2.74%</td><td><b>CPS의 10% 포인트 적립이 여기 작용</b> — 기존 분석에 없던 지렛대</td></tr>
+          <tr class="dg"><td>전용소재</td><td>ROAS 69% vs 기존 805% · <b>실패</b></td><td><b>소재 불필요 → 이 실패 요인을 우회</b></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="ev">
+    <summary>부스터(507) vs CPS(519) 비교<span class="hint">같은 상품 아님</span></summary>
+    <div class="ev-body">
+      <div class="scroll"><table class="itbl">
+        <thead><tr><th style="width:96px">구분</th><th>부스터</th><th>CPS</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>역할</td><td><b>시청자를 모은다</b>(유입)</td><td><b>구매로 전환시킨다</b>(전환)</td></tr>
+          <tr class="hl"><td>과금</td><td>선불 정액 <b>1,000,000원~</b></td><td><b>판매 시에만</b> (0원~)</td></tr>
+          <tr><td>보장</td><td>시청자 150,000명 <span class="est">1만명당 6.67만</span></td><td>ROAS 500% <span class="est">= 요율 20%</span></td></tr>
+          <tr><td>노출</td><td>예고(당일 0시)→라이브→다시보기(자정)<br>N페이 포인트탭 미션배너</td><td>라이브 당일 ~ <b>D+6일(7일)</b></td></tr>
+          <tr><td>고객 혜택</td><td>적립금 5원/1원 — N페이 부담</td><td>결제액 10% N페이 포인트</td></tr>
+          <tr><td>소재</td><td>불필요</td><td>불필요</td></tr>
+          <tr><td>집행 이력</td><td>표기 없음</td><td class="gapd">0건</td></tr>
+        </tbody>
+      </table></div>
+      <div style="font-size:11px;color:#9a9aa0;margin-top:9px;line-height:1.7">
+        부스터는 <b>레퍼런스 최대 ROAS 13,940%</b>를 내세우나 최대치이며 평균이 아님 · 집행 <b>3영업일 전</b>까지 정보 전달 필요<br>
+        부스터 시청 15만명 = 현재 우리 평균(1,145명)의 <b>131배</b>. 단 리워드 유입이 CVR 6.78%를 유지할지는 <b>검증된 바 없음</b>
+      </div>
+    </div>
+  </details>
+
+  <div class="srcbar">
+    <b>출처</b> <span class="src res">리서치</span> 애즈순 상품페이지(519·507) 실크롤링 · 라방바 데이터랩 공지(2026-07-05) ·
+    <span class="src bq">실측</span> 8/18 GFA×라이브 분석<br>
+    <b>한계</b> — CPS 실단가·정산식은 공개 자료에 없어 <b>"결제금액×20%"에서 역산</b> · 마진율 20%는 SA BEP에서 역산한 <b>추정</b> ·
+    라이브 1회 매출은 18회 평균 기반(회차 편차 690~1,870명)
+  </div>
+
+  <footer>쇼핑라이브 CPS 광고 구좌 검토 · 2026-08-24</footer>
+
+</div>
+</body>
+</html>

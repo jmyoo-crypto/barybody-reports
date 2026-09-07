@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼핑라이브 요인별 디벨롭 방향</title>
+<style>
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    color:#1d1d1f; background:#ececed; padding:28px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:880px; margin:0 auto; background:#fff; padding:42px 48px 36px;
+    box-shadow:0 4px 24px rgba(0,0,0,.10); border-radius:10px;}
+  .num{font-variant-numeric:tabular-nums;}
+
+  header{border-bottom:3px solid #b10202; padding-bottom:16px; margin-bottom:22px;}
+  .date{float:right; font-size:12px; color:#9a9a9f; margin-top:4px; text-align:right;}
+  .eyebrow{font-size:12px; font-weight:700; letter-spacing:.12em; color:#b10202;}
+  h1{font-size:25px; font-weight:800; margin-top:6px; letter-spacing:-.01em;}
+  .sub{font-size:13px; color:#6b6b70; margin-top:6px;}
+
+  .decision{background:#fdf2f2; border:1px solid #f3cccc; border-left:5px solid #b10202;
+    border-radius:8px; padding:14px 20px; margin-bottom:10px;}
+  .decision .lbl{display:inline-block; font-size:11px; font-weight:800; color:#fff; background:#b10202;
+    padding:2px 9px; border-radius:5px; margin-bottom:8px; letter-spacing:.02em;}
+  .decision ul{list-style:none;}
+  .decision li{font-size:14px; font-weight:700; padding-left:14px; position:relative; margin:4px 0;}
+  .decision li::before{content:''; position:absolute; left:2px; top:9px; width:5px; height:5px;
+    border-radius:50%; background:#b10202;}
+  .decision b{color:#b10202;}
+  .purpose{font-size:12.5px; color:#6b6b70; margin-bottom:22px; padding-left:2px;}
+  .purpose b{color:#1d1d1f;}
+
+  h2{font-size:15px; font-weight:800; margin:26px 0 10px; padding-left:11px; border-left:4px solid #b10202;}
+  .lead{font-size:12.5px; color:#6b6b70; margin:-4px 0 10px 11px;}
+
+  /* 우선순위 표 */
+  table{width:100%; border-collapse:collapse;}
+  table.pri{font-size:12.8px;}
+  table.pri thead th{background:#b10202; color:#fff; font-weight:700; padding:7px 11px;
+    text-align:left; font-size:11.5px; white-space:nowrap;}
+  table.pri td{border:1px solid #e2e2e4; padding:9px 11px; vertical-align:middle;}
+  table.pri td.rk{text-align:center; font-weight:800; font-size:15px; color:#b10202; width:44px;}
+  table.pri td.nm{font-weight:800;}
+  table.pri td.nm small{display:block; font-weight:600; color:#8a8a8f; font-size:11px; margin-top:2px;}
+  table.pri td.fc{color:#8a8a8f; font-weight:700; font-size:11.5px; white-space:nowrap; width:78px;}
+  table.pri td.ef{text-align:right; font-weight:800; color:#1e7a36;
+    font-variant-numeric:tabular-nums; white-space:nowrap;}
+  table.pri td.lv{text-align:center; width:60px;}
+  .lvb{font-size:10.5px; font-weight:800; padding:2px 8px; border-radius:4px; white-space:nowrap;}
+  .lvb.a{background:#e8f4ec; color:#1e7a36;}
+  .lvb.b{background:#fdf6e8; color:#8a5d06;}
+  .lvb.c{background:#fbeaea; color:#b10202;}
+
+  /* 요인 카드 */
+  .issue{border:1px solid #e2e2e4; border-radius:8px; margin-top:12px; overflow:hidden;}
+  .i-head{display:flex; align-items:center; gap:9px; padding:10px 16px; background:#f7f7f8;
+    border-bottom:1px solid #e2e2e4; font-size:14.5px; font-weight:800;}
+  .i-head .fno{font-size:11px; font-weight:800; color:#8a8a8f; letter-spacing:.04em;}
+  .tag{font-size:11px; font-weight:800; padding:2px 9px; border-radius:5px; white-space:nowrap;
+    background:#f0f0f2; color:#3a3a3f;}
+  .tag.on{background:#e8f4ec; color:#1e7a36;}
+  .tag.hold{background:#f0f0f2; color:#6b6b70;}
+  .tag.test{background:#eef2fb; color:#2c4d9b;}
+  .tag.wt{background:#fdf6e8; color:#8a5d06;}
+
+  /* 테스트 카드 */
+  .tc{border:1px solid #e6e6e9; border-radius:7px; margin:0 0 10px; overflow:hidden; background:#fff;}
+  .tc:last-of-type{margin-bottom:0;}
+  .tc-h{display:flex; align-items:center; gap:8px; padding:8px 13px; background:#f4f6f9;
+    border-bottom:1px solid #e6e6e9; font-size:13.2px; font-weight:800;}
+  .tc-h .pri{font-size:10px; font-weight:800; color:#fff; background:#b10202;
+    padding:2px 7px; border-radius:4px; letter-spacing:.02em;}
+  .tc-h .pri.n{background:#8a8a8f;}
+  dl.tcb{display:grid; grid-template-columns:48px 1fr; font-size:12.9px;}
+  dl.tcb dt{font-weight:800; font-size:11px; color:#8a8a8f; padding:8px 0 8px 13px;
+    border-bottom:1px solid #f2f2f4; letter-spacing:.03em;}
+  dl.tcb dd{margin:0; padding:8px 13px 8px 6px; border-bottom:1px solid #f2f2f4;}
+  dl.tcb dt:last-of-type, dl.tcb dd:last-of-type{border-bottom:0;}
+  dl.tcb dd.mz{background:#f9fbf9; font-weight:700; color:#1e7a36;}
+  dl.tcb b{font-weight:800;}
+
+  .dev{padding:14px 18px 13px;}
+  .dev-t{font-size:10.5px; font-weight:800; color:#b10202; letter-spacing:.09em; margin-bottom:9px;}
+  .more-t{font-size:10.5px; font-weight:800; color:#8a8a8f; letter-spacing:.09em; margin:12px 0 6px;}
+  .nxt{background:#fcfaf5; border-top:1px solid #f0f0f2; padding:11px 18px 12px;}
+  .nxt-t{font-size:10.5px; font-weight:800; color:#8a5d06; letter-spacing:.09em; margin-bottom:5px;}
+  .nxt ul.bl li{font-size:12.8px;}
+
+  ul.bl{list-style:none; font-size:13.2px;}
+  ul.bl li{position:relative; padding-left:13px; margin:4px 0;}
+  ul.bl li::before{content:''; position:absolute; left:2px; top:8px; width:4px; height:4px;
+    border-radius:50%; background:#c2c2c8;}
+  ul.bl ul.sl{list-style:none; margin:5px 0 3px; padding:0;}
+  ul.bl ul.sl li{position:relative; padding-left:22px; margin:3px 0; font-size:12.6px; color:#4a4a50;}
+  ul.bl ul.sl li::before{content:attr(data-k); position:absolute; left:2px; top:0; width:auto; height:auto;
+    background:none; border-radius:0; font-weight:800; font-size:11.8px; color:#8a8a8f;}
+  ul.bl li.g::before{background:#1e7a36;}
+  ul.bl li.r::before{background:#b10202;}
+  ul.bl b{font-weight:700;}
+
+  .grp{margin:0 0 11px;}
+  .grp:last-child{margin-bottom:0;}
+  .gl{display:inline-block; font-size:10.5px; font-weight:800; padding:2px 9px; border-radius:4px;
+    background:#eceff3; color:#4a5160; margin-bottom:5px; letter-spacing:.02em;}
+  .gl.am{background:#e8f4ec; color:#1e7a36;}
+  .gl.pm{background:#eceaf5; color:#5b4b9e;}
+  .gl.rd{background:#fbeaea; color:#b10202;}
+
+  /* 근거 접기 */
+  details.ev{border-top:1px solid #e8e8ea; background:#fafafb;}
+  details.ev summary{cursor:pointer; padding:9px 18px; font-size:11.5px; font-weight:800; color:#7a7a80;
+    list-style:none; display:flex; align-items:center; gap:7px; user-select:none;}
+  details.ev summary::-webkit-details-marker{display:none;}
+  details.ev summary::before{content:'▸'; font-size:10px; color:#a8a8ad; display:inline-block;}
+  details.ev[open] summary::before{content:'▾';}
+  details.ev summary:hover{background:#f2f2f4; color:#3a3a3f;}
+  details.ev summary .hint{margin-left:auto; font-weight:700; color:#a8a8ad; font-size:10.5px;}
+  .ev-body{padding:4px 18px 15px; border-top:1px solid #eeeef0;}
+  .ev-sec{margin-top:11px;}
+  .ev-t{font-size:10.5px; font-weight:800; color:#8a8a8f; letter-spacing:.08em; margin-bottom:5px;}
+  .ev-body ul.bl{font-size:12.7px;}
+
+  .scroll{overflow-x:auto; margin-top:10px;}
+  table.mini{font-size:12.1px; min-width:560px;}
+  table.mini th{background:#f2f2f4; color:#6b6b70; font-weight:700; padding:6px 9px; text-align:right;
+    border:1px solid #e9e9eb; white-space:nowrap;}
+  table.mini th:first-child{text-align:left;}
+  table.mini td{border:1px solid #e9e9eb; padding:6px 9px; text-align:right; background:#fff;
+    font-variant-numeric:tabular-nums; white-space:nowrap;}
+  table.mini td:first-child{text-align:left; font-weight:700;}
+  table.mini tr.hi td{background:#f3f9f4;}
+  table.mini .gap{color:#1e7a36; font-weight:800;}
+  table.mini .gapd{color:#b10202; font-weight:800;}
+
+  table.act{font-size:12.7px;}
+  table.act th{background:#b10202; color:#fff; font-weight:700; padding:7px 11px; text-align:left; font-size:11.5px;}
+  table.act td{border:1px solid #e2e2e4; padding:8px 11px; vertical-align:top;}
+  table.act td.who{font-weight:800; white-space:nowrap;}
+  table.act td.fac{color:#8a8a8f; font-weight:700; white-space:nowrap; font-size:11.5px;}
+
+  table.kpi{font-size:13px;}
+  table.kpi thead th{background:#8a8a8f; color:#fff; font-weight:700; padding:7px 12px; text-align:left; font-size:12px;}
+  table.kpi td{border:1px solid #e2e2e4; padding:10px 12px; vertical-align:top;}
+  table.kpi .ktop{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;}
+  table.kpi .big{font-size:17px; font-weight:800; letter-spacing:-.02em;}
+  table.kpi .big .u{font-size:11px; color:#8a8a8f; font-weight:700; margin-left:1px;}
+  table.kpi .d{font-size:11px; color:#8a8a8f; font-weight:700; display:block; margin-top:3px;}
+  .src{display:inline-block; font-size:9.5px; font-weight:800; letter-spacing:.02em; padding:1px 5px; border-radius:3px; margin-left:5px; vertical-align:1px; white-space:nowrap;}
+  .src.ai{background:#ede9fe; color:#5b21b6;}
+  .src.mtg{background:#e8f3ec; color:#1e7a36;}
+  .st{display:inline-block; font-size:10px; font-weight:800; padding:1px 6px; border-radius:3px; white-space:nowrap;}
+  .st.done{background:#e8e8ea; color:#6a6a70;}
+  .st.soon{background:#fdecec; color:#b10202;}
+  .st.next{background:#eef3fa; color:#2b5aa8;}
+  .ann{font-size:11px; font-weight:700; color:#6a6a70; background:#f0f0f2; border-radius:3px; padding:1px 6px; margin-left:6px; white-space:nowrap;}
+  .src.res{background:#fff4e5; color:#a35a00;}
+  details.ideabox{margin:12px 16px 14px; border:1px solid #f0dcbe; border-radius:9px; background:#fffdf8; overflow:hidden;}
+  details.ideabox.top{margin:0 0 4px;}
+  details.ideabox > summary{list-style:none; cursor:pointer; padding:10px 14px; display:flex; align-items:center; gap:9px; background:#fff6e9;}
+  details.ideabox > summary::-webkit-details-marker{display:none;}
+  details.ideabox > summary::before,details.ideabox > summary::after{content:none; display:none;}
+  details.ideabox > summary:hover{background:#fff0da;}
+  details.ideabox[open] > summary{border-bottom:1px solid #f0dcbe;}
+  details.ideabox .ibt{font-size:12.4px; font-weight:800; color:#7a4a00;}
+  details.ideabox .ibn{font-size:10.5px; font-weight:800; color:#a3762f; background:#fff; border:1px solid #f0dcbe; border-radius:10px; padding:1px 7px;}
+  details.ideabox .ibm{margin-left:auto; font-size:11.5px; font-weight:700; color:#c9a366;}
+  details.ideabox:not([open]) .ibm::after{content:'＋  펼치기';}
+  details.ideabox[open] .ibm::after{content:'－  접기';}
+  details.ideabox .ideabody{padding:12px 14px 4px;}
+  details.ideabox .ic{border:1px solid #f0e4d2; border-left:3px solid #e8b563; background:#fff;}
+  details.ideabox .ic-h{color:#7a4a00;}
+  .idea{margin:12px 16px 14px; padding:12px 14px; background:#fbfbfc; border:1px solid #e6e6e9; border-radius:9px;}
+  .idea-t{font-size:12px; font-weight:800; color:#1d1d1f; letter-spacing:.02em; margin-bottom:10px;}
+  .ic{background:#fff; border:1px solid #ececef; border-radius:8px; padding:12px 14px; margin-bottom:9px;}
+  .ic:last-child{margin-bottom:0;}
+  .ic-h{font-size:12.8px; font-weight:800; color:#1d1d1f; margin-bottom:9px;}
+  .ic-alert{background:#fdf3f3; border:1px solid #f3d6d6; border-radius:7px; padding:10px 13px; font-size:12.2px; color:#7a1212; line-height:1.95;}
+  .ic-alert b{color:#b10202; font-weight:800;}
+  .ic-q{background:#f7f7f8; border-left:3px solid #c9c9ce; border-radius:0 6px 6px 0; padding:9px 13px; font-size:12.1px; color:#4a4a50; line-height:1.85;}
+  .ic-q .qd{display:block; font-size:10.5px; font-weight:800; color:#8a8a8f; margin-bottom:4px;}
+  .ic-q b{color:#1d1d1f;}
+  .ic-p{font-size:12px; color:#6a6a70; margin:9px 0 6px;}
+  table.itbl{width:100%; border-collapse:collapse; font-size:12.1px; margin:8px 0 2px;}
+  table.itbl th{background:#f4f4f6; color:#6a6a70; font-weight:700; font-size:10.8px; text-align:left; padding:6px 10px; border-bottom:1px solid #e6e6e9;}
+  table.itbl td{padding:7px 10px; border-bottom:1px solid #f0f0f2; vertical-align:top; color:#3a3a40;}
+  table.itbl tr:last-child td{border-bottom:none;}
+  table.itbl tr.hl td{background:#f2f8f4;}
+  table.itbl .est{font-size:10px; font-weight:700; color:#8a8a8f; background:#f0f0f2; border-radius:3px; padding:1px 5px; margin-left:4px;}
+  .idea.top{margin:0 0 4px; background:#fff; border:none; padding:0;}
+  .idea.top .ic{border:1px solid #e6e6e9;}
+  .ic-k{font-size:12.2px; color:#4a4a50; line-height:1.8; margin-bottom:5px;}
+  .ic-k b{color:#b10202; font-weight:800;}
+  details.idd{margin-top:8px; border-top:1px dashed #ececef; padding-top:6px;}
+  details.idd summary{cursor:pointer; list-style:none; font-size:11px; font-weight:700; color:#9a9aa0;}
+  details.idd summary::-webkit-details-marker{display:none;}
+  details.idd summary::before{content:'＋ '; color:#b8b8be;}
+  details.idd[open] summary::before{content:'－ ';}
+  details.idd summary:hover{color:#1d1d1f;}
+  .ic-c{margin-top:9px; padding-top:9px; border-top:1px dashed #e6e6e9; font-size:12.2px; color:#1d1d1f; line-height:1.8;}
+  .ic-c::before{content:'👉 '; }
+  .ic-s{margin-top:7px; font-size:10.8px; color:#9a9aa0; line-height:1.7;}
+  .ic-s .old{display:inline-block; background:#fdf0e6; color:#a35a00; font-weight:800; border-radius:3px; padding:1px 5px; margin:0 4px;}
+  .sch{background:#f2f8f4; border-left:3px solid #1e7a36; border-radius:0 6px 6px 0; padding:7px 12px; margin:9px 0 0; font-size:12.3px; color:#1d1d1f; line-height:1.75;}
+  .sch .sl{display:inline-block; font-weight:800; color:#1e7a36; font-size:10.5px; letter-spacing:.03em; margin-right:8px; vertical-align:1px;}
+  .sch b{font-weight:700;}
+  .sch .sd{color:#8a8a8f;}
+  .srcbar{background:#fafafb; border:1px solid #e6e6e9; border-radius:8px; padding:10px 14px; margin:12px 0 4px; font-size:12px; color:#555; line-height:1.9;}
+  .srcbar b{color:#1d1d1f;}
+
+  .note{background:#f7f7f8; border-radius:8px; padding:12px 15px; font-size:12.2px; color:#555; margin-top:12px;}
+  .note .nt{font-weight:800; color:#1d1d1f; display:block; margin-bottom:5px;}
+  .note b{color:#1d1d1f;}
+  .note ul.bl{font-size:12.2px;}
+  .note ul.bl li{margin:2px 0;}
+
+  details.appx{border:1px solid #e2e2e4; border-radius:8px; margin-top:12px; background:#fafafb;}
+  details.appx summary{cursor:pointer; padding:11px 16px; font-size:13px; font-weight:800; color:#4a5160;
+    list-style:none; display:flex; align-items:center; gap:8px; user-select:none;}
+  details.appx summary::-webkit-details-marker{display:none;}
+  details.appx summary::before{content:'▸'; font-size:11px; color:#a8a8ad;}
+  details.appx[open] summary::before{content:'▾';}
+  details.appx summary:hover{background:#f2f2f4;}
+  .appx-body{padding:2px 16px 16px; border-top:1px solid #eeeef0;}
+
+  footer{margin-top:22px; padding-top:12px; border-top:1px solid #e2e2e4; font-size:11px; color:#a8a8ad; text-align:center;}
+
+  @media print{
+    body{background:#fff; padding:0;}
+    .page{box-shadow:none; border-radius:0; max-width:100%; padding:24px 28px;}
+    .issue, .tc{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <span class="date">회의 2026. 08. 12.(수)<br>데이터 ~ 07. 21.(13회차)</span>
+    <div class="eyebrow">쇼핑라이브 요인 분석 · 회의 공유</div>
+    <h1>요인별 디벨롭 방향</h1>
+    <div class="sub">이태훈 · 이동규 · 김경완 · 김리우 · 유재문 · 박강모</div>
+  </header>
+
+  <div class="decision">
+    <span class="lbl">이번 회의 결정<span class="src mtg">회의</span></span>
+    <ul>
+      <li><b>GFA</b> — 효과 검증됨. 지속 집행 + 예산 증액</li>
+      <li><b>편성</b> — 월·화 오전 중심. 주말 지양</li>
+      <li><b>쇼호스트</b> — 우열 판단 보류. 풀 확대 테스트로 전환</li>
+      <li><b>상품 구성</b> — 시간대별 컨셉 분리</li>
+    </ul>
+  </div>
+  <div class="purpose">
+    이 문서의 목적은 <b>분석 결과 공유가 아니라 다음 라이브에 적용할 방향을 정하는 것</b>입니다.
+    각 요인의 <b>디벨롭 방향</b>을 먼저 보시고,
+    근거가 필요하면 <b>「근거 보기」를 눌러</b> 지표를 확인해주세요.
+  </div>
+  <div class="srcbar">
+    <b>이 문서에 담긴 것</b> — <span class="src mtg">회의</span> 8/12 회의 결정 · 구두 공유된 일정 · 회의에서 나온 실행 항목<br>
+    AI가 도출·추정해 붙였던 내용(우선순위 · 가설 · 실행 구체화 · 측정 목표 · 기대효과 · 분석 한계)은 <b>이번 버전에서 제외</b>했습니다.<br>
+    요인별 디벨롭 방향은 <b>8/12 회의 원본 그대로</b>입니다.
+  </div>
+
+  <h2>요인별 디벨롭 방향</h2>
+  <div class="lead">확정 3 (시간대 · 요일 · GFA) / 보류 1 (쇼호스트) / 테스트 3 (상품구성 · 플친 · 토스)</div>
+
+  <!-- B-3 GFA -->
+  <div class="issue">
+    <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">B-3</span> GFA 라이브 소재</div>
+    <div class="sch"><span class="sl">확정 일정</span><b>8/23(일) 11:00</b> <span class="st soon">D-2</span> · <b>8/31(월) 11:00</b> <span class="st next">D-10</span></div>
+    <div class="dev">
+      <div class="dev-t">디벨롭 방향</div>
+      <ul class="bl">
+        <li class="g"><b>지속 집행 확정</b> — 광고비 빼고도 순마진율 +10.5%p</li>
+        <li class="g"><b>예산 증액</b> → 퍼포먼스 어디까지 오르는지 확인</li>
+        <li>시간대별 GFA 효율 차이 테스트</li>
+        <li>다음 화요일 <b>플친과 연계</b> 집행</li>
+        <li>GFA는 이전 세팅 파악 후 유지 여부 판단
+          <ul class="sl">
+            <li data-k="a.">기존 소재 중 <b>지표가 좋았던 소재</b> 추가 광고비 증액해서 테스트</li>
+            <li data-k="b.">쇼핑라이브 일정 맞추어 <b>사전 라이브 링크 생성 되는 시기</b>에 맞춰 GFA 소재 제작 후 테스트</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <details class="ideabox">
+      <summary><span class="src res">리서치</span><span class="ibt">추가 디벨롭 아이디어</span><span class="ibn">3건</span><span class="ibm"></span></summary>
+      <div class="ideabody">
+
+      <div class="ic">
+        <div class="ic-h">① 네이버가 직접 만든 라이브 광고 2종 <span class="est">2026 신규 · 최우선 검토</span></div>
+        <div class="ic-k">기존 리워드 앱 광고와 <b>완전히 다른 구조</b>입니다. 특히 두 번째는 <b>성과 보장형</b>이고,
+          <b>둘 다 소재가 필요 없습니다</b>(라이브ID+채널ID만).</div>
+        <div class="ic-c"><b>쇼핑라이브 부스터</b> = 사람을 데려오는 값<span class="est">선불</span> ·
+          <b>쇼핑라이브 CPS</b> = 데려온 사람이 샀을 때만 내는 값<span class="est">후불</span></div>
+        <details class="idd"><summary>2종 비교 · 연계 조건</summary>
+          <div class="ic-q">
+            <span class="qd">먼저 — 이 둘은 같은 상품이 아닙니다</span>
+            애즈순에서 <b>상품번호가 다른 별개 상품</b>이며, <b>서로 연계해서 함께 집행</b>할 수 있습니다.
+          </div>
+          <table class="itbl">
+            <thead><tr><th style="width:96px">구분</th><th>쇼핑라이브 부스터</th><th>쇼핑라이브 CPS</th></tr></thead>
+            <tbody>
+              <tr><td>애즈순 상품번호</td><td>507</td><td>519</td></tr>
+              <tr class="hl"><td><b>역할</b></td><td><b>시청자를 모은다</b> (유입)</td><td><b>구매로 전환시킨다</b> (전환)</td></tr>
+              <tr class="hl"><td><b>과금</b></td><td><b>선불 정액 — 1,000,000원~</b></td><td><b>판매 시에만 (0원~)</b></td></tr>
+              <tr><td>보장 지표</td><td>시청자 150,000명 <span class="est">1만명당 6.67만원</span></td><td><b>ROAS 500% 보장</b></td></tr>
+              <tr><td>노출 위치</td><td>N페이 &gt; 포인트 탭 &gt; 쇼핑라이브 미션 배너</td><td>라이브 당일~D+6일(7일)</td></tr>
+              <tr><td>고객 혜택</td><td>적립금 5원/1원 — <b>N페이 부담</b></td><td>결제액 <b>10% N페이 포인트</b></td></tr>
+              <tr><td>소재</td><td><b>불필요</b> (라이브ID+채널ID만)</td><td><b>불필요</b></td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">연계 — CPS 설명에 <b>“쇼핑라이브부스터와 연계 집행 가능”</b> 명시 ·
+            프로모션 기간 내 <b>CPS 입점비(20만원) 무료</b><br>
+            ※ A-4 상품구성 ②의 <b>“N페이 포인트 적립 — 우리 비용 0”</b>이 바로 이 CPS 상품입니다</div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">② 집행 순서 — CPS 먼저, 성과 확인 후 부스터</div>
+        <div class="ic-k">둘을 같이 쓰면 <b>“유입은 부스터가, 전환은 CPS가”</b> 담당하는 구조가 됩니다.
+          네이버가 연계 집행을 안내하는 이유입니다.</div>
+        <div class="ic-c">예산이 부담되면 <b>CPS만 먼저</b><span class="est">최소 광고비 없음 → 리스크 거의 0</span>
+          → 성과 확인 후 <b>부스터로 유입 확대</b>가 안전</div>
+        <details class="idd"><summary>단계별 부담 · 출처</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:60px">순서</th><th style="width:130px">집행</th><th>부담 · 판단</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>1단계</b></td><td><b>CPS만</b></td><td>판매 시에만 과금 → <b>최소 광고비 없음, 리스크 거의 0</b>. 입점비도 프로모션 기간 무료</td></tr>
+              <tr><td><b>2단계</b></td><td>성과 확인</td><td>ROAS 500% 보장 조건이 실제로 지켜지는지 확인</td></tr>
+              <tr><td><b>3단계</b></td><td>+ 부스터</td><td>선불 100만원~ → 유입 확대. <b>여기서부터 고정비 발생</b></td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">부스터는 선불 정액이라 <b>시청자 보장(15만명)이 실제 구매층인지</b>가 관건입니다 —
+            N페이 포인트 탭 미션 배너 유입이라 리워드 성격이 섞일 수 있습니다.<span class="est">확인 필요</span></div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">③ 브랜드검색에 쇼핑라이브를 <b>추가 비용 없이</b> 붙일 수 있다</div>
+        <div class="ic-k">모바일 브랜드검색 소재에 <b>‘방송 ID’만 입력</b>하면 쇼핑라이브가 추가 노출되고,
+          네이버 공식 안내상 <b>광고비는 동일</b>합니다.</div>
+        <div class="ic-c">특히 <b>방송 전</b> 노출은 클릭 시 <b>방송 예고 페이지 → 알림받기 확보</b>로 이어집니다 —
+          비용 없이 <b>사전 알림 모수</b>를 쌓는 경로</div>
+        <details class="idd"><summary>방송 상태별 노출 · 전제 조건 · 출처</summary>
+          <div class="ic-q">
+            <span class="qd">네이버 공식 안내 · 2021-06-10 적용 · 모바일 브랜드검색 광고 전체 대상</span>
+            “모바일 브랜드검색 소재에 쇼핑라이브를 추가 노출하더라도 <b>광고비는 동일합니다.</b>”
+          </div>
+          <table class="itbl">
+            <thead><tr><th style="width:82px">방송 상태</th><th>노출 형태</th><th style="width:190px">클릭 시 연결</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>방송 전</b></td><td>방송 제목 · 방송 일자 롤링 노출</td><td><b>방송 예고 페이지 → 알림받기 확보</b></td></tr>
+              <tr><td>방송 중</td><td>방송 제목 · 라이브 상태 롤링</td><td>방송 중인 쇼핑라이브</td></tr>
+              <tr><td>방송 후</td><td>방송 제목 고정 노출</td><td>쇼핑라이브 다시보기</td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s"><b>전제</b> — “추가 비용 없음”은 <b>모바일 브랜드검색 광고를 이미 집행 중일 때</b> 성립합니다.
+            미집행이면 브랜드검색 자체의 비용이 별도로 듭니다.<span class="est">집행 여부 확인 필요</span><br>
+            연결 — A-4 상품구성 ①의 <b>“대표 상품 1개 · 브랜드검색 연동 전부 이 상품 기준”</b>,
+            추가 아이디어 ②의 <b>다시보기 활용</b>과 같은 흐름<br>
+            출처: 네이버 공식 안내(2021-06-10) <span class="old">5년 초과</span> 현재 정책 재확인 권장</div>
+        </details>
+      </div>
+      </div>
+    </details>
+    <div class="nxt">
+      <div class="nxt-t">다음</div>
+      <ul class="bl">
+        <li class="r"><b>2회차뿐</b> — 증액 구간마다 효율이 꺾이는 지점을 찾아야 함</li>
+        <li>ROAS 별도 정리해 보고</li>
+      </ul>
+    </div>
+    <details class="ev"><summary>근거 보기 — 발견 · 해석 · 지표<span class="hint">클릭</span></summary>
+      <div class="ev-body">
+        <div class="scroll"><table class="mini">
+          <thead><tr><th>GFA</th><th>회차</th><th>추가매출</th><th>순마진액</th><th>순마진율</th><th>전환율</th><th>시청자</th><th>라이브 결제액</th></tr></thead>
+          <tbody>
+            <tr class="hi"><td>집행 O</td><td>2</td><td>1,984만</td><td>680만</td><td class="gap">45.6%</td><td class="gap">18.8%</td><td>1,229</td><td>1,624만</td></tr>
+            <tr><td>미집행 X</td><td>11</td><td>1,050만</td><td>301만</td><td>35.1%</td><td>13.4%</td><td>984</td><td>917만</td></tr>
+            <tr><td>차이</td><td>—</td><td class="gap">+934만</td><td class="gap">+379만</td><td class="gap">+10.5%p</td><td class="gap">+5.4%p</td><td class="gap">+245</td><td class="gap">+707만</td></tr>
+          </tbody>
+        </table></div>
+        <div class="ev-sec"><div class="ev-t">발견</div>
+          <ul class="bl">
+            <li class="g">모든 지표에서 미집행을 앞섬</li>
+            <li>집행 광고비 — 6/24 <b>13.9만원</b> · 6/30 <b>19.0만원</b> (평균 16.4만원)</li>
+            <li>광고비 1원당 추가매출 <b>57원</b> · 순마진 <b>23원</b></li>
+          </ul>
+        </div>
+        <div class="ev-sec"><div class="ev-t">해석</div>
+          <ul class="bl">
+            <li class="g">핵심은 <b>순마진율 +10.5%p</b> — 광고비를 이미 뺀 수치</li>
+            <li>매출만 늘린 게 아니라 <b>쓴 돈 이상을 벌어옴</b></li>
+            <li>손익분기(1원당 매출 2.19원) 대비 <b>26배 여유</b> → 증액 여지 큼</li>
+          </ul>
+        </div>
+        <div class="ev-sec"><div class="ev-t">소재 구성 (실집행 내역)</div>
+          <ul class="bl">
+            <li><b>6/24</b> — [쇼라]전환_ 시리즈. 손목 상품, 타겟별(일반·스타·알림)×소재 2종. 클릭 130회, CPC 1,072원</li>
+            <li><b>6/30</b> — PM_ 시리즈. 지면별(스마트채널·홈피드·쇼핑프로모션·네이티브PC). 클릭 252회, CPC <b>752원</b></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- A-2 요일 -->
+  <div class="issue">
+    <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">A-2</span> 요일</div>
+    <div class="sch"><span class="sl">확정 일정</span>화 <b>8/18</b>(플친) <span class="st done">완료</span> · 일 <b>8/23</b>(GFA) <span class="st soon">D-2</span> · 수 <b>8/26</b>(플친) <span class="st next">D-5</span> · 월 <b>8/31</b>(GFA) <span class="st next">D-10</span></div>
+    <div class="dev">
+      <div class="dev-t">디벨롭 방향</div>
+      <ul class="bl">
+        <li class="g"><b>월·화 오전 중심 편성</b>으로 고정</li>
+        <li class="g"><b>주말 지양</b> — 트래픽·구매 여력 모두 낮음</li>
+        <li class="g">주말 중 <b>예약 라이브 광고</b>로 월요일 타겟 미리 확보</li>
+        <li>사전 광고는 <b>혜택 소구</b> 중심 — "들어오면 얻는 게 있다"</li>
+        <li>퍼포먼스 예산도 주말 축소 / 일요일 저녁 증액 패턴 참고</li>
+      </ul>
+    </div>
+    <div class="nxt">
+      <div class="nxt-t">다음</div>
+      <ul class="bl">
+        <li>주말 예약 라이브 광고 → 월요일 오전 유입 확보 테스트</li>
+        <li>시청자가 늘어도 <b>전환율 17.1%가 유지되는지</b>가 성패</li>
+      </ul>
+    </div>
+    <details class="ev"><summary>근거 보기 — 발견 · 해석 · 지표<span class="hint">클릭</span></summary>
+      <div class="ev-body">
+        <div class="scroll"><table class="mini">
+          <thead><tr><th>요일</th><th>회차</th><th>추가매출</th><th>순마진액</th><th>전환율</th><th>시청자</th><th>쇼라탭 유입</th><th>신규 알림</th></tr></thead>
+          <tbody>
+            <tr class="hi"><td>월</td><td>3</td><td>1,315만</td><td>430만</td><td class="gap">17.1%</td><td>955</td><td class="gap">37.0%</td><td class="gap">48.3</td></tr>
+            <tr class="hi"><td>화</td><td>5</td><td>1,403만</td><td>426만</td><td>14.8%</td><td class="gap">1,153</td><td>24.1%</td><td>27.8</td></tr>
+            <tr><td>수</td><td>1</td><td>1,081만</td><td>359만</td><td>14.5%</td><td>961</td><td>29.9%</td><td>36.0</td></tr>
+            <tr><td>일</td><td>2</td><td>907만</td><td>254만</td><td>11.3%</td><td>1,010</td><td>26.5%</td><td>21.5</td></tr>
+          </tbody>
+        </table></div>
+        <div class="ev-sec"><div class="ev-t">발견</div>
+          <ul class="bl">
+            <li class="g"><b>월요일</b> — 전환율 17.1%로 최고. 시청자는 955명으로 화요일보다 198명 적음</li>
+            <li class="g"><b>화요일</b> — 시청자 1,153명으로 최다. 전환율은 14.8%</li>
+            <li class="r">주말·일요일 — 전 지표 하위</li>
+          </ul>
+        </div>
+        <div class="ev-sec"><div class="ev-t">해석</div>
+          <ul class="bl">
+            <li>월요일 — 쇼라탭 유입 <b>37.0%</b> · 신규 알림 <b>48.3</b>으로 신규 비중 최고</li>
+            <li>주말에 못 산 수요가 월요일에 터짐</li>
+            <li class="r">화요일 시청자가 많은 건 <b>GFA 유입 약 30%</b> 때문 — 요일 효과 아님</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- A-1 시간대 -->
+  <div class="issue">
+    <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">A-1</span> 시간대</div>
+    <div class="sch"><span class="sl">확정 일정</span>오전 11:00 — GFA <b>8/23(일)</b> <span class="st soon">D-2</span> · <b>8/31(월)</b> <span class="st next">D-10</span><br>야간 21:00 — 플친 <b>8/18(화)</b> <span class="st done">완료</span> · <b>8/26(수)</b> <span class="st next">D-5</span></div>
+    <div class="dev">
+      <div class="dev-t">디벨롭 방향</div>
+      <div class="grp"><span class="gl am">오전 — 신규를 붙잡는다</span>
+        <ul class="bl">
+          <li class="g">방송 중 <b>알림받기 · 플친 설정 유도</b> — 쇼호스트가 직접 멘트</li>
+          <li class="g">그날로 끝내지 말고 <b>관심 고객으로 전환</b></li>
+          <li class="g"><b>환불 방어</b> — 라이브 한정 혜택으로 이탈 억제</li>
+          <li>썸네일·소구를 오전 타겟에 맞춰 분리</li>
+          <li>신규 유입 채널 파악 → 오전 노출 최적화</li>
+        </ul>
+      </div>
+      <div class="grp"><span class="gl pm">야간 — 관심 고객을 사게 만든다</span>
+        <ul class="bl">
+          <li class="g"><b>신규 제품</b>을 야간에 먼저 공개</li>
+          <li class="g"><b>알림 설정자 전용 혜택</b> 소구</li>
+          <li>공구 대비 메리트 있는 옵션 추가</li>
+          <li>야간에 인기 품목 방송 횟수 조정</li>
+        </ul>
+      </div>
+    </div>
+    <div class="nxt">
+      <div class="nxt-t">다음</div>
+      <ul class="bl">
+        <li>오전 전량 편성 <b>아님</b> — 오전·야간 노출 밸런스 테스트</li>
+        <li>오전에 몰았을 때 효율이 깨지는지 확인</li>
+      </ul>
+    </div>
+    <details class="ev"><summary>근거 보기 — 발견 · 해석 · 지표<span class="hint">클릭</span></summary>
+      <div class="ev-body">
+        <div class="scroll"><table class="mini">
+          <thead><tr><th>시간대</th><th>회차</th><th>추가매출</th><th>순마진액</th><th>전환율</th><th>시청자</th><th>알림 유입</th><th>쇼라탭 유입</th><th>환불액</th><th>환불률</th></tr></thead>
+          <tbody>
+            <tr class="hi"><td>오전</td><td>7</td><td>1,546만</td><td>472만</td><td>15.4%</td><td>1,142</td><td>37.9%</td><td>29.4%</td><td>165만</td><td>13.1%</td></tr>
+            <tr><td>야간</td><td>6</td><td>782만</td><td>227만</td><td>12.9%</td><td>881</td><td>55.0%</td><td>24.0%</td><td>85만</td><td>11.2%</td></tr>
+            <tr><td>차이</td><td>—</td><td class="gap">+764만</td><td class="gap">+245만</td><td class="gap">+2.5%p</td><td class="gap">+261</td><td class="gapd">−17.1%p</td><td class="gap">+5.4%p</td><td class="gapd">+80만</td><td class="gapd">+1.8%p</td></tr>
+          </tbody>
+        </table></div>
+        <div class="ev-sec"><div class="ev-t">발견</div>
+          <ul class="bl">
+            <li class="g">오전이 볼륨·효율 <b>모두</b> 앞섬 — 추가매출 +764만 · 순마진 +245만 · 전환율 +2.5%p</li>
+            <li>시청자 <b>+261명</b> — 트래픽 자체가 더 많음</li>
+            <li class="r">환불 — 절대액 1.9배지만 <b>환불률로는 1.8%p</b>(13.1% vs 11.2%)</li>
+          </ul>
+        </div>
+        <div class="ev-sec"><div class="ev-t">해석</div>
+          <div class="grp"><span class="gl am">오전 = 신규</span>
+            <ul class="bl">
+              <li>쇼라탭 유입 높음 → 둘러보다 썸네일에 후킹된 신규</li>
+              <li>상품 조회수 · 신규 알림 많음</li>
+              <li class="r">충동구매 흔적 — 환불률이 야간보다 높음</li>
+            </ul>
+          </div>
+          <div class="grp"><span class="gl pm">야간 = 관심 고객</span>
+            <ul class="bl">
+              <li>알림 유입 <b>55%</b> — 원래 우리를 알던 사람</li>
+              <li>좋아요 3배 — 호감은 이미 형성됨</li>
+              <li class="r">그런데 전환이 안 붙음 → <b>살 이유를 못 줌</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- A-3 쇼호스트 -->
+  <div class="issue">
+    <div class="i-head"><span class="tag hold">⚫ 보류</span><span class="fno">A-3</span> 쇼호스트</div>
+    <div class="dev">
+      <div class="dev-t">디벨롭 방향</div>
+      <div class="grp"><span class="gl">기존 호스트</span>
+        <ul class="bl">
+          <li class="g">우열 가리기 <b>보류</b> — 현재 둘 다 합격선</li>
+          <li>김성경·김예슬 <b>특징 정리</b> → 운영 효율화에 활용</li>
+          <li>채팅수 1.67배 차이의 <b>원인 규명</b></li>
+        </ul>
+      </div>
+      <div class="grp"><span class="gl rd">풀 확대 테스트</span>
+        <ul class="bl">
+          <li class="g"><b>유튜버 기반</b> 호스트 — 팬덤 유입 테스트</li>
+          <li class="g"><b>중가대</b> 호스트 — 지금은 최저가만 써봄</li>
+          <li>미남재형 — 900만원 · 수수료 25% → <b>손익분기 매출 먼저 산출</b></li>
+          <li>타사 진행 매출 성과 확인 후 판단</li>
+          <li>등급별 테스트로 <b>인크리멘탈</b> 확인</li>
+        </ul>
+      </div>
+      <div class="grp"><span class="gl">선발 기준 만들기</span>
+        <ul class="bl">
+          <li>성과를 높이는 호스트의 <b>공통 특징</b>을 찾는 게 목적</li>
+          <li>하방 유지형 vs 상방 확대형 구분</li>
+          <li>말발 · 외부 SNS 파급력 등 후보 요소 관찰</li>
+        </ul>
+      </div>
+    </div>
+    <details class="ideabox">
+      <summary><span class="src res">리서치</span><span class="ibt">추가 디벨롭 아이디어</span><span class="ibn">4건</span><span class="ibm"></span></summary>
+      <div class="ideabody">
+
+      <div class="ic">
+        <div class="ic-h">① 1분 내 이탈률 90% — 큐시트를 이 전제로 짜야 함</div>
+        <div class="ic-k">평균 시청 지속 <b>2분 이내</b>. “시청자 수 6만명”은 대부분 <b>스쳐 지나간 노출</b>입니다.</div>
+        <div class="ic-c">메인 키워드 <b>1개로 압축</b> · 구매 불안 <b>첫 60초</b>에 배치 · 혜택 <b>반복 고지</b> · 큐시트에 <b>장점 나열 금지</b></div>
+        <details class="idd"><summary>근거 · 출처</summary>
+          <table class="itbl">
+            <tbody>
+              <tr><td style="width:168px"><b>메인 키워드 1개로 압축</b></td><td>“우리 제품은 [ ]다” — 세부 사양 설명은 이탈만 부름</td></tr>
+              <tr><td><b>구매 불안 첫 60초</b></td><td>회사 소개·제품 히스토리는 이탈 구간에 낭비됨</td></tr>
+              <tr><td><b>혜택 반복 고지</b></td><td>시청자가 계속 교체되므로 한 번만 말하면 대부분이 못 들음</td></tr>
+              <tr><td><b>장점 나열 금지</b></td><td>“1시간에 모든 걸 쏟아내리는” 구성이 가장 흔한 실패 패턴</td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">TV 홈쇼핑의 미니 버전으로 접근하면 실패 — “TV 홈쇼핑과 라이브커머스는 시청 층 자체가 다릅니다.”<br>
+            출처: 라이브커머스 큐시트 작성 방법(2022-10-11) · i-boss 6141-57586(2022-04-13) <span class="old">3년 초과</span> 참고용</div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">② 상품 설명보다 “구매 불안”을 먼저 해결</div>
+        <div class="ic-k">고객은 설명을 들으러 오는 게 아니라 <b>사진으로 확인 안 되는 것</b>을 보러 옵니다 — 크기 · 질감 · 색상 · 사용법 · 포장 상태.</div>
+        <div class="ic-c">마사지기라면 <b>실제 크기감 · 착용 방식 · 소음 · 강도 체감 · 충전 시간</b>을 먼저. 방송 순서를 <b>자주 묻는 질문 순</b>으로.</div>
+        <details class="idd"><summary>카테고리별 · 출처</summary>
+          <table class="itbl">
+            <tbody>
+              <tr><td style="width:168px">의류</td><td>체형별 핏 · 비침 정도</td></tr>
+              <tr><td>식품</td><td>보관법 · 실제 양</td></tr>
+              <tr><td>화장품</td><td>발림성 · 사용 순서</td></tr>
+              <tr><td>생활용품</td><td>설치 과정 · 소음 정도</td></tr>
+              <tr class="hl"><td><b>마사지기</b> <span class="est">추정</span></td><td><b>실제 크기감 · 착용 방식 · 소음 · 강도 체감 · 충전 시간</b></td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">“고객이 궁금해하는 장면을 보여줄수록 구매 판단은 쉬워집니다.”<br>출처: i-boss 6141-71418 (2026-08-03)</div>
+        </details>
+      </div>
+      <div class="ic">
+        <div class="ic-h">③ 1인 vs 2인 — 매출 차이는 “2배”가 아니라 “30%”</div>
+        <div class="ic-k">2배로 보이는 건 착시입니다. <b>1인 방송에 “시험방송” 브랜드가 몰려</b> 있어서 —
+          그 데이터를 빼면 매출 비중 차이는 <b>30% 이내</b>로 줄어듭니다.</div>
+        <div class="ic-c">첫 방송(테스트)은 <b>1인으로 충분</b> · 기획라이브 · 메인 상품은 <b>2인</b></div>
+        <details class="idd"><summary>원문 · 섭외비 시세 · 출처</summary>
+          <div class="ic-q">
+            <span class="qd">라이브 진행 협업 · 2021-09-06</span>
+            “데이터로만 보면 거의 2배 가까운 매출 차이가 나고 있어요. 다만 숨겨진 부분이 있습니다.
+            <b>혼자 진행하는 방송은 매출에 큰 기대 없이 시험방송을 하는 브랜드가 많다는 것이죠.</b>
+            (그 데이터를 제외하면 매출 비중이 30% 이내로 줄어듭니다)”
+          </div>
+          <div class="ic-p">실무 결론 <span class="est">원문 그대로</span> — “1인 방송으로도 브랜드가 라이브커머스에서 될까 안될까를 판단할 수 있다”</div>
+          <table class="itbl">
+            <thead><tr><th style="width:150px">섭외비 <span class="est">2024-10</span></th><th style="width:64px">평균</th><th style="width:88px">범위</th><th>세부</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>쇼호스트 희망가</b></td><td>24만원</td><td>10~80만원</td><td>1년 이하 <b>15만원</b> / 5년 이상 <b>36만원</b></td></tr>
+              <tr><td>판매자·대행사 희망가</td><td>30만원</td><td>5~100만원</td><td>방송매출 100만 미만 <b>10만원</b> / 1천만 이상 <b>41만원</b></td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">진행 주체 분포 — 외부 인력 섭외 <b>55.2%</b> / 내부 직원 출연 <b>36.2%</b> / 대표·임원 출연 <b>7.6%</b><br>
+            출처: 라이브 진행 협업(2021-09-06) <span class="old">5년 초과</span> · 섭외비는 라방바 데이터랩 설문(2024-10, 쇼호스트 45명 + 판매자·대행사 25팀)</div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">④ “누가 진행하느냐”보다 “어떻게 조합하느냐”</div>
+        <div class="ic-k">최적 조합은 <b>사장·담당자(전문성) + 쇼호스트(진행력)</b>.
+          쇼호스트가 분위기를 띄우고 질문을 던지면 담당자가 전문가로서 답하는 <b>티키타카</b>가 최고의 효율을 냅니다.</div>
+        <div class="ic-c">우리 제품처럼 <b>디테일 질문에 즉답이 필요한 경우</b> 내부 인력 병행이 유리 — 지금은 외부 1인 체제</div>
+        <details class="idd"><summary>주체별 유리한 상황 · 출처</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:110px">진행 주체</th><th>유리한 상황</th><th style="width:150px">사례</th></tr></thead>
+            <tbody>
+              <tr><td><b>전문 쇼호스트</b></td><td>단시간 대량 판매 · 텐션 높은 방송(땡처리 · 공구) · 클로징 멘트 훈련이 되어 있음</td><td>—</td></tr>
+              <tr class="hl"><td><b>내부 직원 · 대표</b></td><td><b>디테일한 질문에 실시간 즉답이 필요한 제품</b> · 제작 과정 일화로 몰입감 형성</td><td>마뗑킴(대표·직원 출연) · 피토틱스(“언제 먹는지 · 효능” 즉답)</td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">출처: 외부 리서치 — 진행 주체별 조합 비교</div>
+        </details>
+      </div>
+    </div>
+    </details>
+    <div class="nxt">
+      <div class="nxt-t">다음</div>
+      <ul class="bl">
+        <li>두 호스트 특징 정리 + 채팅수 차이 분석</li>
+        <li>미남재형 손익분기 산출 후 집행 판단</li>
+      </ul>
+    </div>
+    <details class="ev"><summary>근거 보기 — 발견 · 해석 · 지표<span class="hint">클릭</span></summary>
+      <div class="ev-body">
+        <div class="scroll"><table class="mini">
+          <thead><tr><th>호스트</th><th>회차</th><th>추가매출</th><th>순마진액</th><th>전환율</th><th>시청자</th><th>채팅수</th><th>좋아요</th></tr></thead>
+          <tbody>
+            <tr><td>김성경</td><td>6</td><td>1,402만</td><td>449만</td><td>14.6%</td><td>1,157</td><td class="gap">656</td><td>637</td></tr>
+            <tr><td>김예슬</td><td>6</td><td>1,068만</td><td>309만</td><td>14.3%</td><td>918</td><td>393</td><td class="gap">2,408</td></tr>
+            <tr><td>차이</td><td>—</td><td>+334만</td><td>+140만</td><td class="gapd">+0.3%p</td><td>+239</td><td>1.67배</td><td>0.26배</td></tr>
+          </tbody>
+        </table></div>
+        <div class="ev-sec"><div class="ev-t">발견</div>
+          <ul class="bl">
+            <li>김성경이 매출 볼륨은 높음</li>
+            <li class="r">전환율 차이는 <b>0.3%p</b> — 사실상 동률</li>
+            <li>매출 격차는 <b>시청자 239명 차이</b>에서 나옴</li>
+          </ul>
+        </div>
+        <div class="ev-sec"><div class="ev-t">해석</div>
+          <ul class="bl">
+            <li class="r"><b>GFA 2회가 모두 김성경 회차</b>에 몰림 → 시청자 부풀음</li>
+            <li>요일·광고 통제 후 화요일만 비교 → 전환율은 <b>오히려 김예슬이 높음</b></li>
+            <li>성과를 가른 건 호스트가 아니라 <b>시간대·광고</b></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- A-4 상품 구성 -->
+  <div class="issue">
+    <div class="i-head"><span class="tag test">🔵 테스트</span><span class="fno">A-4</span> 상품 구성</div>
+    <div class="dev">
+      <div class="dev-t">디벨롭 방향</div>
+      <div class="grp"><span class="gl am">오전 구성</span>
+        <ul class="bl">
+          <li class="g"><b>아침 스트레칭 · 일상</b> 컨셉</li>
+          <li>산만한 환경 고려 — 설명보다 <b>액션 시연</b> 중심</li>
+        </ul>
+      </div>
+      <div class="grp"><span class="gl pm">야간 구성</span>
+        <ul class="bl">
+          <li class="g"><b>자기 전 · 하루 마무리</b> 컨셉</li>
+          <li class="g"><b>야간에만 살 수 있는 구성</b> — 재방문 이유 제공</li>
+        </ul>
+      </div>
+      <div class="grp"><span class="gl">공통</span>
+        <ul class="bl">
+          <li>세트 · 단품 조합 바꿔가며 성과 테스트</li>
+          <li>마진율 높은 조합(1+1) 비중 조정</li>
+          <li>배너·설명 노출 방식 점검 — 10분 전부터 반복 안내</li>
+          <li>신규 구성부터 순차 투입</li>
+        </ul>
+      </div>
+    </div>
+    <details class="ideabox">
+      <summary><span class="src res">리서치</span><span class="ibt">추가 디벨롭 아이디어</span><span class="ibn">4건</span><span class="ibm"></span></summary>
+      <div class="ideabody">
+
+      <div class="ic">
+        <div class="ic-h">① 상품구성 3대 원칙 — 방송당 메인 3~5 + 서브 3</div>
+        <div class="ic-k"><b>상품 수를 압축</b>할 것 · <b>할인이 아니라 “구성”</b>으로 혜택을 만들 것 · <b>손익 계산을 방송 전에</b> 끝낼 것.</div>
+        <div class="ic-c">메인 <b>3~5개</b>(60분을 15분 루프 4회로 쪼개면 루프당 1개) · 서브 <b>3개</b> · <b>대표 상품 1개를 명확히</b> — 예고·썸네일·브랜드검색 연동 전부 이 상품 기준</div>
+        <details class="idd"><summary>기준 · 이유 · 흔한 실패</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:104px">항목</th><th style="width:96px">기준</th><th>이유</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>메인 상품</b></td><td><b>3~5개</b></td><td>60분을 15분 루프 4회로 쪼개면 <b>루프당 1개</b>가 적정</td></tr>
+              <tr><td>서브 상품</td><td>3개</td><td>반응 없을 때 교체용 · 객단가 상향용</td></tr>
+              <tr><td>대표 상품</td><td>1개를 명확히</td><td>“오늘 이거 사러 왔다”가 되는 앵커. 예고·썸네일·브랜드검색 연동 전부 이 상품 기준</td></tr>
+              <tr><td><b>흔한 실패</b></td><td>상품 10개 이상 나열</td><td>1분 내 이탈률 90% → 시청자는 <b>첫 15분에 본 것만</b> 기억함</td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">3대 원칙 원문 — “많이 걸수록 안 팔립니다” / “상시가를 깎으면 브랜드 가격이 무너집니다” /
+            “즉흥으로 혜택을 얹다 팔수록 손해나는 게 라방의 고전적 사고입니다”</div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">② 가격 설계 — 할인 대신 구성</div>
+        <div class="ic-k">같은 5,000원을 써도 <b>“5천원 할인”보다 “5천원짜리 사은품 증정”</b>이 낫습니다.
+          전자는 <b>가격 기준선을 영구히 내리고</b>, 후자는 <b>이번 방송에서만 소모</b>됩니다.</div>
+        <div class="ic-c">상시 판매가는 건드리지 말고 <b>라이브 한정 세트 · 방송 중 주문 사은품 · N페이 포인트</b>로 혜택 설계</div>
+        <details class="idd"><summary>방식별 브랜드 가격 영향 · 적용 예시</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:132px">방식</th><th style="width:72px">브랜드 가격</th><th>우리 적용 예시 <span class="est">가안</span></th></tr></thead>
+            <tbody>
+              <tr><td><b>상시가 직접 할인</b></td><td><b style="color:#b10202">훼손</b></td><td>“릴렉스틱 정가 89,000 → 69,000”</td></tr>
+              <tr class="hl"><td><b>라이브 한정 세트</b></td><td><b style="color:#1e7a36">안전</b></td><td>“본품 + 전용 파우치 + 여분 밴드” 묶음을 <b>라이브에서만</b> 구성</td></tr>
+              <tr class="hl"><td><b>방송 중 주문 사은품</b></td><td><b style="color:#1e7a36">안전</b></td><td>방송 시간 내 주문자에 한해 사은품</td></tr>
+              <tr class="hl"><td><b>N페이 포인트 적립</b></td><td><b style="color:#1e7a36">안전</b></td><td>CPS 상품 쓰면 결제액 <b>10%를 네이버가 적립</b> — 우리 비용 0</td></tr>
+              <tr><td>수량 한정 특가</td><td><b style="color:#a35a00">부분</b></td><td>“이 가격 50개 준비” — 수량을 못 박으면 상시가 영향 최소화</td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">원문 — “상시 판매가를 깎으면 브랜드 가격이 무너져요.
+            ‘라이브 한정 세트(상의+양말)’, ‘방송 중 주문 시 사은품’처럼 구성으로 혜택을 만들어야 평소 가격이 안전해요.”</div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">③ 혜택 공개 순서 — 한 번에 다 풀지 않기</div>
+        <div class="ic-k">시청자가 <b>계속 새로 들어오기</b> 때문에 혜택은 한 번에 공개하지 말고 <b>단계적으로 쌓아 올려야</b> 합니다.</div>
+        <div class="ic-c">기본 구성 공개 → 중반에 사은품 추가 → <b>클로징 10분에 최종 혜택 + 수량 카운트</b>
+          <span class="est">라이브 매출의 30~40%가 마지막 10분에 몰림</span></div>
+        <details class="idd"><summary>권장 순서 · 근거</summary>
+          <table class="itbl">
+            <tbody>
+              <tr><td style="width:60px"><b>①</b></td><td>기본 구성 공개</td></tr>
+              <tr><td><b>②</b></td><td>중반에 사은품 추가</td></tr>
+              <tr class="hl"><td><b>③</b></td><td><b>클로징 10분에 최종 혜택 + 수량 카운트</b></td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">15분 루프마다 <b>혜택 리마인드 2분</b>이 배치되는 이유이기도 합니다.<br>
+            근거 — <b>라이브 매출의 30~40%가 마지막 10분에 몰립니다.</b></div>
+        </details>
+      </div>
+
+      <div class="ic">
+        <div class="ic-h">④ 상품명에 구성·혜택을 넣고, 다목적성을 앞세운다</div>
+        <div class="ic-k">상위 매출 상품의 공통점 — 상품명에 <b>“3종 사은품” “프리미엄 낮밤패키지” “가시제로”</b>처럼
+          <b>구성물 개수와 혜택</b>이 드러나 있습니다.</div>
+        <div class="ic-c">“릴렉스틱 오리지널” 대신 <b>“릴렉스틱 전신세트(본품+파우치+밴드2종)”</b> ·
+          마사지기 강점인 <b>부위 다목적성을 숫자화</b>(목·어깨·허리·종아리 4부위)</div>
+        <details class="idd"><summary>사례 · 적용 논리</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:118px">원칙</th><th style="width:210px">상위 매출 상품 사례</th><th>우리 적용 <span class="est">가안</span></th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>상품명에 구성·혜택</b></td><td>“3종 사은품” · “2025 프리미엄 낮밤패키지”(팸퍼스) · “가시제로”</td>
+                <td>릴렉스틱 오리지널 → <b>릴렉스틱 전신세트(본품+파우치+밴드2종)</b><br>
+                  <b>“3종”·“세트”·“패키지”</b>가 검색·라이브 양쪽에서 클릭을 만듦</td></tr>
+              <tr class="hl"><td><b>다목적성을 앞세움</b></td><td>싸이벡스 레모 하이체어 <b>4in1</b> — “한 번 구매로 오랫동안” 경제성이 매출 3위 견인</td>
+                <td><b>목·어깨·허리·종아리 4부위</b>처럼 숫자화<br>
+                  “하나로 온 가족이 여러 부위에” = <b>객단가 방어 논리</b></td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </div>
+    </details>
+    <div class="nxt">
+      <div class="nxt-t">다음</div>
+      <ul class="bl">
+        <li>시간대별 구성 테스트 → 판매 성과 비교</li>
+      </ul>
+    </div>
+    <details class="ev"><summary>근거 보기 — 발견 · 해석<span class="hint">클릭</span></summary>
+      <div class="ev-body">
+        <div class="ev-sec"><div class="ev-t">발견</div>
+          <ul class="bl">
+            <li>세트군 마진율 — <b>1+1 &gt; 오리지널 세트 &gt; 마사지 3종</b></li>
+            <li class="r">회차마다 구성이 달라 요인으로 분리 안 됨</li>
+            <li>손목·필라테스바 등 일부 상품은 판매 저조</li>
+          </ul>
+        </div>
+        <div class="ev-sec"><div class="ev-t">해석</div>
+          <ul class="bl">
+            <li><b>오전</b> — 살림하며 켜두는 시청. 환경이 산만함</li>
+            <li><b>야간</b> — 능동적으로 찾아보는 시청</li>
+            <li class="r">같은 구성을 양쪽에 쓰면 어느 쪽에도 안 맞음</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- B-1 플친 -->
+  <div class="issue">
+    <div class="i-head"><span class="tag wt">⏳ 검증</span><span class="fno">B-1</span> 카카오 플친</div>
+    <div class="sch"><span class="sl">확정 일정</span><b>8/18(화) 21:00</b> <span class="st done">집행 완료</span> · <b>8/26(수) 21:00</b> <span class="st next">D-5</span></div>
+    <div class="dev">
+      <div class="dev-t">디벨롭 방향</div>
+      <ul class="bl">
+        <li class="g">다음 화요일 <b>재집행</b></li>
+        <li class="g">발송 URL에 <b>추적 파라미터</b> 부착 — 유입 분리</li>
+        <li class="g"><b>연령대별 발송 시간 분리</b> — 중장년 오전 / 젊은층 야간</li>
+        <li>GFA와 <b>연계 집행</b> 테스트</li>
+        <li class="r">짧은 기간에 과다 발송 금지 — 피로도 관리</li>
+      </ul>
+    </div>
+    <div class="nxt">
+      <div class="nxt-t">다음</div>
+      <ul class="bl">
+        <li>카카오 채널 업데이트 발생 시 전략 반영 · 공유</li>
+      </ul>
+    </div>
+    <details class="ev"><summary>근거 보기 — 발견 · 해석<span class="hint">클릭</span></summary>
+      <div class="ev-body">
+        <div class="ev-sec"><div class="ev-t">발견</div>
+          <ul class="bl">
+            <li>발송 회차(6/15) — 추가매출 <b>2,452만원</b> · 전환율 <b>24.3%</b></li>
+            <li>신규 알림 <b>72건</b> — 전 회차 최고</li>
+            <li>미발송 12회 평균 — 1,089만원 · 13.4%</li>
+          </ul>
+        </div>
+        <div class="ev-sec"><div class="ev-t">해석</div>
+          <ul class="bl">
+            <li class="r"><b>1회 집행 + UTM 태깅 없음</b> → 기여분 분리 불가</li>
+            <li>같은 날 쇼라탭 유입 58.3%로 튄 것도 원인 확인 안 됨</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- B-2 토스 -->
+  <div class="issue">
+    <div class="i-head"><span class="tag hold">⚫ 제외</span><span class="fno">B-2</span> 토스 이벤트</div>
+    <div class="dev">
+      <div class="dev-t">디벨롭 방향</div>
+      <ul class="bl">
+        <li>목적은 당일 매출이 아니라 <b>리타겟팅 모수 확보</b></li>
+        <li class="g">그 모수에 <b>리타겟팅 광고 집행</b> 후 성과 판정</li>
+        <li>실패로 단정하지 않음 — 판정 시점이 아직 안 옴</li>
+      </ul>
+    </div>
+    <div class="nxt">
+      <div class="nxt-t">다음</div>
+      <ul class="bl">
+        <li>13회차 분석에서는 제외</li>
+        <li>리타겟팅 집행 후 별도 검증</li>
+      </ul>
+    </div>
+    <details class="ev"><summary>근거 보기 — 발견 · 해석<span class="hint">클릭</span></summary>
+      <div class="ev-body">
+        <div class="ev-sec"><div class="ev-t">발견</div>
+          <ul class="bl">
+            <li>18회차(8/10) 시청자 <b>54,213명</b> — 평소의 51배</li>
+            <li class="r">전환율 <b>0.16%</b> · 추가매출 평균 이하</li>
+          </ul>
+        </div>
+        <div class="ev-sec"><div class="ev-t">해석</div>
+          <ul class="bl">
+            <li>리워드가 동기인 트래픽 → 당일 구매로 안 이어짐</li>
+            <li class="r">1회성 + 태깅 없이 광고 집행 → 요인 분석에서 분리</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <h2>추가 아이디어 · 디벨롭 방향성<span class="src res">리서치</span></h2>
+  <details class="ideabox top">
+      <summary><span class="src res">리서치</span><span class="ibt">추가 디벨롭 아이디어</span><span class="ibn">3건</span><span class="ibm"></span></summary>
+      <div class="ideabody">
+
+    <div class="ic">
+      <div class="ic-h">① 라이브 + 숏클립을 하나의 판매 흐름으로 설계</div>
+      <div class="ic-k">라이브는 <b>정해진 시간에 접속해야</b> 해서 못 본 고객을 놓칩니다.
+        숏클립이 <b>그 고객에게 재접근하는 경로</b>입니다 — 짧게 핵심 장점 · 사용 장면.</div>
+      <div class="ic-c">방송 후 편집이 아니라 <b>기획 단계에서 “숏클립으로 뽑을 장면”을 미리 정해둘 것.</b>
+        마사지기라면 <b>개봉·크기감 / 실제 착용 장면 / 강도 단계별 반응 / 소음 수준 / 충전·보관</b></div>
+      <details class="idd"><summary>실행 방법 · 네이버 연동 · 출처</summary>
+        <table class="itbl">
+          <thead><tr><th style="width:110px">카테고리</th><th>미리 정해둘 촬영 장면</th></tr></thead>
+          <tbody>
+            <tr><td>식품</td><td>포장 개봉 / 단면 / 조리 후 질감 → 각각 짧게 촬영</td></tr>
+            <tr><td>패션</td><td>정면 착용 / 측면 핏 / 소재 확대</td></tr>
+            <tr class="hl"><td><b>마사지기</b></td><td><b>개봉·크기감 / 실제 착용 장면 / 강도 단계별 반응 / 소음 수준 / 충전·보관</b></td></tr>
+          </tbody>
+        </table>
+        <div class="ic-p">네이버는 <b>쇼핑라이브 관리도구·송출앱</b>에서 숏클립을 등록하고 <b>스마트스토어 상품과 연결</b>할 수 있게 지원합니다.
+          공개된 숏클립은 조건에 따라 <b>상품 대표 이미지 영역과 쇼핑 관련 영역에 노출</b>됩니다.</div>
+        <div class="ic-s">“한 번의 라이브를 여러 개의 구매 콘텐츠로 남겨야 합니다.”<br>
+          출처: 2026 온라인마케팅 트렌드 — “네이버 쇼핑 라이브” 성공 전략 (2026-08-03)</div>
+      </details>
+    </div>
+
+    <div class="ic">
+      <div class="ic-h">② 방송 후 — 다시보기 저장 + 성과 지표 재정의</div>
+      <div class="ic-k"><b>총 시청 수로 성과를 판단하지 말 것.</b>
+        방송 유입 · 상품 클릭 · 결제 · <b>다시보기 반응</b>을 함께 살펴야 합니다.</div>
+      <div class="ic-c">방송마다 4가지를 기록 — <b>이탈이 적었던 구간 / 질문이 많았던 상품 / 클릭이 발생한 혜택 / 반응이 좋았던 장면</b></div>
+      <details class="idd"><summary>기록 항목 · 원문 · 출처</summary>
+        <table class="itbl">
+          <thead><tr><th style="width:150px">기록할 것</th><th>무엇을 알 수 있나</th></tr></thead>
+          <tbody>
+            <tr><td><b>이탈이 적었던 구간</b></td><td>어떤 내용을 말할 때 사람이 안 나갔나</td></tr>
+            <tr><td><b>질문이 많았던 상품</b></td><td>관심은 있는데 확신이 없는 지점</td></tr>
+            <tr><td><b>클릭이 발생한 혜택</b></td><td>어떤 쿠폰 · 사은품이 실제로 눌렸나</td></tr>
+            <tr class="hl"><td><b>반응이 좋았던 장면</b></td><td>숏클립으로 분리해 재활용 <span class="est">①과 연결</span></td></tr>
+          </tbody>
+        </table>
+        <div class="ic-p">원문 지적 — <b>“성과도 총 시청 수만으로 판단하지 않는 것이 좋습니다.
+          방송 유입, 상품 클릭, 결제, 다시보기 반응을 함께 살펴야 합니다.”</b></div>
+        <div class="ic-s">“방송 결과를 기록해야 다음 라이브의 전환 구조가 달라집니다.” — <b>첫 방송부터 높은 판매량을 목표로 잡지 말 것</b>을 명시적으로 권고합니다.<br>
+          출처: i-boss 6141-71418 (2026-08-03)</div>
+      </details>
+    </div>
+
+        <div class="ic">
+        <div class="ic-h">③ 시청자 유입 광고 추가 매체 <span class="est">17종 비교</span></div>
+        <div class="ic-k">1만명당 유입 단가가 매체별로 <b>3.75만원 ~ 40만원</b>까지 <b>10배 이상</b> 벌어집니다.
+          시청자 보장형 · 노출 기준 · 클릭 기준 · 조회완료 기준으로 <b>과금 방식도 제각각</b>입니다.</div>
+        <div class="ic-c">우리 카테고리 실측 근거가 있는 건 <b>캐시워크 돈버는라방</b>(디지털/가전 <b>+535%</b>) ·
+          비용 리스크가 0인 건 <b>네이버 CPS</b>뿐 · 단가 최저는 <b>OK캐쉬백 라이브모아</b>(3.75만원)</div>
+        <details class="idd"><summary>매체 17종 전체 비교표</summary>
+          <table class="itbl">
+            <thead><tr><th style="width:132px">상품</th><th style="width:66px">시청자</th><th style="width:70px">현재가</th><th style="width:60px">1만명당</th><th>핵심 특성 · 타겟</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>OK캐쉬백 라이브모아</b></td><td>80,000명</td><td>300,000원</td><td><b>3.75만원</b></td><td><b>방송 종료 후에도 유입</b> — 방송 전 24h + 당일 23:59까지 노출 지속 · 30~40대<br>→ 심야 방송이어도 다음날 0시까지 유입이 이어짐</td></tr>
+              <tr><td>캐시닥 용돈라방</td><td>50,000명</td><td>250,000원</td><td>5.0만원</td><td><b>3개 앱 동시 송출</b>(캐시닥·타임스프레드·지니어트) · 타임스프레드 10~20대 + 캐시닥/지니어트 30~50대 혼합 · 생필품 강세</td></tr>
+              <tr class="hl"><td><b>캐시워크 돈버는라방</b></td><td>200,000명</td><td>1,000,000원</td><td>5.0만원</td><td>MAU 1,800만 · 50~60대 · 여성 70% · 소비재/식품 집행 多 · 세팅이 빨라 급한 일정도 가능<br>→ <b>디지털/가전 카테고리 효과 +535%(실측) — 우리 카테고리 유일한 근거</b></td></tr>
+              <tr><td>돈버는라방 + 용돈라방 패키지</td><td>260,000명</td><td>1,300,000원</td><td>5.0만원</td><td>캐시워크 + 캐시닥 묶음 — 50~60대와 10~50대를 한 번에 커버</td></tr>
+              <tr><td>토스 라이브 마켓 보기</td><td>50,000명</td><td>300,000원</td><td>6.0만원</td><td>MAU 1,900만 · <b>전 연령 가장 고름</b>(20대19·30대20·40대20·50대+31) · 남녀 51:49 · 방송 전 24h 노출 + 시작 시각 푸시 발송<br>⚠ 10~12시 · 19~21시는 <b>골든타임 할증</b></td></tr>
+              <tr><td>라이브모아 프리미엄패키지</td><td>200,000명</td><td>1,200,000원</td><td>6.0만원</td><td>라이브모아 대형 구좌 — 단일 매체로 20만 유입</td></tr>
+              <tr><td>Syrup 모이는라방</td><td>70,000명</td><td>400,000원</td><td>5.7만원</td><td>20~30대 타겟 · 뷰티·식품·소형가전 위주 · OK캐쉬백 포인트 적립 + 시럽 앱 푸시</td></tr>
+              <tr><td>OK캐쉬백 오라방</td><td>120,000명</td><td>1,600,000원</td><td><b>13.3만원</b></td><td>30~40대 70% · 구매액 3% OK캐쉬백 적립을 홍보 문구로 활용 가능 · <b>네이버 쇼핑라이브 앱 내 동시송출</b></td></tr>
+              <tr><td>신한SOL페이 라방 플러스</td><td>20,000명</td><td>300,000원</td><td><b>15.0만원</b></td><td><b>구매력 검증 유저</b>(신한 신용카드 고객) · 30~40대 여성 41% · 출산/육아 강세<br>→ 유입 단가는 비싸지만 전환율이 다름 · 애즈순 집행 <b>5,888건으로 최다</b></td></tr>
+              <tr><td>KB PAY 라방보고 적립</td><td>노출 20만 회</td><td>200,000원</td><td>—</td><td>여행 특화 — 지면 노출 방송의 절반 이상이 여행 카테고리 · <b>노출 기준 과금</b>(시청자 보장 아님)</td></tr>
+              <tr><td>버즈빌 라이브커머즈 2.0</td><td>클릭 10만 회</td><td>1,000,000원</td><td>—</td><td>오퍼월 네트워크 — 여러 앱에 분산 노출 · <b>클릭 기준 과금</b></td></tr>
+              <tr><td>에이블리 라이브쇼핑 구경하기</td><td>600명</td><td>20,000원</td><td>33만원</td><td>패션·여성 플랫폼 · 헤택탭 노출 → 유입 단가는 최악이지만 2만원으로 테스트 가능 <span class="est">소액 테스트용</span></td></tr>
+              <tr><td>에스나인 마케팅</td><td>1,000명</td><td>20,000원</td><td>20만원</td><td>소규모 대행형 · 최소 예산 진입 <span class="est">소액 테스트용</span></td></tr>
+              <tr><td>롯데카드 라방보고 미니받기</td><td>1,000명</td><td>40,000원</td><td>40만원</td><td>롯데카드 회원 · 소액 <span class="est">소액</span></td></tr>
+              <tr class="hl"><td><b>네이버 쇼핑라이브 부스터</b></td><td>150,000명</td><td>1,000,000원</td><td>6.67만원</td><td>네이버 직접 상품 · N페이 포인트탭 미션배너 · 예고(당일 0시)~다시보기(자정) 전 구간 · 알림받기 동의자 푸시 자동 · <b>소재 제작 불필요</b>(라이브ID+채널ID만)<br>→ N페이 회원 = 이미 결제하는 유저 <span class="est">2026-07 신규 · 집행이력 거의 없음</span></td></tr>
+              <tr class="hl"><td><b>네이버 쇼핑라이브 CPS</b></td><td>—</td><td><b>0원~</b></td><td>판매 시 과금</td><td><b>ROAS 500% 보장</b> · 최소 광고비 없음 · 결제액 10% N페이 포인트 적립(네이버 부담) · 라이브 당일~D+6일 7일 노출 · 소재 불필요<br>→ <b>실패해도 비용이 발생하지 않는 유일한 구조</b> <span class="est">2026 신규 · 집행 0건</span></td></tr>
+              <tr><td>NAP리워 CPCV</td><td>40,000명</td><td>1,000,000원</td><td>25만원</td><td><b>조회 완료 기준 과금</b>(CPCV) — 단순 노출이 아닌 일정 시간 시청에 과금 <span class="est">집행 2건</span></td></tr>
+            </tbody>
+          </table>
+          <div class="ic-s">과금 방식이 <b>시청자 보장 / 노출 기준 / 클릭 기준 / 조회완료 기준 / 판매 시</b>로 나뉘므로
+            1만명당 단가만으로 직접 비교되지 않는 매체가 섞여 있습니다.<br>
+            ※ <b>네이버 부스터·CPS</b>는 B-3 GFA 카드에서 상세히 다룹니다</div>
+        </details>
+      </div>
+</div>
+    </details>
+
+  <h2>확정 일정 — 유입광고 <span style="font-weight:600;font-size:11.5px;color:#8a8a8f;">(2026. 08. 21.(금) 기준)</span><span class="src mtg">구두 공유</span></h2>
+  <table class="act">
+    <thead><tr><th style="width:104px">일자</th><th style="width:92px">채널</th><th style="width:56px">시간</th><th style="width:52px">구분</th><th style="width:74px">상태</th></tr></thead>
+    <tbody>
+      <tr><td class="who">8월 18일 (화)</td><td class="fac">카카오 플친</td><td>21:00</td><td>야간</td><td><span class="st done">집행 완료</span></td></tr>
+      <tr><td class="who">8월 23일 (일)</td><td class="fac">네이버 GFA</td><td>11:00</td><td>오전</td><td><span class="st soon">D-2</span></td></tr>
+      <tr><td class="who">8월 26일 (수)</td><td class="fac">카카오 플친</td><td>21:00</td><td>야간</td><td><span class="st next">D-5</span></td></tr>
+      <tr><td class="who">8월 31일 (월)</td><td class="fac">네이버 GFA</td><td>11:00</td><td>오전</td><td><span class="st next">D-10</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>다음 단계<span class="src mtg">회의</span></h2>
+  <table class="act">
+    <thead><tr><th style="width:84px">담당</th><th style="width:80px">요인</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td class="who">김경완</td><td class="fac">B-1 플친</td><td>카카오 플러스친구 <b>추가 업데이트</b> 발생 시 전략 반영 · 공유</td></tr>
+      <tr><td class="who">김경완</td><td class="fac">광고</td><td><b>GFA 이전 세팅 내역</b>(콘텐츠 · 설정) 파악 → 유지 여부 논의</td></tr>
+      <tr><td class="who">김경완</td><td class="fac">전체</td><td><b>테스트 방향성 · 실행 계획</b> 정리해 팀 공유</td></tr>
+      <tr><td class="who">김리우</td><td class="fac">A-3 호스트</td><td>미남재형 — <b>마진율 25% 확보 손익분기 매출</b> 산출 → 집행 판단</td></tr>
+      <tr><td class="who">김리우</td><td class="fac">A-3 호스트</td><td>김성경 · 김예슬 <b>특징 정리</b> (매출 · 시청자 유입 차이)</td></tr>
+      <tr><td class="who">김리우</td><td class="fac">A-3 호스트</td><td><b>채팅수 1.67배 차이</b>의 구체적 요인 분석</td></tr>
+      <tr><td class="who">이태훈</td><td class="fac">전체</td><td>이전 캠페인 <b>현장 세부 요인</b> 정리해 전달</td></tr>
+      <tr><td class="who">그룹</td><td class="fac">B-3 GFA</td><td><b>상시 집행 전환 + 예산 16만 → 30만원</b> 증액 테스트</td></tr>
+      <tr><td class="who">그룹</td><td class="fac">A-2 요일</td><td><b>월요일 오전 트래픽 확보</b> — 주말 예약 라이브 광고</td></tr>
+      <tr><td class="who">그룹</td><td class="fac">A-1 시간대</td><td><b>야간 전용 혜택</b> 설계 — 신규 제품 선공개 · 알림 설정자 옵션</td></tr>
+      <tr><td class="who">그룹</td><td class="fac">A-1 시간대</td><td>오전 <b>환불 방어</b> — 판매 전 사이즈 · 사용법 안내</td></tr>
+      <tr><td class="who">그룹</td><td class="fac">A-4 상품</td><td>시간대별 <b>세트 · 단품 구성 변경</b> 테스트</td></tr>
+    </tbody>
+  </table>
+
+  <details class="appx"><summary>부록 — 분석 범위 · 추정 근거 · 한계</summary>
+    <div class="appx-body">
+      <div class="ev-sec"><div class="ev-t">분석 범위</div>
+        <table class="kpi">
+          <thead><tr><th>분석 회차</th><th>데이터 기간</th><th>누적 추가매출</th><th>추적 요인</th></tr></thead>
+          <tbody><tr>
+            <td><div class="ktop"><span class="big num">13<span class="u">회차</span></span></div><span class="d num">전체 18회 중</span></td>
+            <td><div class="ktop"><span class="big num">04.30 ~ 07.21</span></div><span class="d">83일간</span></td>
+            <td><div class="ktop"><span class="big num">1억 5,516<span class="u">만원</span></span></div><span class="d num">회차 평균 1,194만원</span></td>
+            <td><div class="ktop"><span class="big num">7<span class="u">개</span></span></div><span class="d">확정 3 · 보류 1 · 테스트 3</span></td>
+          </tr></tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="nt">왜 13회차인가</span>
+        <ul class="bl">
+          <li><b>18회차(8/10)</b> — 토스 리워드. 1회성 + 태깅 없이 광고 집행 → 별도 분리</li>
+          <li><b>14~17회차</b> — 춈미 언급 이후 품절 발생. 매출 조건이 달라짐 → 제외</li>
+          <li>조건이 일관된 <b>13회차</b>만 남김</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <footer>네이버 쇼핑라이브 요인 분석 · 13회차 기준(2026-04-30 ~ 07-21) · 데이터 출처 BigQuery(barybody-easypos)</footer>
+
+</div>
+</body>
+</html>

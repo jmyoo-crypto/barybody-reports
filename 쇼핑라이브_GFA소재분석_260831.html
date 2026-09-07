@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GFA 라이브 소재 성과 — 2026-08-31</title>
+<style>
+
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    color:#1d1d1f; background:#ececed; padding:28px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:880px; margin:0 auto; background:#fff; padding:42px 48px 36px;
+    box-shadow:0 4px 24px rgba(0,0,0,.10); border-radius:10px;}
+  .num{font-variant-numeric:tabular-nums;}
+
+  header{border-bottom:3px solid #b10202; padding-bottom:16px; margin-bottom:22px;}
+  .date{float:right; font-size:12px; color:#9a9a9f; margin-top:4px; text-align:right;}
+  .eyebrow{font-size:12px; font-weight:700; letter-spacing:.12em; color:#b10202;}
+  h1{font-size:25px; font-weight:800; margin-top:6px; letter-spacing:-.01em;}
+  .sub{font-size:13px; color:#6b6b70; margin-top:6px;}
+
+  .decision{background:#fdf2f2; border:1px solid #f3cccc; border-left:5px solid #b10202;
+    border-radius:8px; padding:14px 20px; margin-bottom:10px;}
+  .decision .lbl{display:inline-block; font-size:11px; font-weight:800; color:#fff; background:#b10202;
+    padding:2px 9px; border-radius:5px; margin-bottom:8px; letter-spacing:.02em;}
+  .decision ul{list-style:none;}
+  .decision li{font-size:14px; font-weight:700; padding-left:14px; position:relative; margin:4px 0;}
+  .decision li::before{content:''; position:absolute; left:2px; top:9px; width:5px; height:5px;
+    border-radius:50%; background:#b10202;}
+  .decision b{color:#b10202;}
+  .purpose{font-size:12.5px; color:#6b6b70; margin-bottom:22px; padding-left:2px;}
+  .purpose b{color:#1d1d1f;}
+
+  h2{font-size:15px; font-weight:800; margin:26px 0 10px; padding-left:11px; border-left:4px solid #b10202;}
+  .lead{font-size:12.5px; color:#6b6b70; margin:-4px 0 10px 11px;}
+
+  /* 우선순위 표 */
+  table{width:100%; border-collapse:collapse;}
+  table.pri{font-size:12.8px;}
+  table.pri thead th{background:#b10202; color:#fff; font-weight:700; padding:7px 11px;
+    text-align:left; font-size:11.5px; white-space:nowrap;}
+  table.pri td{border:1px solid #e2e2e4; padding:9px 11px; vertical-align:middle;}
+  table.pri td.rk{text-align:center; font-weight:800; font-size:15px; color:#b10202; width:44px;}
+  table.pri td.nm{font-weight:800;}
+  table.pri td.nm small{display:block; font-weight:600; color:#8a8a8f; font-size:11px; margin-top:2px;}
+  table.pri td.fc{color:#8a8a8f; font-weight:700; font-size:11.5px; white-space:nowrap; width:78px;}
+  table.pri td.ef{text-align:right; font-weight:800; color:#1e7a36;
+    font-variant-numeric:tabular-nums; white-space:nowrap;}
+  table.pri td.lv{text-align:center; width:60px;}
+  .lvb{font-size:10.5px; font-weight:800; padding:2px 8px; border-radius:4px; white-space:nowrap;}
+  .lvb.a{background:#e8f4ec; color:#1e7a36;}
+  .lvb.b{background:#fdf6e8; color:#8a5d06;}
+  .lvb.c{background:#fbeaea; color:#b10202;}
+
+  /* 요인 카드 */
+  .issue{border:1px solid #e2e2e4; border-radius:8px; margin-top:12px; overflow:hidden;}
+  .i-head{display:flex; align-items:center; gap:9px; padding:10px 16px; background:#f7f7f8;
+    border-bottom:1px solid #e2e2e4; font-size:14.5px; font-weight:800;}
+  .i-head .fno{font-size:11px; font-weight:800; color:#8a8a8f; letter-spacing:.04em;}
+  .tag{font-size:11px; font-weight:800; padding:2px 9px; border-radius:5px; white-space:nowrap;
+    background:#f0f0f2; color:#3a3a3f;}
+  .tag.on{background:#e8f4ec; color:#1e7a36;}
+  .tag.hold{background:#f0f0f2; color:#6b6b70;}
+  .tag.test{background:#eef2fb; color:#2c4d9b;}
+  .tag.wt{background:#fdf6e8; color:#8a5d06;}
+
+  /* 테스트 카드 */
+  .tc{border:1px solid #e6e6e9; border-radius:7px; margin:0 0 10px; overflow:hidden; background:#fff;}
+  .tc:last-of-type{margin-bottom:0;}
+  .tc-h{display:flex; align-items:center; gap:8px; padding:8px 13px; background:#f4f6f9;
+    border-bottom:1px solid #e6e6e9; font-size:13.2px; font-weight:800;}
+  .tc-h .pri{font-size:10px; font-weight:800; color:#fff; background:#b10202;
+    padding:2px 7px; border-radius:4px; letter-spacing:.02em;}
+  .tc-h .pri.n{background:#8a8a8f;}
+  dl.tcb{display:grid; grid-template-columns:48px 1fr; font-size:12.9px;}
+  dl.tcb dt{font-weight:800; font-size:11px; color:#8a8a8f; padding:8px 0 8px 13px;
+    border-bottom:1px solid #f2f2f4; letter-spacing:.03em;}
+  dl.tcb dd{margin:0; padding:8px 13px 8px 6px; border-bottom:1px solid #f2f2f4;}
+  dl.tcb dt:last-of-type, dl.tcb dd:last-of-type{border-bottom:0;}
+  dl.tcb dd.mz{background:#f9fbf9; font-weight:700; color:#1e7a36;}
+  dl.tcb b{font-weight:800;}
+
+  .dev{padding:14px 18px 13px;}
+  .dev-t{font-size:10.5px; font-weight:800; color:#b10202; letter-spacing:.09em; margin-bottom:9px;}
+  .more-t{font-size:10.5px; font-weight:800; color:#8a8a8f; letter-spacing:.09em; margin:12px 0 6px;}
+  .nxt{background:#fcfaf5; border-top:1px solid #f0f0f2; padding:11px 18px 12px;}
+  .nxt-t{font-size:10.5px; font-weight:800; color:#8a5d06; letter-spacing:.09em; margin-bottom:5px;}
+  .nxt ul.bl li{font-size:12.8px;}
+
+  ul.bl{list-style:none; font-size:13.2px;}
+  ul.bl li{position:relative; padding-left:13px; margin:4px 0;}
+  ul.bl li::before{content:''; position:absolute; left:2px; top:8px; width:4px; height:4px;
+    border-radius:50%; background:#c2c2c8;}
+  ul.bl ul.sl{list-style:none; margin:5px 0 3px; padding:0;}
+  ul.bl ul.sl li{position:relative; padding-left:22px; margin:3px 0; font-size:12.6px; color:#4a4a50;}
+  ul.bl ul.sl li::before{content:attr(data-k); position:absolute; left:2px; top:0; width:auto; height:auto;
+    background:none; border-radius:0; font-weight:800; font-size:11.8px; color:#8a8a8f;}
+  ul.bl li.g::before{background:#1e7a36;}
+  ul.bl li.r::before{background:#b10202;}
+  ul.bl b{font-weight:700;}
+
+  .grp{margin:0 0 11px;}
+  .grp:last-child{margin-bottom:0;}
+  .gl{display:inline-block; font-size:10.5px; font-weight:800; padding:2px 9px; border-radius:4px;
+    background:#eceff3; color:#4a5160; margin-bottom:5px; letter-spacing:.02em;}
+  .gl.am{background:#e8f4ec; color:#1e7a36;}
+  .gl.pm{background:#eceaf5; color:#5b4b9e;}
+  .gl.rd{background:#fbeaea; color:#b10202;}
+  .gl.wt{background:#fdf6e8; color:#8a5d06;}
+
+  /* 근거 접기 */
+  details.ev{border-top:1px solid #e8e8ea; background:#fafafb;}
+  details.ev summary{cursor:pointer; padding:9px 18px; font-size:11.5px; font-weight:800; color:#7a7a80;
+    list-style:none; display:flex; align-items:center; gap:7px; user-select:none;}
+  details.ev summary::-webkit-details-marker{display:none;}
+  details.ev summary::before{content:'▸'; font-size:10px; color:#a8a8ad; display:inline-block;}
+  details.ev[open] summary::before{content:'▾';}
+  details.ev summary:hover{background:#f2f2f4; color:#3a3a3f;}
+  details.ev summary .hint{margin-left:auto; font-weight:700; color:#a8a8ad; font-size:10.5px;}
+  .ev-body{padding:4px 18px 15px; border-top:1px solid #eeeef0;}
+  .ev-sec{margin-top:11px;}
+  .ev-t{font-size:10.5px; font-weight:800; color:#8a8a8f; letter-spacing:.08em; margin-bottom:5px;}
+  .ev-body ul.bl{font-size:12.7px;}
+
+  .scroll{overflow-x:auto; margin-top:10px;}
+  table.mini{font-size:12.1px; min-width:560px;}
+  table.mini th{background:#f2f2f4; color:#6b6b70; font-weight:700; padding:6px 9px; text-align:right;
+    border:1px solid #e9e9eb; white-space:nowrap;}
+  table.mini th:first-child{text-align:left;}
+  table.mini td{border:1px solid #e9e9eb; padding:6px 9px; text-align:right; background:#fff;
+    font-variant-numeric:tabular-nums; white-space:nowrap;}
+  table.mini td:first-child{text-align:left; font-weight:700;}
+  table.mini tr.hi td{background:#f3f9f4;}
+  table.mini .gap{color:#1e7a36; font-weight:800;}
+  table.mini .gapd{color:#b10202; font-weight:800;}
+
+  table.act{font-size:12.7px;}
+  table.act th{background:#b10202; color:#fff; font-weight:700; padding:7px 11px; text-align:left; font-size:11.5px;}
+  table.act td{border:1px solid #e2e2e4; padding:8px 11px; vertical-align:top;}
+  table.act td.who{font-weight:800; white-space:nowrap;}
+  table.act td.fac{color:#8a8a8f; font-weight:700; white-space:nowrap; font-size:11.5px;}
+
+  table.kpi{font-size:13px;}
+  table.kpi thead th{background:#8a8a8f; color:#fff; font-weight:700; padding:7px 12px; text-align:left; font-size:12px;}
+  table.kpi td{border:1px solid #e2e2e4; padding:10px 12px; vertical-align:top;}
+  table.kpi .ktop{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;}
+  table.kpi .big{font-size:17px; font-weight:800; letter-spacing:-.02em;}
+  table.kpi .big .u{font-size:11px; color:#8a8a8f; font-weight:700; margin-left:1px;}
+  table.kpi .d{font-size:11px; color:#8a8a8f; font-weight:700; display:block; margin-top:3px;}
+  .src{display:inline-block; font-size:9.5px; font-weight:800; letter-spacing:.02em; padding:1px 5px; border-radius:3px; margin-left:5px; vertical-align:1px; white-space:nowrap;}
+  .src.ai{background:#ede9fe; color:#5b21b6;}
+  .src.mtg{background:#e8f3ec; color:#1e7a36;}
+  .st{display:inline-block; font-size:10px; font-weight:800; padding:1px 6px; border-radius:3px; white-space:nowrap;}
+  .st.done{background:#e8e8ea; color:#6a6a70;}
+  .st.soon{background:#fdecec; color:#b10202;}
+  .st.next{background:#eef3fa; color:#2b5aa8;}
+  .ann{font-size:11px; font-weight:700; color:#6a6a70; background:#f0f0f2; border-radius:3px; padding:1px 6px; margin-left:6px; white-space:nowrap;}
+  .src.res{background:#fff4e5; color:#a35a00;}
+  details.ideabox{margin:12px 16px 14px; border:1px solid #f0dcbe; border-radius:9px; background:#fffdf8; overflow:hidden;}
+  details.ideabox.top{margin:0 0 4px;}
+  details.ideabox > summary{list-style:none; cursor:pointer; padding:10px 14px; display:flex; align-items:center; gap:9px; background:#fff6e9;}
+  details.ideabox > summary::-webkit-details-marker{display:none;}
+  details.ideabox > summary::before,details.ideabox > summary::after{content:none; display:none;}
+  details.ideabox > summary:hover{background:#fff0da;}
+  details.ideabox[open] > summary{border-bottom:1px solid #f0dcbe;}
+  details.ideabox .ibt{font-size:12.4px; font-weight:800; color:#7a4a00;}
+  details.ideabox .ibn{font-size:10.5px; font-weight:800; color:#a3762f; background:#fff; border:1px solid #f0dcbe; border-radius:10px; padding:1px 7px;}
+  details.ideabox .ibm{margin-left:auto; font-size:11.5px; font-weight:700; color:#c9a366;}
+  details.ideabox:not([open]) .ibm::after{content:'＋  펼치기';}
+  details.ideabox[open] .ibm::after{content:'－  접기';}
+  details.ideabox .ideabody{padding:12px 14px 4px;}
+  details.ideabox .ic{border:1px solid #f0e4d2; border-left:3px solid #e8b563; background:#fff;}
+  details.ideabox .ic-h{color:#7a4a00;}
+  .idea{margin:12px 16px 14px; padding:12px 14px; background:#fbfbfc; border:1px solid #e6e6e9; border-radius:9px;}
+  .idea-t{font-size:12px; font-weight:800; color:#1d1d1f; letter-spacing:.02em; margin-bottom:10px;}
+  .ic{background:#fff; border:1px solid #ececef; border-radius:8px; padding:12px 14px; margin-bottom:9px;}
+  .ic:last-child{margin-bottom:0;}
+  .ic-h{font-size:12.8px; font-weight:800; color:#1d1d1f; margin-bottom:9px;}
+  .ic-alert{background:#fdf3f3; border:1px solid #f3d6d6; border-radius:7px; padding:10px 13px; font-size:12.2px; color:#7a1212; line-height:1.95;}
+  .ic-alert b{color:#b10202; font-weight:800;}
+  .ic-q{background:#f7f7f8; border-left:3px solid #c9c9ce; border-radius:0 6px 6px 0; padding:9px 13px; font-size:12.1px; color:#4a4a50; line-height:1.85;}
+  .ic-q .qd{display:block; font-size:10.5px; font-weight:800; color:#8a8a8f; margin-bottom:4px;}
+  .ic-q b{color:#1d1d1f;}
+  .ic-p{font-size:12px; color:#6a6a70; margin:9px 0 6px;}
+  table.itbl{width:100%; border-collapse:collapse; font-size:12.1px; margin:8px 0 2px;}
+  table.itbl th{background:#f4f4f6; color:#6a6a70; font-weight:700; font-size:10.8px; text-align:left; padding:6px 10px; border-bottom:1px solid #e6e6e9;}
+  table.itbl td{padding:7px 10px; border-bottom:1px solid #f0f0f2; vertical-align:top; color:#3a3a40;}
+  table.itbl tr:last-child td{border-bottom:none;}
+  table.itbl tr.hl td{background:#f2f8f4;}
+  table.itbl .est{font-size:10px; font-weight:700; color:#8a8a8f; background:#f0f0f2; border-radius:3px; padding:1px 5px; margin-left:4px;}
+  .idea.top{margin:0 0 4px; background:#fff; border:none; padding:0;}
+  .idea.top .ic{border:1px solid #e6e6e9;}
+  .ic-k{font-size:12.2px; color:#4a4a50; line-height:1.8; margin-bottom:5px;}
+  .ic-k b{color:#b10202; font-weight:800;}
+  details.idd{margin-top:8px; border-top:1px dashed #ececef; padding-top:6px;}
+  details.idd summary{cursor:pointer; list-style:none; font-size:11px; font-weight:700; color:#9a9aa0;}
+  details.idd summary::-webkit-details-marker{display:none;}
+  details.idd summary::before{content:'＋ '; color:#b8b8be;}
+  details.idd[open] summary::before{content:'－ ';}
+  details.idd summary:hover{color:#1d1d1f;}
+  .ic-c{margin-top:9px; padding-top:9px; border-top:1px dashed #e6e6e9; font-size:12.2px; color:#1d1d1f; line-height:1.8;}
+  .ic-c::before{content:'👉 '; }
+  .ic-s{margin-top:7px; font-size:10.8px; color:#9a9aa0; line-height:1.7;}
+  .ic-s .old{display:inline-block; background:#fdf0e6; color:#a35a00; font-weight:800; border-radius:3px; padding:1px 5px; margin:0 4px;}
+  .sch{background:#f2f8f4; border-left:3px solid #1e7a36; border-radius:0 6px 6px 0; padding:7px 12px; margin:9px 0 0; font-size:12.3px; color:#1d1d1f; line-height:1.75;}
+  .sch .sl{display:inline-block; font-weight:800; color:#1e7a36; font-size:10.5px; letter-spacing:.03em; margin-right:8px; vertical-align:1px;}
+  .sch b{font-weight:700;}
+  .sch .sd{color:#8a8a8f;}
+  .srcbar{background:#fafafb; border:1px solid #e6e6e9; border-radius:8px; padding:10px 14px; margin:12px 0 4px; font-size:12px; color:#555; line-height:1.9;}
+  .srcbar b{color:#1d1d1f;}
+
+  .note{background:#f7f7f8; border-radius:8px; padding:12px 15px; font-size:12.2px; color:#555; margin-top:12px;}
+  .note .nt{font-weight:800; color:#1d1d1f; display:block; margin-bottom:5px;}
+  .note b{color:#1d1d1f;}
+  .note ul.bl{font-size:12.2px;}
+  .note ul.bl li{margin:2px 0;}
+
+  details.appx{border:1px solid #e2e2e4; border-radius:8px; margin-top:12px; background:#fafafb;}
+  details.appx summary{cursor:pointer; padding:11px 16px; font-size:13px; font-weight:800; color:#4a5160;
+    list-style:none; display:flex; align-items:center; gap:8px; user-select:none;}
+  details.appx summary::-webkit-details-marker{display:none;}
+  details.appx summary::before{content:'▸'; font-size:11px; color:#a8a8ad;}
+  details.appx[open] summary::before{content:'▾';}
+  details.appx summary:hover{background:#f2f2f4;}
+  .appx-body{padding:2px 16px 16px; border-top:1px solid #eeeef0;}
+
+  footer{margin-top:22px; padding-top:12px; border-top:1px solid #e2e2e4; font-size:11px; color:#a8a8ad; text-align:center;}
+
+  @media print{
+    body{background:#fff; padding:0;}
+    .page{box-shadow:none; border-radius:0; max-width:100%; padding:24px 28px;}
+    .issue, .tc{break-inside:avoid;}
+  }
+
+
+  /* GFA 분석 전용 */
+  table.gt{font-size:12.6px; margin-top:6px;}
+  table.gt thead th{background:#3a3a3f; color:#fff; font-weight:700; padding:6px 9px;
+    text-align:right; font-size:11px; white-space:nowrap;}
+  table.gt thead th:first-child{text-align:left;}
+  table.gt td{border:1px solid #e2e2e4; padding:7px 9px; text-align:right;
+    font-variant-numeric:tabular-nums; white-space:nowrap;}
+  table.gt td:first-child{text-align:left; font-weight:700;}
+  table.gt tr.win td{background:#f4faf6;}
+  table.gt tr.lose td{background:#fdf5f5;}
+  table.gt td.pos{color:#1e7a36; font-weight:800;}
+  table.gt td.neg{color:#b10202; font-weight:800;}
+  table.gt tr.sum td{background:#f0f0f2; font-weight:800; border-top:2px solid #3a3a3f;}
+  .kpi{display:flex; gap:10px; margin:14px 0 4px; flex-wrap:wrap;}
+  .kpi div{flex:1; min-width:112px; border:1px solid #e2e2e4; border-radius:7px; padding:9px 12px;}
+  .kpi .k{font-size:10.5px; font-weight:800; color:#8a8a8f; letter-spacing:.05em;}
+  .kpi .v{font-size:19px; font-weight:800; margin-top:3px; font-variant-numeric:tabular-nums;}
+  .kpi .v.g{color:#1e7a36;} .kpi .v.r{color:#b10202;}
+  .kpi .n{font-size:10.5px; color:#8a8a8f; margin-top:2px;}
+  table.gt td.cmp{text-align:left; font-weight:600; color:#4a5160; font-size:11.6px;}
+  table.gt.mt td:first-child{font-size:11.8px;}
+  .why{border-left:3px solid #e2e2e4; padding:2px 0 2px 13px; margin:9px 0;}
+  .why b.h{display:block; font-size:13.4px; margin-bottom:3px;}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="date">라이브 2026. 08. 31.(월) 25회차<br>데이터 ~ 08. 31.</div>
+  <div class="eyebrow">쇼핑라이브 요인 분석 · B-3 GFA</div>
+  <h1>GFA 라이브 소재 성과</h1>
+  <div class="sub">파라미터(<b>wjd</b>) 적용 첫 회차 — 유입·전환을 소재 단위로 분리한 최초 데이터</div>
+</header>
+
+<div class="decision">
+  <span class="lbl">결론</span>
+  <ul>
+    <li><b>ROAS 2.42</b> — 손익분기 1.73을 넘겨 <b>+151,810원</b> 남았어요. 집행 자체는 잘한 판단</li>
+    <li>다만 예산의 <b>40%가 손익분기 아래</b> — 피드 지면과 맞춤 타겟이 까먹었어요</li>
+    <li>다음엔 <b>SD × (스타 · 알림)</b>에 몰아주세요. 그 조합만 ROAS 4.35~4.95</li>
+  </ul>
+</div>
+<div class="purpose">이 문서는 <b>“GFA를 할까 말까”가 아니라 “어디에 얼마를 넣을까”</b>를 정하기 위한 것입니다.
+소재를 <b>클릭 수가 아니라 클릭한 사람이 사는가</b>로 평가합니다.</div>
+
+<div class="kpi">
+  <div><div class="k">광고비</div><div class="v">381,973원</div><div class="n">역대 최대 · 6/30의 2배</div></div>
+  <div><div class="k">클릭</div><div class="v">636</div><div class="n">CTR 0.76% · CPC 601원</div></div>
+  <div><div class="k">전환매출</div><div class="v">923,500원</div><div class="n">전환 16건</div></div>
+  <div><div class="k">ROAS</div><div class="v g">2.42</div><div class="n">손익분기 1.73</div></div>
+  <div><div class="k">손익</div><div class="v g">+151,810원</div><div class="n">채널마진율 57.8% 적용</div></div>
+</div>
+
+<h2>0. 이 요인이 무엇을 가르나</h2>
+<div class="lead">방송·상품·호스트는 그대로. 달라지는 건 누가 들어오느냐입니다.</div>
+<div class="issue">
+  <div class="i-head"><span class="tag on">🟢 확정</span><span class="fno">B-3</span> GFA 라이브 소재</div>
+  <div class="dev">
+    <div class="dev-t">디벨롭 방향</div>
+    <div class="grp">
+      <span class="gl am">SD × 스타 · 알림 — 몰아준다</span>
+      <span class="gl rd">피드 · 맞춤 — 뺀다</span>
+      <span class="gl wt">소재 평가 — CTR 말고 클릭→구매로</span>
+    </div>
+    <ul class="bl">
+      <li class="g">GFA는 <b>“어떤 사람을 데려오는가”</b>를 가르는 요인이에요 — 방송이 아니라 매대 앞에 세울 사람을 고르는 일</li>
+      <li>그래서 <b>클릭 수는 성과가 아닙니다.</b> 이번에 CTR 1위(1.90%)가 전환 0건이었어요</li>
+    </ul>
+  </div>
+</div>
+
+<h2>1. 결과</h2>
+
+<div class="dev-t" style="margin-top:14px">① 지면 — 어디에 노출했나</div>
+<table class="gt">
+<thead><tr><th>지면</th><th>광고비</th><th>노출</th><th>클릭</th><th>CTR</th><th>CPC</th><th>전환</th><th>클릭→구매</th><th>전환매출</th><th>ROAS</th><th>손익</th></tr></thead>
+<tbody>
+<tr class="win"><td>SD(스마트채널) ⭐</td><td>219,268</td><td>62,112</td><td>404</td><td>0.65%</td><td>543</td><td>13</td><td>3.22%</td><td>770,500</td><td>3.51</td><td class="pos">+226,081</td></tr>
+<tr class="lose"><td>피드 ⚠</td><td>162,705</td><td>21,745</td><td>232</td><td>1.07%</td><td>701</td><td>3</td><td>1.29%</td><td>153,000</td><td>0.94</td><td class="neg">−74,271</td></tr>
+<tr class="sum"><td>합계</td><td>381,973</td><td>83,857</td><td>636</td><td>0.76%</td><td>601</td><td>16</td><td>2.52%</td><td>923,500</td><td>2.42</td><td class="pos">+151,810</td></tr>
+</tbody></table>
+
+<div class="dev-t" style="margin-top:16px">② 타겟 — 누구에게 보여줬나</div>
+<table class="gt">
+<thead><tr><th>타겟</th><th>광고비</th><th>노출</th><th>클릭</th><th>CTR</th><th>전환</th><th>클릭→구매</th><th>전환매출</th><th>ROAS</th><th>손익</th></tr></thead>
+<tbody>
+<tr class="win"><td>스타 ⭐</td><td>155,172</td><td>20,524</td><td>288</td><td>1.40%</td><td>8</td><td>2.78%</td><td>498,800</td><td>3.21</td><td class="pos">+133,134</td></tr>
+<tr class="win"><td>알림 ⭐</td><td>123,435</td><td>11,536</td><td>179</td><td>1.55%</td><td>7</td><td>3.91%</td><td>370,700</td><td>3.00</td><td class="pos">+90,830</td></tr>
+<tr class="lose"><td>맞춤 ⚠</td><td>103,366</td><td>51,797</td><td>169</td><td>0.33%</td><td>1</td><td>0.59%</td><td>54,000</td><td>0.52</td><td class="neg">−72,154</td></tr>
+</tbody></table>
+
+<div class="dev-t" style="margin-top:16px">③ 소재 × 캠페인 — 무엇을, 어느 캠페인에서 보여줬나</div>
+<div class="lead" style="margin-left:0">같은 소재도 캠페인(타겟·지면)에 따라 성과가 갈립니다. 집행 단위 <b>19행 전수</b>입니다.</div>
+<table class="gt mt">
+<thead><tr><th>소재</th><th>캠페인</th><th>광고비</th><th>클릭</th><th>CTR</th><th>전환</th><th>클릭→구매</th><th>전환매출</th><th>ROAS</th><th>손익</th></tr></thead>
+<tbody>
+<tr class="win"><td>잔망루피_JH_260826_SD_1 ⭐</td><td class="cmp">★일>월★ 트래픽_스타_루피스틱_SD_260831</td><td>89,734</td><td>187</td><td>1.30%</td><td>8</td><td>4.28%</td><td>498,800</td><td>5.56</td><td class="pos">+198,572</td></tr>
+<tr class="win"><td>잔망루피_JH_260826_SD_1 ⭐</td><td class="cmp">트래픽_알림_루피스틱_SD_260831</td><td>50,009</td><td>80</td><td>1.53%</td><td>4</td><td>5.00%</td><td>217,700</td><td>4.35</td><td class="pos">+75,822</td></tr>
+<tr class="win"><td>JH_루피스틱_260826_1</td><td class="cmp">트래픽_알림_루피스틱_피드_260831</td><td>53,059</td><td>71</td><td>1.79%</td><td>3</td><td>4.23%</td><td>153,000</td><td>2.88</td><td class="pos">+35,375</td></tr>
+<tr class="win"><td>잔망루피_JH_260826_SD_4</td><td class="cmp">트래픽_맞춤_루피스틱_SD_260831</td><td>28,543</td><td>50</td><td>0.30%</td><td>1</td><td>2.00%</td><td>54,000</td><td>1.89</td><td class="pos">+2,669</td></tr>
+<tr class="lose"><td>JH_루피스틱_260826_3 ⚠</td><td class="cmp">트래픽_맞춤_루피스틱_피드_260831</td><td>45,381</td><td>65</td><td>0.55%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−45,381</td></tr>
+<tr class="lose"><td>JH_루피스틱_260826_2 ⚠</td><td class="cmp">트래픽_스타_루피스틱_피드_260831</td><td>42,058</td><td>63</td><td>1.96%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−42,058</td></tr>
+<tr class="lose"><td>잔망루피_JH_260826_SD_2 ⚠</td><td class="cmp">트래픽_맞춤_루피스틱_SD_260831</td><td>25,111</td><td>47</td><td>0.22%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−25,111</td></tr>
+<tr class="lose"><td>잔망루피_JH_260826_SD_8 ⚠</td><td class="cmp">트래픽_알림_루피스틱_SD_260831</td><td>12,274</td><td>19</td><td>1.22%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−12,274</td></tr>
+<tr class="lose"><td>JH_루피스틱_260826_1 ⚠</td><td class="cmp">트래픽_스타_루피스틱_피드_260831</td><td>11,542</td><td>18</td><td>1.96%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−11,542</td></tr>
+<tr class="lose"><td>잔망루피_JH_260826_SD_3 ⚠</td><td class="cmp">★일>월★ 트래픽_스타_루피스틱_SD_260831</td><td>11,099</td><td>18</td><td>1.04%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−11,099</td></tr>
+<tr class=""><td>JH_루피스틱_260826_2</td><td class="cmp">트래픽_알림_루피스틱_피드_260831</td><td>2,393</td><td>3</td><td>0.90%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−2,393</td></tr>
+<tr class=""><td>JH_루피스틱_260826_3</td><td class="cmp">트래픽_알림_루피스틱_피드_260831</td><td>2,137</td><td>2</td><td>1.31%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−2,137</td></tr>
+<tr class=""><td>JH_루피스틱_260826_4</td><td class="cmp">트래픽_알림_루피스틱_피드_260831</td><td>1,832</td><td>2</td><td>1.41%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−1,832</td></tr>
+<tr class=""><td>잔망루피_JH_260826_SD_7</td><td class="cmp">트래픽_알림_루피스틱_SD_260831</td><td>1,731</td><td>2</td><td>1.27%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−1,731</td></tr>
+<tr class=""><td>JH_루피스틱_260826_4</td><td class="cmp">트래픽_맞춤_루피스틱_피드_260831</td><td>1,518</td><td>2</td><td>0.60%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−1,518</td></tr>
+<tr class=""><td>JH_루피스틱_260826_1</td><td class="cmp">트래픽_맞춤_루피스틱_피드_260831</td><td>1,077</td><td>2</td><td>0.73%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−1,077</td></tr>
+<tr class=""><td>JH_루피스틱_260826_2</td><td class="cmp">트래픽_맞춤_루피스틱_피드_260831</td><td>969</td><td>2</td><td>0.50%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−969</td></tr>
+<tr class=""><td>잔망루피_JH_260826_SD_1</td><td class="cmp">트래픽_맞춤_루피스틱_SD_260831</td><td>767</td><td>1</td><td>0.36%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−767</td></tr>
+<tr class=""><td>JH_루피스틱_260826_3</td><td class="cmp">트래픽_스타_루피스틱_피드_260831</td><td>739</td><td>2</td><td>0.88%</td><td>0</td><td>0.00%</td><td>0</td><td>0.00</td><td class="neg">−739</td></tr>
+<tr class="sum"><td>합계 19행</td><td class="cmp">캠페인 6개</td><td>381,973</td><td>636</td><td>0.76%</td><td>16</td><td>2.52%</td><td>923,500</td><td>2.42</td><td class="pos">+151,810</td></tr>
+</tbody></table>
+<div class="why" style="margin-top:10px"><b class="h">같은 소재인데 캠페인이 갈랐어요</b>
+<ul class="bl">
+  <li class="g"><b>잔망루피_JH_260826_SD_1</b>은 3개 캠페인에서 돌았는데 — 스타_SD <b>ROAS 5.56</b> · 알림_SD <b>4.35</b> · 맞춤_SD <b>0.00</b></li>
+  <li>소재가 좋아서가 아니라 <b>어느 타겟·지면에 걸었느냐</b>가 성과를 만들었다는 뜻이에요</li>
+  <li class="r">반대로 <b>JH_루피스틱</b> 계열(피드 전용 소재)은 4개 소재 × 여러 캠페인 모두 돌렸는데 전환은 알림_피드에서 <b>3건</b>이 전부예요</li>
+</ul></div>
+
+<div class="dev-t" style="margin-top:16px">④ 광고그룹 — 지면 × 타겟 교차</div>
+<table class="gt">
+<thead><tr><th>광고그룹</th><th>광고비</th><th>클릭</th><th>CTR</th><th>전환</th><th>전환매출</th><th>ROAS</th><th>손익</th></tr></thead>
+<tbody>
+<tr class="win"><td>스타 × SD ⭐</td><td>100,833</td><td>205</td><td>1.27%</td><td>8</td><td>498,800</td><td>4.95</td><td class="pos">+187,473</td></tr>
+<tr class="win"><td>알림 × SD ⭐</td><td>50,009</td><td>80</td><td>1.53%</td><td>4</td><td>217,700</td><td>4.35</td><td class="pos">+75,822</td></tr>
+<tr class="win"><td>알림 × 피드 ⭐</td><td>53,059</td><td>71</td><td>1.79%</td><td>3</td><td>153,000</td><td>2.88</td><td class="pos">+35,375</td></tr>
+<tr><td>맞춤 × SD</td><td>28,543</td><td>50</td><td>0.30%</td><td>1</td><td>54,000</td><td>1.89</td><td class="pos">+2,669</td></tr>
+<tr class="lose"><td>스타 × 피드 ⚠</td><td>54,339</td><td>83</td><td>1.90%</td><td>0</td><td>0</td><td>0.00</td><td class="neg">−54,339</td></tr>
+<tr class="lose"><td>맞춤 × 피드 ⚠</td><td>48,945</td><td>71</td><td>0.55%</td><td>0</td><td>0</td><td>0.00</td><td class="neg">−48,945</td></tr>
+<tr class="lose"><td>맞춤 × SD (소재2) ⚠</td><td>25,878</td><td>48</td><td>0.22%</td><td>0</td><td>0</td><td>0.00</td><td class="neg">−25,878</td></tr>
+<tr class="lose"><td>알림 × 기타(소진 적음) ⚠</td><td>20,367</td><td>28</td><td>1.24%</td><td>0</td><td>0</td><td>0.00</td><td class="neg">−20,367</td></tr>
+</tbody></table>
+
+<h2>2. 왜 이렇게 갈렸나</h2>
+<div class="lead">이 리포트의 핵심. 숫자를 “어떤 사람이 왔나”로 번역합니다.</div>
+
+<div class="why"><b class="h">① 피드는 “눌러만 보고 안 삽니다”</b>
+<ul class="bl">
+  <li class="g">클릭률은 <b>피드 1.07% &gt; SD 0.65%</b>로 피드가 1.6배 높아요</li>
+  <li class="g">그런데 클릭 후 구매는 <b>SD 3.22% &gt; 피드 1.29%</b>로 SD가 2.5배</li>
+  <li>피드는 콘텐츠 사이에 섞여 나와 <b>무심코 눌리는 자리</b>, SD는 검색 맥락에서 <b>의도를 갖고 누르는 자리</b>예요</li>
+  <li class="r">그래서 클릭 수로 소재를 고르면 정확히 거꾸로 갑니다</li>
+</ul></div>
+
+<div class="why"><b class="h">② 맞춤 타겟은 노출만 먹었어요</b>
+<ul class="bl">
+  <li class="r">노출 <b>51,797회 — 전체의 62%</b>를 가져갔는데 CTR은 <b>0.33%로 최저</b>, 전환 1건</li>
+  <li>도달은 넓은데 반응이 없는 트래픽 — 타겟 정의가 너무 넓다는 신호예요</li>
+</ul></div>
+
+<div class="why"><b class="h">③ 알림 타겟이 가장 잘 삽니다</b>
+<ul class="bl">
+  <li class="g">클릭→구매 <b>3.91%로 1위</b> — 지표사전의 “알림 = 우리를 원래 알던 관심 고객”과 정확히 맞아요</li>
+  <li>다만 노출 11,536회로 <b>모수가 가장 작아</b> 확장 여지는 제한적입니다</li>
+</ul></div>
+
+<div class="why"><b class="h">④ 같은 타겟도 지면이 갈랐어요 — 가장 선명한 대비</b>
+<ul class="bl">
+  <li class="g"><b>스타 × SD</b> — CTR 1.27% · 전환 8건 · ROAS <b>4.95</b></li>
+  <li class="r"><b>스타 × 피드</b> — CTR <b>1.90%(전체 1위)</b>인데 전환 <b>0건</b> · ROAS 0.00</li>
+  <li>타겟이 문제가 아니라 <b>지면이 문제</b>라는 걸 못박는 조합이에요</li>
+</ul></div>
+
+<div class="why"><b class="h">⑤ 전환이 소재 하나에 몰렸어요</b>
+<ul class="bl">
+  <li class="g"><b>잔망루피_JH_260826_SD_1</b> 하나가 전환 16건 중 <b>12건</b>, 전환매출의 <b>78%</b></li>
+  <li class="r">10개 소재 중 <b>7개가 전환 0건</b>이고 거기에 <b>147,242원</b>이 들어갔어요</li>
+</ul></div>
+
+<h2>3. 어떻게 디벨롭할까</h2>
+
+<div class="issue">
+  <div class="i-head"><span class="tag on">🟢 살린다</span> SD × 스타 · 알림</div>
+  <div class="dev"><ul class="bl">
+    <li class="g">이 조합만 <b>ROAS 4.35~4.95</b> — 다음 집행 예산을 여기에 몰아주세요</li>
+    <li class="g"><b>잔망루피_JH_260826_SD_1</b>의 무엇이 먹혔는지 뜯어보세요(썸네일·카피·루피 IP 노출 방식) → 다음 소재 제작 기준</li>
+    <li>같은 예산을 SD에만 넣었다면 <b>+226,081원</b> — 전체를 다 돌린 +151,810원보다 1.5배</li>
+  </ul></div>
+</div>
+
+<div class="issue" style="margin-top:10px">
+  <div class="i-head"><span class="tag hold">⚫ 뺀다 · 보완</span> 피드 · 맞춤</div>
+  <div class="dev"><ul class="bl">
+    <li class="r"><b>맞춤 타겟</b> — 조건을 좁히거나 뺍니다. 노출 62% 먹고 CTR 0.33%면 낭비예요</li>
+    <li><b>피드</b>는 소재가 나쁜 게 아니라 <b>랜딩 이후가 안 받쳐주는</b> 것으로 보여요.
+        클릭은 잘 나오니 예고 페이지·방송 진입 동선을 손보고 재테스트해볼 만합니다</li>
+  </ul></div>
+</div>
+
+<div class="issue" style="margin-top:10px">
+  <div class="i-head"><span class="tag test">🔵 앞으로 무엇을 골라야 하나</span></div>
+  <div class="dev"><ul class="bl">
+    <li class="g">개별 소재명이 아니라 — <b>“의도를 갖고 누르는 자리(SD)에, 우리를 이미 아는 사람(알림)이나 그와 닮은 사람(스타)에게”</b></li>
+    <li class="g">소재 평가 기준은 <b>CTR이 아니라 클릭→구매율</b>. 이번에 CTR 1위가 전환 0이었어요</li>
+    <li>예산은 <b>늘리기 전에 옮기는 게</b> 먼저입니다 — 새는 곳(피드·맞춤 26.6만원)을 막고 재현되면 그때 증액</li>
+  </ul></div>
+</div>
+
+<div class="nxt" style="margin-top:14px">
+  <div class="nxt-t">한계 · 다음</div>
+  <ul class="bl">
+    <li class="r"><b>전환 16건이 전부입니다.</b> 소재 7개의 “0전환”도 클릭이 2~69건이라 기회 자체가 적었을 수 있어요</li>
+    <li>지면 차이(SD 404클릭 vs 피드 232클릭)는 표본이 받쳐주지만, <b>소재·광고그룹 단위 결론은 1~2회 더 확인</b> 후 확정</li>
+    <li>GFA 전환매출이 전부 증분이라는 가정이 깔려 있어요 — 특히 <b>알림 타겟은 광고 없이도 왔을 사람</b>이라 그만큼 과대평가</li>
+    <li class="g"><b>9/2~9/3</b>에 D+1·D+2 데이터가 들어오면 라이브 종료 후 잔존 효과를 확인해 덧붙일 예정</li>
+  </ul>
+</div>
+
+<footer>네이버 쇼핑라이브 · GFA 라이브 소재 요인 분석 · 2026-08-31(25회차) · 데이터 출처 BigQuery(barybody-easypos) mkt_naver_gfa</footer>
+
+</div>
+</body>
+</html>

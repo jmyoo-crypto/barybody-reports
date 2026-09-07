@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼라 광고 파라미터 추적 분석</title>
+<style>
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    color:#1d1d1f; background:#ececed; padding:26px; line-height:1.5; -webkit-font-smoothing:antialiased;}
+  .page{max-width:840px; margin:0 auto; background:#fff; padding:38px 44px 32px;
+    box-shadow:0 4px 24px rgba(0,0,0,.10); border-radius:10px;}
+  .num{font-variant-numeric:tabular-nums;} b{font-weight:700;}
+
+  header{border-bottom:3px solid #b10202; padding-bottom:14px; margin-bottom:18px;}
+  .date{float:right; font-size:11.5px; color:#9a9a9f; text-align:right;}
+  .eyebrow{font-size:11.5px; font-weight:700; letter-spacing:.12em; color:#b10202;}
+  h1{font-size:23px; font-weight:800; margin-top:5px; letter-spacing:-.01em;}
+
+  .decision{background:#fdf2f2; border:1px solid #f3cccc; border-left:5px solid #b10202;
+    border-radius:8px; padding:13px 18px; margin-bottom:20px; font-size:13.5px; line-height:1.75;}
+  .decision .lbl{display:inline-block; font-size:10.5px; font-weight:800; color:#fff; background:#b10202;
+    padding:2px 8px; border-radius:4px; margin-right:8px;}
+  .decision b{color:#b10202;}
+
+  h2{font-size:14.5px; font-weight:800; margin:24px 0 9px; padding-left:10px; border-left:4px solid #b10202;}
+  .lead{font-size:12px; color:#8a8a8f; margin:-3px 0 9px 10px;}
+
+  table{width:100%; border-collapse:collapse; font-size:12.4px;}
+  th{background:#f2f2f4; color:#6b6b70; font-weight:700; padding:6px 9px; text-align:right;
+    border:1px solid #e5e5e8; white-space:nowrap; font-size:11.3px;}
+  th:first-child{text-align:left;}
+  td{border:1px solid #e5e5e8; padding:6px 9px; text-align:right;
+    font-variant-numeric:tabular-nums; white-space:nowrap;}
+  td:first-child{text-align:left; font-weight:700; white-space:normal;}
+  tr.hi td{background:#f3f9f4;}
+  tr.bad td{background:#fdf4f3;}
+  tr.tot td{background:#f7f7f8; font-weight:800;}
+  .g{color:#1e7a36; font-weight:800;} .r{color:#b10202; font-weight:800;}
+  .scroll{overflow-x:auto;}
+  small.c{display:block; font-weight:600; color:#8a8a8f; font-size:10.8px; margin-top:1px;}
+
+  .note{background:#f7f7f8; border-radius:8px; padding:11px 14px; font-size:12px; color:#555;
+    margin-top:10px; line-height:1.75;}
+  .note.warn{background:#fdf2f2; border:1px solid #f3cccc;}
+  .note .nt{font-weight:800; color:#1d1d1f; display:block; margin-bottom:4px;}
+  .note.warn .nt{color:#b10202;}
+  .note b{color:#1d1d1f;}
+  ul{list-style:none;} li{position:relative; padding-left:13px; margin:3px 0;}
+  li::before{content:''; position:absolute; left:2px; top:8px; width:4px; height:4px;
+    border-radius:50%; background:#c2c2c8;}
+  li.g::before{background:#1e7a36;} li.r::before{background:#b10202;}
+
+  .flow{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:10px 0 4px;
+    font-size:12.3px; font-weight:700;}
+  .fb{border:1px solid #e2e2e4; border-radius:6px; padding:7px 12px; background:#fafafb;}
+  .fb.on{background:#f3f9f4; border-color:#cfe6d3; color:#1e7a36;}
+  .fb.off{background:#fdf4f3; border-color:#f1d3cf; color:#b10202;}
+  .ar{color:#a8a8ad; font-weight:800;}
+
+  footer{margin-top:20px; padding-top:11px; border-top:1px solid #e2e2e4; font-size:10.5px; color:#a8a8ad; text-align:center;}
+  @media print{body{background:#fff; padding:0;} .page{box-shadow:none; border-radius:0; max-width:100%;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <span class="date">작성 2026.09.02<br>데이터 ~09.01</span>
+    <div class="eyebrow">쇼핑라이브 · 광고 추적</div>
+    <h1>쇼라 전용 광고 파라미터 추적 분석</h1>
+  </header>
+
+  <div class="decision">
+    <span class="lbl">결론</span>
+    쇼라 전용 GFA를 <b>3회 · 71만원</b> 집행해 <b>클릭 1,018회</b>를 받았지만,
+    붙인 파라미터로 잡힌 유입은 <b>4명(0.4%)</b>입니다.
+    랜딩이 쇼핑라이브라 <b>네이버가 nshoplive로 덮어써</b> 파라미터가 유실됩니다.
+    <b>회차 단위 비교가 유일한 측정법</b>입니다.
+  </div>
+
+  <h2>1. 쇼라 전용 GFA 집행 내역 — 3회</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>집행일</th><th>비용</th><th>클릭</th><th>노출</th><th>CPC</th><th>소재</th><th>파라미터 유입</th></tr></thead>
+    <tbody>
+      <tr><td>2026-06-24 <small class="c">6회차 · 수 야간</small></td><td>139,294</td><td>130</td><td>49,712</td><td>1,071원</td><td>[쇼라]전환 6종<small class="c">타겟별 × SD·CF</small></td><td class="r">3명</td></tr>
+      <tr><td>2026-06-30 <small class="c">7회차 · 화 오전</small></td><td>189,523</td><td>252</td><td>127,901</td><td>752원</td><td>PM_ 4종<small class="c">지면별</small></td><td class="r">1명</td></tr>
+      <tr class="hi"><td>2026-08-31 <small class="c">25회차 · 월 오전</small></td><td>381,973</td><td>636</td><td>84,357</td><td class="g">601원</td><td>[네쇼라]트래픽 6종<small class="c">루피스틱 · 스타/알림/맞춤 × SD·피드</small></td><td class="r">0명</td></tr>
+      <tr class="tot"><td>합계</td><td>710,790</td><td>1,018</td><td>261,970</td><td>698원</td><td>16종</td><td class="r">4명 · 0.4%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <span class="nt">집행이 점점 커지고 효율도 좋아지고 있습니다</span>
+    비용 13.9만 → 19.0만 → <b>38.2만원</b>, CPC 1,071원 → 752원 → <b>601원</b>.
+    8/31 최고 소재는 <b>★일&gt;월 라이브★ [네쇼라] 트래픽_스타_루피스틱_SD</b> — 10.1만원에 205클릭(CPC 492원).
+  </div>
+
+  <h2>2. 파라미터가 왜 안 잡히나</h2>
+  <div class="flow">
+    <span class="fb">GFA 광고 클릭</span><span class="ar">→</span>
+    <span class="fb off">쇼핑라이브 랜딩<br><small class="c">파라미터 유실</small></span><span class="ar">→</span>
+    <span class="fb">네이버가 <b>nshoplive</b>로 자동 태깅</span><span class="ar">→</span>
+    <span class="fb off">custom_channel에 우리 태그 없음</span>
+  </div>
+  <div class="note">
+    <b>nt_ 파라미터는 스마트스토어 유입 추적용</b>입니다. 쇼핑라이브로 랜딩하면 네이버가 자체 체계
+    (<b>nt_source=nshoplive</b>, nt_medium=방송ID, nt_detail=onair/replay)로 덮어씁니다.
+    쇼라 유입 리포트에도 안 남습니다 — 6/24 클릭 130회 중 광고 항목 2명, 6/30 클릭 252회 중 1명.
+  </div>
+
+  <h2>3. 붙인 파라미터 전수 — 34일간 196명 · 9.8만원</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>nt_source</th><th>nt_keyword</th><th>기간</th><th>일수</th><th>유입</th><th>매출</th></tr></thead>
+    <tbody>
+      <tr><td>naver_gfa</td><td>img · video</td><td>06.18~08.15</td><td>22</td><td>121명</td><td class="r">0원</td></tr>
+      <tr><td>gfa</td><td>WJD_260615_* (소재번호)</td><td>06.15~08.26</td><td>9</td><td>54명</td><td class="r">0원</td></tr>
+      <tr><td>wjdct</td><td>cl_w · cl_w_1</td><td>06.17~07.23</td><td>8</td><td>9명</td><td class="g">97,900원</td></tr>
+      <tr><td>naver_brand</td><td>—</td><td>08.28~09.01</td><td>2</td><td>8명</td><td class="r">0원</td></tr>
+      <tr><td>test01 · test02</td><td>—</td><td>08.27</td><td>1</td><td>4명</td><td class="r">0원</td></tr>
+      <tr class="tot"><td>합계</td><td>—</td><td>—</td><td>34</td><td>196명</td><td>97,900원</td></tr>
+      <tr class="hi"><td>참고 · nshoplive<small class="c">네이버 자동 태깅</small></td><td>shoppinglive</td><td>05.15~09.01</td><td>110</td><td class="g">15,263명</td><td class="g">165,854,570원</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note warn">
+    <span class="nt">태깅 컨벤션이 3종으로 갈려 있습니다</span>
+    같은 GFA인데 <b>gfa</b>(소재 일련번호) · <b>naver_gfa</b>(소재 형식) · <b>wjdct</b>(별도 규칙)로 제각각입니다.
+    포착이 되더라도 집계가 안 됩니다. <b>컨벤션 통일이 먼저</b>입니다.
+  </div>
+
+  <h2>4. '사용자정의' 채널은 파라미터가 아닙니다</h2>
+  <div class="lead">all_channel의 <b>사용자정의</b>를 "우리가 심는 파라미터"로 보는 해석이 있어 검증했습니다.</div>
+  <div class="scroll"><table>
+    <thead><tr><th>구분</th><th>일수</th><th>사용자정의</th><th>성과형DA(GFA)</th><th>GFA 광고비</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>라이브일</td><td>23</td><td class="g">6,337,899원</td><td>661,042원</td><td>531,595원</td></tr>
+      <tr><td>비라이브일</td><td>102</td><td>246,806원</td><td>456,005원</td><td>430,058원</td></tr>
+      <tr class="tot"><td>배수</td><td>—</td><td class="g">26배</td><td>1.45배</td><td>1.24배</td></tr>
+    </tbody>
+  </table></div>
+  <div class="scroll" style="margin-top:8px"><table>
+    <thead><tr><th>채널</th><th>↔ GFA 광고비</th><th>↔ 라이브 여부</th><th>정체</th></tr></thead>
+    <tbody>
+      <tr><td>사용자정의</td><td>+0.24</td><td class="g">+0.79</td><td>쇼핑라이브 유입</td></tr>
+      <tr><td>성과형디스플레이광고</td><td class="g">+0.65</td><td>+0.13</td><td>GFA 유입</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    <span class="nt">각자 자기 것을 따라갑니다</span>
+    <ul>
+      <li class="g"><b>사용자정의는 라이브를 따라갑니다</b>(+0.79). 배관도 이걸 라이브 채널로 분류합니다(<b>_classify</b>)</li>
+      <li class="g"><b>GFA는 성과형디스플레이광고로 별도 집계</b>됩니다(+0.65). 사용자정의와 다른 줄입니다</li>
+      <li class="r">GFA는 <b>비라이브일에도 하루 43만원씩</b> 돌아갑니다. 그런데 사용자정의만 26배 차이 — GFA가 원인이면 이 격차가 안 나옵니다</li>
+      <li class="r">쇼라 전용 소재는 <b>3회뿐</b>인데, 사용자정의가 100만원을 넘은 <b>26일 중 23일이 라이브일</b>입니다</li>
+    </ul>
+  </div>
+  <div class="scroll" style="margin-top:8px"><table>
+    <thead><tr><th>최근 사례</th><th>라이브</th><th>사용자정의</th><th>성과형DA</th><th>GFA 광고비</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>8/23(일)</td><td>★</td><td class="g">404만</td><td>7.2만</td><td>16.2만</td></tr>
+      <tr><td>8/25(화)</td><td>·</td><td>44만</td><td>18.6만</td><td>19.2만</td></tr>
+      <tr class="hi"><td>8/26(수)</td><td>★</td><td class="g">393만</td><td>4.7만</td><td>24.7만</td></tr>
+      <tr><td>9/01(화)</td><td>·</td><td>42만</td><td>30.0만</td><td>38.5만</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">
+    8/26은 GFA를 <b>24.7만원</b> 썼는데 성과형DA는 4.7만원이고 사용자정의가 393만원입니다.
+    9/1은 반대로 GFA 38.5만원에 성과형DA 30만원인데 사용자정의는 42만원입니다.
+    <b>두 채널이 서로 다른 신호를 따라간다</b>는 증거입니다.
+  </div>
+
+  <h2>5. 그럼 쇼라 광고 성과를 어떻게 보나</h2>
+  <div class="note" style="margin-top:0">
+    <ul>
+      <li class="g"><b>회차 단위 비교</b> — 집행 회차 vs 미집행 회차. 현재 요인 분석이 쓰는 방식이고, 순마진율 <b>+10.5%p</b>가 여기서 나왔습니다</li>
+      <li class="g"><b>성과형디스플레이광고 채널</b> — all_channel에서 GFA 유입 매출을 직접 볼 수 있습니다</li>
+      <li class="r"><b>파라미터 추적</b> — 쇼핑라이브 랜딩인 한 불가. 스마트스토어 상품페이지로 랜딩을 바꾸면 잡히지만, 그러면 라이브 시청이 빠집니다</li>
+      <li>대안 — 라이브 <b>직전 시간대</b>에만 집행해 시청자 유입 곡선의 변화로 간접 측정</li>
+    </ul>
+  </div>
+
+  <h2>6. 확인 중 발견한 배관 버그</h2>
+  <div class="note warn" style="margin-top:0">
+    <span class="nt">8/18 회차가 목록에서 누락됩니다</span>
+    마킹이 <b>"쇼핑라이브 20·21회차"</b>(하루 2회차)인데, 회차 파싱 정규식
+    <b>쇼핑라이브\s*(\d+)\s*회차</b>가 이걸 못 읽습니다.<br>
+    8/18은 <b>시청자 2,159명 · 결제액 921만원</b>으로 최근 최대 규모인데 성과 탭·요인 분석에서 빠져 있습니다.
+    (기준선 제외는 title 파싱을 안 해 정상 동작 — 회차 목록에서만 누락)<br>
+    <b>조치</b> — 정규식을 복수 회차까지 읽게 넓히거나, 마킹을 <b>20회차</b>/<b>21회차</b> 두 개로 분리.
+  </div>
+
+  <footer>데이터 · mkt_naver_gfa · custom_channel · all_channel · naver_shopping_live_inflow · dashboard_marks (BigQuery barybody-easypos)</footer>
+
+</div>
+</body>
+</html>
