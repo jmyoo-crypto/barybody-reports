@@ -134,6 +134,7 @@ td.name { line-height:1.4; }
 td.name small { display:block; font-size:10.5px; color:var(--ink-3); font-weight:400; }
 td.neg { color:var(--bad); font-weight:600; }
 td.na { color:var(--ink-3); }
+td.n.bep { color:var(--ink-3); font-weight:400; }
 
 .pill { display:inline-block; font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.04em; padding:2px 6px; border:1px solid currentColor; border-radius:2px; white-space:nowrap; }
 .pill.up { color:var(--good); background:var(--good-bg); }
@@ -319,7 +320,8 @@ const REPORTS = {
     product: "릴렉스틱",
     subtitle: "지난주 08-31~09-05 (6일) · 비교 08-24~08-29 (6일)",
     lede: [
-      { k:"볼륨", v:["매출 <b>+47.2%</b>, 주문 <b>+57.7%</b>. 증가는 스마트스토어 단독(+52.9%)."] },
+      { k:"볼륨", v:["매출 <b>+47.2%</b>, 주문 <b>+57.7%</b>. 증가는 스마트스토어 단독(+52.9%).",
+                       "객단가 53,339 → 49,782원(-6.7%). <b>매출 증가는 전부 건수다.</b>"] },
       { k:"효율", v:["ROAS 393 → <b>497%</b>. 검색광고 귀인 ROAS <mark>327 → 446%</mark>가 견인."] },
       { k:"결론", v:["<mark>자사몰 27만원 적자, 3주 연속.</mark> 이익은 스마트스토어가 전부 낸다."] }
     ],
@@ -343,11 +345,11 @@ const REPORTS = {
     },
     sales: [
       { name:"스마트스토어", sub:"네이버 귀인", sales:"2,819", salesDelta:+52.9, orders:562, ordersDelta:+65.3,
-        cost:"350", costDelta:+15.3, bep:150, contrib:"+1,529", contribDelta:+59.2 },
+        cost:"350", costDelta:+15.3, roas:805, roasPrev:607, bep:150, contrib:"+1,529", contribDelta:+59.2 },
       { name:"자사몰", sub:"메타 귀인", sales:"377", salesDelta:+15.4, orders:80, ordersDelta:+19.4,
-        cost:"277", costDelta:+11.3, bep:151, contrib:"-27", contribDelta:+9.3, negative:true }
+        cost:"277", costDelta:+11.3, roas:136, roasPrev:131, bep:151, contrib:"-27", contribDelta:+9.3, negative:true }
     ],
-    salesSum: { sales:"3,196", salesDelta:+47.2, orders:642, ordersDelta:+57.7, cost:"643", costDelta:+16.4, bep:150, contrib:"+1,486", contribDelta:+59.6 },
+    salesSum: { sales:"3,196", salesDelta:+47.2, orders:642, ordersDelta:+57.7, cost:"643", costDelta:+16.4, roas:497, roasPrev:393, bep:150, contrib:"+1,486", contribDelta:+59.6 },
     salesNote: [
       "<mark>자사몰 적자 3주 연속</mark> -43 → -30 → -27만원."
     ],
@@ -370,12 +372,17 @@ const REPORTS = {
       { k:"도달",      prev:"119,693", curr:"125,609", delta:"+4.9%",  note:"주문 +57.7%보다 훨씬 작다. 반등은 광고량이 아니다" },
       { k:"빈도",      prev:"1.57",    curr:"1.54",    delta:"-1.9%",  note:"2.0 미만" },
       { k:"3초조회율", prev:"15.2%",   curr:"16.3%",   delta:"+1.1%p", note:"<mark>개선 → 소진 반증</mark>" },
-      { k:"CTR",      prev:"2.26%",   curr:"2.23%",   delta:"-1.3%",  note:"유지" },
-      { k:"CPC",      prev:"686원",   curr:"769원",   delta:"+12.1%", note:"경매 단가 상승" }
+      { k:"CPC",      prev:"659원",   curr:"799원",   delta:"+21.2%", note:"경매 단가 상승" },
+      { k:"CVR",      prev:"1.77%",   curr:"2.31%",   delta:"+30.2%", note:"<mark>CPC 상승을 이겼다</mark>" },
+      { k:"CPA",      prev:"37,168원", curr:"34,630원", delta:"-6.8%", note:"= 799 ÷ 2.31% 검산 ✓" }
     ],
-    metaHealthNote: ["<b>소진 아님</b> — 빈도 1.54 + 3초조회율 개선. 신규 제작 근거 없음."],
+    metaHealthNote: [
+      "<b>소진 아님</b> — 빈도 1.54 + 3초조회율 개선. 신규 제작 근거 없음.",
+      "<b>CVR 주도(긍정)</b> — CPC가 21% 올랐지만 CVR이 30% 올라 CPA가 내렸다.",
+      "CVR·CPA는 자사몰 실주문 기준. 도달·빈도·3초조회율은 캠페인 그룹 기준이라 범위가 조금 넓다."
+    ],
     situation: {
-      found: "09-06 미적재로 6일 비교. 쿠팡은 09-03까지라 제외.",
+      found: "매출은 09-06까지 적재됐으나 메타·애드부스트·GFA 광고비는 09-05까지다. 광고비 기준을 맞추려 6일로 비교한다. 쿠팡은 09-03까지라 제외.",
       todo: "스마트스토어가 세 제품 동시 급증(+34~68%). 광고비로 설명 안 됨."
     },
     drill: [
@@ -411,7 +418,8 @@ const REPORTS = {
     product: "릴렉스틱볼",
     subtitle: "지난주 08-31~09-05 (6일) · 비교 08-24~08-29 (6일)· 볼 전용(루피 제외)",
     lede: [
-      { k:"볼륨", v:["매출 <b>+4.8%</b>, 주문 <b>+15.6%</b>. 자사몰 -19.7%를 스마트스토어 +33.8%가 메웠다."] },
+      { k:"볼륨", v:["매출 <b>+4.8%</b>, 주문 <b>+15.6%</b>. 자사몰 -19.7%를 스마트스토어 +33.8%가 메웠다.",
+                       "객단가 34,527 → 31,303원(<b>-9.3%</b>). 건수는 늘었는데 단가가 깎여 매출이 덜 늘었다."] },
       { k:"효율", v:["ROAS 325 → <b>376%</b>. 메타·검색광고 개선, 애드부스트만 -264%p."] },
       { k:"결론", v:["<mark>자사몰이 적자로 돌아섰다</mark>(+24 → -10만원). ROAS 179% < 손익분기 185%."] }
     ],
@@ -435,11 +443,11 @@ const REPORTS = {
     },
     sales: [
       { name:"자사몰", sub:"메타 귀인", sales:"587", salesDelta:-19.7, orders:181, ordersDelta:-18.8,
-        cost:"328", costDelta:-12.1, bep:185, contrib:"-10", contribDelta:-142.6, negative:true },
+        cost:"328", costDelta:-12.1, roas:179, roasPrev:196, bep:185, contrib:"-10", contribDelta:-142.6, negative:true },
       { name:"스마트스토어", sub:"네이버 귀인", sales:"828", salesDelta:+33.8, orders:271, ordersDelta:+61.3,
-        cost:"49", costDelta:+14.2, bep:179, contrib:"+413", contribDelta:+30.0 }
+        cost:"49", costDelta:+14.2, roas:1690, roasPrev:1442, bep:179, contrib:"+413", contribDelta:+30.0 }
     ],
-    salesSum: { sales:"1,415", salesDelta:+4.8, orders:452, ordersDelta:+15.6, cost:"377", costDelta:-9.4, bep:181, contrib:"+403", contribDelta:+18.1 },
+    salesSum: { sales:"1,415", salesDelta:+4.8, orders:452, ordersDelta:+15.6, cost:"377", costDelta:-9.4, roas:376, roasPrev:325, bep:181, contrib:"+403", contribDelta:+18.1 },
     salesNote: [
       "<mark>자사몰 적자 전환</mark> — 광고비 -12%인데 매출 -20%로 마진이 더 크게 줄었다."
     ],
@@ -460,13 +468,18 @@ const REPORTS = {
       { k:"도달",      prev:"217,602", curr:"152,504", delta:"-29.9%", note:"주문 +15.6%와 반대. 줄이고도 늘었다" },
       { k:"빈도",      prev:"1.59",    curr:"1.43",    delta:"-10.1%", note:"2.0 미만" },
       { k:"3초조회율", prev:"22.3%",   curr:"22.0%",   delta:"-0.3%p", note:"<mark>유지 → 소진 반증</mark>" },
-      { k:"CTR",      prev:"1.20%",   curr:"1.36%",   delta:"+13.3%", note:"개선" },
-      { k:"CPC",      prev:"747원",   curr:"913원",   delta:"+22.2%", note:"경매 단가 상승" }
+      { k:"CPC",      prev:"705원",   curr:"854원",   delta:"+21.2%", note:"경매 단가 상승" },
+      { k:"CVR",      prev:"4.22%",   curr:"4.72%",   delta:"+11.9%", note:"올랐으나 CPC 상승폭보다 작다" },
+      { k:"CPA",      prev:"16,708원", curr:"18,096원", delta:"+8.3%", note:"= 854 ÷ 4.72% 검산 ✓" }
     ],
-    metaHealthNote: ["<b>소진 아님</b> — 빈도 1.43 + 3초조회율 유지. 도달 -30%에 주문 +16%로 효율 개선이 실체."],
+    metaHealthNote: [
+      "<b>소진 아님</b> — 빈도 1.43 + 3초조회율 유지.",
+      "<mark><b>CPC 주도</b></mark> — CVR도 개선됐지만 CPC 상승이 더 커서 CPA가 올랐다. 처방은 소재가 아니라 타겟·입찰·경매.",
+      "CVR·CPA는 자사몰 실주문 기준. 도달·빈도·3초조회율은 캠페인 그룹 기준."
+    ],
     situation: {
       found: "캠페인 구조 대개편 — 최대 -90% 감액, 남녀확장 156만원 신규.",
-      todo: "09-06 미적재로 6일 비교. 스마트스토어 +33.8%가 광고 밖 요인일 가능성."
+      todo: "매출은 09-06까지 적재됐으나 메타·애드부스트·GFA 광고비는 09-05까지다. 광고비 기준을 맞추려 6일로 비교한다. 스마트스토어 +33.8%는 광고 밖 요인일 가능성."
     },
     drill: [
       {
@@ -500,9 +513,10 @@ const REPORTS = {
     product: "잔망루피 에디션",
     subtitle: "지난주 08-31~09-05 (6일) · 비교 08-24~08-29 (6일)",
     lede: [
-      { k:"볼륨", v:["매출 <b>+32.5%</b>, 주문 <b>+36.3%</b>. 자사몰 -15.3%, 스마트스토어 +68.0%."] },
+      { k:"볼륨", v:["매출 <b>+32.5%</b>, 주문 <b>+36.3%</b>. 자사몰 -15.3%, 스마트스토어 +68.0%.",
+                       "객단가 37,120 → 36,088원(-2.8%). 단가는 유지, 증가는 건수다."] },
       { k:"효율", v:["광고비 <b>+49.2%</b>에 ROAS 358 → <b>318%</b>. 세 제품 중 유일하게 효율 하락."] },
-      { k:"결론", v:["<mark>자사몰 적자 전환(+85 → -58만원).</mark> CPC +32.6%로 증액이 도달로 이어지지 않았다."] }
+      { k:"결론", v:["<mark>자사몰 적자 전환(+85 → -58만원).</mark> CPC +23.7%에 CVR -13.5%가 겹쳐 CPA가 <b>43% 올랐다.</b>"] }
     ],
     stats: [
       { k:"총 광고비",      v:"724",   unit:"만원", delta:+49.2, good:"down" },
@@ -524,11 +538,11 @@ const REPORTS = {
     },
     sales: [
       { name:"스마트스토어", sub:"네이버 귀인", sales:"1,676", salesDelta:+68.0, orders:479, ordersDelta:+71.1,
-        cost:"299", costDelta:+123.3, bep:176, contrib:"+653", contribDelta:+50.7 },
+        cost:"299", costDelta:+123.3, roas:561, roasPrev:745, bep:176, contrib:"+653", contribDelta:+50.7 },
       { name:"자사몰", sub:"메타 귀인", sales:"627", salesDelta:-15.3, orders:159, ordersDelta:-15.4,
-        cost:"425", costDelta:+20.9, bep:171, contrib:"-58", contribDelta:-167.9, negative:true }
+        cost:"425", costDelta:+20.9, roas:148, roasPrev:211, bep:171, contrib:"-58", contribDelta:-167.9, negative:true }
     ],
-    salesSum: { sales:"2,302", salesDelta:+32.5, orders:638, ordersDelta:+36.3, cost:"724", costDelta:+49.2, bep:175, contrib:"+595", contribDelta:+14.7 },
+    salesSum: { sales:"2,302", salesDelta:+32.5, orders:638, ordersDelta:+36.3, cost:"724", costDelta:+49.2, roas:318, roasPrev:358, bep:175, contrib:"+595", contribDelta:+14.7 },
     salesNote: [
       "<mark>자사몰에 광고비를 21% 더 넣고 매출은 15% 빠졌다.</mark> 세 제품 중 가장 나쁜 조합."
     ],
@@ -549,16 +563,18 @@ const REPORTS = {
       { k:"도달",      prev:"177,191", curr:"148,029", delta:"-16.5%", note:"<mark>자사몰 주문 -15.4%와 일치 → 원인 확정</mark>" },
       { k:"빈도",      prev:"1.52",    curr:"1.57",    delta:"+3.3%",  note:"2.0 미만" },
       { k:"3초조회율", prev:"20.3%",   curr:"18.8%",   delta:"-1.5%p", note:"소폭 하락. 다음 주 재확인" },
-      { k:"CTR",      prev:"2.11%",   curr:"2.10%",   delta:"-0.5%",  note:"유지" },
-      { k:"CPC",      prev:"654원",   curr:"867원",   delta:"+32.6%", note:"<mark>세 제품 중 최대</mark>" }
+      { k:"CPC",      prev:"701원",   curr:"867원",   delta:"+23.7%", note:"경매 단가 상승" },
+      { k:"CVR",      prev:"3.75%",   curr:"3.25%",   delta:"-13.5%", note:"<mark>CPC와 함께 악화</mark>" },
+      { k:"CPA",      prev:"18,675원", curr:"26,705원", delta:"+43.0%", note:"= 867 ÷ 3.25% 검산 ✓" }
     ],
     metaHealthNote: [
       "<b>소진 단정 불가</b> — 빈도는 정상, 3초조회율만 하락. 다음 주 재확인.",
-      "<b>도달 -16.5% ≒ 주문 -15.4%.</b> CPC +32.6%가 증액분을 깎았다."
+      "<mark><b>CPC·CVR 양쪽 다 악화</b></mark> — CPA +43.0%. 세 제품 중 유일하다.",
+      "<b>확정 못 함</b> — CVR -13.5%가 소재 메시지 탓인지 랜딩·가격·재고 탓인지 데이터로 가르지 못한다."
     ],
     situation: {
-      found: "CPC +32.6%. 광고비를 20.9% 늘렸는데 도달은 16.5% 줄었다.",
-      todo: "09-06 미적재로 6일 비교. GFA 증액분 136만원은 제품 귀속 불가."
+      found: "광고비 +49.2%인데 도달 -16.5%. CPC·CVR 동시 악화로 CPA +43.0%.",
+      todo: "매출은 09-06까지 적재됐으나 메타·애드부스트·GFA 광고비는 09-05까지다. 광고비 기준을 맞추려 6일로 비교한다. GFA 증액분 136만원은 제품 귀속 불가."
     },
     drill: [
       {
@@ -690,12 +706,13 @@ function render(key) {
         ${cell2(x.sales, x.salesDelta)}
         ${cell2(String(x.orders), x.ordersDelta)}
         ${x.cost == null ? na : cell2(x.cost, x.costDelta)}
-        <td class="n">${x.bep}%</td>
+        <td class="n${x.roas < x.bep ? " neg" : ""}">${x.roas.toLocaleString()}%<br><span class="wow ${x.roas >= x.roasPrev ? "up" : "down"}">${(x.roas - x.roasPrev >= 0 ? "+" : "") + (x.roas - x.roasPrev).toLocaleString()}%p</span></td>
+        <td class="n bep">${x.bep}%</td>
         ${cell2(x.contrib, x.contribDelta, x.negative ? " neg" : "")}
       </tr>`;
     $("p-sales").innerHTML =
       `<thead><tr><th>페이드채널</th><th>실매출<br>만원</th><th>주문</th><th>광고비<br>만원</th>` +
-      `<th>손익<br>분기</th><th>광고 후 마진<br>채널마진−광고비</th></tr></thead>` +
+      `<th>ROAS<br>실매출÷광고비</th><th>손익<br>분기</th><th>광고 후 마진<br>채널마진−광고비</th></tr></thead>` +
       `<tbody>${R.sales.map(x => row(x)).join("")}` +
       row(Object.assign({ name: "합계", sub: "" }, S), "sum") + `</tbody>`;
     $("p-sales-note").innerHTML = lines(R.salesNote);
