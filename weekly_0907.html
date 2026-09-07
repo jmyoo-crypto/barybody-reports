@@ -318,289 +318,298 @@ td.owner { font-family:var(--mono); font-size:11px; white-space:nowrap; }
 const REPORTS = {
   relaxtic: {
     product: "릴렉스틱",
-    subtitle: "지난주 08-31~09-05 (6일) · 비교 08-24~08-29 (6일)",
+    subtitle: "지난주 08-31~09-06 (7일) · 비교 08-24~08-30 (7일) · 오리지널+롱+숏",
     lede: [
-      { k:"볼륨", v:["매출 <b>+47.2%</b>, 주문 <b>+57.7%</b>. 증가는 스마트스토어 단독(+52.9%).",
-                       "객단가 53,339 → 49,782원(-6.7%). <b>매출 증가는 전부 건수다.</b>"] },
-      { k:"효율", v:["ROAS 393 → <b>497%</b>. 검색광고 귀인 ROAS <mark>327 → 446%</mark>가 견인."] },
-      { k:"결론", v:["<mark>자사몰 27만원 적자, 3주 연속.</mark> 이익은 스마트스토어가 전부 낸다."] }
+      { k:"볼륨", v:["매출 <b>+47.5%</b>, 주문 <b>+59.7%</b>. 증가는 스마트스토어 단독(+50.9%).",
+                     "객단가 53,487 → 49,408원(-7.6%). <b>매출 증가는 전부 건수다.</b>"] },
+      { k:"효율", v:["ROAS 390 → <b>489%</b>. 검색광고 <mark>342 → 453%</mark>가 견인.",
+                     "메타도 105 → 136%로 개선. 네 채널 중 셋이 좋아졌다."] },
+      { k:"결론", v:["<mark>자사몰 적자가 -43 → -8만원으로 줄었다.</mark> ROAS 147%로 손익분기 150% 코앞."] }
     ],
     stats: [
-      { k:"총 광고비",      v:"643",   unit:"만원", delta:+16.4, good:"down" },
-      { k:"페이드채널 매출", v:"3,196", unit:"만원", delta:+47.2, good:"up" },
-      { k:"ROAS",          v:"497",   unit:"%",   delta:+103.8, good:"up", pp:true, ref:"손익분기 150%" },
-      { k:"주문수",         v:"642",   unit:"건",   delta:+57.7, good:"up" },
-      { k:"광고 후 마진",   v:"1,486", unit:"만원", delta:+59.6, good:"up", ref:"채널마진 2,129만 − 광고비 643만" }
+      { k:"총 광고비",      v:"767",   unit:"만원", delta:+17.5, good:"down" },
+      { k:"페이드채널 매출", v:"3,755", unit:"만원", delta:+47.5, good:"up" },
+      { k:"ROAS",          v:"489",   unit:"%",   delta:+99.3, good:"up", pp:true, ref:"손익분기 150%" },
+      { k:"주문수",         v:"760",   unit:"건",   delta:+59.7, good:"up" },
+      { k:"광고 후 마진",   v:"1,735", unit:"만원", delta:+59.4, good:"up", ref:"채널마진 2,503만 − 광고비 767만" }
     ],
     chart: {
       prevLabel:"지지난주", currLabel:"지난주",
       rows: [
-        { name:"메타",      prev:2490235, curr:2770413 },
-        { name:"검색광고",   prev:2360630, curr:2630670 },
-        { name:"애드부스트", prev:337131,  curr:866574  },
+        { name:"메타",      prev:2963133, curr:3295396 },
+        { name:"검색광고",   prev:2795982, curr:3100692 },
+        { name:"애드부스트", prev:433130,  curr:1041752 },
         { name:"GFA",      prev:334720,  curr:0       }
       ],
-      yMax:3000000, yStep:1000000, div:10000,
-      note:"단위 만원. 신규 chatgpt 16만원은 차트 밖(귀인 0)."
+      yMax:3500000, yStep:1000000, div:10000,
+      note:"단위 만원. 신규 chatgpt 23만원은 차트 밖(귀인 0)."
     },
     sales: [
-      { name:"스마트스토어", sub:"네이버 귀인", sales:"2,819", salesDelta:+52.9, orders:562, ordersDelta:+65.3,
-        cost:"350", costDelta:+15.3, roas:806, roasPrev:608, bep:150, contrib:"+1,529", contribDelta:+59.2 },
-      { name:"자사몰", sub:"메타 귀인", sales:"377", salesDelta:+15.4, orders:80, ordersDelta:+19.4,
-        cost:"277", costDelta:+11.3, roas:136, roasPrev:131, bep:151, contrib:"-27", contribDelta:+9.3, negative:true }
+      { name:"스마트스토어", sub:"네이버 귀인", sales:"3,272", salesDelta:+50.9, orders:660, ordersDelta:+65.8,
+        cost:"414", costDelta:+16.2, roas:790, roasPrev:608, bep:150, contrib:"+1,767", contribDelta:+56.1 },
+      { name:"자사몰", sub:"메타 귀인", sales:"483", salesDelta:+27.8, orders:100, ordersDelta:+28.2,
+        cost:"330", costDelta:+11.2, roas:147, roasPrev:127, bep:150, contrib:"-8", contribDelta:+82.0, negative:true }
     ],
-    salesSum: { sales:"3,196", salesDelta:+47.2, orders:642, ordersDelta:+57.7, cost:"643", costDelta:+16.4, roas:497, roasPrev:393, bep:150, contrib:"+1,486", contribDelta:+59.6 },
+    salesSum: { sales:"3,755", salesDelta:+47.5, orders:760, ordersDelta:+59.7, cost:"767", costDelta:+17.5, roas:489, roasPrev:390, bep:150, contrib:"+1,735", contribDelta:+59.4 },
     salesNote: [
-      "<mark>자사몰 적자 3주 연속</mark> -43 → -30 → -27만원."
+      "<mark>자사몰 적자 축소</mark> +14 → -43 → -8만원. 다음 주 손익분기 돌파가 사정권.",
+      "쿠팡은 정산이 몰려 잡힌다(08-25~28·09-01 공백). 주 비교 불가라 제외."
     ],
     chanEff: [
-      { name:"메타", sub:"→ 자사몰", cost:"277", costDelta:+11.3, sales:"351", salesDelta:+25.9,
-        roas:127, roasPrev:112, cpa:"33,786", cpaDelta:-9.1, verdict:"개선", tone:"up" },
-      { name:"검색광고", sub:"→ 스마트스토어", cost:"263", costDelta:+11.4, sales:"1,174", salesDelta:+51.9,
-        roas:446, roasPrev:327, cpa:"13,088", cpaDelta:-20.2, verdict:"개선", tone:"up" },
-      { name:"애드부스트", sub:"→ 스마트스토어", cost:"87", costDelta:+157.0, sales:"424", salesDelta:+33.8,
-        roas:489, roasPrev:940, cpa:"11,871", cpaDelta:+47.9, verdict:"악화", tone:"down" },
-      { name:"GFA", sub:"중단", cost:"0", costDelta:-100.0, sales:"74", salesDelta:+63.9,
+      { name:"메타", sub:"→ 자사몰", cost:"330", costDelta:+11.2, sales:"447", salesDelta:+43.7,
+        roas:136, roasPrev:105, cpa:"31,994", cpaDelta:-19.0, verdict:"개선", tone:"up" },
+      { name:"검색광고", sub:"→ 스마트스토어", cost:"310", costDelta:+10.9, sales:"1,404", salesDelta:+46.6,
+        roas:453, roasPrev:342, cpa:"12,503", cpaDelta:-22.2, verdict:"개선", tone:"up" },
+      { name:"애드부스트", sub:"→ 스마트스토어", cost:"104", costDelta:+140.5, sales:"508", salesDelta:+44.3,
+        roas:488, roasPrev:813, cpa:"11,323", cpaDelta:+28.1, verdict:"악화", tone:"down" },
+      { name:"GFA", sub:"중단", cost:"0", costDelta:-100.0, sales:"92", salesDelta:+63.7,
         roas:null, cpa:null, verdict:"미집행", tone:"hold" },
-      { name:"chatgpt", sub:"신규", cost:"16", costDelta:+100.0, sales:"0", salesDelta:0,
+      { name:"chatgpt", sub:"신규", cost:"23", costDelta:+100.0, sales:"0", salesDelta:0,
         roas:0, roasPrev:0, cpa:null, verdict:"성과 0", tone:"down" }
     ],
     chanEffNote: [
-      "<mark>검색광고가 반등을 만들었다</mark>(비용 +11%, 매출 +52%). 애드부스트는 비용 2.6배에 매출 +34%."
+      "<mark>검색광고가 반등을 만들었다</mark>(비용 +11%, 매출 +47%). 애드부스트만 비용 2.4배에 ROAS 반토막."
     ],
     metaHealth: [
-      { k:"도달",      prev:"119,693", curr:"125,609", delta:"+4.9%",  note:"주문 +57.7%보다 훨씬 작다. 반등은 광고량이 아니다" },
-      { k:"빈도",      prev:"1.57",    curr:"1.54",    delta:"-1.9%",  note:"2.0 미만" },
-      { k:"3초조회율", prev:"15.2%",   curr:"16.3%",   delta:"+1.1%p", note:"<mark>개선 → 소진 반증</mark>" },
-      { k:"CPC",      prev:"659원",   curr:"799원",   delta:"+21.2%", note:"경매 단가 상승" },
-      { k:"CVR",      prev:"1.77%",   curr:"2.31%",   delta:"+30.2%", note:"<mark>CPC 상승을 이겼다</mark>" },
-      { k:"CPA",      prev:"37,168원", curr:"34,630원", delta:"-6.8%", note:"= 799 ÷ 2.31% 검산 ✓" }
+      { k:"도달",      prev:"120,663", curr:"129,602", delta:"+7.4%",  note:"주문 +28.2%보다 작다. 반등은 광고량이 아니다" },
+      { k:"빈도",      prev:"1.58",    curr:"1.54",    delta:"-2.1%",  note:"2.0 미만" },
+      { k:"3초조회율", prev:"15.8%",   curr:"16.7%",   delta:"+0.9%p", note:"<mark>개선 → 소진 반증</mark>" },
+      { k:"CPC",      prev:"646원",   curr:"741원",   delta:"+14.6%", note:"경매 단가 상승" },
+      { k:"CVR",      prev:"1.70%",   curr:"2.25%",   delta:"+32.1%", note:"<mark>CPC 상승을 이겼다</mark>" },
+      { k:"CPA",      prev:"37,993원", curr:"32,960원", delta:"-13.2%", note:"= 741 ÷ 2.25% 검산 ✓" }
     ],
     metaHealthNote: [
       "<b>소진 아님</b> — 빈도 1.54 + 3초조회율 개선. 신규 제작 근거 없음.",
-      "<b>CVR 주도(긍정)</b> — CPC가 21% 올랐지만 CVR이 30% 올라 CPA가 내렸다.",
-      "CVR·CPA는 자사몰 실주문 기준. 도달·빈도·3초조회율은 캠페인 그룹 기준이라 범위가 조금 넓다."
+      "<b>CVR 주도(긍정)</b> — CPC가 15% 올랐지만 CVR이 32% 올라 CPA가 13% 내렸다.",
+      "CVR·CPA는 자사몰 실주문 기준. 도달·빈도·3초조회율은 공유 캠페인 비용 배분 기준."
     ],
     situation: {
-      found: "매출은 09-06까지 적재됐으나 메타·애드부스트·GFA 광고비는 09-05까지다. 광고비 기준을 맞추려 6일로 비교한다. 쿠팡은 09-03까지라 제외.",
-      todo: "스마트스토어가 세 제품 동시 급증(+34~68%). 광고비로 설명 안 됨."
+      found: "09-06까지 전 채널 적재 완료. 7일 대 7일 비교로 전환했다.",
+      todo: "스마트스토어가 세 제품 동시 급증. 광고비 +16%로는 매출 +51%가 설명 안 된다."
     },
     drill: [
       {
-        title:"메타 · 캠페인별", spend:"광고비 249 → 277만원 (+11.3%)", evidence:"Pass",
-        result:"<b>효율 개선, 여전히 적자.</b> ROAS 136% < 손익분기 151%.",
-        chain:["광고비 +11.3%에 주문 +19.4%, CPA -9.1%","GEM세팅_전환수를 12 → 59만원(+414%) 증액"],
+        title:"메타 · 캠페인별", spend:"광고비 296 → 330만원 (+11.2%)", evidence:"Pass",
+        result:"<b>효율 개선, 적자 거의 해소.</b> ROAS 147% < 손익분기 150%.",
+        chain:["광고비 +11.2%에 주문 +28.2%, CPA -13.2%","GEM세팅_전환수를 22 → 71만원(+221%) 증액"],
         agenda:[
-          { t:"적자 3주 연속", items:["-43 → -30 → -27만원. 2주 내 미달이면 감액"] },
+          { t:"적자 축소", items:["+14 → -43 → -8만원. 증액 여지 검토"] }
         ],
         cols:["캠페인","비용 지지난주","비용 지난주","도달 지난주","CPC 지난주"],
         rows:[
-          ["GEM세팅_전환수_릴렉스틱","증액 +414%","115,417","593,753","29,884","719"],
-          ["4월말 테스트","공유","1,146,606","1,140,159","49,441","684"],
-          ["GEMx테스트3","공유","911,162","890,885","21,800","1,354"],
-          ["공홈세트","공유","696,167","697,289","24,484","596"],
+          ["GEM세팅_전환수_릴렉스틱","증액 +221%","221,658","710,971","36,623","702"],
+          ["4월말 테스트","공유","1,332,928","1,351,555","60,474","667"],
+          ["GEMx테스트3","공유","1,070,268","1,060,589","26,268","1,258"],
+          ["공홈세트","공유","806,561","825,980","29,727","576"],
+          ["민쓰마켓","트래픽 -92%","2,095,029","167,990","21,891","216"],
           ["재입고이벤트","중단","196,576","0","0","-"]
         ],
         sum:null,
-        note:["메타 API. 공유 캠페인 N빵 배분 때문에 합계가 채널 합계와 다르며, 채널 합계가 기준."]
+        note:["메타 API. 공유 캠페인은 릴렉스틱볼과 비용 배분(79.8%)하므로 합계가 채널 합계와 다르며, 채널 합계가 기준.",
+              "민쓰마켓은 트래픽 캠페인이라 마케팅 채널 집계에서 빠진다."]
       }
     ],
     actions: [
-      { do:"애드부스트 87 → 34만원 원복",  owner:"퍼포먼스", ac:"증분 ROAS 202%. 대조군 확보" },
-      { do:"검색광고 263 → 315만원 증액",  owner:"퍼포먼스", ac:"ROAS 446%, 손익분기 대비 3배" },
-      { do:"chatgpt 집계 연동 확인",      owner:"데이터",   ac:"16만원에 귀인 0. 09-09까지 판별" },
-      { do:"스마트스토어 급증 원인 확인",   owner:"마케팅",   ac:"세 제품 동시. 09-09까지" },
-      { do:"자사몰 적자 3주 연속 판단",    owner:"대표·퍼포먼스", ac:"2주 내 손익분기 미달 시 메타 감액" }
+      { do:"메타 자사몰 증액 검토",        owner:"퍼포먼스", ac:"ROAS 147%로 손익분기 150% 코앞. CPA -13.2%" },
+      { do:"검색광고 310 → 360만원 증액",  owner:"퍼포먼스", ac:"ROAS 453%, 손익분기 대비 3배" },
+      { do:"애드부스트 104 → 60만원 감액", owner:"퍼포먼스", ac:"ROAS 813 → 488%로 반토막" },
+      { do:"chatgpt 23만원 집계 연동",     owner:"데이터",   ac:"귀인 0. 09-10까지 판별" },
+      { do:"스마트스토어 급증 원인 확인",   owner:"마케팅",   ac:"세 제품 동시. 09-10까지" }
     ]
   },
 
   ball: {
     product: "릴렉스틱볼",
-    subtitle: "지난주 08-31~09-05 (6일) · 비교 08-24~08-29 (6일)· 볼 전용(루피 제외)",
+    subtitle: "지난주 08-31~09-06 (7일) · 비교 08-24~08-30 (7일) · 볼 전용(루피 제외)",
     lede: [
-      { k:"볼륨", v:["매출 <b>+4.8%</b>, 주문 <b>+15.6%</b>. 자사몰 -19.7%를 스마트스토어 +33.8%가 메웠다.",
-                       "객단가 34,527 → 31,303원(<b>-9.3%</b>). 건수는 늘었는데 단가가 깎여 매출이 덜 늘었다."] },
-      { k:"효율", v:["ROAS 325 → <b>376%</b>. 메타·검색광고 개선, 애드부스트만 -264%p."] },
-      { k:"결론", v:["<mark>자사몰이 적자로 돌아섰다</mark>(+24 → -10만원). ROAS 179% < 손익분기 185%."] }
+      { k:"볼륨", v:["매출 <b>+7.7%</b>, 주문 <b>+18.6%</b>. 자사몰 -20.2%를 스마트스토어 +43.0%가 메웠다.",
+                     "객단가 34,379 → 31,215원(<b>-9.2%</b>). 건수는 늘었는데 단가가 깎여 매출이 덜 늘었다."] },
+      { k:"효율", v:["ROAS 319 → <b>367%</b>. 광고비를 6.5% 줄이고 매출은 7.7% 늘렸다.",
+                     "검색광고 625 → 854%로 가장 크게 개선."] },
+      { k:"결론", v:["<mark>자사몰이 적자로 돌아섰다</mark>(+37 → -21만원). ROAS 175% < 손익분기 185%."] }
     ],
     stats: [
-      { k:"총 광고비",      v:"377",   unit:"만원", delta:-9.4,  good:"down" },
-      { k:"페이드채널 매출", v:"1,415", unit:"만원", delta:+4.8,  good:"up" },
-      { k:"ROAS",          v:"376",   unit:"%",   delta:+50.7, good:"up", pp:true, ref:"손익분기 181%" },
-      { k:"주문수",         v:"452",   unit:"건",   delta:+15.6, good:"up" },
-      { k:"광고 후 마진",   v:"403",   unit:"만원", delta:+18.1, good:"up", ref:"채널마진 780만 − 광고비 377만" }
+      { k:"총 광고비",      v:"450",   unit:"만원", delta:-6.5,  good:"down" },
+      { k:"페이드채널 매출", v:"1,654", unit:"만원", delta:+7.7,  good:"up" },
+      { k:"ROAS",          v:"367",   unit:"%",   delta:+48.2, good:"up", pp:true, ref:"손익분기 181%" },
+      { k:"주문수",         v:"530",   unit:"건",   delta:+18.6, good:"up" },
+      { k:"광고 후 마진",   v:"463",   unit:"만원", delta:+21.8, good:"up", ref:"채널마진 914만 − 광고비 450만" }
     ],
     chart: {
       prevLabel:"지지난주", currLabel:"지난주",
       rows: [
-        { name:"메타",      prev:3725918, curr:3275331 },
-        { name:"검색광고",   prev:340122,  curr:273785  },
-        { name:"애드부스트", prev:90937,   curr:218612  },
-        { name:"GFA",      prev:0,       curr:0       }
+        { name:"메타",      prev:4298295, curr:3924532 },
+        { name:"검색광고",   prev:406672,  curr:320076  },
+        { name:"애드부스트", prev:110412,  curr:259196  }
       ],
-      yMax:4000000, yStep:1000000, div:10000,
-      note:"단위 만원. GFA는 두 주 다 미집행."
+      yMax:4500000, yStep:1500000, div:10000,
+      note:"단위 만원. GFA는 양주 모두 미집행."
     },
     sales: [
-      { name:"자사몰", sub:"메타 귀인", sales:"587", salesDelta:-19.7, orders:181, ordersDelta:-18.8,
-        cost:"328", costDelta:-12.1, roas:179, roasPrev:196, bep:185, contrib:"-10", contribDelta:-142.6, negative:true },
-      { name:"스마트스토어", sub:"네이버 귀인", sales:"828", salesDelta:+33.8, orders:271, ordersDelta:+61.3,
-        cost:"49", costDelta:+14.2, roas:1682, roasPrev:1436, bep:179, contrib:"+413", contribDelta:+30.0 }
+      { name:"자사몰", sub:"메타 귀인", sales:"686", salesDelta:-20.2, orders:212, ordersDelta:-19.1,
+        cost:"392", costDelta:-8.7, roas:175, roasPrev:200, bep:185, contrib:"-21", contribDelta:-157.6, negative:true },
+      { name:"스마트스토어", sub:"네이버 귀인", sales:"968", salesDelta:+43.0, orders:318, ordersDelta:+71.9,
+        cost:"58", costDelta:+12.0, roas:1672, roasPrev:1310, bep:179, contrib:"+485", contribDelta:+40.9 }
     ],
-    salesSum: { sales:"1,415", salesDelta:+4.8, orders:452, ordersDelta:+15.6, cost:"377", costDelta:-9.4, roas:376, roasPrev:325, bep:181, contrib:"+403", contribDelta:+18.1 },
+    salesSum: { sales:"1,654", salesDelta:+7.7, orders:530, ordersDelta:+18.6, cost:"450", costDelta:-6.5, roas:367, roasPrev:319, bep:181, contrib:"+463", contribDelta:+21.8 },
     salesNote: [
-      "<mark>자사몰 적자 전환</mark> — 광고비 -12%인데 매출 -20%로 마진이 더 크게 줄었다."
+      "<mark>자사몰 적자 전환</mark> +217 → +37 → -21만원. 3주 연속 하락이다.",
+      "광고비를 8.7% 줄였는데 매출이 20.2% 빠져 마진이 더 크게 줄었다."
     ],
     chanEff: [
-      { name:"메타", sub:"→ 자사몰", cost:"328", costDelta:-12.1, sales:"556", salesDelta:+12.5,
-        roas:170, roasPrev:133, cpa:"20,218", cpaDelta:-19.1, verdict:"개선", tone:"up" },
-      { name:"검색광고", sub:"→ 스마트스토어", cost:"27", costDelta:-19.5, sales:"230", salesDelta:-7.2,
-        roas:839, roasPrev:728, cpa:"3,556", cpaDelta:-44.6, verdict:"개선", tone:"up" },
-      { name:"애드부스트", sub:"→ 스마트스토어", cost:"22", costDelta:+140.4, sales:"132", salesDelta:+67.1,
-        roas:602, roasPrev:865, cpa:"5,332", cpaDelta:+46.6, verdict:"악화", tone:"down" },
-      { name:"GFA", sub:"미집행", cost:"0", costDelta:0, sales:"23", salesDelta:+895.0,
+      { name:"메타", sub:"→ 자사몰", cost:"392", costDelta:-8.7, sales:"630", salesDelta:+6.7,
+        roas:160, roasPrev:137, cpa:"21,214", cpaDelta:-11.7, verdict:"개선", tone:"up" },
+      { name:"검색광고", sub:"→ 스마트스토어", cost:"32", costDelta:-21.3, sales:"273", salesDelta:+7.6,
+        roas:854, roasPrev:625, cpa:"3,556", cpaDelta:-51.9, verdict:"개선", tone:"up" },
+      { name:"애드부스트", sub:"→ 스마트스토어", cost:"26", costDelta:+134.8, sales:"166", salesDelta:+68.4,
+        roas:639, roasPrev:891, cpa:"4,985", cpaDelta:+44.5, verdict:"악화", tone:"down" },
+      { name:"GFA", sub:"미집행", cost:"0", costDelta:0, sales:"28", salesDelta:+706.9,
         roas:null, cpa:null, verdict:"미집행", tone:"hold" }
     ],
     chanEffNote: [
-      "<mark>메타 귀인은 개선인데 자사몰 실매출은 -19.7%.</mark> 판정은 실매출 기준."
+      "<mark>메타 귀인은 개선인데 자사몰 실매출은 -20.2%.</mark> 판정은 실매출 기준."
     ],
     metaHealth: [
-      { k:"도달",      prev:"217,602", curr:"152,504", delta:"-29.9%", note:"주문 +15.6%와 반대. 줄이고도 늘었다" },
-      { k:"빈도",      prev:"1.59",    curr:"1.43",    delta:"-10.1%", note:"2.0 미만" },
-      { k:"3초조회율", prev:"22.3%",   curr:"22.0%",   delta:"-0.3%p", note:"<mark>유지 → 소진 반증</mark>" },
-      { k:"CPC",      prev:"705원",   curr:"854원",   delta:"+21.2%", note:"경매 단가 상승" },
-      { k:"CVR",      prev:"4.22%",   curr:"4.72%",   delta:"+11.9%", note:"올랐으나 CPC 상승폭보다 작다" },
-      { k:"CPA",      prev:"16,708원", curr:"18,096원", delta:"+8.3%", note:"= 854 ÷ 4.72% 검산 ✓" }
+      { k:"도달",      prev:"266,011", curr:"204,213", delta:"-23.2%", note:"<mark>클릭 -23.4%·주문 -19.1%와 일치 → 원인 확정</mark>" },
+      { k:"빈도",      prev:"1.63",    curr:"1.48",    delta:"-9.2%",  note:"2.0 미만" },
+      { k:"3초조회율", prev:"21.6%",   curr:"21.1%",   delta:"-0.5%p", note:"<mark>유지 → 소진 반증</mark>" },
+      { k:"CPC",      prev:"734원",   curr:"874원",   delta:"+19.1%", note:"경매 단가 상승" },
+      { k:"CVR",      prev:"4.47%",   curr:"4.72%",   delta:"+5.6%",  note:"올랐으나 CPC 상승폭보다 작다" },
+      { k:"CPA",      prev:"16,406원", curr:"18,513원", delta:"+12.8%", note:"= 874 ÷ 4.72% 검산 ✓" }
     ],
     metaHealthNote: [
-      "<b>소진 아님</b> — 빈도 1.43 + 3초조회율 유지.",
-      "<mark><b>CPC 주도</b></mark> — CVR도 개선됐지만 CPC 상승이 더 커서 CPA가 올랐다. 처방은 소재가 아니라 타겟·입찰·경매.",
-      "CVR·CPA는 자사몰 실주문 기준. 도달·빈도·3초조회율은 캠페인 그룹 기준."
+      "<b>소진 아님</b> — 빈도 1.48 + 3초조회율 유지. 신규 제작 근거 없음.",
+      "<b>감액이 주문을 깎았다</b> — 도달 -23.2% ≒ 클릭 -23.4% ≒ 자사몰 주문 -19.1%.",
+      "<mark><b>CPC 주도</b></mark> — CVR도 올랐지만 CPC 상승이 더 커서 CPA가 올랐다. 처방은 소재가 아니라 타겟·입찰."
     ],
     situation: {
-      found: "캠페인 구조 대개편 — 최대 -90% 감액, 남녀확장 156만원 신규.",
-      todo: "매출은 09-06까지 적재됐으나 메타·애드부스트·GFA 광고비는 09-05까지다. 광고비 기준을 맞추려 6일로 비교한다. 스마트스토어 +33.8%는 광고 밖 요인일 가능성."
+      found: "캠페인 대개편 — 남녀확장 192만원 신규, 복사_재세팅 -91.1% 감액.",
+      todo: "감액 폭이 주문 감소로 직결됐다. 남녀확장 CPC 989원이 세 캠페인 중 최고."
     },
     drill: [
       {
-        title:"메타 · 캠페인별", spend:"광고비 373 → 328만원 (-12.1%)", evidence:"Pass",
-        result:"<b>구조 대개편.</b> 최대 -90% 감액, 신규 156만원(예산 48%) 개시.",
-        chain:["복사_재세팅_증액 -90%, 남녀확장 156만원 신규","이미지소재(ROAS 46%) 중단"],
+        title:"메타 · 캠페인별", spend:"광고비 430 → 392만원 (-8.7%)", evidence:"Pass",
+        result:"<b>효율은 올랐는데 적자 전환.</b> ROAS 175% < 손익분기 185%.",
+        chain:["복사_재세팅을 224 → 20만원(-91.1%)으로 끊고 남녀확장 192만원 신규","도달 -23.2%가 자사몰 주문 -19.1%로 직결"],
         agenda:[
-          { t:"신규 캠페인 검증", items:["예산 48%. 다음 주 자사몰 실매출로 판정"] }
+          { t:"감액 폭 재검토", items:["도달 회복 없이는 주문이 안 돌아온다"] },
+          { t:"남녀확장 판정", items:["CPC 989원으로 최고. 2주 관찰 후 존폐"] }
         ],
         cols:["캠페인","비용 지지난주","비용 지난주","도달 지난주","CPC 지난주"],
         rows:[
-          ["GEM세팅_전환수_남녀확장","신규","0","1,557,236","74,023","987"],
-          ["GEM릴렉스틱볼","주력","978,459","968,197","66,536","820"],
-          ["복사_재세팅_증액","감액 -90%","1,927,371","198,999","11,945","884"],
-          ["GEM릴렉스틱볼_이미지소재","중단","192,936","0","0","-"]
+          ["GEM세팅_전환수_남녀확장","신규","0","1,918,494","88,274","989"],
+          ["GEM릴렉스틱볼","유지","1,144,261","1,154,114","80,504","793"],
+          ["복사_재세팅_증액","-91.1%","2,244,949","198,999","11,945","884"],
+          ["GEM릴렉스틱볼_이미지소재","중단","192,936","0","0","-"],
+          ["공유 캠페인 3건","릴렉스틱과 배분","3,458,077","3,238,124","116,469","-"]
         ],
         sum:null,
-        note:["메타 API, 볼 전용 캠페인만. 공유 캠페인 N빵분이 빠져 채널 합계가 기준."]
+        note:["메타 API. 공유 캠페인은 릴렉스틱과 비용 배분(볼 20.2%)하므로 합계가 채널 합계와 다르며, 채널 합계가 기준."]
       }
     ],
     actions: [
-      { do:"메타 예산 동결 (328만원)",         owner:"퍼포먼스", ac:"신규 48% 비중. 실매출 판정 후 조정" },
-      { do:"남녀확장 자사몰 실매출 검증",       owner:"퍼포먼스", ac:"156만원. 09-12까지 귀속 매출 산출" },
-      { do:"네이버 증액 여력 확인",             owner:"퍼포먼스", ac:"ROAS 1,682%에 광고비 49만원. 09-09까지" },
-      { do:"자사몰 실매출 -19.7% 원인 확인",    owner:"퍼포먼스", ac:"픽셀은 개선, 실매출만 하락. 09-09까지" },
-      { do:"스마트스토어 급증 원인 확인",        owner:"마케팅",   ac:"비용 +14%에 주문 +61%. 09-09까지" }
+      { do:"자사몰 감액 폭 재검토",        owner:"퍼포먼스", ac:"도달 -23%가 주문 -19%로 직결" },
+      { do:"남녀확장 192만원 성과 판정",   owner:"퍼포먼스", ac:"CPC 989원 최고. 2주 관찰" },
+      { do:"검색광고 32 → 50만원 증액",    owner:"퍼포먼스", ac:"ROAS 854%, CPA 3,556원" },
+      { do:"애드부스트 26만원 유지",       owner:"퍼포먼스", ac:"ROAS 639%로 여전히 높다" },
+      { do:"객단가 -9.2% 원인 확인",       owner:"마케팅",   ac:"할인·구성 변경 여부. 09-10까지" }
     ]
   },
 
   lupy: {
-    product: "잔망루피 에디션",
-    subtitle: "지난주 08-31~09-05 (6일) · 비교 08-24~08-29 (6일)",
+    product: "잔망루피",
+    subtitle: "지난주 08-31~09-06 (7일) · 비교 08-24~08-30 (7일) · 오리지널_루피+볼_루피",
     lede: [
-      { k:"볼륨", v:["매출 <b>+32.5%</b>, 주문 <b>+36.3%</b>. 자사몰 -15.3%, 스마트스토어 +68.0%.",
-                       "객단가 37,120 → 36,088원(-2.8%). 단가는 유지, 증가는 건수다."] },
-      { k:"효율", v:["광고비 <b>+49.2%</b>에 ROAS 358 → <b>318%</b>. 세 제품 중 유일하게 효율 하락."] },
-      { k:"결론", v:["<mark>자사몰 적자 전환(+85 → -58만원).</mark> CPC +23.7%에 CVR -13.5%가 겹쳐 CPA가 <b>43% 올랐다.</b>"] }
+      { k:"볼륨", v:["매출 <b>+41.9%</b>, 주문 <b>+46.4%</b>. 자사몰 -15.3%, 스마트스토어 +87.9%.",
+                     "객단가 37,181 → 36,053원(-3.0%). 단가는 유지, 증가는 건수다."] },
+      { k:"효율", v:["광고비 <b>+48.8%</b>에 ROAS 335 → <b>320%</b>. 세 제품 중 유일한 효율 하락.",
+                     "GFA에 284만원(광고비의 33%)을 쓰고 ROAS 72%로 회수 실패."] },
+      { k:"결론", v:["<mark>자사몰 적자 전환(+88 → -71만원).</mark> CPC +17.1%에 CVR -17.6%가 겹쳐 CPA가 <b>42% 올랐다.</b>"] }
     ],
     stats: [
-      { k:"총 광고비",      v:"724",   unit:"만원", delta:+49.2, good:"down" },
-      { k:"페이드채널 매출", v:"2,302", unit:"만원", delta:+32.5, good:"up" },
-      { k:"ROAS",          v:"318",   unit:"%",   delta:-40.0, good:"up", pp:true, ref:"손익분기 175%" },
-      { k:"주문수",         v:"638",   unit:"건",   delta:+36.3, good:"up" },
-      { k:"광고 후 마진",   v:"595",   unit:"만원", delta:+14.7, good:"up", ref:"채널마진 1,319만 − 광고비 724만" }
+      { k:"총 광고비",      v:"865",   unit:"만원", delta:+48.8, good:"down" },
+      { k:"페이드채널 매출", v:"2,765", unit:"만원", delta:+41.9, good:"up" },
+      { k:"ROAS",          v:"320",   unit:"%",   delta:-15.4, good:"up", pp:true, ref:"손익분기 174%" },
+      { k:"주문수",         v:"767",   unit:"건",   delta:+46.4, good:"up" },
+      { k:"광고 후 마진",   v:"720",   unit:"만원", delta:+32.0, good:"up", ref:"채널마진 1,585만 − 광고비 865만" }
     ],
     chart: {
       prevLabel:"지지난주", currLabel:"지난주",
       rows: [
-        { name:"메타",      prev:3510962, curr:4246158 },
-        { name:"GFA",      prev:1010690, curr:2372231 },
-        { name:"애드부스트", prev:329816,  curr:620421  },
-        { name:"검색광고",   prev:0,       curr:0       }
+        { name:"메타",      prev:4234454, curr:5012074 },
+        { name:"GFA",      prev:1181105, curr:2844123 },
+        { name:"애드부스트", prev:401360,  curr:797449  }
       ],
-      yMax:4500000, yStep:1500000, div:10000,
-      note:"단위 만원. 검색광고는 집행 0원, 귀인 매출만 잡힌다."
+      yMax:6000000, yStep:2000000, div:10000,
+      note:"단위 만원. 검색광고는 광고비 0에 귀인 매출 675만원."
     },
     sales: [
-      { name:"스마트스토어", sub:"네이버 귀인", sales:"1,676", salesDelta:+68.0, orders:479, ordersDelta:+71.1,
-        cost:"299", costDelta:+123.3, roas:560, roasPrev:744, bep:176, contrib:"+653", contribDelta:+50.7 },
-      { name:"자사몰", sub:"메타 귀인", sales:"627", salesDelta:-15.3, orders:159, ordersDelta:-15.4,
-        cost:"425", costDelta:+20.9, roas:148, roasPrev:211, bep:171, contrib:"-58", contribDelta:-167.9, negative:true }
+      { name:"스마트스토어", sub:"네이버 귀인", sales:"2,031", salesDelta:+87.9, orders:583, ordersDelta:+92.4,
+        cost:"364", costDelta:+130.1, roas:558, roasPrev:683, bep:176, contrib:"+791", contribDelta:+73.2 },
+      { name:"자사몰", sub:"메타 귀인", sales:"734", salesDelta:-15.3, orders:184, ordersDelta:-16.7,
+        cost:"501", costDelta:+18.4, roas:147, roasPrev:205, bep:171, contrib:"-71", contribDelta:-180.5, negative:true }
     ],
-    salesSum: { sales:"2,302", salesDelta:+32.5, orders:638, ordersDelta:+36.3, cost:"724", costDelta:+49.2, roas:318, roasPrev:358, bep:175, contrib:"+595", contribDelta:+14.7 },
+    salesSum: { sales:"2,765", salesDelta:+41.9, orders:767, ordersDelta:+46.4, cost:"865", costDelta:+48.8, roas:320, roasPrev:335, bep:174, contrib:"+720", contribDelta:+32.0 },
     salesNote: [
-      "<mark>자사몰에 광고비를 21% 더 넣고 매출은 15% 빠졌다.</mark> 세 제품 중 가장 나쁜 조합."
+      "<mark>자사몰 적자 전환</mark> +159 → +88 → -71만원. 3주 연속 하락이다.",
+      "<mark>자사몰에 광고비를 18% 더 넣고 매출은 15% 빠졌다.</mark> 세 제품 중 가장 나쁜 조합."
     ],
     chanEff: [
-      { name:"메타", sub:"→ 자사몰", cost:"425", costDelta:+20.9, sales:"502", salesDelta:+36.1,
-        roas:118, roasPrev:105, cpa:"25,275", cpaDelta:-12.2, verdict:"개선", tone:"up" },
-      { name:"GFA", sub:"→ 스마트스토어", cost:"237", costDelta:+134.7, sales:"157", salesDelta:+111.9,
-        roas:66, roasPrev:73, cpa:"56,482", cpaDelta:+0.6, verdict:"악화", tone:"down" },
-      { name:"애드부스트", sub:"→ 스마트스토어", cost:"62", costDelta:+88.1, sales:"236", salesDelta:+29.9,
-        roas:381, roasPrev:552, cpa:"9,694", cpaDelta:+32.3, verdict:"악화", tone:"down" },
-      { name:"검색광고", sub:"미집행", cost:"0", costDelta:0, sales:"563", salesDelta:+82.4,
-        roas:null, cpa:null, verdict:"미집행", tone:"hold" }
+      { name:"메타", sub:"→ 자사몰", cost:"501", costDelta:+18.4, sales:"561", salesDelta:+32.5,
+        roas:112, roasPrev:100, cpa:"27,240", cpaDelta:-9.9, verdict:"개선", tone:"up" },
+      { name:"검색광고", sub:"→ 스마트스토어", cost:"0", costDelta:0, sales:"675", salesDelta:+102.1,
+        roas:null, cpa:null, verdict:"무료 귀인", tone:"hold" },
+      { name:"애드부스트", sub:"→ 스마트스토어", cost:"80", costDelta:+98.7, sales:"317", salesDelta:+57.4,
+        roas:397, roasPrev:501, cpa:"9,166", cpaDelta:+11.9, verdict:"악화", tone:"down" },
+      { name:"GFA", sub:"→ 스마트스토어", cost:"284", costDelta:+140.8, sales:"206", salesDelta:+161.4,
+        roas:72, roasPrev:67, cpa:"50,788", cpaDelta:-14.0, verdict:"회수 실패", tone:"down" }
     ],
     chanEffNote: [
-      "<mark>증액한 두 채널이 나빠졌다.</mark> GFA는 ROAS 66%로 회수 실패인데 광고비의 33%를 쓴다."
+      "<mark>증액한 두 채널이 나빠졌다.</mark> GFA는 ROAS 72%로 회수 실패인데 광고비의 33%를 쓴다."
     ],
     metaHealth: [
-      { k:"도달",      prev:"177,191", curr:"148,029", delta:"-16.5%", note:"<mark>자사몰 주문 -15.4%와 일치 → 원인 확정</mark>" },
-      { k:"빈도",      prev:"1.52",    curr:"1.57",    delta:"+3.3%",  note:"2.0 미만" },
-      { k:"3초조회율", prev:"20.3%",   curr:"18.8%",   delta:"-1.5%p", note:"소폭 하락. 다음 주 재확인" },
-      { k:"CPC",      prev:"701원",   curr:"867원",   delta:"+23.7%", note:"경매 단가 상승" },
-      { k:"CVR",      prev:"3.75%",   curr:"3.25%",   delta:"-13.5%", note:"<mark>CPC와 함께 악화</mark>" },
-      { k:"CPA",      prev:"18,675원", curr:"26,705원", delta:"+43.0%", note:"= 867 ÷ 3.25% 검산 ✓" }
+      { k:"도달",      prev:"191,815", curr:"180,648", delta:"-5.8%",  note:"자사몰 주문 -16.7%가 더 크게 빠졌다 → 효율도 악화" },
+      { k:"빈도",      prev:"1.55",    curr:"1.59",    delta:"+3.0%",  note:"2.0 미만" },
+      { k:"3초조회율", prev:"20.8%",   curr:"18.6%",   delta:"-2.2%p", note:"<mark>하락. 다음 주 재확인</mark>" },
+      { k:"CPC",      prev:"706원",   curr:"827원",   delta:"+17.1%", note:"경매 단가 상승" },
+      { k:"CVR",      prev:"3.69%",   curr:"3.04%",   delta:"-17.6%", note:"<mark>CPC와 함께 악화</mark>" },
+      { k:"CPA",      prev:"19,162원", curr:"27,241원", delta:"+42.2%", note:"= 827 ÷ 3.04% 검산 ✓" }
     ],
     metaHealthNote: [
-      "<b>소진 단정 불가</b> — 빈도는 정상, 3초조회율만 하락. 다음 주 재확인.",
-      "<mark><b>CPC·CVR 양쪽 다 악화</b></mark> — CPA +43.0%. 세 제품 중 유일하다.",
-      "<b>확정 못 함</b> — CVR -13.5%가 소재 메시지 탓인지 랜딩·가격·재고 탓인지 데이터로 가르지 못한다."
+      "<b>소진 단정 불가</b> — 빈도는 정상, 3초조회율만 -2.2%p. 다음 주 재확인.",
+      "<mark><b>CPC·CVR 양쪽 다 악화</b></mark> — CPA +42.2%. 세 제품 중 유일하다.",
+      "<b>확정 못 함</b> — CVR -17.6%가 소재 메시지 탓인지 랜딩·가격·재고 탓인지 데이터로 가르지 못한다."
     ],
     situation: {
-      found: "광고비 +49.2%인데 도달 -16.5%. CPC·CVR 동시 악화로 CPA +43.0%.",
-      todo: "매출은 09-06까지 적재됐으나 메타·애드부스트·GFA 광고비는 09-05까지다. 광고비 기준을 맞추려 6일로 비교한다. GFA 증액분 136만원은 제품 귀속 불가."
+      found: "GFA를 118 → 284만원(+141%)으로 늘렸는데 ROAS 72%. 광고비의 33%다.",
+      todo: "3초조회율이 2.2%p 빠졌다. 2주 연속이면 소재 교체 판단으로 넘어간다."
     },
     drill: [
       {
-        title:"메타 · 캠페인별", spend:"광고비 351 → 425만원 (+20.9%)", evidence:"Pass",
-        result:"<b>증액했으나 도달 감소.</b> 자사몰 ROAS 211 → 148%로 적자 전환.",
-        chain:["광고비 +20.9%인데 CPC +32.6%가 상쇄해 도달 -16.5%","자사몰 주문 -15.4%. 도달 감소율과 거의 같다"],
+        title:"메타 · 캠페인별", spend:"광고비 423 → 501만원 (+18.4%)", evidence:"Pass",
+        result:"<b>증액했는데 주문이 줄었다.</b> ROAS 147% < 손익분기 171%.",
+        chain:["광고비 +18.4%에 도달 -5.8%, 자사몰 주문 -16.7%","CPC +17.1%와 CVR -17.6%가 겹쳐 CPA +42.2%"],
         agenda:[
-          { t:"CPC 상승 대응", items:["입찰·타겟 확인. 경매 경쟁이면 증액해도 도달이 안 는다"] }
+          { t:"CVR 하락 원인 분리", items:["소재 메시지인지 랜딩·가격·재고인지 못 가른다"] },
+          { t:"미소진 캠페인 증액 재검토", items:["33 → 70만원(+110%)인데 CPC 725원"] }
         ],
         cols:["캠페인","비용 지지난주","비용 지난주","도달 지난주","CPC 지난주"],
         rows:[
-          ["GEM잔망루피","주력","1,669,069","1,651,911","58,261","815"],
-          ["GEM잔망_연예인","증액 +8%","1,290,108","1,390,661","39,479","1,095"],
-          ["GEM세팅_전환수","증액 +88%","323,673","606,775","21,859","762"],
-          ["GEM세팅_전환수_미소진","증액 +161%","228,396","597,106","28,430","743"]
+          ["GEM잔망루피","유지","1,949,158","1,943,370","70,860","774"],
+          ["GEM잔망_연예인","+7.0%","1,537,445","1,644,558","49,751","1,030"],
+          ["GEM세팅_전환수","+74.9%","416,864","729,009","25,087","735"],
+          ["GEM세팅_전환수_미소진","+109.9%","331,288","695,431","34,950","725"]
         ],
         sum:null,
-        note:["메타 API. 연예인 캠페인 CPC 1,095원이 최고이며 도달이 32% 줄었다."]
+        note:["메타 API. 루피 전용 캠페인 4건으로 채널 합계와 일치(차이 294원)."]
       }
     ],
     actions: [
-      { do:"메타 CPC +32.6% 원인 확인",   owner:"퍼포먼스", ac:"입찰·타겟·경매 중 무엇인지 09-09까지" },
-      { do:"GFA 소재명에 제품 코드 삽입",  owner:"퍼포먼스", ac:"광고비 33%의 성과 확인 불가 해소" },
-      { do:"애드부스트 62 → 33만원 원복",  owner:"퍼포먼스", ac:"증분 ROAS 186%. 대조군 확보" },
-      { do:"자사몰 적자 전환 대응",        owner:"대표·퍼포먼스", ac:"CPC 안정 안 되면 425 → 350만원 감액" },
-      { do:"스마트스토어 급증 원인 확인",   owner:"마케팅",   ac:"세 제품 동시. 09-09까지" }
+      { do:"GFA 284 → 100만원 감액",      owner:"퍼포먼스", ac:"ROAS 72%. 광고비 33%가 회수 실패" },
+      { do:"메타 CVR 하락 원인 분리",      owner:"마케팅",   ac:"소재 vs 랜딩·가격·재고. 09-10까지" },
+      { do:"3초조회율 재확인",             owner:"크리에이티브", ac:"-2.2%p. 2주 연속이면 신규 제작" },
+      { do:"연예인 캠페인 CPC 점검",       owner:"퍼포먼스", ac:"1,030원으로 최고. 타겟 재조정" },
+      { do:"스마트스토어 +88% 원인 확인",  owner:"마케팅",   ac:"네이버 광고비 +130%로 일부만 설명" }
     ]
   }
 };
