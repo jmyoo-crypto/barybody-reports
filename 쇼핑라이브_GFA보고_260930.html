@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼핑라이브 GFA 효과 보고</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:-apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    color:#1d1d1f; background:#ececed; padding:28px; line-height:1.55; -webkit-font-smoothing:antialiased; word-break:keep-all;
+  }
+  .page { max-width:840px; margin:0 auto; background:#fff; padding:42px 48px 36px; box-shadow:0 4px 24px rgba(0,0,0,.10); border-radius:10px; }
+  header { border-bottom:3px solid #b10202; padding-bottom:16px; margin-bottom:22px; }
+  .eyebrow { font-size:12px; font-weight:700; letter-spacing:.12em; color:#b10202; }
+  h1 { font-size:25px; font-weight:800; margin-top:6px; letter-spacing:-.01em; }
+  .sub { font-size:14px; color:#6b6b70; margin-top:6px; }
+  .date { float:right; font-size:12px; color:#9a9a9f; margin-top:4px; text-align:right; }
+
+  .lead { background:#fdf2f2; border:1px solid #f3cccc; border-left:5px solid #b10202; border-radius:8px; padding:16px 20px; margin-bottom:24px; font-size:15px; }
+  .lead b { color:#b10202; }
+
+  h2 { font-size:15px; font-weight:800; margin:24px 0 10px; padding-left:11px; border-left:4px solid #b10202; }
+
+  .scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; margin-bottom:4px; }
+  th, td { border:1px solid #e2e2e4; padding:9px 12px; text-align:left; vertical-align:top; }
+  thead th { background:#b10202; color:#fff; font-weight:700; }
+  tbody th { background:#f7f7f8; font-weight:700; width:120px; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.now { background:#fcfaf5; }
+  td.now b { color:#b10202; }
+  .muted { color:#8a8a8f; }
+  .up { color:#1e7a36; font-weight:800; } .dn { color:#b10202; font-weight:800; } .eq { color:#8a5d06; font-weight:800; }
+
+  .cards { display:flex; gap:14px; margin-top:6px; }
+  .card { flex:1; border:1px solid #e2e2e4; border-radius:8px; padding:14px 16px; }
+  .card.good { background:#f3f9f4; border-color:#cfe6d3; }
+  .card.bad  { background:#fdf4f3; border-color:#f1d3cf; }
+  .card.hold { background:#f7f7f8; }
+  .card .ttl { font-weight:800; font-size:13.5px; margin-bottom:6px; }
+  .card.good .ttl { color:#1e7a36; } .card.bad .ttl { color:#b10202; } .card.hold .ttl { color:#6b6b70; }
+  .card p { font-size:12.8px; color:#444; }
+  .big { font-size:18px; font-weight:800; }
+
+  .note { background:#f7f7f8; border-radius:8px; padding:13px 18px; font-size:13px; color:#555; margin-top:6px; }
+  .note b { color:#1d1d1f; }
+
+  .qa { background:#f4f9fc; border:1px solid #cfe4f1; border-left:5px solid #0b6bb3; border-radius:8px; padding:16px 20px; margin-bottom:12px; }
+  .qa .q { font-weight:800; font-size:13.8px; color:#0b6bb3; margin-bottom:6px; }
+  .qa p { font-size:13.3px; }
+  .qa p b { color:#0b6bb3; }
+
+  details.fold { margin:22px 0 4px; border:1px solid #e2e2e4; border-radius:8px; }
+  details.fold summary { cursor:pointer; list-style:none; padding:11px 14px; font-size:14px; font-weight:800; }
+  details.fold summary::-webkit-details-marker { display:none; }
+  details.fold summary::before { content:'▶'; font-size:10px; color:#b10202; margin-right:8px; display:inline-block; transition:transform .15s; }
+  details.fold[open] summary::before { transform:rotate(90deg); }
+  details.fold summary .hint { font-size:11.5px; font-weight:600; color:#8a8a8f; margin-left:6px; }
+  details.fold[open] summary .hint { display:none; }
+  details.fold .fold-body { padding:0 14px 14px; }
+  table.nw th, table.nw td { white-space:nowrap; }
+  .analogy { margin-top:24px; padding:16px 20px; background:#1d1d1f; color:#fff; border-radius:8px; font-size:14.5px; text-align:center; }
+  .analogy b { color:#ff9a9a; }
+  footer { margin-top:20px; font-size:11px; color:#a8a8ad; text-align:center; line-height:1.7; }
+  @media (max-width:640px) { body{padding:12px;} .page{padding:24px 18px;} .cards{flex-direction:column;} .date{float:none; display:block; margin-bottom:6px;} }
+  @media print { body { background:#fff; padding:0; } .page { box-shadow:none; border-radius:0; max-width:100%; padding:24px 28px; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <span class="date">2026. 09. 29.<br>데이터 ~ 09. 28.</span>
+    <div class="eyebrow">바리바디 · 쇼핑라이브 GFA 보고</div>
+    <h1>GFA는 유지, 증액은 보류 — 사람은 2배 오지만 남는 돈은 본전</h1>
+    <div class="sub">GFA 광고가 라이브 매출과 이익에 준 영향 (광고비까지 뺀 기준)</div>
+  </header>
+
+  <div class="lead">
+    GFA를 켜면 라이브 시청자가 <b>2배</b>, 매출이 <b>+25%</b> 늘어납니다.
+    그런데 시청자가 2배로 느는 동안 산 사람은 28%만 늘어, 늘어난 이익을 광고비가 거의 다 가져갑니다 — 안 켠 날보다 <b>회차당 약 8.4만원 더 남기는 본전 수준</b>.
+    → <b>현재 규모(회당 30만원대)로 유지하되 증액은 하지 않고</b>, 4회 테스트 후 계속할지 정합니다.
+  </div>
+
+  <h2>켠 날 vs 안 켠 날</h2>
+  <div class="scroll"><table class="nw">
+    <thead><tr><th>구분</th><th>안 켠 날 7회 평균</th><th>켠 날 4회 평균</th><th>차이</th></tr></thead>
+    <tbody>
+      <tr><th>시청자</th><td class="num">510명</td><td class="num">1,065명</td><td class="now"><b>2배</b></td></tr>
+      <tr><th>산 사람</th><td class="num">53명</td><td class="num">68명</td><td class="now"><b>+28%</b></td></tr>
+      <tr><th>라이브 매출</th><td class="num">338.7만원</td><td class="num">423.5만원</td><td class="now"><b>+84.8만원 (+25%)</b></td></tr>
+      <tr><th>구매 비율 ¹</th><td class="num">10.4%</td><td class="num">6.6%</td><td class="now"><span class="dn">하락</span></td></tr>
+      <tr><th>상품 마진</th><td class="num">191.3만원</td><td class="num">237.5만원</td><td class="now">켠 날이 <b>46.3만원 더</b></td></tr>
+      <tr><th>광고비</th><td class="num muted">없음</td><td class="num">37.9만원</td><td class="muted">켠 날만 나가는 비용</td></tr>
+      <tr><th>순마진 ²</th><td class="num">191.3만원</td><td class="num">199.6만원</td><td class="now">켠 날이 <b>8.4만원 더 남김</b></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note" style="font-size:12px;">
+    ¹ 방송 전체 시청자 중 산 비율 · 광고로 온 사람만의 구매 비율은 추적 불가<br>
+    ² 광고비까지 뺀 돈 · 다음 날 매출까지 합치면 안 켠 날보다 약 17만원 덜 남김(9/28은 다음 날 데이터 전이라 3회 기준)
+  </div>
+  <div class="scroll" style="margin-top:12px;"><table>
+    <thead><tr><th style="width:120px;">GFA 켠 날</th><th>매출</th><th>광고비</th><th>순마진 <span style="font-weight:400">(광고비까지 뺀 돈)</span></th><th>안 켠 날 평균(191.3만원)과 비교</th></tr></thead>
+    <tbody>
+      <tr><th>8/31 (월)</th><td class="num">426.6만원</td><td class="num">38.2만원</td><td class="num">212.4만원</td><td class="now"><span class="up">21.1만원 더 남김</span></td></tr>
+      <tr><th>9/15 (화)</th><td class="num">539.5만원</td><td class="num">38.4만원</td><td class="num">256.6만원</td><td class="now"><span class="up">65.3만원 더 남김</span></td></tr>
+      <tr><th>9/17 (목)</th><td class="num">314.4만원</td><td class="num">38.2만원</td><td class="num">133.3만원</td><td class="now"><span class="dn">57.9만원 덜 남김</span></td></tr>
+      <tr><th>9/28 (월) <span class="muted" style="font-weight:400">신규</span></th><td class="num">413.4만원</td><td class="num">36.9만원</td><td class="num">196.3만원</td><td class="now"><span class="up">5.0만원 더 남김</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cards" style="margin-top:14px;">
+    <div class="card good"><div class="ttl">잘 되는 것</div><p><span class="big">사람을 데려온다</span><br>다른 유입 경로를 뺏지 않고 순수하게 395~634명을 더 데려옵니다.</p></div>
+    <div class="card bad"><div class="ttl">안 되는 것</div><p><span class="big">사람만큼 사지 않는다</span><br>시청자는 2배인데 산 사람은 28%만 늘었고, 방송 전체 체류 시간은 30% 짧아졌습니다. 매출은 늘지만 이익은 광고비만큼만 남습니다.<br><span style="color:#8a8a8f">※ 광고로 온 사람만의 구매는 추적 불가 — 방송 전체 숫자로 본 결과</span></p></div>
+  </div>
+
+  <details class="fold"><summary>비교 기준 — 안 켠 날 7회 <span class="hint">클릭해서 보기</span></summary>
+  <div class="fold-body">
+  <div class="scroll"><table>
+    <thead><tr><th style="width:120px;">안 켠 날</th><th>요일 · 시간대</th><th>직전 방송과 간격</th><th>시기</th><th>순마진</th></tr></thead>
+    <tbody>
+      <tr><th>8/23</th><td>일 · 오전</td><td class="num">5일</td><td>세일 전</td><td class="num">215.1만원</td></tr>
+      <tr><th>8/26</th><td>수 · 야간</td><td class="num">3일</td><td>세일 전</td><td class="num">204.3만원</td></tr>
+      <tr><th>8/27</th><td>목 · 야간</td><td class="num">1일</td><td>세일 전</td><td class="num">134.5만원</td></tr>
+      <tr><th>9/03</th><td>목 · 오전</td><td class="num">3일</td><td>세일 중</td><td class="num">251.2만원</td></tr>
+      <tr><th>9/05</th><td>토 · 오전</td><td class="num">2일</td><td>세일 중</td><td class="num">143.9만원</td></tr>
+      <tr><th>9/07</th><td>월 · 오전</td><td class="num">2일</td><td>세일 중</td><td class="num">215.0만원</td></tr>
+      <tr><th>9/22</th><td>화 · 오전</td><td class="num">2일</td><td>세일 중</td><td class="num">174.8만원</td></tr>
+      <tr><th>평균</th><td colspan="3" class="muted">8/23~9/22 방송 중 GFA 광고비 0원 · 플친 미발송</td><td class="num now"><b>191.3만원</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="scroll" style="margin-top:12px;"><table>
+    <thead><tr><th style="width:230px;">안 켠 날을 이렇게 잡으면</th><th>안 켠 날 평균</th><th>GFA 켠 날</th><th>GFA 켠 날이</th></tr></thead>
+    <tbody>
+      <tr><th>7회 전부 (보고서 기준)</th><td class="num">191.3만원</td><td class="num">199.6만원</td><td class="now"><span class="up">8.4만원 더 남김</span></td></tr>
+      <tr><th>평일만 (5회)</th><td class="num">195.9만원</td><td class="num">199.6만원</td><td class="now"><span class="up">3.7만원 더 남김</span></td></tr>
+      <tr><th>직전 방송과 3일 이상 간격끼리<br><span class="muted" style="font-weight:400">안 켠 날 8/23·8/26·9/03 · 켠 날 8/31·9/15·9/28</span></th><td class="num">223.5만원</td><td class="num">221.7만원</td><td class="now"><span class="dn">1.8만원 덜 남김</span></td></tr>
+      <tr><th>평일 오전만<br><span class="muted" style="font-weight:400">9/03·9/07·9/22</span></th><td class="num">213.6만원</td><td class="num">199.6만원</td><td class="now"><span class="dn">14.0만원 덜 남김</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">어떤 기준으로 잡아도 GFA가 더 남기는 돈은 <b>14만원 덜 ~ 8만원 더</b> 사이 — 본전 수준이라는 결론은 같습니다.</div>
+  </div></details>
+
+  <h2 style="border-color:#0b6bb3;">❓ 예상 질문</h2>
+  <div class="qa">
+    <div class="q">"대시보드에서는 GFA 켠 날 순마진율이 4%p 더 높던데?"</div>
+    <p>대시보드 순마진율에는 <b>GFA 광고비가 빠져 있지 않습니다.</b> 켜든 안 켜든 회차마다 똑같은 고정비(160만원)만 뺀 값입니다. 실제 광고비를 빼면 차이가 거의 없어집니다.</p>
+  </div>
+  <div class="qa">
+    <div class="q">"9/17은 GFA를 켰는데 왜 덜 남았나?"</div>
+    <p><b>추정</b> — 잔망루피 세트가 거의 팔리지 않은 영향이 가장 큽니다.</p>
+    <ol style="margin:6px 0 0 20px; font-size:13.3px;">
+      <li>9/15보다 줄어든 매출의 85%가 잔망루피 에디션입니다. 잔망루피 세트는 9/15에 42명이 샀는데 9/17엔 3명이 샀고, 판 금액의 62%가 환불됐습니다.</li>
+      <li>9/15 방송 이틀 만에 연 방송이라 판 자체도 작았습니다.</li>
+      <li>요일로는 설명되지 않습니다. 같은 목요일인 9/03은 안 켠 날 중 순마진이 가장 높았습니다.</li>
+    </ol>
+    <p style="margin-top:6px; font-size:13.3px;">9/17 순마진은 133.3만원으로 플러스지만, 광고 없는 평소 방송(191.3만원)보다 57.9만원 덜 남겼습니다.</p>
+    <p style="margin-top:8px; font-size:12.8px; color:#8a5d06;">⚠ 추후 확인 필요 — 9/17에 잔망루피 세트가 예약판매였는지 확인되면 원인을 확정합니다.</p>
+  </div>
+
+  <h2>다음 액션</h2>
+  <div class="scroll"><table>
+    <thead><tr><th style="width:120px;">대상</th><th>할 일</th><th>판정 기준</th></tr></thead>
+    <tbody>
+      <tr><th>GFA</th><td>같은 요일에 <b>켜기/끄기 번갈아 4회</b> · 회당 30만원대 유지</td><td class="now">늘어난 이익이 광고비를 <b>4회 중 3회 이상</b> 넘으면 유지, 못 넘으면 중단</td></tr>
+      <tr><th>GFA 켜는 날</th><td>광고 소재에 나온 상품·혜택을 방송 첫 10분에 그대로 보여주기</td><td class="now">방송 전체 구매 비율이 안 켠 날(10%) 수준으로 회복되는지</td></tr>
+      <tr><th>편성</th><td>카카오 플친과 <b>같은 날 켜지 않기</b> — 겹치면 GFA 효과를 가를 수 없음</td><td class="now">GFA 단독 회차로만 판정</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="analogy">
+    한마디로 — GFA는 <b>손님을 2배로 불러오는 전단지</b>인데, 손님이 2배로 와도 사는 손님은 그만큼 늘지 않아 <b>전단지 값 정도만 번다</b>.
+  </div>
+
+  <footer>
+    GFA 켠 날 = 8/31 · 9/15 · 9/17 · 9/28 / 안 켠 날 = 8/23 · 8/26 · 8/27 · 9/03 · 9/05 · 9/07 · 9/22<br>
+    GFA 6회 중 6/24 · 6/30은 제외(광고비 14~19만원 소규모 · 유입 추적 없음 · 넾다세일 · 6/30은 춈미 샤라웃 직후) · 9/20은 카카오 플친 동시 발송이라 제외<br>
+    9/28은 추석 세일 종료·연휴 직후 방송이라 안 켠 날(세일 전·세일 중)과 조건이 다름<br>
+    8/10(토스 리워드)·6월 초기 구간 제외 · 상세 근거: 쇼핑라이브_GFA플친_요인분석_260923.html
+  </footer>
+</div>
+</body>
+</html>
