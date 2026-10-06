@@ -66,6 +66,7 @@ select.plan{font:inherit;font-size:12px;font-weight:800;padding:3px 6px;border:1
 select.plan.v-up{background:#eaf6ec;border-color:#9fd3aa;color:#1e7a36}
 select.plan.v-down{background:#fff4e6;border-color:#f3c78a;color:#a2570a}
 select.plan.v-keep{background:#eef4fd;border-color:#a9c6ef;color:#1c5fb5}
+select.plan.v-swap{background:#f3effc;border-color:#c9b8ee;color:#5b3bb5}
 select.plan.v-off{background:#fdeceb;border-color:#f0b4ae;color:#b10202}
 .card{display:grid;grid-template-columns:330px 1fr;gap:18px;border:1px solid #e2e2e4;border-radius:10px;padding:14px;margin-bottom:12px}
 .player{position:relative;margin-bottom:6px;border:1px solid #e9e9ec;border-radius:7px;overflow:hidden;background:#101012;cursor:pointer;line-height:0}
@@ -208,7 +209,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
           <td class="r"><span class="big">242%</span> <span class="chg down">▼ 25%p</span><span class="prev">전주 267%</span></td>
           <td class="r"><span class="big">10,319,766</span><span class="u">원</span> <span class="chg down">▼ 19%</span><span class="prev">전주 12,665,559</span></td>
           <td class="why"><div class="mover">📊 <b>메타 → 자사몰</b> 귀인 매출 −63만원 (−11%) · 광고비 −13%</div>
-              <div class="ext"><span class="lbl">외부요인</span><span class="ed" contenteditable="true" data-k="ext_릴렉스틱볼" data-ph="네이버 프로모션·인플루언서 언급 등 (없으면 비움)">네이버 스마트스토어 매출 33% 감소</span></div></td>
+              <div class="ext"><span class="lbl">외부요인</span><span class="ed" contenteditable="true" data-k="ext_릴렉스틱볼" data-ph="네이버 프로모션·인플루언서 언급 등 (없으면 비움)">스마트스토어 매출 감소 (33%) / 9월 29일 부터 회복 되지 않고 있음</span></div></td>
         </tr>
         <tr>
           <td class="pname">릴렉스틱</td>
@@ -309,7 +310,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
       <h2><span class="no">②</span> 이번 주 운영 계획</h2>
       <div class="howto">
         <b>읽는 순서</b> 이미지 → <b>튀는 지표</b>(자동 · 같은 제품 전체 소재 평균 대비, ±15% 이내는 '비슷') → <b>소재 관찰 · 문제 추론 · 디벨롭 방향</b>(AI 초안 · 클릭해서 수정) → <b>계획 선택</b><br>
-        <span class="dim">OFF 소재·캠페인은 제외 (메타 게재 상태 10/05 10:42 조회) · 평균은 지난주 돈을 쓴 소재 전체 기준 · ROAS 기준선은 아직 넣지 않았습니다 — 증액/감액/유지·테스트/오프는 담당자가 고릅니다 · 광고비·매출·ROAS·구매·CPA = <b>cafe24 실매출</b>(상세 보고서 소재표 · ①의 전체 매출과는 기준이 달라 합이 맞지 않는 게 정상) · 반응·단가 지표 = 메타 API</span>
+        <span class="dim">OFF 소재·캠페인은 제외 (메타 게재 상태 10/05 10:42 조회) · 평균은 지난주 돈을 쓴 소재 전체 기준 · ROAS 기준선은 아직 넣지 않았습니다 — 증액/감액/유지·테스트/교체/오프는 담당자가 고릅니다 · 광고비·매출·ROAS·구매·CPA = <b>cafe24 실매출</b>(상세 보고서 소재표 · ①의 전체 매출과는 기준이 달라 합이 맞지 않는 게 정상) · 반응·단가 지표 = 메타 API</span>
       </div>
       
         <div class="prod" id="p_릴렉스틱볼">
@@ -320,13 +321,13 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
       <tbody><tr><td class="cname">260831 · GEM세팅_전환수_남녀확장_릴렉스틱볼</td><td><span class="acct">default·GEM세팅</span></td>
           <td class="r">2,055,074 <span class="chg down">▼ 4%</span></td><td class="r">2,159,900</td><td class="r">105%</td><td class="r">34,251원</td><td class="r">3 / 3</td>
           <td><select class="plan" data-k="camp_260831_판매_캠페인_GEM세팅_전환수_남녀확장_릴렉스틱볼"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down" selected>🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260831_판매_캠페인_GEM세팅_전환수_남녀확장_릴렉스틱볼" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260529 · GEM릴렉스틱볼_릴렉스틱볼</td><td><span class="acct">GEM</span></td>
+<option value="up">🔼 증액</option><option value="down" selected>🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260831_판매_캠페인_GEM세팅_전환수_남녀확장_릴렉스틱볼" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260529 · GEM릴렉스틱볼_릴렉스틱볼</td><td><span class="acct">GEM</span></td>
           <td class="r">1,134,374 <span class="chg down">▼ 0%</span></td><td class="r">1,437,900</td><td class="r">127%</td><td class="r">27,668원</td><td class="r">2 / 2</td>
           <td><select class="plan" data-k="camp_260529_판매_캠페인_GEM릴렉스틱볼_릴렉스틱볼"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down" selected>🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260529_판매_캠페인_GEM릴렉스틱볼_릴렉스틱볼" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260730 · GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼</td><td><span class="acct">default·GEM세팅</span></td>
+<option value="up">🔼 증액</option><option value="down" selected>🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260529_판매_캠페인_GEM릴렉스틱볼_릴렉스틱볼" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260730 · GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼</td><td><span class="acct">default·GEM세팅</span></td>
           <td class="r">506,224 <span class="chg down">▼ 4%</span></td><td class="r">1,132,333</td><td class="r">224%</td><td class="r">12,347원</td><td class="r">2 / 2</td>
           <td><select class="plan" data-k="camp_260730_판매_캠페인_GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260730_판매_캠페인_GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼" data-ph="일예산 변경 등"></span></td></tr></tbody></table>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260730_판매_캠페인_GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼" data-ph="일예산 변경 등"></span></td></tr></tbody></table>
           <h4>소재 진단 — 이미지 → 튀는 지표 → 관찰 → 추론 → 디벨롭 <span class="dim">(켜진 소재 7개 중 2장 · 광고비 상위 3 + 이상 신호)</span></h4>
           
     <article class="card" id="c_릴렉스틱볼_영상_오래걸으면_일반_5">
@@ -335,7 +336,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason top">광고비 상위</span><h3>오래걸으면_5</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱볼_영상_오래걸으면_일반_5"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down" selected>🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select>
         </div>
         <div class="meta">260831 · GEM세팅_전환수_남녀확장_릴렉스틱볼 · <span class="acct">default·GEM세팅</span> · 개시 08/31 · 35일차 · 소구점 기타</div>
         <div class="perf">광고비 <b>1,913,791원</b> <span class="dim">(지지난주 2,107,346)</span> · cafe24 매출 <b>1,980,500원</b> · ROAS <b>103%</b> <span class="dim">(지지난주 120%)</span> · 구매 <b>54건</b></div>
@@ -349,7 +350,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason top">광고비 상위</span><h3>물리치료_4</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱볼_영상_물리치료_일반_4"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select>
         </div>
         <div class="meta">260831 · GEM세팅_전환수_남녀확장_릴렉스틱볼 · <span class="acct">default·GEM세팅</span> · 개시 08/31 · 35일차 · 소구점 기타</div>
         <div class="perf">광고비 <b>112,585원</b> <span class="dim">(지지난주 24,864)</span> · cafe24 매출 <b>149,500원</b> · ROAS <b>133%</b> <span class="dim">(지지난주 120%)</span> · 구매 <b>5건</b></div>
@@ -366,16 +367,16 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
       <tbody><tr><td class="cname">260730 · GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼</td><td><span class="acct">default·GEM세팅</span></td>
           <td class="r">1,181,190 <span class="chg down">▼ 4%</span></td><td class="r">1,463,967</td><td class="r">124%</td><td class="r">28,810원</td><td class="r">2 / 2</td>
           <td><select class="plan" data-k="camp_260730_판매_캠페인_GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260730_판매_캠페인_GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260828 · GEM세팅_전환수_릴렉스틱</td><td><span class="acct">default·GEM세팅</span></td>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260730_판매_캠페인_GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260828 · GEM세팅_전환수_릴렉스틱</td><td><span class="acct">default·GEM세팅</span></td>
           <td class="r">697,708 <span class="chg down">▼ 0%</span></td><td class="r">347,600</td><td class="r">50%</td><td class="r">99,673원</td><td class="r">5 / 6</td>
           <td><select class="plan" data-k="camp_260828_판매_캠페인_GEM세팅_전환수_릴렉스틱"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off" selected>⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260828_판매_캠페인_GEM세팅_전환수_릴렉스틱" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260929 · GEM하체_릴렉스틱</td><td><span class="acct">GEM</span></td>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off" selected>⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260828_판매_캠페인_GEM세팅_전환수_릴렉스틱" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260929 · GEM하체_릴렉스틱</td><td><span class="acct">GEM</span></td>
           <td class="r">534,795 <span class="chg new">신규</span></td><td class="r">605,700</td><td class="r">113%</td><td class="r">53,480원</td><td class="r">4 / 4</td>
           <td><select class="plan" data-k="camp_260929_판매_캠페인_GEM하체_릴렉스틱"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260929_판매_캠페인_GEM하체_릴렉스틱" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">261001 · GEM하체_긴급성_신뢰성_릴렉스틱</td><td><span class="acct">GEM</span></td>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260929_판매_캠페인_GEM하체_릴렉스틱" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">261001 · GEM하체_긴급성_신뢰성_릴렉스틱</td><td><span class="acct">GEM</span></td>
           <td class="r">329,112 <span class="chg new">신규</span></td><td class="r">490,000</td><td class="r">149%</td><td class="r">36,568원</td><td class="r">4 / 4</td>
           <td><select class="plan" data-k="camp_261001_판매_캠페인_GEM하체_긴급성_신뢰성_릴렉스틱"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_261001_판매_캠페인_GEM하체_긴급성_신뢰성_릴렉스틱" data-ph="일예산 변경 등"></span></td></tr></tbody></table><p class="offline">제외(켜진 소재 없음): 260911 · 추석종합_전환수_릴렉스틱/릴렉스틱볼/잔망루피/올인원마사지기</p>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_261001_판매_캠페인_GEM하체_긴급성_신뢰성_릴렉스틱" data-ph="일예산 변경 등"></span></td></tr></tbody></table><p class="offline">제외(켜진 소재 없음): 260911 · 추석종합_전환수_릴렉스틱/릴렉스틱볼/잔망루피/올인원마사지기</p>
           <h4>소재 진단 — 이미지 → 튀는 지표 → 관찰 → 추론 → 디벨롭 <span class="dim">(켜진 소재 15개 중 4장 · 광고비 상위 3 + 이상 신호)</span></h4>
           <p class="offline">제외(OFF) 3개: 세트 부모님선물_1(97,264원) · 오늘만이가격_5(15,031원) · 세트 드디어시작_2(0원)</p>
     <article class="card" id="c_릴렉스틱_릴렉스틱볼_영상_리뷰_일반_2">
@@ -384,7 +385,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason top">광고비 상위</span><h3>세트 리뷰_2</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱_릴렉스틱볼_영상_리뷰_일반_2"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select>
         </div>
         <div class="meta">260730 · GEM세팅_전환수_공홈세트_릴렉스틱/릴렉스틱볼 · <span class="acct">default·GEM세팅</span> · 개시 07/30 · 67일차 · 소구점 리뷰·후기</div>
         <div class="perf">광고비 <b>1,069,255원</b> <span class="dim">(지지난주 1,190,023)</span> · cafe24 매출 <b>1,354,746원</b> · ROAS <b>127%</b> <span class="dim">(지지난주 75%)</span> · 구매 <b>38건</b></div>
@@ -398,7 +399,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason top">광고비 상위</span><h3>종아리가두껍다면_6</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱_영상_종아리가두껍다면_일반_6"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off" selected>⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off" selected>⏹ 오프</option></select>
         </div>
         <div class="meta">260828 · GEM세팅_전환수_릴렉스틱 · <span class="acct">default·GEM세팅</span> · 개시 08/28 · 38일차 · 소구점 기타</div>
         <div class="perf">광고비 <b>614,391원</b> <span class="dim">(지지난주 590,451)</span> · cafe24 매출 <b>270,700원</b> · ROAS <b>44%</b> <span class="dim">(지지난주 69%)</span> · 구매 <b>5건</b></div>
@@ -412,7 +413,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason top">광고비 상위</span><h3>하체_4</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱_영상_하체_일반_4"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select>
         </div>
         <div class="meta">260929 · GEM하체_릴렉스틱 · <span class="acct">GEM</span> · 개시 09/29 · 6일차 · 소구점 기타</div>
         <div class="perf">광고비 <b>488,852원</b> <span class="dim">(지지난주 집행 없음)</span> · cafe24 매출 <b>528,800원</b> · ROAS <b>108%</b> · 구매 <b>9건</b></div>
@@ -426,7 +427,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason anom">이상 신호 · CPM 평균 대비 27% 나쁨</span><h3>마감임박_3</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱_영상_마감임박_일반_3"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select>
         </div>
         <div class="meta">261001 · GEM하체_긴급성_신뢰성_릴렉스틱 · <span class="acct">GEM</span> · 개시 10/02 · 3일차 · 소구점 타이밍</div>
         <div class="perf">광고비 <b>238,188원</b> <span class="dim">(지지난주 집행 없음)</span> · cafe24 매출 <b>396,000원</b> · ROAS <b>166%</b> · 구매 <b>7건</b></div>
@@ -443,10 +444,10 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
       <tbody><tr><td class="cname">260529 · GEM잔망루피_릴렉스틱오리지널_루피/릴렉스틱볼_루피</td><td><span class="acct">GEM</span></td>
           <td class="r">1,248,322 <span class="chg down">▼ 4%</span></td><td class="r">1,393,200</td><td class="r">112%</td><td class="r">27,137원</td><td class="r">6 / 6</td>
           <td><select class="plan" data-k="camp_260529_판매_캠페인_GEM잔망루피_릴렉스틱오리지널_루피/릴렉스틱볼_루피"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260529_판매_캠페인_GEM잔망루피_릴렉스틱오리지널_루피/릴렉스틱볼_루피" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260710 · GEM잔망_연예인_릴렉스틱오리지널_루피/릴렉스틱볼_루피</td><td><span class="acct">GEM</span></td>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260529_판매_캠페인_GEM잔망루피_릴렉스틱오리지널_루피/릴렉스틱볼_루피" data-ph="일예산 변경 등"></span></td></tr><tr><td class="cname">260710 · GEM잔망_연예인_릴렉스틱오리지널_루피/릴렉스틱볼_루피</td><td><span class="acct">GEM</span></td>
           <td class="r">1,043,682 <span class="chg down">▼ 6%</span></td><td class="r">1,632,800</td><td class="r">156%</td><td class="r">20,874원</td><td class="r">5 / 5</td>
           <td><select class="plan" data-k="camp_260710_판매_캠페인_GEM잔망_연예인_릴렉스틱오리지널_루피/릴렉스틱볼_루피"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260710_판매_캠페인_GEM잔망_연예인_릴렉스틱오리지널_루피/릴렉스틱볼_루피" data-ph="일예산 변경 등"></span></td></tr></tbody></table>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select></td><td class="memo"><span class="ed" contenteditable="true" data-k="memo_260710_판매_캠페인_GEM잔망_연예인_릴렉스틱오리지널_루피/릴렉스틱볼_루피" data-ph="일예산 변경 등"></span></td></tr></tbody></table>
           <h4>소재 진단 — 이미지 → 튀는 지표 → 관찰 → 추론 → 디벨롭 <span class="dim">(켜진 소재 11개 중 5장 · 광고비 상위 3 + 이상 신호)</span></h4>
           
     <article class="card" id="c_릴렉스틱오리지널_루피_릴렉스틱볼_루피_영상_15초_일반_3">
@@ -455,7 +456,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason top">광고비 상위</span><h3>15초_3</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱오리지널_루피_릴렉스틱볼_루피_영상_15초_일반_3"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select>
         </div>
         <div class="meta">260710 · GEM잔망_연예인_릴렉스틱오리지널_루피/릴렉스틱볼_루피 · <span class="acct">GEM</span> · 개시 07/10 · 87일차 · 소구점 포맷</div>
         <div class="perf">광고비 <b>850,957원</b> <span class="dim">(지지난주 890,120)</span> · cafe24 매출 <b>1,423,100원</b> · ROAS <b>167%</b> <span class="dim">(지지난주 142%)</span> · 구매 <b>44건</b></div>
@@ -469,7 +470,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason top">광고비 상위</span><h3>왜안해_1</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱오리지널_루피_릴렉스틱볼_루피_영상_왜안해_일반_1"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off" selected>⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off" selected>⏹ 오프</option></select>
         </div>
         <div class="meta">260529 · GEM잔망루피_릴렉스틱오리지널_루피/릴렉스틱볼_루피 · <span class="acct">GEM</span> · 개시 05/30 · 128일차 · 소구점 호기심</div>
         <div class="perf">광고비 <b>660,676원</b> <span class="dim">(지지난주 828,277)</span> · cafe24 매출 <b>620,200원</b> · ROAS <b>94%</b> <span class="dim">(지지난주 114%)</span> · 구매 <b>22건</b></div>
@@ -483,7 +484,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason top">광고비 상위</span><h3>2시간뒤_2</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱오리지널_루피_릴렉스틱볼_루피_영상_2시간뒤_일반_2"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="off">⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep" selected>⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off">⏹ 오프</option></select>
         </div>
         <div class="meta">260529 · GEM잔망루피_릴렉스틱오리지널_루피/릴렉스틱볼_루피 · <span class="acct">GEM</span> · 개시 05/30 · 128일차 · 소구점 타이밍</div>
         <div class="perf">광고비 <b>333,217원</b> <span class="dim">(지지난주 331,882)</span> · cafe24 매출 <b>703,100원</b> · ROAS <b>211%</b> <span class="dim">(지지난주 167%)</span> · 구매 <b>22건</b></div>
@@ -497,7 +498,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason anom">이상 신호 · CTR 평균 대비 36% 나쁨</span><h3>릴렉스틱볼_루피_마사지스틱1위_1</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱오리지널_루피_릴렉스틱볼_루피_마사지스틱1위_1"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off" selected>⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off" selected>⏹ 오프</option></select>
         </div>
         <div class="meta">260529 · GEM잔망루피_릴렉스틱오리지널_루피/릴렉스틱볼_루피 · <span class="acct">GEM</span> · 개시 06/18 · 109일차 · 소구점 베스트셀러</div>
         <div class="perf">광고비 <b>100,370원</b> <span class="dim">(지지난주 35,082)</span> · cafe24 매출 <b>69,900원</b> · ROAS <b>70%</b> <span class="dim">(지지난주 0%)</span> · 구매 <b>2건</b></div>
@@ -511,7 +512,7 @@ footer button{font:inherit;font-size:11px;border:1px solid #d9d9de;background:#f
         <div class="head">
           <div class="ttl"><span class="reason anom">이상 신호 · 3초 조회율 평균 대비 34% 나쁨</span><h3>광고를보셨다면_1</h3><span class="onoff on">ON</span></div>
           <select class="plan" data-k="card_릴렉스틱오리지널_루피_릴렉스틱볼_루피_영상_광고를보셨다면_일반_1"><option value="">계획 선택</option>
-<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="off" selected>⏹ 오프</option></select>
+<option value="up">🔼 증액</option><option value="down">🔽 감액</option><option value="keep">⏸ 유지·테스트</option><option value="swap">🔁 교체</option><option value="off" selected>⏹ 오프</option></select>
         </div>
         <div class="meta">260710 · GEM잔망_연예인_릴렉스틱오리지널_루피/릴렉스틱볼_루피 · <span class="acct">GEM</span> · 개시 07/10 · 87일차 · 소구점 후킹</div>
         <div class="perf">광고비 <b>178,845원</b> <span class="dim">(지지난주 218,769)</span> · cafe24 매출 <b>139,800원</b> · ROAS <b>78%</b> <span class="dim">(지지난주 212%)</span> · 구매 <b>4건</b></div>
